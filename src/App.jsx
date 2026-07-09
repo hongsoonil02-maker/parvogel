@@ -263,20 +263,31 @@ const ParvogelLanding = () => {
                                 </button>
                             ))}
 
-                            {/* Language Toggle - Desktop */}
-                            <div className="flex items-center space-x-1 bg-gray-100 px-2.5 py-1 rounded-full border border-gray-200">
-                                {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
-                                    <button
-                                        key={lang}
-                                        onClick={() => i18n.changeLanguage(lang)}
-                                        className={`text-xs font-bold px-2 py-0.5 rounded-full transition-all ${i18n.language === lang
-                                            ? `${primaryBg} text-white shadow-sm`
-                                            : 'text-gray-600 hover:text-gray-900'
-                                            }`}
-                                    >
-                                        {lang.toUpperCase()}
-                                    </button>
-                                ))}
+                            {/* Language Toggle - Desktop Dropdown */}
+                            <div className="relative group">
+                                <button className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors">
+                                    <span className="text-sm"></span>
+                                    <span className="text-xs font-bold text-gray-700">{i18n.language.toUpperCase()}</span>
+                                    <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    <div className="py-1 max-h-64 overflow-y-auto">
+                                        {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
+                                            <button
+                                                key={lang}
+                                                onClick={() => i18n.changeLanguage(lang)}
+                                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${i18n.language === lang
+                                                    ? `${primaryBg} text-white`
+                                                    : 'text-gray-700'
+                                                    }`}
+                                            >
+                                                {lang.toUpperCase()}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
 
                             <button
@@ -419,21 +430,7 @@ const ParvogelLanding = () => {
                             </button>
                         </div>
 
-                        {/* Trust Indicators */}
-                        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-sm text-gray-500 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-                            <div className="flex items-center gap-2">
-                                <svg className={`w-5 h-5 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                <span>동물용의약품 제조허가 제○○호</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <svg className={`w-5 h-5 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                <span>HACCP 인증 시설 제조</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <svg className={`w-5 h-5 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                                <span>상온 24개월 보관</span>
-                            </div>
-                        </div>
+
                     </div>
 
                     {/* Scroll Indicator */}
