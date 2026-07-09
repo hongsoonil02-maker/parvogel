@@ -373,24 +373,6 @@ const ParvogelLanding = () => {
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
                 </div>
 
-                {/* Floating Animals */}
-                <div className="absolute inset-0 pointer-events-none">
-                    {targetAnimals.map((animal, i) => (
-                        <div
-                            key={animal.name}
-                            className="absolute text-4xl sm:text-5xl opacity-20 animate-float"
-                            style={{
-                                top: `${10 + i * 15}%`,
-                                left: `${5 + (i % 3) * 30}%`,
-                                animationDelay: `${i * 0.5}s`,
-                                animationDuration: `${4 + i * 0.5}s`,
-                            }}
-                        >
-                            {animal.icon}
-                        </div>
-                    ))}
-                </div>
-
                 <div className="section-container relative z-10 py-20">
                     <div className="max-w-5xl mx-auto text-center">
                         {/* Badge */}
@@ -400,14 +382,15 @@ const ParvogelLanding = () => {
                         </div>
 
                         {/* Main Title */}
-                        <h1 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight mb-6 animate-fade-in-up ${gradientText}`}>
-                            동물의 신생아 설사 <br />
-                            <span className="block">파보겔 하나로 해결</span>
+                        <h1 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug mb-6 animate-fade-in-up ${gradientText}`}>
+                            동물의 신생아 설사
+                            <br className="mb-4" />
+                            <span className="block mt-4">파보겔 하나로 해결</span>
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-                            송아지·갓난돼지·염소새끼·양새끼·망아지 등 <strong className="text-gray-900">모든 동물 신생아</strong> 대상<br />
+                            송아지·난돼지·염소새끼·양새끼·망아지 등 <strong className="text-gray-900">모든 동물의 신생아</strong> 대상<br />
                             로타·코로나·파보바이러스·대장균·크립토스포리디움 광범위 억제
                         </p>
 
@@ -431,13 +414,6 @@ const ParvogelLanding = () => {
                         </div>
 
 
-                    </div>
-
-                    {/* Scroll Indicator */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
                     </div>
                 </div>
             </section>
