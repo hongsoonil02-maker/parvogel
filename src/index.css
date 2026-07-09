@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans text-gray-900 antialiased;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-primary-600 rounded-xl shadow-lg hover:bg-primary-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-8 py-4 text-base font-bold text-primary-700 bg-primary-50 border-2 border-primary-200 rounded-xl hover:bg-primary-100 hover:border-primary-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    }
+
+    .btn-accent {
+        @apply inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-accent-600 rounded-xl shadow-lg hover:bg-accent-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
+    }
+
+    .section-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .section-title {
+        @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight;
+    }
+
+    .section-subtitle {
+        @apply mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl;
+    }
+
+    .card {
+        @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 sm:p-8;
+    }
+
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+    }
+
+    .badge-primary {
+        @apply bg-primary-100 text-primary-800;
+    }
+
+    .badge-accent {
+        @apply bg-accent-100 text-accent-800;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .gradient-text {
+        @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+    }
+
+    .gradient-text-accent {
+        @apply bg-gradient-to-r from-accent-600 to-accent-800 bg-clip-text text-transparent;
+    }
+}
