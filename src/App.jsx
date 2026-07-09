@@ -120,7 +120,7 @@ const ParvogelLanding = () => {
         },
         {
             icon: '🛡️',
-            title: '면역글로불린 고함량',
+            title: '초미세 몬모릴로나이트',
             desc: 'IgG 고농축으로 신생자동물의 수동면역 즉시 형성, 생존율 획기적 향상',
             color: 'accent',
         },
@@ -131,9 +131,9 @@ const ParvogelLanding = () => {
             color: 'primary',
         },
         {
-            icon: '🐄',
-            title: '전축종 적용 가능',
-            desc: '송아지, 갓난돼지, 염소새끼, 양새끼, 망아지 등 모든 축종 신생아 공통 사용',
+            icon: '/assets/goat-kid.png',
+            title: '동물의 적용 가능',
+            desc: '송아지, 갓난돼지, 염소새끼, 양새끼, 망아지 등 모든 동물 신생아 공통 사용',
             color: 'accent',
         },
         {
@@ -151,11 +151,12 @@ const ParvogelLanding = () => {
     ]
 
     const targetAnimals = [
-        { icon: '🐄', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
-        { icon: '�', name: '염소새끼', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
-        { icon: '🐑', name: '양새끼', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
-        { icon: '🐎', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
-        { icon: '🐷', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
+        { icon: '/assets/goat-kid.png', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
+        { icon: '/assets/goat-kid.png', name: '염소새끼', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
+        { icon: '/assets/goat-kid.png', name: '양새끼', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
+        { icon: '/assets/goat-kid.png', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
+        { icon: '/assets/goat-kid.png', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
+        { icon: '/assets/goat-kid.png', name: '기타', age: '수의사 상담 필요', diseases: '사슴, 토끼, 타조 등' },
     ]
 
     const clinicalData = [
@@ -386,7 +387,7 @@ const ParvogelLanding = () => {
                                 animationDuration: `${4 + i * 0.5}s`,
                             }}
                         >
-                            {animal.icon}
+                            <img src={animal.icon} alt={animal.name} className="w-16 h-16 object-contain" />
                         </div>
                     ))}
                 </div>
@@ -396,18 +397,18 @@ const ParvogelLanding = () => {
                         {/* Badge */}
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur border border-gray-200 shadow-lg mb-6 animate-fade-in-up">
                             <span className={`w-2 h-2 rounded-full ${primaryBg} animate-pulse`} />
-                            <span className="text-sm font-semibold text-gray-700">전축종 신생아 설사 치료 보조제 · 온라인 공식 판매처</span>
+                            <span className="text-sm font-semibold text-gray-700">동물의 신생아 설사 치료 보조제 · 온라인 공식 판매처</span>
                         </div>
 
                         {/* Main Title */}
                         <h1 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight mb-6 animate-fade-in-up ${gradientText}`}>
-                            전축종 신생아 설사 <br />
+                            동물의 신생아 설사 <br />
                             <span className="block">파보겔 하나로 해결</span>
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-                            송아지·갓난돼지·염소새끼·양새끼·망아지 등 <strong className="text-gray-900">모든 축종 신생아</strong> 대상<br />
+                            송아지·갓난돼지·염소새끼·양새끼·망아지 등 <strong className="text-gray-900">모든 동물 신생아</strong> 대상<br />
                             로타·코로나·파보바이러스·대장균·크립토스포리디움 광범위 억제
                         </p>
 
@@ -450,11 +451,11 @@ const ParvogelLanding = () => {
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
                                 파보겔이란?
                             </span>
-                            <h2 className="section-title">면역글로불린 고농축으로<br />신생아 생존율을 지킵니다</h2>
+                            <h2 className="section-title">초미세 몬모릴로나이트로<br />신생아 생존율을 지킵니다</h2>
                             <p className="section-subtitle">
-                                파보겔(Parvogel)은 초유에서 추출한 고순도 면역글로불린(IgG)을 주성분으로 하는
+                                파보겔(Parvogel)은 초미세 몬모릴로나이트를 주성분으로 하는
                                 경구용 설사 치료 보조제입니다. 신생아 동물이 초유를 충분히 섭취하지 못했거나,
-                                바이러스·세균·원충 감염으로 설사할 때 신속한 수동면역을 제공합니다.
+                                바이러스·세균·원충 감염으로 설사할 때 신속한 보호막을 형성합니다.
                             </p>
                             <div className="mt-8 grid grid-cols-2 gap-4">
                                 {[
@@ -481,7 +482,7 @@ const ParvogelLanding = () => {
                                     <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
                                         <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>IgG 30%+</span>
                                         <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>상온보관</span>
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>전축종</span>
+                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>동물의</span>
                                     </div>
                                 </div>
                             </div>
@@ -520,7 +521,11 @@ const ParvogelLanding = () => {
                                 style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl ${feature.color === 'primary' ? 'bg-primary-100' : 'bg-accent-100'} group-hover:scale-110 transition-transform`}>
-                                    {feature.icon}
+                                    {feature.icon.startsWith('/') ? (
+                                        <img src={feature.icon} alt="" className="w-10 h-10 object-contain" />
+                                    ) : (
+                                        <span className="text-2xl">{feature.icon}</span>
+                                    )}
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
                                 <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
@@ -553,7 +558,7 @@ const ParvogelLanding = () => {
                                 <div className="grid lg:grid-cols-4 gap-6">
                                     <div className="lg:col-span-1">
                                         <div className={`w-full h-32 ${primaryBgLight} rounded-xl flex items-center justify-center`}>
-                                            <span className="text-4xl">{targetAnimals[i % targetAnimals.length].icon}</span>
+                                            <img src={targetAnimals[i % targetAnimals.length].icon} alt="" className="w-16 h-16 object-contain" />
                                         </div>
                                     </div>
                                     <div className="lg:col-span-3">
@@ -598,11 +603,11 @@ const ParvogelLanding = () => {
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            적용 대상 축종
+                            적용 대상 동물
                         </span>
-                        <h2 className="section-title">전축종 신생아, 한 병으로 커버</h2>
+                        <h2 className="section-title">동물의 신생아, 한 병으로 커버</h2>
                         <p className="section-subtitle">
-                            축종별 주요 설사 원인체와 권장 투여 시기를 확인하세요
+                            동물별 주요 설사 원인체와 권장 투여 시기를 확인하세요
                         </p>
                     </div>
 
@@ -615,7 +620,7 @@ const ParvogelLanding = () => {
                             >
                                 <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-3xl ${primaryBgLight} opacity-10 group-hover:opacity-20 transition-opacity`} />
                                 <div className="relative z-10">
-                                    <div className="text-5xl mb-4">{animal.icon}</div>
+                                    <div className="mb-4"><img src={animal.icon} alt={animal.name} className="w-20 h-20 object-contain mx-auto" /></div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{animal.name}</h3>
                                     <div className="space-y-3">
                                         <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -637,7 +642,7 @@ const ParvogelLanding = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">기타 축종(사슴, 토끼, 타조 등)도 수의사 처방 하에 적용 가능</p>
+                        <p className="text-gray-600 mb-4">기타 동물(사슴, 토끼, 타조 등)도 수의사 처방 하에 적용 가능</p>
                         <button
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
@@ -956,7 +961,7 @@ const ParvogelLanding = () => {
                                 <span className="font-extrabold text-xl text-white">파보겔 <span className={`${primaryText} font-black`}>Parvogel</span></span>
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
-                                전축종 신생아 설사 치료의 새로운 기준. 면역글로불린 고농축으로 생존율을 지킵니다.
+                                동물의 신생아 설사 치료의 새로운 기준. 초미세 몬모릴로나이트로 생존율을 지킵니다.
                             </p>
                             <div className="flex gap-4">
                                 <a href="https://coupang.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
