@@ -131,9 +131,9 @@ const ParvogelLanding = () => {
             color: 'primary',
         },
         {
-            icon: '/assets/goat-kid.png',
-            title: '동물의 적용 가능',
-            desc: '송아지, 갓난돼지, 염소새끼, 양새끼, 망아지 등 모든 동물 신생아 공통 사용',
+            icon: '🐄',
+            title: '전축종 적용 가능',
+            desc: '송아지, 갓난돼지, 염소새끼, 양새끼, 망아지 등 모든 축종 신생아 공통 사용',
             color: 'accent',
         },
         {
@@ -151,12 +151,11 @@ const ParvogelLanding = () => {
     ]
 
     const targetAnimals = [
-        { icon: '/assets/goat-kid.png', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
-        { icon: '/assets/goat-kid.png', name: '염소새끼', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
-        { icon: '/assets/goat-kid.png', name: '양새끼', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
-        { icon: '/assets/goat-kid.png', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
-        { icon: '/assets/goat-kid.png', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
-        { icon: '/assets/goat-kid.png', name: '기타', age: '수의사 상담 필요', diseases: '사슴, 토끼, 타조 등' },
+        { icon: '🐄', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
+        { icon: '🐐', name: '염소새끼', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
+        { icon: '🐑', name: '양새끼', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
+        { icon: '🐎', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
+        { icon: '🐷', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
     ]
 
     const clinicalData = [
@@ -387,7 +386,7 @@ const ParvogelLanding = () => {
                                 animationDuration: `${4 + i * 0.5}s`,
                             }}
                         >
-                            <img src={animal.icon} alt={animal.name} className="w-16 h-16 object-contain" />
+                            {animal.icon}
                         </div>
                     ))}
                 </div>
@@ -521,11 +520,7 @@ const ParvogelLanding = () => {
                                 style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl ${feature.color === 'primary' ? 'bg-primary-100' : 'bg-accent-100'} group-hover:scale-110 transition-transform`}>
-                                    {feature.icon.startsWith('/') ? (
-                                        <img src={feature.icon} alt="" className="w-10 h-10 object-contain" />
-                                    ) : (
-                                        <span className="text-2xl">{feature.icon}</span>
-                                    )}
+                                    {feature.icon}
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
                                 <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
@@ -558,7 +553,7 @@ const ParvogelLanding = () => {
                                 <div className="grid lg:grid-cols-4 gap-6">
                                     <div className="lg:col-span-1">
                                         <div className={`w-full h-32 ${primaryBgLight} rounded-xl flex items-center justify-center`}>
-                                            <img src={targetAnimals[i % targetAnimals.length].icon} alt="" className="w-16 h-16 object-contain" />
+                                            <span className="text-4xl">{targetAnimals[i % targetAnimals.length].icon}</span>
                                         </div>
                                     </div>
                                     <div className="lg:col-span-3">
@@ -620,7 +615,7 @@ const ParvogelLanding = () => {
                             >
                                 <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-3xl ${primaryBgLight} opacity-10 group-hover:opacity-20 transition-opacity`} />
                                 <div className="relative z-10">
-                                    <div className="mb-4"><img src={animal.icon} alt={animal.name} className="w-20 h-20 object-contain mx-auto" /></div>
+                                    <div className="text-5xl mb-4">{animal.icon}</div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{animal.name}</h3>
                                     <div className="space-y-3">
                                         <div className="flex items-center gap-2 text-sm text-gray-600">
