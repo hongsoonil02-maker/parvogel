@@ -118,7 +118,26 @@
         "v3": "Diarreia viral bovina (BVDV)",
         "v4": "Vírus Akabane · Aino",
         "v5": "Vírus da febre efêmera bovina (BEF)",
-        "virusNote": "Citado de documentos de ensaio DNG-1000 da Korea Agro"
+        "virusNote": "Citado de documentos de ensaio DNG-1000 da Korea Agro",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "Validação por grandes acadêmicos",
@@ -135,7 +154,11 @@
         "f1": "Alívio da dor abdominal e supressão de vômito — alívio imediato, satisfação máxima",
         "f2": "Excelente palatabilidade — bezerros consomem sem rejeição, estresse mínimo",
         "f3": "Regulação de pH gástrico — estabiliza o ambiente estomacal, acelera recuperação",
-        "f4": "Alta intenção de recompra — forte confiança de fazendas que sentiram melhora"
+        "f4": "Alta intenção de recompra — forte confiança de fazendas que sentiram melhora",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "Espécies de gado-alvo",
@@ -229,7 +252,9 @@
         "coupang": "Coupang Rocket Delivery",
         "coupangQr": "Pedir no Coupang",
         "naver": "Naver Shopping",
-        "naverQr": "Pedir no Naver"
+        "naverQr": "Pedir no Naver",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "Novo padrão para tratamento de diarreia neonatal de todo o gado. Protegendo a sobrevivência com montmorilonita ultrafina.",

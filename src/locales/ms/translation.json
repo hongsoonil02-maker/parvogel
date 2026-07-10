@@ -118,7 +118,26 @@
         "v3": "Cirit-birit virus lembu (BVDV)",
         "v4": "Virus Akabane · Aino",
         "v5": "Virus demam sepintas lembu (BEF)",
-        "virusNote": "Petik hasil uji dari dokumen DNG-1000 Korea Agro"
+        "virusNote": "Petik hasil uji dari dokumen DNG-1000 Korea Agro",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "Pengesahan pakar utama",
@@ -135,7 +154,11 @@
         "f1": "Reda sakit perut & cegah muntah — lega kolik serta-merta, kepuasan tertinggi",
         "f2": "Palatabiliti sangat baik — anak lembu makan tanpa tolak, stres minimum",
         "f3": "Atur pH perut — stabilkan persekitaran, pemulihan lebih pantas",
-        "f4": "Niat beli semula tinggi — kepercayaan kuat ladang yang rasa membaik"
+        "f4": "Niat beli semula tinggi — kepercayaan kuat ladang yang rasa membaik",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "Spesies ternakan sasaran",
@@ -229,7 +252,9 @@
         "coupang": "Coupang Rocket Delivery",
         "coupangQr": "Pesan di Coupang",
         "naver": "Naver Shopping",
-        "naverQr": "Pesan di Naver"
+        "naverQr": "Pesan di Naver",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "Standard baharu rawatan cirit-birit neonatal semua ternakan. Lindungi kelangsungan hidup dengan montmorillonite ultra-halus.",

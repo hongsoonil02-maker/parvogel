@@ -118,7 +118,26 @@
         "v3": "牛病毒性腹泻(BVDV)",
         "v4": "赤羽·爱诺病毒",
         "v5": "牛流行热病毒(BEF)",
-        "virusNote": "引用韩国阿格罗DNG-1000相关文档内试验结果"
+        "virusNote": "引用韩国阿格罗DNG-1000相关文档内试验结果",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "顶级学者验证",
@@ -135,7 +154,11 @@
         "f1": "腹痛缓解及止吐—即时缓解腹绞痛,农户满意度最高",
         "f2": "优秀适口性—幼犊无抗拒摄取,最小化投药压力",
         "f3": "胃内酸度调节—超越单纯止泻,稳定胃内环境提升恢复速度",
-        "f4": "高复购意愿—现场症状改善获得农户强烈信赖"
+        "f4": "高复购意愿—现场症状改善获得农户强烈信赖",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "适用对象畜种",
@@ -229,7 +252,9 @@
         "coupang": "Coupang火箭配送",
         "coupangQr": "在Coupang下单",
         "naver": "Naver购物",
-        "naverQr": "在Naver下单"
+        "naverQr": "在Naver下单",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "全畜种新生仔腹泻治疗的新标准。用超微蒙脱石保护存活率。",

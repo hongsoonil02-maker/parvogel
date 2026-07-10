@@ -118,7 +118,26 @@
         "v3": "Bovine Virusdiarrhö (BVDV)",
         "v4": "Akabane · Aino-Virus",
         "v5": "Bovine Ephemeral Fever Virus (BEF)",
-        "virusNote": "Zitiert aus DNG-1000-Testdokumenten von Korea Agro"
+        "virusNote": "Zitiert aus DNG-1000-Testdokumenten von Korea Agro",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "Validierung durch Top-Wissenschaftler",
@@ -135,7 +154,11 @@
         "f1": "Bauchschmerz-Linderung & Erbrechen-Unterdrückung — sofortige Kolik-Linderung, höchste Zufriedenheit",
         "f2": "Hervorragende Schmackhaftigkeit — Kälber fressen ohne Abwehr, minimaler Stress",
         "f3": "Magen-pH-Regulierung — stabilisiert Magenumfeld, beschleunigt Erholung",
-        "f4": "Hohe Wiederkaufabsicht — starkes Vertrauen der Betriebe mit spürbarer Besserung"
+        "f4": "Hohe Wiederkaufabsicht — starkes Vertrauen der Betriebe mit spürbarer Besserung",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "Ziel-Nutztierrassen",
@@ -229,7 +252,9 @@
         "coupang": "Coupang Rocket Delivery",
         "coupangQr": "Bei Coupang bestellen",
         "naver": "Naver Shopping",
-        "naverQr": "Bei Naver bestellen"
+        "naverQr": "Bei Naver bestellen",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "Neuer Standard für neonatale Durchfallbehandlung aller Nutztiere. Überlebensrate mit ultrafeiner Montmorillonit schützen.",

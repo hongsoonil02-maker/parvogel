@@ -635,6 +635,37 @@ const ParvogelLanding = () => {
                         </div>
                         <p className="text-center text-xs text-gray-400 mt-4">{t('tech.virusNote')}</p>
                     </div>
+
+                    {/* Virus Group Inhibition Table */}
+                    <div className="max-w-5xl mx-auto mt-16">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{t('tech.virusTableTitle')}</h3>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
+                                <thead>
+                                    <tr className={`${primaryBg} text-white`}>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colVirusGroup')}</th>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colTarget')}</th>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colEffect2')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {[
+                                        { g: t('tech.vg1Group'), t: t('tech.vg1Target'), e: t('tech.vg1Effect') },
+                                        { g: t('tech.vg2Group'), t: t('tech.vg2Target'), e: t('tech.vg2Effect') },
+                                        { g: t('tech.vg3Group'), t: t('tech.vg3Target'), e: t('tech.vg3Effect') },
+                                        { g: t('tech.vg4Group'), t: t('tech.vg4Target'), e: t('tech.vg4Effect') },
+                                        { g: t('tech.vg5Group'), t: t('tech.vg5Target'), e: t('tech.vg5Effect') },
+                                    ].map((row, i) => (
+                                        <tr key={i} className="hover:bg-gray-50">
+                                            <td className="px-4 py-3 font-semibold text-gray-900">{row.g}</td>
+                                            <td className="px-4 py-3 text-gray-700">{row.t}</td>
+                                            <td className="px-4 py-3 font-bold text-primary-700">{row.e}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -677,6 +708,18 @@ const ParvogelLanding = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="card border-l-4 border-accent-400">
+                            <p className="text-lg text-gray-700 leading-relaxed mb-4">"{t('experts.e3Quote')}"</p>
+                            <div className="flex items-center gap-3">
+                                <div className={`w-12 h-12 rounded-full ${primaryBg} flex items-center justify-center text-white font-bold text-lg`}>
+                                    {t('experts.e3Name').charAt(0)}
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-900">{t('experts.e3Name')}</p>
+                                    <p className="text-sm text-gray-500">{t('experts.e3Role')}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Farm Feedback */}
@@ -693,6 +736,9 @@ const ParvogelLanding = () => {
                                 </div>
                             ))}
                         </div>
+                        <p className="text-center text-sm text-gray-500 mt-8 bg-gray-50 rounded-xl py-4 px-6 max-w-3xl mx-auto">
+                            {t('experts.advisoryNote')}
+                        </p>
                     </div>
                 </div>
             </section>

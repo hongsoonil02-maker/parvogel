@@ -118,7 +118,26 @@
         "v3": "牛ウイルス性下痢病(BVDV)",
         "v4": "アカバネ・アイノウイルス",
         "v5": "牛流行性熱ウイルス(BEF)",
-        "virusNote": "韓国アグロ DNG-1000関連文書内試験結果引用"
+        "virusNote": "韓国アグロ DNG-1000関連文書内試験結果引用",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "最高権威の検証",
@@ -135,7 +154,11 @@
         "f1": "腹痛緩和・嘔吐抑制—即時的な腹圧緩和で農家満足度最高",
         "f2": "優れた嗜好性—子牛が拒否なく摂取し投与ストレス最小化",
         "f3": "胃内酸度調節—単純止痢を超え胃内環境安定化で回復速度向上",
-        "f4": "高い再購入意向—現場症状改善を実感した農家の強い信頼"
+        "f4": "高い再購入意向—現場症状改善を実感した農家の強い信頼",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "適用対象畜種",
@@ -229,7 +252,9 @@
         "coupang": "Coupangロケット配送",
         "coupangQr": "Coupangで注文",
         "naver": "Naverショッピング",
-        "naverQr": "Naverで注文"
+        "naverQr": "Naverで注文",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "全畜種新生児下痢治療の新基準。超微細モンモリロナイトで生存率を守ります。",

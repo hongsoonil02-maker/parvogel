@@ -118,7 +118,26 @@
         "v3": "Tiêu chảy virus bò (BVDV)",
         "v4": "Virus Akabane · Aino",
         "v5": "Virus sốt thoáng qua bò (BEF)",
-        "virusNote": "Trích kết quả thử nghiệm từ tài liệu DNG-1000 của Korea Agro"
+        "virusNote": "Trích kết quả thử nghiệm từ tài liệu DNG-1000 của Korea Agro",
+        "virusTableTitle": "바이러스 계통별 억제 효과",
+        "colVirusGroup": "바이러스 계통",
+        "colTarget": "대상 바이러스",
+        "colEffect2": "효과",
+        "vg1Group": "Arteriviruses",
+        "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
+        "vg1Effect": "효과 확인",
+        "vg2Group": "Orthomyxoviridae",
+        "vg2Target": "조류독감 A (AIV)",
+        "vg2Effect": "효과 확인",
+        "vg3Group": "Pestiviruses",
+        "vg3Target": "소바이러스성설사병 (BVDV)",
+        "vg3Effect": "효과 확인",
+        "vg4Group": "Bunyaviridae",
+        "vg4Target": "아까바네, 아이노 바이러스",
+        "vg4Effect": "효과 확인",
+        "vg5Group": "Rhabdoviridae",
+        "vg5Target": "소유행열 바이러스 (BEF)",
+        "vg5Effect": "효과 확인"
     },
     "experts": {
         "badge": "Kiểm chứng bởi học giả hàng đầu",
@@ -135,7 +154,11 @@
         "f1": "Giảm đau bụng & chống nôn — giảm quặn bụng tức thì, hài lòng cao",
         "f2": "Vị ngon xuất sắc — bê con ăn không拒, giảm stress",
         "f3": "Điều hòa pH dạ dày — ổn định môi trường, hồi phục nhanh hơn",
-        "f4": "Ý định mua lại cao — tin tưởng mạnh từ trang trại thấy triệu chứng cải thiện"
+        "f4": "Ý định mua lại cao — tin tưởng mạnh từ trang trại thấy triệu chứng cải thiện",
+        "e3Name": "정성대 원장",
+        "e3Role": "동진동물병원",
+        "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
     },
     "target": {
         "badge": "Giống vật nuôi mục tiêu",
@@ -229,7 +252,9 @@
         "coupang": "Coupang Rocket Delivery",
         "coupangQr": "Đặt trên Coupang",
         "naver": "Naver Shopping",
-        "naverQr": "Đặt trên Naver"
+        "naverQr": "Đặt trên Naver",
+        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "contactNamePh": "예: 김철수"
     },
     "footer": {
         "desc": "Tiêu chuẩn mới điều trị tiêu chảy sơ sinh mọi gia súc. Bảo vệ tỷ lệ sống sót bằng montmorillonite siêu mịn.",
