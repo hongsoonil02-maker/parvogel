@@ -14,9 +14,9 @@
   <circle cx="200" cy="150" r="120" fill="rgba(96,165,250,0.1)"/>
   <circle cx="1000" cy="480" r="150" fill="rgba(251,191,36,0.1)"/>
   <text x="600" y="250" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">파보겔 (Parvogel)</text>
-  <text x="600" y="310" font-family="Arial, sans-serif" font-size="28" fill="url(#textGrad)" text-anchor="middle">전축종 신생아 설사 치료제</text>
-  <text x="600" y="370" font-family="Arial, sans-serif" font-size="20" fill="rgba(255,255,255,0.8)" text-anchor="middle">송아지 · 갓난돼지 · 염소새끼 · 양새끼 · 망아지</text>
-  <text x="600" y="420" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.6)" text-anchor="middle">면역글로불린 고농축 · 상온보관 · 쿠팡/네이버쇼핑 공식판매</text>
+  <text x="600" y="310" font-family="Arial, sans-serif" font-size="28" fill="url(#textGrad)" text-anchor="middle">신생아 설사 치료 보조제</text>
+  <text x="600" y="370" font-family="Arial, sans-serif" font-size="20" fill="rgba(255,255,255,0.8)" text-anchor="middle">송아지 · 갓난돼지 · 새끼 염소 · 새끼 양 · 망아지</text>
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.6)" text-anchor="middle">고순도 초미세 몬모릴로나이트 · 상온보관 · 쿠팡/네이버쇼핑 공식판매</text>
   <rect x="500" y="480" width="200" height="4" rx="2" fill="url(#textGrad)"/>
-  <text x="600" y="550" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.5)" text-anchor="middle">parvogel.kr  |  공식 온라인 판매처</text>
+  <text x="600" y="550" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.5)" text-anchor="middle">(주)한국아그로  |  공식 온라인 판매처</text>
 </svg>
