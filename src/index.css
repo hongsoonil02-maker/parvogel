@@ -41,7 +41,7 @@
     }
 
     .section-subtitle {
-        @apply mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed;
+        @apply mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed whitespace-pre-line;
     }
 
     .card {
