@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import Chatbot from './components/Chatbot'
+import QrCode from './components/QrCode'
 
 const ParvogelLanding = () => {
     const { t, i18n } = useTranslation()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
     const [isOrderComplete, setIsOrderComplete] = useState(false)
+    const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
         hospitalName: '',
         contactName: '',
@@ -20,7 +22,6 @@ const ParvogelLanding = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
-    const themeRef = useRef('blue') // 'blue' or 'red'
 
     // Scroll effect for header
     useEffect(() => {
@@ -83,32 +84,30 @@ const ParvogelLanding = () => {
         })
     }
 
-    const toggleTheme = () => {
-        themeRef.current = themeRef.current === 'blue' ? 'red' : 'blue'
-        document.documentElement.classList.toggle('theme-red')
-    }
-
-    const primaryColor = themeRef.current === 'blue' ? 'primary' : 'accent'
-    const primaryHover = themeRef.current === 'blue' ? 'hover:bg-primary-700' : 'hover:bg-accent-700'
-    const primaryBg = themeRef.current === 'blue' ? 'bg-primary-600' : 'bg-accent-600'
-    const primaryText = themeRef.current === 'blue' ? 'text-primary-600' : 'text-accent-600'
-    const primaryBgLight = themeRef.current === 'blue' ? 'bg-primary-50' : 'bg-accent-50'
-    const primaryBorder = themeRef.current === 'blue' ? 'border-primary-200' : 'border-accent-200'
-    const primaryTextDark = themeRef.current === 'blue' ? 'text-primary-800' : 'text-accent-800'
-    const primaryHoverBg = themeRef.current === 'blue' ? 'hover:bg-primary-100' : 'hover:bg-accent-100'
-    const primaryHoverBorder = themeRef.current === 'blue' ? 'hover:border-primary-300' : 'hover:border-accent-300'
-    const gradientText = themeRef.current === 'blue' ? 'gradient-text' : 'gradient-text-accent'
-    const badgePrimary = themeRef.current === 'blue' ? 'badge-primary' : 'badge-accent'
-    const primaryRing = themeRef.current === 'blue' ? 'focus:ring-primary-500' : 'focus:ring-accent-500'
-    const primaryShadow = themeRef.current === 'blue' ? 'shadow-primary-500/25' : 'shadow-accent-500/25'
+    // Fixed Deep Blue + Gold theme (no toggle)
+    const primaryColor = 'primary'
+    const primaryHover = 'hover:bg-primary-700'
+    const primaryBg = 'bg-primary-600'
+    const primaryText = 'text-primary-600'
+    const primaryBgLight = 'bg-primary-50'
+    const primaryBorder = 'border-primary-200'
+    const primaryTextDark = 'text-primary-800'
+    const primaryHoverBg = 'hover:bg-primary-100'
+    const primaryHoverBorder = 'hover:border-primary-300'
+    const gradientText = 'gradient-text'
+    const badgePrimary = 'badge-primary'
+    const primaryRing = 'focus:ring-primary-500'
+    const primaryShadow = 'shadow-primary-500/25'
 
     const navItems = [
-        { id: 'about', label: '제품소개' },
-        { id: 'features', label: '핵심특장점' },
-        { id: 'clinical', label: '임상증례' },
-        { id: 'target', label: '적용대상' },
-        { id: 'testimonials', label: '추천사' },
-        { id: 'order', label: '주문문의' },
+        { id: 'about', label: t('nav.about') },
+        { id: 'features', label: t('nav.features') },
+        { id: 'clinical', label: t('nav.clinical') },
+        { id: 'tech', label: t('nav.tech') },
+        { id: 'experts', label: t('nav.experts') },
+        { id: 'target', label: t('nav.target') },
+        { id: 'testimonials', label: t('nav.testimonials') },
+        { id: 'order', label: t('nav.order') },
     ]
 
     const features = [
@@ -121,7 +120,7 @@ const ParvogelLanding = () => {
         {
             icon: '🛡️',
             title: '초미세 몬모릴로나이트',
-            desc: 'IgG 고농축으로 신생자동물의 수동면역 즉시 형성, 생존율 획기적 향상',
+            desc: '초미세 몬모릴로나이트가 장 내 유해균·바이러스를 강력히 흡착하고, 바실러스 서브틸리스가 장 환경을 개선해 생존율을 향상합니다',
             color: 'accent',
         },
         {
@@ -133,7 +132,7 @@ const ParvogelLanding = () => {
         {
             icon: '🐄',
             title: '전축종 적용 가능',
-            desc: '송아지, 갓난돼지, 염소새끼, 양새끼, 망아지 등 모든 축종 신생아 공통 사용',
+            desc: '송아지, 갓난돼지, 새끼 염소, 새끼 양, 망아지 등 모든 축종 신생아 공통 사용',
             color: 'accent',
         },
         {
@@ -152,8 +151,8 @@ const ParvogelLanding = () => {
 
     const targetAnimals = [
         { icon: '🐄', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
-        { icon: '🐐', name: '염소새끼', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
-        { icon: '🐑', name: '양새끼', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
+        { icon: '🐐', name: '새끼 염소', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
+        { icon: '🐑', name: '새끼 양', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
         { icon: '🐎', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
         { icon: '🐷', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
     ]
@@ -175,7 +174,7 @@ const ParvogelLanding = () => {
         },
         {
             title: '염소·양 신생아 크립토스포리디움증',
-            subject: '생후 10일령 염소새끼 24두, 양새끼 24두',
+            subject: '생후 10일령 새끼 염소 24두, 새끼 양 24두',
             result: '오오시스트 배출 95% 감소',
             detail: '설사 지속일수 평균 2.3일 (대조군 6.8일), 폐사율 0% 달성',
             source: 'Korean J. Parasitol. 2023'
@@ -201,33 +200,19 @@ const ParvogelLanding = () => {
             name: '이○○ 약사',
             clinic: '○○동물약국 (전북)',
             role: '동물약국 15년 운영',
-            content: '"쿠팡·네이버쇼핑 입점 후 재구매율 78%. 50ml 소포장은 초보 축주도 부담없이 구매, 500ml는 전업농 단골 확보."',
+            content: '"쿠팡·네이버쇼핑 입점 후 재구매율 78%. 100ml 소포장은 초보 축주도 부담없이 구매, 500ml는 전업농 단골 확보."',
             rating: 5,
         },
     ]
 
     const products = [
         { id: 'parvogel-100ml', name: '파보겔 100ml', desc: '개별 투약용 / 초보 축주 추천', price: '18,000원', unit: '1병', badge: '인기' },
-        { id: 'parvogel-200ml', name: '파보겔 200ml', desc: '중형 농장 / 경제적 선택', price: '45,000원', unit: '1병', badge: '베스트' },
-        { id: 'parvogel-500ml', name: '파보겔 500ml', desc: '대규모 농장 / 도매 공급', price: '120,000원', unit: '1병', badge: '대용량' },
+        { id: 'parvogel-200ml', name: '파보겔 200ml', desc: '중형 농장 / 경제적 선택', price: '30,000원', unit: '1병', badge: '베스트' },
+        { id: 'parvogel-500ml', name: '파보겔 500ml', desc: '대규모 농장 / 도매 공급', price: '75,000원', unit: '1병', badge: '대용량' },
     ]
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Theme Toggle Button */}
-            <button
-                onClick={toggleTheme}
-                className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300"
-                aria-label="테마 변경"
-                title="블루/레드 테마 전환"
-            >
-                {themeRef.current === 'blue' ? (
-                    <span className="text-accent-600 text-xl">🔴</span>
-                ) : (
-                    <span className="text-primary-600 text-xl">🔵</span>
-                )}
-            </button>
-
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -237,11 +222,11 @@ const ParvogelLanding = () => {
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
                         <div className="flex items-center gap-2 sm:gap-3" onClick={() => scrollToSection('hero')}>
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${primaryBg} shadow-lg`}>
-                                <span className="text-white font-extrabold text-xl">P</span>
+                            <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${primaryBg} shadow-lg`}>
+                                <span className="text-white font-extrabold text-2xl">P</span>
                             </div>
-                            <span className="font-extrabold text-xl sm:text-2xl text-gray-900 tracking-tight hidden sm:block">
-                                파보겔 <span className={`${primaryText} font-black`}>Parvogel</span>
+                            <span className="font-extrabold text-2xl sm:text-3xl text-gray-900 tracking-tight">
+                                파보겔 <span className={`${primaryText} font-black`}>ParvoGel</span>
                             </span>
                         </div>
 
@@ -377,21 +362,21 @@ const ParvogelLanding = () => {
                     <div className="max-w-5xl mx-auto text-center">
                         {/* Badge */}
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur border border-gray-200 shadow-lg mb-6 animate-fade-in-up">
-                            <span className={`w-2.5 h-2.5 rounded-full ${primaryBg} animate-pulse`} />
-                            <span className="text-sm font-semibold text-gray-700">설사 치료 보조제 · 온라인 공식 판매처</span>
+                            <span className={`w-3.5 h-3.5 sm:w-2.5 sm:h-2.5 rounded-full ${primaryBg} animate-pulse flex-shrink-0`} />
+                            <span className="text-sm font-semibold text-gray-700 text-center leading-snug">{t('hero.badge').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</span>
                         </div>
 
                         {/* Main Title */}
-                        <h1 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug mb-6 animate-fade-in-up ${gradientText}`}>
-                            동물의 신생아 설사
-                            <br className="mb-4" />
-                            <span className="block mt-4">파보겔 하나로 해결</span>
+                        <h1 className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-tight text-center mb-8 animate-fade-in-up ${gradientText}`}>
+                            {t('hero.title').split('\n').map((line, i) => (
+                                <span key={i} className="block">{line}</span>
+                            ))}
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-                            송아지·난돼지·염소새끼·양새끼·망아지 등 <strong className="text-gray-900">모든 동물의 신생아</strong> 대상<br />
-                            로타·코로나·파보바이러스·대장균·크립토스포리디움 광범위 억제
+                            {t('hero.subtitle')}<br />
+                            {t('hero.subtitle2')}
                         </p>
 
                         {/* CTA Buttons */}
@@ -403,13 +388,13 @@ const ParvogelLanding = () => {
                                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                 </svg>
-                                쿠팡·네이버쇼핑 주문하기
+                                {t('hero.cta1')}
                             </button>
                             <button
                                 onClick={() => scrollToSection('clinical')}
                                 className={`btn-secondary w-full sm:w-auto text-lg px-10 py-5 ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
                             >
-                                임상 데이터 확인
+                                {t('hero.cta2')}
                             </button>
                         </div>
 
@@ -424,20 +409,21 @@ const ParvogelLanding = () => {
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div>
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                                파보겔이란?
+                                {t('about.badge')}
                             </span>
-                            <h2 className="section-title">초미세 몬모릴로나이트로<br />신생아 생존율을 지킵니다</h2>
+                            <h2 className="section-title">{t('about.title')}</h2>
                             <p className="section-subtitle">
-                                파보겔(Parvogel)은 초미세 몬모릴로나이트를 주성분으로 하는
-                                경구용 설사 치료 보조제입니다. 신생아 동물이 초유를 충분히 섭취하지 못했거나,
-                                바이러스·세균·원충 감염으로 설사할 때 신속한 보호막을 형성합니다.
+                                {t('about.desc1')}
+                            </p>
+                            <p className="section-subtitle mt-4">
+                                {t('about.desc2')}
                             </p>
                             <div className="mt-8 grid grid-cols-2 gap-4">
                                 {[
-                                    { label: '주성분', value: 'IgG 30% 이상 고농축' },
-                                    { label: '제형', value: '경구 액제 (맛좋은 바닐라향)' },
-                                    { label: '용법', value: '체중 10kg당 10ml, 1일 2회' },
-                                    { label: '보관', value: '상온 1~30℃, 24개월' },
+                                    { label: t('about.ingredient'), value: t('about.ingredientVal') },
+                                    { label: t('about.form'), value: t('about.formVal') },
+                                    { label: t('about.dosage'), value: t('about.dosageVal') },
+                                    { label: t('about.storage'), value: t('about.storageVal') },
                                 ].map((item, i) => (
                                     <div key={i} className="p-4 bg-gray-50 rounded-xl">
                                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
@@ -452,23 +438,23 @@ const ParvogelLanding = () => {
                                     <div className={`w-24 h-24 rounded-2xl ${primaryBg} flex items-center justify-center mb-6 shadow-lg`}>
                                         <span className="text-white text-4xl font-extrabold">P</span>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">파보겔 500ml</h3>
-                                    <p className="text-gray-600 text-center mb-6">농장 상비약 표준 규격<br />체중 50kg 기준 25회 분량</p>
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{products[2].name}</h3>
+                                    <p className="text-gray-600 text-center mb-6">{products[2].desc}<br />{products[2].price}</p>
                                     <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>IgG 30%+</span>
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>상온보관</span>
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>동물의</span>
+                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.ingredientVal')}</span>
+                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.storage')}</span>
+                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.dosage')}</span>
                                     </div>
                                 </div>
                             </div>
                             {/* Floating badges */}
                             <div className="absolute -top-4 -right-4 w-24 h-24 bg-white rounded-2xl shadow-lg p-4 border-2 border-primary-100 animate-float">
-                                <p className="text-xs text-gray-500 text-center mb-1">쿠팡</p>
-                                <p className="text-2xl font-extrabold text-gray-900 text-center">로켓배송</p>
+                                <p className="text-xs text-gray-500 text-center mb-1">{t('about.coupang')}</p>
+                                <p className="text-2xl font-extrabold text-gray-900 text-center">{t('about.rocket')}</p>
                             </div>
                             <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-white rounded-2xl shadow-lg p-4 border-2 border-accent-100 animate-float" style={{ animationDelay: '1s' }}>
-                                <p className="text-xs text-gray-500 text-center mb-1">네이버</p>
-                                <p className="text-2xl font-extrabold text-gray-900 text-center">쇼핑입점</p>
+                                <p className="text-xs text-gray-500 text-center mb-1">{t('about.naver')}</p>
+                                <p className="text-2xl font-extrabold text-gray-900 text-center">{t('about.shopping')}</p>
                             </div>
                         </div>
                     </div>
@@ -480,11 +466,11 @@ const ParvogelLanding = () => {
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            핵심 특장점
+                            {t('features.badge')}
                         </span>
-                        <h2 className="section-title">6가지 이유로 선택받는 파보겔</h2>
+                        <h2 className="section-title">{t('features.title').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h2>
                         <p className="section-subtitle">
-                            수의사·축산농가·약국 현장의 목소리를 반영해 개발된 차세대 신생아 설사 치료 보조제
+                            {t('features.subtitle')}
                         </p>
                     </div>
 
@@ -511,11 +497,11 @@ const ParvogelLanding = () => {
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            임상 근거
+                            {t('clinical.badge')}
                         </span>
-                        <h2 className="section-title">검증된 효과, 논문으로 입증</h2>
+                        <h2 className="section-title">{t('clinical.title').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h2>
                         <p className="section-subtitle">
-                            국내 유수 대학·연구기관 임상시험에서 확인된 탁월한 치료 효과
+                            {t('clinical.subtitle')}
                         </p>
                     </div>
 
@@ -569,16 +555,158 @@ const ParvogelLanding = () => {
                 </div>
             </section>
 
+            {/* Technology & Test Data Section */}
+            <section id="tech" className="py-20 sm:py-28 lg:py-32 bg-gray-50">
+                <div className="section-container">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                            {t('tech.badge')}
+                        </span>
+                        <h2 className="section-title">{t('tech.title').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h2>
+                        <p className="section-subtitle">
+                            {t('tech.subtitle')}
+                        </p>
+                    </div>
+
+                    {/* LIQI vs General Table */}
+                    <div className="max-w-5xl mx-auto mb-16">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{t('tech.tableTitle')}</h3>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
+                                <thead>
+                                    <tr className={`${primaryBg} text-white`}>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colItem')}</th>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colGeneral')}</th>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colLiqi')}</th>
+                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colEffect')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {[
+                                        { item: t('tech.r1Item'), g: t('tech.r1General'), l: t('tech.r1Liqi'), e: t('tech.r1Effect') },
+                                        { item: t('tech.r2Item'), g: t('tech.r2General'), l: t('tech.r2Liqi'), e: t('tech.r2Effect') },
+                                        { item: t('tech.r3Item'), g: t('tech.r3General'), l: t('tech.r3Liqi'), e: t('tech.r3Effect') },
+                                        { item: t('tech.r4Item'), g: t('tech.r4General'), l: t('tech.r4Liqi'), e: t('tech.r4Effect') },
+                                    ].map((row, i) => (
+                                        <tr key={i} className="hover:bg-gray-50">
+                                            <td className="px-4 py-3 font-semibold text-gray-900">{row.item}</td>
+                                            <td className="px-4 py-3 text-gray-500">{row.g}</td>
+                                            <td className="px-4 py-3 font-bold text-primary-700">{row.l}</td>
+                                            <td className="px-4 py-3 text-gray-700">{row.e}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* Test Data Cards */}
+                    <div className="max-w-5xl mx-auto mb-16">
+                        <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{t('tech.testTitle')}</h3>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            {[
+                                { item: t('tech.t1Item'), cond: t('tech.t1Cond'), result: t('tech.t1Result') },
+                                { item: t('tech.t2Item'), cond: t('tech.t2Cond'), result: t('tech.t2Result') },
+                                { item: t('tech.t3Item'), cond: t('tech.t3Cond'), result: t('tech.t3Result') },
+                                { item: t('tech.t4Item'), cond: t('tech.t4Cond'), result: t('tech.t4Result') },
+                            ].map((d, i) => (
+                                <div key={i} className="card p-5">
+                                    <p className="font-bold text-gray-900 mb-1">{d.item}</p>
+                                    <p className="text-xs text-gray-500 mb-2">{d.cond}</p>
+                                    <p className={`text-lg font-extrabold ${primaryText}`}>{d.result}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Virus Inhibition */}
+                    <div className="max-w-5xl mx-auto">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{t('tech.virusTitle').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h3>
+                        <p className="text-center text-gray-600 mb-6">{t('tech.virusSub')}</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                            {[t('tech.v1'), t('tech.v2'), t('tech.v3'), t('tech.v4'), t('tech.v5')].map((v, i) => (
+                                <div key={i} className={`p-4 rounded-xl ${primaryBgLight} text-center`}>
+                                    <div className={`w-8 h-8 mx-auto mb-2 rounded-full ${primaryBg} flex items-center justify-center`}>
+                                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <p className="text-sm font-semibold text-gray-800">{v}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p className="text-center text-xs text-gray-400 mt-4">{t('tech.virusNote')}</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Experts & Farm Feedback Section */}
+            <section id="experts" className="py-20 sm:py-28 lg:py-32 bg-white">
+                <div className="section-container">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                            {t('experts.badge')}
+                        </span>
+                        <h2 className="section-title">{t('experts.title').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h2>
+                        <p className="section-subtitle">
+                            {t('experts.subtitle')}
+                        </p>
+                    </div>
+
+                    {/* Expert Quotes */}
+                    <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
+                        <div className="card border-l-4 border-accent-400">
+                            <p className="text-lg text-gray-700 leading-relaxed mb-4">"{t('experts.e1Quote')}"</p>
+                            <div className="flex items-center gap-3">
+                                <div className={`w-12 h-12 rounded-full ${primaryBg} flex items-center justify-center text-white font-bold text-lg`}>
+                                    {t('experts.e1Name').charAt(0)}
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-900">{t('experts.e1Name')}</p>
+                                    <p className="text-sm text-gray-500">{t('experts.e1Role')}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card border-l-4 border-accent-400">
+                            <p className="text-lg text-gray-700 leading-relaxed mb-4">"{t('experts.e2Quote')}"</p>
+                            <div className="flex items-center gap-3">
+                                <div className={`w-12 h-12 rounded-full ${primaryBg} flex items-center justify-center text-white font-bold text-lg`}>
+                                    {t('experts.e2Name').charAt(0)}
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-900">{t('experts.e2Name')}</p>
+                                    <p className="text-sm text-gray-500">{t('experts.e2Role')}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Farm Feedback */}
+                    <div className="max-w-5xl mx-auto">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{t('experts.farmTitle')}</h3>
+                        <p className="text-center text-gray-600 mb-6">{t('experts.farmSub')}</p>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            {[t('experts.f1'), t('experts.f2'), t('experts.f3'), t('experts.f4')].map((f, i) => (
+                                <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
+                                    <div className={`w-7 h-7 flex-shrink-0 rounded-full ${primaryBg} flex items-center justify-center mt-0.5`}>
+                                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">{f}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Target Animals Section */}
             <section id="target" className="py-20 sm:py-28 lg:py-32 bg-gray-50">
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            적용 대상 동물
+                            {t('target.badge')}
                         </span>
-                        <h2 className="section-title">동물의 신생아, 한 병으로 커버</h2>
+                        <h2 className="section-title">{t('target.title')}</h2>
                         <p className="section-subtitle">
-                            동물별 주요 설사 원인체와 권장 투여 시기를 확인하세요
+                            {t('target.subtitle')}
                         </p>
                     </div>
 
@@ -629,11 +757,11 @@ const ParvogelLanding = () => {
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            현장의 목소리
+                            {t('testimonials.badge')}
                         </span>
-                        <h2 className="section-title">수의사·약사·축주님이 직접 증명합니다</h2>
+                        <h2 className="section-title">{t('testimonials.title')}</h2>
                         <p className="section-subtitle">
-                            전국 200+ 동물병원·약국·농장에서 검증된 파보겔의 실력
+                            {t('testimonials.subtitle')}
                         </p>
                     </div>
 
@@ -668,11 +796,11 @@ const ParvogelLanding = () => {
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                            제품 라인업
+                            {t('products.badge')}
                         </span>
-                        <h2 className="section-title">용도별 맞춤 포장 단위</h2>
+                        <h2 className="section-title">{t('products.title')}</h2>
                         <p className="section-subtitle">
-                            농장 규모와 용도에 맞춰 선택하세요. 모두 쿠팡 로켓배송·네이버쇼핑 당일발송
+                            {t('products.subtitle')}
                         </p>
                     </div>
 
@@ -686,7 +814,7 @@ const ParvogelLanding = () => {
                                 {i === 1 && (
                                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                                         <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${primaryBg}`}>
-                                            추천 상품
+                                            {t('products.recommended')}
                                         </span>
                                     </div>
                                 )}
@@ -704,7 +832,7 @@ const ParvogelLanding = () => {
                                         <span className="text-3xl font-extrabold text-gray-900">{product.price}</span>
                                         <span className="text-gray-500">/{product.unit}</span>
                                     </div>
-                                    <p className="text-xs text-gray-500 text-center">부가세 포함 · 배송비 별도</p>
+                                    <p className="text-xs text-gray-500 text-center">부가세 포함 · 배송비 포함</p>
                                 </div>
                                 <button
                                     onClick={() => {
@@ -714,19 +842,19 @@ const ParvogelLanding = () => {
                                     }}
                                     className={`w-full ${i === 1 ? 'btn-primary' : 'btn-secondary'} ${i === 1 ? `${primaryBg} ${primaryHover}` : `${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}`}
                                 >
-                                    {i === 1 ? '주문하기' : '문의하기'}
+                                    {i === 1 ? t('products.order') : t('products.inquiry')}
                                 </button>
                             </div>
                         ))}
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">대량 구매(10병 이상) 및 도매 문의는 별도 상담 바랍니다.</p>
+                        <p className="text-gray-600 mb-4">{t('products.bulk')}</p>
                         <button
                             onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                             className={`btn-primary ${primaryBg} ${primaryHover} inline-flex`}
                         >
-                            도매·대량 구매 상담
+                            {t('products.bulkCta')}
                         </button>
                     </div>
                 </div>
@@ -738,11 +866,11 @@ const ParvogelLanding = () => {
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
-                                주문 및 상담
+                                {t('order.badge')}
                             </span>
-                            <h2 className="section-title">지금 바로 주문하세요</h2>
+                            <h2 className="section-title">{t('order.title')}</h2>
                             <p className="section-subtitle">
-                                쿠팡 로켓배송·네이버쇼핑 당일발송. 대량구매·도매는 별도 견적 드립니다.
+                                {t('order.subtitle')}
                             </p>
                         </div>
 
@@ -751,7 +879,7 @@ const ParvogelLanding = () => {
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="hospitalName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            병원/농장/업체명 <span className="text-accent-500">*</span>
+                                            {t('order.hospitalName')} <span className="text-accent-500">*</span>
                                         </label>
                                         <input
                                             type="text"
@@ -759,14 +887,14 @@ const ParvogelLanding = () => {
                                             name="hospitalName"
                                             value={formData.hospitalName}
                                             onChange={handleInputChange}
-                                            placeholder="예: 서울동물병원, 한우농장, OO약국"
+                                            placeholder={t('order.hospitalNamePh')}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                             required
                                         />
                                     </div>
                                     <div>
                                         <label htmlFor="contactName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            담당자명 <span className="text-accent-500">*</span>
+                                            {t('order.contactName')} <span className="text-accent-500">*</span>
                                         </label>
                                         <input
                                             type="text"
@@ -774,7 +902,7 @@ const ParvogelLanding = () => {
                                             name="contactName"
                                             value={formData.contactName}
                                             onChange={handleInputChange}
-                                            placeholder="예: 김철수"
+                                            placeholder={t('order.contactNamePh')}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                             required
                                         />
@@ -784,7 +912,7 @@ const ParvogelLanding = () => {
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            연락처 <span className="text-accent-500">*</span>
+                                            {t('order.phone')} <span className="text-accent-500">*</span>
                                         </label>
                                         <input
                                             type="tel"
@@ -792,14 +920,14 @@ const ParvogelLanding = () => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            placeholder="010-1234-5678"
+                                            placeholder={t('order.phonePh')}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                             required
                                         />
                                     </div>
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            이메일
+                                            {t('order.email')}
                                         </label>
                                         <input
                                             type="email"
@@ -807,7 +935,7 @@ const ParvogelLanding = () => {
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            placeholder="order@clinic.com"
+                                            placeholder={t('order.emailPh')}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                         />
                                     </div>
@@ -815,7 +943,7 @@ const ParvogelLanding = () => {
 
                                 <div>
                                     <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        배송 주소
+                                        {t('order.address')}
                                     </label>
                                     <textarea
                                         id="address"
@@ -823,7 +951,7 @@ const ParvogelLanding = () => {
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         rows={2}
-                                        placeholder="우편번호 포함 상세 주소"
+                                        placeholder={t('order.addressPh')}
                                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                     />
                                 </div>
@@ -831,7 +959,7 @@ const ParvogelLanding = () => {
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="product" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            희망 제품
+                                            {t('order.product')}
                                         </label>
                                         <select
                                             id="product"
@@ -840,15 +968,15 @@ const ParvogelLanding = () => {
                                             onChange={handleInputChange}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
                                         >
-                                            <option value="parvogel-50ml">파보겔 50ml (18,000원)</option>
-                                            <option value="parvogel-500ml">파보겔 500ml (120,000원) - 추천</option>
-                                            <option value="parvogel-1l">파보겔 1L (220,000원)</option>
-                                            <option value="consultation">상담 후 결정</option>
+                                            <option value="parvogel-50ml">{t('order.p50')}</option>
+                                            <option value="parvogel-500ml">{t('order.p500')}</option>
+                                            <option value="parvogel-1l">{t('order.p1l')}</option>
+                                            <option value="consultation">{t('order.consult')}</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label htmlFor="quantity" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            수량 (병)
+                                            {t('order.quantity')}
                                         </label>
                                         <input
                                             type="number"
@@ -865,7 +993,7 @@ const ParvogelLanding = () => {
 
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        문의사항 / 특이사항
+                                        {t('order.message')}
                                     </label>
                                     <textarea
                                         id="message"
@@ -873,7 +1001,7 @@ const ParvogelLanding = () => {
                                         value={formData.message}
                                         onChange={handleInputChange}
                                         rows={3}
-                                        placeholder="예: 초유 섭취 못한 송아지 10두 긴급 투약 필요, 도매가 문의 등"
+                                        placeholder={t('order.messagePh')}
                                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                     />
                                 </div>
@@ -889,31 +1017,35 @@ const ParvogelLanding = () => {
                                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                                             </svg>
-                                            접수 중...
+                                            {t('order.submitting')}
                                         </span>
                                     ) : (
-                                        '주문 접수하기'
+                                        t('order.submit')
                                     )}
                                 </button>
 
                                 <p className="text-center text-xs text-gray-400">
-                                    제출된 정보는 주문 상담 목적으로만 사용되며, 개인정보처리방침에 따라 안전하게 관리됩니다.
+                                    {t('order.privacyNote')}
                                 </p>
                             </form>
                         </div>
 
                         {/* Online Store Links */}
                         <div className="mt-12 text-center">
-                            <p className="text-gray-600 mb-4">바로 구매를 원하시면 공식 온라인몰을 이용하세요</p>
-                            <div className="flex flex-wrap items-center justify-center gap-4">
+                            <p className="text-gray-600 mb-4">{t('order.online')}</p>
+                            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
                                 <a href="https://coupang.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg>
-                                    <span className="font-semibold">쿠팡 로켓배송</span>
+                                    <span className="font-semibold">{t('order.coupang')}</span>
                                 </a>
                                 <a href="https://shopping.naver.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
-                                    <span className="font-semibold">네이버쇼핑</span>
+                                    <span className="font-semibold">{t('order.naver')}</span>
                                 </a>
+                            </div>
+                            <div className="flex flex-wrap items-center justify-center gap-8">
+                                <QrCode value="https://coupang.com" size={140} label={t('order.coupangQr')} />
+                                <QrCode value="https://shopping.naver.com" size={140} label={t('order.naverQr')} />
                             </div>
                         </div>
                     </div>
@@ -945,25 +1077,29 @@ const ParvogelLanding = () => {
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </a>
                             </div>
+                            <div className="mt-6 flex gap-4">
+                                <QrCode value="https://coupang.com" size={96} label={t('footer.coupang')} />
+                                <QrCode value="https://shopping.naver.com" size={96} label={t('footer.naver')} />
+                            </div>
                         </div>
 
                         <div>
-                            <h4 className="font-bold text-white mb-4">제품 정보</h4>
+                            <h4 className="font-bold text-white mb-4">{t('footer.productInfo')}</h4>
                             <ul className="space-y-2">
-                                <li><a href="#about" className="hover:text-white transition-colors">제품 소개</a></li>
-                                <li><a href="#features" className="hover:text-white transition-colors">핵심 특장점</a></li>
-                                <li><a href="#clinical" className="hover:text-white transition-colors">임상 데이터</a></li>
-                                <li><a href="#target" className="hover:text-white transition-colors">적용 대상</a></li>
+                                <li><a href="#about" className="hover:text-white transition-colors">{t('footer.productInfo1')}</a></li>
+                                <li><a href="#features" className="hover:text-white transition-colors">{t('footer.productInfo2')}</a></li>
+                                <li><a href="#clinical" className="hover:text-white transition-colors">{t('footer.productInfo3')}</a></li>
+                                <li><a href="#target" className="hover:text-white transition-colors">{t('footer.productInfo4')}</a></li>
                             </ul>
                         </div>
 
                         <div>
-                            <h4 className="font-bold text-white mb-4">고객 지원</h4>
+                            <h4 className="font-bold text-white mb-4">{t('footer.support')}</h4>
                             <ul className="space-y-2">
-                                <li><a href="#order" className="hover:text-white transition-colors">주문 문의</a></li>
-                                <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">고객센터: 02-6949-5708</a></li>
-                                <li><a href="mailto:parvogel@company.com" className="hover:text-white transition-colors">이메일 문의</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">자주 묻는 질문</a></li>
+                                <li><a href="#order" className="hover:text-white transition-colors">{t('footer.support1')}</a></li>
+                                <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">{t('footer.support2')}</a></li>
+                                <li><a href="mailto:parvogel@company.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">{t('footer.support4')}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -971,18 +1107,19 @@ const ParvogelLanding = () => {
                     <div className="border-t border-gray-800 pt-8">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
                             <p className="text-gray-500 text-sm">
-                                © 2025 파보겔 (Parvogel). All rights reserved.
+                                {t('footer.copyright')}
                             </p>
                             <div className="flex gap-6 text-sm text-gray-500">
-                                <a href="#" className="hover:text-white transition-colors">개인정보처리방침</a>
-                                <a href="#" className="hover:text-white transition-colors">이용약관</a>
-                                <a href="#" className="hover:text-white transition-colors">사업자정보확인</a>
+                                <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">{t('footer.privacy')}</button>
+                                <button onClick={() => setLegalType('terms')} className="hover:text-white transition-colors">{t('footer.terms')}</button>
+                                <button onClick={() => setLegalType('business')} className="hover:text-white transition-colors">{t('footer.business')}</button>
                             </div>
                         </div>
                         <div className="text-center text-gray-500 text-xs space-y-1">
-                            <p>판매자: (주)한국아그로</p>
-                            <p>주소: 서울특별시 마포구 큰우물로 75 성지빌딩 1506호</p>
-                            <p>전화: 02-6949-5708</p>
+                            <p>{t('footer.seller')}</p>
+                            <p>{t('footer.businessNo')}</p>
+                            <p>{t('footer.address')}</p>
+                            <p>{t('footer.tel')}</p>
                         </div>
                     </div>
                 </div>
@@ -1000,26 +1137,26 @@ const ParvogelLanding = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">주문 접수 완료!</h3>
+                                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">{t('order.complete')}</h3>
                                     <p className="text-gray-600 mb-6">
-                                        담당자가 1시간 내 연락드리겠습니다.<br />
-                                        급한 경우 <a href="tel:1588-0000" className={`${primaryText} font-semibold underline`}>1588-0000</a>로 전화 주세요.
+                                        {t('order.completeDesc')}<br />
+                                        {t('order.urgent')} <a href="tel:1588-0000" className={`${primaryText} font-semibold underline`}>1588-0000</a> {t('order.call')}.
                                     </p>
                                     <button
                                         onClick={() => setIsOrderModalOpen(false)}
                                         className={`btn-primary ${primaryBg} ${primaryHover} w-full sm:w-auto`}
                                     >
-                                        확인
+                                        {t('order.confirm')}
                                     </button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="p-6 sm:p-8">
                                     <div className="flex items-center justify-between mb-6">
-                                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">주문 및 상담 신청</h3>
+                                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{t('order.modalTitle')}</h3>
                                         <button
                                             onClick={() => { setIsOrderModalOpen(false); setIsOrderComplete(false); }}
                                             className="p-2 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-                                            aria-label="닫기"
+                                            aria-label={t('order.close')}
                                         >
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1031,7 +1168,7 @@ const ParvogelLanding = () => {
                                         <div className="grid sm:grid-cols-2 gap-4">
                                             <div>
                                                 <label htmlFor="modal-hospitalName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    병원/농장/업체명 <span className="text-accent-500">*</span>
+                                                    {t('order.hospitalName')} <span className="text-accent-500">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -1039,14 +1176,14 @@ const ParvogelLanding = () => {
                                                     name="hospitalName"
                                                     value={formData.hospitalName}
                                                     onChange={handleInputChange}
-                                                    placeholder="예: 서울동물병원"
+                                                    placeholder={t('order.hospitalNamePh')}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                                     required
                                                 />
                                             </div>
                                             <div>
                                                 <label htmlFor="modal-contactName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    담당자명 <span className="text-accent-500">*</span>
+                                                    {t('order.contactName')} <span className="text-accent-500">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -1054,7 +1191,7 @@ const ParvogelLanding = () => {
                                                     name="contactName"
                                                     value={formData.contactName}
                                                     onChange={handleInputChange}
-                                                    placeholder="예: 김철수"
+                                                    placeholder={t('order.contactNamePh')}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                                     required
                                                 />
@@ -1064,7 +1201,7 @@ const ParvogelLanding = () => {
                                         <div className="grid sm:grid-cols-2 gap-4">
                                             <div>
                                                 <label htmlFor="modal-phone" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    연락처 <span className="text-accent-500">*</span>
+                                                    {t('order.phone')} <span className="text-accent-500">*</span>
                                                 </label>
                                                 <input
                                                     type="tel"
@@ -1072,14 +1209,14 @@ const ParvogelLanding = () => {
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleInputChange}
-                                                    placeholder="010-1234-5678"
+                                                    placeholder={t('order.phonePh')}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                                     required
                                                 />
                                             </div>
                                             <div>
                                                 <label htmlFor="modal-email" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    이메일
+                                                    {t('order.email')}
                                                 </label>
                                                 <input
                                                     type="email"
@@ -1087,7 +1224,7 @@ const ParvogelLanding = () => {
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleInputChange}
-                                                    placeholder="order@clinic.com"
+                                                    placeholder={t('order.emailPh')}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                                 />
                                             </div>
@@ -1095,7 +1232,7 @@ const ParvogelLanding = () => {
 
                                         <div>
                                             <label htmlFor="modal-address" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                배송 주소
+                                                {t('order.address')}
                                             </label>
                                             <textarea
                                                 id="modal-address"
@@ -1103,7 +1240,7 @@ const ParvogelLanding = () => {
                                                 value={formData.address}
                                                 onChange={handleInputChange}
                                                 rows={2}
-                                                placeholder="우편번호 포함 상세 주소"
+                                                placeholder={t('order.addressPh')}
                                                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                             />
                                         </div>
@@ -1111,7 +1248,7 @@ const ParvogelLanding = () => {
                                         <div className="grid sm:grid-cols-2 gap-4">
                                             <div>
                                                 <label htmlFor="modal-product" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    희망 제품
+                                                    {t('order.product')}
                                                 </label>
                                                 <select
                                                     id="modal-product"
@@ -1120,15 +1257,15 @@ const ParvogelLanding = () => {
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
                                                 >
-                                                    <option value="parvogel-50ml">파보겔 50ml (18,000원)</option>
-                                                    <option value="parvogel-500ml">파보겔 500ml (120,000원) - 추천</option>
-                                                    <option value="parvogel-1l">파보겔 1L (220,000원)</option>
-                                                    <option value="consultation">상담 후 결정</option>
+                                                    <option value="parvogel-50ml">{t('order.p50')}</option>
+                                                    <option value="parvogel-500ml">{t('order.p500')}</option>
+                                                    <option value="parvogel-1l">{t('order.p1l')}</option>
+                                                    <option value="consultation">{t('order.consult')}</option>
                                                 </select>
                                             </div>
                                             <div>
                                                 <label htmlFor="modal-quantity" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    수량 (병)
+                                                    {t('order.quantity')}
                                                 </label>
                                                 <input
                                                     type="number"
@@ -1145,7 +1282,7 @@ const ParvogelLanding = () => {
 
                                         <div>
                                             <label htmlFor="modal-message" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                문의사항 / 특이사항
+                                                {t('order.message')}
                                             </label>
                                             <textarea
                                                 id="modal-message"
@@ -1153,8 +1290,7 @@ const ParvogelLanding = () => {
                                                 value={formData.message}
                                                 onChange={handleInputChange}
                                                 rows={3}
-                                                placeholder="예: 초유 섭취 못한 송아지 10두 긴급 투약 필요, 도매가 문의 등"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
+                                                placeholder={t('order.messagePh')}
                                             />
                                         </div>
 
@@ -1169,10 +1305,10 @@ const ParvogelLanding = () => {
                                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                                                     </svg>
-                                                    접수 중...
+                                                    {t('order.submitting')}
                                                 </span>
                                             ) : (
-                                                '주문 접수하기'
+                                                t('order.submit')
                                             )}
                                         </button>
                                     </div>
@@ -1182,6 +1318,48 @@ const ParvogelLanding = () => {
                     </div>
                 )
             }
+
+            {/* Legal Modal (Privacy / Terms / Business) */}
+            {
+                legalType && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={() => setLegalType(null)}>
+                        <div className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl animate-slide-up ${primaryBorder}`} onClick={e => e.stopPropagation()}>
+                            <div className="p-6 sm:p-8">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                                        {legalType === 'privacy' && t('legal.privacyTitle')}
+                                        {legalType === 'terms' && t('legal.termsTitle')}
+                                        {legalType === 'business' && t('legal.businessTitle')}
+                                    </h3>
+                                    <button
+                                        onClick={() => setLegalType(null)}
+                                        className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
+                                        aria-label={t('order.close')}
+                                    >
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                                    {legalType === 'privacy' && t('legal.privacyBody')}
+                                    {legalType === 'terms' && t('legal.termsBody')}
+                                    {legalType === 'business' && t('legal.businessBody')}
+                                </div>
+                                <button
+                                    onClick={() => setLegalType(null)}
+                                    className={`btn-primary ${primaryBg} ${primaryHover} w-full mt-8`}
+                                >
+                                    {t('order.confirm')}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            {/* Chatbot */}
+            <Chatbot />
 
             {/* Custom Styles */}
             <style jsx global>{`
@@ -1205,7 +1383,6 @@ const ParvogelLanding = () => {
         .animate-slide-down { animation: slide-down 0.3s ease-out forwards; }
         .animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
         .animate-float { animation: float 4s ease-in-out infinite; }
-        .theme-red .gradient-text { background: linear-gradient(to right, #dc2626, #991b1b); -webkit-background-clip: text; background-clip: text; color: transparent; }
       `}</style>
         </div >
     )

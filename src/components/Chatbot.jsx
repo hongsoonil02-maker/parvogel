@@ -72,7 +72,7 @@ export default function Chatbot() {
             {/* 챗봇 토글 버튼 */}
             <button
                 onClick={toggleChat}
-                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-300 focus:outline-none`}
+                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-16 h-16 bg-primary-600 text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-300 focus:outline-none`}
                 aria-label="Open AI Chat"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,14 +85,14 @@ export default function Chatbot() {
                 className={`${isOpen ? 'flex' : 'hidden'} flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 origin-bottom-right`}
             >
                 {/* 헤더 */}
-                <div className="flex items-center justify-between px-4 py-3 bg-blue-600 text-white">
+                <div className="flex items-center justify-between px-4 py-3 bg-primary-600 text-white">
                     <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-sm">
+                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary-600 font-bold text-sm">
                             AI
                         </div>
                         <div>
                             <h3 className="font-bold text-sm">{t('chat.title')}</h3>
-                            <p className="text-xs text-blue-100">{t('chat.subtitle')}</p>
+                            <p className="text-xs text-blue-100">{t('chat.subtitle')} · {i18n.language.toUpperCase()}</p>
                         </div>
                     </div>
                     <button onClick={toggleChat} className="text-white hover:text-slate-200 focus:outline-none">
@@ -108,8 +108,8 @@ export default function Chatbot() {
                         <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div
                                 className={`max-w-[80%] px-4 py-2 rounded-2xl ${msg.role === 'user'
-                                        ? 'bg-blue-600 text-white rounded-br-none'
-                                        : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-sm'
+                                    ? 'bg-primary-600 text-white rounded-br-none'
+                                    : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-sm'
                                     }`}
                             >
                                 <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
@@ -138,13 +138,13 @@ export default function Chatbot() {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder={t('chat.placeholder')}
-                            className="flex-1 px-4 py-2 border border-slate-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                            className="flex-1 px-4 py-2 border border-slate-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
                             disabled={isLoading}
                         />
                         <button
                             type="submit"
                             disabled={isLoading || !input.trim()}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors text-sm font-semibold"
+                            className="px-4 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors text-sm font-semibold"
                         >
                             {t('chat.send')}
                         </button>
