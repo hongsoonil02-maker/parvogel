@@ -122,8 +122,8 @@ const ParvogelLanding = () => {
         },
         {
             icon: '🛡️',
-            title: '초미세 몬모릴로나이트',
-            desc: '초미세 몬모릴로나이트가 장 내 유해균·바이러스를 강력히 흡착하고, 바실러스 서브틸리스가 장 환경을 개선해 생존율을 향상합니다',
+            title: '항바이러스 기능',
+            desc: '바실러스 서브틸리스 MORI 균주가 로타·코로나·파보바이러스 등 주요 장염 바이러스 증식을 억제합니다',
             color: 'accent',
         },
         {
@@ -134,8 +134,8 @@ const ParvogelLanding = () => {
         },
         {
             icon: '🐄',
-            title: '전축종 적용 가능',
-            desc: '송아지, 갓난돼지, 새끼 염소, 새끼 양, 망아지 등 모든 축종 신생아 공통 사용',
+            title: '모든 동물 적용 가능',
+            desc: '송아지, 갓난돼지, 새끼 염소, 새끼 양, 망아지 등 모든 동물 신생아 공통 사용',
             color: 'accent',
         },
         {
@@ -146,8 +146,8 @@ const ParvogelLanding = () => {
         },
         {
             icon: '📦',
-            title: '다양한 포장 단위',
-            desc: '100ml(개별), 200ml(중형), 500ml(농장용) - 용도별 맞춤 공급',
+            title: '전해질 제재 작용',
+            desc: '전해질 균형을 유지해서 설사로 인한 복통을 완화해줌',
             color: 'accent',
         },
     ]
@@ -790,7 +790,7 @@ const ParvogelLanding = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">기타 동물(사슴, 토끼, 타조 등)도 수의사 처방 하에 적용 가능</p>
+                        <p className="text-gray-600 mb-4">{t('target.other')}</p>
                         <button
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
