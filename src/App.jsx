@@ -27,7 +27,7 @@ const ParvogelLanding = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY)
-            const sections = ['hero', 'about', 'features', 'clinical', 'target', 'testimonials', 'order']
+            const sections = ['hero', 'about', 'features', 'clinical', 'tech', 'experts', 'target', 'testimonials', 'order']
             const scrollPosition = window.scrollY + 200
 
             for (const section of sections) {
@@ -50,7 +50,10 @@ const ParvogelLanding = () => {
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId)
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
+            const headerOffset = 80
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.scrollY - headerOffset
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
             setIsMobileMenuOpen(false)
         }
     }
@@ -231,19 +234,19 @@ const ParvogelLanding = () => {
                         </div>
 
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-8">
+                        <div className="hidden md:flex items-center gap-2 lg:gap-3">
                             {navItems.map(item => (
                                 <button
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
-                                    className={`relative text-sm font-semibold transition-colors ${activeSection === item.id
+                                    className={`relative text-[13px] lg:text-sm font-semibold transition-colors px-1 ${activeSection === item.id
                                         ? primaryText
                                         : 'text-gray-600 hover:text-gray-900'
                                         }`}
                                 >
                                     {item.label}
                                     {activeSection === item.id && (
-                                        <span className={`absolute bottom -6 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${primaryBg}`} />
+                                        <span className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${primaryBg}`} />
                                     )}
                                 </button>
                             ))}
