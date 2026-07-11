@@ -798,6 +798,18 @@ const ParvogelLanding = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="card border-l-4 border-accent-400">
+                            <p className="text-lg text-gray-700 leading-relaxed mb-4">"{t('experts.e4Quote')}"</p>
+                            <div className="flex items-center gap-3">
+                                <div className={`w-12 h-12 rounded-full ${primaryBg} flex items-center justify-center text-white font-bold text-lg`}>
+                                    {t('experts.e4Name').charAt(0)}
+                                </div>
+                                <div>
+                                    <p className="font-bold text-gray-900">{t('experts.e4Name')}</p>
+                                    <p className="text-sm text-gray-500">{t('experts.e4Role')}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Farm Feedback */}
