@@ -468,7 +468,7 @@ const ParvogelLanding = () => {
                                         muted
                                         playsInline
                                         className="w-full h-full object-cover"
-                                        src="/assets/video.mp4"
+                                        src={`${import.meta.env.BASE_URL}assets/video.mp4`}
                                     />
                                 ) : (
                                     <img 
@@ -490,7 +490,7 @@ const ParvogelLanding = () => {
                                     }`}
                                     onClick={() => setActiveMedia('video')}
                                 >
-                                    <video src="/assets/video.mp4" className="w-full h-full object-cover opacity-80" muted playsInline />
+                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                                         <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M4.5 3a.5.5 0 00-.5.5v13a.5.5 0 00.757.429l11-6.5a.5.5 0 000-.858l-11-6.5A.5.5 0 004.5 3z" />
@@ -499,10 +499,10 @@ const ParvogelLanding = () => {
                                 </div>
                                 {/* Photo Thumbnails */}
                                 {[
-                                    { src: '/assets/parvogel-1.jpg', alt: '파보겔 정면' },
-                                    { src: '/assets/parvogel-2.jpg', alt: '파보겔 측면' },
-                                    { src: '/assets/parvogel-3.jpg', alt: '파보겔 라벨' },
-                                    { src: '/assets/parvogel-4.jpg', alt: '파보겔 패키지' }
+                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-1.jpg`, alt: '파보겔 정면' },
+                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-2.jpg`, alt: '파보겔 측면' },
+                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-3.jpg`, alt: '파보겔 라벨' },
+                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-4.jpg`, alt: '파보겔 패키지' }
                                 ].map((img) => (
                                     <img 
                                         key={img.src}
