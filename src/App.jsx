@@ -22,6 +22,7 @@ const ParvogelLanding = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
+    const [activeMedia, setActiveMedia] = useState('video')
 
     // Scroll effect for header
     useEffect(() => {
@@ -45,6 +46,13 @@ const ParvogelLanding = () => {
         window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // Set document lang attribute for accessibility
+    useEffect(() => {
+        if (i18n && i18n.language) {
+            document.documentElement.lang = i18n.language;
+        }
+    }, [i18n.language])
 
     // Smooth scroll to section
     const scrollToSection = (sectionId) => {
@@ -253,7 +261,7 @@ const ParvogelLanding = () => {
 
                             {/* Language Toggle - Desktop Dropdown */}
                             <div className="relative group">
-                                <button className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors">
+                                <button aria-label="언어 선택 (Select Language)" className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors">
                                     <span className="text-sm"></span>
                                     <span className="text-xs font-bold text-gray-700">{i18n.language.toUpperCase()}</span>
                                     <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -290,7 +298,7 @@ const ParvogelLanding = () => {
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
-                            aria-label="메뉴 열기"
+                            aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
                             aria-expanded={isMobileMenuOpen}
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -409,16 +417,16 @@ const ParvogelLanding = () => {
             {/* About Section */}
             <section id="about" className="py-20 sm:py-28 lg:py-32 bg-white">
                 <div className="section-container">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                         <div>
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
                                 {t('about.badge')}
                             </span>
                             <h2 className="section-title">{t('about.title')}</h2>
-                            <p className="section-subtitle">
+                            <p className="section-subtitle whitespace-pre-line">
                                 {t('about.desc1')}
                             </p>
-                            <p className="section-subtitle mt-4">
+                            <p className="section-subtitle mt-4 whitespace-pre-line">
                                 {t('about.desc2')}
                             </p>
                             <div className="mt-8 grid grid-cols-2 gap-4">
@@ -434,30 +442,97 @@ const ParvogelLanding = () => {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                        <div className="relative">
-                            <div className={`relative aspect-square max-w-md mx-auto ${primaryBgLight} rounded-3xl p-1`}>
-                                <div className="w-full h-full bg-white rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center">
-                                    <div className={`w-24 h-24 rounded-2xl ${primaryBg} flex items-center justify-center mb-6 shadow-lg`}>
-                                        <span className="text-white text-4xl font-extrabold">P</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{products[2].name}</h3>
-                                    <p className="text-gray-600 text-center mb-6">{products[2].desc}<br />{products[2].price}</p>
-                                    <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.ingredientVal')}</span>
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.storage')}</span>
-                                        <span className={`px-3 py-1 rounded-full ${badgePrimary}`}>{t('about.dosage')}</span>
-                                    </div>
+                            {/* Trust indicators */}
+                            <div className="mt-10 flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                    <span>{t('about.trust1')}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                    <span>{t('about.trust2')}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                    <span>{t('about.trust3')}</span>
                                 </div>
                             </div>
-                            {/* Floating badges */}
-                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-white rounded-2xl shadow-lg p-4 border-2 border-primary-100 animate-float">
-                                <p className="text-xs text-gray-500 text-center mb-1">{t('about.coupang')}</p>
-                                <p className="text-2xl font-extrabold text-gray-900 text-center">{t('about.rocket')}</p>
+                        </div>
+                        <div className="relative">
+                            {/* Main product image / video */}
+                            <div className="relative aspect-[4/5] max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
+                                {activeMedia === 'video' ? (
+                                    <video
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="w-full h-full object-cover"
+                                        src="/assets/video.mp4"
+                                    />
+                                ) : (
+                                    <img 
+                                        src={activeMedia} 
+                                        alt="파보겔 제품 사진"
+                                        className="w-full h-full object-cover animate-fade-in"
+                                        loading="eager"
+                                    />
+                                )}
                             </div>
-                            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-white rounded-2xl shadow-lg p-4 border-2 border-accent-100 animate-float" style={{ animationDelay: '1s' }}>
-                                <p className="text-xs text-gray-500 text-center mb-1">{t('about.naver')}</p>
-                                <p className="text-2xl font-extrabold text-gray-900 text-center">{t('about.shopping')}</p>
+                            {/* Thumbnail strip */}
+                            <div className="mt-4 flex justify-center gap-2 flex-wrap">
+                                {/* Video Thumbnail */}
+                                <div 
+                                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all bg-black flex items-center justify-center ${
+                                        activeMedia === 'video' 
+                                            ? 'border-primary-500 opacity-100' 
+                                            : 'border-transparent opacity-60 hover:opacity-100'
+                                    }`}
+                                    onClick={() => setActiveMedia('video')}
+                                >
+                                    <video src="/assets/video.mp4" className="w-full h-full object-cover opacity-80" muted playsInline />
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                                        <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M4.5 3a.5.5 0 00-.5.5v13a.5.5 0 00.757.429l11-6.5a.5.5 0 000-.858l-11-6.5A.5.5 0 004.5 3z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                {/* Photo Thumbnails */}
+                                {[
+                                    { src: '/assets/parvogel-1.jpg', alt: '파보겔 정면' },
+                                    { src: '/assets/parvogel-2.jpg', alt: '파보겔 측면' },
+                                    { src: '/assets/parvogel-3.jpg', alt: '파보겔 라벨' },
+                                    { src: '/assets/parvogel-4.jpg', alt: '파보겔 패키지' }
+                                ].map((img) => (
+                                    <img 
+                                        key={img.src}
+                                        src={img.src} 
+                                        alt={img.alt} 
+                                        onClick={() => setActiveMedia(img.src)}
+                                        className={`w-20 h-20 rounded-xl object-cover cursor-pointer border-2 transition-all ${
+                                            activeMedia === img.src 
+                                                ? 'border-primary-500 opacity-100' 
+                                                : 'border-transparent opacity-60 hover:opacity-100'
+                                        }`} 
+                                    />
+                                ))}
+                            </div>
+                            {/* Floating badges */}
+                            {/* Coupang Floating Badge */}
+                            <div className="absolute -top-3 -right-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] animate-cute-float">
+                                <span className="text-xl">🚀</span>
+                                <div className="flex flex-col items-start leading-none">
+                                    <span className="text-[10px] font-extrabold text-orange-500 uppercase tracking-wider">{t('about.coupang')}</span>
+                                    <span className="text-xs font-black text-gray-800 mt-0.5">{t('about.rocket')}</span>
+                                </div>
+                            </div>
+                            {/* Naver Floating Badge */}
+                            <div className="absolute bottom-16 -left-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] animate-cute-float-alt">
+                                <span className="text-xl">🛍️</span>
+                                <div className="flex flex-col items-start leading-none">
+                                    <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">{t('about.naver')}</span>
+                                    <span className="text-xs font-black text-gray-800 mt-0.5">{t('about.shopping')}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

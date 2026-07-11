@@ -1,4 +1,4 @@
-﻿import i18n from 'i18next';
+import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import ko from './locales/ko/translation.json';
@@ -35,15 +35,22 @@ const resources = {
     tr: { translation: tr },
 };
 
+const getBrowserLanguage = () => {
+    if (typeof window === 'undefined' || !window.navigator) return 'ko';
+    const browserLang = (window.navigator.language || window.navigator.userLanguage || 'ko').split('-')[0].toLowerCase();
+    const supportedLangs = ['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'];
+    return supportedLangs.includes(browserLang) ? browserLang : 'ko';
+};
+
 i18n
-    .use(initReactI18next)
-    .init({
-        resources,
-        lng: 'ko',
-        fallbackLng: 'en',
-        interpolation: {
-            escapeValue: false
-        }
-    });
+     .use(initReactI18next)
+     .init({
+         resources,
+         lng: getBrowserLanguage(),
+         fallbackLng: 'en',
+         interpolation: {
+             escapeValue: false
+         }
+     });
 
 export default i18n;

@@ -38,6 +38,11 @@
 
     .section-title {
         @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight text-balance break-keep;
+        line-height: 1.4 !important;
+    }
+
+    #hero h1 {
+        line-height: 1.25 !important;
     }
 
     .section-subtitle {
@@ -73,4 +78,34 @@
     .gradient-text-accent {
         @apply bg-gradient-to-r from-accent-600 to-accent-800 bg-clip-text text-transparent;
     }
+}
+
+@keyframes cute-float {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02) rotate(2deg);
+    }
+}
+
+@keyframes cute-float-alt {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02) rotate(-2deg);
+    }
+}
+
+.animate-cute-float {
+    animation: cute-float 3.5s ease-in-out infinite;
+}
+
+.animate-cute-float-alt {
+    animation: cute-float-alt 4s ease-in-out infinite;
+}
+
+section:not(#hero) {
+    @apply py-12 sm:py-16 lg:py-20 !important;
 }
