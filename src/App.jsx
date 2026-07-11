@@ -815,7 +815,7 @@ const ParvogelLanding = () => {
                     {/* Farm Feedback */}
                     <div className="max-w-5xl mx-auto">
                         <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{t('experts.farmTitle')}</h3>
-                        <p className="text-center text-gray-600 mb-6">{t('experts.farmSub')}</p>
+                        <p className="text-center text-gray-600 mb-6 leading-relaxed">{t('experts.farmSub').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</p>
                         <div className="grid sm:grid-cols-2 gap-4">
                             {[t('experts.f1'), t('experts.f2'), t('experts.f3'), t('experts.f4')].map((f, i) => (
                                 <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
