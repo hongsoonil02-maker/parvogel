@@ -1,5 +1,9 @@
 {
     "nav": {
+        "brandName": "帕博格尔",
+        "selectLanguage": "选择语言",
+        "closeMenu": "关闭菜单",
+        "openMenu": "打开菜单",
         "about": "产品介绍",
         "features": "核心特点",
         "clinical": "临床数据",
@@ -52,8 +56,8 @@
         "f4Desc": "犊牛、仔猪、羔羊、羊羔、马驹等所有畜种新生仔共同使用",
         "f5Title": "常温保存",
         "f5Desc": "无需冷藏,常温24个月保存优化农场·药店·在线流通",
-        "f6Title": "多种包装单位",
-        "f6Desc": "100ml(个别)、200ml(中型)、500ml(农场用) - 按用途定制供应"
+        "f6Title": "电解质制剂作用",
+        "f6Desc": "维持电解质平衡，缓解因腹泻引起的腹痛"
     },
     "clinical": {
         "badge": "临床依据",
@@ -71,7 +75,11 @@
         "study3Subject": "出生后10日龄羔羊24头,羊羔24头",
         "study3Result": "卵囊排出减少95%",
         "study3Detail": "腹泻持续天数平均2.3天(对照组6.8天),死亡率0%达成",
-        "cta": "资料请求"
+        "cta": "资料请求",
+        "keyResult": "核心结果",
+        "detailedMetrics": "详细指标",
+        "requestText": "需要更详细的临床数据和论文原文吗？",
+        "requestCta": "索取资料"
     },
     "tech": {
         "badge": "核心技术 LIQI",
@@ -180,7 +188,9 @@
         "foalAge": "出生后1~60日",
         "foalDisease": "轮状病毒、沙门氏菌、梭菌",
         "other": "其他畜种(鹿、兔子、鸵鸟等)在兽医处方下也可适用",
-        "cta": "获取农场定制咨询"
+        "cta": "获取农场定制咨询",
+        "recommendedAge": "适用时期",
+        "mainPathogens": "主要病原体"
     },
     "products": {
         "badge": "产品阵容",
@@ -199,7 +209,12 @@
         "order": "订购",
         "inquiry": "咨询",
         "bulk": "大量购买(10瓶以上)及批发咨询请另行咨询。",
-        "bulkCta": "批发·大量购买咨询"
+        "bulkCta": "批发·大量购买咨询",
+        "popular": "人气",
+        "best": "最畅销",
+        "largeVolume": "大容量",
+        "vatShippingIncluded": "含增值税 · 免运费",
+        "bottle": "瓶"
     },
     "testimonials": {
         "badge": "现场声音",
@@ -253,8 +268,9 @@
         "coupangQr": "在Coupang下单",
         "naver": "Naver购物",
         "naverQr": "在Naver下单",
-        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "hospitalNamePh": "例：首尔动物医院、韩牛农场、OO药店",
+        "contactNamePh": "例：金铁秀",
+        "requiredFieldsAlert": "医院/农场名、联系人姓名、联系电话为必填项。"
     },
     "footer": {
         "desc": "全畜种新生仔腹泻治疗的新标准。用超微蒙脱石保护存活率。",

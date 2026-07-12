@@ -74,7 +74,7 @@ const ParvogelLanding = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!formData.hospitalName || !formData.contactName || !formData.phone) {
-            alert('병원명, 담당자명, 연락처는 필수 입력 항목입니다.')
+            alert(t('order.requiredFieldsAlert'))
             return
         }
 
@@ -124,102 +124,102 @@ const ParvogelLanding = () => {
     const features = [
         {
             icon: '🧬',
-            title: 'LIQI 초미세공정 기술',
-            desc: '울트라파인 초미세공정(LIQI)으로 기존 정장지사제 원료 대비 15배 미세화된 입자 크기(D90 3μm 이하)',
+            title: t('features.f2Title'),
+            desc: t('features.f2Desc'),
             color: 'primary',
         },
         {
             icon: '🛡️',
-            title: '항바이러스 기능',
-            desc: '바실러스 서브틸리스 MORI 균주가 로타·코로나·파보바이러스 등 주요 장염 바이러스 증식을 억제합니다',
+            title: t('features.f1Title'),
+            desc: t('features.f1Desc'),
             color: 'accent',
         },
         {
             icon: '⚡',
-            title: '신속한 흡수·작용',
-            desc: '경구 투여 후 30분 내 장관 흡수, 설사 증상 24시간 내 현저한 호전',
+            title: t('features.f3Title'),
+            desc: t('features.f3Desc'),
             color: 'primary',
         },
         {
             icon: '🐄',
-            title: '모든 동물 적용 가능',
-            desc: '송아지, 갓난돼지, 새끼 염소, 새끼 양, 망아지 등 모든 동물 신생아 공통 사용',
+            title: t('features.f4Title'),
+            desc: t('features.f4Desc'),
             color: 'accent',
         },
         {
             icon: '🌡️',
-            title: '상온 보관 가능',
-            desc: '냉장 불필요, 상온 24개월 보관으로 농장·약국·온라인 유통 최적화',
+            title: t('features.f5Title'),
+            desc: t('features.f5Desc'),
             color: 'primary',
         },
         {
             icon: '📦',
-            title: '전해질 제재 작용',
-            desc: '전해질 균형을 유지해서 설사로 인한 복통을 완화해줌',
+            title: t('features.f6Title'),
+            desc: t('features.f6Desc'),
             color: 'accent',
         },
     ]
 
     const targetAnimals = [
-        { icon: '🐄', name: '송아지', age: '생후 1~30일', diseases: '로타/코로나/대장균성 설사' },
-        { icon: '🐐', name: '새끼 염소', age: '생후 1~30일', diseases: '로타/코로나/크립토스포리디움' },
-        { icon: '🐑', name: '새끼 양', age: '생후 1~30일', diseases: '로타바이러스, 대장균성 장염' },
-        { icon: '🐎', name: '망아지', age: '생후 1~60일', diseases: '로타바이러스, 살모넬라, 클로스트리디움' },
-        { icon: '🐷', name: '갓난돼지', age: '생후 1~21일', diseases: 'PED, TGE, 로타바이러스 설사' },
+        { icon: '🐄', name: t('target.calf'), age: t('target.calfAge'), diseases: t('target.calfDisease') },
+        { icon: '🐐', name: t('target.kid'), age: t('target.kidAge'), diseases: t('target.kidDisease') },
+        { icon: '🐑', name: t('target.lamb'), age: t('target.lambAge'), diseases: t('target.lambDisease') },
+        { icon: '🐎', name: t('target.foal'), age: t('target.foalAge'), diseases: t('target.foalDisease') },
+        { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
     ]
 
     const clinicalData = [
         {
-            title: '송아지 로타바이러스 설사 임상시험',
-            subject: '생후 3~7일령 홀스타인 수송아지 40두',
-            result: '치료군 설사 중단율 92.5% (대조군 45%)',
-            detail: '투여 24시간 내 수분성 설사 중단, 체중증가율 대조군 대비 1.8배 향상',
+            title: t('clinical.study1Title'),
+            subject: t('clinical.study1Subject'),
+            result: t('clinical.study1Result'),
+            detail: t('clinical.study1Detail'),
             source: 'Korean J. Vet. Res. 2023'
         },
         {
-            title: '갓난돼지 PED/TGE 복합감염 시험',
-            subject: '생후 5일령 자돈 60두 (시험군 30, 대조군 30)',
-            result: '생존율 86.7% (대조군 40%)',
-            detail: '바이러스 배출량 99.9% 감소, 장융모 높이 회복 속도 3배 빠름',
+            title: t('clinical.study2Title'),
+            subject: t('clinical.study2Subject'),
+            result: t('clinical.study2Result'),
+            detail: t('clinical.study2Detail'),
             source: 'J. Vet. Sci. 2024'
         },
         {
-            title: '염소·양 신생아 크립토스포리디움증',
-            subject: '생후 10일령 새끼 염소 24두, 새끼 양 24두',
-            result: '오오시스트 배출 95% 감소',
-            detail: '설사 지속일수 평균 2.3일 (대조군 6.8일), 폐사율 0% 달성',
+            title: t('clinical.study3Title'),
+            subject: t('clinical.study3Subject'),
+            result: t('clinical.study3Result'),
+            detail: t('clinical.study3Detail'),
             source: 'Korean J. Parasitol. 2023'
         },
     ]
 
     const testimonials = [
         {
-            name: '김○○ 원장',
-            clinic: '○○동물병원 (경기)',
-            role: '소 임상 20년 경력',
-            content: '"송아지 설사 시즌마다 파보겔 처방하는데, 24시간 내 설사 멎고 활력 회복되는 케이스가 90% 넘습니다. 농장주 만족도 최고."',
+            name: t('testimonials.t1Name'),
+            clinic: t('testimonials.t1Clinic'),
+            role: t('testimonials.t1Role'),
+            content: t('testimonials.t1Content'),
             rating: 5,
         },
         {
-            name: '박○○ 원장',
-            clinic: '○○축산동물병원 (충남)',
-            role: '돼지·소 임상 전문',
-            content: '"PED 발생 농장에 파보겔 500ml 응급 투여했더니 폐사율 40%→8%로 급감. 상온보관이라 농장 비치용으로 필수 추천."',
+            name: t('testimonials.t2Name'),
+            clinic: t('testimonials.t2Clinic'),
+            role: t('testimonials.t2Role'),
+            content: t('testimonials.t2Content'),
             rating: 5,
         },
         {
-            name: '이○○ 약사',
-            clinic: '○○동물약국 (전북)',
-            role: '동물약국 15년 운영',
-            content: '"쿠팡·네이버쇼핑 입점 후 재구매율 78%. 100ml 소포장은 초보 축주도 부담없이 구매, 500ml는 전업농 단골 확보."',
+            name: t('testimonials.t3Name'),
+            clinic: t('testimonials.t3Clinic'),
+            role: t('testimonials.t3Role'),
+            content: t('testimonials.t3Content'),
             rating: 5,
         },
     ]
 
     const products = [
-        { id: 'parvogel-100ml', name: '파보겔 100ml', desc: '개별 투약용 / 초보 축주 추천', price: '18,000원', unit: '1병', badge: '인기' },
-        { id: 'parvogel-200ml', name: '파보겔 200ml', desc: '중형 농장 / 경제적 선택', price: '30,000원', unit: '1병', badge: '베스트' },
-        { id: 'parvogel-500ml', name: '파보겔 500ml', desc: '대규모 농장 / 도매 공급', price: '75,000원', unit: '1병', badge: '대용량' },
+        { id: 'parvogel-100ml', name: t('products.p1Name'), desc: t('products.p1Desc'), price: t('products.p1Price'), unit: t('products.bottle'), badge: t('products.popular') },
+        { id: 'parvogel-200ml', name: t('products.p2Name'), desc: t('products.p2Desc'), price: t('products.p2Price'), unit: t('products.bottle'), badge: t('products.best') },
+        { id: 'parvogel-500ml', name: t('products.p3Name'), desc: t('products.p3Desc'), price: t('products.p3Price'), unit: t('products.bottle'), badge: t('products.largeVolume') },
     ]
 
     return (
@@ -237,7 +237,7 @@ const ParvogelLanding = () => {
                                 <span className="text-white font-extrabold text-2xl">P</span>
                             </div>
                             <span className="font-extrabold text-2xl sm:text-3xl text-gray-900 tracking-tight">
-                                파보겔 <span className={`${primaryText} font-black`}>ParvoGel</span>
+                                {t('nav.brandName')} <span className={`${primaryText} font-black`}>ParvoGel</span>
                             </span>
                         </div>
 
@@ -290,7 +290,7 @@ const ParvogelLanding = () => {
                                 onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                                 className={`btn-primary ${primaryBg} ${primaryHover} text-sm px-6 py-2.5`}
                             >
-                                주문 문의
+                                {t('nav.order')}
                             </button>
                         </div>
 
@@ -298,7 +298,7 @@ const ParvogelLanding = () => {
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
-                            aria-label={isMobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+                            aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                             aria-expanded={isMobileMenuOpen}
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,7 +330,7 @@ const ParvogelLanding = () => {
 
                                 {/* Language Toggle - Mobile */}
                                 <div className="px-4 py-3">
-                                    <p className="text-xs font-semibold text-gray-500 mb-2">언어 선택</p>
+                                    <p className="text-xs font-semibold text-gray-500 mb-2">{t('nav.selectLanguage')}</p>
                                     <div className="flex flex-wrap gap-1">
                                         {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
                                             <button
@@ -351,7 +351,7 @@ const ParvogelLanding = () => {
                                     onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); setIsMobileMenuOpen(false); }}
                                     className={`btn-primary ${primaryBg} ${primaryHover} mt-2`}
                                 >
-                                    주문 문의하기
+                                    {t('nav.order')}
                                 </button>
                             </div>
                         </div>
@@ -471,8 +471,8 @@ const ParvogelLanding = () => {
                                         src={`${import.meta.env.BASE_URL}assets/video.mp4`}
                                     />
                                 ) : (
-                                    <img 
-                                        src={activeMedia} 
+                                    <img
+                                        src={activeMedia}
                                         alt="파보겔 제품 사진"
                                         className="w-full h-full object-cover animate-fade-in"
                                         loading="eager"
@@ -482,12 +482,11 @@ const ParvogelLanding = () => {
                             {/* Thumbnail strip */}
                             <div className="mt-4 flex justify-center gap-2 flex-wrap">
                                 {/* Video Thumbnail */}
-                                <div 
-                                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all bg-black flex items-center justify-center ${
-                                        activeMedia === 'video' 
-                                            ? 'border-primary-500 opacity-100' 
+                                <div
+                                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all bg-black flex items-center justify-center ${activeMedia === 'video'
+                                            ? 'border-primary-500 opacity-100'
                                             : 'border-transparent opacity-60 hover:opacity-100'
-                                    }`}
+                                        }`}
                                     onClick={() => setActiveMedia('video')}
                                 >
                                     <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline />
@@ -504,16 +503,15 @@ const ParvogelLanding = () => {
                                     { src: `${import.meta.env.BASE_URL}assets/parvogel-3.jpg`, alt: '파보겔 라벨' },
                                     { src: `${import.meta.env.BASE_URL}assets/parvogel-4.jpg`, alt: '파보겔 패키지' }
                                 ].map((img) => (
-                                    <img 
+                                    <img
                                         key={img.src}
-                                        src={img.src} 
-                                        alt={img.alt} 
+                                        src={img.src}
+                                        alt={img.alt}
                                         onClick={() => setActiveMedia(img.src)}
-                                        className={`w-20 h-20 rounded-xl object-cover cursor-pointer border-2 transition-all ${
-                                            activeMedia === img.src 
-                                                ? 'border-primary-500 opacity-100' 
+                                        className={`w-20 h-20 rounded-xl object-cover cursor-pointer border-2 transition-all ${activeMedia === img.src
+                                                ? 'border-primary-500 opacity-100'
                                                 : 'border-transparent opacity-60 hover:opacity-100'
-                                        }`} 
+                                            }`}
                                     />
                                 ))}
                             </div>
@@ -604,11 +602,11 @@ const ParvogelLanding = () => {
                                         <h3 className="text-lg font-bold text-gray-900 mb-2">{study.title}</h3>
                                         <div className="grid sm:grid-cols-2 gap-4 mb-4">
                                             <div className={`p-3 rounded-xl ${primaryBgLight}`}>
-                                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">핵심 결과</p>
+                                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{t('clinical.keyResult')}</p>
                                                 <p className="text-lg font-bold text-gray-900">{study.result}</p>
                                             </div>
                                             <div className={`p-3 rounded-xl ${primaryBgLight}`}>
-                                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">상세 지표</p>
+                                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">{t('clinical.detailedMetrics')}</p>
                                                 <p className="text-sm text-gray-700">{study.detail}</p>
                                             </div>
                                         </div>
@@ -619,12 +617,12 @@ const ParvogelLanding = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">더 자세한 임상 데이터와 논문 원문이 필요하신가요?</p>
+                        <p className="text-gray-600 mb-4">{t('clinical.requestText')}</p>
                         <button
                             onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                             className={`btn-primary ${primaryBg} ${primaryHover} inline-flex`}
                         >
-                            자료 요청하기
+                            {t('clinical.requestCta')}
                             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -683,15 +681,16 @@ const ParvogelLanding = () => {
                         <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{t('tech.testTitle')}</h3>
                         <div className="grid sm:grid-cols-2 gap-4">
                             {[
-                                { item: t('tech.t1Item'), cond: t('tech.t1Cond'), result: t('tech.t1Result') },
-                                { item: t('tech.t2Item'), cond: t('tech.t2Cond'), result: t('tech.t2Result') },
-                                { item: t('tech.t3Item'), cond: t('tech.t3Cond'), result: t('tech.t3Result') },
-                                { item: t('tech.t4Item'), cond: t('tech.t4Cond'), result: t('tech.t4Result') },
+                                { item: t('tech.t1Item'), cond: t('tech.t1Cond'), result: t('tech.t1Result'), note: t('tech.t1Note') },
+                                { item: t('tech.t2Item'), cond: t('tech.t2Cond'), result: t('tech.t2Result'), note: t('tech.t2Note') },
+                                { item: t('tech.t3Item'), cond: t('tech.t3Cond'), result: t('tech.t3Result'), note: t('tech.t3Note') },
+                                { item: t('tech.t4Item'), cond: t('tech.t4Cond'), result: t('tech.t4Result'), note: t('tech.t4Note') },
                             ].map((d, i) => (
                                 <div key={i} className="card p-5">
                                     <p className="font-bold text-gray-900 mb-1">{d.item}</p>
                                     <p className="text-xs text-gray-500 mb-2">{d.cond}</p>
                                     <p className={`text-lg font-extrabold ${primaryText}`}>{d.result}</p>
+                                    <p className="text-xs text-gray-600 mt-2">{d.note}</p>
                                 </div>
                             ))}
                         </div>
@@ -860,12 +859,12 @@ const ParvogelLanding = () => {
                                     <div className="space-y-3">
                                         <div className="flex items-center gap-2 text-sm text-gray-600">
                                             <svg className={`w-4 h-4 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" /></svg>
-                                            <span>적용 시기: <strong className="text-gray-900">{animal.age}</strong></span>
+                                            <span>{t('target.recommendedAge')}: <strong className="text-gray-900">{animal.age}</strong></span>
                                         </div>
                                         <div className="flex items-start gap-2 text-sm text-gray-600">
                                             <svg className={`w-4 h-4 ${primaryText} mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a1 1 0 10-2 0 1 1 0 002 0zm0 8a1 1 0 10-2 0 1 1 0 002 0zm0-11a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" /></svg>
                                             <div>
-                                                <p className="font-semibold text-gray-900">주요 원인체</p>
+                                                <p className="font-semibold text-gray-900">{t('target.mainPathogens')}</p>
                                                 <p className="text-gray-600">{animal.diseases}</p>
                                             </div>
                                         </div>
@@ -882,7 +881,7 @@ const ParvogelLanding = () => {
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
                         >
-                            우리 농장 맞춤 상담받기
+                            {t('target.cta')}
                         </button>
                     </div>
                 </div>
@@ -968,7 +967,7 @@ const ParvogelLanding = () => {
                                         <span className="text-3xl font-extrabold text-gray-900">{product.price}</span>
                                         <span className="text-gray-500">/{product.unit}</span>
                                     </div>
-                                    <p className="text-xs text-gray-500 text-center">부가세 포함 · 배송비 포함</p>
+                                    <p className="text-xs text-gray-500 text-center">{t('products.vatShippingIncluded')}</p>
                                 </div>
                                 <button
                                     onClick={() => {
@@ -1197,10 +1196,10 @@ const ParvogelLanding = () => {
                                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${primaryBg}`}>
                                     <span className="text-white font-extrabold text-xl">P</span>
                                 </div>
-                                <span className="font-extrabold text-xl text-white">파보겔 <span className={`${primaryText} font-black`}>Parvogel</span></span>
+                                <span className="font-extrabold text-xl text-white">{t('nav.brandName')} <span className={`${primaryText} font-black`}>Parvogel</span></span>
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
-                                동물의 신생아 설사 치료의 새로운 기준. 초미세 몬모릴로나이트로 생존율을 지킵니다.
+                                {t('footer.desc')}
                             </p>
                             <div className="flex gap-4">
                                 <a href="https://coupang.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
@@ -1498,7 +1497,7 @@ const ParvogelLanding = () => {
             <Chatbot />
 
             {/* Custom Styles */}
-            <style jsx global>{`
+            <style>{`
         @keyframes fade-in-up {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }

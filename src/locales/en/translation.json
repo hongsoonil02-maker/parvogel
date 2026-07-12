@@ -1,5 +1,9 @@
 {
     "nav": {
+        "brandName": "ParvoGel",
+        "selectLanguage": "Select Language",
+        "closeMenu": "Close Menu",
+        "openMenu": "Open Menu",
         "about": "About",
         "features": "Features",
         "clinical": "Clinical",
@@ -52,8 +56,8 @@
         "f4Desc": "Common use for all livestock newborns: calves, piglets, kids, lambs, foals",
         "f5Title": "Room Temperature Storage",
         "f5Desc": "No refrigeration needed, 24-month room temperature storage optimal for farm, pharmacy, and online distribution",
-        "f6Title": "Various Package Sizes",
-        "f6Desc": "100ml (individual), 200ml (medium), 500ml (farm use) - customized supply by purpose"
+        "f6Title": "Electrolyte Action",
+        "f6Desc": "Maintains electrolyte balance to relieve abdominal pain caused by diarrhea"
     },
     "clinical": {
         "badge": "Clinical Evidence",
@@ -71,7 +75,11 @@
         "study3Subject": "24 kids, 10 days old; 24 lambs, 10 days old",
         "study3Result": "95% reduction in oocyst shedding",
         "study3Detail": "Average diarrhea duration 2.3 days (control 6.8 days), 0% mortality rate",
-        "cta": "Request Materials"
+        "cta": "Request Materials",
+        "keyResult": "Key Result",
+        "detailedMetrics": "Detailed Metrics",
+        "requestText": "Need more detailed clinical data and original papers?",
+        "requestCta": "Request Materials"
     },
     "tech": {
         "badge": "Core Technology LIQI",
@@ -177,7 +185,9 @@
         "foalAge": "1-60 days old",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Other livestock (deer, rabbits, ostriches, etc.) can also be applied under veterinary prescription",
-        "cta": "Get Custom Consultation for Your Farm"
+        "cta": "Get Custom Consultation for Your Farm",
+        "recommendedAge": "Target Period",
+        "mainPathogens": "Main Pathogens"
     },
     "products": {
         "badge": "Product Lineup",
@@ -196,7 +206,12 @@
         "order": "Order Now",
         "inquiry": "Inquire",
         "bulk": "For bulk purchases (10+ bottles) and wholesale inquiries, please consult separately.",
-        "bulkCta": "Wholesale·Bulk Purchase Consultation"
+        "bulkCta": "Wholesale·Bulk Purchase Consultation",
+        "popular": "Popular",
+        "best": "Best",
+        "largeVolume": "Large Volume",
+        "vatShippingIncluded": "VAT & Shipping Included",
+        "bottle": "Bottle"
     },
     "testimonials": {
         "badge": "Field Voices",
@@ -250,8 +265,9 @@
         "coupangQr": "Order on Coupang",
         "naver": "Naver Shopping",
         "naverQr": "Order on Naver",
-        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "hospitalNamePh": "e.g. Seoul Animal Hospital, Cattle Farm, Pharmacy",
+        "contactNamePh": "e.g. John Doe",
+        "requiredFieldsAlert": "Hospital/Farm name, contact name, and phone number are required."
     },
     "footer": {
         "desc": "New standard for neonatal diarrhea treatment in all livestock. Protecting survival rates with ultra-fine montmorillonite.",
