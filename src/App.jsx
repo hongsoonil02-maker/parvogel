@@ -378,14 +378,12 @@ const ParvogelLanding = () => {
                         </div>
 
                         {/* Main Title */}
-                        <h1 className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-tight text-center mb-8 animate-fade-in-up ${gradientText}`}>
-                            {t('hero.title').split('\n').map((line, i) => (
-                                <span key={i} className="block">{line}</span>
-                            ))}
+                        <h1 className={`text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-tight text-center mb-8 animate-fade-in-up ${gradientText}`}>
+                            {t('hero.title')}
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+                        <p className="text-base sm:text-xl lg:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
                             {t('hero.subtitle')}<br />
                             {t('hero.subtitle2')}
                         </p>
@@ -484,8 +482,8 @@ const ParvogelLanding = () => {
                                 {/* Video Thumbnail */}
                                 <div
                                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all bg-black flex items-center justify-center ${activeMedia === 'video'
-                                            ? 'border-primary-500 opacity-100'
-                                            : 'border-transparent opacity-60 hover:opacity-100'
+                                        ? 'border-primary-500 opacity-100'
+                                        : 'border-transparent opacity-60 hover:opacity-100'
                                         }`}
                                     onClick={() => setActiveMedia('video')}
                                 >
@@ -509,8 +507,8 @@ const ParvogelLanding = () => {
                                         alt={img.alt}
                                         onClick={() => setActiveMedia(img.src)}
                                         className={`w-20 h-20 rounded-xl object-cover cursor-pointer border-2 transition-all ${activeMedia === img.src
-                                                ? 'border-primary-500 opacity-100'
-                                                : 'border-transparent opacity-60 hover:opacity-100'
+                                            ? 'border-primary-500 opacity-100'
+                                            : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     />
                                 ))}
@@ -590,8 +588,8 @@ const ParvogelLanding = () => {
                             >
                                 <div className="grid lg:grid-cols-4 gap-6">
                                     <div className="lg:col-span-1">
-                                        <div className={`w-full h-32 ${primaryBgLight} rounded-xl flex items-center justify-center`}>
-                                            <span className="text-4xl">{targetAnimals[i % targetAnimals.length].icon}</span>
+                                        <div className={`w-16 h-16 lg:w-20 lg:h-20 ${primaryBgLight} rounded-xl flex items-center justify-center`}>
+                                            <span className="text-3xl lg:text-4xl">{targetAnimals[i % targetAnimals.length].icon}</span>
                                         </div>
                                     </div>
                                     <div className="lg:col-span-3">
