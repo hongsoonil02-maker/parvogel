@@ -644,33 +644,65 @@ const ParvogelLanding = () => {
                     {/* LIQI vs General Table */}
                     <div className="max-w-5xl mx-auto mb-16">
                         <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{t('tech.tableTitle')}</h3>
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
-                                <thead>
-                                    <tr className={`${primaryBg} text-white`}>
-                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colItem')}</th>
-                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colGeneral')}</th>
-                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colLiqi')}</th>
-                                        <th className="px-4 py-3 text-left font-semibold">{t('tech.colEffect')}</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-100">
-                                    {[
-                                        { item: t('tech.r1Item'), g: t('tech.r1General'), l: t('tech.r1Liqi'), e: t('tech.r1Effect') },
-                                        { item: t('tech.r2Item'), g: t('tech.r2General'), l: t('tech.r2Liqi'), e: t('tech.r2Effect') },
-                                        { item: t('tech.r3Item'), g: t('tech.r3General'), l: t('tech.r3Liqi'), e: t('tech.r3Effect') },
-                                        { item: t('tech.r4Item'), g: t('tech.r4General'), l: t('tech.r4Liqi'), e: t('tech.r4Effect') },
-                                    ].map((row, i) => (
-                                        <tr key={i} className="hover:bg-gray-50">
-                                            <td className="px-4 py-3 font-semibold text-gray-900">{row.item}</td>
-                                            <td className="px-4 py-3 text-gray-500">{row.g}</td>
-                                            <td className="px-4 py-3 font-bold text-primary-700">{row.l}</td>
-                                            <td className="px-4 py-3 text-gray-700">{row.e}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                        {(() => {
+                            const techRows = [
+                                { item: t('tech.r1Item'), g: t('tech.r1General'), l: t('tech.r1Liqi'), e: t('tech.r1Effect') },
+                                { item: t('tech.r2Item'), g: t('tech.r2General'), l: t('tech.r2Liqi'), e: t('tech.r2Effect') },
+                                { item: t('tech.r3Item'), g: t('tech.r3General'), l: t('tech.r3Liqi'), e: t('tech.r3Effect') },
+                                { item: t('tech.r4Item'), g: t('tech.r4General'), l: t('tech.r4Liqi'), e: t('tech.r4Effect') },
+                            ]
+
+                            return (
+                                <>
+                                    <div className="hidden md:block overflow-x-auto">
+                                        <table className="w-full text-sm border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
+                                            <thead>
+                                                <tr className={`${primaryBg} text-white`}>
+                                                    <th className="px-4 py-3 text-left font-semibold">{t('tech.colItem')}</th>
+                                                    <th className="px-4 py-3 text-left font-semibold">{t('tech.colGeneral')}</th>
+                                                    <th className="px-4 py-3 text-left font-semibold">{t('tech.colLiqi')}</th>
+                                                    <th className="px-4 py-3 text-left font-semibold">{t('tech.colEffect')}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {techRows.map((row, i) => (
+                                                    <tr key={i} className="hover:bg-gray-50">
+                                                        <td className="px-4 py-3 font-semibold text-gray-900">{row.item}</td>
+                                                        <td className="px-4 py-3 text-gray-500">{row.g}</td>
+                                                        <td className="px-4 py-3 font-bold text-primary-700">{row.l}</td>
+                                                        <td className="px-4 py-3 text-gray-700">{row.e}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="md:hidden space-y-4">
+                                        {techRows.map((row, i) => (
+                                            <div key={i} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                                                <div className={`${primaryBg} px-4 py-3 text-white font-bold text-base`}>
+                                                    {row.item}
+                                                </div>
+                                                <div className="p-4 space-y-3">
+                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                        <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colGeneral')}</p>
+                                                        <p className="text-sm text-gray-700 leading-6">{row.g}</p>
+                                                    </div>
+                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                        <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colLiqi')}</p>
+                                                        <p className="text-sm font-bold text-primary-700 leading-6">{row.l}</p>
+                                                    </div>
+                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                        <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colEffect')}</p>
+                                                        <p className="text-sm text-gray-700 leading-6 break-keep">{row.e}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )
+                        })()}
                     </div>
 
                     {/* Test Data Cards */}
