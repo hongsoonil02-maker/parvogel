@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파보겔 DM 템플릿 선택</title>
+    <style>
+        :root {
+            --blue: #0b3a82;
+            --gold: #d8a21d;
+            --orange: #f58a1f;
+            --green: #2d9f5d;
+            --light: #eaf3ff;
+            --ink: #1d2430;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(135deg, #f6fbff 0%, #fff7ea 100%);
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(11, 58, 130, 0.15);
+            border: 1px solid #dce8ff;
+        }
+
+        .hero {
+            padding: 28px 32px;
+            color: #fff;
+            background: linear-gradient(120deg, var(--blue), #225ec0 52%, var(--orange));
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 30px;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+
+        .hero p {
+            margin: 10px 0 0;
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 24px 32px;
+            border-top: 1px solid #eef4ff;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--blue);
+            background: var(--light);
+            padding: 6px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: var(--blue);
+        }
+
+        .advisory {
+            margin-top: 14px;
+            padding: 14px;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            background: #fffaf0;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .card {
+            background: #f9fcff;
+            border: 1px solid #dbe9ff;
+            border-radius: 14px;
+            padding: 14px;
+            line-height: 1.7;
+        }
+
+        .qr-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .qr {
+            border: 1px solid #dbe9ff;
+            background: #fff;
+            border-radius: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .qr img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+
+        .qr strong {
+            display: block;
+            margin-top: 6px;
+            color: var(--blue);
+            font-size: 14px;
+        }
+
+        .cta {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #edf9f1;
+            border-left: 5px solid var(--green);
+            font-weight: 700;
+        }
+
+        .footer {
+            padding: 16px 32px 26px;
+            background: #f7fbff;
+            border-top: 1px dashed #c7dbff;
+            font-size: 14px;
+            color: #445;
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .hero,
+            .section,
+            .footer {
+                padding: 18px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qr-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <section class="hero">
+            <h1>파보겔 DM 템플릿 선택</h1>
+            <p>한우협회 농가용과 대동물병원용은 대상에 맞춰 분리 운영합니다.</p>
+        </section>
+
+        <section class="section">
+            <span class="tag">분리 발송 원칙</span>
+            <h2>대상별 DM 템플릿을 각각 사용해 주세요</h2>
+            <div class="grid">
+                <div class="card">
+                    <strong>한우협회 농가용</strong><br />
+                    파일: <code>public/assets/parvogel-dm-hanwoo-template.html</code><br />
+                    농가 대상 안내문으로 발송
+                </div>
+                <div class="card">
+                    <strong>대동물병원용</strong><br />
+                    파일: <code>public/assets/parvogel-dm-hospital-template.html</code><br />
+                    병원 대상 안내문으로 발송
+                </div>
+            </div>
+
+            <div class="advisory">
+                공통 신뢰 문구: 서울대학교 수의과대학 출신 및 교수진을 포함한
+                6인 이상의 수의학 전문가 자문단이 임상 데이터와 현장 적용성을 함께 검토하고 있습니다.
+            </div>
+
+            <div class="cta">각 템플릿 하단에는 동일한 담당자 정보와 QR 코드 3종이 포함되어 있습니다.</div>
+
+            <div class="qr-wrap">
+                <div class="qr">
+                    <img src="dm-qr-coupang.png" alt="랜딩페이지 가격/주문 QR" />
+                    <strong>랜딩페이지 가격/주문 확인</strong>
+                </div>
+                <div class="qr">
+                    <img src="dm-qr-naver.png" alt="랜딩페이지 제품정보 QR" />
+                    <strong>랜딩페이지 제품정보 확인</strong>
+                </div>
+                <div class="qr">
+                    <img src="dm-qr-consulting.png" alt="랜딩페이지 상담 QR" />
+                    <strong>랜딩페이지 상담 신청</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <span class="tag">담당자 고정 표기</span>
+            <div class="card">
+                (주)한국아그로 홍순일 수의사<br />
+                010-5407-5708<br />
+                soonilhong@naver.com
+            </div>
+        </section>
+
+        <section class="footer">
+            분리 템플릿 경로<br />
+            - public/assets/parvogel-dm-hanwoo-template.html<br />
+            - public/assets/parvogel-dm-hospital-template.html
+        </section>
+    </main>
+</body>
+
+</html>

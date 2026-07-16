@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파보겔 DM - 대동물병원용</title>
+    <style>
+        :root {
+            --blue: #0b3a82;
+            --gold: #d8a21d;
+            --orange: #f58a1f;
+            --green: #2d9f5d;
+            --light: #eaf3ff;
+            --ink: #1d2430;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+            color: var(--ink);
+            background: linear-gradient(135deg, #f1f7ff 0%, #fff4f0 100%);
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(11, 58, 130, 0.15);
+            border: 1px solid #dce8ff;
+        }
+
+        .hero {
+            padding: 28px 32px;
+            color: #fff;
+            background: linear-gradient(120deg, var(--blue), #2a5ab0 45%, #1c7aa6);
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 30px;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            margin: 10px 0 0;
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        .section {
+            padding: 24px 32px;
+            border-top: 1px solid #eef4ff;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--blue);
+            background: var(--light);
+            padding: 6px 10px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        .card {
+            background: #f9fcff;
+            border: 1px solid #dbe9ff;
+            border-radius: 14px;
+            padding: 14px;
+            line-height: 1.7;
+        }
+
+        .advisory {
+            margin-top: 14px;
+            padding: 14px;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            background: #fffaf0;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .qr-wrap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .qr {
+            border: 1px solid #dbe9ff;
+            background: #fff;
+            border-radius: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .qr img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+        }
+
+        .footer {
+            padding: 16px 32px 26px;
+            background: #f7fbff;
+            border-top: 1px dashed #c7dbff;
+            font-size: 14px;
+            color: #445;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .hero,
+            .section,
+            .footer {
+                padding: 18px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .qr-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <section class="hero">
+            <h1>대동물병원 전용 안내</h1>
+            <p>임상 적용 및 농가 상담 연계를 위한 파보겔 제안</p>
+        </section>
+
+        <section class="section">
+            <span class="tag">임상 활용 안내</span>
+            <div class="card">
+                파보겔은 송아지 설사 및 급성 장관 이슈 대응 보조를 목적으로 활용되는 경구용 보조 제품입니다.
+                상온 보관과 간편 투여가 가능해 병원 비치 및 현장 대응에 적용하기 좋습니다.
+            </div>
+            <div class="advisory">
+                자문단 신뢰 포인트: 서울대학교 수의과대학 출신 및 교수진 포함 6인 이상 수의학 전문가 자문단이
+                임상 데이터와 제품 적용성을 함께 검토하고 있습니다.
+            </div>
+            <div class="qr-wrap">
+                <div class="qr"><img src="dm-qr-coupang.png" alt="랜딩페이지 가격/주문 QR" />
+                    <div>랜딩페이지 가격/주문 확인</div>
+                </div>
+                <div class="qr"><img src="dm-qr-naver.png" alt="랜딩페이지 제품정보 QR" />
+                    <div>랜딩페이지 제품정보 확인</div>
+                </div>
+                <div class="qr"><img src="dm-qr-consulting.png" alt="랜딩페이지 상담 QR" />
+                    <div>랜딩페이지 상담 신청</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer">
+            (주)한국아그로 홍순일 수의사<br />
+            010-5407-5708<br />
+            soonilhong@naver.com
+        </section>
+    </main>
+</body>
+
+</html>
