@@ -379,7 +379,9 @@ const ParvogelLanding = () => {
 
                         {/* Main Title */}
                         <h1 className={`text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-tight text-center mb-8 animate-fade-in-up ${gradientText}`}>
-                            {t('hero.title')}
+                            {t('hero.title').split('\n').map((line, i) => (
+                                <span key={i} className="block">{line}</span>
+                            ))}
                         </h1>
 
                         {/* Subtitle */}
@@ -396,7 +398,9 @@ const ParvogelLanding = () => {
                                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                 </svg>
-                                {t('hero.cta1')}
+                                {t('hero.cta1').split('\n').map((line, i) => (
+                                    <span key={i} className="block">{line}</span>
+                                ))}
                             </button>
                             <button
                                 onClick={() => scrollToSection('clinical')}
