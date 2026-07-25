@@ -412,6 +412,40 @@ const ParvogelLanding = () => {
                             </button>
                         </div>
 
+                        {/* AI Tournament Label Notice Banner */}
+                        <div className="max-w-4xl mx-auto mb-6 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+                            <div className="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-2xl p-6 md:p-8 text-white shadow-2xl border-2 border-emerald-400/50 flex flex-col md:flex-row items-center justify-between gap-6 transform hover:scale-[1.01] transition-all">
+                                <div className="text-left">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-black tracking-wide border border-amber-500/40 mb-2">
+                                        🏆 ORCA AGENT TOURNAMENT 챔피언 선정작
+                                    </div>
+                                    <h3 className="text-xl md:text-2xl font-black text-white tracking-tight leading-snug">
+                                        파보겔 공식 정밀 라벨 <span className="text-emerald-400">4대 시안 AI 토너먼트 종합평가</span>
+                                    </h3>
+                                    <p className="text-sm md:text-base text-emerald-100 font-medium mt-1">
+                                        몬스멕타 공식 라벨판의 황금비율 레이아웃 100% 상속 + 상온 24개월 + LIQI 초미세 공정
+                                    </p>
+                                </div>
+                                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+                                    <a
+                                        href="/parvogel_label_tournament_dashboard.html"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-sm rounded-xl transition-all shadow-lg text-center flex items-center justify-center gap-2"
+                                    >
+                                        <span>📊 4대 시안 대시보드</span>
+                                    </a>
+                                    <a
+                                        href="/parvogel_label_winner_poster.html"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-black text-sm rounded-xl transition-all shadow-lg text-center flex items-center justify-center gap-2"
+                                    >
+                                        <span>🏆 챔피언 인쇄용 포스터</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -458,6 +492,34 @@ const ParvogelLanding = () => {
                                 <div className="flex items-center gap-2">
                                     <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                                     <span>{t('about.trust3')}</span>
+                                </div>
+                            </div>
+
+                            <div className="mt-8 p-6 bg-gradient-to-br from-emerald-900 to-slate-900 rounded-2xl text-white shadow-xl border border-emerald-500/30">
+                                <div className="flex items-center justify-between flex-wrap gap-4">
+                                    <div>
+                                        <div className="text-xs font-bold text-amber-400 tracking-wider uppercase mb-1">OFFICIAL LABEL SPECIFICATIONS</div>
+                                        <div className="text-lg font-extrabold text-white">파보겔(PARVOGEL) 공식 사양 및 정식 라벨판</div>
+                                        <div className="text-sm text-emerald-200 mt-0.5">사료성분등록번호 제XX9UY0145호 | 상온 24개월 안심보관</div>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <a
+                                            href="/parvogel_label_tournament_dashboard.html"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs rounded-lg transition-all"
+                                        >
+                                            📊 시안 평가 비교
+                                        </a>
+                                        <a
+                                            href="/parvogel_label_winner_poster.html"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs rounded-lg transition-all"
+                                        >
+                                            🏆 공식 라벨 포스터
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -654,8 +716,6 @@ const ParvogelLanding = () => {
                             const techRows = [
                                 { item: t('tech.r1Item'), g: t('tech.r1General'), l: t('tech.r1Liqi'), e: t('tech.r1Effect') },
                                 { item: t('tech.r2Item'), g: t('tech.r2General'), l: t('tech.r2Liqi'), e: t('tech.r2Effect') },
-                                { item: t('tech.r3Item'), g: t('tech.r3General'), l: t('tech.r3Liqi'), e: t('tech.r3Effect') },
-                                { item: t('tech.r4Item'), g: t('tech.r4General'), l: t('tech.r4Liqi'), e: t('tech.r4Effect') },
                             ]
 
                             return (
@@ -674,9 +734,9 @@ const ParvogelLanding = () => {
                                                 {techRows.map((row, i) => (
                                                     <tr key={i} className="hover:bg-gray-50">
                                                         <td className="px-4 py-3 font-semibold text-gray-900">{row.item}</td>
-                                                        <td className="px-4 py-3 text-gray-500">{row.g}</td>
-                                                        <td className="px-4 py-3 font-bold text-primary-700">{row.l}</td>
-                                                        <td className="px-4 py-3 text-gray-700">{row.e}</td>
+                                                        <td className="px-4 py-3 font-bold text-primary-700">{row.g}</td>
+                                                        <td className="px-4 py-3 text-gray-600">{row.l}</td>
+                                                        <td className="px-4 py-3 text-gray-500">{row.e}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -690,17 +750,17 @@ const ParvogelLanding = () => {
                                                     {row.item}
                                                 </div>
                                                 <div className="p-4 space-y-3">
-                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                    <div className="grid grid-cols-[120px_1fr] gap-3 items-start">
                                                         <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colGeneral')}</p>
-                                                        <p className="text-sm text-gray-700 leading-6">{row.g}</p>
+                                                        <p className="text-sm font-bold text-primary-700 leading-6">{row.g}</p>
                                                     </div>
-                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                    <div className="grid grid-cols-[120px_1fr] gap-3 items-start">
                                                         <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colLiqi')}</p>
-                                                        <p className="text-sm font-bold text-primary-700 leading-6">{row.l}</p>
+                                                        <p className="text-sm text-gray-600 leading-6">{row.l}</p>
                                                     </div>
-                                                    <div className="grid grid-cols-[88px_1fr] gap-3 items-start">
+                                                    <div className="grid grid-cols-[120px_1fr] gap-3 items-start">
                                                         <p className="text-xs font-semibold text-gray-500 leading-5">{t('tech.colEffect')}</p>
-                                                        <p className="text-sm text-gray-700 leading-6 break-keep">{row.e}</p>
+                                                        <p className="text-sm text-gray-500 leading-6 break-keep">{row.e}</p>
                                                     </div>
                                                 </div>
                                             </div>
