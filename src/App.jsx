@@ -805,7 +805,19 @@ const ParvogelLanding = () => {
                                 </div>
                             ))}
                         </div>
-                        <p className="text-center text-xs text-gray-400 mt-4">{t('tech.virusNote')}</p>
+                        <p className="text-center text-xs text-gray-500 mt-4">{t('tech.virusNote')}</p>
+                        <div className="mt-6 p-4 rounded-2xl bg-primary-50/80 border border-primary-200 text-center flex flex-col sm:flex-row items-center justify-between gap-3 max-w-3xl mx-auto shadow-sm">
+                            <span className="text-xs text-primary-900 font-semibold">📚 1-Deoxynojirimycin(DNJ) 항바이러스 학술 논문 및 글로벌 연구 자료</span>
+                            <a
+                                href="https://www.google.com/search?q=1-deoxynojirimycin+antiviral"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                            >
+                                <span>🔍 Google 학술 논문 검색</span>
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            </a>
+                        </div>
                     </div>
 
                     {/* Virus Group Inhibition Table */}
