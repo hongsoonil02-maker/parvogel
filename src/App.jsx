@@ -711,9 +711,9 @@ const ParvogelLanding = () => {
                             )
                         })()}
                         <div className="mt-4 p-4 rounded-2xl bg-primary-50/80 border border-primary-200 text-center flex flex-col sm:flex-row items-center justify-between gap-3 max-w-5xl mx-auto shadow-sm">
-                            <span className="text-xs text-primary-900 font-semibold">📚 Montmorillonite(몬모릴로나이트) 독소 흡착 및 지사 효능 글로벌 학술 자료</span>
+                            <span className="text-xs text-primary-900 font-semibold">📚 Smectite & Montmorillonite(스멕타이트·몬모릴로나이트) 독소 흡착 및 지사 효능 글로벌 학술 자료</span>
                             <a
-                                href="https://www.google.com/search?q=montmorillonite+toxin+adsorption"
+                                href="https://www.google.com/search?q=smectite+and+montmorillonite+adsorption"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
