@@ -276,5 +276,77 @@
         "placeholder": "Bir şey sorun...",
         "send": "Gönder",
         "error": "Üzgünüz, iletişim hatası oluştu. Lütfen sonra tekrar deneyin."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Yenidoğan İshali Önleyici Takviye",
+        "sub": "Yüksek Saflıkta İnce Nano-Montmorillonit Formülü",
+        "buyBtn": "🚀 Coupang Rocket'ten Satın Al",
+        "consultBtn": "📦 Toptan / Doğrudan Sipariş Danışmanlığı"
+    },
+    "animalSelector": {
+        "tag": "🐾 Tüm Yenidoğan Hayvanlar İçin Özel Çözüm",
+        "title": "Tüm Hayvanlarda Yenidoğan İshali: PARVOGEL ile Çözüldü!",
+        "sub": "Önerilen dozajı ve etkisini görüntülemek için bir hayvan türü seçin.",
+        "guideTitle": "Özel Kullanım Kılavuzu",
+        "dosageTag": "Önerilen Dozaj",
+        "notice": "* Aşırı İnce Nano-Montmorillonit Yüksek Konsantrasyonlu Sıvı Formülasyonu",
+        "animals": {
+            "calf": {
+                "name": "Buzağı",
+                "dosage": "Doz başına 15-30ml (semptomlar sırasında günde 2 kez)",
+                "effects": [
+                    "Rota, Corona, E. coli virüsleri ve toksinlerinin güçlü adsorpsiyonu ve atılımı",
+                    "Dehidrasyonu önlemek için bağırsak mukozasında fiziksel koruyucu bariyer oluşturur",
+                    "Uygulamadan sonraki 24 saat içinde dışkı kıvamını normale döndürür"
+                ],
+                "highlight": "Yenidoğan buzağı ishali için yüksek konsantrasyonlu adsorban"
+            },
+            "piglet": {
+                "name": "Emziren Domuz Yavrusu",
+                "dosage": "Doz başına 2-5ml (şırınga ile doğrudan ağızdan uygulama)",
+                "effects": [
+                    "Sulu ishal ve süt ürünleri emilim bozukluklarını yatıştırır",
+                    "Bacillus subtilis antagonist etkisiyle bağırsak mikroflorasını normalleştirir",
+                    "Sütten kesme öncesi yavru ölüm oranını önemli ölçüde azaltır"
+                ],
+                "highlight": "Emziren yavrular için temel gastrointestinal koruyucu"
+            },
+            "goat": {
+                "name": "Oğlak",
+                "dosage": "Doz başına 5-10ml (günde 2 kez)",
+                "effects": [
+                    "Ağız sütü yetersiz oğlakların bağırsak mukoza hücrelerindeki akut hazımsızlığı tedavi eder",
+                    "Yüksek saflıktaki nano-montmorillonit parçacıkları ile toksinleri adsorbe eder",
+                    "Canlılığın ve iştahın yeniden kazanılmasını teşvik eder"
+                ],
+                "highlight": "Yenidoğan oğlak ishali için acil kurtarıcı"
+            },
+            "lamb": {
+                "name": "Kuzu",
+                "dosage": "Doz başına 5-10ml (günde 2 kez)",
+                "effects": [
+                    "Su/elektrolit dengesini korur ve yenidoğan kuzularda ishali baskılar",
+                    "Bağırsak mikroflora ekosistemi için yararlı probiyotikleri çoğaltır"
+                ],
+                "highlight": "Koyun çiftlikleri için yenidoğan dengeleyici"
+            },
+            "foal": {
+                "name": "Tay",
+                "dosage": "Doz başına 20-40ml (günde 2 kez)",
+                "effects": [
+                    "Yarış ve binek taylarında gastrointestinal mukoza hasarını hafifletir",
+                    "Akut toksik ishal toksinlerini fiziksel olarak temizler"
+                ],
+                "highlight": "Taylar için acil bağırsak mukozası koruyucusu"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Saha Veteriner Hekimi ile Klinik Sesli Röportaj",
+        "title": "«İshalli Buzağılara PARVOGEL Uygulamasında Anında Yanıt»",
+        "sub": "Dr. Seong-Dae Jeong (Dongjin Veteriner Hastanesi) ve Hanwoo Yetiştiricileri klinik sesli özeti",
+        "docName": "Dr. Seong-Dae Jeong (Dongjin Veteriner Hastanesi)",
+        "docSub": "Parvogel Klinik Sesli Raporu",
+        "quote": "«Parvogel uygulamasından sonra bağırsak mukozası koruması ve buzağıların iyileşme hızı olağanüstüdür.»"
     }
-}
+}

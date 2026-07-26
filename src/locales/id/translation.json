@@ -276,5 +276,77 @@
         "placeholder": "Tanya apa saja...",
         "send": "Kirim",
         "error": "Maaf, terjadi kesalahan komunikasi. Coba lagi nanti."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Suplemen Anti Diare Hewan Baru Lahir",
+        "sub": "Formula Nano Montmorillonite Ultrafine Kemurnian Tinggi",
+        "buyBtn": "🚀 Beli di Coupang Rocket",
+        "consultBtn": "📦 Pertanyaan Pesanan Grosir / Langsung"
+    },
+    "animalSelector": {
+        "tag": "🐾 Solusi Khusus untuk Semua Hewan Baru Lahir",
+        "title": "Diare Neonatal pada Semua Hewan: Tuntas dengan PARVOGEL!",
+        "sub": "Pilih jenis hewan untuk melihat dosis dan efektivitas yang direkomendasikan.",
+        "guideTitle": "Panduan Pemberian Dosis Khusus",
+        "dosageTag": "Dosis yang Direkomendasikan",
+        "notice": "* Formulasi Cairan Konsentrat Tinggi Nano Montmorillonite Ultrafine",
+        "animals": {
+            "calf": {
+                "name": "Anak Sapi (Pedet)",
+                "dosage": "15-30ml per dosis (2 kali sehari saat gejala)",
+                "effects": [
+                    "Adsorpsi kuat & pembuangan virus Rota, Corona, E. coli & toksin",
+                    "Membentuk lapisan pelindung fisik pada mukosa usus untuk cegah dehidrasi",
+                    "Normalisasi kepadatan feses dalam 24 jam setelah pemberian"
+                ],
+                "highlight": "Adsorben konsentrasi tinggi untuk diare pedet baru lahir"
+            },
+            "piglet": {
+                "name": "Anak Babi",
+                "dosage": "2-5ml per dosis (pemberian oral langsung dengan alat suntik)",
+                "effects": [
+                    "Meredakan diare cair dan gangguan penyerapan produk susu pada anak babi menyusui",
+                    "Normalisasi mikroflora usus melalui aksi antagonis Bacillus subtilis",
+                    "Signifikan mengurangi tingkat kematian anak babi sebelum sapih"
+                ],
+                "highlight": "Pelindung saluran pencernaan esensial untuk anak babi"
+            },
+            "goat": {
+                "name": "Anak Kambing",
+                "dosage": "5-10ml per dosis (2 kali sehari)",
+                "effects": [
+                    "Mengobati gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
+                    "Mengadsorpsi toksin dengan partikel nano montmorillonite kemurnian tinggi",
+                    "Mendorong pemulihan vitalitas dan nafsu makan"
+                ],
+                "highlight": "Penyelamat darurat diare anak kambing baru lahir"
+            },
+            "lamb": {
+                "name": "Anak Domba",
+                "dosage": "5-10ml per dosis (2 kali sehari)",
+                "effects": [
+                    "Menjaga keseimbangan air/elektrolit dan menekan diare pada anak domba baru lahir",
+                    "Meningkatkan probiotik bermanfaat bagi ekosistem mikroflora usus"
+                ],
+                "highlight": "Penstabil kesehatan anak domba baru lahir"
+            },
+            "foal": {
+                "name": "Anak Kuda",
+                "dosage": "20-40ml per dosis (2 kali sehari)",
+                "effects": [
+                    "Meringankan kerusakan mukosa saluran pencernaan anak kuda ras unggul",
+                    "Membersihkan toksin diare beracun akut secara fisik"
+                ],
+                "highlight": "Pelindung mukosa usus darurat untuk anak kuda"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Wawancara Audio Klinis Dokter Hewan Lapangan",
+        "title": "«Respon Cepat Saat Pemberian PARVOGEL pada Anak Sapi Diare»",
+        "sub": "Ringkasan audio klinis oleh Dr. Seong-Dae Jeong (RS Hewan Dongjin) & Peternak Hanwoo",
+        "docName": "Dr. Seong-Dae Jeong (RS Hewan Dongjin)",
+        "docSub": "Laporan Audio Klinis Parvogel",
+        "quote": "«Setelah pemberian Parvogel, perlindungan mukosa usus dan kecepatan pemulihan anak sapi sangat luar biasa.»"
     }
-}
+}

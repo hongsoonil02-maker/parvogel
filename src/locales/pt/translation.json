@@ -276,5 +276,77 @@
         "placeholder": "Pergunte qualquer coisa...",
         "send": "Enviar",
         "error": "Desculpe, ocorreu um erro de comunicação. Tente novamente mais tarde."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Suplemento Antidiarreico Neonatal",
+        "sub": "Fórmula Ultrafina de Nano-Montmorillonita de Alta Pureza",
+        "buyBtn": "🚀 Comprar no Coupang Rocket",
+        "consultBtn": "📦 Consulta de Pedido Direto / Atacado"
+    },
+    "animalSelector": {
+        "tag": "🐾 Solução Sob Medida para Todos os Recém-Nascidos",
+        "title": "Diarreia Neonatal em Todos os Animais: Resolvida com PARVOGEL!",
+        "sub": "Selecione uma espécie animal para ver a dosagem recomendada e eficácia.",
+        "guideTitle": "Guia de Administração Personalizado",
+        "dosageTag": "Dosagem Recomendada",
+        "notice": "* Formulação Líquida Altamente Concentrada de Nano-Montmorillonita Ultrafina",
+        "animals": {
+            "calf": {
+                "name": "Bezerro",
+                "dosage": "15-30 ml por dose (2 vezes ao dia se houver sintomas)",
+                "effects": [
+                    "Forte adsorção e eliminação de vírus Rota, Corona, E. coli e toxinas",
+                    "Forma uma barreira protetora física na mucosa intestinal para prevenir desidratação",
+                    "Normaliza a consistência das fezes dentro de 24 horas após a administração"
+                ],
+                "highlight": "Adsorvente de alta concentração para diarreia neonatal de bezerros"
+            },
+            "piglet": {
+                "name": "Leitão",
+                "dosage": "2-5 ml por dose (administração oral direta por seringa)",
+                "effects": [
+                    "Acalma a diarreia aquosa e distúrbios de absorção láctea em leitões lactantes",
+                    "Normaliza a microflora intestinal pela ação antagônica de Bacillus subtilis",
+                    "Reduz significativamente a mortalidade dos leitões antes do desmame"
+                ],
+                "highlight": "Protetor gastrointestinal essencial para leitões lactantes"
+            },
+            "goat": {
+                "name": "Cabrito",
+                "dosage": "5-10 ml por dose (2 vezes ao dia)",
+                "effects": [
+                    "Trata a indigestão aguda na mucosa intestinal de cabritos deficientes em colostro",
+                    "Adsorve toxinas com partículas de nano-montmorillonita de alta pureza",
+                    "Promove a recuperação da vitalidade e o apetite"
+                ],
+                "highlight": "Salvador de emergência para diarreia neonatal em cabritos"
+            },
+            "lamb": {
+                "name": "Cordeiro",
+                "dosage": "5-10 ml por dose (2 vezes ao dia)",
+                "effects": [
+                    "Mantém o equilíbrio hídrico/eletrolítico e suprime a diarreia em cordeiros recém-nascidos",
+                    "Prolifera probióticos benéficos para o ecossistema da microflora intestinal"
+                ],
+                "highlight": "Estabilizador neonatal para fazendas ovinas"
+            },
+            "foal": {
+                "name": "Potro",
+                "dosage": "20-40 ml por dose (2 vezes ao dia)",
+                "effects": [
+                    "Alivia os danos na mucosa gastrointestinal em potros de corrida/equitação",
+                    "Purifica fisicamente as toxinas de diarreias tóxicas agudas"
+                ],
+                "highlight": "Proteção de emergência para a mucosa intestinal do potro"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Entrevista de Áudio Clínica Veterinária",
+        "title": "«Resposta Imediata após a Administração de PARVOGEL em Bezerros com Diarreia»",
+        "sub": "Resumo clínico em áudio do Dr. Seong-Dae Jeong (Hospital Veterinário Dongjin) e criadores Hanwoo",
+        "docName": "Dr. Seong-Dae Jeong (Hospital Veterinário Dongjin)",
+        "docSub": "Relatório de Áudio Clínico Parvogel",
+        "quote": "«Após administrar Parvogel, a proteção da mucosa intestinal e a velocidade de recuperação dos bezerros são extraordinárias.»"
     }
-}
+}

@@ -276,5 +276,77 @@
         "placeholder": "Hỏi bất cứ điều gì...",
         "send": "Gửi",
         "error": "Xin lỗi, lỗi kết nối. Vui lòng thử lại sau."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Bổ Sung Trị Tiêu Chảy Cho Gia Súc Sơ Sinh",
+        "sub": "Công Thức Nano Montmorillonite Siêu Mịn Độ Tinh Khiết Cao",
+        "buyBtn": "🚀 Mua Trên Coupang Rocket",
+        "consultBtn": "📦 Tư Vấn Đặt Hàng Sỉ / Trực Tiếp"
+    },
+    "animalSelector": {
+        "tag": "🐾 Giải Pháp Tùy Chỉnh Cho Tất Cả Gia Súc Sơ Sinh",
+        "title": "Tiêu Chảy Sơ Sinh Ở Tất Cả Động Vật: Giải Quyết Với PARVOGEL!",
+        "sub": "Chọn loài động vật để xem liều lượng khuyến nghị và hiệu quả.",
+        "guideTitle": "Hướng Dẫn Cho Ăn Tùy Chỉnh",
+        "dosageTag": "Liều Lượng Khuyên Dùng",
+        "notice": "* Dạng Lỏng Đậm Đặc Nano Montmorillonite Siêu Mịn",
+        "animals": {
+            "calf": {
+                "name": "Bê",
+                "dosage": "15-30ml mỗi lần (2 lần/ngày khi có triệu chứng)",
+                "effects": [
+                    "Hấp phụ và đào thải mạnh mẽ virus Rota, Corona, E. coli & độc tố",
+                    "Tạo hàng rào bảo vệ vật lý trên niêm mạc ruột để ngăn ngừa mất nước",
+                    "Bình thường hóa độ cứng phân trong vòng 24 giờ sau khi sử dụng"
+                ],
+                "highlight": "Chất hấp phụ đậm đặc trị tiêu chảy bê sơ sinh"
+            },
+            "piglet": {
+                "name": "Heo con",
+                "dosage": "2-5ml mỗi lần (cho uống trực tiếp bằng xi-ranh)",
+                "effects": [
+                    "Bảo vệ và làm dịu tiêu chảy phân nước ở heo con theo mẹ",
+                    "Cân bằng vi sinh đường ruột nhờ tác động đối kháng của Bacillus subtilis",
+                    "Giảm đáng kể tỷ lệ tử vong heo con trước khi cai sữa"
+                ],
+                "highlight": "Chất bảo vệ đường tiêu hóa thiết yếu cho heo con theo mẹ"
+            },
+            "goat": {
+                "name": "Dê con",
+                "dosage": "5-10ml mỗi lần (2 lần/ngày)",
+                "effects": [
+                    "Điều trị chứng khó tiêu cấp tính ở dê con thiếu sữa đầu",
+                    "Hấp phụ độc tố bằng các hạt nano montmorillonite độ tinh khiết cao",
+                    "Thúc đẩy phục hồi thể lực và thèm ăn"
+                ],
+                "highlight": "Cứu tinh khẩn cấp cho dê con sơ sinh bị tiêu chảy"
+            },
+            "lamb": {
+                "name": "Cừu con",
+                "dosage": "5-10ml mỗi lần (2 lần/ngày)",
+                "effects": [
+                    "Duy trì cân bằng nước/điện giải và ức chế tiêu chảy ở cừu con sơ sinh",
+                    "Tăng sinh lợi khuẩn có lợi cho hệ vi sinh đường ruột"
+                ],
+                "highlight": "Chất ổn định sức khỏe cừu con sơ sinh"
+            },
+            "foal": {
+                "name": "Ngựa con",
+                "dosage": "20-40ml mỗi lần (2 lần/ngày)",
+                "effects": [
+                    "Giảm tổn thương niêm mạc dạ dày ruột ở ngựa con thuần chủng",
+                    "Làm sạch độc tố tiêu chảy nhiễm độc cấp tính"
+                ],
+                "highlight": "Lá chắn bảo vệ niêm mạc ruột khẩn cấp cho ngựa con"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Phỏng Vấn Âm Thanh Lâm Sàng Với Bác Sĩ Thú Y",
+        "title": "«Phản Ứng Tức Thì Khi Cho Bê Tiêu Chảy Sử Dụng PARVOGEL»",
+        "sub": "Tóm tắt âm thanh lâm sàng của Bác sĩ Seong-Dae Jeong (Bệnh viện thú y Dongjin) & Nông dân Hanwoo",
+        "docName": "Bác sĩ Seong-Dae Jeong (Bệnh viện thú y Dongjin)",
+        "docSub": "Báo Cáo Âm Thanh Lâm Sàng Parvogel",
+        "quote": "«Sau khi sử dụng Parvogel, khả năng bảo vệ niêm mạc ruột và tốc độ phục hồi của bê là cực kỳ xuất sắc.»"
     }
-}
+}

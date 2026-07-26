@@ -276,5 +276,77 @@
         "placeholder": "Fragen Sie etwas...",
         "send": "Senden",
         "error": "Entschuldigung, ein Kommunikationsfehler ist aufgetreten. Bitte später erneut versuchen."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Neonatales Antidiarrhoikum Ergänzungsmittel",
+        "sub": "Hochreine Feinst-Nano-Montmorillonit-Formel",
+        "buyBtn": "🚀 Kaufen auf Coupang Rocket",
+        "consultBtn": "📦 Großhandel / Direktbestellung Anfrage"
+    },
+    "animalSelector": {
+        "tag": "🐾 Maßgeschneiderte Lösung für alle Neugeborenen",
+        "title": "Neonataler Durchfall bei allen Tieren: Gelöst mit PARVOGEL!",
+        "sub": "Wählen Sie eine Tierart aus, um die empfohlene Dosierung und Wirksamkeit anzuzeigen.",
+        "guideTitle": "Maßgeschneiderter Verabreichungsleitfaden",
+        "dosageTag": "Empfohlene Dosierung",
+        "notice": "* Hochkonzentrierte flüssige Formulierung aus feinstem Nano-Montmorillonit",
+        "animals": {
+            "calf": {
+                "name": "Kalb",
+                "dosage": "15–30 ml pro Dosis (2x täglich bei Symptomen)",
+                "effects": [
+                    "Starke Adsorption und Ausscheidung von Rota-, Corona-, E. coli-Viren und Toxinen",
+                    "Bildet eine physische Schutzbarriere auf der Darmschleimhaut zur Vermeidung von Dehydratation",
+                    "Normalisiert die Stuhlkonsistenz innerhalb von 24 Stunden nach der Verabreichung"
+                ],
+                "highlight": "Hochkonzentriertes Adsorptionsmittel gegen neonatalen Kälberdurchfall"
+            },
+            "piglet": {
+                "name": "Ferkel",
+                "dosage": "2–5 ml pro Dosis (direkte orale Verabreichung per Spritze)",
+                "effects": [
+                    "Lindert wässrigen Durchfall und Milchprodukt-Absorptionsstörungen bei Saugferkeln",
+                    "Normalisiert die Darmmikroflora durch antagonistische Wirkung von Bacillus subtilis",
+                    "Reduziert die Saugferkelsterblichkeit vor dem Absetzen erheblich"
+                ],
+                "highlight": "Wesentlicher Magen-Darm-Schutz für Saugferkel"
+            },
+            "goat": {
+                "name": "Ziegenlamm",
+                "dosage": "5–10 ml pro Dosis (2x täglich)",
+                "effects": [
+                    "Behandelt akute Verdauungsstörungen in Darmschleimhautzellen bei Kolostrummangel",
+                    "Adsorbiert Toxine mit hochreinen Nano-Montmorillonit-Partikeln",
+                    "Fördert die Wiederherstellung der Vitalität und die Futteraufnahme"
+                ],
+                "highlight": "Notfall-Retter bei neonatalem Durchfall von Ziegenlämmern"
+            },
+            "lamb": {
+                "name": "Lamm",
+                "dosage": "5–10 ml pro Dosis (2x täglich)",
+                "effects": [
+                    "Erhält das Wasser-/Elektrolytgleichgewicht und unterdrückt Durchfall bei neugeborenen Lämmern",
+                    "Vermehrte nützliche Probiotika für das Darmmikroflora-Ökosystem"
+                ],
+                "highlight": "Neonataler Stabilisator für Schafzuchtbetriebe"
+            },
+            "foal": {
+                "name": "Fohlen",
+                "dosage": "20–40 ml pro Dosis (2x täglich)",
+                "effects": [
+                    "Lindert Magen-Darm-Schleimhautschäden bei Rasse- und Reitpferdefohlen",
+                    "Reinigt physisch akute toxische Durchfalltoxine"
+                ],
+                "highlight": "Notfall-Darmschleimhautschutz für Pferdefohlen"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Klinisches Audio-Interview mit einem Tierarzt",
+        "title": "„Sofortige Reaktion bei Verabreichung von PARVOGEL bei Kälbern mit Durchfall“",
+        "sub": "Klinische Audio-Zusammenfassung von Dr. Seong-Dae Jeong (Tierklinik Dongjin) und Hanwoo-Landwirten",
+        "docName": "Dr. Seong-Dae Jeong (Tierklinik Dongjin)",
+        "docSub": "Klinischer Audio-Bericht Parvogel",
+        "quote": "„Nach der Verabreichung von Parvogel sind der Schutz der Darmschleimhaut und die Erholungsgeschwindigkeit der Kälber hervorragend.“"
     }
-}
+}

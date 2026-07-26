@@ -276,5 +276,77 @@
         "placeholder": "Tanya apa sahaja...",
         "send": "Hantar",
         "error": "Maaf, ralat komunikasi. Cuba lagi nanti."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Suplemen Anti Cirit-Birit Haiwan Baru Lahir",
+        "sub": "Formula Nano Montmorillonite Ultrafine Ketulenan Tinggi",
+        "buyBtn": "🚀 Beli di Coupang Rocket",
+        "consultBtn": "📦 Pertanyaan Pesanan Borong / Terus"
+    },
+    "animalSelector": {
+        "tag": "🐾 Penyelesaian Khusus untuk Semua Haiwan Baru Lahir",
+        "title": "Cirit-Birit Neonatal pada Semua Haiwan: Selesai dengan PARVOGEL!",
+        "sub": "Pilih spesies haiwan untuk melihat dos dan keberkesanan yang disyorkan.",
+        "guideTitle": "Panduan Pentadbiran Dos Khusus",
+        "dosageTag": "Dos yang Disyorkan",
+        "notice": "* Formulasi Cecair Pekat Tinggi Nano Montmorillonite Ultrafine",
+        "animals": {
+            "calf": {
+                "name": "Anak Lembu",
+                "dosage": "15-30ml setiap dos (2 kali sehari apabila ada gejala)",
+                "effects": [
+                    "Adsorpsi kuat & penyingkiran virus Rota, Corona, E. coli & toksin",
+                    "Membentuk penghalang fizikal pada mukosa usus untuk elak dehidrasi",
+                    "Normalisasi kepadatan najis dalam masa 24 jam selepas pemberian"
+                ],
+                "highlight": "Adsorben kepekatan tinggi untuk cirit-birit anak lembu baru lahir"
+            },
+            "piglet": {
+                "name": "Anak Babi",
+                "dosage": "2-5ml setiap dos (pentadbiran oral terus melalui picagari)",
+                "effects": [
+                    "Meredakan cirit-birit berair dan gangguan penyerapan produk susu pada anak babi menyusu",
+                    "Normalisasi mikroflora usus melalui tindakan antagonis Bacillus subtilis",
+                    "Mengurangkan kadar kematian anak babi sebelum cerai susu secara signifikan"
+                ],
+                "highlight": "Pelindung saluran penghadaman penting untuk anak babi"
+            },
+            "goat": {
+                "name": "Anak Kambing",
+                "dosage": "5-10ml setiap dos (2 kali sehari)",
+                "effects": [
+                    "Merawat gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
+                    "Mengadsorp toksin dengan zarah nano montmorillonite ketulenan tinggi",
+                    "Menggalakkan pemulihan vitaliti dan selera makan"
+                ],
+                "highlight": "Penyelamat kecemasan cirit-birit anak kambing baru lahir"
+            },
+            "lamb": {
+                "name": "Anak Biri-Biri",
+                "dosage": "5-10ml setiap dos (2 kali sehari)",
+                "effects": [
+                    "Mengekalkan keseimbangan air/elektrolit dan menekan cirit-birit anak biri-biri baru lahir",
+                    "Meningkatkan probiotik bermanfaat untuk ekosistem mikroflora usus"
+                ],
+                "highlight": "Penstabil kesihatan anak biri-biri baru lahir"
+            },
+            "foal": {
+                "name": "Anak Kuda",
+                "dosage": "20-40ml setiap dos (2 kali sehari)",
+                "effects": [
+                    "Melegakan kerosakan mukosa saluran penghadaman anak kuda lumba/tunggangan",
+                    "Membersihkan toksin cirit-birit beracun akut secara fizikal"
+                ],
+                "highlight": "Pelindung mukosa usus kecemasan untuk anak kuda"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Temu Bual Audio Klinikal Veterinar Lapangan",
+        "title": "«Tindak Balas Serta-Merta Semasa Pemberian PARVOGEL pada Anak Lembu Cirit-Birit»",
+        "sub": "Ringkasan audio klinikal oleh Dr. Seong-Dae Jeong (Hospital Veterinar Dongjin) & Penternak Hanwoo",
+        "docName": "Dr. Seong-Dae Jeong (Hospital Veterinar Dongjin)",
+        "docSub": "Laporan Audio Klinikal Parvogel",
+        "quote": "«Selepas pemberian Parvogel, perlindungan mukosa usus dan kelajuan pemulihan anak lembu adalah sangat luar biasa.»"
     }
-}
+}
