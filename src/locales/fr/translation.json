@@ -276,5 +276,77 @@
         "placeholder": "Posez vos questions...",
         "send": "Envoyer",
         "error": "Désolé, une erreur de communication est survenue. Veuillez réessayer plus tard."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Supplément Antidiarrhéique Néonatal",
+        "sub": "Formule Ultra-fine de Nano-Montmorillonite de Haute Pureté",
+        "buyBtn": "🚀 Acheter sur Coupang Rocket",
+        "consultBtn": "📦 Commande en Gros / Directe"
+    },
+    "animalSelector": {
+        "tag": "🐾 Solution Sur-Mesure pour Tous les Nouveaux-Nés",
+        "title": "Diarrhée Néonatale chez Tous les Animaux : Résolue avec PARVOGEL !",
+        "sub": "Sélectionnez une espèce animale pour consulter la posologie et l'efficacité recommandées.",
+        "guideTitle": "Guide d'Administration Personnalisé",
+        "dosageTag": "Posologie Recommandée",
+        "notice": "* Formulation Liquide Hautement Concentrée en Nano-Montmorillonite Ultra-fine",
+        "animals": {
+            "calf": {
+                "name": "Veau",
+                "dosage": "15 à 30 ml par prise (2 fois par jour en cas de symptômes)",
+                "effects": [
+                    "Forte adsorption et élimination des virus Rota, Corona, E. coli et de leurs toxines",
+                    "Forme une barrière physique protectrice sur la muqueuse intestinale pour prévenir la déshydratation",
+                    "Normalise la consistance des selles dans les 24 heures suivant l'administration dès l'apparition"
+                ],
+                "highlight": "Adsorbant haute concentration pour la diarrhée néonatale des veaux"
+            },
+            "piglet": {
+                "name": "Porcelet",
+                "dosage": "2 à 5 ml par prise (administration orale directe par seringue)",
+                "effects": [
+                    "Soulage la diarrhée d'origine hydrique et les troubles d'absorption des produits laitiers chez les porcelets sous mère",
+                    "Normalise la microflore intestinale par l'action antagoniste de Bacillus subtilis",
+                    "Réduit considérablement la mortalité des porcelets avant le sevrage"
+                ],
+                "highlight": "Protecteur gastro-intestinal essentiel pour porcelets sous mère"
+            },
+            "goat": {
+                "name": "Chevreau",
+                "dosage": "5 à 10 ml par prise (2 fois par jour)",
+                "effects": [
+                    "Traite l'indigestion aiguë dans les cellules de la muqueuse intestinale des chevreaux carencés en colostrum",
+                    "Adsorbe les toxines grâce aux particules de nano-montmorillonite de haute pureté",
+                    "Favorise le rétablissement de la vitalité et l'appétit"
+                ],
+                "highlight": "Sauveteur d'urgence pour la diarrhée néonatale des chevreaux"
+            },
+            "lamb": {
+                "name": "Agneau",
+                "dosage": "5 à 10 ml par prise (2 fois par jour)",
+                "effects": [
+                    "Maintient l'équilibre hydrique/électrolytique et réprime la diarrhée chez les agneaux nouveau-nés",
+                    "Prolifère les probiotiques bénéfiques pour l'écosystème de la microflore intestinale"
+                ],
+                "highlight": "Stabilisateur néonatal pour les élevages ovins"
+            },
+            "foal": {
+                "name": "Poulain",
+                "dosage": "20 à 40 ml par prise (2 fois par jour)",
+                "effects": [
+                    "Soulage les lésions de la muqueuse gastro-intestinale chez les poulains de race/sport",
+                    "Purifie physiquement les toxines de la diarrhée toxique aiguë"
+                ],
+                "highlight": "Garde-corps d'urgence de la muqueuse intestinale du poulain"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Interview Audio Clinique Vétérinaire",
+        "title": "«Réponse Immédiate lors de l'Administration de PARVOGEL chez les Veaux Diarrhéiques»",
+        "sub": "Résumé audio clinique par le Dr Seong-Dae Jeong (Hôpital Vétérinaire Dongjin) et les Éleveurs Hanwoo",
+        "docName": "Dr Seong-Dae Jeong (Hôpital Vétérinaire Dongjin)",
+        "docSub": "Rapport Audio Clinique Parvogel",
+        "quote": "«Après l'administration de Parvogel, la protection de la muqueuse intestinale et la vitesse de rétablissement des veaux sont remarquables.»"
     }
-}
+}

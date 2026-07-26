@@ -276,5 +276,77 @@
         "placeholder": "Pregunte lo que sea...",
         "send": "Enviar",
         "error": "Lo sentimos, ocurrió un error de comunicación. Inténtelo de nuevo más tarde."
+    },
+    "stickyCta": {
+        "title": "PARVOGEL Suplemento Antidiarreico Neonatal",
+        "sub": "Fórmula Ultrafina de Nano-Montmorillonita de Alta Pureza",
+        "buyBtn": "🚀 Comprar en Coupang Rocket",
+        "consultBtn": "📦 Consulta de Pedido Directo / Mayoreo"
+    },
+    "animalSelector": {
+        "tag": "🐾 Solución a la Medida para Todos los Recién Nacidos",
+        "title": "Diarrea Neonatal en Todos los Animales: ¡Resuelta con PARVOGEL!",
+        "sub": "Seleccione una especie animal para ver la dosis y eficacia recomendadas.",
+        "guideTitle": "Guía de Administración Personalizada",
+        "dosageTag": "Dosis Recomendada",
+        "notice": "* Formulación Líquida Altamente Concentrada de Nano-Montmorillonita Ultrafina",
+        "animals": {
+            "calf": {
+                "name": "Ternero",
+                "dosage": "15-30 ml por dosis (2 veces al día si hay síntomas)",
+                "effects": [
+                    "Fuerte adsorción y eliminación de virus Rota, Corona, E. coli y toxinas",
+                    "Forma una barrera protectora física en la mucosa intestinal para prevenir la deshidratación",
+                    "Normaliza la consistencia de las heces dentro de las 24 horas posteriores a la administración"
+                ],
+                "highlight": "Adsorbente de alta concentración para la diarrea neonatal en terneros"
+            },
+            "piglet": {
+                "name": "Lechón",
+                "dosage": "2-5 ml por dosis (administración oral directa con jeringa)",
+                "effects": [
+                    "Calma la diarrea estival y trastornos de absorción láctea en lechones lactantes",
+                    "Normaliza la microflora intestinal mediante la acción antagónica de Bacillus subtilis",
+                    "Reduce significativamente la mortalidad del lechón antes del destete"
+                ],
+                "highlight": "Protector gastrointestinal esencial para lechones lactantes"
+            },
+            "goat": {
+                "name": "Cabrito",
+                "dosage": "5-10 ml por dosis (2 veces al día)",
+                "effects": [
+                    "Trata la indigestión aguda en la mucosa intestinal de cabritos deficientes en calostro",
+                    "Adsorbe toxinas con partículas de nano-montmorillonita de alta pureza",
+                    "Promueve la recuperación de la vitalidad y el apetito"
+                ],
+                "highlight": "Salvavidas de emergencia para diarrea neonatal en cabritos"
+            },
+            "lamb": {
+                "name": "Cordero",
+                "dosage": "5-10 ml por dosis (2 veces al día)",
+                "effects": [
+                    "Mantiene el equilibrio hídrico/electrolítico y suprime la diarrea en corderos recién nacidos",
+                    "Prolifera probióticos beneficiosos para el ecosistema microbiano intestinal"
+                ],
+                "highlight": "Estabilizador neonatal para granjas ovinas"
+            },
+            "foal": {
+                "name": "Potro",
+                "dosage": "20-40 ml por dosis (2 veces al día)",
+                "effects": [
+                    "Alivia el daño en la mucosa gastrointestinal en potros de carreras/equitación",
+                    "Purifica físicamente las toxinas de diarreas tóxicas agudas"
+                ],
+                "highlight": "Protección de emergencia para la mucosa intestinal del potro"
+            }
+        }
+    },
+    "audioTestimonial": {
+        "tag": "🎙️ Entrevista de Audio Clínica Veterinaria",
+        "title": "«Respuesta Inmediata tras la Administración de PARVOGEL en Terneros con Diarrea»",
+        "sub": "Resumen clínico en audio del Dr. Seong-Dae Jeong (Hospital Veterinario Dongjin) y ganaderos Hanwoo",
+        "docName": "Dr. Seong-Dae Jeong (Hospital Veterinario Dongjin)",
+        "docSub": "Reporte de Audio Clínico Parvogel",
+        "quote": "«Tras administrar Parvogel, la protección de la mucosa intestinal y la velocidad de recuperación de los terneros son extraordinarias.»"
     }
-}
+}
