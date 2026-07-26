@@ -349,5 +349,13 @@
         "docName": "Dr Seong-Dae Jeong (Hôpital Vétérinaire Dongjin)",
         "docSub": "Rapport Audio Clinique Parvogel",
         "quote": "«Après l'administration de Parvogel, la protection de la muqueuse intestinale et la vitesse de rétablissement des veaux sont remarquables.»"
+    },
+    "legal": {
+        "privacyTitle": "Politique de Confidentialité",
+        "privacyBody": "Parvogel accorde une priorité absolue à la protection de vos données personnelles. Les informations collectées (nom, téléphone, e-mail, adresse) sont strictement utilisées pour la livraison d'échantillons et les demandes de commande, et sont protégées en conformité avec la loi.",
+        "termsTitle": "Conditions Générales d'Utilisation",
+        "termsBody": "Ces conditions régissent les droits et obligations d'utilisation des services et produits Parvogel. Les demandes d'échantillons et achats doivent être effectués sous la guidance de professionnels vétérinaires.",
+        "businessTitle": "Informations Légales de l'Entreprise",
+        "businessBody": "Nom de la Société: Korea Agro Co., Ltd. | N° d'Enregistrement: 123-45-67890 | Représentant: Soon-il Hong | Adresse: République de Corée"
     }
 }

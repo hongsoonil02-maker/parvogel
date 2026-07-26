@@ -362,5 +362,13 @@
         "docName": "Dr. Seong-Dae Jeong (Dongjin Animal Hospital)",
         "docSub": "Parvogel Clinical Audio Report",
         "quote": "\"After Parvogel administration, mucosal protection and recovery speed in calves are outstanding.\""
+    },
+    "legal": {
+        "privacyTitle": "Privacy Policy",
+        "privacyBody": "Parvogel places the highest priority on protecting your personal information. Collected data (name, phone number, email, address) will strictly be used for sample delivery and order inquiries, and is securely protected in compliance with applicable privacy laws.",
+        "termsTitle": "Terms of Service",
+        "termsBody": "These terms govern the rights and obligations for using Parvogel services and products. Sample requests and purchases should be made under the guidance of veterinary professionals.",
+        "businessTitle": "Business Information",
+        "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
     }
 }

@@ -349,5 +349,13 @@
         "docName": "Dr. Seong-Dae Jeong (Hospital Veterinario Dongjin)",
         "docSub": "Reporte de Audio Clínico Parvogel",
         "quote": "«Tras administrar Parvogel, la protección de la mucosa intestinal y la velocidad de recuperación de los terneros son extraordinarias.»"
+    },
+    "legal": {
+        "privacyTitle": "Política de Privacidad",
+        "privacyBody": "Parvogel otorga la máxima prioridad a la protección de sus datos personales. La información recopilada (nombre, teléfono, correo electrónico, dirección) se utilizará estrictamente para la entrega de muestras y consultas de pedidos, protegida conforme a la ley.",
+        "termsTitle": "Términos del Servicio",
+        "termsBody": "Estos términos rigen los derechos y obligaciones para el uso de servicios y productos Parvogel. La solicitud de muestras y compras debe realizarse bajo la orientación de profesionales veterinarios.",
+        "businessTitle": "Información Legal de la Empresa",
+        "businessBody": "Nombre de la Empresa: Korea Agro Co., Ltd. | N° de Registro: 123-45-67890 | Representante: Soon-il Hong | Dirección: República de Corea"
     }
 }

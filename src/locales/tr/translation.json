@@ -349,5 +349,13 @@
         "docName": "Dr. Seong-Dae Jeong (Dongjin Veteriner Hastanesi)",
         "docSub": "Parvogel Klinik Sesli Raporu",
         "quote": "«Parvogel uygulamasından sonra bağırsak mukozası koruması ve buzağıların iyileşme hızı olağanüstüdür.»"
+    },
+    "legal": {
+        "privacyTitle": "Gizlilik Politikası",
+        "privacyBody": "Parvogel, kişisel verilerinizin korunmasına en yüksek önceliği vermektedir. Toplanan bilgiler (isim, telefon, e-posta, adres) yalnızca numune teslimatı ve sipariş sorgulamaları için yasalara uygun olarak güvenle kullanılır.",
+        "termsTitle": "Hizmet Şartları",
+        "termsBody": "Bu şartlar, Parvogel hizmet ve ürünlerinin kullanımına ilişkin hak ve yükümlülükleri düzenler. Numune talepleri ve satın alma işlemleri veteriner hekim rehberliğinde yapılmalıdır.",
+        "businessTitle": "Şirket Yasal Bilgileri",
+        "businessBody": "Şirket Adı: Korea Agro Co., Ltd. | Sicil No: 123-45-67890 | Temsilci: Soon-il Hong | Adres: Kore Cumhuriyeti"
     }
 }

@@ -349,5 +349,13 @@
         "docName": "Dr. Seong-Dae Jeong (Hospital Veterinário Dongjin)",
         "docSub": "Relatório de Áudio Clínico Parvogel",
         "quote": "«Após administrar Parvogel, a proteção da mucosa intestinal e a velocidade de recuperação dos bezerros são extraordinárias.»"
+    },
+    "legal": {
+        "privacyTitle": "Política de Privacidade",
+        "privacyBody": "Parvogel dá a máxima prioridade à proteção dos seus dados pessoais. As informações recolhidas (nome, telefone, e-mail, endereço) serão estritamente utilizadas para entrega de amostras e consultas de pedidos, protegidas de acordo com a lei.",
+        "termsTitle": "Termos de Serviço",
+        "termsBody": "Estes termos regem os direitos e obrigações para a utilização dos serviços e produtos Parvogel. O pedido de amostras e compras devem ser efetuados sob a orientação de profissionais veterinários.",
+        "businessTitle": "Informações Legais da Empresa",
+        "businessBody": "Nome da Empresa: Korea Agro Co., Ltd. | N.º de Registo: 123-45-67890 | Representante: Soon-il Hong | Endereço: República da Coreia"
     }
 }
