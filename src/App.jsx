@@ -3,6 +3,10 @@ import { useTranslation } from 'react-i18next'
 import Chatbot from './components/Chatbot'
 import QrCode from './components/QrCode'
 import ClinicalEvidence from './components/ClinicalEvidence'
+import AnimalSelector from './components/AnimalSelector'
+import AudioTestimonial from './components/AudioTestimonial'
+import StickyBottomCTA from './components/StickyBottomCTA'
+
 
 const ParvogelLanding = () => {
     const { t, i18n } = useTranslation()
@@ -996,8 +1000,15 @@ const ParvogelLanding = () => {
                 </div>
             </section>
 
+            {/* 축종별 맞춤 효능 탭 & 오디오 리포트 위젯 */}
+            <div className="section-container">
+                <AnimalSelector />
+                <AudioTestimonial />
+            </div>
+
             {/* Footer */}
             <footer className="bg-gray-900 text-gray-300 py-16">
+
                 <div className="section-container">
                     <div className="grid md:grid-cols-4 gap-12 mb-12">
                         <div className="md:col-span-2">
@@ -1302,8 +1313,12 @@ const ParvogelLanding = () => {
                 )
             }
 
+            {/* 모바일/데스크톱 반응형 스티키 CTA 바 */}
+            <StickyBottomCTA onOpenOrder={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }} />
+
             {/* Chatbot */}
             <Chatbot />
+
 
             {/* Custom Styles */}
             <style>{`
