@@ -10,12 +10,13 @@
         "order": "Pedido"
     },
     "hero": {
-        "badge": "Veterinary Clinics · Farms · General Animal Digestive Care Solution",
-        "title": "Gastrointestinal Care Solution First to Reach For: PARVOGEL!",
-        "subtitle": "Vomiting, Abdominal Pain, Diarrhea, Indigestion, Loss of Appetite, Refusal to Eat-Gastrointestinal Care for All Animals",
-        "subtitle2": "From calves, piglets, puppies, kittens to birds, small mammals (rabbits/hamsters), reptiles and all animals—powerful adsorption & removal of toxins, pathogens & viruses",
-        "cta1": "Pedir na Coupang·Naver Shopping",
+        "badge": "Clínicas Veterinárias · Fazendas · Solução de Cuidados Gastrointestinais Animais",
+        "title": "A Solução de Cuidados Gastrointestinais de Primeiros Recurso: PARVOGEL!",
+        "subtitle": "Vômitos, dor abdominal, diarreia, indigestão, perda de apetite, recusa de comida — Cuidados gastrointestinais para todos os animais",
+        "subtitle2": "De bezerros, leitões, filhotes de cão e gato a aves, pequenos mamíferos e répteis — Potente adsorção e remoção de toxinas, patógenos e vírus",
+        "cta1": "Comprar no Coupang·Naver Shopping",
         "cta2": "Ver dados clínicos",
+
         "trust1": "Suplemento alimentar registrado",
         "trust2": "Instalação certificada HACCP",
         "trust3": "24 meses em temperatura ambiente"

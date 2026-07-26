@@ -10,12 +10,13 @@
         "order": "注文"
     },
     "hero": {
-        "badge": "Veterinary Clinics · Farms · General Animal Digestive Care Solution",
-        "title": "Gastrointestinal Care Solution First to Reach For: PARVOGEL!",
-        "subtitle": "Vomiting, Abdominal Pain, Diarrhea, Indigestion, Loss of Appetite, Refusal to Eat-Gastrointestinal Care for All Animals",
-        "subtitle2": "From calves, piglets, puppies, kittens to birds, small mammals (rabbits/hamsters), reptiles and all animals—powerful adsorption & removal of toxins, pathogens & viruses",
-        "cta1": "Coupang・Naverショッピングで注文",
-        "cta2": "臨床データ確認",
+        "badge": "動物病院 · 畜産農家 · 全動物胃腸ケアソリューション",
+        "title": "真っ先に手が伸びる胃腸ケアソリューション：パルボゲル (PARVOGEL)！",
+        "subtitle": "嘔吐、腹痛、下痢、消化不良、食欲不振、拒食 — 全動物対応のカスタム胃腸ケア",
+        "subtitle2": "子牛、子豚、子犬、子猫から鳥類、小型哺乳類、爬虫類まで — 毒素・病原体・ウイルスを強力吸着・排出",
+        "cta1": "Coupang·Naverで購入",
+        "cta2": "臨床データを表示",
+
         "trust1": "飼料成分登録補助飼料",
         "trust2": "HACCP認証施設製造",
         "trust3": "常温24ヶ月保存"
