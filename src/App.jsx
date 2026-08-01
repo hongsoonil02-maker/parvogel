@@ -438,18 +438,17 @@ const ParvogelLanding = () => {
                             <p className="section-subtitle mt-4 whitespace-pre-line">
                                 {t('about.desc2')}
                             </p>
-                            <div className="mt-8 grid grid-cols-2 gap-4">
-                                {[
-                                    { label: t('about.ingredient'), value: t('about.ingredientVal') },
-                                    { label: t('about.form'), value: t('about.formVal') },
-                                    { label: t('about.dosage'), value: t('about.dosageVal') },
-                                    { label: t('about.storage'), value: t('about.storageVal') },
-                                ].map((item, i) => (
-                                    <div key={i} className="p-4 bg-gray-50 rounded-xl">
-                                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
-                                        <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
-                                    </div>
-                                ))}
+                                <div className="mt-8 grid grid-cols-2 gap-4">
+                                    {[
+                                        { label: t('about.ingredient'), value: t('about.ingredientVal') },
+                                        { label: t('about.form'), value: t('about.formVal') },
+                                        { label: t('about.dosage'), value: t('about.dosageVal'), colSpan: 2 },
+                                    ].map((item, i) => (
+                                        <div key={i} className={`p-4 bg-gray-50 rounded-xl ${item.colSpan ? 'col-span-2' : ''}`}>
+                                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
+                                            <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
+                                        </div>
+                                    ))}
                             </div>
                             {/* Trust indicators */}
                             <div className="mt-10 flex flex-wrap items-center gap-4 text-sm text-gray-600">
