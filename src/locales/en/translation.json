@@ -34,7 +34,7 @@
         "form": "Form",
         "formVal": "Oral Liquid (Vanilla Flavor)",
         "dosage": "Dosage",
-        "dosageVal": "10ml per 10kg body weight, twice daily",
+        "dosageVal": "✅ Recommended Dosage (1 pump = approx. 1ml = approx. 1g): Based on 5kg\nPrevention & Routine (No diarrhea): 1-2 times daily, 1-2 drops\nIntensive Care (Diarrhea present): 1-2 drops every 2 hours",
         "storage": "Storage",
         "storageVal": "Room temperature 1~30℃, 24 months",
         "coupang": "Coupang",
@@ -354,7 +354,6 @@
             }
         }
     },
-
     "audioTestimonial": {
         "tag": "🎙️ Clinical Audio Interview with Field Veterinarian",
         "title": "\"Immediate Response Upon PARVOGEL Administration in Diarrheic Calves\"",
@@ -371,4 +370,4 @@
         "businessTitle": "Business Information",
         "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
     }
-}
+}

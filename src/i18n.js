@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 import ko from './locales/ko/translation.json';
 import en from './locales/en/translation.json';
@@ -35,22 +36,27 @@ const resources = {
     tr: { translation: tr },
 };
 
-const getBrowserLanguage = () => {
-    if (typeof window === 'undefined' || !window.navigator) return 'ko';
-    const browserLang = (window.navigator.language || window.navigator.userLanguage || 'ko').split('-')[0].toLowerCase();
-    const supportedLangs = ['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'];
-    return supportedLangs.includes(browserLang) ? browserLang : 'ko';
+i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        resources,
+        fallbackLng: 'en',
+        supportedLngs: ['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'],
+        interpolation: { escapeValue: false },
+        detection: {
+            order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
+            caches: ['localStorage', 'cookie'],
+        }
+    });
+
+const syncDocumentLanguage = (language) => {
+    if (typeof document === 'undefined') return;
+    document.documentElement.lang = language;
 };
 
-i18n
-     .use(initReactI18next)
-     .init({
-         resources,
-         lng: getBrowserLanguage(),
-         fallbackLng: 'en',
-         interpolation: {
-             escapeValue: false
-         }
-     });
+syncDocumentLanguage(i18n.language);
+i18n.on('languageChanged', syncDocumentLanguage);
 
 export default i18n;
+

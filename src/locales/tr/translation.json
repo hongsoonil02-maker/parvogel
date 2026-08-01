@@ -16,7 +16,6 @@
         "subtitle2": "Buzağılar, domuz yavruları, köpek yavruları, kedilerden kuşlara, küçük memelilere ve sürüngenlere kadar — Toksinlerin, patojenlerin ve virüslerin güçlü adsorpsiyonu ve temizlenmesi",
         "cta1": "Coupang·Naver Shopping'den Satın Al",
         "cta2": "Klinik verileri görüntüle",
-
         "trust1": "Kayıtlı yem takviyesi",
         "trust2": "HACCP sertifikalı tesis",
         "trust3": "Oda sıcaklığında 24 ay"
@@ -31,7 +30,7 @@
         "form": "Form",
         "formVal": "Oral sıvı (vanilya aromalı)",
         "dosage": "Dozaj",
-        "dosageVal": "10kg ağırlık başına 10ml, günde 2 kez",
+        "dosageVal": "✅ Önerilen Doz (1 pompa = yakl. 1ml = yakl. 1g): 5kg baz alınmıştır\nÖnleme ve Rutin (İshal yok): Günde 1-2 kez, 1-2 damla\nYoğun Bakım (İshal var): Her 2 saatte bir 1-2 damla",
         "storage": "Saklama",
         "storageVal": "Oda sıcaklığı 1~30℃, 24 ay",
         "coupang": "Coupang",
@@ -358,4 +357,4 @@
         "businessTitle": "Şirket Yasal Bilgileri",
         "businessBody": "Şirket Adı: Korea Agro Co., Ltd. | Sicil No: 123-45-67890 | Temsilci: Soon-il Hong | Adres: Kore Cumhuriyeti"
     }
-}
+}
