@@ -61,19 +61,28 @@ const ClinicalEvidence = () => {
             {/* 하단 균형용 핵심 요약 박스 */}
             <div className="bg-primary-50/90 border border-primary-200 rounded-2xl p-4 text-xs font-medium text-primary-900 leading-relaxed shadow-sm flex flex-col gap-3">
               <div>
-                <span className="font-bold text-sm block mb-1">💡 {t('clinical.techSummaryTitle', '초미세공정 핵심 기술')}</span>
-                {t('clinical.techSummaryBody', '일반 몬모릴로나이트 대비 표면적 8배 이상(≥800 m²/g), 입자도 50배 이상 초미세화(≤6.5 µm)를 통해 장내 독소 및 유해 바이러스의 물리적 흡착 배출 성능을 극대화하였습니다.')}
+                <span className="font-bold text-sm mb-1 flex items-start gap-1">
+                  <span className="shrink-0">💡</span>
+                  <span className="break-keep">{t('clinical.techSummaryTitle', '초미세공정 핵심 기술')}</span>
+                </span>
+                <div className="break-keep">
+                  {t('clinical.techSummaryBody', '일반 몬모릴로나이트 대비 표면적 8배 이상(≥800 m²/g), 입자도 50배 이상 초미세화(≤6.5 µm)를 통해 장내 독소 및 유해 바이러스의 물리적 흡착 배출 성능을 극대화하였습니다.')}
+                </div>
               </div>
               <div className="pt-2.5 border-t border-primary-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="text-[11px] text-primary-900 font-semibold">📚 {t('clinical.paperRef1', 'Smectite & Montmorillonite 독소 흡착·지사 글로벌 연구 자료')}</span>
+                <span className="text-[11px] text-primary-900 font-semibold flex items-start gap-1">
+                  <span className="shrink-0">📚</span>
+                  <span className="break-keep">{t('clinical.paperRef1', 'Smectite & Montmorillonite 독소 흡착·지사 글로벌 연구 자료')}</span>
+                </span>
                 <a
                   href="https://www.google.com/search?q=smectite+and+montmorillonite+adsorption"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-700 hover:bg-primary-800 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
-                  <span>🔍 {t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                  <span>🔍</span>
+                  <span className="break-keep">{t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
+                  <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                 </a>
               </div>
             </div>
@@ -184,19 +193,28 @@ const ClinicalEvidence = () => {
             {/* 하단 균형용 연구 요약 박스 */}
             <div className="bg-primary-50/90 border border-primary-200 rounded-2xl p-4 text-xs font-medium text-primary-900 leading-relaxed shadow-sm flex flex-col gap-3">
               <div>
-                <span className="font-bold text-sm block mb-1">🔬 {t('clinical.antiviralSummaryTitle', '항바이러스 학술 검증')}</span>
-                {t('clinical.antiviralSummaryBody', 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분이 소, 돼지, 조류 등 주요 5대 바이러스 계통의 증식을 유의미하게 억제함을 입증하였습니다.')}
+                <span className="font-bold text-sm mb-1 flex items-start gap-1">
+                  <span className="shrink-0">🔬</span>
+                  <span className="break-keep">{t('clinical.antiviralSummaryTitle', '항바이러스 학술 검증')}</span>
+                </span>
+                <div className="break-keep">
+                  {t('clinical.antiviralSummaryBody', 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분이 소, 돼지, 조류 등 주요 5대 바이러스 계통의 증식을 유의미하게 억제함을 입증하였습니다.')}
+                </div>
               </div>
               <div className="pt-2.5 border-t border-primary-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="text-[11px] text-primary-900 font-semibold">📚 {t('clinical.paperRef2', '1-Deoxynojirimycin(DNJ) 학술 논문 및 글로벌 연구 자료')}</span>
+                <span className="text-[11px] text-primary-900 font-semibold flex items-start gap-1">
+                  <span className="shrink-0">📚</span>
+                  <span className="break-keep">{t('clinical.paperRef2', '1-Deoxynojirimycin(DNJ) 학술 논문 및 글로벌 연구 자료')}</span>
+                </span>
                 <a
                   href="https://www.google.com/search?q=1-deoxynojirimycin+antiviral"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-700 hover:bg-primary-800 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
-                  <span>🔍 {t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                  <span>🔍</span>
+                  <span className="break-keep">{t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
+                  <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                 </a>
               </div>
             </div>

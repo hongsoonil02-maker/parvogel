@@ -445,14 +445,18 @@ const ParvogelLanding = () => {
                                         { label: t('about.dosage'), value: t('about.dosageVal'), colSpan: 2 },
                                     ].map((item, i) => (
                                         <div key={i} className={`p-4 bg-gray-50 rounded-xl ${item.colSpan ? 'col-span-2' : ''}`}>
-                                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
+                                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider break-keep">{item.label}</p>
                                             {item.value.startsWith('✅') ? (
                                                 <div className="flex items-start gap-1.5 mt-1 text-lg font-bold text-gray-900">
-                                                    <span>✅</span>
-                                                    <p className="whitespace-pre-wrap">{item.value.replace(/^✅\s*/, '')}</p>
+                                                    <span className="shrink-0">✅</span>
+                                                    <div className="flex-1 break-keep">
+                                                        {item.value.replace(/^✅\s*/, '').split('\n').map((line, idx) => (
+                                                            <div key={idx} className={idx > 0 ? "pl-2 mt-1 whitespace-pre-wrap" : "whitespace-pre-wrap"}>{line}</div>
+                                                        ))}
+                                                    </div>
                                                 </div>
                                             ) : (
-                                                <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
+                                                <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap break-keep">{item.value}</p>
                                             )}
                                         </div>
                                     ))}
@@ -577,8 +581,8 @@ const ParvogelLanding = () => {
                                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl ${feature.color === 'primary' ? 'bg-primary-100' : 'bg-accent-100'} group-hover:scale-110 transition-transform`}>
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 break-keep">{feature.title}</h3>
+                                <p className="text-gray-600 leading-relaxed break-keep">{feature.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -612,17 +616,17 @@ const ParvogelLanding = () => {
                                 <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-3xl ${primaryBgLight} opacity-10 group-hover:opacity-20 transition-opacity`} />
                                 <div className="relative z-10">
                                     <div className="text-5xl mb-4">{animal.icon}</div>
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{animal.name}</h3>
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2 break-keep">{animal.name}</h3>
                                     <div className="space-y-3">
                                         <div className="flex items-center gap-2 text-sm text-gray-600">
                                             <svg className={`w-4 h-4 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" /></svg>
-                                            <span>{t('target.recommendedAge')}: <strong className="text-gray-900">{animal.age}</strong></span>
+                                            <span className="break-keep">{t('target.recommendedAge')}: <strong className="text-gray-900">{animal.age}</strong></span>
                                         </div>
                                         <div className="flex items-start gap-2 text-sm text-gray-600">
                                             <svg className={`w-4 h-4 ${primaryText} mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a1 1 0 10-2 0 1 1 0 002 0zm0 8a1 1 0 10-2 0 1 1 0 002 0zm0-11a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" /></svg>
                                             <div>
-                                                <p className="font-semibold text-gray-900">{t('target.mainPathogens')}</p>
-                                                <p className="text-gray-600">{animal.diseases}</p>
+                                                <p className="font-semibold text-gray-900 break-keep">{t('target.mainPathogens')}</p>
+                                                <p className="text-gray-600 break-keep">{animal.diseases}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -633,7 +637,7 @@ const ParvogelLanding = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">{t('target.other')}</p>
+                        <p className="text-gray-600 mb-4 break-keep">{t('target.other')}</p>
                         <button
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
@@ -671,11 +675,11 @@ const ParvogelLanding = () => {
                                         </svg>
                                     ))}
                                 </div>
-                                <p className="text-gray-700 leading-relaxed mb-6">"{testimonial.content}"</p>
+                                <p className="text-gray-700 leading-relaxed mb-6 break-keep">"{testimonial.content}"</p>
                                 <div className="border-t border-gray-100 pt-4">
-                                    <p className="font-bold text-gray-900">{testimonial.name}</p>
-                                    <p className="text-sm text-gray-500">{testimonial.clinic}</p>
-                                    <p className="text-xs text-gray-400 mt-1">{testimonial.role}</p>
+                                    <p className="font-bold text-gray-900 break-keep">{testimonial.name}</p>
+                                    <p className="text-sm text-gray-500 break-keep">{testimonial.clinic}</p>
+                                    <p className="text-xs text-gray-400 mt-1 break-keep">{testimonial.role}</p>
                                 </div>
                             </div>
                         ))}
