@@ -446,7 +446,14 @@ const ParvogelLanding = () => {
                                     ].map((item, i) => (
                                         <div key={i} className={`p-4 bg-gray-50 rounded-xl ${item.colSpan ? 'col-span-2' : ''}`}>
                                             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
-                                            <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
+                                            {item.value.startsWith('✅') ? (
+                                                <div className="flex items-start gap-1.5 mt-1 text-lg font-bold text-gray-900">
+                                                    <span>✅</span>
+                                                    <p className="whitespace-pre-wrap">{item.value.replace(/^✅\s*/, '')}</p>
+                                                </div>
+                                            ) : (
+                                                <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
+                                            )}
                                         </div>
                                     ))}
                             </div>
