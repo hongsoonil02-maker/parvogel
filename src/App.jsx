@@ -447,7 +447,7 @@ const ParvogelLanding = () => {
                                 ].map((item, i) => (
                                     <div key={i} className="p-4 bg-gray-50 rounded-xl">
                                         <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{item.label}</p>
-                                        <p className="text-lg font-bold text-gray-900 mt-1">{item.value}</p>
+                                        <p className="text-lg font-bold text-gray-900 mt-1 whitespace-pre-wrap">{item.value}</p>
                                     </div>
                                 ))}
                             </div>
