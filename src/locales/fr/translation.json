@@ -41,7 +41,7 @@
     "features": {
         "badge": "Caractéristiques clés",
         "title": "6 raisons de choisir Parvogel",
-        "subtitle": "Supplément de nouvelle génération contre la diarrhée néonatale développé avec les retours de vétérinaires, éleveurs et pharmacies",
+        "subtitle": "Supplément de nouvelle génération pour la prise en charge de la diarrhée néonatale développé avec les retours de vétérinaires, éleveurs et pharmacies",
         "f1Title": "Antiviral à large spectre",
         "f1Desc": "Suppression large des principaux virus entéritiques dont rotavirus, coronavirus et parvovirus",
         "f2Title": "Montmorillonite ultra-fine",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Preuves cliniques",
         "title": "Efficacité prouvée, vérifiée par la recherche",
-        "subtitle": "Excellents effets thérapeutiques confirmés lors d'essais cliniques dans des universités et instituts de recherche de premier plan",
+        "subtitle": "Excellente efficacité confirmés lors d'essais cliniques dans des universités et instituts de recherche de premier plan",
         "study1Title": "Essai clinique de diarrhée à rotavirus chez le veau",
         "study1Subject": "40 veaux mâles Holstein, 3-7 jours",
         "study1Result": "Taux d'arrêt de la diarrhée du groupe traitement 92.5% (contrôle 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Adsorber et éliminer physiquement les virus intestinaux (parvo, corona, etc.) est une dimension à part des produits concurrents.",
         "e2Name": "Directeur Seong-dae Jung",
         "e2Role": "Directeur de la clinique vétérinaire Dongjin · Spécialiste clinique",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Retour clinique des fermes Hanwoo",
         "farmSub": "Dr Seong-dae Jung de Dongjin Animal Hospital, résultats de Parvogel sur les fermes Hanwoo",
         "f1": "Soulagement des douleurs abdominales et suppression des vomissements — soulagement immédiat, satisfaction maximale",
@@ -171,7 +171,7 @@
         "foal": "Poulains",
         "foalAge": "1-60 jours",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Autre bétail (cerfs, lapins, autruches, etc.) applicable sous ordonnance vétérinaire",
+        "other": "Autre bétail (cerfs, lapins, autruches, etc.) applicable sous supervision vétérinaire",
         "cta": "Obtenez une consultation personnalisée pour votre ferme"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Commander",
         "inquiry": "Demander",
         "bulk": "Pour les achats en gros (10+ bouteilles) et demandes, veuillez consulter séparément.",
-        "bulkCta": "Consultation grossiste·grand volume"
+        "bulkCta": "Consultation grossiste·grand volume",
+        "channelNote": "Les hôpitaux vétérinaires et les grossistes bénéficient de prix d'approvisionnement différenciés du prix public.",
+        "channelCta": "Demander les tarifs hôpital/grossiste"
     },
     "testimonials": {
         "badge": "Voix du terrain",
@@ -200,7 +202,7 @@
         "t1Name": "Dr Kim",
         "t1Clinic": "Hôpital Animal OO (Gyeonggi)",
         "t1Role": "20 ans en clinique bovine",
-        "t1Content": "Je prescris Parvogel chaque saison de diarrhée des veaux, et plus de 90% des cas arrêtent la diarrhée en 24h et reprennent de la vitalité. Satisfaction maximale des éleveurs.",
+        "t1Content": "J'administre Parvogel chaque saison de diarrhée des veaux, et plus de 90% des cas arrêtent la diarrhée en 24h et reprennent de la vitalité. Satisfaction maximale des éleveurs.",
         "t2Name": "Dr Park",
         "t2Clinic": "Hôpital Vétérinaire d'Élevage OO (Chungnam)",
         "t2Role": "Spécialiste porcs et bovins",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Commander sur Naver",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Type de demande",
+        "requestConsumer": "Achat particulier",
+        "requestHospital": "Hôpital vétérinaire",
+        "requestWholesale": "Grossiste / distributeur",
+        "hospitalNameOnly": "Nom de l'hôpital",
+        "companyName": "Nom de l'entreprise",
+        "vetName": "Nom du vétérinaire",
+        "vetNamePh": "ex. Jean Dupont, DMV",
+        "bizNumber": "N° d'immatriculation",
+        "bizNumberPh": "ex. 123-45-67890",
+        "region": "Région cible",
+        "regionPh": "ex. Changwon, Gyeongnam",
+        "orderVolume": "Volume mensuel estimé",
+        "selectVolume": "Sélectionner la fourchette",
+        "volume1": "10–49 flacons/mois",
+        "volume2": "50–199 flacons/mois",
+        "volume3": "200+ flacons/mois (à négocier)",
+        "quantityMonthly": "Utilisation mensuelle estimée (flacons)",
+        "hospitalDiscountNote": "Le prix d'approvisionnement pour les hôpitaux vétérinaires est réduit de {{discount}}% par rapport au prix public. Un devis vous sera envoyé.",
+        "wholesaleDiscountNote": "Le prix de gros propose des remises selon le volume par rapport au prix public ({{d1}}% dès 10 flacons, {{d2}}% dès 50, et accord séparé dès 200). Un devis vous sera envoyé.",
+        "recentSubmit": "Vous venez d'envoyer une commande. Veuillez réessayer dans un instant.",
+        "errorServer": "Une erreur serveur s'est produite lors de l'envoi de votre commande. Veuillez réessayer plus tard.",
+        "duplicateError": "Cette commande a déjà été envoyée. Notre équipe vous contactera sous peu.",
+        "networkError": "Votre commande n'a pas été envoyée correctement. Vérifiez votre réseau et réessayez.",
+        "timeoutError": "La demande de commande a expiré. Veuillez réessayer plus tard."
     },
     "footer": {
-        "desc": "Nouvelle norme pour le traitement de la diarrhée néonatale de tout le bétail. Protégeant la survie avec la montmorillonite ultra-fine.",
+        "desc": "Nouvelle norme pour la prise en charge de la diarrhée néonatale de tout le bétail. Protégeant la survie avec la montmorillonite ultra-fine.",
         "productInfo": "Informations produit",
         "productInfo1": "Présentation",
         "productInfo2": "Caractéristiques",
@@ -278,7 +305,7 @@
         "error": "Désolé, une erreur de communication est survenue. Veuillez réessayer plus tard."
     },
     "stickyCta": {
-        "title": "PARVOGEL Supplément Antidiarrhéique Néonatal",
+        "title": "PARVOGEL Supplément de Prise en Charge de la Diarrhée Néonatale",
         "sub": "Formule Ultra-fine de Nano-Montmorillonite de Haute Pureté",
         "buyBtn": "🚀 Acheter sur Coupang Rocket",
         "consultBtn": "📦 Commande en Gros / Directe"
@@ -315,7 +342,7 @@
                 "name": "Chevreau",
                 "dosage": "5 à 10 ml par prise (2 fois par jour)",
                 "effects": [
-                    "Traite l'indigestion aiguë dans les cellules de la muqueuse intestinale des chevreaux carencés en colostrum",
+                    "Aide à soulager l'indigestion aiguë dans les cellules de la muqueuse intestinale des chevreaux carencés en colostrum",
                     "Adsorbe les toxines grâce aux particules de nano-montmorillonite de haute pureté",
                     "Favorise le rétablissement de la vitalité et l'appétit"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Interview Audio Clinique Vétérinaire",
         "title": "«Réponse Immédiate lors de l'Administration de PARVOGEL chez les Veaux Diarrhéiques»",
-        "sub": "Résumé audio clinique par le Dr Seong-Dae Jeong (Hôpital Vétérinaire Dongjin) et les Éleveurs Hanwoo",
-        "docName": "Dr Seong-Dae Jeong (Hôpital Vétérinaire Dongjin)",
-        "docSub": "Rapport Audio Clinique Parvogel",
+        "sub": "Enregistrement d'appel sur la réaction de terrain du Dr Dong-Jun Kim (Hôpital Vétérinaire Sarang)",
+        "docName": "Dr Dong-Jun Kim (Hôpital Vétérinaire Sarang)",
+        "docSub": "Enregistrement d'appel de réaction de terrain Parvogel",
         "quote": "«Après l'administration de Parvogel, la protection de la muqueuse intestinale et la vitesse de rétablissement des veaux sont remarquables.»"
     },
     "legal": {

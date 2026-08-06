@@ -1,30 +1,61 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react'
 import { useTranslation } from 'react-i18next'
-import Chatbot from './components/Chatbot'
-import QrCode from './components/QrCode'
 import ClinicalEvidence from './components/ClinicalEvidence'
 import AnimalSelector from './components/AnimalSelector'
 import AudioTestimonial from './components/AudioTestimonial'
 import StickyBottomCTA from './components/StickyBottomCTA'
 
+const Chatbot = lazy(() => import('./components/Chatbot'))
+const QrCode = lazy(() => import('./components/QrCode'))
+
 
 const ParvogelLanding = () => {
     const { t, i18n } = useTranslation()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [isLangOpen, setIsLangOpen] = useState(false)
+    const langMenuRef = useRef(null)
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
     const [isOrderComplete, setIsOrderComplete] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
+        requestType: 'consumer',
         hospitalName: '',
         contactName: '',
+        bizNumber: '',
         phone: '',
         email: '',
         address: '',
-        product: 'parvogel-500ml',
+        product: 'parvogel-200ml',
         quantity: 1,
+        orderVolume: '',
         message: '',
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const submittingRef = useRef(false)
+    const requestIdRef = useRef(null)
+
+    const SUBMISSION_LAST_KEY = 'parvogel_order_last_v1'
+    const LAST_TTL = 5 * 60 * 1000
+    const FETCH_TIMEOUT = 30000
+
+    // 채널별 할인율 (소비자 정가 대비). 실제 공급 정책에 맞게 조정하세요.
+    const PRICING = {
+        hospitalDiscount: 45,
+        wholesaleTiers: [
+            { min: 10, max: 49, discount: 50 },
+            { min: 50, max: 199, discount: 55 },
+            { min: 200, max: null, discount: null },
+        ],
+    }
+
+    const genId = () =>
+        (typeof crypto !== 'undefined' && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
+
+    const siteUrl = typeof window !== 'undefined'
+        ? window.location.origin + window.location.pathname
+        : 'https://hongsoonil02-maker.github.io/parvogel/'
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
@@ -33,7 +64,7 @@ const ParvogelLanding = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY)
-            const sections = ['hero', 'about', 'features', 'clinical', 'tech', 'experts', 'target', 'testimonials', 'order']
+            const sections = ['hero', 'about', 'features', 'clinical', 'target', 'testimonials', 'products', 'order']
             const scrollPosition = window.scrollY + 200
 
             for (const section of sections) {
@@ -59,6 +90,25 @@ const ParvogelLanding = () => {
         }
     }, [i18n.language])
 
+    // 언어 메뉴 외부 클릭 / ESC 시 닫기
+    useEffect(() => {
+        if (!isLangOpen) return
+        const handleClickOutside = (e) => {
+            if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
+                setIsLangOpen(false)
+            }
+        }
+        const handleKey = (e) => {
+            if (e.key === 'Escape') setIsLangOpen(false)
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+        document.addEventListener('keydown', handleKey)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+            document.removeEventListener('keydown', handleKey)
+        }
+    }, [isLangOpen])
+
     // Smooth scroll to section
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId)
@@ -78,30 +128,109 @@ const ParvogelLanding = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!formData.hospitalName || !formData.contactName || !formData.phone) {
+        if (!formData.hospitalName || !formData.contactName || !formData.phone
+            || (formData.requestType === 'wholesale' && !formData.bizNumber)) {
             alert(t('order.requiredFieldsAlert'))
             return
         }
-
+        if (submittingRef.current || isSubmitting) return
+        submittingRef.current = true
         setIsSubmitting(true)
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        setIsSubmitting(false)
-        setIsOrderComplete(true)
-        setFormData({
-            hospitalName: '',
-            contactName: '',
-            phone: '',
-            email: '',
-            address: '',
-            product: 'parvogel-500ml',
-            quantity: 1,
-            message: '',
-        })
+
+        const normPhone = formData.phone.replace(/[^0-9]/g, '')
+        let last = null
+        try {
+            last = JSON.parse(localStorage.getItem(SUBMISSION_LAST_KEY))
+        } catch (err) { /* ignore */ }
+        if (last && last.phone && last.phone === normPhone && Date.now() - last.ts < LAST_TTL) {
+            submittingRef.current = false
+            setIsSubmitting(false)
+            alert(t('order.recentSubmit', '방금 접수된 주문입니다. 잠시 후 다시 시도해 주세요.'))
+            return
+        }
+
+        if (!requestIdRef.current) requestIdRef.current = genId()
+
+        const controller = new AbortController()
+        const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT)
+
+        try {
+            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
+                || 'https://script.google.com/macros/s/AKfycbxPOv3p1C6ucmLW_vgrI7c334FenaCbK4ogdSOHO1Rk6HS5794I2oIbV9kp2-Rh9UDIoA/exec'
+
+            const params = new URLSearchParams()
+            params.append('type', 'parvogel_order')
+            params.append('requestId', requestIdRef.current)
+            params.append('requestType', formData.requestType)
+            params.append('hospitalName', formData.hospitalName)
+            params.append('contactName', formData.contactName)
+            params.append('bizNumber', formData.bizNumber)
+            params.append('phone', normPhone)
+            params.append('email', formData.email)
+            params.append('address', formData.address)
+            params.append('product', formData.product)
+            params.append('quantity', formData.quantity)
+            params.append('orderVolume', formData.orderVolume)
+            params.append('message', formData.message)
+            params.append('timestamp', new Date().toISOString())
+
+            const response = await fetch(scriptURL, {
+                method: 'POST',
+                body: params,
+                signal: controller.signal,
+            })
+
+            let json = null
+            try {
+                json = await response.json()
+            } catch (err) { /* ignore */ }
+
+            if (!response.ok) {
+                alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
+                return
+            }
+            if (json && json.status === 'duplicate') {
+                alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
+                return
+            }
+            if (json && json.status === 'error') {
+                alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
+                return
+            }
+
+            try {
+                localStorage.setItem(SUBMISSION_LAST_KEY, JSON.stringify({ phone: normPhone, ts: Date.now() }))
+            } catch (err) { /* ignore */ }
+
+            setIsOrderComplete(true)
+            setFormData({
+                requestType: 'consumer',
+                hospitalName: '',
+                contactName: '',
+                bizNumber: '',
+                phone: '',
+                email: '',
+                address: '',
+                product: 'parvogel-200ml',
+                quantity: 1,
+                orderVolume: '',
+                message: '',
+            })
+        } catch (error) {
+            console.error('Order submit error:', error)
+            if (error.name === 'AbortError') {
+                alert(t('order.timeoutError', '주문 처리 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.'))
+            } else {
+                alert(t('order.networkError', '주문이 정상 접수되지 않았습니다. 네트워크 상태를 확인한 뒤 다시 시도해 주세요.'))
+            }
+        } finally {
+            clearTimeout(timer)
+            submittingRef.current = false
+            setIsSubmitting(false)
+        }
     }
 
     // Fixed Deep Blue + Gold theme (no toggle)
-    const primaryColor = 'primary'
     const primaryHover = 'hover:bg-primary-700'
     const primaryBg = 'bg-primary-600'
     const primaryText = 'text-primary-600'
@@ -119,8 +248,6 @@ const ParvogelLanding = () => {
         { id: 'about', label: t('nav.about') },
         { id: 'features', label: t('nav.features') },
         { id: 'clinical', label: t('nav.clinical') },
-        { id: 'tech', label: t('nav.tech') },
-        { id: 'experts', label: t('nav.experts') },
         { id: 'target', label: t('nav.target') },
         { id: 'testimonials', label: t('nav.testimonials') },
         { id: 'order', label: t('nav.order') },
@@ -228,7 +355,7 @@ const ParvogelLanding = () => {
     ]
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 pb-24">
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -265,20 +392,27 @@ const ParvogelLanding = () => {
                             ))}
 
                             {/* Language Toggle - Desktop Dropdown */}
-                            <div className="relative group">
-                                <button aria-label="언어 선택 (Select Language)" className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors">
-                                    <span className="text-sm"></span>
+                            <div className="relative" ref={langMenuRef}>
+                                <button
+                                    onClick={() => setIsLangOpen(!isLangOpen)}
+                                    aria-label="언어 선택 (Select Language)"
+                                    aria-haspopup="listbox"
+                                    aria-expanded={isLangOpen}
+                                    className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                >
                                     <span className="text-xs font-bold text-gray-700">{i18n.language.toUpperCase()}</span>
-                                    <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className={`w-3 h-3 text-gray-500 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
-                                <div className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                                    <div className="py-1 max-h-64 overflow-y-auto">
+                                <div className={`absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-50 transition-all duration-200 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                                    <div className="py-1 max-h-64 overflow-y-auto" role="listbox">
                                         {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
                                             <button
                                                 key={lang}
-                                                onClick={() => i18n.changeLanguage(lang)}
+                                                onClick={() => { i18n.changeLanguage(lang); setIsLangOpen(false); }}
+                                                role="option"
+                                                aria-selected={i18n.language === lang}
                                                 className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${i18n.language === lang
                                                     ? `${primaryBg} text-white`
                                                     : 'text-gray-700'
@@ -368,7 +502,7 @@ const ParvogelLanding = () => {
             <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0">
-                    <div className={`absolute inset-0 bg-gradient-to-br from-${primaryColor}-50 via-white to-${primaryColor === 'primary' ? 'accent' : 'primary'}-50`} />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
                     <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl animate-pulse" />
                     <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-200/30 rounded-full blur-3xl animate-pulse delay-1000" />
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
@@ -631,7 +765,7 @@ const ParvogelLanding = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-${primaryColor}-300 to-transparent`} />
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
                             </div>
                         ))}
                     </div>
@@ -675,7 +809,7 @@ const ParvogelLanding = () => {
                                         </svg>
                                     ))}
                                 </div>
-                                <p className="text-gray-700 leading-relaxed mb-6 break-keep">"{testimonial.content}"</p>
+                                <p className="text-gray-700 leading-relaxed mb-6 break-keep">&quot;{testimonial.content}&quot;</p>
                                 <div className="border-t border-gray-100 pt-4">
                                     <p className="font-bold text-gray-900 break-keep">{testimonial.name}</p>
                                     <p className="text-sm text-gray-500 break-keep">{testimonial.clinic}</p>
@@ -745,13 +879,22 @@ const ParvogelLanding = () => {
                     </div>
 
                     <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4">{t('products.bulk')}</p>
+                        <p className="text-gray-600 mb-4 break-keep">{t('products.bulk')}</p>
+                        <p className="text-sm text-gray-500 mb-4 break-keep">{t('products.channelNote')}</p>
                         <button
-                            onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
+                            onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                             className={`btn-primary ${primaryBg} ${primaryHover} inline-flex`}
                         >
                             {t('products.bulkCta')}
                         </button>
+                        <div className="mt-3">
+                            <button
+                                onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
+                                className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder} inline-flex`}
+                            >
+                                {t('products.channelCta')}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -772,10 +915,50 @@ const ParvogelLanding = () => {
 
                         <div className="card">
                             <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* 신청 구분 */}
+                                <div>
+                                    <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
+                                    <div className="grid sm:grid-cols-3 gap-2">
+                                        {[
+                                            { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
+                                            { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
+                                            { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
+                                        ].map(opt => (
+                                            <button
+                                                key={opt.value}
+                                                type="button"
+                                                onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
+                                                className={`px-3 py-3 rounded-xl border-2 text-sm font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
+                                                    ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-sm'
+                                                    : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
+                                            >
+                                                <span className="text-lg">{opt.icon}</span>
+                                                <span className="break-keep">{opt.label}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 채널별 가격 안내 */}
+                                {formData.requestType === 'hospital' && (
+                                    <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
+                                        💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
+                                    </div>
+                                )}
+                                {formData.requestType === 'wholesale' && (
+                                    <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
+                                        💡 {t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })}
+                                    </div>
+                                )}
+
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="hospitalName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.hospitalName')} <span className="text-accent-500">*</span>
+                                            {formData.requestType === 'hospital'
+                                                ? t('order.hospitalNameOnly')
+                                                : formData.requestType === 'wholesale'
+                                                    ? t('order.companyName')
+                                                    : t('order.hospitalName')} <span className="text-accent-500">*</span>
                                         </label>
                                         <input
                                             type="text"
@@ -790,7 +973,7 @@ const ParvogelLanding = () => {
                                     </div>
                                     <div>
                                         <label htmlFor="contactName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.contactName')} <span className="text-accent-500">*</span>
+                                            {formData.requestType === 'hospital' ? t('order.vetName') : t('order.contactName')} <span className="text-accent-500">*</span>
                                         </label>
                                         <input
                                             type="text"
@@ -798,12 +981,30 @@ const ParvogelLanding = () => {
                                             name="contactName"
                                             value={formData.contactName}
                                             onChange={handleInputChange}
-                                            placeholder={t('order.contactNamePh')}
+                                            placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : t('order.contactNamePh')}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                             required
                                         />
                                     </div>
                                 </div>
+
+                                {formData.requestType === 'wholesale' && (
+                                    <div>
+                                        <label htmlFor="bizNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            {t('order.bizNumber')} <span className="text-accent-500">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="bizNumber"
+                                            name="bizNumber"
+                                            value={formData.bizNumber}
+                                            onChange={handleInputChange}
+                                            placeholder={t('order.bizNumberPh')}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                                            required
+                                        />
+                                    </div>
+                                )}
 
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
@@ -839,7 +1040,7 @@ const ParvogelLanding = () => {
 
                                 <div>
                                     <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        {t('order.address')}
+                                        {formData.requestType === 'wholesale' ? t('order.region') : t('order.address')}
                                     </label>
                                     <textarea
                                         id="address"
@@ -847,45 +1048,67 @@ const ParvogelLanding = () => {
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         rows={2}
-                                        placeholder={t('order.addressPh')}
+                                        placeholder={formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
                                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                     />
                                 </div>
 
-                                <div className="grid sm:grid-cols-2 gap-6">
+                                {formData.requestType === 'wholesale' ? (
                                     <div>
-                                        <label htmlFor="product" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.product')}
+                                        <label htmlFor="orderVolume" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            {t('order.orderVolume')}
                                         </label>
                                         <select
-                                            id="product"
-                                            name="product"
-                                            value={formData.product}
+                                            id="orderVolume"
+                                            name="orderVolume"
+                                            value={formData.orderVolume}
                                             onChange={handleInputChange}
                                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
                                         >
-                                            <option value="parvogel-50ml">{t('order.p50')}</option>
-                                            <option value="parvogel-500ml">{t('order.p500')}</option>
-                                            <option value="parvogel-1l">{t('order.p1l')}</option>
-                                            <option value="consultation">{t('order.consult')}</option>
+                                            <option value="">{t('order.selectVolume')}</option>
+                                            <option value="10-49">{t('order.volume1')}</option>
+                                            <option value="50-199">{t('order.volume2')}</option>
+                                            <option value="200+">{t('order.volume3')}</option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <label htmlFor="quantity" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.quantity')}
-                                        </label>
-                                        <input
-                                            type="number"
-                                            id="quantity"
-                                            name="quantity"
-                                            value={formData.quantity}
-                                            onChange={handleInputChange}
-                                            min="1"
-                                            max="100"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                        />
+                                ) : (
+                                    <div className="grid sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="product" className="block text-sm font-semibold text-gray-700 mb-2">
+                                                {t('order.product')}
+                                            </label>
+                                            <select
+                                                id="product"
+                                                name="product"
+                                                value={formData.product}
+                                                onChange={handleInputChange}
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
+                                            >
+                                                {products.map(p => (
+                                                    <option key={p.id} value={p.id}>
+                                                        {p.name} ({p.price}){p.id === 'parvogel-200ml' ? ` - ${t('products.recommended')}` : ''}
+                                                    </option>
+                                                ))}
+                                                <option value="consultation">{t('order.consult')}</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label htmlFor="quantity" className="block text-sm font-semibold text-gray-700 mb-2">
+                                                {formData.requestType === 'hospital' ? t('order.quantityMonthly') : t('order.quantity')}
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="quantity"
+                                                name="quantity"
+                                                value={formData.quantity}
+                                                onChange={handleInputChange}
+                                                min="1"
+                                                max="100"
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -940,8 +1163,10 @@ const ParvogelLanding = () => {
                                 </a>
                             </div>
                             <div className="flex flex-wrap items-center justify-center gap-8">
-                                <QrCode value="https://coupang.com" size={140} label={t('order.coupangQr')} />
-                                <QrCode value="https://shopping.naver.com" size={140} label={t('order.naverQr')} />
+                                <Suspense fallback={<div className="w-[140px] h-[140px]" />}>
+                                    <QrCode value={`${siteUrl}#order`} size={140} label={t('order.coupangQr')} />
+                                    <QrCode value={`${siteUrl}#products`} size={140} label={t('order.naverQr')} />
+                                </Suspense>
                             </div>
                         </div>
                     </div>
@@ -976,13 +1201,15 @@ const ParvogelLanding = () => {
                                 <a href="https://shopping.naver.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                 </a>
-                                <a href="mailto:parvogel@company.com" className="text-gray-400 hover:text-white transition-colors">
+                                <a href="mailto:soonilhong@naver.com" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </a>
                             </div>
                             <div className="mt-6 flex gap-4">
-                                <QrCode value="https://coupang.com" size={96} label={t('footer.coupang')} />
-                                <QrCode value="https://shopping.naver.com" size={96} label={t('footer.naver')} />
+                                <Suspense fallback={<div className="w-[96px] h-[96px]" />}>
+                                    <QrCode value={`${siteUrl}#products`} size={96} label={t('footer.coupang')} />
+                                    <QrCode value={`${siteUrl}#order`} size={96} label={t('footer.naver')} />
+                                </Suspense>
                             </div>
                         </div>
 
@@ -1001,7 +1228,7 @@ const ParvogelLanding = () => {
                             <ul className="space-y-2">
                                 <li><a href="#order" className="hover:text-white transition-colors">{t('footer.support1')}</a></li>
                                 <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">{t('footer.support2')}</a></li>
-                                <li><a href="mailto:parvogel@company.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
+                                <li><a href="mailto:soonilhong@naver.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">{t('footer.support4')}</a></li>
                             </ul>
                         </div>
@@ -1043,7 +1270,7 @@ const ParvogelLanding = () => {
                                     <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">{t('order.complete')}</h3>
                                     <p className="text-gray-600 mb-6">
                                         {t('order.completeDesc')}<br />
-                                        {t('order.urgent')} <a href="tel:1588-0000" className={`${primaryText} font-semibold underline`}>1588-0000</a> {t('order.call')}.
+                                        {t('order.urgent')} <a href="tel:010-5407-5708" className={`${primaryText} font-semibold underline`}>010-5407-5708</a> {t('order.call')}.
                                     </p>
                                     <button
                                         onClick={() => setIsOrderModalOpen(false)}
@@ -1068,10 +1295,50 @@ const ParvogelLanding = () => {
                                     </div>
 
                                     <div className="space-y-4">
+                                        {/* 신청 구분 */}
+                                        <div>
+                                            <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
+                                            <div className="grid grid-cols-3 gap-2">
+                                                {[
+                                                    { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
+                                                    { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
+                                                    { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
+                                                ].map(opt => (
+                                                    <button
+                                                        key={opt.value}
+                                                        type="button"
+                                                        onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
+                                                        className={`px-2 py-3 rounded-xl border-2 text-xs font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
+                                                            ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-sm'
+                                                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
+                                                    >
+                                                        <span className="text-lg">{opt.icon}</span>
+                                                        <span className="break-keep">{opt.label}</span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* 채널별 가격 안내 */}
+                                        {formData.requestType === 'hospital' && (
+                                            <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
+                                                💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
+                                            </div>
+                                        )}
+                                        {formData.requestType === 'wholesale' && (
+                                            <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
+                                                💡 {t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })}
+                                            </div>
+                                        )}
+
                                         <div className="grid sm:grid-cols-2 gap-4">
                                             <div>
                                                 <label htmlFor="modal-hospitalName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.hospitalName')} <span className="text-accent-500">*</span>
+                                                    {formData.requestType === 'hospital'
+                                                        ? t('order.hospitalNameOnly')
+                                                        : formData.requestType === 'wholesale'
+                                                            ? t('order.companyName')
+                                                            : t('order.hospitalName')} <span className="text-accent-500">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -1086,7 +1353,7 @@ const ParvogelLanding = () => {
                                             </div>
                                             <div>
                                                 <label htmlFor="modal-contactName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.contactName')} <span className="text-accent-500">*</span>
+                                                    {formData.requestType === 'hospital' ? t('order.vetName') : t('order.contactName')} <span className="text-accent-500">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -1094,12 +1361,30 @@ const ParvogelLanding = () => {
                                                     name="contactName"
                                                     value={formData.contactName}
                                                     onChange={handleInputChange}
-                                                    placeholder={t('order.contactNamePh')}
+                                                    placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : t('order.contactNamePh')}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                                                     required
                                                 />
                                             </div>
                                         </div>
+
+                                        {formData.requestType === 'wholesale' && (
+                                            <div>
+                                                <label htmlFor="modal-bizNumber" className="block text-sm font-semibold text-gray-700 mb-1">
+                                                    {t('order.bizNumber')} <span className="text-accent-500">*</span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="modal-bizNumber"
+                                                    name="bizNumber"
+                                                    value={formData.bizNumber}
+                                                    onChange={handleInputChange}
+                                                    placeholder={t('order.bizNumberPh')}
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                                                    required
+                                                />
+                                            </div>
+                                        )}
 
                                         <div className="grid sm:grid-cols-2 gap-4">
                                             <div>
@@ -1135,7 +1420,7 @@ const ParvogelLanding = () => {
 
                                         <div>
                                             <label htmlFor="modal-address" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                {t('order.address')}
+                                                {formData.requestType === 'wholesale' ? t('order.region') : t('order.address')}
                                             </label>
                                             <textarea
                                                 id="modal-address"
@@ -1143,45 +1428,67 @@ const ParvogelLanding = () => {
                                                 value={formData.address}
                                                 onChange={handleInputChange}
                                                 rows={2}
-                                                placeholder={t('order.addressPh')}
+                                                placeholder={formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
                                                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                             />
                                         </div>
 
-                                        <div className="grid sm:grid-cols-2 gap-4">
+                                        {formData.requestType === 'wholesale' ? (
                                             <div>
-                                                <label htmlFor="modal-product" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.product')}
+                                                <label htmlFor="modal-orderVolume" className="block text-sm font-semibold text-gray-700 mb-1">
+                                                    {t('order.orderVolume')}
                                                 </label>
                                                 <select
-                                                    id="modal-product"
-                                                    name="product"
-                                                    value={formData.product}
+                                                    id="modal-orderVolume"
+                                                    name="orderVolume"
+                                                    value={formData.orderVolume}
                                                     onChange={handleInputChange}
                                                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
                                                 >
-                                                    <option value="parvogel-50ml">{t('order.p50')}</option>
-                                                    <option value="parvogel-500ml">{t('order.p500')}</option>
-                                                    <option value="parvogel-1l">{t('order.p1l')}</option>
-                                                    <option value="consultation">{t('order.consult')}</option>
+                                                    <option value="">{t('order.selectVolume')}</option>
+                                                    <option value="10-49">{t('order.volume1')}</option>
+                                                    <option value="50-199">{t('order.volume2')}</option>
+                                                    <option value="200+">{t('order.volume3')}</option>
                                                 </select>
                                             </div>
-                                            <div>
-                                                <label htmlFor="modal-quantity" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.quantity')}
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="modal-quantity"
-                                                    name="quantity"
-                                                    value={formData.quantity}
-                                                    onChange={handleInputChange}
-                                                    min="1"
-                                                    max="100"
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                />
+                                        ) : (
+                                            <div className="grid sm:grid-cols-2 gap-4">
+                                                <div>
+                                                    <label htmlFor="modal-product" className="block text-sm font-semibold text-gray-700 mb-1">
+                                                        {t('order.product')}
+                                                    </label>
+                                                    <select
+                                                        id="modal-product"
+                                                        name="product"
+                                                        value={formData.product}
+                                                        onChange={handleInputChange}
+                                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
+                                                    >
+                                                        {products.map(p => (
+                                                            <option key={p.id} value={p.id}>
+                                                                {p.name} ({p.price}){p.id === 'parvogel-200ml' ? ` - ${t('products.recommended')}` : ''}
+                                                            </option>
+                                                        ))}
+                                                        <option value="consultation">{t('order.consult')}</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label htmlFor="modal-quantity" className="block text-sm font-semibold text-gray-700 mb-1">
+                                                        {formData.requestType === 'hospital' ? t('order.quantityMonthly') : t('order.quantity')}
+                                                    </label>
+                                                    <input
+                                                        type="number"
+                                                        id="modal-quantity"
+                                                        name="quantity"
+                                                        value={formData.quantity}
+                                                        onChange={handleInputChange}
+                                                        min="1"
+                                                        max="100"
+                                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
 
                                         <div>
                                             <label htmlFor="modal-message" className="block text-sm font-semibold text-gray-700 mb-1">
@@ -1194,6 +1501,7 @@ const ParvogelLanding = () => {
                                                 onChange={handleInputChange}
                                                 rows={3}
                                                 placeholder={t('order.messagePh')}
+                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                                             />
                                         </div>
 
@@ -1265,7 +1573,9 @@ const ParvogelLanding = () => {
             <StickyBottomCTA onOpenOrder={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }} />
 
             {/* Chatbot */}
-            <Chatbot />
+            <Suspense fallback={null}>
+                <Chatbot />
+            </Suspense>
 
 
             {/* Custom Styles */}

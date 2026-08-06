@@ -41,7 +41,7 @@
     "features": {
         "badge": "Características-chave",
         "title": "6 razões para escolher Parvogel",
-        "subtitle": "Suplemento de nova geração para diarreia neonatal desenvolvido com feedback de veterinários, pecuaristas e farmácias",
+        "subtitle": "Suplemento de nova geração para o cuidado da diarreia neonatal desenvolvido com feedback de veterinários, pecuaristas e farmácias",
         "f1Title": "Antiviral de amplo espectro",
         "f1Desc": "Supressão ampla dos principais vírus entéricos incluindo rotavírus, coronavírus e parvovírus",
         "f2Title": "Montmorilonita ultrafina",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Evidência clínica",
         "title": "Eficácia comprovada, verificada por pesquisa",
-        "subtitle": "Excelentes efeitos terapêuticos confirmados em ensaios clínicos de universidades e instituições de pesquisa líderes",
+        "subtitle": "Excelente eficácia confirmados em ensaios clínicos de universidades e instituições de pesquisa líderes",
         "study1Title": "Ensaio clínico de diarreia por rotavírus em bezerros",
         "study1Subject": "40 bezerros machos Holstein, 3-7 dias de idade",
         "study1Result": "Taxa de cessação de diarreia do grupo tratamento 92.5% (controle 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Adsorver e remover fisicamente vírus intestinais (parvo, corona etc.) é uma dimensão à parte dos concorrentes.",
         "e2Name": "Diretor Seong-dae Jung",
         "e2Role": "Diretor do Hospital Veterinário Dongjin · Especialista clínico",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Feedback clínico de fazendas Hanwoo",
         "farmSub": "Dr. Seong-dae Jung do Dongjin Animal Hospital, resultados de Parvogel em fazendas Hanwoo",
         "f1": "Alívio da dor abdominal e supressão de vômito — alívio imediato, satisfação máxima",
@@ -171,7 +171,7 @@
         "foal": "Potros",
         "foalAge": "1-60 dias",
         "foalDisease": "Rotavírus, Salmonella, Clostridium",
-        "other": "Outro gado (veados, coelhos, avestruzes etc.) aplicável sob receita veterinária",
+        "other": "Outro gado (veados, coelhos, avestruzes etc.) aplicável sob orientação veterinária",
         "cta": "Obtenha consultoria personalizada para sua fazenda"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Pedir agora",
         "inquiry": "Consultar",
         "bulk": "Para compras em grande volume (10+ garrafas) e atacado, consulte separadamente.",
-        "bulkCta": "Consultoria de atacado·grande volume"
+        "bulkCta": "Consultoria de atacado·grande volume",
+        "channelNote": "Hospitais veterinários e atacadistas recebem preços de fornecimento diferentes do preço ao consumidor.",
+        "channelCta": "Consultar preços hospital/atacado"
     },
     "testimonials": {
         "badge": "Vozes do campo",
@@ -200,7 +202,7 @@
         "t1Name": "Dr. Kim",
         "t1Clinic": "Hospital Animal OO (Gyeonggi)",
         "t1Role": "20 anos em clínica bovina",
-        "t1Content": "Receito Parvogel toda estação de diarreia de bezerros, e mais de 90% dos casos param a diarreia em 24h e recuperam. Máxima satisfação dos pecuaristas.",
+        "t1Content": "Administro Parvogel toda estação de diarreia de bezerros, e mais de 90% dos casos param a diarreia em 24h e recuperam. Máxima satisfação dos pecuaristas.",
         "t2Name": "Dr. Park",
         "t2Clinic": "Hospital Veterinário de Pecuária OO (Chungnam)",
         "t2Role": "Especialista em suínos e bovinos",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Pedir no Naver",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Tipo de solicitação",
+        "requestConsumer": "Compra geral",
+        "requestHospital": "Hospital veterinário",
+        "requestWholesale": "Atacado / distribuidor",
+        "hospitalNameOnly": "Nome do hospital",
+        "companyName": "Nome da empresa",
+        "vetName": "Nome do veterinário",
+        "vetNamePh": "ex., João Silva, MV",
+        "bizNumber": "N.º de registro comercial",
+        "bizNumberPh": "ex., 123-45-67890",
+        "region": "Região alvo",
+        "regionPh": "ex., Changwon, Gyeongnam",
+        "orderVolume": "Volume mensal estimado",
+        "selectVolume": "Selecionar faixa de volume",
+        "volume1": "10–49 frascos/mês",
+        "volume2": "50–199 frascos/mês",
+        "volume3": "200+ frascos/mês (negociável)",
+        "quantityMonthly": "Uso mensal estimado (frascos)",
+        "hospitalDiscountNote": "O preço de fornecimento para hospitais veterinários tem {{discount}}% de desconto sobre o preço de lista. Enviaremos um orçamento.",
+        "wholesaleDiscountNote": "O preço de atacado oferece descontos por volume sobre o preço de lista ({{d1}}% a partir de 10 frascos, {{d2}}% a partir de 50, e acordo separado a partir de 200). Enviaremos um orçamento.",
+        "recentSubmit": "Você acabou de enviar um pedido. Tente novamente em instantes.",
+        "errorServer": "Ocorreu um erro de servidor ao enviar seu pedido. Tente novamente mais tarde.",
+        "duplicateError": "Este pedido já foi enviado. Nossa equipe entrará em contato em breve.",
+        "networkError": "Seu pedido não foi enviado com sucesso. Verifique sua rede e tente novamente.",
+        "timeoutError": "A solicitação de pedido expirou. Tente novamente mais tarde."
     },
     "footer": {
-        "desc": "Novo padrão para tratamento de diarreia neonatal de todo o gado. Protegendo a sobrevivência com montmorilonita ultrafina.",
+        "desc": "Novo padrão para o cuidado da diarreia neonatal de todo o gado. Protegendo a sobrevivência com montmorilonita ultrafina.",
         "productInfo": "Informação do produto",
         "productInfo1": "Introdução",
         "productInfo2": "Características",
@@ -278,7 +305,7 @@
         "error": "Desculpe, ocorreu um erro de comunicação. Tente novamente mais tarde."
     },
     "stickyCta": {
-        "title": "PARVOGEL Suplemento Antidiarreico Neonatal",
+        "title": "PARVOGEL Suplemento para o Cuidado da Diarreia Neonatal",
         "sub": "Fórmula Ultrafina de Nano-Montmorillonita de Alta Pureza",
         "buyBtn": "🚀 Comprar no Coupang Rocket",
         "consultBtn": "📦 Consulta de Pedido Direto / Atacado"
@@ -315,7 +342,7 @@
                 "name": "Cabrito",
                 "dosage": "5-10 ml por dose (2 vezes ao dia)",
                 "effects": [
-                    "Trata a indigestão aguda na mucosa intestinal de cabritos deficientes em colostro",
+                    "Ajuda a aliviar a indigestão aguda na mucosa intestinal de cabritos deficientes em colostro",
                     "Adsorve toxinas com partículas de nano-montmorillonita de alta pureza",
                     "Promove a recuperação da vitalidade e o apetite"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Entrevista de Áudio Clínica Veterinária",
         "title": "«Resposta Imediata após a Administração de PARVOGEL em Bezerros com Diarreia»",
-        "sub": "Resumo clínico em áudio do Dr. Seong-Dae Jeong (Hospital Veterinário Dongjin) e criadores Hanwoo",
-        "docName": "Dr. Seong-Dae Jeong (Hospital Veterinário Dongjin)",
-        "docSub": "Relatório de Áudio Clínico Parvogel",
+        "sub": "Gravação de chamada sobre a reação em campo do Dr. Dong-Jun Kim (Hospital Veterinário Sarang)",
+        "docName": "Dr. Dong-Jun Kim (Hospital Veterinário Sarang)",
+        "docSub": "Gravação de chamada de reação em campo Parvogel",
         "quote": "«Após administrar Parvogel, a proteção da mucosa intestinal e a velocidade de recuperação dos bezerros são extraordinárias.»"
     },
     "legal": {

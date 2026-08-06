@@ -41,7 +41,7 @@
     "features": {
         "badge": "Kernmerkmale",
         "title": "6 Gründe für Parvogel",
-        "subtitle": "Nächste Generation neonataler Durchfall-Hilfe entwickelt mit Feedback von Tierärzten, Landwirten und Apotheken",
+        "subtitle": "Nächste Generation neonataler Durchfallpflege entwickelt mit Feedback von Tierärzten, Landwirten und Apotheken",
         "f1Title": "Breitband-Antiviral",
         "f1Desc": "Breite Hemmung wichtiger Enteritis-Viren wie Rotavirus, Coronavirus und Parvovirus",
         "f2Title": "Ultrafeine Montmorillonit",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Klinische Evidenz",
         "title": "Bewährte Wirksamkeit, durch Studien belegt",
-        "subtitle": "Hervorragende therapeutische Effekte in klinischen Studien führender Universitäten und Forschungseinrichtungen bestätigt",
+        "subtitle": "Hervorragende Wirksamkeit in klinischen Studien führender Universitäten und Forschungseinrichtungen bestätigt",
         "study1Title": "Klinische Studie zu Rotavirus-Durchfall bei Kälbern",
         "study1Subject": "40 männliche Holstein-Kälber, 3-7 Tage alt",
         "study1Result": "Durchfall-Stopprate Behandlungsgruppe 92.5% (Kontrolle 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Darmviren (Parvo, Corona etc.) physisch zu adsorbieren und zu entfernen, ist eine andere Dimension als bei Wettbewerbsprodukten.",
         "e2Name": "Direktor Seong-dae Jung",
         "e2Role": "Direktor der Dongjin Tierklinik · Klinischer Spezialist",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Hanwoo-Betriebe klinisches Feedback",
         "farmSub": "Dr. Seong-dae Jung von Dongjin Animal Hospital, Parvogel-Ergebnisse auf Hanwoo-Betrieben",
         "f1": "Bauchschmerz-Linderung & Erbrechen-Unterdrückung — sofortige Kolik-Linderung, höchste Zufriedenheit",
@@ -171,7 +171,7 @@
         "foal": "Fohlen",
         "foalAge": "1-60 Tage",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Anderes Nutzvieh (Hirsche, Kaninchen, Strauße etc.) unter tierärztlichem Rezept anwendbar",
+        "other": "Anderes Nutzvieh (Hirsche, Kaninchen, Strauße etc.) unter tierärztlicher Anleitung anwendbar",
         "cta": "Individuelle Beratung für Ihren Hof"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Jetzt bestellen",
         "inquiry": "Anfragen",
         "bulk": "Für Großbestellungen (10+ Flaschen) und Großhandel bitte separat anfragen.",
-        "bulkCta": "Großhandel·Großvolumen-Beratung"
+        "bulkCta": "Großhandel·Großvolumen-Beratung",
+        "channelNote": "Tierkliniken und Großhändler erhalten vom Listenpreis abweichende Einkaufspreise.",
+        "channelCta": "Klinik-/Großhandelspreis anfragen"
     },
     "testimonials": {
         "badge": "Stimmen aus der Praxis",
@@ -200,7 +202,7 @@
         "t1Name": "Dr. Kim",
         "t1Clinic": "Tierklinik OO (Gyeonggi)",
         "t1Role": "20 Jahre Rinderklinik",
-        "t1Content": "Ich verschreibe jede Kälber-Durchfallsaison Parvogel, und über 90% der Fälle stoppen den Durchfall in 24h und erholen sich. Höchste Zufriedenheit der Landwirte.",
+        "t1Content": "Ich verabreiche jede Kälber-Durchfallsaison Parvogel, und über 90% der Fälle stoppen den Durchfall in 24h und erholen sich. Höchste Zufriedenheit der Landwirte.",
         "t2Name": "Dr. Park",
         "t2Clinic": "Nutztier-Klinik OO (Chungnam)",
         "t2Role": "Spezialist für Schweine und Rinder",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Bei Naver bestellen",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Anfragetyp",
+        "requestConsumer": "Allgemeiner Kauf",
+        "requestHospital": "Tierklinik",
+        "requestWholesale": "Großhandel / Händler",
+        "hospitalNameOnly": "Klinikname",
+        "companyName": "Firmenname",
+        "vetName": "Name des Tierarztes",
+        "vetNamePh": "z. B. Max Mustermann, Tierarzt",
+        "bizNumber": "Gewerberegisternr.",
+        "bizNumberPh": "z. B. 123-45-67890",
+        "region": "Zielregion",
+        "regionPh": "z. B. Changwon, Gyeongnam",
+        "orderVolume": "Geschätzte Monatsmenge",
+        "selectVolume": "Mengenbereich wählen",
+        "volume1": "10–49 Flaschen/Monat",
+        "volume2": "50–199 Flaschen/Monat",
+        "volume3": "200+ Flaschen/Monat (nach Vereinbarung)",
+        "quantityMonthly": "Geschätzter Monatsverbrauch (Flaschen)",
+        "hospitalDiscountNote": "Der Klinik-Einkaufspreis beträgt {{discount}}% Rabatt auf den Listenpreis. Ein Angebot wird Ihnen zugesandt.",
+        "wholesaleDiscountNote": "Der Großhandelspreis bietet Mengenrabatte auf den Listenpreis ({{d1}}% ab 10 Flaschen, {{d2}}% ab 50, ab 200 nach Vereinbarung). Ein Angebot wird Ihnen zugesandt.",
+        "recentSubmit": "Sie haben gerade eine Bestellung gesendet. Bitte versuchen Sie es gleich erneut.",
+        "errorServer": "Beim Senden Ihrer Bestellung ist ein Serverfehler aufgetreten. Bitte versuchen Sie es später erneut.",
+        "duplicateError": "Diese Bestellung wurde bereits gesendet. Unser Team wird sich in Kürze mit Ihnen in Verbindung setzen.",
+        "networkError": "Ihre Bestellung wurde nicht erfolgreich gesendet. Prüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.",
+        "timeoutError": "Die Bestellanfrage ist abgelaufen. Bitte versuchen Sie es später erneut."
     },
     "footer": {
-        "desc": "Neuer Standard für neonatale Durchfallbehandlung aller Nutztiere. Überlebensrate mit ultrafeiner Montmorillonit schützen.",
+        "desc": "Neuer Standard für neonatale Durchfallpflege aller Nutztiere. Überlebensrate mit ultrafeiner Montmorillonit schützen.",
         "productInfo": "Produktinformation",
         "productInfo1": "Produkteinführung",
         "productInfo2": "Merkmale",
@@ -278,7 +305,7 @@
         "error": "Entschuldigung, ein Kommunikationsfehler ist aufgetreten. Bitte später erneut versuchen."
     },
     "stickyCta": {
-        "title": "PARVOGEL Neonatales Antidiarrhoikum Ergänzungsmittel",
+        "title": "PARVOGEL Neonatales Durchfallpflege-Ergänzungsmittel",
         "sub": "Hochreine Feinst-Nano-Montmorillonit-Formel",
         "buyBtn": "🚀 Kaufen auf Coupang Rocket",
         "consultBtn": "📦 Großhandel / Direktbestellung Anfrage"
@@ -315,7 +342,7 @@
                 "name": "Ziegenlamm",
                 "dosage": "5–10 ml pro Dosis (2x täglich)",
                 "effects": [
-                    "Behandelt akute Verdauungsstörungen in Darmschleimhautzellen bei Kolostrummangel",
+                    "Hilft bei akuten Verdauungsstörungen in Darmschleimhautzellen bei Kolostrummangel",
                     "Adsorbiert Toxine mit hochreinen Nano-Montmorillonit-Partikeln",
                     "Fördert die Wiederherstellung der Vitalität und die Futteraufnahme"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Klinisches Audio-Interview mit einem Tierarzt",
         "title": "„Sofortige Reaktion bei Verabreichung von PARVOGEL bei Kälbern mit Durchfall“",
-        "sub": "Klinische Audio-Zusammenfassung von Dr. Seong-Dae Jeong (Tierklinik Dongjin) und Hanwoo-Landwirten",
-        "docName": "Dr. Seong-Dae Jeong (Tierklinik Dongjin)",
-        "docSub": "Klinischer Audio-Bericht Parvogel",
+        "sub": "Telefonaufzeichnung der Feldreaktion von Dr. Dong-Jun Kim (Tierklinik Sarang)",
+        "docName": "Dr. Dong-Jun Kim (Tierklinik Sarang)",
+        "docSub": "Parvogel-Feldreaktions-Telefonaufzeichnung",
         "quote": "„Nach der Verabreichung von Parvogel sind der Schutz der Darmschleimhaut und die Erholungsgeschwindigkeit der Kälber hervorragend.“"
     },
     "legal": {

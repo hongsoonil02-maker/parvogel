@@ -41,7 +41,7 @@
     "features": {
         "badge": "Ciri teras",
         "title": "6 sebab pilih Parvogel",
-        "subtitle": "Suplemen generasi baharu cirit-birit neonatal dibangunkan dari maklum balas veterinar, penternak dan farmasi",
+        "subtitle": "Suplemen generasi baharu penjagaan cirit-birit neonatal dibangunkan dari maklum balas veterinar, penternak dan farmasi",
         "f1Title": "Antivirus spektrum luas",
         "f1Desc": "Penindasan luas virus enteritis utama termasuk rotavirus, coronavirus, parvovirus",
         "f2Title": "Montmorillonite ultra-halus",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Bukti klinikal",
         "title": "Keberkesanan terbukti, disahkan penyelidikan",
-        "subtitle": "Kesan terapeutik cemerlang disahkan dalam ujian klinikal universiti dan institut terkemuka",
+        "subtitle": "Keberkesanan cemerlang disahkan dalam ujian klinikal universiti dan institut terkemuka",
         "study1Title": "Ujian klinikal cirit-birit rotavirus anak lembu",
         "study1Subject": "40 anak lembu jantan Holstein, 3-7 hari",
         "study1Result": "Penghentian cirit-birit kumpulan rawatan 92.5% (kawalan 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Mengadsorpsi dan membuang virus usus (parvo, corona, dll) secara fizikal adalah dimensi berbeza daripada produk pesaing.",
         "e2Name": "Pengarah Seong-dae Jung",
         "e2Role": "Pengarah Klinik Haiwan Dongjin · Pakar klinikal",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Maklum balas klinikal ladang Hanwoo",
         "farmSub": "Dr. Seong-dae Jung, Klinik Dongjin, hasil Parvogel di ladang Hanwoo",
         "f1": "Reda sakit perut & cegah muntah — lega kolik serta-merta, kepuasan tertinggi",
@@ -171,7 +171,7 @@
         "foal": "Anak kuda",
         "foalAge": "1-60 hari",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Ternakan lain (rusa, arnab, unta burung) boleh dengan resepi veterinar",
+        "other": "Ternakan lain (rusa, arnab, unta burung) boleh dengan bimbingan veterinar",
         "cta": "Dapatkan rundingan ladang anda"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Pesan",
         "inquiry": "Tanya",
         "bulk": "Untuk pembelian banyak (10+ botol) dan borong, hubungi berasingan.",
-        "bulkCta": "Rundingan borong·kuantiti besar"
+        "bulkCta": "Rundingan borong·kuantiti besar",
+        "channelNote": "Hospital veterinar dan pemborong menerima harga bekalan berbeza daripada harga pengguna.",
+        "channelCta": "Tanya harga hospital/borong"
     },
     "testimonials": {
         "badge": "Suara lapangan",
@@ -200,7 +202,7 @@
         "t1Name": "Dr. Kim",
         "t1Clinic": "Klinik Haiwan OO (Gyeonggi)",
         "t1Role": "20 tahun klinik lembu",
-        "t1Content": "Setiap musim cirit-birit anak lembu saya resep Parvogel, dan >90% kes berhenti dalam 24 jam dan pulih. Kepuasan penternak tertinggi.",
+        "t1Content": "Setiap musim cirit-birit anak lembu saya berikan Parvogel, dan >90% kes berhenti dalam 24 jam dan pulih. Kepuasan penternak tertinggi.",
         "t2Name": "Dr. Park",
         "t2Clinic": "Klinik Ternakan OO (Chungnam)",
         "t2Role": "Pakar babi dan lembu",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Pesan di Naver",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Jenis Permintaan",
+        "requestConsumer": "Pembelian Am",
+        "requestHospital": "Hospital Veterinar",
+        "requestWholesale": "Borong / Pengedar",
+        "hospitalNameOnly": "Nama Hospital",
+        "companyName": "Nama Syarikat",
+        "vetName": "Nama Doktor Veterinar",
+        "vetNamePh": "cth. Ahmad bin Ali, Doktor Veterinar",
+        "bizNumber": "No. Pendaftaran Perniagaan",
+        "bizNumberPh": "cth. 123-45-67890",
+        "region": "Wilayah Sasaran",
+        "regionPh": "cth. Changwon, Gyeongnam",
+        "orderVolume": "Jumlah Bulanan Anggaran",
+        "selectVolume": "Pilih Julat Kuantiti",
+        "volume1": "10–49 botol/bulan",
+        "volume2": "50–199 botol/bulan",
+        "volume3": "200+ botol/bulan (rundingan)",
+        "quantityMonthly": "Penggunaan Bulanan Anggaran (botol)",
+        "hospitalDiscountNote": "Harga bekalan hospital veterinar diskaun {{discount}}% daripada harga runcit. Sebut harga akan dihantar.",
+        "wholesaleDiscountNote": "Harga borong menawarkan diskaun mengikut kuantiti daripada harga runcit ({{d1}}% bermula 10 botol, {{d2}}% bermula 50, 200+ rundingan berasingan). Sebut harga akan dihantar.",
+        "recentSubmit": "Anda baru sahaja menghantar pesanan. Sila cuba sebentar lagi.",
+        "errorServer": "Ralat pelayan berlaku semasa menghantar pesanan. Sila cuba kemudian.",
+        "duplicateError": "Pesanan ini telah dihantar. Pasukan kami akan menghubungi anda tidak lama lagi.",
+        "networkError": "Pesanan anda tidak dihantar dengan jayanya. Sila periksa rangkaian dan cuba lagi.",
+        "timeoutError": "Permintaan pesanan tamat masa. Sila cuba kemudian."
     },
     "footer": {
-        "desc": "Standard baharu rawatan cirit-birit neonatal semua ternakan. Lindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
+        "desc": "Standard baharu penjagaan cirit-birit neonatal semua ternakan. Lindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
         "productInfo": "Info produk",
         "productInfo1": "Pengenalan",
         "productInfo2": "Ciri",
@@ -278,7 +305,7 @@
         "error": "Maaf, ralat komunikasi. Cuba lagi nanti."
     },
     "stickyCta": {
-        "title": "PARVOGEL Suplemen Anti Cirit-Birit Haiwan Baru Lahir",
+        "title": "PARVOGEL Suplemen Penjagaan Cirit-Birit Haiwan Baru Lahir",
         "sub": "Formula Nano Montmorillonite Ultrafine Ketulenan Tinggi",
         "buyBtn": "🚀 Beli di Coupang Rocket",
         "consultBtn": "📦 Pertanyaan Pesanan Borong / Terus"
@@ -315,7 +342,7 @@
                 "name": "Anak Kambing",
                 "dosage": "5-10ml setiap dos (2 kali sehari)",
                 "effects": [
-                    "Merawat gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
+                    "Membantu melegakan gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
                     "Mengadsorp toksin dengan zarah nano montmorillonite ketulenan tinggi",
                     "Menggalakkan pemulihan vitaliti dan selera makan"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Temu Bual Audio Klinikal Veterinar Lapangan",
         "title": "«Tindak Balas Serta-Merta Semasa Pemberian PARVOGEL pada Anak Lembu Cirit-Birit»",
-        "sub": "Ringkasan audio klinikal oleh Dr. Seong-Dae Jeong (Hospital Veterinar Dongjin) & Penternak Hanwoo",
-        "docName": "Dr. Seong-Dae Jeong (Hospital Veterinar Dongjin)",
-        "docSub": "Laporan Audio Klinikal Parvogel",
+        "sub": "Rakaman panggilan tindak balas lapangan Dr. Dong-Jun Kim (Hospital Veterinar Sarang)",
+        "docName": "Dr. Dong-Jun Kim (Hospital Veterinar Sarang)",
+        "docSub": "Rakaman panggilan tindak balas lapangan Parvogel",
         "quote": "«Selepas pemberian Parvogel, perlindungan mukosa usus dan kelajuan pemulihan anak lembu adalah sangat luar biasa.»"
     },
     "legal": {

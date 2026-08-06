@@ -45,7 +45,7 @@
     "features": {
         "badge": "核心特点",
         "title": "6个理由选择的帕博格尔",
-        "subtitle": "反映兽医·畜牧农户·药店现场声音开发的次世代新生仔腹泻治疗辅助剂",
+        "subtitle": "反映兽医·畜牧农户·药店现场声音开发的次世代新生仔腹泻管理辅助剂",
         "f1Title": "广谱抗病毒",
         "f1Desc": "轮状病毒、冠状病毒、细小病毒等主要肠炎病毒广谱抑制",
         "f2Title": "超微蒙脱石",
@@ -115,11 +115,11 @@
         "card4_quote1_author": "朴奉均 教授 (前农林畜产检疫本部会长、病毒学权威专家)",
         "card4_quote2": "“粒径、吸水率、比表面积...具备了兽医师需要的所有数据”",
         "card4_quote2_author": "郑成大 院长 (东津动物医院)",
-        "card4_quote3": "“超越单纯的止泻治疗，对呕吐腹痛患畜亦具有极佳适口性，作为消化道问题的首选常备处方辅剂至关重要”",
+        "card4_quote3": "“超越单纯的止泻治疗，对呕吐腹痛患畜亦具有极佳适口性，作为消化道问题的首选常备辅助剂至关重要”",
         "card4_quote3_author": "金东俊 院长 (首尔萨朗动物医院)",
         "card4_quote4": "“感觉对人体也会很有好处...”",
         "card4_quote4_author": "尹华英 教授 (前首尔大学兽医学院内科学教授)",
-        "card4_note": "帕博格尔学术顾问团由首尔大学兽医学院出身的专家组成，严谨验证临床数据及处方标准。"
+        "card4_note": "帕博格尔学术顾问团由首尔大学兽医学院出身的专家组成，严谨验证临床数据及使用标准。"
     },
     "tech": {
         "badge": "核心技术",
@@ -188,7 +188,7 @@
         "e1Quote": "物理性吸附并去除肠内病毒(细小、冠状等)是与竞争产品不同维度的差异化优势。",
         "e2Name": "郑成大院长",
         "e2Role": "东进动物医院院长·临床专家",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "韩牛农户临床反馈",
         "farmSub": "东进动物医院郑成大院长,韩牛农户帕尔沃凝胶投药结果",
         "f1": "腹痛缓解及止吐—即时缓解腹绞痛,农户满意度最高",
@@ -219,7 +219,7 @@
         "foal": "马驹",
         "foalAge": "出生后1~60日",
         "foalDisease": "轮状病毒、沙门氏菌、梭菌",
-        "other": "其他畜种(鹿、兔子、鸵鸟等)在兽医处方下也可适用",
+        "other": "其他畜种(鹿、兔子、鸵鸟等)在兽医指导下也可适用",
         "cta": "获取农场定制咨询",
         "recommendedAge": "适用时期",
         "mainPathogens": "主要病原体"
@@ -246,7 +246,9 @@
         "best": "最畅销",
         "largeVolume": "大容量",
         "vatShippingIncluded": "含增值税 · 免运费",
-        "bottle": "瓶"
+        "bottle": "瓶",
+        "channelNote": "动物医院及批发商适用与一般消费者不同的供应价。",
+        "channelCta": "洽询医院/批发价格"
     },
     "testimonials": {
         "badge": "现场声音",
@@ -255,7 +257,7 @@
         "t1Name": "金○○院长",
         "t1Clinic": "○○动物医院(京畿)",
         "t1Role": "牛临床20年经历",
-        "t1Content": "犊牛腹泻季节每次处方帕博格尔,24小时内腹泻停止并恢复活力的案例超过90%。农户满意度最高。",
+        "t1Content": "犊牛腹泻季节每次给与帕博格尔,24小时内腹泻停止并恢复活力的案例超过90%。农户满意度最高。",
         "t2Name": "朴○○院长",
         "t2Clinic": "○○畜牧动物医院(忠南)",
         "t2Role": "猪·牛临床专业",
@@ -302,10 +304,35 @@
         "naverQr": "在Naver下单",
         "hospitalNamePh": "例：首尔动物医院、韩牛农场、OO药店",
         "contactNamePh": "例：金铁秀",
-        "requiredFieldsAlert": "医院/农场名、联系人姓名、联系电话为必填项。"
+        "requiredFieldsAlert": "医院/农场名、联系人姓名、联系电话为必填项。",
+        "requestType": "申请类型",
+        "requestConsumer": "一般购买",
+        "requestHospital": "动物医院·兽医师",
+        "requestWholesale": "批发·代理商",
+        "hospitalNameOnly": "医院名称",
+        "companyName": "公司名称",
+        "vetName": "兽医师姓名",
+        "vetNamePh": "例如：王小明 兽医师",
+        "bizNumber": "事业登记号码",
+        "bizNumberPh": "例如：123-45-67890",
+        "region": "希望地区",
+        "regionPh": "例如：庆尚南道昌原市",
+        "orderVolume": "预估月采购量",
+        "selectVolume": "选择数量区间",
+        "volume1": "每月10~49瓶",
+        "volume2": "每月50~199瓶",
+        "volume3": "每月200瓶以上（另议）",
+        "quantityMonthly": "预估月使用量（瓶）",
+        "hospitalDiscountNote": "动物医院·兽医师供应价为零售定价之{{discount}}%折扣，将以报价单另行提供。",
+        "wholesaleDiscountNote": "批发价按零售定价依数量折扣（10瓶以上{{d1}}%、50瓶以上{{d2}}%、200瓶以上另议），将以报价单另行提供。",
+        "recentSubmit": "您刚才已送出订单，请稍后再试。",
+        "errorServer": "送出订单时发生服务器错误，请稍后再试。",
+        "duplicateError": "此订单已送出，我们的团队将尽快与您联系。",
+        "networkError": "订单未能成功送出，请检查网络后再试。",
+        "timeoutError": "订单处理逾时，请稍后再试。"
     },
     "footer": {
-        "desc": "全畜种新生仔腹泻治疗的新标准。用超微蒙脱石保护存活率。",
+        "desc": "全畜种新生仔腹泻管理的新标准。用超微蒙脱石保护存活率。",
         "productInfo": "产品信息",
         "productInfo1": "产品介绍",
         "productInfo2": "核心特点",
@@ -334,7 +361,7 @@
         "error": "抱歉,通信中发生错误。请稍后重试。"
     },
     "stickyCta": {
-        "title": "帕博格尔 (PARVOGEL) 新生幼崽止泻辅剂",
+        "title": "帕博格尔 (PARVOGEL) 新生幼崽腹泻管理辅剂",
         "sub": "高纯度超细纳米蒙脱石配方",
         "buyBtn": "🚀 Coupang 火箭配送购买",
         "consultBtn": "📦 大宗 / 直销订购咨询"
@@ -371,7 +398,7 @@
                 "name": "幼羔羊 (山羊)",
                 "dosage": "每次 5~10ml (每日 2 次)",
                 "effects": [
-                    "治疗初乳不足幼羔羊肠粘膜细胞急性消化不良",
+                    "改善初乳不足幼羔羊肠粘膜细胞急性消化不良",
                     "通过高纯度纳米蒙脱石颗粒吸附毒素",
                     "促进体力恢复及采食欲望"
                 ],
@@ -400,9 +427,9 @@
     "audioTestimonial": {
         "tag": "🎙️ 现场兽医临床录音采访",
         "title": "“犊牛腹泻发作时即刻给药帕博格尔的显著效果”",
-        "sub": "东津动物医院 郑成大 院长 & 韩牛养殖户现场反馈音频摘要",
-        "docName": "郑成大 院长 (东津动物医院)",
-        "docSub": "帕博格尔临床音频报告",
+        "sub": "思朗动物医院 金东俊 院长的现场反馈通话录音",
+        "docName": "金东俊 院长 (思朗动物医院)",
+        "docSub": "帕博格尔现场反馈通话录音",
         "quote": "“给药帕博格尔后，腹泻犊牛的肠粘膜保护及体力恢复速度非常卓越。”"
     },
     "legal": {

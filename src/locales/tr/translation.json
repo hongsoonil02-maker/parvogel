@@ -41,7 +41,7 @@
     "features": {
         "badge": "Temel özellikler",
         "title": "Parvogel'i seçmek için 6 neden",
-        "subtitle": "Veteriner, çiftçi ve eczacı geri bildirimleriyle geliştirilen yeni nesil neonatal ishal takviyesi",
+        "subtitle": "Veteriner, çiftçi ve eczacı geri bildirimleriyle geliştirilen yeni nesil neonatal ishal bakım takviyesi",
         "f1Title": "Geniş spektrumlu antiviral",
         "f1Desc": "Rotavirus, coronavirus ve parvovirus dahil başlıca enterit virüslerini geniş baskılar",
         "f2Title": "Ultra ince montmorillonit",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Klinik kanıt",
         "title": "Kanıtlanmış etki, araştırmayla doğrulandı",
-        "subtitle": "Önde gelen üniversite ve araştırma kurumlarında klinik denemelerle teyit edilmiş üstün tedavi etkileri",
+        "subtitle": "Önde gelen üniversite ve araştırma kurumlarında klinik denemelerle teyit edilmiş üstün etkinlik",
         "study1Title": "Buzağı rotavirus ishal klinik denemesi",
         "study1Subject": "40 Holstein erkek buzağı, 3-7 günlük",
         "study1Result": "Tedavi grubu ishal durma oranı 92.5% (kontrol 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Bağırsak virüslerini (parvo, corona vb.) fiziksel olarak adsorbe edip uzaklaştırmak, rakip ürünlerden farklı bir boyuttur.",
         "e2Name": "Müdür Seong-dae Jung",
         "e2Role": "Dongjin Hayvan Hastanesi müdürü · Klinik uzman",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Hanwoo çiftlikleri klinik geri bildirimi",
         "farmSub": "Dr. Seong-dae Jung, Dongjin Hayvan Hastanesi, Hanwoo çiftliklerinde Parvogel sonuçları",
         "f1": "Karın ağrısı hafifletme ve kusma baskılama — anında kolik rahatlaması, en yüksek memnuniyet",
@@ -171,7 +171,7 @@
         "foal": "Taylar",
         "foalAge": "1-60 gün",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Diğer hayvanlar (geyik, tavşan, devekuşu vb.) veteriner reçetesiyle uygulanabilir",
+        "other": "Diğer hayvanlar (geyik, tavşan, devekuşu vb.) veteriner gözetiminde uygulanabilir",
         "cta": "Çiftliğinize özel danışma alın"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Sipariş ver",
         "inquiry": "Sor",
         "bulk": "Toplu alımlar (10+ şişe) ve toptan için ayrı danışınız.",
-        "bulkCta": "Toptan·büyük hacim danışma"
+        "bulkCta": "Toptan·büyük hacim danışma",
+        "channelNote": "Veteriner hastaneleri ve toptancılar, perakende tüketici fiyatından farklı tedarik fiyatları alır.",
+        "channelCta": "Hastane/toptan fiyat sor"
     },
     "testimonials": {
         "badge": "Sahadan sesler",
@@ -200,7 +202,7 @@
         "t1Name": "Dr. Kim",
         "t1Clinic": "OO Hayvan Hastanesi (Gyeonggi)",
         "t1Role": "20 yıl sığır kliniği",
-        "t1Content": "Her buzağı ishal sezonunda Parvogel reçete ediyorum, %90 üzeri vaka 24 saatte ishal durup toparlanıyor. Çiftçi memnuniyeti en yüksek.",
+        "t1Content": "Her buzağı ishal sezonunda Parvogel uyguluyorum, %90 üzeri vaka 24 saatte ishal durup toparlanıyor. Çiftçi memnuniyeti en yüksek.",
         "t2Name": "Dr. Park",
         "t2Clinic": "OO Çiftlik Hayvan Hastanesi (Chungnam)",
         "t2Role": "Domuz ve sığır uzmanı",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Naver'dan sipariş",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Talep Türü",
+        "requestConsumer": "Genel Satın Alma",
+        "requestHospital": "Veteriner Hastanesi",
+        "requestWholesale": "Toptan / Dağıtıcı",
+        "hospitalNameOnly": "Hastane Adı",
+        "companyName": "Şirket Adı",
+        "vetName": "Veteriner Adı",
+        "vetNamePh": "örn. Ahmet Yılmaz, Veteriner",
+        "bizNumber": "İşletme Sicil No.",
+        "bizNumberPh": "örn. 123-45-67890",
+        "region": "Hedef Bölge",
+        "regionPh": "örn. Changwon, Gyeongnam",
+        "orderVolume": "Tahmini Aylık Miktar",
+        "selectVolume": "Miktar Aralığı Seçin",
+        "volume1": "Ayda 10–49 şişe",
+        "volume2": "Ayda 50–199 şişe",
+        "volume3": "Ayda 200+ şişe (ayrıca görüşülür)",
+        "quantityMonthly": "Tahmini Aylık Kullanım (şişe)",
+        "hospitalDiscountNote": "Veteriner hastanesi tedarik fiyatı, perakende liste fiyatından %{{discount}} indirimlidir. Teklif gönderilecektir.",
+        "wholesaleDiscountNote": "Toptan fiyat, liste fiyatından miktara göre indirim sunar (10+ şişe %{{d1}}, 50+ %{{d2}}, 200+ ayrıca görüşülür). Teklif gönderilecektir.",
+        "recentSubmit": "Az önce bir sipariş gönderdiniz. Lütfen bir süre sonra tekrar deneyin.",
+        "errorServer": "Siparişiniz gönderilirken sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
+        "duplicateError": "Bu sipariş zaten gönderildi. Ekibimiz kısa süre içinde sizinle iletişime geçecek.",
+        "networkError": "Siparişiniz başarıyla gönderilmedi. Lütfen ağınızı kontrol edip tekrar deneyin.",
+        "timeoutError": "Sipariş isteği zaman aşımına uğradı. Lütfen daha sonra tekrar deneyin."
     },
     "footer": {
-        "desc": "Tüm hayvanların neonatal ishal tedavisinde yeni standart. Ultra ince montmorillonit ile hayatta kalmayı koruyun.",
+        "desc": "Tüm hayvanların neonatal ishal bakımında yeni standart. Ultra ince montmorillonit ile hayatta kalmayı koruyun.",
         "productInfo": "Ürün bilgisi",
         "productInfo1": "Ürün tanıtımı",
         "productInfo2": "Özellikler",
@@ -278,7 +305,7 @@
         "error": "Üzgünüz, iletişim hatası oluştu. Lütfen sonra tekrar deneyin."
     },
     "stickyCta": {
-        "title": "PARVOGEL Yenidoğan İshali Önleyici Takviye",
+        "title": "PARVOGEL Yenidoğan İshal Bakım Takviyesi",
         "sub": "Yüksek Saflıkta İnce Nano-Montmorillonit Formülü",
         "buyBtn": "🚀 Coupang Rocket'ten Satın Al",
         "consultBtn": "📦 Toptan / Doğrudan Sipariş Danışmanlığı"
@@ -315,7 +342,7 @@
                 "name": "Oğlak",
                 "dosage": "Doz başına 5-10ml (günde 2 kez)",
                 "effects": [
-                    "Ağız sütü yetersiz oğlakların bağırsak mukoza hücrelerindeki akut hazımsızlığı tedavi eder",
+                    "Ağız sütü yetersiz oğlakların bağırsak mukoza hücrelerindeki akut hazımsızlığı hafifletmeye yardımcı olur",
                     "Yüksek saflıktaki nano-montmorillonit parçacıkları ile toksinleri adsorbe eder",
                     "Canlılığın ve iştahın yeniden kazanılmasını teşvik eder"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Saha Veteriner Hekimi ile Klinik Sesli Röportaj",
         "title": "«İshalli Buzağılara PARVOGEL Uygulamasında Anında Yanıt»",
-        "sub": "Dr. Seong-Dae Jeong (Dongjin Veteriner Hastanesi) ve Hanwoo Yetiştiricileri klinik sesli özeti",
-        "docName": "Dr. Seong-Dae Jeong (Dongjin Veteriner Hastanesi)",
-        "docSub": "Parvogel Klinik Sesli Raporu",
+        "sub": "Dr. Dong-Jun Kim (Sarang Veteriner Hastanesi) saha tepkisi telefon kaydı",
+        "docName": "Dr. Dong-Jun Kim (Sarang Veteriner Hastanesi)",
+        "docSub": "Parvogel saha tepkisi telefon kaydı",
         "quote": "«Parvogel uygulamasından sonra bağırsak mukozası koruması ve buzağıların iyileşme hızı olağanüstüdür.»"
     },
     "legal": {

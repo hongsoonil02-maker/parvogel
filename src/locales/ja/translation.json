@@ -41,7 +41,7 @@
     "features": {
         "badge": "核心的特徴",
         "title": "6つの理由で選ばれるパルボゲル",
-        "subtitle": "獣医師・畜産農家・薬局現場の声を反映して開発された次世代新生児下痢治療補助剤",
+        "subtitle": "獣医師・畜産農家・薬局現場の声を反映して開発された次世代新生児下痢管理補助剤",
         "f1Title": "広範囲抗ウイルス",
         "f1Desc": "ロタウイルス、コロナウイルス、パルボウイルスなど主要腸炎ウイルス広範囲抑制",
         "f2Title": "超微細モンモリロナイト",
@@ -111,11 +111,11 @@
         "card4_quote1_author": "パク・ボンギュン 教授 (前 農林畜産検疫本部長、ウイルス学権威)",
         "card4_quote2": "「粒子径、水分吸収率、比表面積... 獣医師が求めるデータをすべて備えています」",
         "card4_quote2_author": "チョン・ソンデ 院長 (東津動物病院)",
-        "card4_quote3": "「単純な下痢治療を超え、嘔吐・腹痛患畜もよく食べる圧倒的な嗜好性と即時的な腹痛緩和により、消化器トラブル全体の1次常備・処方補助剤として不可欠です」",
+        "card4_quote3": "「単純な下痢治療を超え、嘔吐・腹痛患畜もよく食べる圧倒的な嗜好性と即時的な腹痛緩和により、消化器トラブル全体の1次常備・給与補助剤として不可欠です」",
         "card4_quote3_author": "キム・ドンジュン 院長 (サラン動物病院)",
         "card4_quote4": "「人体にも良さそうですね...」",
         "card4_quote4_author": "ユン・ファヨン 教授 (前 ソウル大学獣医学部内科学教授)",
-        "card4_note": "パルボゲルの学術・諮問団はソウル大学獣医学部出身などの専門家で構成され、臨床データと処方基準を厳格に検証しています。"
+        "card4_note": "パルボゲルの学術・諮問団はソウル大学獣医学部出身などの専門家で構成され、臨床データと給与基準を厳格に検証しています。"
     },
     "tech": {
         "badge": "中核技術",
@@ -184,7 +184,7 @@
         "e1Quote": "腸内ウイルス(パルボ、コロナ等)を物理的に吸着・除去する点は競合製品と次元が異なる差別化です。",
         "e2Name": "鄭成大院長",
         "e2Role": "東進動物病院院長・臨床専門",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "韓牛農家臨床フィードバック",
         "farmSub": "東進動物病院鄭成大院長、韓牛農家パルボゲル投与結果",
         "f1": "腹痛緩和・嘔吐抑制—即時的な腹圧緩和で農家満足度最高",
@@ -215,7 +215,7 @@
         "foal": "子馬",
         "foalAge": "生後1~60日",
         "foalDisease": "ロタウイルス、サルモネラ、クロストリジウム",
-        "other": "その他畜種(シカ、ウサギ、ダチョウなど)も獣医師処方の下で適用可能",
+        "other": "その他畜種(シカ、ウサギ、ダチョウなど)も獣医師の指導の下で適用可能",
         "cta": "農場カスタム相談を受ける"
     },
     "products": {
@@ -235,7 +235,9 @@
         "order": "注文する",
         "inquiry": "問い合わせ",
         "bulk": "大量購入(10本以上)および卸問い合わせは別途相談 바랍니다.",
-        "bulkCta": "卸・大量購入相談"
+        "bulkCta": "卸・大量購入相談",
+        "channelNote": "動物病院・卸売事業者には、一般消費者価格とは異なる供給価格が適用されます。",
+        "channelCta": "病院・卸価格のお問い合わせ"
     },
     "testimonials": {
         "badge": "現場の声",
@@ -244,7 +246,7 @@
         "t1Name": "キム○○院長",
         "t1Clinic": "○○動物病院(京畿)",
         "t1Role": "牛臨床20年経歴",
-        "t1Content": "子牛下痢シーズンごとにパルボゲル処方するが、24時間以内に下痢が止まり活力回復されるケースが90%超えます。農家満足度最高。",
+        "t1Content": "子牛下痢シーズンごとにパルボゲルを給与するが、24時間以内に下痢が止まり活力回復されるケースが90%超えます。農家満足度最高。",
         "t2Name": "パク○○院長",
         "t2Clinic": "○○畜産動物病院(忠南)",
         "t2Role": "豚・牛臨床専門",
@@ -290,10 +292,35 @@
         "naver": "Naverショッピング",
         "naverQr": "Naverで注文",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "申請区分",
+        "requestConsumer": "一般購入",
+        "requestHospital": "動物病院・獣医師",
+        "requestWholesale": "卸・代理店",
+        "hospitalNameOnly": "病院名",
+        "companyName": "事業者名",
+        "vetName": "獣医師名",
+        "vetNamePh": "例：山田太郎 獣医師",
+        "bizNumber": "事業者登録番号",
+        "bizNumberPh": "例：123-45-67890",
+        "region": "希望地域",
+        "regionPh": "例：慶尚南道昌原市",
+        "orderVolume": "月間想定購入量",
+        "selectVolume": "数量帯を選択",
+        "volume1": "月10〜49本",
+        "volume2": "月50〜199本",
+        "volume3": "月200本以上（別途協議）",
+        "quantityMonthly": "月間想定使用量（本）",
+        "hospitalDiscountNote": "動物病院・獣医師向け供給価格は小売定価の{{discount}}%引きで、見積書にてご案内します。",
+        "wholesaleDiscountNote": "卸価格は小売定価から数量に応じた割引（10本以上{{d1}}%、50本以上{{d2}}%、200本以上は別途協議）です。見積書にてご案内します。",
+        "recentSubmit": "直前に注文が送信されました。しばらくしてから再度お試しください。",
+        "errorServer": "注文送信中にサーバーエラーが発生しました。後ほど再度お試しください。",
+        "duplicateError": "この注文は既に送信されています。担当者よりすぐにご連絡いたします。",
+        "networkError": "注文が正常に送信されませんでした。ネットワークを確認して再度お試しください。",
+        "timeoutError": "注文処理がタイムアウトしました。後ほど再度お試しください。"
     },
     "footer": {
-        "desc": "全畜種新生児下痢治療の新基準。超微細モンモリロナイトで生存率を守ります。",
+        "desc": "全畜種新生児下痢管理の新基準。超微細モンモリロナイトで生存率を守ります。",
         "productInfo": "製品情報",
         "productInfo1": "製品紹介",
         "productInfo2": "特徴",
@@ -322,7 +349,7 @@
         "error": "申し訳ありません。通信中にエラーが発生しました。しばらくしてから再度お試しください。"
     },
     "stickyCta": {
-        "title": "パルボゲル (Parvogel) 新生児下痢止剤",
+        "title": "パルボゲル (Parvogel) 新生児下痢ケア補助剤",
         "sub": "高純度超微粒子ナノモンモリロナイト配合",
         "buyBtn": "🚀 Coupang ロケット配送で購入",
         "consultBtn": "📦 大量 / 直販注文のお問い合わせ"
@@ -388,9 +415,9 @@
     "audioTestimonial": {
         "tag": "🎙️ 現場獣医師臨床録音インタビュー",
         "title": "「子牛下痢発症時のパルボゲル即時投与の驚くべき効果」",
-        "sub": "東津動物病院チョン・ソンデ院長 & 和牛農家現場反応音声要約",
-        "docName": "チョン・ソンデ院長 (東津動物病院)",
-        "docSub": "パルボゲル臨床音声レポート",
+        "sub": "サラン動物病院キム・ドンジュン院長の現場反応の電話録音",
+        "docName": "キム・ドンジュン院長 (サラン動物病院)",
+        "docSub": "パルボゲル現場反応の電話録音",
         "quote": "「パルボゲル投与後、下痢子牛の腸粘膜保護および体力回復スピード가非常に卓越しています。」"
     },
     "legal": {

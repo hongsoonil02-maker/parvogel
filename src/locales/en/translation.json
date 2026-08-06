@@ -62,7 +62,7 @@
     "clinical": {
         "badge": "Clinical Evidence",
         "title": "Proven Efficacy, Verified by Research",
-        "subtitle": "Excellent therapeutic effects confirmed in clinical trials at leading domestic universities and research institutions",
+        "subtitle": "Excellent efficacy confirmed in clinical trials at leading domestic universities and research institutions",
         "study1Title": "Calf Rotavirus Diarrhea Clinical Trial",
         "study1Subject": "40 Holstein male calves, 3-7 days old",
         "study1Result": "Treatment group diarrhea cessation rate 92.5% (control 45%)",
@@ -148,7 +148,7 @@
         "e1Quote": "Physically adsorbing and removing intestinal viruses is a key difference.",
         "e2Name": "Director Dong-jun Kim",
         "e2Role": "Sarang Animal Hospital",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "e3Name": "Director Seong-dae Jung",
         "e3Role": "Dongjin Animal Hospital",
         "e3Quote": "Particle size, moisture absorption, specific surface area... It has all the data veterinarians look for.",
@@ -176,7 +176,7 @@
         "foal": "Foals",
         "foalAge": "1-60 days old",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Other livestock (deer, rabbits, ostriches, etc.) can also be applied under veterinary prescription",
+        "other": "Other livestock (deer, rabbits, ostriches, etc.) can also be applied under veterinary guidance",
         "cta": "Get Custom Consultation for Your Farm",
         "recommendedAge": "Target Period",
         "mainPathogens": "Main Pathogens"
@@ -203,7 +203,9 @@
         "best": "Best",
         "largeVolume": "Large Volume",
         "vatShippingIncluded": "VAT & Shipping Included",
-        "bottle": "Bottle"
+        "bottle": "Bottle",
+        "channelNote": "Veterinary hospitals and wholesalers receive supply prices differentiated from the consumer list price.",
+        "channelCta": "Inquire about hospital/wholesale pricing"
     },
     "testimonials": {
         "badge": "Field Voices",
@@ -212,7 +214,7 @@
         "t1Name": "Director Kim",
         "t1Clinic": "OO Animal Hospital (Gyeonggi)",
         "t1Role": "20 years cattle clinical experience",
-        "t1Content": "I prescribe Parvogel every calf diarrhea season, and over 90% of cases stop diarrhea within 24 hours and recover vitality. Highest farmer satisfaction.",
+        "t1Content": "I administer Parvogel every calf diarrhea season, and over 90% of cases stop diarrhea within 24 hours and recover vitality. Highest farmer satisfaction.",
         "t2Name": "Director Park",
         "t2Clinic": "OO Livestock Animal Hospital (Chungnam)",
         "t2Role": "Pig & Cattle clinical specialist",
@@ -259,10 +261,35 @@
         "naverQr": "Order on Naver",
         "hospitalNamePh": "e.g. Seoul Animal Hospital, Cattle Farm, Pharmacy",
         "contactNamePh": "e.g. John Doe",
-        "requiredFieldsAlert": "Hospital/Farm name, contact name, and phone number are required."
+        "requiredFieldsAlert": "Hospital/Farm name, contact name, and phone number are required.",
+        "requestType": "Request Type",
+        "requestConsumer": "General Purchase",
+        "requestHospital": "Veterinary Hospital",
+        "requestWholesale": "Wholesale / Distributor",
+        "hospitalNameOnly": "Hospital Name",
+        "companyName": "Company Name",
+        "vetName": "Veterinarian Name",
+        "vetNamePh": "e.g. John Smith, DVM",
+        "bizNumber": "Business Registration No.",
+        "bizNumberPh": "e.g. 123-45-67890",
+        "region": "Target Region",
+        "regionPh": "e.g. Changwon, Gyeongnam",
+        "orderVolume": "Est. Monthly Volume",
+        "selectVolume": "Select Volume Range",
+        "volume1": "10–49 bottles / mo",
+        "volume2": "50–199 bottles / mo",
+        "volume3": "200+ bottles / mo (negotiable)",
+        "quantityMonthly": "Est. Monthly Use (bottles)",
+        "hospitalDiscountNote": "Veterinary hospital supply prices are {{discount}}% off the consumer list price. A quotation will be sent to you.",
+        "wholesaleDiscountNote": "Wholesale pricing offers volume-based discounts off the consumer list price ({{d1}}% for 10+ bottles, {{d2}}% for 50+, and a separate agreement for 200+). A quotation will be sent to you.",
+        "recentSubmit": "You just submitted an order. Please try again shortly.",
+        "errorServer": "A server error occurred while submitting your order. Please try again later.",
+        "duplicateError": "This order has already been submitted. Our team will contact you shortly.",
+        "networkError": "Your order was not submitted successfully. Please check your network and try again.",
+        "timeoutError": "The order request timed out. Please try again later."
     },
     "footer": {
-        "desc": "New standard for neonatal diarrhea treatment in all livestock. Protecting survival rates with ultra-fine montmorillonite.",
+        "desc": "New standard for neonatal diarrhea care in all livestock. Protecting survival rates with ultra-fine montmorillonite.",
         "productInfo": "Product Information",
         "productInfo1": "Product Introduction",
         "productInfo2": "Key Features",
@@ -291,7 +318,7 @@
         "error": "Sorry, a communication error occurred. Please try again later."
     },
     "stickyCta": {
-        "title": "PARVOGEL Neonatal Antidiarrheal Supplement",
+        "title": "PARVOGEL Neonatal Diarrhea Care Supplement",
         "sub": "High-Purity Ultrafine Nano Montmorillonite Formula",
         "buyBtn": "🚀 Buy on Coupang Rocket",
         "consultBtn": "📦 Wholesale / Direct Order Inquiry"
@@ -328,7 +355,7 @@
                 "name": "Kid Goat",
                 "dosage": "5-10ml per dose (twice daily)",
                 "effects": [
-                    "Treats acute indigestion in gut mucosal cells of colostrum-deficient kids",
+                    "Helps relieve acute indigestion in gut mucosal cells of colostrum-deficient kids",
                     "Adsorbs toxins with high-purity nano montmorillonite particles",
                     "Promotes vitality recovery and feed intake motivation"
                 ],
@@ -357,9 +384,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Clinical Audio Interview with Field Veterinarian",
         "title": "\"Immediate Response Upon PARVOGEL Administration in Diarrheic Calves\"",
-        "sub": "Clinical audio summary by Dr. Seong-Dae Jeong (Dongjin Animal Hospital) & Hanwoo Farmers",
-        "docName": "Dr. Seong-Dae Jeong (Dongjin Animal Hospital)",
-        "docSub": "Parvogel Clinical Audio Report",
+        "sub": "Field response call recording with Dr. Dong-Jun Kim (Sarang Animal Hospital)",
+        "docName": "Dr. Dong-Jun Kim (Sarang Animal Hospital)",
+        "docSub": "Parvogel field response call recording",
         "quote": "\"After Parvogel administration, mucosal protection and recovery speed in calves are outstanding.\""
     },
     "legal": {

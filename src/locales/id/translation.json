@@ -41,7 +41,7 @@
     "features": {
         "badge": "Fitur inti",
         "title": "6 alasan memilih Parvogel",
-        "subtitle": "Suplemen generasi baru diare neonatal dikembangkan dari masukan dokter hewan, peternak, dan apotek",
+        "subtitle": "Suplemen generasi baru perawatan diare neonatal dikembangkan dari masukan dokter hewan, peternak, dan apotek",
         "f1Title": "Antivirus spektrum luas",
         "f1Desc": "Penekanan luas virus enteritis utama termasuk rotavirus, coronavirus, parvovirus",
         "f2Title": "Montmorillonite ultra-halus",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Bukti klinis",
         "title": "Efikasi terbukti, diverifikasi riset",
-        "subtitle": "Efek terapi unggul dikonfirmasi dalam uji klinis universitas dan lembaga riset terkemuka",
+        "subtitle": "Kemanjuran unggul dikonfirmasi dalam uji klinis universitas dan lembaga riset terkemuka",
         "study1Title": "Uji klinis diare rotavirus anak sapi",
         "study1Subject": "40 anak sapi jantan Holstein, 3-7 hari",
         "study1Result": "Penghentian diare kelompok perlakuan 92.5% (kontrol 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Mengadsorpsi dan membuang virus usus (parvo, corona, dll) secara fisik adalah dimensi berbeda dari produk kompetitor.",
         "e2Name": "Direktur Seong-dae Jung",
         "e2Role": "Direktur Klinik Hewan Dongjin · Spesialis klinis",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Umpan balik klinis peternakan Hanwoo",
         "farmSub": "Dr. Seong-dae Jung, Klinik Dongjin, hasil Parvogel di peternakan Hanwoo",
         "f1": "Reda nyeri perut & cegah muntah — lega kolik instan, kepuasan tertinggi",
@@ -171,7 +171,7 @@
         "foal": "Anak kuda",
         "foalAge": "1-60 hari",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Ternak lain (rusa, kelinci, unta burung) bisa dengan resep dokter hewan",
+        "other": "Ternak lain (rusa, kelinci, unta burung) bisa dengan bimbingan dokter hewan",
         "cta": "Dapatkan konsultasi peternakan Anda"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Pesan",
         "inquiry": "Tanya",
         "bulk": "Untuk pembelian banyak (10+ botol) dan grosir, hubungi terpisah.",
-        "bulkCta": "Konsultasi grosir·jumlah besar"
+        "bulkCta": "Konsultasi grosir·jumlah besar",
+        "channelNote": "Rumah sakit hewan dan grosir menerima harga pasokan berbeda dari harga konsumen.",
+        "channelCta": "Tanya harga rumah sakit/grosir"
     },
     "testimonials": {
         "badge": "Suara lapangan",
@@ -200,7 +202,7 @@
         "t1Name": "Dr. Kim",
         "t1Clinic": "Klinik Hewan OO (Gyeonggi)",
         "t1Role": "20 tahun klinik sapi",
-        "t1Content": "Setiap musim diare anak sapi saya resep Parvogel, dan >90% kasus berhenti diare dalam 24 jam dan pulih. Kepuasan peternak tertinggi.",
+        "t1Content": "Setiap musim diare anak sapi saya berikan Parvogel, dan >90% kasus berhenti diare dalam 24 jam dan pulih. Kepuasan peternak tertinggi.",
         "t2Name": "Dr. Park",
         "t2Clinic": "Klinik Ternak OO (Chungnam)",
         "t2Role": "Spesialis babi dan sapi",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Pesan di Naver",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Jenis Permintaan",
+        "requestConsumer": "Pembelian Umum",
+        "requestHospital": "Rumah Sakit Hewan",
+        "requestWholesale": "Grosir / Distributor",
+        "hospitalNameOnly": "Nama Rumah Sakit",
+        "companyName": "Nama Perusahaan",
+        "vetName": "Nama Dokter Hewan",
+        "vetNamePh": "cth. Budi Santoso, drh",
+        "bizNumber": "No. Reg. Usaha",
+        "bizNumberPh": "cth. 123-45-67890",
+        "region": "Wilayah Target",
+        "regionPh": "cth. Changwon, Gyeongnam",
+        "orderVolume": "Volume Bulanan Est.",
+        "selectVolume": "Pilih Rentang Volume",
+        "volume1": "10–49 botol/bulan",
+        "volume2": "50–199 botol/bulan",
+        "volume3": "200+ botol/bulan (negosiasi)",
+        "quantityMonthly": "Pemakaian Bulanan Est. (botol)",
+        "hospitalDiscountNote": "Harga pasokan untuk rumah sakit hewan diskon {{discount}}% dari harga eceran. Kami kirimkan penawaran.",
+        "wholesaleDiscountNote": "Harga grosir memberi diskon berdasarkan volume dari harga eceran ({{d1}}% mulai 10 botol, {{d2}}% mulai 50, 200+ negosiasi terpisah). Kami kirimkan penawaran.",
+        "recentSubmit": "Anda baru saja mengirim pesanan. Silakan coba lagi sesaat.",
+        "errorServer": "Terjadi kesalahan server saat mengirim pesanan. Silakan coba lagi nanti.",
+        "duplicateError": "Pesanan ini sudah dikirim. Tim kami akan menghubungi Anda segera.",
+        "networkError": "Pesanan Anda tidak terkirim. Periksa jaringan lalu coba lagi.",
+        "timeoutError": "Permintaan pesanan kedaluwarsa. Silakan coba lagi nanti."
     },
     "footer": {
-        "desc": "Standar baru penanganan diare neonatal semua ternak. Melindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
+        "desc": "Standar baru perawatan diare neonatal semua ternak. Melindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
         "productInfo": "Info produk",
         "productInfo1": "Pengenalan",
         "productInfo2": "Fitur",
@@ -278,7 +305,7 @@
         "error": "Maaf, terjadi kesalahan komunikasi. Coba lagi nanti."
     },
     "stickyCta": {
-        "title": "PARVOGEL Suplemen Anti Diare Hewan Baru Lahir",
+        "title": "PARVOGEL Suplemen Perawatan Diare Hewan Baru Lahir",
         "sub": "Formula Nano Montmorillonite Ultrafine Kemurnian Tinggi",
         "buyBtn": "🚀 Beli di Coupang Rocket",
         "consultBtn": "📦 Pertanyaan Pesanan Grosir / Langsung"
@@ -315,7 +342,7 @@
                 "name": "Anak Kambing",
                 "dosage": "5-10ml per dosis (2 kali sehari)",
                 "effects": [
-                    "Mengobati gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
+                    "Membantu mengatasi gangguan pencernaan akut sel mukosa usus anak kambing kurang kolostrum",
                     "Mengadsorpsi toksin dengan partikel nano montmorillonite kemurnian tinggi",
                     "Mendorong pemulihan vitalitas dan nafsu makan"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Wawancara Audio Klinis Dokter Hewan Lapangan",
         "title": "«Respon Cepat Saat Pemberian PARVOGEL pada Anak Sapi Diare»",
-        "sub": "Ringkasan audio klinis oleh Dr. Seong-Dae Jeong (RS Hewan Dongjin) & Peternak Hanwoo",
-        "docName": "Dr. Seong-Dae Jeong (RS Hewan Dongjin)",
-        "docSub": "Laporan Audio Klinis Parvogel",
+        "sub": "Rekaman panggilan reaksi lapangan Dr. Dong-Jun Kim (RS Hewan Sarang)",
+        "docName": "Dr. Dong-Jun Kim (RS Hewan Sarang)",
+        "docSub": "Rekaman panggilan reaksi lapangan Parvogel",
         "quote": "«Setelah pemberian Parvogel, perlindungan mukosa usus dan kecepatan pemulihan anak sapi sangat luar biasa.»"
     },
     "legal": {

@@ -41,7 +41,7 @@
     "features": {
         "badge": "Đặc điểm cốt lõi",
         "title": "6 lý do chọn Parvogel",
-        "subtitle": "Thực phẩm bổ trợ trị tiêu chảy sơ sinh thế hệ mới phát triển từ ý kiến bác sĩ thú y, nông dân và nhà thuốc",
+        "subtitle": "Thực phẩm bổ trợ hỗ trợ tiêu chảy sơ sinh thế hệ mới phát triển từ ý kiến bác sĩ thú y, nông dân và nhà thuốc",
         "f1Title": "Kháng virus rộng",
         "f1Desc": "Ức chế rộng các virus viêm ruột chính gồm rotavirus, coronavirus và parvovirus",
         "f2Title": "Montmorillonite siêu mịn",
@@ -58,7 +58,7 @@
     "clinical": {
         "badge": "Bằng chứng lâm sàng",
         "title": "Hiệu quả đã được chứng minh bằng nghiên cứu",
-        "subtitle": "Hiệu quả điều trị vượt trội xác nhận qua thử nghiệm lâm sàng tại các đại học và viện nghiên cứu hàng đầu",
+        "subtitle": "Hiệu quả vượt trội xác nhận qua thử nghiệm lâm sàng tại các đại học và viện nghiên cứu hàng đầu",
         "study1Title": "Thử nghiệm lâm sàng tiêu chảy rotavirus bê",
         "study1Subject": "40 bê đực Holstein, 3-7 ngày tuổi",
         "study1Result": "Tỷ lệ ngừng tiêu chảy nhóm điều trị 92.5% (đối chứng 45%)",
@@ -140,7 +140,7 @@
         "e1Quote": "Hấp phụ và loại bỏ vật lý virus ruột (parvo, corona...) là khác biệt vượt trội so với sản phẩm cạnh tranh.",
         "e2Name": "Giám đốc Seong-dae Jung",
         "e2Role": "Giám đốc Bệnh viện thú y Dongjin · Chuyên gia lâm sàng",
-        "e2Quote": "\"Beyond simple diarrhea treatment, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
+        "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
         "farmTitle": "Phản hồi lâm sàng trang trại Hanwoo",
         "farmSub": "BS. Seong-dae Jung, Bệnh viện thú y Dongjin, kết quả Parvogel tại trang trại Hanwoo",
         "f1": "Giảm đau bụng & chống nôn — giảm quặn bụng tức thì, hài lòng cao",
@@ -171,7 +171,7 @@
         "foal": "Ngựa con",
         "foalAge": "1-60 ngày",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
-        "other": "Vật nuôi khác (hươu, thỏ, đà điểu...) cũng dùng được theo đơn bác sĩ thú y",
+        "other": "Vật nuôi khác (hươu, thỏ, đà điểu...) cũng dùng được theo hướng dẫn bác sĩ thú y",
         "cta": "Nhận tư vấn riêng cho trang trại"
     },
     "products": {
@@ -191,7 +191,9 @@
         "order": "Đặt hàng",
         "inquiry": "Hỏi",
         "bulk": "Mua số lượng lớn (10+ chai) và bán sỉ vui lòng liên hệ riêng.",
-        "bulkCta": "Tư vấn bán sỉ·số lượng lớn"
+        "bulkCta": "Tư vấn bán sỉ·số lượng lớn",
+        "channelNote": "Phòng khám thú y và nhà bán buôn nhận giá cung cấp khác với giá niêm yết cho người tiêu dùng.",
+        "channelCta": "Hỏi giá phòng khám/bán buôn"
     },
     "testimonials": {
         "badge": "Tiếng nói thực tế",
@@ -200,7 +202,7 @@
         "t1Name": "BS. Kim",
         "t1Clinic": "Bệnh viện Thú y OO (Gyeonggi)",
         "t1Role": "20 năm lâm sàng bò",
-        "t1Content": "Mỗi mùa tiêu chảy bê tôi kê Parvogel, hơn 90% ca ngừng tiêu chảy trong 24h và phục hồi. Nông dân hài lòng nhất.",
+        "t1Content": "Mỗi mùa tiêu chảy bê tôi cho dùng Parvogel, hơn 90% ca ngừng tiêu chảy trong 24h và phục hồi. Nông dân hài lòng nhất.",
         "t2Name": "BS. Park",
         "t2Clinic": "Bệnh viện Thú y Chăn nuôi OO (Chungnam)",
         "t2Role": "Chuyên gia lợn và bò",
@@ -246,10 +248,35 @@
         "naver": "Naver Shopping",
         "naverQr": "Đặt trên Naver",
         "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
-        "contactNamePh": "예: 김철수"
+        "contactNamePh": "예: 김철수",
+        "requestType": "Loại yêu cầu",
+        "requestConsumer": "Mua lẻ",
+        "requestHospital": "Phòng khám thú y",
+        "requestWholesale": "Bán buôn / nhà phân phối",
+        "hospitalNameOnly": "Tên bệnh viện",
+        "companyName": "Tên công ty",
+        "vetName": "Tên bác sĩ thú y",
+        "vetNamePh": "VD: Nguyễn Văn A, thú y",
+        "bizNumber": "Mã số đăng ký kinh doanh",
+        "bizNumberPh": "VD: 123-45-67890",
+        "region": "Khu vực mục tiêu",
+        "regionPh": "VD: Changwon, Gyeongnam",
+        "orderVolume": "Số lượng dự kiến/tháng",
+        "selectVolume": "Chọn khoảng số lượng",
+        "volume1": "10–49 chai/tháng",
+        "volume2": "50–199 chai/tháng",
+        "volume3": "200+ chai/tháng (thương lượng)",
+        "quantityMonthly": "Mức dùng dự kiến/tháng (chai)",
+        "hospitalDiscountNote": "Giá cung cấp cho phòng khám thú y giảm {{discount}}% so với giá niêm yết. Chúng tôi sẽ gửi báo giá.",
+        "wholesaleDiscountNote": "Giá bán buôn được chiết khấu theo số lượng so với giá niêm yết ({{d1}}% từ 10 chai, {{d2}}% từ 50 chai, 200+ chai thương lượng riêng). Sẽ gửi báo giá.",
+        "recentSubmit": "Bạn vừa gửi đơn hàng. Vui lòng thử lại sau ít phút.",
+        "errorServer": "Đã xảy ra lỗi máy chủ khi gửi đơn hàng. Vui lòng thử lại sau.",
+        "duplicateError": "Đơn hàng này đã được gửi. Nhóm của chúng tôi sẽ liên hệ sớm.",
+        "networkError": "Đơn hàng chưa được gửi thành công. Vui lòng kiểm tra mạng và thử lại.",
+        "timeoutError": "Yêu cầu đặt hàng đã hết thời gian. Vui lòng thử lại sau."
     },
     "footer": {
-        "desc": "Tiêu chuẩn mới điều trị tiêu chảy sơ sinh mọi gia súc. Bảo vệ tỷ lệ sống sót bằng montmorillonite siêu mịn.",
+        "desc": "Tiêu chuẩn mới chăm sóc tiêu chảy sơ sinh mọi gia súc. Bảo vệ tỷ lệ sống sót bằng montmorillonite siêu mịn.",
         "productInfo": "Thông tin sản phẩm",
         "productInfo1": "Giới thiệu",
         "productInfo2": "Đặc điểm",
@@ -278,7 +305,7 @@
         "error": "Xin lỗi, lỗi kết nối. Vui lòng thử lại sau."
     },
     "stickyCta": {
-        "title": "PARVOGEL Bổ Sung Trị Tiêu Chảy Cho Gia Súc Sơ Sinh",
+        "title": "PARVOGEL Bổ Sung Hỗ Trợ Tiêu Chảy Cho Gia Súc Sơ Sinh",
         "sub": "Công Thức Nano Montmorillonite Siêu Mịn Độ Tinh Khiết Cao",
         "buyBtn": "🚀 Mua Trên Coupang Rocket",
         "consultBtn": "📦 Tư Vấn Đặt Hàng Sỉ / Trực Tiếp"
@@ -315,7 +342,7 @@
                 "name": "Dê con",
                 "dosage": "5-10ml mỗi lần (2 lần/ngày)",
                 "effects": [
-                    "Điều trị chứng khó tiêu cấp tính ở dê con thiếu sữa đầu",
+                    "Hỗ trợ giảm chứng khó tiêu cấp tính ở dê con thiếu sữa đầu",
                     "Hấp phụ độc tố bằng các hạt nano montmorillonite độ tinh khiết cao",
                     "Thúc đẩy phục hồi thể lực và thèm ăn"
                 ],
@@ -344,9 +371,9 @@
     "audioTestimonial": {
         "tag": "🎙️ Phỏng Vấn Âm Thanh Lâm Sàng Với Bác Sĩ Thú Y",
         "title": "«Phản Ứng Tức Thì Khi Cho Bê Tiêu Chảy Sử Dụng PARVOGEL»",
-        "sub": "Tóm tắt âm thanh lâm sàng của Bác sĩ Seong-Dae Jeong (Bệnh viện thú y Dongjin) & Nông dân Hanwoo",
-        "docName": "Bác sĩ Seong-Dae Jeong (Bệnh viện thú y Dongjin)",
-        "docSub": "Báo Cáo Âm Thanh Lâm Sàng Parvogel",
+        "sub": "Ghi âm cuộc gọi phản hồi thực tế của Bác sĩ Dong-Jun Kim (Bệnh viện thú y Sarang)",
+        "docName": "Bác sĩ Dong-Jun Kim (Bệnh viện thú y Sarang)",
+        "docSub": "Ghi âm cuộc gọi phản hồi thực tế Parvogel",
         "quote": "«Sau khi sử dụng Parvogel, khả năng bảo vệ niêm mạc ruột và tốc độ phục hồi của bê là cực kỳ xuất sắc.»"
     },
     "legal": {

@@ -68,7 +68,7 @@ export default function Chatbot() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-50">
             {/* 챗봇 토글 버튼 */}
             <button
                 onClick={toggleChat}
