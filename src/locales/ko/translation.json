@@ -303,7 +303,7 @@
         "coupangQr": "쿠팡에서 주문하기",
         "naver": "네이버쇼핑",
         "naverQr": "네이버에서 주문하기",
-        "hospitalNamePh": "예: 서울동물병원, 한우농장, OO약국",
+        "hospitalNamePh": "예: 서울동물병원, OO약국",
         "contactNamePh": "예: 김철수",
         "requiredFieldsAlert": "병원명, 담당자명, 연락처는 필수 입력 항목입니다.",
         "requestType": "신청 구분",

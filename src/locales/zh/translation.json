@@ -302,7 +302,7 @@
         "coupangQr": "在Coupang下单",
         "naver": "Naver购物",
         "naverQr": "在Naver下单",
-        "hospitalNamePh": "例：首尔动物医院、韩牛农场、OO药店",
+        "hospitalNamePh": "例：首尔动物医院、OO药店",
         "contactNamePh": "例：金铁秀",
         "requiredFieldsAlert": "医院/农场名、联系人姓名、联系电话为必填项。",
         "requestType": "申请类型",

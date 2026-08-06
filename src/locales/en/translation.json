@@ -259,7 +259,7 @@
         "coupangQr": "Order on Coupang",
         "naver": "Naver Shopping",
         "naverQr": "Order on Naver",
-        "hospitalNamePh": "e.g. Seoul Animal Hospital, Cattle Farm, Pharmacy",
+        "hospitalNamePh": "e.g. Seoul Animal Hospital, Pharmacy",
         "contactNamePh": "e.g. John Doe",
         "requiredFieldsAlert": "Hospital/Farm name, contact name, and phone number are required.",
         "requestType": "Request Type",
