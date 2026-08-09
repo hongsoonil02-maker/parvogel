@@ -91,9 +91,9 @@
         "table2_row3_result": "증상 회복 기간 단축에 도움",
         "table2_row4_label": "바이러스 증식 억제",
         "table2_row4_cond": "바실러스 서브틸리스 병용",
-        "table2_row4_result": "유의미한 증식 억제",
+        "table2_row4_result": "증식 억제에 도움",
         "table2_row3_value": "회복 단축 보조",
-        "table2_row4_value": "증식 억제",
+        "table2_row4_value": "증식 억제에 도움",
         "card3_title": "항바이러스 효과 (바실러스 서브틸리스)",
         "card3_desc": "DNG-1000의 핵심 균주인 Bacillus subtilis MORI가 생산하는 DNJ 성분의 바이러스 계통별 억제 효과입니다.",
         "table3_header": "대상 바이러스",
@@ -147,7 +147,7 @@
         "t3Note": "입원 기간 단축 및 회복 효율",
         "t4Item": "바이러스 증식 억제",
         "t4Cond": "바실러스 서브틸리스 병용",
-        "t4Result": "유의미한 증식 억제",
+        "t4Result": "증식 억제에 도움",
         "t4Note": "항바이러스 시너지 효과 검증",
         "virusTitle": "바실러스 서브틸리스 MORI\n항바이러스 효과",
         "virusSub": "DNG-1000의 핵심 균주인 Bacillus subtilis MORI가 생산하는 DNJ 성분의 바이러스 계통별 억제 효과",
@@ -361,7 +361,16 @@
         "greeting": "안녕하세요! 파보겔 전문 AI 수의사 상담 도우미입니다. 송아지, 자돈 등 어린 가축의 신생아 설사 대처법에 대해 무엇이든 물어보세요.",
         "placeholder": "설사 증상이나 급여법 등을 질문해 주세요...",
         "send": "전송",
+        "close": "챗봇 닫기",
+        "messages": "상담 메시지",
         "error": "죄송합니다. 통신 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
+    },
+    "a11y": {
+        "skipToContent": "본문 바로가기",
+        "productVideo": "파보겔 제품 소개 영상",
+        "productMedia": "제품 미디어 선택",
+        "playProductVideo": "제품 영상 재생",
+        "viewImage": "크게 보기"
     },
     "legal": {
         "privacyTitle": "개인정보 처리방침",
@@ -376,6 +385,9 @@
         "sub": "고순도 초미세 나노 몬모릴로나이트 포뮬러",
         "buyBtn": "🚀 쿠팡 로켓배송 구매",
         "consultBtn": "📦 대량/직판 주문 문의"
+    },
+    "store": {
+        "comingSoon": "입점 예정"
     },
     "animalSelector": {
         "tag": "🐾 전 축종 신생아 맞춤 솔루션",

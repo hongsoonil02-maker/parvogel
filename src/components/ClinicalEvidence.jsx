@@ -126,10 +126,10 @@ const ClinicalEvidence = () => {
                 <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 hover:border-primary-300 transition-colors shadow-sm">
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-slate-800 text-sm break-keep">{t('clinical.table2_row4_label', '바이러스 증식 억제')}</span>
-                    <span className="text-primary-700 font-black text-base">{t('clinical.table2_row4_value', '증식 억제')}</span>
+                    <span className="text-primary-700 font-black text-base">{t('clinical.table2_row4_value', '증식 억제에 도움')}</span>
                   </div>
                   <p className="text-xs text-slate-500 mb-1">{t('clinical.table2_row4_cond', '바실러스 서브틸리스 병용')}</p>
-                  <p className="text-xs font-bold text-primary-700">{t('clinical.table2_row4_result', '유의미한 증식 억제')}</p>
+                  <p className="text-xs font-bold text-primary-700">{t('clinical.table2_row4_result', '증식 억제에 도움')}</p>
                 </div>
               </div>
             </div>

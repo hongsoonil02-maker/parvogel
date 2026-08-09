@@ -95,7 +95,7 @@ export default function Chatbot() {
                             <p className="text-xs text-blue-100">{t('chat.subtitle')} · {i18n.language.toUpperCase()}</p>
                         </div>
                     </div>
-                    <button onClick={toggleChat} className="text-white hover:text-slate-200 focus:outline-none">
+                    <button onClick={toggleChat} className="text-white hover:text-slate-200 focus:outline-none" aria-label={t('chat.close', '챗봇 닫기')}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -103,7 +103,7 @@ export default function Chatbot() {
                 </div>
 
                 {/* 메시지 영역 */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50" role="log" aria-live="polite" aria-label={t('chat.messages', '상담 메시지')}>
                     {messages.map((msg, idx) => (
                         <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div

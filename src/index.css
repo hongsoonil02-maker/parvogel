@@ -8,6 +8,17 @@
         font-size: 17px;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
     @media (max-width: 640px) {
         html {
             font-size: 16px;
@@ -16,6 +27,28 @@
 
     body {
         @apply font-sans text-gray-900 antialiased leading-relaxed;
+    }
+
+    /* 키보드 포커스 가시성 (접근성) */
+    :focus-visible {
+        @apply outline-none ring-2 ring-primary-500 ring-offset-2 rounded-sm;
+    }
+}
+
+@layer utilities {
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+    .skip-link {
+        @apply fixed top-2 left-2 z-[100] px-4 py-3 bg-primary-700 text-white font-bold rounded-xl shadow-2xl transition-transform -translate-y-24 focus:translate-y-0;
     }
 }
 

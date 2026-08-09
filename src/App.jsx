@@ -4,6 +4,8 @@ import ClinicalEvidence from './components/ClinicalEvidence'
 import AnimalSelector from './components/AnimalSelector'
 import AudioTestimonial from './components/AudioTestimonial'
 import StickyBottomCTA from './components/StickyBottomCTA'
+import OrderForm from './components/OrderForm'
+import { getStoreUrl } from './config/storeLinks'
 
 const Chatbot = lazy(() => import('./components/Chatbot'))
 const QrCode = lazy(() => import('./components/QrCode'))
@@ -38,24 +40,11 @@ const ParvogelLanding = () => {
     const LAST_TTL = 5 * 60 * 1000
     const FETCH_TIMEOUT = 30000
 
-    // 채널별 할인율 (소비자 정가 대비). 실제 공급 정책에 맞게 조정하세요.
-    const PRICING = {
-        hospitalDiscount: 45,
-        wholesaleTiers: [
-            { min: 10, max: 49, discount: 50 },
-            { min: 50, max: 199, discount: 55 },
-            { min: 200, max: null, discount: null },
-        ],
-    }
-
     const genId = () =>
         (typeof crypto !== 'undefined' && crypto.randomUUID)
             ? crypto.randomUUID()
             : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
 
-    const siteUrl = typeof window !== 'undefined'
-        ? window.location.origin + window.location.pathname
-        : 'https://hongsoonil02-maker.github.io/parvogel/'
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
@@ -88,7 +77,7 @@ const ParvogelLanding = () => {
         if (i18n && i18n.language) {
             document.documentElement.lang = i18n.language;
         }
-    }, [i18n.language])
+    }, [i18n])
 
     // 언어 메뉴 외부 클릭 / ESC 시 닫기
     useEffect(() => {
@@ -108,6 +97,26 @@ const ParvogelLanding = () => {
             document.removeEventListener('keydown', handleKey)
         }
     }, [isLangOpen])
+
+    // 모달 열림 시 ESC 닫기 + 배경 스크롤 잠금 (접근성·모바일 UX)
+    useEffect(() => {
+        const modalOpen = isOrderModalOpen || Boolean(legalType)
+        if (!modalOpen) return
+        const handleKey = (e) => {
+            if (e.key === 'Escape') {
+                setIsOrderModalOpen(false)
+                setIsOrderComplete(false)
+                setLegalType(null)
+            }
+        }
+        document.addEventListener('keydown', handleKey)
+        const prevOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+        return () => {
+            document.removeEventListener('keydown', handleKey)
+            document.body.style.overflow = prevOverflow
+        }
+    }, [isOrderModalOpen, legalType])
 
     // Smooth scroll to section
     const scrollToSection = (sectionId) => {
@@ -300,30 +309,6 @@ const ParvogelLanding = () => {
         { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
     ]
 
-    const clinicalData = [
-        {
-            title: t('clinical.study1Title'),
-            subject: t('clinical.study1Subject'),
-            result: t('clinical.study1Result'),
-            detail: t('clinical.study1Detail'),
-            source: 'Korean J. Vet. Res. 2023'
-        },
-        {
-            title: t('clinical.study2Title'),
-            subject: t('clinical.study2Subject'),
-            result: t('clinical.study2Result'),
-            detail: t('clinical.study2Detail'),
-            source: 'J. Vet. Sci. 2024'
-        },
-        {
-            title: t('clinical.study3Title'),
-            subject: t('clinical.study3Subject'),
-            result: t('clinical.study3Result'),
-            detail: t('clinical.study3Detail'),
-            source: 'Korean J. Parasitol. 2023'
-        },
-    ]
-
     const testimonials = [
         {
             name: t('testimonials.t1Name'),
@@ -356,6 +341,8 @@ const ParvogelLanding = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 pb-24">
+            {/* 스크린리더용 본문 바로가기 (접근성) */}
+            <a href="#main-content" className="skip-link">{t('a11y.skipToContent', '본문 바로가기')}</a>
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -364,7 +351,7 @@ const ParvogelLanding = () => {
                 <nav className="section-container" aria-label="메인 네비게이션">
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
-                        <div className="flex items-center gap-2 sm:gap-3" onClick={() => scrollToSection('hero')}>
+                        <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter') scrollToSection('hero') }} onClick={() => scrollToSection('hero')}>
                             <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${primaryBg} shadow-lg`}>
                                 <span className="text-white font-extrabold text-2xl">P</span>
                             </div>
@@ -474,7 +461,7 @@ const ParvogelLanding = () => {
                                         {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
                                             <button
                                                 key={lang}
-                                                onClick={() => i18n.changeLanguage(lang)}
+                                                onClick={() => { i18n.changeLanguage(lang); setIsMobileMenuOpen(false); }}
                                                 className={`text-xs font-bold px-2 py-1 rounded-full transition-all ${i18n.language === lang
                                                     ? `${primaryBg} text-white shadow-sm`
                                                     : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
@@ -499,6 +486,7 @@ const ParvogelLanding = () => {
             </header>
 
             {/* Hero Section */}
+            <main id="main-content" tabIndex={-1}>
             <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0">
@@ -622,6 +610,7 @@ const ParvogelLanding = () => {
                                         loop
                                         muted
                                         playsInline
+                                        aria-label={t('a11y.productVideo', '파보겔 제품 소개 영상')}
                                         className="w-full h-full object-cover"
                                         src={`${import.meta.env.BASE_URL}assets/video.mp4`}
                                     />
@@ -635,22 +624,25 @@ const ParvogelLanding = () => {
                                 )}
                             </div>
                             {/* Thumbnail strip */}
-                            <div className="mt-4 flex justify-center gap-2 flex-wrap">
+                            <div className="mt-4 flex justify-center gap-2 flex-wrap" role="group" aria-label={t('a11y.productMedia', '제품 미디어 선택')}>
                                 {/* Video Thumbnail */}
-                                <div
+                                <button
+                                    type="button"
+                                    aria-label={t('a11y.playProductVideo', '제품 영상 재생')}
+                                    aria-pressed={activeMedia === 'video'}
                                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all bg-black flex items-center justify-center ${activeMedia === 'video'
                                         ? 'border-primary-500 opacity-100'
                                         : 'border-transparent opacity-60 hover:opacity-100'
                                         }`}
                                     onClick={() => setActiveMedia('video')}
                                 >
-                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline />
+                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline aria-hidden="true" tabIndex={-1} />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                                        <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                             <path d="M4.5 3a.5.5 0 00-.5.5v13a.5.5 0 00.757.429l11-6.5a.5.5 0 000-.858l-11-6.5A.5.5 0 004.5 3z" />
                                         </svg>
                                     </div>
-                                </div>
+                                </button>
                                 {/* Photo Thumbnails */}
                                 {[
                                     { src: `${import.meta.env.BASE_URL}assets/parvogel-1.jpg`, alt: '파보겔 정면' },
@@ -658,22 +650,25 @@ const ParvogelLanding = () => {
                                     { src: `${import.meta.env.BASE_URL}assets/parvogel-3.jpg`, alt: '파보겔 라벨' },
                                     { src: `${import.meta.env.BASE_URL}assets/parvogel-4.jpg`, alt: '파보겔 패키지' }
                                 ].map((img) => (
-                                    <img
+                                    <button
                                         key={img.src}
-                                        src={img.src}
-                                        alt={img.alt}
+                                        type="button"
+                                        aria-label={`${img.alt} ${t('a11y.viewImage', '크게 보기')}`}
+                                        aria-pressed={activeMedia === img.src}
                                         onClick={() => setActiveMedia(img.src)}
-                                        className={`w-20 h-20 rounded-xl object-cover cursor-pointer border-2 transition-all ${activeMedia === img.src
+                                        className={`w-20 h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all ${activeMedia === img.src
                                             ? 'border-primary-500 opacity-100'
                                             : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
-                                    />
+                                    >
+                                        <img src={img.src} alt="" className="w-full h-full object-cover" />
+                                    </button>
                                 ))}
                             </div>
                             {/* Floating badges */}
                             {/* Coupang Floating Badge */}
                             <div className="absolute -top-3 -right-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] animate-cute-float">
-                                <span className="text-xl">🚀</span>
+                                <span className="text-xl" aria-hidden="true">🚀</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-orange-500 uppercase tracking-wider">{t('about.coupang')}</span>
                                     <span className="text-xs font-black text-gray-800 mt-0.5">{t('about.rocket')}</span>
@@ -681,7 +676,7 @@ const ParvogelLanding = () => {
                             </div>
                             {/* Naver Floating Badge */}
                             <div className="absolute bottom-16 -left-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] animate-cute-float-alt">
-                                <span className="text-xl">🛍️</span>
+                                <span className="text-xl" aria-hidden="true">🛍️</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">{t('about.naver')}</span>
                                     <span className="text-xs font-black text-gray-800 mt-0.5">{t('about.shopping')}</span>
@@ -783,7 +778,7 @@ const ParvogelLanding = () => {
             </section>
 
             {/* Testimonials Section */}
-            <section id="testimonials" className="py-20 sm:py-28 lg:py-32 bg-white">
+            <section id="testimonials" className="py-20 sm:py-28 lg:py-32 bg-white" aria-label={t('testimonials.title')}>
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
@@ -914,258 +909,37 @@ const ParvogelLanding = () => {
                         </div>
 
                         <div className="card">
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* 신청 구분 */}
-                                <div>
-                                    <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
-                                    <div className="grid sm:grid-cols-3 gap-2">
-                                        {[
-                                            { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
-                                            { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
-                                            { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
-                                        ].map(opt => (
-                                            <button
-                                                key={opt.value}
-                                                type="button"
-                                                onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
-                                                className={`px-3 py-3 rounded-xl border-2 text-sm font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
-                                                    ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-sm'
-                                                    : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
-                                            >
-                                                <span className="text-lg">{opt.icon}</span>
-                                                <span className="break-keep">{opt.label}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* 채널별 가격 안내 */}
-                                {formData.requestType === 'hospital' && (
-                                    <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                                        💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
-                                    </div>
-                                )}
-                                {formData.requestType === 'wholesale' && (
-                                    <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                                        💡 {t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })}
-                                    </div>
-                                )}
-
-                                <div className="grid sm:grid-cols-2 gap-6">
-                                    <div>
-                                        <label htmlFor="hospitalName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {formData.requestType === 'hospital'
-                                                ? t('order.hospitalNameOnly')
-                                                : formData.requestType === 'wholesale'
-                                                    ? t('order.companyName')
-                                                    : t('order.hospitalName')} <span className="text-accent-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="hospitalName"
-                                            name="hospitalName"
-                                            value={formData.hospitalName}
-                                            onChange={handleInputChange}
-                                            placeholder={t('order.hospitalNamePh')}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="contactName" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {formData.requestType === 'hospital' ? t('order.vetName') : t('order.contactName')} <span className="text-accent-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="contactName"
-                                            name="contactName"
-                                            value={formData.contactName}
-                                            onChange={handleInputChange}
-                                            placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : t('order.contactNamePh')}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
-                                {formData.requestType === 'wholesale' && (
-                                    <div>
-                                        <label htmlFor="bizNumber" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.bizNumber')} <span className="text-accent-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="bizNumber"
-                                            name="bizNumber"
-                                            value={formData.bizNumber}
-                                            onChange={handleInputChange}
-                                            placeholder={t('order.bizNumberPh')}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                            required
-                                        />
-                                    </div>
-                                )}
-
-                                <div className="grid sm:grid-cols-2 gap-6">
-                                    <div>
-                                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.phone')} <span className="text-accent-500">*</span>
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleInputChange}
-                                            placeholder={t('order.phonePh')}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.email')}
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            placeholder={t('order.emailPh')}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="address" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        {formData.requestType === 'wholesale' ? t('order.region') : t('order.address')}
-                                    </label>
-                                    <textarea
-                                        id="address"
-                                        name="address"
-                                        value={formData.address}
-                                        onChange={handleInputChange}
-                                        rows={2}
-                                        placeholder={formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
-                                    />
-                                </div>
-
-                                {formData.requestType === 'wholesale' ? (
-                                    <div>
-                                        <label htmlFor="orderVolume" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            {t('order.orderVolume')}
-                                        </label>
-                                        <select
-                                            id="orderVolume"
-                                            name="orderVolume"
-                                            value={formData.orderVolume}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
-                                        >
-                                            <option value="">{t('order.selectVolume')}</option>
-                                            <option value="10-49">{t('order.volume1')}</option>
-                                            <option value="50-199">{t('order.volume2')}</option>
-                                            <option value="200+">{t('order.volume3')}</option>
-                                        </select>
-                                    </div>
-                                ) : (
-                                    <div className="grid sm:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="product" className="block text-sm font-semibold text-gray-700 mb-2">
-                                                {t('order.product')}
-                                            </label>
-                                            <select
-                                                id="product"
-                                                name="product"
-                                                value={formData.product}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
-                                            >
-                                                {products.map(p => (
-                                                    <option key={p.id} value={p.id}>
-                                                        {p.name} ({p.price}){p.id === 'parvogel-200ml' ? ` - ${t('products.recommended')}` : ''}
-                                                    </option>
-                                                ))}
-                                                <option value="consultation">{t('order.consult')}</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label htmlFor="quantity" className="block text-sm font-semibold text-gray-700 mb-2">
-                                                {formData.requestType === 'hospital' ? t('order.quantityMonthly') : t('order.quantity')}
-                                            </label>
-                                            <input
-                                                type="number"
-                                                id="quantity"
-                                                name="quantity"
-                                                value={formData.quantity}
-                                                onChange={handleInputChange}
-                                                min="1"
-                                                max="100"
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                            />
-                                        </div>
-                                    </div>
-                                )}
-
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        {t('order.message')}
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleInputChange}
-                                        rows={3}
-                                        placeholder={t('order.messagePh')}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
-                                    />
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all ${primaryBg} ${primaryHover} text-white ${primaryShadow} disabled:opacity-50 disabled:cursor-not-allowed`}
-                                >
-                                    {isSubmitting ? (
-                                        <span className="flex items-center justify-center gap-2">
-                                            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                                            </svg>
-                                            {t('order.submitting')}
-                                        </span>
-                                    ) : (
-                                        t('order.submit')
-                                    )}
-                                </button>
-
-                                <p className="text-center text-xs text-gray-400">
-                                    {t('order.privacyNote')}
-                                </p>
-                            </form>
+                            <OrderForm
+                                formData={formData}
+                                onChange={handleInputChange}
+                                setFormData={setFormData}
+                                onSubmit={handleSubmit}
+                                isSubmitting={isSubmitting}
+                                products={products}
+                                variant="section"
+                            />
                         </div>
 
                         {/* Online Store Links */}
                         <div className="mt-12 text-center">
                             <p className="text-gray-600 mb-4">{t('order.online')}</p>
                             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-                                <a href="https://coupang.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
+                                    <span className="absolute -top-2.5 -right-2.5 px-2 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-black rounded-full shadow">{t('store.comingSoon')}</span>
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg>
                                     <span className="font-semibold">{t('order.coupang')}</span>
                                 </a>
-                                <a href="https://shopping.naver.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
+                                    <span className="absolute -top-2.5 -right-2.5 px-2 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-black rounded-full shadow">{t('store.comingSoon')}</span>
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                     <span className="font-semibold">{t('order.naver')}</span>
                                 </a>
                             </div>
                             <div className="flex flex-wrap items-center justify-center gap-8">
                                 <Suspense fallback={<div className="w-[140px] h-[140px]" />}>
-                                    <QrCode value={`${siteUrl}#order`} size={140} label={t('order.coupangQr')} />
-                                    <QrCode value={`${siteUrl}#products`} size={140} label={t('order.naverQr')} />
+                                    {/* 입점 후 STORE_LINKS.productUrl을 등록하면 해당 URL QR로 자동 전환됩니다. */}
+                                    <QrCode value={getStoreUrl('coupang')} size={140} label={t('order.coupangQr')} />
+                                    <QrCode value={getStoreUrl('naver')} size={140} label={t('order.naverQr')} />
                                 </Suspense>
                             </div>
                         </div>
@@ -1178,6 +952,7 @@ const ParvogelLanding = () => {
                 <AnimalSelector />
                 <AudioTestimonial />
             </div>
+            </main>
 
             {/* Footer */}
             <footer className="bg-gray-900 text-gray-300 py-16">
@@ -1195,10 +970,10 @@ const ParvogelLanding = () => {
                                 {t('footer.desc')}
                             </p>
                             <div className="flex gap-4">
-                                <a href="https://coupang.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg>
                                 </a>
-                                <a href="https://shopping.naver.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                 </a>
                                 <a href="mailto:soonilhong@naver.com" className="text-gray-400 hover:text-white transition-colors">
@@ -1207,8 +982,8 @@ const ParvogelLanding = () => {
                             </div>
                             <div className="mt-6 flex gap-4">
                                 <Suspense fallback={<div className="w-[96px] h-[96px]" />}>
-                                    <QrCode value={`${siteUrl}#products`} size={96} label={t('footer.coupang')} />
-                                    <QrCode value={`${siteUrl}#order`} size={96} label={t('footer.naver')} />
+                                    <QrCode value={getStoreUrl('coupang')} size={96} label={t('footer.coupang')} />
+                                    <QrCode value={getStoreUrl('naver')} size={96} label={t('footer.naver')} />
                                 </Suspense>
                             </div>
                         </div>
@@ -1258,8 +1033,14 @@ const ParvogelLanding = () => {
             {/* Order Modal */}
             {
                 isOrderModalOpen && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-                        <div className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl animate-slide-up ${primaryBorder}`}>
+                    <div
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={t('order.modalTitle')}
+                        onClick={() => { setIsOrderModalOpen(false); setIsOrderComplete(false); }}
+                    >
+                        <div className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl animate-slide-up ${primaryBorder}`} onClick={e => e.stopPropagation()}>
                             {isOrderComplete ? (
                                 <div className="p-8 sm:p-12 text-center">
                                     <div className={`w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center ${primaryBgLight}`}>
@@ -1280,7 +1061,7 @@ const ParvogelLanding = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <form onSubmit={handleSubmit} className="p-6 sm:p-8">
+                                <div className="p-6 sm:p-8">
                                     <div className="flex items-center justify-between mb-6">
                                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{t('order.modalTitle')}</h3>
                                         <button
@@ -1294,236 +1075,16 @@ const ParvogelLanding = () => {
                                         </button>
                                     </div>
 
-                                    <div className="space-y-4">
-                                        {/* 신청 구분 */}
-                                        <div>
-                                            <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {[
-                                                    { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
-                                                    { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
-                                                    { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
-                                                ].map(opt => (
-                                                    <button
-                                                        key={opt.value}
-                                                        type="button"
-                                                        onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
-                                                        className={`px-2 py-3 rounded-xl border-2 text-xs font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
-                                                            ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-sm'
-                                                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
-                                                    >
-                                                        <span className="text-lg">{opt.icon}</span>
-                                                        <span className="break-keep">{opt.label}</span>
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {/* 채널별 가격 안내 */}
-                                        {formData.requestType === 'hospital' && (
-                                            <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                                                💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
-                                            </div>
-                                        )}
-                                        {formData.requestType === 'wholesale' && (
-                                            <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                                                💡 {t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })}
-                                            </div>
-                                        )}
-
-                                        <div className="grid sm:grid-cols-2 gap-4">
-                                            <div>
-                                                <label htmlFor="modal-hospitalName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {formData.requestType === 'hospital'
-                                                        ? t('order.hospitalNameOnly')
-                                                        : formData.requestType === 'wholesale'
-                                                            ? t('order.companyName')
-                                                            : t('order.hospitalName')} <span className="text-accent-500">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="modal-hospitalName"
-                                                    name="hospitalName"
-                                                    value={formData.hospitalName}
-                                                    onChange={handleInputChange}
-                                                    placeholder={t('order.hospitalNamePh')}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label htmlFor="modal-contactName" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {formData.requestType === 'hospital' ? t('order.vetName') : t('order.contactName')} <span className="text-accent-500">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="modal-contactName"
-                                                    name="contactName"
-                                                    value={formData.contactName}
-                                                    onChange={handleInputChange}
-                                                    placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : t('order.contactNamePh')}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-
-                                        {formData.requestType === 'wholesale' && (
-                                            <div>
-                                                <label htmlFor="modal-bizNumber" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.bizNumber')} <span className="text-accent-500">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="modal-bizNumber"
-                                                    name="bizNumber"
-                                                    value={formData.bizNumber}
-                                                    onChange={handleInputChange}
-                                                    placeholder={t('order.bizNumberPh')}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                    required
-                                                />
-                                            </div>
-                                        )}
-
-                                        <div className="grid sm:grid-cols-2 gap-4">
-                                            <div>
-                                                <label htmlFor="modal-phone" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.phone')} <span className="text-accent-500">*</span>
-                                                </label>
-                                                <input
-                                                    type="tel"
-                                                    id="modal-phone"
-                                                    name="phone"
-                                                    value={formData.phone}
-                                                    onChange={handleInputChange}
-                                                    placeholder={t('order.phonePh')}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                    required
-                                                />
-                                            </div>
-                                            <div>
-                                                <label htmlFor="modal-email" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.email')}
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    id="modal-email"
-                                                    name="email"
-                                                    value={formData.email}
-                                                    onChange={handleInputChange}
-                                                    placeholder={t('order.emailPh')}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="modal-address" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                {formData.requestType === 'wholesale' ? t('order.region') : t('order.address')}
-                                            </label>
-                                            <textarea
-                                                id="modal-address"
-                                                name="address"
-                                                value={formData.address}
-                                                onChange={handleInputChange}
-                                                rows={2}
-                                                placeholder={formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
-                                            />
-                                        </div>
-
-                                        {formData.requestType === 'wholesale' ? (
-                                            <div>
-                                                <label htmlFor="modal-orderVolume" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    {t('order.orderVolume')}
-                                                </label>
-                                                <select
-                                                    id="modal-orderVolume"
-                                                    name="orderVolume"
-                                                    value={formData.orderVolume}
-                                                    onChange={handleInputChange}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
-                                                >
-                                                    <option value="">{t('order.selectVolume')}</option>
-                                                    <option value="10-49">{t('order.volume1')}</option>
-                                                    <option value="50-199">{t('order.volume2')}</option>
-                                                    <option value="200+">{t('order.volume3')}</option>
-                                                </select>
-                                            </div>
-                                        ) : (
-                                            <div className="grid sm:grid-cols-2 gap-4">
-                                                <div>
-                                                    <label htmlFor="modal-product" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                        {t('order.product')}
-                                                    </label>
-                                                    <select
-                                                        id="modal-product"
-                                                        name="product"
-                                                        value={formData.product}
-                                                        onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white"
-                                                    >
-                                                        {products.map(p => (
-                                                            <option key={p.id} value={p.id}>
-                                                                {p.name} ({p.price}){p.id === 'parvogel-200ml' ? ` - ${t('products.recommended')}` : ''}
-                                                            </option>
-                                                        ))}
-                                                        <option value="consultation">{t('order.consult')}</option>
-                                                    </select>
-                                                </div>
-                                                <div>
-                                                    <label htmlFor="modal-quantity" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                        {formData.requestType === 'hospital' ? t('order.quantityMonthly') : t('order.quantity')}
-                                                    </label>
-                                                    <input
-                                                        type="number"
-                                                        id="modal-quantity"
-                                                        name="quantity"
-                                                        value={formData.quantity}
-                                                        onChange={handleInputChange}
-                                                        min="1"
-                                                        max="100"
-                                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                                                    />
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        <div>
-                                            <label htmlFor="modal-message" className="block text-sm font-semibold text-gray-700 mb-1">
-                                                {t('order.message')}
-                                            </label>
-                                            <textarea
-                                                id="modal-message"
-                                                name="message"
-                                                value={formData.message}
-                                                onChange={handleInputChange}
-                                                rows={3}
-                                                placeholder={t('order.messagePh')}
-                                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
-                                            />
-                                        </div>
-
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all ${primaryBg} ${primaryHover} text-white ${primaryShadow} disabled:opacity-50 disabled:cursor-not-allowed`}
-                                        >
-                                            {isSubmitting ? (
-                                                <span className="flex items-center justify-center gap-2">
-                                                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                                                    </svg>
-                                                    {t('order.submitting')}
-                                                </span>
-                                            ) : (
-                                                t('order.submit')
-                                            )}
-                                        </button>
-                                    </div>
-                                </form>
+                                    <OrderForm
+                                        formData={formData}
+                                        onChange={handleInputChange}
+                                        setFormData={setFormData}
+                                        onSubmit={handleSubmit}
+                                        isSubmitting={isSubmitting}
+                                        products={products}
+                                        variant="modal"
+                                    />
+                                </div>
                             )}
                         </div>
                     </div>
@@ -1533,7 +1094,7 @@ const ParvogelLanding = () => {
             {/* Legal Modal (Privacy / Terms / Business) */}
             {
                 legalType && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={() => setLegalType(null)}>
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" onClick={() => setLegalType(null)} role="dialog" aria-modal="true" aria-label={legalType === 'privacy' ? t('legal.privacyTitle') : legalType === 'terms' ? t('legal.termsTitle') : t('legal.businessTitle')}>
                         <div className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl animate-slide-up ${primaryBorder}`} onClick={e => e.stopPropagation()}>
                             <div className="p-6 sm:p-8">
                                 <div className="flex items-center justify-between mb-6">

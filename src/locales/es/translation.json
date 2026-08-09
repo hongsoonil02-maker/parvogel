@@ -96,7 +96,7 @@
         "t1Result": "98.5% adsorbido y eliminado",
         "t2Item": "Inhibición de replicación viral",
         "t2Cond": "Combinado con Bacillus subtilis",
-        "t2Result": "Inhibición significativa (sinergia antiviral)",
+        "t2Result": "Ayuda a inhibir la replicación viral (sinergia antiviral)",
         "t3Item": "Tamponamiento de pH gástrico",
         "t3Cond": "pH 2.0 (ácido estomacal)",
         "t3Result": "Mantiene pH 4.5~5.5 (tampón)",

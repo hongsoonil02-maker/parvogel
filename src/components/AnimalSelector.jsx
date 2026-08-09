@@ -92,7 +92,7 @@ export default function AnimalSelector() {
       </div>
 
       {/* 디테일 카드 */}
-      <div className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div role="tabpanel" aria-label={selectedAnimalName} className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-3 text-left w-full md:w-2/3">
           <div className="inline-block px-3 py-1 bg-blue-900/60 text-blue-300 text-xs font-bold rounded-lg border border-blue-500/30">
             💡 {selectedAnimalHighlight}
