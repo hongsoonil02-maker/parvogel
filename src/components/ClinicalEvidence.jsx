@@ -96,7 +96,7 @@ const ClinicalEvidence = () => {
                 <span>{t('clinical.card2_title', '임상 효능 시험 데이터')}</span>
               </h3>
               <p className="text-slate-600 mb-6 leading-relaxed text-sm md:text-base font-normal">
-                {t('clinical.card2_desc', '경상국립대 수의과대학 연구진의 학술적 근거를 바탕으로 한 시험 결과입니다.')}
+                {t('clinical.card2_desc', '경상국립대 수의과대학 이후장 교수님 연구진의 학술적 근거를 바탕으로 한 시험 결과입니다.')}
               </p>
               <div className="space-y-3.5">
                 <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 hover:border-primary-300 transition-colors shadow-sm">
@@ -251,7 +251,7 @@ const ClinicalEvidence = () => {
             </div>
             
             <div className="mt-5 bg-amber-50/90 border border-amber-200 rounded-2xl p-4 shadow-sm">
-              <p className="text-xs font-medium text-amber-900 leading-relaxed">📌 {t('clinical.card4_note', '파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 처방 기준을 철저히 검증하고 있습니다.')}</p>
+              <p className="text-xs font-medium text-amber-900 leading-relaxed">📌 {t('clinical.card4_note', '파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 급여 기준을 철저히 검증하고 있습니다.')}</p>
             </div>
           </div>
 
