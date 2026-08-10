@@ -950,7 +950,14 @@ const ParvogelLanding = () => {
             {/* 축종별 맞춤 효능 탭 & 오디오 리포트 위젯 */}
             <div className="section-container">
                 <AnimalSelector />
-                <AudioTestimonial />
+                <AudioTestimonial
+                    tKey="audioTestimonial"
+                    audioUrl={`${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`}
+                />
+                <AudioTestimonial
+                    tKey="audioTestimonialDongjin"
+                    audioUrl={`${import.meta.env.BASE_URL}assets/jeongseongdae-call.m4a`}
+                />
             </div>
             </main>
 

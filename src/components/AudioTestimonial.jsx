@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const AUDIO_URL = `${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`;
-
 function formatTime(seconds) {
   if (!Number.isFinite(seconds)) return '0:00';
   const m = Math.floor(seconds / 60);
@@ -10,8 +8,9 @@ function formatTime(seconds) {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
-export default function AudioTestimonial() {
+export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }) {
   const { t } = useTranslation();
+  const T = (key, fallback) => t(`${tKey}.${key}`, fallback);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -67,20 +66,20 @@ export default function AudioTestimonial() {
 
   return (
     <section
-      aria-label={t('audioTestimonial.title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
+      aria-label={T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
       className="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 my-10 border border-blue-400/30 shadow-xl"
     >
-      <audio ref={audioRef} src={AUDIO_URL} preload="metadata" />
+      <audio ref={audioRef} src={audioUrl} preload="metadata" />
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2 text-center md:text-left">
           <span className="px-3 py-1 bg-indigo-500/30 text-indigo-300 text-xs font-bold rounded-full border border-indigo-400/30">
-            {t('audioTestimonial.tag', '🎙️ 현장 수의사 임상 녹음 인터뷰')}
+            {T('tag', '🎙️ 현장 수의사 임상 녹음 인터뷰')}
           </span>
           <h4 className="text-xl sm:text-2xl font-black text-white">
-            {t('audioTestimonial.title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
+            {T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
           </h4>
           <p className="text-xs sm:text-sm text-slate-300">
-            {t('audioTestimonial.sub', '사랑동물병원 김동준 원장님 현장 반응 통화 녹음')}
+            {T('sub', '사랑동물병원 김동준 원장님 현장 반응 통화 녹음')}
           </p>
         </div>
 
@@ -98,10 +97,10 @@ export default function AudioTestimonial() {
             </button>
             <div className="flex-1 min-w-0">
               <div className="text-xs font-extrabold text-white truncate">
-                {t('audioTestimonial.docName', '김동준 원장 (사랑동물병원)')}
+                {T('docName', '김동준 원장 (사랑동물병원)')}
               </div>
               <div className="text-[10px] text-blue-300">
-                {t('audioTestimonial.docSub', '파보겔(로타겔) 임상 오디오 리포트')}
+                {T('docSub', '파보겔(로타겔) 임상 오디오 리포트')}
               </div>
               <div
                 role="slider"
@@ -131,7 +130,7 @@ export default function AudioTestimonial() {
             </div>
           </div>
           <p className="text-[11px] text-slate-400 italic">
-            {t('audioTestimonial.quote', '"파보겔 투여 후 설사 송아지의 장 점막 보호 및 기력 회복 속도가 매우 뛰어납니다."')}
+            {T('quote', '"파보겔 투여 후 설사 송아지의 장 점막 보호 및 기력 회복 속도가 매우 뛰어납니다."')}
           </p>
         </div>
       </div>
