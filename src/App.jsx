@@ -165,7 +165,7 @@ const ParvogelLanding = () => {
 
         try {
             const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
-                || 'https://script.google.com/macros/s/AKfycbxPOv3p1C6ucmLW_vgrI7c334FenaCbK4ogdSOHO1Rk6HS5794I2oIbV9kp2-Rh9UDIoA/exec'
+                || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec'
 
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')
