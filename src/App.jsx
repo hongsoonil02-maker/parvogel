@@ -183,26 +183,46 @@ const ParvogelLanding = () => {
             params.append('message', formData.message)
             params.append('timestamp', new Date().toISOString())
 
-            const response = await fetch(scriptURL, {
-                method: 'POST',
-                body: params,
-                signal: controller.signal,
-            })
-
             let json = null
-            try {
-                json = await response.json()
-            } catch (err) { /* ignore */ }
+            let isSuccess = false
 
-            if (!response.ok) {
-                alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
-                return
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: params,
+                    signal: controller.signal,
+                })
+                if (response.ok || response.type === 'opaque') {
+                    isSuccess = true
+                    try {
+                        json = await response.json()
+                    } catch (err) { /* ignore json parse */ }
+                }
+            } catch (fetchErr) {
+                if (fetchErr.name === 'AbortError') throw fetchErr;
+                // CORS redirect fallback to no-cors mode
+                try {
+                    await fetch(scriptURL, {
+                        method: 'POST',
+                        body: params,
+                        mode: 'no-cors',
+                        signal: controller.signal,
+                    })
+                    isSuccess = true
+                } catch (fallbackErr) {
+                    console.error('Fallback submit error:', fallbackErr)
+                }
             }
+
             if (json && json.status === 'duplicate') {
                 alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
                 return
             }
             if (json && json.status === 'error') {
+                alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
+                return
+            }
+            if (!isSuccess && (!json || json.status !== 'success')) {
                 alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
                 return
             }
