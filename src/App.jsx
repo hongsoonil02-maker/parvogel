@@ -351,6 +351,13 @@ const ParvogelLanding = () => {
             content: t('testimonials.t3Content'),
             rating: 5,
         },
+        {
+            name: t('testimonials.t4Name'),
+            clinic: t('testimonials.t4Clinic'),
+            role: t('testimonials.t4Role'),
+            content: t('testimonials.t4Content'),
+            rating: 5,
+        },
     ]
 
     const products = [
