@@ -18,7 +18,7 @@
         "cta2": "Voir les données cliniques",
         "trust1": "Supplément alimentaire enregistré",
         "trust2": "Installation certifiée HACCP",
-        "trust3": "24 mois à température ambiante"
+        "trust3": "18 mois à température ambiante"
     },
     "about": {
         "badge": "Qu'est-ce que Parvogel ?",
@@ -32,7 +32,7 @@
         "dosage": "Posologie",
         "dosageVal": "10ml par 10kg de poids, deux fois par jour",
         "storage": "Stockage",
-        "storageVal": "Température ambiante 1~30℃, 24 mois",
+        "storageVal": "Température ambiante 1~30℃, 18 mois",
         "coupang": "Coupang",
         "rocket": "Livraison rocket",
         "naver": "Naver",
@@ -51,7 +51,7 @@
         "f4Title": "Applicable à tout le bétail",
         "f4Desc": "Usage commun pour tous les nouveau-nés : veaux, porcelets, chevreaux, agneaux, poulains",
         "f5Title": "Stockage à température ambiante",
-        "f5Desc": "Sans réfrigération, 24 mois à température ambiante optimal pour ferme, pharmacie et distribution en ligne",
+        "f5Desc": "Sans réfrigération, 18 mois à température ambiante optimal pour ferme, pharmacie et distribution en ligne",
         "f6Title": "Plusieurs formats d'emballage",
         "f6Desc": "100ml (individuel), 200ml (moyen), 500ml (ferme) - fourniture personnalisée selon l'usage"
     },

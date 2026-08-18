@@ -22,7 +22,7 @@
         "cta2": "View Clinical Data",
         "trust1": "Registered Feed Supplement",
         "trust2": "HACCP Certified Facility",
-        "trust3": "24-month Room Temperature Storage"
+        "trust3": "18-month Room Temperature Storage"
     },
     "about": {
         "badge": "What is Parvogel?",
@@ -36,7 +36,7 @@
         "dosage": "Dosage",
         "dosageVal": "10ml per 10kg body weight, twice daily",
         "storage": "Storage",
-        "storageVal": "Room temperature 1~30℃, 24 months",
+        "storageVal": "Room temperature 1~30℃, 18 months",
         "coupang": "Coupang",
         "rocket": "Rocket Delivery",
         "naver": "Naver",
@@ -55,7 +55,7 @@
         "f4Title": "Applicable to All Livestock",
         "f4Desc": "Common use for all livestock newborns: calves, piglets, kids, lambs, foals",
         "f5Title": "Room Temperature Storage",
-        "f5Desc": "No refrigeration needed, 24-month room temperature storage optimal for farm, pharmacy, and online distribution",
+        "f5Desc": "No refrigeration needed, 18-month room temperature storage optimal for farm, pharmacy, and online distribution",
         "f6Title": "Electrolyte Action",
         "f6Desc": "Maintains electrolyte balance to relieve abdominal pain caused by diarrhea"
     },

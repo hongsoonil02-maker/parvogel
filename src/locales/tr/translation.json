@@ -18,7 +18,7 @@
         "cta2": "Klinik verileri gör",
         "trust1": "Kayıtlı yem takviyesi",
         "trust2": "HACCP sertifikalı tesis",
-        "trust3": "Oda sıcaklığında 24 ay"
+        "trust3": "Oda sıcaklığında 18 ay"
     },
     "about": {
         "badge": "Parvogel nedir?",
@@ -32,7 +32,7 @@
         "dosage": "Dozaj",
         "dosageVal": "10kg ağırlık başına 10ml, günde 2 kez",
         "storage": "Saklama",
-        "storageVal": "Oda sıcaklığı 1~30℃, 24 ay",
+        "storageVal": "Oda sıcaklığı 1~30℃, 18 ay",
         "coupang": "Coupang",
         "rocket": "Roket teslimat",
         "naver": "Naver",
@@ -51,7 +51,7 @@
         "f4Title": "Tüm hayvanlara uygun",
         "f4Desc": "Tüm yavrular için ortak kullanım: buzağı, domuz yavrusu, oğlak, kuzu, tay",
         "f5Title": "Oda sıcaklığında saklama",
-        "f5Desc": "Soğutma gerektirmez, 24 ay oda sıcaklığı çiftlik, eczane ve online dağıtım için ideal",
+        "f5Desc": "Soğutma gerektirmez, 18 ay oda sıcaklığı çiftlik, eczane ve online dağıtım için ideal",
         "f6Title": "Çeşitli ambalaj boyutları",
         "f6Desc": "100ml (tekil), 200ml (orta), 500ml (çiftlik) - amaca göre tedarik"
     },

@@ -18,7 +18,7 @@
         "cta2": "Klinische Daten ansehen",
         "trust1": "Registriertes Futterergänzungsmittel",
         "trust2": "HACCP-zertifizierte Anlage",
-        "trust3": "24 Monate bei Raumtemperatur"
+        "trust3": "18 Monate bei Raumtemperatur"
     },
     "about": {
         "badge": "Was ist Parvogel?",
@@ -32,7 +32,7 @@
         "dosage": "Dosierung",
         "dosageVal": "10ml pro 10kg Körpergewicht, zweimal täglich",
         "storage": "Lagerung",
-        "storageVal": "Raumtemperatur 1~30℃, 24 Monate",
+        "storageVal": "Raumtemperatur 1~30℃, 18 Monate",
         "coupang": "Coupang",
         "rocket": "Rocket-Lieferung",
         "naver": "Naver",
@@ -51,7 +51,7 @@
         "f4Title": "Für alle Nutztiere",
         "f4Desc": "Gemeinsame Anwendung für alle Neugeborenen: Kälber, Ferkel, Ziegenlämmer, Lämmer, Fohlen",
         "f5Title": "Raumtemperatur-Lagerung",
-        "f5Desc": "Keine Kühlung nötig, 24 Monate bei Raumtemperatur ideal für Hof, Apotheke und Online-Vertrieb",
+        "f5Desc": "Keine Kühlung nötig, 18 Monate bei Raumtemperatur ideal für Hof, Apotheke und Online-Vertrieb",
         "f6Title": "Verschiedene Gebinde",
         "f6Desc": "100ml (einzeln), 200ml (mittel), 500ml (Hof) - bedarfsgerechte Lieferung"
     },

@@ -18,7 +18,7 @@
         "cta2": "Ver dados clínicos",
         "trust1": "Suplemento alimentar registrado",
         "trust2": "Instalação certificada HACCP",
-        "trust3": "24 meses em temperatura ambiente"
+        "trust3": "18 meses em temperatura ambiente"
     },
     "about": {
         "badge": "O que é Parvogel?",
@@ -32,7 +32,7 @@
         "dosage": "Dosagem",
         "dosageVal": "10ml por 10kg de peso, duas vezes ao dia",
         "storage": "Armazenamento",
-        "storageVal": "Temperatura ambiente 1~30℃, 24 meses",
+        "storageVal": "Temperatura ambiente 1~30℃, 18 meses",
         "coupang": "Coupang",
         "rocket": "Entrega foguete",
         "naver": "Naver",
@@ -51,7 +51,7 @@
         "f4Title": "Aplicável a todo o gado",
         "f4Desc": "Uso comum para todos os recém-nascidos: bezerros, leitões, cabritos, cordeiros, potros",
         "f5Title": "Armazenamento em temperatura ambiente",
-        "f5Desc": "Sem refrigeração, 24 meses em temperatura ambiente ideal para fazenda, farmácia e distribuição online",
+        "f5Desc": "Sem refrigeração, 18 meses em temperatura ambiente ideal para fazenda, farmácia e distribuição online",
         "f6Title": "Vários tamanhos de embalagem",
         "f6Desc": "100ml (individual), 200ml (médio), 500ml (fazenda) - fornecimento personalizado"
     },

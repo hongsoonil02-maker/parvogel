@@ -18,7 +18,7 @@
         "cta2": "Xem dữ liệu lâm sàng",
         "trust1": "Thực phẩm bổ trợ đã đăng ký",
         "trust2": "Cơ sở đạt chứng nhận HACCP",
-        "trust3": "Bảo quản nhiệt độ thường 24 tháng"
+        "trust3": "Bảo quản nhiệt độ thường 18 tháng"
     },
     "about": {
         "badge": "Parvogel là gì?",
@@ -32,7 +32,7 @@
         "dosage": "Liều dùng",
         "dosageVal": "10ml cho 10kg cân nặng, ngày 2 lần",
         "storage": "Bảo quản",
-        "storageVal": "Nhiệt độ phòng 1~30℃, 24 tháng",
+        "storageVal": "Nhiệt độ phòng 1~30℃, 18 tháng",
         "coupang": "Coupang",
         "rocket": "Giao rocket",
         "naver": "Naver",
@@ -51,7 +51,7 @@
         "f4Title": "Dùng cho mọi gia súc",
         "f4Desc": "Dùng chung cho mọi vật nuôi sơ sinh: bê, lợn con, dê con, cừu con, ngựa con",
         "f5Title": "Bảo quản nhiệt độ thường",
-        "f5Desc": "Không cần lạnh, 24 tháng nhiệt độ thường tối ưu cho trang trại, nhà thuốc và phân phối online",
+        "f5Desc": "Không cần lạnh, 18 tháng nhiệt độ thường tối ưu cho trang trại, nhà thuốc và phân phối online",
         "f6Title": "Nhiều quy cách đóng gói",
         "f6Desc": "100ml (cá nhân), 200ml (trung bình), 500ml (trang trại) - cung cấp theo nhu cầu"
     },
