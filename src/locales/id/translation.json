@@ -7,7 +7,11 @@
         "experts": "Ulasan ahli",
         "target": "Hewan target",
         "testimonials": "Testimoni",
-        "order": "Pesan"
+        "order": "Pesan",
+        "brandName": "Parvogel",
+        "selectLanguage": "Pilih bahasa",
+        "closeMenu": "Tutup menu",
+        "openMenu": "Buka menu"
     },
     "hero": {
         "badge": "Klinik Hewan · Peternakan · Solusi Perawatan Saluran Pencernaan Semua Hewan",
@@ -18,7 +22,7 @@
         "cta2": "Lihat data klinis",
         "trust1": "Suplemen pakan terdaftar",
         "trust2": "Fasilitas bersertifikat HACCP",
-        "trust3": "24 bulan suhu ruang"
+        "trust3": "18 bulan suhu ruang"
     },
     "about": {
         "badge": "Apa itu Parvogel?",
@@ -32,11 +36,14 @@
         "dosage": "Dosis",
         "dosageVal": "✅ Dosis yang Disarankan (1 pompa = sekitar 1ml = sekitar 1g): Berdasarkan 5kg\nPencegahan & Rutinitas (Tidak diare): 1-2 kali sehari, 1-2 tetes\nPerawatan Intensif (Ada diare): 1-2 tetes setiap 2 jam",
         "storage": "Penyimpanan",
-        "storageVal": "Suhu ruang 1~30℃, 24 bulan",
+        "storageVal": "Suhu ruang 1~30℃, 18 bulan",
         "coupang": "Coupang",
         "rocket": "Kirim roket",
         "naver": "Naver",
-        "shopping": "Belanja"
+        "shopping": "Belanja",
+        "trust1": "Suplemen terdaftar sebagai bahan pakan",
+        "trust2": "Diproduksi di fasilitas bersertifikat HACCP",
+        "trust3": "Penyimpanan suhu ruang 18 bulan"
     },
     "features": {
         "badge": "Fitur inti",
@@ -51,7 +58,7 @@
         "f4Title": "Untuk semua ternak",
         "f4Desc": "Pemakaian bersama semua neonatus: anak sapi, babi, kambing, domba, kuda",
         "f5Title": "Simpan suhu ruang",
-        "f5Desc": "Tanpa pendingin, 24 bulan suhu ruang ideal untuk peternakan, apotek, dan online",
+        "f5Desc": "Tanpa pendingin, 18 bulan suhu ruang ideal untuk peternakan, apotek, dan online",
         "f6Title": "Berbagai kemasan",
         "f6Desc": "100ml (individu), 200ml (sedang), 500ml (peternakan) - pasokan sesuai kebutuhan"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Melindungi usus dari toksin pakan",
+        "t2Note": "Mekanisme meredakan nyeri perut dan menekan muntah",
+        "t3Note": "Memperpendek masa perawatan dan efisiensi pemulihan",
+        "t4Note": "Efek sinergis antivirus terverifikasi"
     },
     "experts": {
         "badge": "Validasi pakar puncak",
@@ -185,16 +196,19 @@
         "e2Name": "Direktur Seong-dae Jung",
         "e2Role": "Direktur Klinik Hewan Dongjin · Spesialis klinis",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Umpan balik klinis peternakan Hanwoo",
-        "farmSub": "Dr. Seong-dae Jung, Klinik Dongjin, hasil Parvogel di peternakan Hanwoo",
-        "f1": "Reda nyeri perut & cegah muntah — lega kolik instan, kepuasan tertinggi",
-        "f2": "Palatabilitas sangat baik — anak sapi makan tanpa tolak, stres minimal",
-        "f3": "Atur pH lambung — stabilkan lingkungan, pemulihan lebih cepat",
-        "f4": "Niat beli ulang tinggi — kepercayaan kuat peternak yang merasa membaik",
+        "farmTitle": "Umpan Balik Klinis Peternakan Hanwoo",
+        "farmSub": "Dr. Sung-Dae Jung, RS Hewan Dongjin,\nhasil penerapan Parvogel di peternakan Hanwoo",
+        "f1": "Meredakan nyeri perut dan menekan muntah — peredaan nyeri seketika, kepuasan peternak tertinggi",
+        "f2": "Palatabilitas unggul — anak sapi baru lahir meminumnya tanpa menolak, meminimalkan stres pemberian",
+        "f3": "Pengaturan pH lambung — lebih dari sekadar antidiare, menstabilkan lingkungan lambung untuk mempercepat pemulihan",
+        "f4": "Niat beli ulang tinggi — kepercayaan kuat dari peternakan yang merasakan perbaikan gejala di lapangan",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "Prof. Hwa-Young Yoon",
+        "e4Role": "Mantan Profesor Ilmu Penyakit Dalam, Fakultas Kedokteran Hewan Universitas Nasional Seoul · Mantan Kepala Penyakit Dalam RS Hewan SNU",
+        "e4Quote": "“Sepertinya juga baik untuk manusia…”"
     },
     "target": {
         "badge": "Spesies ternak target",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 hari",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Ternak lain (rusa, kelinci, unta burung) bisa dengan bimbingan dokter hewan",
-        "cta": "Dapatkan konsultasi peternakan Anda"
+        "cta": "Dapatkan konsultasi peternakan Anda",
+        "recommendedAge": "Usia yang direkomendasikan",
+        "mainPathogens": "Patogen utama"
     },
     "products": {
         "badge": "Line produk",
@@ -237,7 +253,12 @@
         "bulk": "Untuk pembelian banyak (10+ botol) dan grosir, hubungi terpisah.",
         "bulkCta": "Konsultasi grosir·jumlah besar",
         "channelNote": "Rumah sakit hewan dan grosir menerima harga pasokan berbeda dari harga konsumen.",
-        "channelCta": "Tanya harga rumah sakit/grosir"
+        "channelCta": "Tanya harga rumah sakit/grosir",
+        "popular": "Populer",
+        "best": "Terlaris",
+        "largeVolume": "Volume besar",
+        "vatShippingIncluded": "Termasuk PPN · Termasuk ongkir",
+        "bottle": "botol"
     },
     "testimonials": {
         "badge": "Suara lapangan",
@@ -317,7 +338,8 @@
         "errorServer": "Terjadi kesalahan server saat mengirim pesanan. Silakan coba lagi nanti.",
         "duplicateError": "Pesanan ini sudah dikirim. Tim kami akan menghubungi Anda segera.",
         "networkError": "Pesanan Anda tidak terkirim. Periksa jaringan lalu coba lagi.",
-        "timeoutError": "Permintaan pesanan kedaluwarsa. Silakan coba lagi nanti."
+        "timeoutError": "Permintaan pesanan kedaluwarsa. Silakan coba lagi nanti.",
+        "requiredFieldsAlert": "Nama rumah sakit, nama kontak, dan nomor telepon wajib diisi."
     },
     "footer": {
         "desc": "Standar baru perawatan diare neonatal semua ternak. Melindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Hak cipta dilindungi.",
         "privacy": "Kebijakan privasi",
         "terms": "Syarat layanan",
-        "business": "Info bisnis"
+        "business": "Info bisnis",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "Konsultasi Dokter Hewan AI",
@@ -346,7 +370,9 @@
         "greeting": "Halo! Saya dokter hewan AI ahli Parvogel. Tanya tentang diare neonatal.",
         "placeholder": "Tanya apa saja...",
         "send": "Kirim",
-        "error": "Maaf, terjadi kesalahan komunikasi. Coba lagi nanti."
+        "error": "Maaf, terjadi kesalahan komunikasi. Coba lagi nanti.",
+        "close": "Tutup chat",
+        "messages": "Pesan konsultasi"
     },
     "stickyCta": {
         "title": "PARVOGEL Suplemen Perawatan Diare Hewan Baru Lahir",
@@ -435,5 +461,15 @@
         "termsBody": "Ketentuan ini mengatur hak dan kewajiban penggunaan layanan dan produk Parvogel. Permintaan sampel dan pembelian harus dilakukan di bawah bimbingan profesional dokter hewan.",
         "businessTitle": "Informasi Bisnis Perusahaan",
         "businessBody": "Nama Perusahaan: Korea Agro Co., Ltd. | No. Registrasi: 123-45-67890 | Perwakilan: Soon-il Hong | Alamat: Republik Korea"
+    },
+    "a11y": {
+        "skipToContent": "Lewati ke konten",
+        "productVideo": "Video pengenalan produk Parvogel",
+        "productMedia": "Pilih media produk",
+        "playProductVideo": "Putar video produk",
+        "viewImage": "Lihat lebih besar"
+    },
+    "store": {
+        "comingSoon": "Segera hadir"
     }
 }

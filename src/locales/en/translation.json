@@ -1,9 +1,9 @@
 {
     "nav": {
-        "brandName": "ParvoGel",
-        "selectLanguage": "Select Language",
-        "closeMenu": "Close Menu",
-        "openMenu": "Open Menu",
+        "brandName": "Parvogel",
+        "selectLanguage": "Select language",
+        "closeMenu": "Close menu",
+        "openMenu": "Open menu",
         "about": "About",
         "features": "Features",
         "clinical": "Clinical",
@@ -22,7 +22,7 @@
         "cta2": "View Clinical Data",
         "trust1": "Registered Feed Supplement",
         "trust2": "HACCP Certified Facility",
-        "trust3": "24-month Room Temperature Storage"
+        "trust3": "18-month Room Temperature Storage"
     },
     "about": {
         "badge": "What is Parvogel?",
@@ -36,11 +36,14 @@
         "dosage": "Dosage",
         "dosageVal": "✅ Recommended Dosage (1 pump = approx. 1ml = approx. 1g): Based on 5kg\nPrevention & Routine (No diarrhea): 1-2 times daily, 1-2 drops\nIntensive Care (Diarrhea present): 1-2 drops every 2 hours",
         "storage": "Storage",
-        "storageVal": "Room temperature 1~30℃, 24 months",
+        "storageVal": "Room temperature 1~30℃, 18 months",
         "coupang": "Coupang",
         "rocket": "Rocket Delivery",
         "naver": "Naver",
-        "shopping": "Shopping"
+        "shopping": "Shopping",
+        "trust1": "Feed Ingredient Registered Supplement",
+        "trust2": "Manufactured in HACCP-Certified Facility",
+        "trust3": "18-Month Room-Temperature Storage"
     },
     "features": {
         "badge": "Key Features",
@@ -55,7 +58,7 @@
         "f4Title": "Applicable to All Livestock",
         "f4Desc": "Common use for all livestock newborns: calves, piglets, kids, lambs, foals",
         "f5Title": "Room Temperature Storage",
-        "f5Desc": "No refrigeration needed, 24-month room temperature storage optimal for farm, pharmacy, and online distribution",
+        "f5Desc": "No refrigeration needed, 18-month room temperature storage optimal for farm, pharmacy, and online distribution",
         "f6Title": "Electrolyte Action",
         "f6Desc": "Maintains electrolyte balance to relieve abdominal pain caused by diarrhea"
     },
@@ -177,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Protects the gut from feed toxins",
+        "t2Note": "Mechanism for relieving abdominal pain and suppressing vomiting",
+        "t3Note": "Shorter hospitalization and faster recovery",
+        "t4Note": "Verified antiviral synergy effect"
     },
     "experts": {
         "badge": "Validation by Top Scholars",
@@ -192,10 +199,16 @@
         "e3Name": "Director Seong-dae Jung",
         "e3Role": "Dongjin Animal Hospital",
         "e3Quote": "Particle size, moisture absorption, specific surface area... It has all the data veterinarians look for.",
-        "e4Name": "Prof. Hwa-young Youn",
-        "e4Role": "Former Prof. of Internal Medicine, SNU College of Vet Medicine · Former Head of SNU Animal Hospital Internal Medicine",
-        "e4Quote": "I think this would be good for humans as well...",
-        "advisoryNote": "📌 Parvogel's research and advisory panel is composed of 6 or more veterinary experts, including graduates and faculty from Seoul National University College of Veterinary Medicine, to verify clinical data and product efficacy."
+        "e4Name": "Prof. Hwa-Young Yoon",
+        "e4Role": "Former Professor of Internal Medicine, Seoul National University College of Veterinary Medicine · Former Head of Internal Medicine, SNU Animal Hospital",
+        "e4Quote": "\"It seems like it would be good for humans too...\"",
+        "advisoryNote": "📌 Parvogel's research and advisory panel is composed of 6 or more veterinary experts, including graduates and faculty from Seoul National University College of Veterinary Medicine, to verify clinical data and product efficacy.",
+        "farmTitle": "Hanwoo Farm Clinical Feedback",
+        "farmSub": "Dr. Sung-Dae Jung of Dongjin Animal Hospital,\nParvogel application results on Hanwoo farms",
+        "f1": "Relief of abdominal pain and suppression of vomiting — immediate pain relief, top farm satisfaction",
+        "f2": "Excellent palatability — newborn calves take it without refusal, minimizing dosing stress",
+        "f3": "Gastric pH control — beyond a simple antidiarrheal, stabilizes the stomach environment to accelerate recovery",
+        "f4": "High repurchase intent — strong trust from farms that felt symptom improvement in the field"
     },
     "target": {
         "badge": "Target Livestock Species",
@@ -218,7 +231,7 @@
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Other livestock (deer, rabbits, ostriches, etc.) can also be applied under veterinary guidance",
         "cta": "Get Custom Consultation for Your Farm",
-        "recommendedAge": "Target Period",
+        "recommendedAge": "Recommended Age",
         "mainPathogens": "Main Pathogens"
     },
     "products": {
@@ -242,8 +255,8 @@
         "popular": "Popular",
         "best": "Best",
         "largeVolume": "Large Volume",
-        "vatShippingIncluded": "VAT & Shipping Included",
-        "bottle": "Bottle",
+        "vatShippingIncluded": "VAT included · Shipping included",
+        "bottle": "bottle",
         "channelNote": "Veterinary hospitals and wholesalers receive supply prices differentiated from the consumer list price.",
         "channelCta": "Inquire about hospital/wholesale pricing"
     },
@@ -301,7 +314,7 @@
         "naverQr": "Order on Naver",
         "hospitalNamePh": "e.g. Seoul Animal Hospital, Pharmacy",
         "contactNamePh": "e.g. John Doe",
-        "requiredFieldsAlert": "Hospital/Farm name, contact name, and phone number are required.",
+        "requiredFieldsAlert": "Hospital name, contact name, and phone number are required fields.",
         "requestType": "Request Type",
         "requestConsumer": "General Purchase",
         "requestHospital": "Veterinary Hospital",
@@ -347,7 +360,9 @@
         "copyright": "© 2025 Parvogel. All rights reserved.",
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
-        "business": "Business Info"
+        "business": "Business Info",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "AI Veterinarian Consultation",
@@ -355,7 +370,9 @@
         "greeting": "Hello! I'm Parvogel's professional AI veterinarian. Ask me anything about neonatal diarrhea.",
         "placeholder": "Ask anything...",
         "send": "Send",
-        "error": "Sorry, a communication error occurred. Please try again later."
+        "error": "Sorry, a communication error occurred. Please try again later.",
+        "close": "Close chat",
+        "messages": "Consultation messages"
     },
     "stickyCta": {
         "title": "PARVOGEL Neonatal Diarrhea Care Supplement",
@@ -444,5 +461,15 @@
         "termsBody": "These terms govern the rights and obligations for using Parvogel services and products. Sample requests and purchases should be made under the guidance of veterinary professionals.",
         "businessTitle": "Business Information",
         "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
+    },
+    "a11y": {
+        "skipToContent": "Skip to content",
+        "productVideo": "Parvogel product introduction video",
+        "productMedia": "Select product media",
+        "playProductVideo": "Play product video",
+        "viewImage": "View larger"
+    },
+    "store": {
+        "comingSoon": "Coming Soon"
     }
 }

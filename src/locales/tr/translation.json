@@ -7,7 +7,11 @@
         "experts": "Uzman incelemesi",
         "target": "Hedef hayvanlar",
         "testimonials": "Yorumlar",
-        "order": "Sipariş"
+        "order": "Sipariş",
+        "brandName": "Parvogel",
+        "selectLanguage": "Dil seçin",
+        "closeMenu": "Menüyü kapat",
+        "openMenu": "Menüyü aç"
     },
     "hero": {
         "badge": "Veteriner Klinikleri · Çiftlikler · Tüm Hayvanlar İçin Sindirim Sistemi Bakım Çözümü",
@@ -18,7 +22,7 @@
         "cta2": "Klinik verileri görüntüle",
         "trust1": "Kayıtlı yem takviyesi",
         "trust2": "HACCP sertifikalı tesis",
-        "trust3": "Oda sıcaklığında 24 ay"
+        "trust3": "Oda sıcaklığında 18 ay"
     },
     "about": {
         "badge": "Parvogel nedir?",
@@ -32,11 +36,14 @@
         "dosage": "Dozaj",
         "dosageVal": "✅ Önerilen Doz (1 pompa = yakl. 1ml = yakl. 1g): 5kg baz alınmıştır\nÖnleme ve Rutin (İshal yok): Günde 1-2 kez, 1-2 damla\nYoğun Bakım (İshal var): Her 2 saatte bir 1-2 damla",
         "storage": "Saklama",
-        "storageVal": "Oda sıcaklığı 1~30℃, 24 ay",
+        "storageVal": "Oda sıcaklığı 1~30℃, 18 ay",
         "coupang": "Coupang",
         "rocket": "Roket teslimat",
         "naver": "Naver",
-        "shopping": "Alışveriş"
+        "shopping": "Alışveriş",
+        "trust1": "Yem bileşeni olarak kayıtlı takviye",
+        "trust2": "HACCP sertifikalı tesiste üretilmiştir",
+        "trust3": "Oda sıcaklığında 18 ay saklama"
     },
     "features": {
         "badge": "Temel özellikler",
@@ -51,7 +58,7 @@
         "f4Title": "Tüm hayvanlara uygun",
         "f4Desc": "Tüm yavrular için ortak kullanım: buzağı, domuz yavrusu, oğlak, kuzu, tay",
         "f5Title": "Oda sıcaklığında saklama",
-        "f5Desc": "Soğutma gerektirmez, 24 ay oda sıcaklığı çiftlik, eczane ve online dağıtım için ideal",
+        "f5Desc": "Soğutma gerektirmez, 18 ay oda sıcaklığı çiftlik, eczane ve online dağıtım için ideal",
         "f6Title": "Çeşitli ambalaj boyutları",
         "f6Desc": "100ml (tekil), 200ml (orta), 500ml (çiftlik) - amaca göre tedarik"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Bağırsağı yem toksinlerinden korur",
+        "t2Note": "Karın ağrısını giderme ve kusmayı baskılama mekanizması",
+        "t3Note": "Yatış süresini kısaltma ve iyileşme verimliliği",
+        "t4Note": "Doğrulanmış antiviral sinerji etkisi"
     },
     "experts": {
         "badge": "Üst akademisyenlerce doğrulama",
@@ -185,16 +196,19 @@
         "e2Name": "Müdür Seong-dae Jung",
         "e2Role": "Dongjin Hayvan Hastanesi müdürü · Klinik uzman",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Hanwoo çiftlikleri klinik geri bildirimi",
-        "farmSub": "Dr. Seong-dae Jung, Dongjin Hayvan Hastanesi, Hanwoo çiftliklerinde Parvogel sonuçları",
-        "f1": "Karın ağrısı hafifletme ve kusma baskılama — anında kolik rahatlaması, en yüksek memnuniyet",
-        "f2": "Mükemmel palatabilite — buzağılar reddetmeden tüketir, minimum stres",
-        "f3": "Mide pH düzenleme — mide ortamını stabilize eder, iyileşmeyi hızlandırır",
-        "f4": "Yüksek yeniden satın alma niyeti — iyileşme hisseden çiftliklerin güçlü güveni",
+        "farmTitle": "Hanwoo Çiftliği Klinik Geri Bildirimi",
+        "farmSub": "Dongjin Hayvan Hastanesi Dr. Sung-Dae Jung,\nHanwoo çiftliklerinde Parvogel uygulama sonuçları",
+        "f1": "Karın ağrısını giderme ve kusmayı baskılama — anında ağrı rahatlaması, en yüksek çiftçi memnuniyeti",
+        "f2": "Mükemmel lezzet — yeni doğan buzağılar reddetmeden alır, dozaj stresini en aza indirir",
+        "f3": "Mide pH düzenlemesi — basit bir ishal önleyicinin ötesinde, mide ortamını stabilize ederek iyileşmeyi hızlandırır",
+        "f4": "Yüksek yeniden satın alma niyeti — sahada semptom iyileşmesini hisseden çiftliklerin güçlü güveni",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "Prof. Hwa-Young Yoon",
+        "e4Role": "Seul Ulusal Üniversitesi Veteriner Fakültesi eski İç Hastalıkları Profesörü · SNU Hayvan Hastanesi eski İç Hastalıkları Şefi",
+        "e4Quote": "“İnsanlar için de iyi olacak gibi görünüyor…”"
     },
     "target": {
         "badge": "Hedef hayvan türleri",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 gün",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Diğer hayvanlar (geyik, tavşan, devekuşu vb.) veteriner gözetiminde uygulanabilir",
-        "cta": "Çiftliğinize özel danışma alın"
+        "cta": "Çiftliğinize özel danışma alın",
+        "recommendedAge": "Önerilen yaş",
+        "mainPathogens": "Ana patojenler"
     },
     "products": {
         "badge": "Ürün yelpazesi",
@@ -237,7 +253,12 @@
         "bulk": "Toplu alımlar (10+ şişe) ve toptan için ayrı danışınız.",
         "bulkCta": "Toptan·büyük hacim danışma",
         "channelNote": "Veteriner hastaneleri ve toptancılar, perakende tüketici fiyatından farklı tedarik fiyatları alır.",
-        "channelCta": "Hastane/toptan fiyat sor"
+        "channelCta": "Hastane/toptan fiyat sor",
+        "popular": "Popüler",
+        "best": "En çok satan",
+        "largeVolume": "Büyük hacim",
+        "vatShippingIncluded": "KDV dahil · Kargo dahil",
+        "bottle": "şişe"
     },
     "testimonials": {
         "badge": "Sahadan sesler",
@@ -317,7 +338,8 @@
         "errorServer": "Siparişiniz gönderilirken sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
         "duplicateError": "Bu sipariş zaten gönderildi. Ekibimiz kısa süre içinde sizinle iletişime geçecek.",
         "networkError": "Siparişiniz başarıyla gönderilmedi. Lütfen ağınızı kontrol edip tekrar deneyin.",
-        "timeoutError": "Sipariş isteği zaman aşımına uğradı. Lütfen daha sonra tekrar deneyin."
+        "timeoutError": "Sipariş isteği zaman aşımına uğradı. Lütfen daha sonra tekrar deneyin.",
+        "requiredFieldsAlert": "Hastane adı, yetkili adı ve telefon numarası zorunlu alanlardır."
     },
     "footer": {
         "desc": "Tüm hayvanların neonatal ishal bakımında yeni standart. Ultra ince montmorillonit ile hayatta kalmayı koruyun.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Tüm hakları saklıdır.",
         "privacy": "Gizlilik politikası",
         "terms": "Hizmet şartları",
-        "business": "Şirket bilgisi"
+        "business": "Şirket bilgisi",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "AI Veteriner Danışmanlığı",
@@ -346,7 +370,9 @@
         "greeting": "Merhaba! Ben Parvogel uzmanı AI veteriner. Neonatal ishal hakkında sorun.",
         "placeholder": "Bir şey sorun...",
         "send": "Gönder",
-        "error": "Üzgünüz, iletişim hatası oluştu. Lütfen sonra tekrar deneyin."
+        "error": "Üzgünüz, iletişim hatası oluştu. Lütfen sonra tekrar deneyin.",
+        "close": "Sohbeti kapat",
+        "messages": "Danışma mesajları"
     },
     "stickyCta": {
         "title": "PARVOGEL Yenidoğan İshal Bakım Takviyesi",
@@ -435,5 +461,15 @@
         "termsBody": "Bu şartlar, Parvogel hizmet ve ürünlerinin kullanımına ilişkin hak ve yükümlülükleri düzenler. Numune talepleri ve satın alma işlemleri veteriner hekim rehberliğinde yapılmalıdır.",
         "businessTitle": "Şirket Yasal Bilgileri",
         "businessBody": "Şirket Adı: Korea Agro Co., Ltd. | Sicil No: 123-45-67890 | Temsilci: Soon-il Hong | Adres: Kore Cumhuriyeti"
+    },
+    "a11y": {
+        "skipToContent": "İçeriğe atla",
+        "productVideo": "Parvogel ürün tanıtım videosu",
+        "productMedia": "Ürün medyasını seç",
+        "playProductVideo": "Ürün videosunu oynat",
+        "viewImage": "Büyüt"
+    },
+    "store": {
+        "comingSoon": "Yakında"
     }
 }

@@ -7,7 +7,11 @@
         "experts": "Avis d'experts",
         "target": "Animaux cibles",
         "testimonials": "Témoignages",
-        "order": "Commander"
+        "order": "Commander",
+        "brandName": "Parvogel",
+        "selectLanguage": "Choisir la langue",
+        "closeMenu": "Fermer le menu",
+        "openMenu": "Ouvrir le menu"
     },
     "hero": {
         "badge": "Cliniques Vétérinaires · Élevages · Solution de Soins Gastro-Intestinaux Animaliers",
@@ -18,7 +22,7 @@
         "cta2": "Voir les données cliniques",
         "trust1": "Supplément alimentaire enregistré",
         "trust2": "Installation certifiée HACCP",
-        "trust3": "24 mois à température ambiante"
+        "trust3": "18 mois à température ambiante"
     },
     "about": {
         "badge": "Qu'est-ce que Parvogel ?",
@@ -32,11 +36,14 @@
         "dosage": "Posologie",
         "dosageVal": "✅ Dose Recommandée (1 pompe = env. 1ml = env. 1g): Basé sur 5kg\nPrévention et Routine (Pas de diarrhée): 1 à 2 fois par jour, 1 à 2 gouttes\nSoins Intensifs (Présence de diarrhée): 1 à 2 gouttes toutes les 2 heures",
         "storage": "Stockage",
-        "storageVal": "Température ambiante 1~30℃, 24 mois",
+        "storageVal": "Température ambiante 1~30℃, 18 mois",
         "coupang": "Coupang",
         "rocket": "Livraison rocket",
         "naver": "Naver",
-        "shopping": "Shopping"
+        "shopping": "Shopping",
+        "trust1": "Complément enregistré comme ingrédient alimentaire",
+        "trust2": "Fabriqué dans une installation certifiée HACCP",
+        "trust3": "Conservation à température ambiante 18 mois"
     },
     "features": {
         "badge": "Caractéristiques clés",
@@ -51,7 +58,7 @@
         "f4Title": "Applicable à tout le bétail",
         "f4Desc": "Usage commun pour tous les nouveau-nés : veaux, porcelets, chevreaux, agneaux, poulains",
         "f5Title": "Stockage à température ambiante",
-        "f5Desc": "Sans réfrigération, 24 mois à température ambiante optimal pour ferme, pharmacie et distribution en ligne",
+        "f5Desc": "Sans réfrigération, 18 mois à température ambiante optimal pour ferme, pharmacie et distribution en ligne",
         "f6Title": "Plusieurs formats d'emballage",
         "f6Desc": "100ml (individuel), 200ml (moyen), 500ml (ferme) - fourniture personnalisée selon l'usage"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Protège l’intestin des toxines alimentaires",
+        "t2Note": "Mécanisme de soulagement des douleurs abdominales et de suppression des vomissements",
+        "t3Note": "Réduction de l’hospitalisation et efficacité de récupération",
+        "t4Note": "Effet synergique antiviral vérifié"
     },
     "experts": {
         "badge": "Validation par les plus grands savants",
@@ -185,16 +196,19 @@
         "e2Name": "Directeur Seong-dae Jung",
         "e2Role": "Directeur de la clinique vétérinaire Dongjin · Spécialiste clinique",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Retour clinique des fermes Hanwoo",
-        "farmSub": "Dr Seong-dae Jung de Dongjin Animal Hospital, résultats de Parvogel sur les fermes Hanwoo",
-        "f1": "Soulagement des douleurs abdominales et suppression des vomissements — soulagement immédiat, satisfaction maximale",
-        "f2": "Excellente palatabilité — les veaux consomment sans rejet, stress minimal",
-        "f3": "Régulation du pH gastrique — stabilise l'environnement stomacal, accélère la récupération",
-        "f4": "Forte intention de rachat — confiance forte des fermes ayant ressenti l'amélioration",
+        "farmTitle": "Retour clinique des élevages Hanwoo",
+        "farmSub": "Dr Sung-Dae Jung, clinique vétérinaire Dongjin,\nrésultats de l’application de Parvogel dans les élevages Hanwoo",
+        "f1": "Soulagement des douleurs abdominales et suppression des vomissements — soulagement immédiat, satisfaction maximale des éleveurs",
+        "f2": "Excellente appétence — les veaux nouveau-nés le prennent sans refus, minimisant le stress d’administration",
+        "f3": "Contrôle du pH gastrique — au-delà d’un simple antidiarrhéique, stabilise l’environnement stomacal pour accélérer la récupération",
+        "f4": "Forte intention de rachat — grande confiance des élevages ayant constaté une amélioration des symptômes sur le terrain",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "Pr Hwa-Young Yoon",
+        "e4Role": "Ancienne professeure de médecine interne, Faculté de médecine vétérinaire de l’Université nationale de Séoul · Ancienne cheffe du service de médecine interne de l’hôpital vétérinaire de SNU",
+        "e4Quote": "« On dirait que ce serait bon aussi pour les humains… »"
     },
     "target": {
         "badge": "Espèces d'élevage cibles",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 jours",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Autre bétail (cerfs, lapins, autruches, etc.) applicable sous supervision vétérinaire",
-        "cta": "Obtenez une consultation personnalisée pour votre ferme"
+        "cta": "Obtenez une consultation personnalisée pour votre ferme",
+        "recommendedAge": "Âge recommandé",
+        "mainPathogens": "Principaux agents pathogènes"
     },
     "products": {
         "badge": "Gamme de produits",
@@ -237,7 +253,12 @@
         "bulk": "Pour les achats en gros (10+ bouteilles) et demandes, veuillez consulter séparément.",
         "bulkCta": "Consultation grossiste·grand volume",
         "channelNote": "Les hôpitaux vétérinaires et les grossistes bénéficient de prix d'approvisionnement différenciés du prix public.",
-        "channelCta": "Demander les tarifs hôpital/grossiste"
+        "channelCta": "Demander les tarifs hôpital/grossiste",
+        "popular": "Populaire",
+        "best": "Meilleur",
+        "largeVolume": "Grand format",
+        "vatShippingIncluded": "TVA incluse · Livraison incluse",
+        "bottle": "flacon"
     },
     "testimonials": {
         "badge": "Voix du terrain",
@@ -317,7 +338,8 @@
         "errorServer": "Une erreur serveur s'est produite lors de l'envoi de votre commande. Veuillez réessayer plus tard.",
         "duplicateError": "Cette commande a déjà été envoyée. Notre équipe vous contactera sous peu.",
         "networkError": "Votre commande n'a pas été envoyée correctement. Vérifiez votre réseau et réessayez.",
-        "timeoutError": "La demande de commande a expiré. Veuillez réessayer plus tard."
+        "timeoutError": "La demande de commande a expiré. Veuillez réessayer plus tard.",
+        "requiredFieldsAlert": "Le nom de l’hôpital, le contact et le téléphone sont des champs obligatoires."
     },
     "footer": {
         "desc": "Nouvelle norme pour la prise en charge de la diarrhée néonatale de tout le bétail. Protégeant la survie avec la montmorillonite ultra-fine.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Tous droits réservés.",
         "privacy": "Politique de confidentialité",
         "terms": "Conditions d'utilisation",
-        "business": "Infos entreprise"
+        "business": "Infos entreprise",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "Consultation Vétérinaire IA",
@@ -346,7 +370,9 @@
         "greeting": "Bonjour ! Je suis le vétérinaire IA spécialisé en Parvogel. Posez vos questions sur la diarrhée néonatale.",
         "placeholder": "Posez vos questions...",
         "send": "Envoyer",
-        "error": "Désolé, une erreur de communication est survenue. Veuillez réessayer plus tard."
+        "error": "Désolé, une erreur de communication est survenue. Veuillez réessayer plus tard.",
+        "close": "Fermer le chat",
+        "messages": "Messages de consultation"
     },
     "stickyCta": {
         "title": "PARVOGEL Supplément de Prise en Charge de la Diarrhée Néonatale",
@@ -435,5 +461,15 @@
         "termsBody": "Ces conditions régissent les droits et obligations d'utilisation des services et produits Parvogel. Les demandes d'échantillons et achats doivent être effectués sous la guidance de professionnels vétérinaires.",
         "businessTitle": "Informations Légales de l'Entreprise",
         "businessBody": "Nom de la Société: Korea Agro Co., Ltd. | N° d'Enregistrement: 123-45-67890 | Représentant: Soon-il Hong | Adresse: République de Corée"
+    },
+    "a11y": {
+        "skipToContent": "Aller au contenu",
+        "productVideo": "Vidéo de présentation du produit Parvogel",
+        "productMedia": "Sélectionner le média du produit",
+        "playProductVideo": "Lire la vidéo du produit",
+        "viewImage": "Agrandir"
+    },
+    "store": {
+        "comingSoon": "Bientôt disponible"
     }
 }

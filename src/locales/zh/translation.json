@@ -22,7 +22,7 @@
         "cta2": "查看临床数据",
         "trust1": "饲料成分登记辅助饲料",
         "trust2": "HACCP认证设施制造",
-        "trust3": "常温24个月保存"
+        "trust3": "常温18个月保存"
     },
     "about": {
         "badge": "帕博格尔是什么?",
@@ -36,11 +36,14 @@
         "dosage": "用法",
         "dosageVal": "✅ 建议单次用量 (按压1次 = 约1ml = 约1g): 以5kg为标准\n预防及日常 (无腹泻): 每天1~2次，每次1~2滴\n集中护理 (腹泻时): 每2小时1~2滴",
         "storage": "保存",
-        "storageVal": "常温1~30℃, 24个月",
+        "storageVal": "常温1~30℃, 18个月",
         "coupang": "Coupang",
         "rocket": "火箭配送",
         "naver": "Naver",
-        "shopping": "购物"
+        "shopping": "购物",
+        "trust1": "饲料成分登记辅助饲料",
+        "trust2": "HACCP认证工厂生产",
+        "trust3": "常温保存18个月"
     },
     "features": {
         "badge": "核心特点",
@@ -55,7 +58,7 @@
         "f4Title": "全畜种适用",
         "f4Desc": "犊牛、仔猪、羔羊、羊羔、马驹等所有畜种新生仔共同使用",
         "f5Title": "常温保存",
-        "f5Desc": "无需冷藏,常温24个月保存优化农场·药店·在线流通",
+        "f5Desc": "无需冷藏,常温18个月保存优化农场·药店·在线流通",
         "f6Title": "电解质制剂作用",
         "f6Desc": "维持电解质平衡，缓解因腹泻引起的腹痛"
     },
@@ -177,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "保护肠道免受饲料毒素侵害",
+        "t2Note": "缓解腹痛、抑制呕吐的机制",
+        "t3Note": "缩短住院时间，提高恢复效率",
+        "t4Note": "验证抗病毒协同效果"
     },
     "experts": {
         "badge": "顶级学者验证",
@@ -198,7 +205,10 @@
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "尹花英教授",
+        "e4Role": "前首尔大学兽医学院内科学教授 · 前首尔大学动物医院内科主任",
+        "e4Quote": "“感觉对人也会有好处……”"
     },
     "target": {
         "badge": "适用对象畜种",
@@ -350,7 +360,9 @@
         "copyright": "© 2025 帕博格尔(Parvogel). All rights reserved.",
         "privacy": "个人信息处理方针",
         "terms": "使用条款",
-        "business": "事业者信息确认"
+        "business": "事业者信息确认",
+        "coupang": "Coupang",
+        "naver": "Naver购物"
     },
     "chat": {
         "title": "AI兽医咨询",
@@ -358,7 +370,9 @@
         "greeting": "您好!我是帕博格尔专业AI兽医。请问关于新生仔腹泻有什么疑问。",
         "placeholder": "请问任何问题...",
         "send": "发送",
-        "error": "抱歉,通信中发生错误。请稍后重试。"
+        "error": "抱歉,通信中发生错误。请稍后重试。",
+        "close": "关闭聊天",
+        "messages": "咨询消息"
     },
     "stickyCta": {
         "title": "帕博格尔 (PARVOGEL) 新生幼崽腹泻管理辅剂",
@@ -447,5 +461,15 @@
         "termsBody": "本条款规定使用帕博格尔服务及产品时的权利与义务。样品申请及产品购买须遵循兽医师与专业人员的指导。",
         "businessTitle": "企业工商信息",
         "businessBody": "公司名称: Korea Agro Co., Ltd. | 工商注册号: 123-45-67890 | 法人代表: 洪顺一 | 地址: 韩国"
+    },
+    "a11y": {
+        "skipToContent": "跳转到正文",
+        "productVideo": "Parvogel产品介绍视频",
+        "productMedia": "选择产品媒体",
+        "playProductVideo": "播放产品视频",
+        "viewImage": "放大查看"
+    },
+    "store": {
+        "comingSoon": "即将入驻"
     }
 }

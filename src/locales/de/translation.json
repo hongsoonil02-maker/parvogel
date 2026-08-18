@@ -7,7 +7,11 @@
         "experts": "Expertenprüfung",
         "target": "Zieltiere",
         "testimonials": "Bewertungen",
-        "order": "Bestellen"
+        "order": "Bestellen",
+        "brandName": "Parvogel",
+        "selectLanguage": "Sprache wählen",
+        "closeMenu": "Menü schließen",
+        "openMenu": "Menü öffnen"
     },
     "hero": {
         "badge": "Tierkliniken · Landwirtschaft · Magen-Darm-Pflegelösung für alle Tiere",
@@ -18,7 +22,7 @@
         "cta2": "Klinische Daten anzeigen",
         "trust1": "Registriertes Futterergänzungsmittel",
         "trust2": "HACCP-zertifizierte Anlage",
-        "trust3": "24 Monate bei Raumtemperatur"
+        "trust3": "18 Monate bei Raumtemperatur"
     },
     "about": {
         "badge": "Was ist Parvogel?",
@@ -32,11 +36,14 @@
         "dosage": "Dosierung",
         "dosageVal": "✅ Empfohlene Dosis (1 Pumpstoß = ca. 1ml = ca. 1g): Basierend auf 5kg\nPrävention & Routine (Kein Durchfall): 1-2 mal täglich, 1-2 Tropfen\nIntensivpflege (Bei Durchfall): 1-2 Tropfen alle 2 Stunden",
         "storage": "Lagerung",
-        "storageVal": "Raumtemperatur 1~30℃, 24 Monate",
+        "storageVal": "Raumtemperatur 1~30℃, 18 Monate",
         "coupang": "Coupang",
         "rocket": "Rocket-Lieferung",
         "naver": "Naver",
-        "shopping": "Shopping"
+        "shopping": "Shopping",
+        "trust1": "Als Futtermittelzusatz registriertes Ergänzungsfuttermittel",
+        "trust2": "Hergestellt in HACCP-zertifizierter Anlage",
+        "trust3": "18 Monate bei Raumtemperatur lagerbar"
     },
     "features": {
         "badge": "Kernmerkmale",
@@ -51,7 +58,7 @@
         "f4Title": "Für alle Nutztiere",
         "f4Desc": "Gemeinsame Anwendung für alle Neugeborenen: Kälber, Ferkel, Ziegenlämmer, Lämmer, Fohlen",
         "f5Title": "Raumtemperatur-Lagerung",
-        "f5Desc": "Keine Kühlung nötig, 24 Monate bei Raumtemperatur ideal für Hof, Apotheke und Online-Vertrieb",
+        "f5Desc": "Keine Kühlung nötig, 18 Monate bei Raumtemperatur ideal für Hof, Apotheke und Online-Vertrieb",
         "f6Title": "Verschiedene Gebinde",
         "f6Desc": "100ml (einzeln), 200ml (mittel), 500ml (Hof) - bedarfsgerechte Lieferung"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Schützt den Darm vor Futtertoxinen",
+        "t2Note": "Mechanismus zur Linderung von Bauchschmerzen und Erbrechen",
+        "t3Note": "Kürzere Krankenhausaufenthalte und schnellere Genesung",
+        "t4Note": "Nachgewiesene antivirale Synergie"
     },
     "experts": {
         "badge": "Validierung durch Top-Wissenschaftler",
@@ -185,16 +196,19 @@
         "e2Name": "Direktor Seong-dae Jung",
         "e2Role": "Direktor der Dongjin Tierklinik · Klinischer Spezialist",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Hanwoo-Betriebe klinisches Feedback",
-        "farmSub": "Dr. Seong-dae Jung von Dongjin Animal Hospital, Parvogel-Ergebnisse auf Hanwoo-Betrieben",
-        "f1": "Bauchschmerz-Linderung & Erbrechen-Unterdrückung — sofortige Kolik-Linderung, höchste Zufriedenheit",
-        "f2": "Hervorragende Schmackhaftigkeit — Kälber fressen ohne Abwehr, minimaler Stress",
-        "f3": "Magen-pH-Regulierung — stabilisiert Magenumfeld, beschleunigt Erholung",
-        "f4": "Hohe Wiederkaufabsicht — starkes Vertrauen der Betriebe mit spürbarer Besserung",
+        "farmTitle": "Klinisches Feedback von Hanwoo-Betrieben",
+        "farmSub": "Dr. Sung-Dae Jung, Tierklinik Dongjin,\nErgebnisse der Parvogel-Anwendung in Hanwoo-Betrieben",
+        "f1": "Linderung von Bauchschmerzen und Unterdrückung von Erbrechen — sofortige Schmerzlinderung, höchste Zufriedenheit der Landwirte",
+        "f2": "Hervorragende Schmackhaftigkeit — neugeborene Kälber nehmen es ohne Ablehnung auf, minimaler Dosierungsstress",
+        "f3": "Regulierung des Magen-pH — mehr als ein einfaches Antidiarrhoikum, stabilisiert das Magenmilieu und beschleunigt die Genesung",
+        "f4": "Hohe Wiederkaufsabsicht — starkes Vertrauen von Betrieben, die eine Symptombesserung vor Ort erlebt haben",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "Prof. Hwa-Young Yoon",
+        "e4Role": "Ehemalige Professorin für Innere Medizin, Tiermedizinische Fakultät der Seoul National University · Ehemalige Leiterin der Inneren Medizin am SNU-Tierkrankenhaus",
+        "e4Quote": "„Es scheint, als wäre es auch für Menschen gut …“"
     },
     "target": {
         "badge": "Ziel-Nutztierrassen",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 Tage",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Anderes Nutzvieh (Hirsche, Kaninchen, Strauße etc.) unter tierärztlicher Anleitung anwendbar",
-        "cta": "Individuelle Beratung für Ihren Hof"
+        "cta": "Individuelle Beratung für Ihren Hof",
+        "recommendedAge": "Empfohlenes Alter",
+        "mainPathogens": "Hauptpathogene"
     },
     "products": {
         "badge": "Produktpalette",
@@ -237,7 +253,12 @@
         "bulk": "Für Großbestellungen (10+ Flaschen) und Großhandel bitte separat anfragen.",
         "bulkCta": "Großhandel·Großvolumen-Beratung",
         "channelNote": "Tierkliniken und Großhändler erhalten vom Listenpreis abweichende Einkaufspreise.",
-        "channelCta": "Klinik-/Großhandelspreis anfragen"
+        "channelCta": "Klinik-/Großhandelspreis anfragen",
+        "popular": "Beliebt",
+        "best": "Bestseller",
+        "largeVolume": "Großgebinde",
+        "vatShippingIncluded": "Inkl. MwSt. · Inkl. Versand",
+        "bottle": "Flasche"
     },
     "testimonials": {
         "badge": "Stimmen aus der Praxis",
@@ -317,7 +338,8 @@
         "errorServer": "Beim Senden Ihrer Bestellung ist ein Serverfehler aufgetreten. Bitte versuchen Sie es später erneut.",
         "duplicateError": "Diese Bestellung wurde bereits gesendet. Unser Team wird sich in Kürze mit Ihnen in Verbindung setzen.",
         "networkError": "Ihre Bestellung wurde nicht erfolgreich gesendet. Prüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.",
-        "timeoutError": "Die Bestellanfrage ist abgelaufen. Bitte versuchen Sie es später erneut."
+        "timeoutError": "Die Bestellanfrage ist abgelaufen. Bitte versuchen Sie es später erneut.",
+        "requiredFieldsAlert": "Klinikname, Ansprechpartner und Telefonnummer sind Pflichtfelder."
     },
     "footer": {
         "desc": "Neuer Standard für neonatale Durchfallpflege aller Nutztiere. Überlebensrate mit ultrafeiner Montmorillonit schützen.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Alle Rechte vorbehalten.",
         "privacy": "Datenschutz",
         "terms": "Nutzungsbedingungen",
-        "business": "Unternehmensinfo"
+        "business": "Unternehmensinfo",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "KI-Tierarzt Beratung",
@@ -346,7 +370,9 @@
         "greeting": "Hallo! Ich bin der Parvogel-KI-Tierarzt. Fragen Sie mich alles zur neonatalen Durchfall.",
         "placeholder": "Fragen Sie etwas...",
         "send": "Senden",
-        "error": "Entschuldigung, ein Kommunikationsfehler ist aufgetreten. Bitte später erneut versuchen."
+        "error": "Entschuldigung, ein Kommunikationsfehler ist aufgetreten. Bitte später erneut versuchen.",
+        "close": "Chat schließen",
+        "messages": "Beratungsnachrichten"
     },
     "stickyCta": {
         "title": "PARVOGEL Neonatales Durchfallpflege-Ergänzungsmittel",
@@ -435,5 +461,15 @@
         "termsBody": "Diese Bedingungen regeln die Rechte und Pflichten für die Nutzung von Parvogel-Diensten und -Produkten. Musteranforderungen und Käufe sollten unter Anleitung von Tierärzten erfolgen.",
         "businessTitle": "Impressum & Unternehmensinformationen",
         "businessBody": "Firmenname: Korea Agro Co., Ltd. | Registrierungsnummer: 123-45-67890 | Vertreten durch: Soon-il Hong | Adresse: Republik Korea"
+    },
+    "a11y": {
+        "skipToContent": "Zum Inhalt springen",
+        "productVideo": "Parvogel-Produktvorstellungsvideo",
+        "productMedia": "Produktmedium auswählen",
+        "playProductVideo": "Produktvideo abspielen",
+        "viewImage": "Vergrößern"
+    },
+    "store": {
+        "comingSoon": "Demnächst verfügbar"
     }
 }

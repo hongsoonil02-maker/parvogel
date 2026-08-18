@@ -7,7 +7,11 @@
         "experts": "Ulasan pakar",
         "target": "Haiwan sasaran",
         "testimonials": "Testimoni",
-        "order": "Pesan"
+        "order": "Pesan",
+        "brandName": "Parvogel",
+        "selectLanguage": "Pilih bahasa",
+        "closeMenu": "Tutup menu",
+        "openMenu": "Buka menu"
     },
     "hero": {
         "badge": "Klinik Veterinar · Ladang · Solusi Penjagaan Saluran Penghadaman Semua Haiwan",
@@ -18,7 +22,7 @@
         "cta2": "Lihat data klinikal",
         "trust1": "Suplemen makanan berdaftar",
         "trust2": "Kemudahan pensijilan HACCP",
-        "trust3": "24 bulan suhu bilik"
+        "trust3": "18 bulan suhu bilik"
     },
     "about": {
         "badge": "Apa itu Parvogel?",
@@ -32,11 +36,14 @@
         "dosage": "Dos",
         "dosageVal": "✅ Dos Disyorkan (1 pam = lebih kurang 1ml = lebih kurang 1g): Berdasarkan 5kg\nPencegahan & Rutin (Tiada cirit-birit): 1-2 kali sehari, 1-2 titis\nRawatan Rapi (Ada cirit-birit): 1-2 titis setiap 2 jam",
         "storage": "Simpanan",
-        "storageVal": "Suhu bilik 1~30℃, 24 bulan",
+        "storageVal": "Suhu bilik 1~30℃, 18 bulan",
         "coupang": "Coupang",
         "rocket": "Penghantaran roket",
         "naver": "Naver",
-        "shopping": "Beli-belah"
+        "shopping": "Beli-belah",
+        "trust1": "Suplemen berdaftar sebagai bahan makanan haiwan",
+        "trust2": "Dikilangkan di fasiliti bertauliah HACCP",
+        "trust3": "Simpanan suhu bilik 18 bulan"
     },
     "features": {
         "badge": "Ciri teras",
@@ -51,7 +58,7 @@
         "f4Title": "Untuk semua ternakan",
         "f4Desc": "Kegunaan sama semua neonat: anak lembu, babi, kambing, biri-biri, kuda",
         "f5Title": "Simpan suhu bilik",
-        "f5Desc": "Tanpa sejuk, 24 bulan suhu bilik ideal untuk ladang, farmasi dan dalam talian",
+        "f5Desc": "Tanpa sejuk, 18 bulan suhu bilik ideal untuk ladang, farmasi dan dalam talian",
         "f6Title": "Pelbagai saiz pembungkusan",
         "f6Desc": "100ml (individu), 200ml (sederhana), 500ml (ladang) - bekalan mengikut keperluan"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Melindungi usus daripada toksin makanan",
+        "t2Note": "Mekanisme melegakan sakit perut dan menyekat muntah",
+        "t3Note": "Memendekkan tempoh rawatan dan kecekapan pemulihan",
+        "t4Note": "Kesan sinergi antivirus yang disahkan"
     },
     "experts": {
         "badge": "Pengesahan pakar utama",
@@ -185,16 +196,19 @@
         "e2Name": "Pengarah Seong-dae Jung",
         "e2Role": "Pengarah Klinik Haiwan Dongjin · Pakar klinikal",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Maklum balas klinikal ladang Hanwoo",
-        "farmSub": "Dr. Seong-dae Jung, Klinik Dongjin, hasil Parvogel di ladang Hanwoo",
-        "f1": "Reda sakit perut & cegah muntah — lega kolik serta-merta, kepuasan tertinggi",
-        "f2": "Palatabiliti sangat baik — anak lembu makan tanpa tolak, stres minimum",
-        "f3": "Atur pH perut — stabilkan persekitaran, pemulihan lebih pantas",
-        "f4": "Niat beli semula tinggi — kepercayaan kuat ladang yang rasa membaik",
+        "farmTitle": "Maklum Balas Klinikal Ladang Hanwoo",
+        "farmSub": "Dr. Sung-Dae Jung, Hospital Haiwan Dongjin,\nkeputusan penggunaan Parvogel di ladang Hanwoo",
+        "f1": "Melegakan sakit perut dan menyekat muntah — kelegaan serta-merta, kepuasan tertinggi penternak",
+        "f2": "Palatabiliti cemerlang — anak lembu baru lahir mengambilnya tanpa menolak, meminimumkan tekanan pemberian",
+        "f3": "Pelarasan pH perut — lebih daripada anticiriah biasa, menstabilkan persekitaran perut untuk mempercepat pemulihan",
+        "f4": "Hasrat belian semula tinggi — kepercayaan kuat daripada ladang yang merasai penambahbaikan gejala di lapangan",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "Prof. Hwa-Young Yoon",
+        "e4Role": "Bekas Profesor Perubatan Dalaman, Fakulti Perubatan Veterinar Universiti Kebangsaan Seoul · Bekas Ketua Perubatan Dalaman Hospital Haiwan SNU",
+        "e4Quote": "“Nampaknya bagus untuk manusia juga…”"
     },
     "target": {
         "badge": "Spesies ternakan sasaran",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 hari",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Ternakan lain (rusa, arnab, unta burung) boleh dengan bimbingan veterinar",
-        "cta": "Dapatkan rundingan ladang anda"
+        "cta": "Dapatkan rundingan ladang anda",
+        "recommendedAge": "Umur disyorkan",
+        "mainPathogens": "Patogen utama"
     },
     "products": {
         "badge": "Barisan produk",
@@ -237,7 +253,12 @@
         "bulk": "Untuk pembelian banyak (10+ botol) dan borong, hubungi berasingan.",
         "bulkCta": "Rundingan borong·kuantiti besar",
         "channelNote": "Hospital veterinar dan pemborong menerima harga bekalan berbeza daripada harga pengguna.",
-        "channelCta": "Tanya harga hospital/borong"
+        "channelCta": "Tanya harga hospital/borong",
+        "popular": "Popular",
+        "best": "Terlaris",
+        "largeVolume": "Isipadu besar",
+        "vatShippingIncluded": "Termasuk VAT · Termasuk penghantaran",
+        "bottle": "botol"
     },
     "testimonials": {
         "badge": "Suara lapangan",
@@ -317,7 +338,8 @@
         "errorServer": "Ralat pelayan berlaku semasa menghantar pesanan. Sila cuba kemudian.",
         "duplicateError": "Pesanan ini telah dihantar. Pasukan kami akan menghubungi anda tidak lama lagi.",
         "networkError": "Pesanan anda tidak dihantar dengan jayanya. Sila periksa rangkaian dan cuba lagi.",
-        "timeoutError": "Permintaan pesanan tamat masa. Sila cuba kemudian."
+        "timeoutError": "Permintaan pesanan tamat masa. Sila cuba kemudian.",
+        "requiredFieldsAlert": "Nama hospital, nama pegawai dan nombor telefon adalah medan wajib."
     },
     "footer": {
         "desc": "Standard baharu penjagaan cirit-birit neonatal semua ternakan. Lindungi kelangsungan hidup dengan montmorillonite ultra-halus.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Hak cipta terpelihara.",
         "privacy": "Dasar privasi",
         "terms": "Terma perkhidmatan",
-        "business": "Info syarikat"
+        "business": "Info syarikat",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "Rundingan Veterinar AI",
@@ -346,7 +370,9 @@
         "greeting": "Hai! Saya veterinar AI pakar Parvogel. Tanya tentang cirit-birit neonatal.",
         "placeholder": "Tanya apa sahaja...",
         "send": "Hantar",
-        "error": "Maaf, ralat komunikasi. Cuba lagi nanti."
+        "error": "Maaf, ralat komunikasi. Cuba lagi nanti.",
+        "close": "Tutup sembang",
+        "messages": "Mesej perundingan"
     },
     "stickyCta": {
         "title": "PARVOGEL Suplemen Penjagaan Cirit-Birit Haiwan Baru Lahir",
@@ -435,5 +461,15 @@
         "termsBody": "Syarat ini mengawal hak dan kewajipan penggunaan perkhidmatan dan produk Parvogel. Permintaan sampel dan pembelian hendaklah dibuat di bawah bimbingan profesional doktor veterinar.",
         "businessTitle": "Maklumat Perniagaan Syarikat",
         "businessBody": "Nama Syarikat: Korea Agro Co., Ltd. | No. Pendaftaran: 123-45-67890 | Wakil: Soon-il Hong | Alamat: Republik Korea"
+    },
+    "a11y": {
+        "skipToContent": "Langkau ke kandungan",
+        "productVideo": "Video pengenalan produk Parvogel",
+        "productMedia": "Pilih media produk",
+        "playProductVideo": "Mainkan video produk",
+        "viewImage": "Lihat lebih besar"
+    },
+    "store": {
+        "comingSoon": "Akan datang"
     }
 }

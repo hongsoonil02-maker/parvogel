@@ -7,7 +7,11 @@
         "experts": "Đánh giá chuyên gia",
         "target": "Đối tượng vật nuôi",
         "testimonials": "Đánh giá",
-        "order": "Đặt hàng"
+        "order": "Đặt hàng",
+        "brandName": "Parvogel",
+        "selectLanguage": "Chọn ngôn ngữ",
+        "closeMenu": "Đóng menu",
+        "openMenu": "Mở menu"
     },
     "hero": {
         "badge": "Phòng khám thú y · Trang trại · Giải pháp chăm sóc đường tiêu hóa gia súc gia cầm",
@@ -18,7 +22,7 @@
         "cta2": "Xem dữ liệu lâm sàng",
         "trust1": "Thực phẩm bổ trợ đã đăng ký",
         "trust2": "Cơ sở đạt chứng nhận HACCP",
-        "trust3": "Bảo quản nhiệt độ thường 24 tháng"
+        "trust3": "Bảo quản nhiệt độ thường 18 tháng"
     },
     "about": {
         "badge": "Parvogel là gì?",
@@ -32,11 +36,14 @@
         "dosage": "Liều dùng",
         "dosageVal": "✅ Liều Lượng Khuyến Nghị (1 lần bơm = khoảng 1ml = khoảng 1g): Dựa trên 5kg\nPhòng Ngừa & Thường Ngày (Không tiêu chảy): 1-2 lần/ngày, 1-2 giọt\nChăm Sóc Tích Cực (Có tiêu chảy): 1-2 giọt mỗi 2 giờ",
         "storage": "Bảo quản",
-        "storageVal": "Nhiệt độ phòng 1~30℃, 24 tháng",
+        "storageVal": "Nhiệt độ phòng 1~30℃, 18 tháng",
         "coupang": "Coupang",
         "rocket": "Giao rocket",
         "naver": "Naver",
-        "shopping": "Mua sắm"
+        "shopping": "Mua sắm",
+        "trust1": "Thức ăn bổ sung đã đăng ký thành phần thức ăn chăn nuôi",
+        "trust2": "Sản xuất tại cơ sở đạt chứng nhận HACCP",
+        "trust3": "Bảo quản ở nhiệt độ thường 18 tháng"
     },
     "features": {
         "badge": "Đặc điểm cốt lõi",
@@ -51,7 +58,7 @@
         "f4Title": "Dùng cho mọi gia súc",
         "f4Desc": "Dùng chung cho mọi vật nuôi sơ sinh: bê, lợn con, dê con, cừu con, ngựa con",
         "f5Title": "Bảo quản nhiệt độ thường",
-        "f5Desc": "Không cần lạnh, 24 tháng nhiệt độ thường tối ưu cho trang trại, nhà thuốc và phân phối online",
+        "f5Desc": "Không cần lạnh, 18 tháng nhiệt độ thường tối ưu cho trang trại, nhà thuốc và phân phối online",
         "f6Title": "Nhiều quy cách đóng gói",
         "f6Desc": "100ml (cá nhân), 200ml (trung bình), 500ml (trang trại) - cung cấp theo nhu cầu"
     },
@@ -173,7 +180,11 @@
         "vg4Effect": "효과 확인",
         "vg5Group": "Rhabdoviridae",
         "vg5Target": "소유행열 바이러스 (BEF)",
-        "vg5Effect": "효과 확인"
+        "vg5Effect": "효과 확인",
+        "t1Note": "Bảo vệ ruột khỏi độc tố trong thức ăn",
+        "t2Note": "Cơ chế giảm đau bụng và ức chế nôn",
+        "t3Note": "Rút ngắn thời gian nằm viện và hiệu quả hồi phục",
+        "t4Note": "Hiệu ứng cộng hưởng kháng virus đã được kiểm chứng"
     },
     "experts": {
         "badge": "Kiểm chứng bởi học giả hàng đầu",
@@ -185,16 +196,19 @@
         "e2Name": "Giám đốc Seong-dae Jung",
         "e2Role": "Giám đốc Bệnh viện thú y Dongjin · Chuyên gia lâm sàng",
         "e2Quote": "\"Beyond simple diarrhea care, it provides exceptional palatability even for vomiting pets and instant pain relief. Essential as a 1st-line first-aid care for all digestive issues.\"",
-        "farmTitle": "Phản hồi lâm sàng trang trại Hanwoo",
-        "farmSub": "BS. Seong-dae Jung, Bệnh viện thú y Dongjin, kết quả Parvogel tại trang trại Hanwoo",
-        "f1": "Giảm đau bụng & chống nôn — giảm quặn bụng tức thì, hài lòng cao",
-        "f2": "Vị ngon xuất sắc — bê con ăn không拒, giảm stress",
-        "f3": "Điều hòa pH dạ dày — ổn định môi trường, hồi phục nhanh hơn",
-        "f4": "Ý định mua lại cao — tin tưởng mạnh từ trang trại thấy triệu chứng cải thiện",
+        "farmTitle": "Phản hồi lâm sàng từ trang trại Hanwoo",
+        "farmSub": "BS. Sung-Dae Jung, Bệnh viện Thú y Dongjin,\nkết quả áp dụng Parvogel tại trang trại Hanwoo",
+        "f1": "Giảm đau bụng và ức chế nôn — giảm đau tức thì, sự hài lòng cao nhất từ trang trại",
+        "f2": "Độ ngon miệng vượt trội — bê sơ sinh ăn không từ chối, giảm thiểu căng thẳng khi cho uống",
+        "f3": "Điều chỉnh pH dạ dày — vượt xa thuốc chống tiêu chảy thông thường, ổn định môi trường dạ dày giúp hồi phục nhanh hơn",
+        "f4": "Ý định mua lại cao — sự tin tưởng mạnh mẽ từ các trang trại đã cảm nhận cải thiện triệu chứng thực tế",
         "e3Name": "정성대 원장",
         "e3Role": "동진동물병원",
         "e3Quote": "입자도, 수분 흡수율, 비표면적... 수의사가 원하는 데이터를 다 갖췄습니다.",
-        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다."
+        "advisoryNote": "📌 향후 공식 자문단 구성을 통해 더욱 체계적인 임상 근거를 확보해 나갈 예정입니다.",
+        "e4Name": "GS. Hwa-Young Yoon",
+        "e4Role": "Nguyên Giáo sư Nội khoa, Trường Thú y Đại học Quốc gia Seoul · Nguyên Trưởng khoa Nội, Bệnh viện Thú y SNU",
+        "e4Quote": "“Có vẻ như cũng tốt cho con người…”"
     },
     "target": {
         "badge": "Giống vật nuôi mục tiêu",
@@ -216,7 +230,9 @@
         "foalAge": "1-60 ngày",
         "foalDisease": "Rotavirus, Salmonella, Clostridium",
         "other": "Vật nuôi khác (hươu, thỏ, đà điểu...) cũng dùng được theo hướng dẫn bác sĩ thú y",
-        "cta": "Nhận tư vấn riêng cho trang trại"
+        "cta": "Nhận tư vấn riêng cho trang trại",
+        "recommendedAge": "Thời điểm áp dụng",
+        "mainPathogens": "Tác nhân gây bệnh chính"
     },
     "products": {
         "badge": "Danh mục sản phẩm",
@@ -237,7 +253,12 @@
         "bulk": "Mua số lượng lớn (10+ chai) và bán sỉ vui lòng liên hệ riêng.",
         "bulkCta": "Tư vấn bán sỉ·số lượng lớn",
         "channelNote": "Phòng khám thú y và nhà bán buôn nhận giá cung cấp khác với giá niêm yết cho người tiêu dùng.",
-        "channelCta": "Hỏi giá phòng khám/bán buôn"
+        "channelCta": "Hỏi giá phòng khám/bán buôn",
+        "popular": "Phổ biến",
+        "best": "Bán chạy",
+        "largeVolume": "Dung tích lớn",
+        "vatShippingIncluded": "Đã bao gồm VAT · Đã bao gồm phí vận chuyển",
+        "bottle": "chai"
     },
     "testimonials": {
         "badge": "Tiếng nói thực tế",
@@ -317,7 +338,8 @@
         "errorServer": "Đã xảy ra lỗi máy chủ khi gửi đơn hàng. Vui lòng thử lại sau.",
         "duplicateError": "Đơn hàng này đã được gửi. Nhóm của chúng tôi sẽ liên hệ sớm.",
         "networkError": "Đơn hàng chưa được gửi thành công. Vui lòng kiểm tra mạng và thử lại.",
-        "timeoutError": "Yêu cầu đặt hàng đã hết thời gian. Vui lòng thử lại sau."
+        "timeoutError": "Yêu cầu đặt hàng đã hết thời gian. Vui lòng thử lại sau.",
+        "requiredFieldsAlert": "Tên bệnh viện, người liên hệ và số điện thoại là các trường bắt buộc."
     },
     "footer": {
         "desc": "Tiêu chuẩn mới chăm sóc tiêu chảy sơ sinh mọi gia súc. Bảo vệ tỷ lệ sống sót bằng montmorillonite siêu mịn.",
@@ -338,7 +360,9 @@
         "copyright": "© 2025 Parvogel. Bảo lưu mọi quyền.",
         "privacy": "Chính sách riêng tư",
         "terms": "Điều khoản",
-        "business": "Thông tin doanh nghiệp"
+        "business": "Thông tin doanh nghiệp",
+        "coupang": "Coupang",
+        "naver": "Naver Shopping"
     },
     "chat": {
         "title": "Tư vấn Bác sĩ thú y AI",
@@ -346,7 +370,9 @@
         "greeting": "Xin chào! Tôi là bác sĩ thú y AI chuyên về Parvogel. Hãy hỏi về tiêu chảy sơ sinh.",
         "placeholder": "Hỏi bất cứ điều gì...",
         "send": "Gửi",
-        "error": "Xin lỗi, lỗi kết nối. Vui lòng thử lại sau."
+        "error": "Xin lỗi, lỗi kết nối. Vui lòng thử lại sau.",
+        "close": "Đóng chat",
+        "messages": "Tin nhắn tư vấn"
     },
     "stickyCta": {
         "title": "PARVOGEL Bổ Sung Hỗ Trợ Tiêu Chảy Cho Gia Súc Sơ Sinh",
@@ -435,5 +461,15 @@
         "termsBody": "Các điều khoản này quy định quyền và nghĩa vụ khi sử dụng dịch vụ và sản phẩm Parvogel. Việc đăng ký nhận mẫu và mua hàng nên được thực hiện theo hướng dẫn của bác sĩ thú y chuyên nghiệp.",
         "businessTitle": "Thông Tin Doanh Nghiệp",
         "businessBody": "Tên công ty: Korea Agro Co., Ltd. | Mã số đăng ký: 123-45-67890 | Đại diện: Soon-il Hong | Địa chỉ: Hàn Quốc"
+    },
+    "a11y": {
+        "skipToContent": "Chuyển đến nội dung",
+        "productVideo": "Video giới thiệu sản phẩm Parvogel",
+        "productMedia": "Chọn phương tiện sản phẩm",
+        "playProductVideo": "Phát video sản phẩm",
+        "viewImage": "Xem lớn hơn"
+    },
+    "store": {
+        "comingSoon": "Sắp ra mắt"
     }
 }
