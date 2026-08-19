@@ -732,6 +732,16 @@ const Landing = () => {
                         </p>
                     </div>
 
+                    {/* Product Images (Front & Back) */}
+                    <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
+                            <img src="/images/bottle_front.png" alt="파보겔 5가지 복합제 전면" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        </div>
+                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
+                            <img src="/images/bottle_back.png" alt="파보겔 후면 성분표" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        </div>
+                    </div>
+
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {features.map((feature, i) => (
                             <div
@@ -859,6 +869,11 @@ const Landing = () => {
                         <p className="section-subtitle">
                             {t('products.subtitle')}
                         </p>
+                    </div>
+
+                    {/* Product Lineup Image */}
+                    <div className="max-w-4xl mx-auto mt-10 mb-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
+                        <img src="/images/bottle_group.png" alt="파보겔 100ml, 200ml, 500ml 용량별 라인업" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
