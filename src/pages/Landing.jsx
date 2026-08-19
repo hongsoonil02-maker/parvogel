@@ -519,7 +519,7 @@ const Landing = () => {
 
             {/* Hero Section */}
             <main id="main-content" tabIndex={-1}>
-            <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <section id="hero" className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-32 flex items-center justify-center overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
