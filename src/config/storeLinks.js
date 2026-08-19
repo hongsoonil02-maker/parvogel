@@ -3,11 +3,11 @@
 // 교체 후 hasProductUrl을 true로 바꾸면 "입점 예정" 뱃지가 자동으로 사라집니다.
 export const STORE_LINKS = {
     coupang: {
-        productUrl: '', // 예: 'https://www.coupang.com/vp/products/XXXXXXXX'
+        productUrl: 'https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&q=%ED%8C%8C%EB%B3%B4%EA%B2%94&searchId=6c597ae758999&sourceType=search&itemsCount=60&searchRank=0&rank=0&traceId=mszhy782',
         fallbackUrl: 'https://www.coupang.com',
     },
     naver: {
-        productUrl: '', // 예: 'https://smartstore.naver.com/스토어명/products/XXXXXXX'
+        productUrl: 'https://smartstore.naver.com/petschury/products/13718496355?nl-query=%ED%8C%8C%EB%B3%B4%EA%B2%94&nl-ts-pid=joRi9sqos5wssRv2ord-313360',
         fallbackUrl: 'https://shopping.naver.com',
     },
 }
