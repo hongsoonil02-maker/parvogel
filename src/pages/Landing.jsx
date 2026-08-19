@@ -677,10 +677,9 @@ const Landing = () => {
                                 </button>
                                 {/* Photo Thumbnails */}
                                 {[
-                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-1.jpg`, alt: '파보겔 정면' },
-                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-2.jpg`, alt: '파보겔 측면' },
-                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-3.jpg`, alt: '파보겔 라벨' },
-                                    { src: `${import.meta.env.BASE_URL}assets/parvogel-4.jpg`, alt: '파보겔 패키지' }
+                                    { src: `/images/bottle_group.png`, alt: '파보겔 라인업 단체컷' },
+                                    { src: `/images/bottle_front.png`, alt: '파보겔 5가지 복합제 전면' },
+                                    { src: `/images/bottle_back.png`, alt: '파보겔 후면 성분표' }
                                 ].map((img) => (
                                     <button
                                         key={img.src}
