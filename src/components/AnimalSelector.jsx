@@ -53,7 +53,7 @@ export default function AnimalSelector() {
         <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-black rounded-full uppercase tracking-wider border border-blue-400/30">
           {t('animalSelector.tag', '🐾 전 축종 신생아 맞춤 솔루션')}
         </span>
-        <h3 className="text-2xl sm:text-3xl font-black text-white mt-2">
+        <h3 className="text-2xl sm:text-3xl font-black text-white mt-2 break-keep leading-snug">
           {t('animalSelector.title', '모든 동물의 신생아 설사, 파보겔(Parvogel) 하나로!')}
         </h3>
         <p className="text-xs sm:text-sm text-slate-400 mt-1">
