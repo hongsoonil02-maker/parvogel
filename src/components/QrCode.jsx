@@ -10,7 +10,7 @@ export default function QrCode({ value, size = 160, label }) {
             width: size,
             margin: 2,
             color: { dark: '#0f2c5e', light: '#ffffff' },
-            errorCorrectionLevel: 'M',
+            errorCorrectionLevel: 'L',
         })
             .then(setDataUrl)
             .catch(() => setDataUrl(''));
