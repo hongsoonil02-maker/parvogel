@@ -233,6 +233,12 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                 />
             </div>
 
+            {/* 결제 계좌 정보 */}
+            <div className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 text-center">
+                <span className="font-bold block mb-1 text-gray-900">무통장 입금 안내</span>
+                농협 301-0133-0281-01 <span className="text-gray-500 ml-2">예금주: (주)한국아그로</span>
+            </div>
+
             <button
                 type="submit"
                 disabled={isSubmitting}
