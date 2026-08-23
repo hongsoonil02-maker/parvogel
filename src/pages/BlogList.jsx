@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import posts from '../data/posts.json';
+import { assetUrl } from '../config/site';
 
 export default function BlogList() {
   const { t } = useTranslation();
@@ -33,8 +34,8 @@ export default function BlogList() {
               style={{ animationDelay: `${i * 100}ms` }}
             >
               <div className="aspect-[16/10] overflow-hidden bg-gray-100 relative">
-                <img 
-                  src={post.image} 
+                <img
+                  src={assetUrl(post.image)}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

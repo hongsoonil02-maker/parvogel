@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+// 상담 API 프록시 주소 — .env의 VITE_CHAT_API_URL로 자체 프록시 교체 가능
+const CHAT_API_URL = import.meta.env.VITE_CHAT_API_URL
+    || 'https://100baggersaas.vercel.app/api/parvogel-chat';
+const CHAT_TIMEOUT_MS = 15000;
+
 export default function Chatbot() {
     const { t, i18n } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +36,13 @@ export default function Chatbot() {
 
     const toggleChat = () => setIsOpen(!isOpen);
 
+    // 푸터 '자주 묻는 질문' 등 외부에서 챗봇 열기 요청 수신
+    useEffect(() => {
+        const openChat = () => setIsOpen(true);
+        window.addEventListener('parvogel:open-chat', openChat);
+        return () => window.removeEventListener('parvogel:open-chat', openChat);
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!input.trim() || isLoading) return;
@@ -40,9 +52,12 @@ export default function Chatbot() {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setIsLoading(true);
 
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), CHAT_TIMEOUT_MS);
+
         try {
             // 100_bagger_saas API proxy 호출
-            const response = await fetch('https://100baggersaas.vercel.app/api/parvogel-chat', {
+            const response = await fetch(CHAT_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,6 +66,7 @@ export default function Chatbot() {
                     messages: [...messages, { role: 'user', content: userMessage }].map(m => ({ role: m.role, content: m.content })),
                     language: i18n.language
                 }),
+                signal: controller.signal,
             });
 
             if (!response.ok) {
@@ -63,6 +79,7 @@ export default function Chatbot() {
             console.error('Chat error:', error);
             setMessages(prev => [...prev, { role: 'assistant', content: t('chat.error') }]);
         } finally {
+            clearTimeout(timer);
             setIsLoading(false);
         }
     };

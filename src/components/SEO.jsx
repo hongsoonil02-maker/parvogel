@@ -1,19 +1,21 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { SITE_URL, absoluteUrl } from '../config/site';
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData }) {
-  const siteUrl = 'https://parvogel.com'; // 실제 도메인으로 변경하세요
+  // canonical/OG 기준은 site.js의 단일 상수 사용 (GitHub Pages 실배포 URL)
+  const siteUrl = SITE_URL;
   const defaultTitle = '파보겔(Parvogel) - 송아지 설사 특효 지사 보조제';
   const defaultDescription = '고순도 나노 몬모릴로나이트가 함유된 파보겔은 송아지, 자돈 등 가축의 설사를 빠르게 멎게 하고 장 건강을 회복시키는 프리미엄 지사 보조제입니다.';
-  
+
   const seo = {
     title: title ? `${title} | 파보겔(Parvogel)` : defaultTitle,
     description: description || defaultDescription,
-    url: url ? `${siteUrl}${url}` : siteUrl,
-    image: image || `${siteUrl}/assets/parvogel-1.jpg`, // 기본 이미지
+    url: url ? absoluteUrl(url) : siteUrl,
+    image: image || absoluteUrl('/assets/parvogel-1.jpg'), // 기본 이미지
   };
 
-  // 기본 제품 구조화된 데이터
+  // 기본 제품 구조화된 데이터 (가격은 실제 판매가: 100ml 18,000원 ~ 500ml 75,000원)
   const defaultStructuredData = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -28,8 +30,8 @@ export default function SEO({ title, description, url, type = 'website', image, 
       "@type": "AggregateOffer",
       "url": seo.url,
       "priceCurrency": "KRW",
-      "lowPrice": "40000",
-      "highPrice": "150000",
+      "lowPrice": "18000",
+      "highPrice": "75000",
       "availability": "https://schema.org/InStock"
     }
   };

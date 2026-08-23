@@ -370,8 +370,21 @@ const Landing = () => {
     return (
         <div className="min-h-screen bg-gray-50 pb-24">
             <SEO />
-            {/* 스크린리더용 본문 바로가기 (접근성) */}
-            <a href="#main-content" className="skip-link">{t('a11y.skipToContent', '본문 바로가기')}</a>
+            {/* 스크린리더용 본문 바로가기 (접근성) — HashRouter 환경이라 href 대신 스크롤+포커스 처리 */}
+            <a
+                href="#main-content"
+                className="skip-link"
+                onClick={(e) => {
+                    e.preventDefault()
+                    const main = document.getElementById('main-content')
+                    if (main) {
+                        main.focus()
+                        main.scrollIntoView({ behavior: 'smooth' })
+                    }
+                }}
+            >
+                {t('a11y.skipToContent', '본문 바로가기')}
+            </a>
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -1044,20 +1057,21 @@ const Landing = () => {
                         <div>
                             <h4 className="font-bold text-white mb-4">{t('footer.productInfo')}</h4>
                             <ul className="space-y-2">
-                                <li><a href="#about" className="hover:text-white transition-colors">{t('footer.productInfo1')}</a></li>
-                                <li><a href="#features" className="hover:text-white transition-colors">{t('footer.productInfo2')}</a></li>
-                                <li><a href="#clinical" className="hover:text-white transition-colors">{t('footer.productInfo3')}</a></li>
-                                <li><a href="#target" className="hover:text-white transition-colors">{t('footer.productInfo4')}</a></li>
+                                <li><button type="button" onClick={() => scrollToSection('about')} className="hover:text-white transition-colors">{t('footer.productInfo1')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('features')} className="hover:text-white transition-colors">{t('footer.productInfo2')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('clinical')} className="hover:text-white transition-colors">{t('footer.productInfo3')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('target')} className="hover:text-white transition-colors">{t('footer.productInfo4')}</button></li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="font-bold text-white mb-4">{t('footer.support')}</h4>
                             <ul className="space-y-2">
-                                <li><a href="#order" className="hover:text-white transition-colors">{t('footer.support1')}</a></li>
+                                <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-white transition-colors">{t('footer.support1')}</button></li>
                                 <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">{t('footer.support2')}</a></li>
                                 <li><a href="mailto:soonilhong@naver.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">{t('footer.support4')}</a></li>
+                                {/* FAQ 페이지가 없어 AI 상담 챗봇으로 연결 */}
+                                <li><button type="button" onClick={() => window.dispatchEvent(new CustomEvent('parvogel:open-chat'))} className="hover:text-white transition-colors">{t('footer.support4')}</button></li>
                             </ul>
                         </div>
                     </div>

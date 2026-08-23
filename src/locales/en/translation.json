@@ -370,7 +370,7 @@
         "greeting": "Hello! I'm Parvogel's professional AI veterinarian. Ask me anything about neonatal diarrhea.",
         "placeholder": "Ask anything...",
         "send": "Send",
-        "error": "Sorry, a communication error occurred. Please try again later.",
+        "error": "Sorry, a temporary communication error occurred. Please try again shortly, or for urgent inquiries call 010-5407-5708 or use the order form below.",
         "close": "Close chat",
         "messages": "Consultation messages"
     },

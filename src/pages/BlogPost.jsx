@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import posts from '../data/posts.json';
+import { assetUrl, absoluteUrl } from '../config/site';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -14,6 +15,23 @@ export default function BlogPost() {
   // 간단한 마크다운/줄바꿈 파싱
   const renderContent = (text) => {
     return text.split('\n').map((line, idx) => {
+      // 이미지 (![alt](src)) — GitHub Pages 하위 경로 배포 대응을 위해 BASE_URL 적용
+      const imgMatch = line.match(/^!\[(.*?)\]\((.*?)\)\s*$/);
+      if (imgMatch) {
+        return (
+          <figure key={idx} className="my-8">
+            <img
+              src={assetUrl(imgMatch[2])}
+              alt={imgMatch[1]}
+              loading="lazy"
+              className="w-full rounded-2xl border border-gray-100 shadow-md"
+            />
+            {imgMatch[1] && (
+              <figcaption className="text-center text-sm text-gray-500 mt-2">{imgMatch[1]}</figcaption>
+            )}
+          </figure>
+        );
+      }
       if (line.startsWith('### ')) {
         return <h3 key={idx} className="text-xl md:text-2xl font-bold text-gray-900 mt-8 mb-4">{line.replace('### ', '')}</h3>;
       }
@@ -42,7 +60,7 @@ export default function BlogPost() {
     "@type": "Article",
     "headline": post.title,
     "image": [
-      `https://parvogel.com${post.image}`
+      absoluteUrl(post.image)
     ],
     "datePublished": post.date,
     "author": [{
@@ -53,18 +71,18 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-white">
-      <SEO 
-        title={post.title} 
-        description={post.excerpt} 
+      <SEO
+        title={post.title}
+        description={post.excerpt}
         type="article"
-        image={`https://parvogel.com${post.image}`}
+        image={absoluteUrl(post.image)}
         structuredData={articleStructuredData}
       />
       
       {/* Header Image */}
       <div className="w-full h-[40vh] md:h-[50vh] relative bg-gray-900">
-        <img 
-          src={post.image} 
+        <img
+          src={assetUrl(post.image)}
           alt={post.title}
           className="w-full h-full object-cover opacity-60"
         />
