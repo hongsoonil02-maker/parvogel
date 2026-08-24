@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-// 상담 API 프록시 주소 — .env의 VITE_CHAT_API_URL로 자체 프록시 교체 가능
+// 상담 API 프록시 주소 — Agrokorea 공용 Cloudflare Worker (4개 제품 공유)
 const CHAT_API_URL = import.meta.env.VITE_CHAT_API_URL
-    || 'https://100baggersaas.vercel.app/api/parvogel-chat';
+    || 'https://vetacol.hongsoonil02.workers.dev/api/chat';
 const CHAT_TIMEOUT_MS = 15000;
 
 export default function Chatbot() {
@@ -56,14 +56,15 @@ export default function Chatbot() {
         const timer = setTimeout(() => controller.abort(), CHAT_TIMEOUT_MS);
 
         try {
-            // 100_bagger_saas API proxy 호출
+            // Agrokorea 공용 챗봇 프록시 호출
             const response = await fetch(CHAT_API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    messages: [...messages, { role: 'user', content: userMessage }].map(m => ({ role: m.role, content: m.content })),
+                    product: 'parvogel',
+                    message: userMessage,
                     language: i18n.language
                 }),
                 signal: controller.signal,
