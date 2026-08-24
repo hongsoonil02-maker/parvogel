@@ -50,6 +50,7 @@ i18n
             ko: { translation: PRELOADED.ko },
             en: { translation: PRELOADED.en },
         },
+        lng: 'ko',
         fallbackLng: 'en',
         supportedLngs: ['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'],
         interpolation: { escapeValue: false },
