@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, Suspense, lazy } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ClinicalEvidence from '../components/ClinicalEvidence'
+import ParvogelClinicalDocumentary from '../components/ParvogelClinicalDocumentary'
 import AnimalSelector from '../components/AnimalSelector'
 import AudioTestimonial from '../components/AudioTestimonial'
 import StickyBottomCTA from '../components/StickyBottomCTA'
@@ -774,6 +775,9 @@ const Landing = () => {
 
             {/* Clinical Evidence Section */}
             <ClinicalEvidence />
+
+            {/* 리얼 6단계 임상 다큐멘터리 (일자별 치료 순서 동기화) */}
+            <ParvogelClinicalDocumentary />
 
 
             {/* Target Animals Section */}
