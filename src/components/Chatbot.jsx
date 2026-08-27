@@ -85,22 +85,37 @@ export default function Chatbot() {
         }
     };
 
+    // ESC 키 누를 때 열려있는 챗봇 창 닫기
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && isOpen) {
+                setIsOpen(false);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen]);
+
     return (
-        <div className="fixed bottom-[calc(5.2rem+env(safe-area-inset-bottom,0px))] end-3 sm:end-6 z-40">
-            {/* 챗봇 토글 버튼 */}
+        <div className="fixed bottom-[calc(5.2rem+env(safe-area-inset-bottom,0px))] end-3 sm:end-6 z-[80] flex flex-col items-end">
+            {/* 챗봇 토글 버튼 (56px 원형, WCAG 48px 이상 터치 타겟, z-[80] 전역 항상 노출) */}
             <button
                 onClick={toggleChat}
-                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-16 h-16 bg-primary-600 text-white rounded-full shadow-2xl hover:scale-105 transition-transform duration-300 focus:outline-none`}
-                aria-label="Open AI Chat"
+                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-14 h-14 min-w-[48px] min-h-[48px] bg-[#0284c7] hover:bg-[#0369a1] active:bg-[#075985] text-white rounded-full shadow-2xl border-2 border-cyan-300/90 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400/50 transition-all hover:scale-110 active:scale-95 group cursor-pointer`}
+                aria-label={t('chat.openButton', 'AI 맞춤 상담 챗봇 열기')}
+                aria-expanded={isOpen}
+                aria-haspopup="dialog"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 transition-transform group-hover:scale-105" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
             </button>
 
             {/* 챗봇 창 */}
             <div
-                className={`${isOpen ? 'flex' : 'hidden'} flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 origin-bottom-right`}
+                role="dialog"
+                aria-label={t('chat.title', '파보겔 AI 맞춤 상담')}
+                className={`${isOpen ? 'flex' : 'hidden'} flex-col w-[92vw] sm:w-[400px] h-[550px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-slate-300/80 overflow-hidden transition-all duration-300 origin-bottom-right z-[85] mb-2`}
             >
                 {/* 헤더 */}
                 <div className="flex items-center justify-between px-4 py-3 bg-primary-600 text-white">
