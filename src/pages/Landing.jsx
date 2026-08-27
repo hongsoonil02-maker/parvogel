@@ -9,6 +9,7 @@ import StickyBottomCTA from '../components/StickyBottomCTA'
 import OrderForm from '../components/OrderForm'
 import { getStoreUrl, hasProductUrl } from '../config/storeLinks'
 import SEO from '../components/SEO'
+import A11yToolbar from '../components/A11yToolbar'
 
 const Chatbot = lazy(() => import('../components/Chatbot'))
 const QrCode = lazy(() => import('../components/QrCode'))
@@ -74,12 +75,25 @@ const Landing = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Set document lang attribute for accessibility
+    // Set document lang & dir attributes for accessibility and cultural respect
     useEffect(() => {
         if (i18n && i18n.language) {
-            document.documentElement.lang = i18n.language;
+            const base = String(i18n.language).split('-')[0];
+            document.documentElement.lang = base;
+            document.documentElement.dir = base === 'ar' ? 'rtl' : 'ltr';
         }
-    }, [i18n])
+    }, [i18n, i18n.language])
+
+    // 모바일 메뉴 오픈 시 배경 스크롤 잠금
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            const prev = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = prev;
+            };
+        }
+    }, [isMobileMenuOpen]);
 
     // 언어 메뉴 외부 클릭 / ESC 시 닫기
     useEffect(() => {
@@ -1205,6 +1219,9 @@ const Landing = () => {
 
             {/* 모바일/데스크톱 반응형 스티키 CTA 바 */}
             <StickyBottomCTA onOpenOrder={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }} />
+
+            {/* 장애인 접근 편의 도구 (고대비, 큰글씨, 움직임제어, 가독성 줄간격, TTS) */}
+            <A11yToolbar />
 
             {/* Chatbot */}
             <Suspense fallback={null}>

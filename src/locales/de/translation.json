@@ -498,7 +498,21 @@
     "productVideo": "Parvogel-Produktvorstellungsvideo",
     "productMedia": "Produktmedium auswählen",
     "playProductVideo": "Produktvideo abspielen",
-    "viewImage": "Vergrößern"
+    "viewImage": "Vergrößern",
+    "toolbarLabel": "Barrierefreiheits-Tools",
+    "title": "Barrierefreiheits-Menü (A11y)",
+    "contrastOn": "Hoher Kontrast",
+    "contrastOff": "Normaler Kontrast",
+    "largeTextOn": "Text vergrößern",
+    "largeTextOff": "Text normal",
+    "openMenu": "Barrierefreiheits-Menü öffnen",
+    "reduceMotionOn": "Bewegung reduzieren",
+    "reduceMotionOff": "Animationen an",
+    "readableFontOn": "Lesbaren Zeilenabstand",
+    "readableFontOff": "Standardabstand",
+    "readAloudOn": "Seite vorlesen (TTS)",
+    "readAloudOff": "Vorlesen stoppen",
+    "ttsNotSupported": "Sprachausgabe wird nicht unterstützt."
   },
   "store": {
     "comingSoon": "Demnächst verfügbar"

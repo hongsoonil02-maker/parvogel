@@ -494,11 +494,25 @@
     "businessBody": "Tên công ty: Korea Agro Co., Ltd. | Mã số đăng ký: 123-45-67890 | Đại diện: Soon-il Hong | Địa chỉ: Hàn Quốc"
   },
   "a11y": {
-    "skipToContent": "Chuyển đến nội dung",
+    "skipToContent": "Bỏ qua tới nội dung",
     "productVideo": "Video giới thiệu sản phẩm Parvogel",
     "productMedia": "Chọn phương tiện sản phẩm",
     "playProductVideo": "Phát video sản phẩm",
-    "viewImage": "Xem lớn hơn"
+    "viewImage": "Xem lớn hơn",
+    "toolbarLabel": "Công cụ hỗ trợ tiếp cận",
+    "title": "Menu Hỗ trợ tiếp cận (A11y)",
+    "contrastOn": "Bật tương phản cao",
+    "contrastOff": "Tắt tương phản cao",
+    "largeTextOn": "Phóng to chữ",
+    "largeTextOff": "Cỡ chữ mặc định",
+    "openMenu": "Mở menu hỗ trợ tiếp cận",
+    "reduceMotionOn": "Giảm chuyển động",
+    "reduceMotionOff": "Bật hiệu ứng",
+    "readableFontOn": "Giãn dòng dễ đọc",
+    "readableFontOff": "Khoảng cách chuẩn",
+    "readAloudOn": "Đọc văn bản (TTS)",
+    "readAloudOff": "Dừng đọc",
+    "ttsNotSupported": "Trình duyệt không hỗ trợ đọc văn bản."
   },
   "store": {
     "comingSoon": "Sắp ra mắt"

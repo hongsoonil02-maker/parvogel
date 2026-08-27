@@ -498,7 +498,21 @@
     "productVideo": "วิดีโอแนะนำผลิตภัณฑ์ Parvogel",
     "productMedia": "เลือกสื่อผลิตภัณฑ์",
     "playProductVideo": "เล่นวิดีโอผลิตภัณฑ์",
-    "viewImage": "ดูขนาดใหญ่"
+    "viewImage": "ดูขนาดใหญ่",
+    "toolbarLabel": "เครื่องมือการเข้าถึง",
+    "title": "เมนูการเข้าถึง (A11y)",
+    "contrastOn": "คอนทราสต์สูง",
+    "contrastOff": "คอนทราสต์ปกติ",
+    "largeTextOn": "ขยายขนาดตัวอักษร",
+    "largeTextOff": "ขนาดปกติ",
+    "openMenu": "เปิดเมนูการเข้าถึง",
+    "reduceMotionOn": "ลดภาพเคลื่อนไหว",
+    "reduceMotionOff": "เปิดภาพเคลื่อนไหว",
+    "readableFontOn": "ขยายระยะห่างบรรทัด",
+    "readableFontOff": "ระยะห่างปกติ",
+    "readAloudOn": "อ่านออกเสียง (TTS)",
+    "readAloudOff": "หยุดอ่าน",
+    "ttsNotSupported": "เบราว์เซอร์ไม่รองรับการอ่านออกเสียง"
   },
   "store": {
     "comingSoon": "เร็ว ๆ นี้"

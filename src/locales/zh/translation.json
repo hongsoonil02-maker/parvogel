@@ -494,11 +494,25 @@
     "businessBody": "公司名称: Korea Agro Co., Ltd. | 工商注册号: 123-45-67890 | 法人代表: 洪顺一 | 地址: 韩国"
   },
   "a11y": {
-    "skipToContent": "跳转到正文",
+    "skipToContent": "跳转至正文",
     "productVideo": "Parvogel产品介绍视频",
     "productMedia": "选择产品媒体",
     "playProductVideo": "播放产品视频",
-    "viewImage": "放大查看"
+    "viewImage": "放大查看",
+    "toolbarLabel": "无障碍辅助功能工具",
+    "title": "无障碍便利工具 (A11y)",
+    "contrastOn": "开启高对比度",
+    "contrastOff": "关闭高对比度",
+    "largeTextOn": "放大字体",
+    "largeTextOff": "恢复字体大小",
+    "openMenu": "打开无障碍辅助菜单",
+    "reduceMotionOn": "减弱动态效果",
+    "reduceMotionOff": "恢复动画效果",
+    "readableFontOn": "优化行距间距",
+    "readableFontOff": "恢复标准间距",
+    "readAloudOn": "语音朗读正文 (TTS)",
+    "readAloudOff": "停止朗读",
+    "ttsNotSupported": "当前浏览器不支持语音朗读功能。"
   },
   "store": {
     "comingSoon": "即将入驻"

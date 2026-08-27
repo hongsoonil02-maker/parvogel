@@ -498,7 +498,21 @@
     "productVideo": "Vidéo de présentation du produit Parvogel",
     "productMedia": "Sélectionner le média du produit",
     "playProductVideo": "Lire la vidéo du produit",
-    "viewImage": "Agrandir"
+    "viewImage": "Agrandir",
+    "toolbarLabel": "Outils d’Accessibilité",
+    "title": "Menu d’Accessibilité (A11y)",
+    "contrastOn": "Contraste Élevé",
+    "contrastOff": "Contraste Normal",
+    "largeTextOn": "Agrandir le Texte",
+    "largeTextOff": "Texte Normal",
+    "openMenu": "Ouvrir le Menu d’Accessibilité",
+    "reduceMotionOn": "Réduire les Mouvements",
+    "reduceMotionOff": "Activer Animations",
+    "readableFontOn": "Espacement Lisible",
+    "readableFontOff": "Espacement Normal",
+    "readAloudOn": "Lecture Vocale (TTS)",
+    "readAloudOff": "Arrêter la Voix",
+    "ttsNotSupported": "La synthèse vocale n’est pas prise en charge."
   },
   "store": {
     "comingSoon": "Bientôt disponible"

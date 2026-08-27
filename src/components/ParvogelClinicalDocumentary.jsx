@@ -556,11 +556,11 @@ export default function ParvogelClinicalDocumentary() {
           role="dialog"
           aria-modal="true"
           aria-label={t('doc.docuModalTitle', '55일령 발작 환축의 7일간의 기적 다큐멘터리')}
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4"
+          className="fixed inset-0 z-[70] bg-black/95 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4"
           onClick={() => setIsDocuModalOpen(false)}
         >
           <div 
-            className="relative max-w-sm sm:max-w-md w-[94vw] sm:w-full bg-slate-900/95 rounded-3xl p-3.5 sm:p-5 border border-blue-500/40 flex flex-col shadow-2xl max-h-[92dvh] overflow-y-auto"
+            className="relative max-w-sm sm:max-w-md w-[94vw] sm:w-full bg-slate-900/95 rounded-3xl p-3.5 sm:p-5 pb-5 sm:pb-6 border border-blue-500/40 flex flex-col shadow-2xl max-h-[92dvh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-2.5 sm:mb-3 border-b border-white/10 pb-2.5 sm:pb-3 text-start">

@@ -498,7 +498,21 @@
     "productVideo": "Видео-презентация продукта Parvogel",
     "productMedia": "Выбрать медиа продукта",
     "playProductVideo": "Воспроизвести видео продукта",
-    "viewImage": "Увеличить"
+    "viewImage": "Увеличить",
+    "toolbarLabel": "Инструменты доступности",
+    "title": "Меню доступности (A11y)",
+    "contrastOn": "Высокая контрастность",
+    "contrastOff": "Обычная контрастность",
+    "largeTextOn": "Крупный шрифт",
+    "largeTextOff": "Обычный шрифт",
+    "openMenu": "Открыть меню доступности",
+    "reduceMotionOn": "Уменьшить анимацию",
+    "reduceMotionOff": "Включить анимацию",
+    "readableFontOn": "Улучшить интервалы",
+    "readableFontOff": "Обычные интервалы",
+    "readAloudOn": "Озвучить текст (TTS)",
+    "readAloudOff": "Остановить голос",
+    "ttsNotSupported": "Синтез речи не поддерживается браузером."
   },
   "store": {
     "comingSoon": "Скоро в продаже"

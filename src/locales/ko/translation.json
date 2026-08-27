@@ -394,7 +394,21 @@
     "productVideo": "파보겔 제품 소개 영상",
     "productMedia": "제품 미디어 선택",
     "playProductVideo": "제품 영상 재생",
-    "viewImage": "크게 보기"
+    "viewImage": "크게 보기",
+    "toolbarLabel": "웹 접근성 설정 도구",
+    "title": "장애인 접근 편의 도구",
+    "contrastOn": "고대비 켜기",
+    "contrastOff": "고대비 끄기",
+    "largeTextOn": "큰 글씨 확대",
+    "largeTextOff": "글씨 크기 복구",
+    "openMenu": "장애인 접근 편의 도구 열기",
+    "reduceMotionOn": "움직임 줄이기",
+    "reduceMotionOff": "움직임 효과 켜기",
+    "readableFontOn": "가독성 줄간격 확대",
+    "readableFontOff": "기본 줄간격 복구",
+    "readAloudOn": "본문 음성 읽기",
+    "readAloudOff": "음성 읽기 멈춤",
+    "ttsNotSupported": "이 브라우저는 음성 읽기(TTS)를 지원하지 않습니다."
   },
   "legal": {
     "privacyTitle": "개인정보 처리방침",

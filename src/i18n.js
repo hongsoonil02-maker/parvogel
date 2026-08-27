@@ -50,27 +50,31 @@ i18n
             ko: { translation: PRELOADED.ko },
             en: { translation: PRELOADED.en },
         },
-        lng: 'ko',
-        fallbackLng: 'en',
+        fallbackLng: 'ko',
         supportedLngs: ['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'],
         interpolation: { escapeValue: false },
         detection: {
-            order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag', 'path', 'subdomain'],
-            caches: ['localStorage', 'cookie'],
+            order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
+            caches: ['localStorage'],
+            lookupQuerystring: 'lng',
+            lookupLocalStorage: 'i18nextLng',
         }
     });
 
-// 감지된 초기 언어가 preload 대상이 아니면 동적 로드
+const syncDocumentLanguage = (language) => {
+    if (typeof document === 'undefined') return;
+    const base = String(language || 'ko').split('-')[0];
+    document.documentElement.lang = base;
+    document.documentElement.dir = base === 'ar' ? 'rtl' : 'ltr';
+};
+
+// 감지된 초기 언어가 preload 대상이 아니면 동적 로드 및 문서 속성 동기화
 loadLanguage(i18n.language).then(() => {
+    syncDocumentLanguage(i18n.language);
     if (i18n.language && !['ko', 'en'].includes(i18n.language.split('-')[0])) {
         i18n.changeLanguage(i18n.language);
     }
 });
-
-const syncDocumentLanguage = (language) => {
-    if (typeof document === 'undefined') return;
-    document.documentElement.lang = language;
-};
 
 syncDocumentLanguage(i18n.language);
 i18n.on('languageChanged', (lng) => {

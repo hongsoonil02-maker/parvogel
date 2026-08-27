@@ -494,11 +494,25 @@
     "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
   },
   "a11y": {
-    "skipToContent": "Skip to content",
+    "skipToContent": "Skip to Content",
     "productVideo": "Parvogel product introduction video",
     "productMedia": "Select product media",
     "playProductVideo": "Play product video",
-    "viewImage": "View larger"
+    "viewImage": "View larger",
+    "toolbarLabel": "Accessibility Tools",
+    "title": "Accessibility Menu (A11y)",
+    "contrastOn": "Enable High Contrast",
+    "contrastOff": "Disable High Contrast",
+    "largeTextOn": "Enlarge Text Size",
+    "largeTextOff": "Reset Text Size",
+    "openMenu": "Open Accessibility Tools",
+    "reduceMotionOn": "Reduce Motion",
+    "reduceMotionOff": "Enable Animations",
+    "readableFontOn": "Enhance Line Spacing",
+    "readableFontOff": "Reset Spacing",
+    "readAloudOn": "Read Page Aloud (TTS)",
+    "readAloudOff": "Stop Speech",
+    "ttsNotSupported": "Speech synthesis is not supported on this browser."
   },
   "store": {
     "comingSoon": "Coming Soon"

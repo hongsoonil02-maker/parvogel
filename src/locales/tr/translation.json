@@ -498,7 +498,21 @@
     "productVideo": "Parvogel ürün tanıtım videosu",
     "productMedia": "Ürün medyasını seç",
     "playProductVideo": "Ürün videosunu oynat",
-    "viewImage": "Büyüt"
+    "viewImage": "Büyüt",
+    "toolbarLabel": "Erişilebilirlik Araçları",
+    "title": "Erişilebilirlik Menüsü (A11y)",
+    "contrastOn": "Yüksek Kontrast",
+    "contrastOff": "Normal Kontrast",
+    "largeTextOn": "Büyük Metin",
+    "largeTextOff": "Normal Metin",
+    "openMenu": "Erişilebilirlik Menüsünü Aç",
+    "reduceMotionOn": "Hareketi Azalt",
+    "reduceMotionOff": "Animasyonları Aç",
+    "readableFontOn": "Okunabilir Satır Aralığı",
+    "readableFontOff": "Standart Aralık",
+    "readAloudOn": "Sesli Oku (TTS)",
+    "readAloudOff": "Sesi Durdur",
+    "ttsNotSupported": "Tarayıcı sesli okuma özelliğini desteklemiyor."
   },
   "store": {
     "comingSoon": "Yakında"

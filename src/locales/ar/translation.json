@@ -494,11 +494,25 @@
     "businessBody": "اسم الشركة: Korea Agro Co., Ltd. | رقم التسجيل: 123-45-67890 | الممثل: سونغ إيل هونغ | العنوان: جمهورية كوريا"
   },
   "a11y": {
-    "skipToContent": "تخطي إلى المحتوى",
+    "skipToContent": "انتقل إلى المحتوى",
     "productVideo": "فيديو تعريفي بمنتج Parvogel",
     "productMedia": "اختر وسائط المنتج",
     "playProductVideo": "تشغيل فيديو المنتج",
-    "viewImage": "عرض أكبر"
+    "viewImage": "عرض أكبر",
+    "toolbarLabel": "أدوات إمكانية الوصول",
+    "title": "قائمة تسهيل الوصول (A11y)",
+    "contrastOn": "تفعيل التباين العالي",
+    "contrastOff": "إلغاء التباين العالي",
+    "largeTextOn": "تكبير النص",
+    "largeTextOff": "استعادة حجم النص",
+    "openMenu": "فتح قائمة إمكانية الوصول",
+    "reduceMotionOn": "تقليل الحركة",
+    "reduceMotionOff": "تفعيل الحركة",
+    "readableFontOn": "تحسين تباعد الأسطر",
+    "readableFontOff": "التباعد الافتراضي",
+    "readAloudOn": "قراءة الصفحة صوتياً (TTS)",
+    "readAloudOff": "إيقاف الصوت",
+    "ttsNotSupported": "المتصفح لا يدعم القراءة الصوتية."
   },
   "store": {
     "comingSoon": "قريبًا"

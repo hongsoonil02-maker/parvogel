@@ -142,3 +142,82 @@
 section:not(#hero) {
     @apply py-12 sm:py-16 lg:py-20 !important;
 }
+
+/* ============================================================
+   한글 줄맞춤 및 타이포그래피 줄바꿈 균형 (Korean Line-Break & Wrap)
+   ============================================================ */
+h1, h2, h3, h4, h5, h6, p, span, li, button, a, dt, dd {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* ============================================================
+   장애인 접근 편의 사양 (Web Accessibility / A11y Modes)
+   ============================================================ */
+/* 1. 고대비 모드 (저시력자 및 시각 약자 가독성 강화) */
+.high-contrast {
+    filter: contrast(135%) brightness(105%);
+}
+.high-contrast body {
+    background-color: #030712 !important;
+    color: #f8fafc !important;
+}
+.high-contrast .card,
+.high-contrast .bg-white {
+    background-color: #0b192c !important;
+    color: #ffffff !important;
+    border: 1px solid #38bdf8 !important;
+}
+.high-contrast .text-gray-600,
+.high-contrast .text-gray-500,
+.high-contrast .text-slate-400 {
+    color: #cbd5e1 !important;
+}
+
+/* 2. 큰 글씨 모드 (노안 및 약시 지원) */
+.large-text {
+    font-size: 115% !important;
+}
+.large-text h1,
+.large-text h2,
+.large-text h3 {
+    font-size: 115% !important;
+}
+.large-text p,
+.large-text span,
+.large-text button,
+.large-text a,
+.large-text li {
+    font-size: 110% !important;
+}
+
+/* 3. 움직임 줄이기 (전정기관 장애 및 모션 멀미 방지) */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* 4. 가독성 향상 모드 (난독증 및 인지 배려, 자간/줄간격 확대) */
+.readable-font {
+    letter-spacing: 0.06em !important;
+    line-height: 1.85 !important;
+    word-spacing: 0.12em !important;
+}
+
+/* ============================================================
+   다문화권 존중 및 RTL 언어 지원 (Arabic 등 오른쪽-왼쪽 쓰기)
+   ============================================================ */
+html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+html[dir="rtl"] .text-left {
+    text-align: right !important;
+}
+html[dir="rtl"] .text-right {
+    text-align: left !important;
+}

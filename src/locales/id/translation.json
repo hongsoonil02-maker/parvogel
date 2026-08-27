@@ -498,7 +498,21 @@
     "productVideo": "Video pengenalan produk Parvogel",
     "productMedia": "Pilih media produk",
     "playProductVideo": "Putar video produk",
-    "viewImage": "Lihat lebih besar"
+    "viewImage": "Lihat lebih besar",
+    "toolbarLabel": "Alat Aksesibilitas",
+    "title": "Menu Aksesibilitas (A11y)",
+    "contrastOn": "Kontras Tinggi",
+    "contrastOff": "Kontras Normal",
+    "largeTextOn": "Perbesar Teks",
+    "largeTextOff": "Teks Normal",
+    "openMenu": "Buka Menu Aksesibilitas",
+    "reduceMotionOn": "Kurangi Gerakan",
+    "reduceMotionOff": "Aktifkan Animasi",
+    "readableFontOn": "Spasi Lebih Jelas",
+    "readableFontOff": "Spasi Standar",
+    "readAloudOn": "Bacakan Teks (TTS)",
+    "readAloudOff": "Hentikan Suara",
+    "ttsNotSupported": "Browser tidak mendukung pembacaan suara."
   },
   "store": {
     "comingSoon": "Segera hadir"

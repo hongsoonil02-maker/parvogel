@@ -494,11 +494,25 @@
     "businessBody": "Nome da Empresa: Korea Agro Co., Ltd. | N.º de Registo: 123-45-67890 | Representante: Soon-il Hong | Endereço: República da Coreia"
   },
   "a11y": {
-    "skipToContent": "Ir para o conteúdo",
+    "skipToContent": "Pular para o conteúdo",
     "productVideo": "Vídeo de apresentação do produto Parvogel",
     "productMedia": "Selecionar mídia do produto",
     "playProductVideo": "Reproduzir vídeo do produto",
-    "viewImage": "Ampliar"
+    "viewImage": "Ampliar",
+    "toolbarLabel": "Ferramentas de Acessibilidade",
+    "title": "Menu de Acessibilidade (A11y)",
+    "contrastOn": "Alto Contraste",
+    "contrastOff": "Contraste Padrão",
+    "largeTextOn": "Texto Grande",
+    "largeTextOff": "Texto Padrão",
+    "openMenu": "Abrir Acessibilidade",
+    "reduceMotionOn": "Reduzir Movimento",
+    "reduceMotionOff": "Ativar Animações",
+    "readableFontOn": "Espaçamento Legível",
+    "readableFontOff": "Espaçamento Padrão",
+    "readAloudOn": "Ler em Voz Alta (TTS)",
+    "readAloudOff": "Parar Voz",
+    "ttsNotSupported": "Navegador não suporta síntese de voz."
   },
   "store": {
     "comingSoon": "Em breve"
