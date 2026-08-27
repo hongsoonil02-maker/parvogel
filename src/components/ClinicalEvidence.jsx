@@ -17,17 +17,17 @@ const ClinicalEvidence = () => {
   }, [selectedVirus]);
 
   return (
-    <section id="clinical" className="py-12 md:py-24 bg-slate-100 border-y border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="clinical" className="py-12 md:py-24 bg-slate-100 border-y border-slate-200 overflow-hidden w-full max-w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-primary-900 break-keep">{t('clinical.title', '학술 검증 및 임상 시험 데이터')}</h2>
           <div className="w-24 h-1.5 bg-accent-400 mx-auto mt-6 rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 w-full min-w-0">
 
           {/* Card 1: LIQI Technology Comparison Table */}
-          <div className="bg-white p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white min-w-0 p-4 sm:p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 flex items-center gap-3 break-keep">
                 <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">1</span>
@@ -37,33 +37,33 @@ const ClinicalEvidence = () => {
                 {t('clinical.card1_desc', '파보겔의 핵심 기술인 올트라파인 초미세공정이 기존 정장지사제 원료와 비교하여 압도적인 성능을 입증합니다.')}
               </p>
               <div className="w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm mb-6">
-                <table className="w-full text-sm border-collapse table-fixed">
+                <table className="w-full text-xs border-collapse table-fixed">
                   <colgroup>
-                    <col style={{width: '28%'}} />
-                    <col style={{width: '28%'}} />
+                    <col style={{width: '26%'}} />
+                    <col style={{width: '30%'}} />
                     <col style={{width: '22%'}} />
                     <col style={{width: '22%'}} />
                   </colgroup>
                   <thead>
                     <tr className="bg-primary-700 text-white">
-                      <th className="px-2 py-3.5 text-center font-bold text-xs break-keep">{t('clinical.table1_col1', '지표')}</th>
-                      <th className="px-2 py-3.5 text-center font-bold text-xs bg-primary-800 break-keep">{t('clinical.table1_col2', '파보겔 고순도 초미세 나노 몬모릴로나이트')}</th>
-                      <th className="px-2 py-3.5 text-center font-bold text-xs break-keep">{t('clinical.table1_col3', '약품등급 몬모릴로나이트')}</th>
-                      <th className="px-2 py-3.5 text-center font-bold text-xs break-keep">{t('clinical.table1_col4', '일반 몬모릴로나이트')}</th>
+                      <th className="px-1 sm:px-2 py-2.5 sm:py-3.5 text-center font-bold text-[10px] sm:text-xs break-words leading-tight">{t('clinical.table1_col1', '지표')}</th>
+                      <th className="px-1 sm:px-2 py-2.5 sm:py-3.5 text-center font-bold text-[10px] sm:text-xs bg-primary-800 break-words leading-tight">{t('clinical.table1_col2', '파보겔 고순도 초미세 나노 몬모릴로나이트')}</th>
+                      <th className="px-1 sm:px-2 py-2.5 sm:py-3.5 text-center font-bold text-[10px] sm:text-xs break-words leading-tight">{t('clinical.table1_col3', '약품등급 몬모릴로나이트')}</th>
+                      <th className="px-1 sm:px-2 py-2.5 sm:py-3.5 text-center font-bold text-[10px] sm:text-xs break-words leading-tight">{t('clinical.table1_col4', '일반 몬모릴로나이트')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 py-4 text-center font-bold text-slate-700 text-xs break-keep">{t('clinical.table1_row1_label', '표면적 m²/g')}</td>
-                      <td className="px-2 py-4 text-center font-black text-primary-700 text-sm bg-primary-50/80 break-all">{t('clinical.table1_row1_val1', '≥800')}</td>
-                      <td className="px-2 py-4 text-center text-slate-500 text-xs break-all">{t('clinical.table1_row1_val2', '71 *')}</td>
-                      <td className="px-2 py-4 text-center text-slate-500 text-xs break-all">{t('clinical.table1_row1_val3', '≥100')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center font-bold text-slate-700 text-[10px] sm:text-xs break-words">{t('clinical.table1_row1_label', '표면적 m²/g')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center font-black text-primary-700 text-xs sm:text-sm bg-primary-50/80 break-all">{t('clinical.table1_row1_val1', '≥800')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center text-slate-500 text-[10px] sm:text-xs break-all">{t('clinical.table1_row1_val2', '71 *')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center text-slate-500 text-[10px] sm:text-xs break-all">{t('clinical.table1_row1_val3', '≥100')}</td>
                     </tr>
                     <tr className="hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 py-4 text-center font-bold text-slate-700 text-xs break-keep">{t('clinical.table1_row2_label', '입자도 (um) D90')}</td>
-                      <td className="px-2 py-4 text-center font-black text-red-600 text-sm bg-primary-50/80 break-all">{t('clinical.table1_row2_val1', '≤6.5')}</td>
-                      <td className="px-2 py-4 text-center text-slate-500 text-xs break-all">{t('clinical.table1_row2_val2', '≥200')}</td>
-                      <td className="px-2 py-4 text-center text-slate-500 text-xs break-all">{t('clinical.table1_row2_val3', '≥325')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center font-bold text-slate-700 text-[10px] sm:text-xs break-words">{t('clinical.table1_row2_label', '입자도 (um) D90')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center font-black text-red-600 text-xs sm:text-sm bg-primary-50/80 break-all">{t('clinical.table1_row2_val1', '≤6.5')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center text-slate-500 text-[10px] sm:text-xs break-all">{t('clinical.table1_row2_val2', '≥200')}</td>
+                      <td className="px-1 sm:px-2 py-3 text-center text-slate-500 text-[10px] sm:text-xs break-all">{t('clinical.table1_row2_val3', '≥325')}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -101,7 +101,7 @@ const ClinicalEvidence = () => {
           </div>
 
           {/* Card 2: Clinical Efficacy Test Data */}
-          <div className="bg-white p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white min-w-0 p-4 sm:p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 flex items-center gap-3 break-keep">
                 <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">2</span>
@@ -148,7 +148,7 @@ const ClinicalEvidence = () => {
           </div>
 
           {/* Card 3: Antiviral Effects Table */}
-          <div className="bg-white p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white min-w-0 p-4 sm:p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 flex items-center gap-3 break-keep">
                 <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">3</span>
@@ -303,7 +303,7 @@ const ClinicalEvidence = () => {
           </div>
 
           {/* Card 4: Expert Review Meeting Feedback */}
-          <div className="bg-white p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+          <div className="bg-white min-w-0 p-4 sm:p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 flex items-center gap-3 break-keep">
                 <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">4</span>
