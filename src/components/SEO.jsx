@@ -4,6 +4,7 @@ import { SITE_URL, absoluteUrl } from '../config/site';
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData }) {
   // canonical/OG 기준은 site.js의 단일 상수 사용 (GitHub Pages 실배포 URL)
+  const siteUrl = SITE_URL;
   const defaultTitle = '파보겔(Parvo Gel) - 쓰러진 강아지의 기적의 7일 회복 실화 | 반려견·전축종 급성 설사 케어';
   const defaultDescription = '1-deoxinojirimycin & Patent No. 2011B0042620.8 특허균주 복합제 파보겔. 1초 원터치 펌프로 주사기 없이 스트레스 제로 급여. 쓰러진 55일령 강아지의 7일 회복 실화.';
 

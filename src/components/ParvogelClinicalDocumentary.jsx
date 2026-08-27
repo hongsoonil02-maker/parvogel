@@ -1,11 +1,51 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function ParvogelClinicalDocumentary() {
   const { t } = useTranslation();
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [selectedVideoId, setSelectedVideoId] = useState('pv1');
+  const [isDocuModalOpen, setIsDocuModalOpen] = useState(false);
+  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const videoRef = useRef(null);
+
+  const docuVideoUrl = `${import.meta.env.BASE_URL}assets/parvogel_clinical_documentary_v2.mp4?v=20260828`;
+
+  const handleCopyDocuLink = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const url = 'https://parvogel.kr/assets/parvogel_clinical_documentary_v2.mp4';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2500);
+      });
+    } else {
+      alert('동영상 링크: ' + url);
+    }
+  };
+
+  // 모달 키보드 ESC 닫기 접근성 지원
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isDocuModalOpen) {
+        setIsDocuModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDocuModalOpen]);
+
+  // 모달 활성화 시 배경 스크롤 락
+  useEffect(() => {
+    if (isDocuModalOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [isDocuModalOpen]);
 
   // 다국어 자동 변환 지원 임상 단계 데이터
   const steps = useMemo(() => [
@@ -204,6 +244,46 @@ export default function ParvogelClinicalDocumentary() {
             </div>
           </div>
         </header>
+
+        {/* 🎬 2분 55초 풀 다큐멘터리 프리미엄 시청 배너 */}
+        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-blue-400/40 shadow-2xl shadow-blue-950/60 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-xl">
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+          
+          <div className="text-start space-y-2 relative z-10">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-black px-3 py-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-md">
+                {t('doc.docuModalBadge', '🎬 2분 55초 풀 다큐멘터리')}
+              </span>
+              <span className="text-xs text-cyan-300 font-bold">
+                {t('doc.docuSpec', '1080p 세로 직캠 + AI 성우 내레이션')}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-2xl font-black text-white leading-snug break-keep">
+              {t('doc.docuBannerTitle', '55일령 발작 환축의 7일간의 기적 (전편 통합본)')}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl break-keep">
+              {t('doc.docuBannerDesc', '응급 내원부터 1차 펌프 투약, 신경 반사 회복, 캔사료 폭풍 완식 먹방, 그리고 최종 완치 퇴원까지 8편의 직캠과 김동준 원장의 실제 자필 차트를 2분 55초의 감동적인 다큐멘터리로 감상하고 원클릭으로 바로 공유해 보세요.')}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0 z-10">
+            <button
+              onClick={() => setIsDocuModalOpen(true)}
+              className="px-6 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm rounded-2xl shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              aria-label={t('doc.docuWatchBtn', '다큐 영상 전체 시청 (2분 55초)')}
+            >
+              <span className="text-lg" aria-hidden="true">▶</span>
+              <span>{t('doc.docuWatchBtn', '다큐 영상 전체 시청 (2분 55초)')}</span>
+            </button>
+            <button
+              onClick={handleCopyDocuLink}
+              className="px-4 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              aria-label={t('doc.docuCopyBtnMobile', '공유 링크 복사')}
+            >
+              <span>{copySuccess ? t('doc.docuCopied', '✅ 링크 복사완료!') : t('doc.docuCopyBtnMobile', '🔗 공유 링크 복사')}</span>
+            </button>
+          </div>
+        </div>
 
         {/* 3단계 스텝퍼 탭 (접근성: role="tablist", 키보드 제어 및 터치 타겟 48px 이상) */}
         <nav 
@@ -469,6 +549,130 @@ export default function ParvogelClinicalDocumentary() {
         </section>
 
       </div>
+
+      {/* 전편 전체화면 모달 (모바일 최적화 & 장애인 전체 자막/대본 포함) */}
+      {isDocuModalOpen && (
+        <div 
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('doc.docuModalTitle', '55일령 발작 환축의 7일간의 기적 다큐멘터리')}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4"
+          onClick={() => setIsDocuModalOpen(false)}
+        >
+          <div 
+            className="relative max-w-sm sm:max-w-md w-[94vw] sm:w-full bg-slate-900/95 rounded-3xl p-3.5 sm:p-5 border border-blue-500/40 flex flex-col shadow-2xl max-h-[92dvh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3 border-b border-white/10 pb-2.5 sm:pb-3 text-start">
+              <div>
+                <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 me-2 inline-block">
+                  {t('doc.docuModalBadge', '🎬 2분 55초 풀 다큐멘터리')}
+                </span>
+                <h4 className="text-xs sm:text-base font-bold text-white block mt-1 line-clamp-1">
+                  {t('doc.docuModalTitle', '55일령 발작 환축의 7일간의 기적')}
+                </h4>
+              </div>
+              <button
+                onClick={() => setIsDocuModalOpen(false)}
+                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold text-base shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
+                aria-label={t('common.close', '닫기')}
+              >
+                ✕
+              </button>
+            </div>
+            
+            {/* 스마트폰 9:16 세로 핏 비디오 컨테이너 */}
+            <div className="w-full max-w-[270px] sm:max-w-[310px] max-h-[48vh] sm:max-h-[54vh] mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl border border-blue-500/30 flex items-center justify-center relative">
+              <video
+                key="parvogel-docu-video-v2"
+                controls
+                autoPlay
+                playsInline
+                aria-label={t('doc.docuModalTitle', '김동준 원장 55일령 발작 환축 7일간의 기적 다큐멘터리')}
+                className="w-full h-full object-cover"
+              >
+                <source src={docuVideoUrl} type="video/mp4" />
+                브라우저가 비디오를 지원하지 않습니다.
+              </video>
+            </div>
+
+            {/* 장애인 접근성: 전체 대본/자막 전문 보기 아코디언 */}
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={() => setIsTranscriptOpen(!isTranscriptOpen)}
+                className="w-full py-2 px-3 bg-white/5 hover:bg-white/10 text-cyan-300 text-xs font-bold rounded-xl border border-blue-500/20 transition-all flex items-center justify-between cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                aria-expanded={isTranscriptOpen}
+              >
+                <span className="flex items-center gap-1.5">
+                  <span aria-hidden="true">📄</span>
+                  <span>{t('doc.docuTranscriptBtn', '다큐멘터리 전체 자막/대본 전문 보기')}</span>
+                </span>
+                <span className="text-[11px] text-slate-400 font-mono">
+                  {isTranscriptOpen ? t('doc.docuTranscriptHide', '▲ 닫기') : t('doc.docuTranscriptShow', '▼ 전문 펼치기')}
+                </span>
+              </button>
+
+              {isTranscriptOpen && (
+                <div 
+                  tabIndex={0} 
+                  role="region" 
+                  aria-label="다큐멘터리 전체 대본 텍스트"
+                  className="mt-2 p-3 bg-slate-950/85 rounded-xl border border-white/10 text-[11px] sm:text-xs text-slate-300 space-y-2 max-h-40 overflow-y-auto leading-relaxed focus:outline-none focus:ring-1 focus:ring-blue-400"
+                >
+                  <p className="border-b border-white/10 pb-1 text-cyan-400 font-bold">
+                    [프롤로그 0:00~0:13] 하남 사랑동물병원 김동준 원장의 실제 임상 치료 일지. 생후 55일 된 환축의 7일간의 기적 같은 파보겔 회복 다큐멘터리입니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-rose-300">[STEP 1 응급 내원 0:13~0:27]</strong> 2026년 7월 28일 새벽, 어린 푸들 믹스견이 스스로 서지 못하고 온몸을 떨며 응급 내원했습니다. 안락사까지 거론되던 위급한 순간이었습니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-amber-300">[STEP 1 초진 진단 0:27~0:52]</strong> 파보와 코로나 키트 검사는 음성. 김동준 원장은 원인불명의 급성 장독소증으로 인한 소화기 탈태와 신경 발작으로 진단했습니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-cyan-300">[STEP 1 파보겔 긴급 투약 0:52~1:07]</strong> 내원 즉시 파보겔 1차 펌프를 긴급 투약했습니다. 1-데옥시노지리마이신과 특허균주 복합체가 장 점막을 코팅하고 장내 독소를 즉시 흡착 배출하며 치료가 시작됩니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-emerald-300">[자필 차트 기록 1:07~1:18]</strong> 투약 몇 시간 만에 심한 경련이 진정되었고, 다음 날 저녁에는 종합백신 접종이 가능할 정도로 활력이 급호전되었습니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-cyan-300">[STEP 2 기립 반사 회복 1:18~1:42]</strong> 입원 3일 차. 환축은 네 발로 꼿꼿이 일어서며, 비틀거리던 자세 반사와 보행 능력을 완전히 회복했습니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-cyan-300">[STEP 2 생기 의식 회복 1:42~2:10]</strong> 입원실 안에서 안정을 취하며 장 점막을 회복 중인 환축. 흐려졌던 눈빛은 생기를 되찾고 고개를 꼿꼿이 들어 정면을 응시합니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-amber-300">[STEP 2 기적의 식욕 먹방 2:10~2:23]</strong> 식욕을 완전히 잃었던 환축이 밥그릇에 머리를 묻고 캔사료를 폭풍 흡입합니다! 간 기능과 소화기가 완벽히 정상 궤도에 올랐음을 보여줍니다.
+                  </p>
+                  <p className="border-b border-white/10 pb-1">
+                    <strong className="text-emerald-300">[STEP 3 완치 퇴원 2:23~2:46]</strong> 입원 7일 차. 파보겔 복합 처방으로 장 점막을 완벽히 복구하고, 환축은 기적처럼 건강을 회복하고 최종 완치 퇴원했습니다.
+                  </p>
+                  <p>
+                    <strong className="text-slate-400">[에필로그 2:46~2:55]</strong> 원인불명의 급성 장염과 소화기 탈태의 1초 해답. 수의사와 보호자 모두가 신뢰하는 긴급 처방 솔루션, 파보겔입니다.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* 원클릭 모바일 공유 & 다운로드 버튼군 */}
+            <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <button
+                onClick={handleCopyDocuLink}
+                className="flex-1 py-2.5 px-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-lg shadow-blue-950/60"
+              >
+                <span>{copySuccess ? t('doc.docuCopied', '✅ 영상 링크 복사완료!') : t('doc.docuCopyBtnMobile', '🔗 카톡/모바일 공유 링크 복사')}</span>
+              </button>
+              <a
+                href={docuVideoUrl}
+                download="파보겔_55일령발작환축_7일임상다큐_v2.mp4"
+                className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1 shrink-0"
+              >
+                <span>⬇ {t('doc.docuDownload', '영상 다운로드')}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
