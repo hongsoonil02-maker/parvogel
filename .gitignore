@@ -32,3 +32,9 @@ coverage/
 # Misc
 *.tgz
 .cache/
+
+# Local inspection and scratch directories
+inspect_*
+all_frames/
+raw_source_videos/
+scripts/
