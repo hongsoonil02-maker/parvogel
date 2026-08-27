@@ -324,11 +324,13 @@ const Landing = () => {
     ]
 
     const targetAnimals = [
+        { icon: '🐶', name: t('target.puppy', '강아지 (자견/반려견)'), age: t('target.puppyAge', '전 연령 (생후 30일령~)'), diseases: t('target.puppyDisease', '파보바이러스/코로나장염/급성 설사·혈변') },
+        { icon: '🐱', name: t('target.cat', '고양이 (자묘/반려묘)'), age: t('target.catAge', '전 연령 (생후 30일령~)'), diseases: t('target.catDisease', '범백(FPLV)/급성 세균성 장염/수분 손실') },
         { icon: '🐄', name: t('target.calf'), age: t('target.calfAge'), diseases: t('target.calfDisease') },
+        { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
         { icon: '🐐', name: t('target.kid'), age: t('target.kidAge'), diseases: t('target.kidDisease') },
         { icon: '🐑', name: t('target.lamb'), age: t('target.lambAge'), diseases: t('target.lambDisease') },
         { icon: '🐎', name: t('target.foal'), age: t('target.foalAge'), diseases: t('target.foalDisease') },
-        { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
     ]
 
     const testimonials = [

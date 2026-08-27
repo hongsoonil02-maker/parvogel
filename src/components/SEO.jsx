@@ -4,15 +4,14 @@ import { SITE_URL, absoluteUrl } from '../config/site';
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData }) {
   // canonical/OG 기준은 site.js의 단일 상수 사용 (GitHub Pages 실배포 URL)
-  const siteUrl = SITE_URL;
-  const defaultTitle = '파보겔(Parvogel) - 송아지 설사 특효 지사 보조제';
-  const defaultDescription = '고순도 나노 몬모릴로나이트가 함유된 파보겔은 송아지, 자돈 등 가축의 설사를 빠르게 멎게 하고 장 건강을 회복시키는 프리미엄 지사 보조제입니다.';
+  const defaultTitle = '파보겔(Parvo Gel) - 쓰러진 강아지의 기적의 7일 회복 실화 | 반려견·전축종 급성 설사 케어';
+  const defaultDescription = '1-deoxinojirimycin & Patent No. 2011B0042620.8 특허균주 복합제 파보겔. 1초 원터치 펌프로 주사기 없이 스트레스 제로 급여. 쓰러진 55일령 강아지의 7일 회복 실화.';
 
   const seo = {
     title: title ? `${title} | 파보겔(Parvogel)` : defaultTitle,
     description: description || defaultDescription,
     url: url ? absoluteUrl(url) : siteUrl,
-    image: image || absoluteUrl('/assets/parvogel-1.jpg'), // 기본 이미지
+    image: image || absoluteUrl('/assets/parvogel-authentic.png'), // 기본 정품 이미지
   };
 
   // 기본 제품 구조화된 데이터 (가격은 실제 판매가: 100ml 18,000원 ~ 500ml 75,000원)
