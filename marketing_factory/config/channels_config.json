@@ -1,0 +1,47 @@
+{
+  "site_landing_url": "https://hongsoonil02-maker.github.io/parvogel/",
+  "smartstore_url": "https://smartstore.naver.com/petschury/products/13718496355",
+  "coupang_url": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
+  "channels": {
+    "Telegram": {
+      "enabled": true,
+      "type": "social_instant",
+      "description": "텔레그램 채널 및 실시간 브로드캐스트"
+    },
+    "Discord": {
+      "enabled": true,
+      "type": "webhook",
+      "description": "디스코드 커뮤니티 및 긴급 알림 웹훅"
+    },
+    "Twitter_X": {
+      "enabled": true,
+      "type": "social_feed",
+      "description": "X(트위터) 스레드 및 바이럴 꿀팁"
+    },
+    "Naver_Blog": {
+      "enabled": true,
+      "type": "seo_longform",
+      "description": "네이버 블로그 / 카페 정보성 SEO 아티클"
+    },
+    "YouTube_Shorts": {
+      "enabled": true,
+      "type": "video_shortform",
+      "description": "유튜브 쇼츠 9:16 비디오 및 메타데이터"
+    },
+    "Instagram_Reels": {
+      "enabled": true,
+      "type": "video_shortform",
+      "description": "인스타그램 릴스 & 틱톡 숏폼 비디오"
+    },
+    "LinkedIn_B2B": {
+      "enabled": true,
+      "type": "b2b_professional",
+      "description": "수의사/동물약품 전문가용 학술 브리프"
+    },
+    "Clinic_Cold_DM": {
+      "enabled": true,
+      "type": "b2b_outreach",
+      "description": "전국 동물병원 및 유통 대리점 맞춤형 콜드 제안서"
+    }
+  }
+}

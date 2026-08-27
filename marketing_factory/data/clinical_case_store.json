@@ -1,0 +1,103 @@
+{
+  "product": {
+    "name_kr": "파보겔",
+    "name_en": "Parvo Gel",
+    "type": "사료 성분등록 완료 보조사료 (반려동물 및 산업동물 공용 장 점막 긴급 케어제)",
+    "official_registration": "정식등록 보조사료",
+    "core_actives": [
+      {
+        "name": "1-deoxinojirimycin (DNJ)",
+        "role": "상피세포 수용체 결합 차단 및 바이러스 당단백질 합성 저해, 급성 장염 증상 억제"
+      },
+      {
+        "name": "특허균주 복합체 (Patent No. 2011B0042620.8)",
+        "role": "Bacillus subtilis MORI 유래 장내 유해세균 증식 억제 및 미생물총 급속 정상화"
+      },
+      {
+        "name": "초미세 정제 몬모릴로나이트 & 클리놉틸로라이트",
+        "role": "장 점막 물리적 실크 보호막 코팅, 병원성 독소 및 바이러스 체외 흡착 배출"
+      },
+      {
+        "name": "포도당 & 전해질 복합제",
+        "role": "급성 설사로 인한 탈수, 저혈당, 전해질 불균형 즉각 보충"
+      }
+    ],
+    "features": [
+      "주사기 거부견도 1초 원터치 펌프로 스트레스 제로 급여",
+      "장 점막 붕괴 긴급 물리적 코팅 및 유해 독소 체외 배출",
+      "곡기 끊고 쓰러진 환축의 식욕 3일 만에 폭풍 완식 부활",
+      "개, 고양이뿐 아니라 송아지, 자돈(산업동물 엠오바이오 총판 연계) 전 축종 적용"
+    ],
+    "links": {
+      "smartstore": "https://smartstore.naver.com/petschury/products/13718496355",
+      "coupang": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
+      "landing_page": "https://hongsoonil02-maker.github.io/parvogel/"
+    }
+  },
+  "clinical_case": {
+    "patient": "토이푸들 ♂ (55일령, 체중 0.6kg)",
+    "hospital": "하남 사랑동물병원 (김동준 원장 수기 일지 및 진료실 실사)",
+    "initial_symptom": "급성 설사, 장점막 출혈, 내독소 쇼크로 인한 전신 발작(Seizure) 및 식욕 전폐(안락사 위기)",
+    "admin_method": "주사기 없이 파보겔 원터치 펌프로 입안에 1초 직투여",
+    "prognosis": "투약 3일 만에 식욕 폭발 캔사료 완식, 7일 만에 네 발로 기립 보행 완치 퇴원",
+    "timeline": [
+      {
+        "day": "Day 1",
+        "step": "STEP 01",
+        "video_id": "pv1",
+        "file": "parvogel_case_01_seizure.mp4",
+        "badge": "🚨 초진 응급 발작",
+        "title": "내원 당시 전신 발작 증상",
+        "summary": "55일령 아기 푸들이 옆으로 쓰러져 경련하는 위급 순간. 장 점막 붕괴와 내독소 쇼크 관찰."
+      },
+      {
+        "day": "Day 2",
+        "step": "STEP 01",
+        "video_id": "pv2",
+        "file": "parvogel_case_02_lethargy.mp4",
+        "badge": "⚠️ 케이지 집중 케어",
+        "title": "케이지 안 급성기 탈진 및 집중 안정화",
+        "summary": "파보겔 1초 펌프 처치 후 입원장 안에서 체온을 유지하며 무기력 상태에서 서서히 의식 회복."
+      },
+      {
+        "day": "Day 2~3",
+        "step": "STEP 02",
+        "video_id": "pv3",
+        "file": "parvogel_case_03_standing.mp4",
+        "badge": "🌱 첫 자가 기립",
+        "title": "스스로 네 발로 일어서는 첫 기립 반응",
+        "summary": "장 점막 코팅 및 흡수가 진행되며 탈진을 딛고 스스로 네 발로 일어나 철창을 짚고 반응."
+      },
+      {
+        "day": "Day 3",
+        "step": "STEP 02",
+        "video_id": "pv4",
+        "file": "김동준원장_동영상 4-1.mp4",
+        "badge": "✨ 신경계 안정",
+        "title": "투약 후 신경계 안정 및 진료대 촉진 반응",
+        "summary": "전신 경련이 멈추고 네 발로 서서 김동준 원장님의 촉진에 기민하게 반응하는 안정기 도달."
+      },
+      {
+        "day": "Day 4",
+        "step": "STEP 02",
+        "video_id": "pv5",
+        "file": "parvogel_case_05_eating.mp4",
+        "badge": "🔥 기적의 폭풍 완식",
+        "title": "식욕 전폐 환축의 캔사료 폭풍 완식 먹방",
+        "summary": "곡기를 끊고 쓰러졌던 환축이 밥그릇에 머리를 박고 싹싹 핥아먹는 기적의 식욕 폭발."
+      },
+      {
+        "day": "Day 6~7",
+        "step": "STEP 03",
+        "video_id": "pv6",
+        "file": "김동준원장_동영상 6-1.mp4",
+        "badge": "✨ 감동의 완치 퇴원",
+        "title": "입원장 회복부터 진료대 보행까지 완치 퇴원",
+        "summary": "입원장에서 똘망똘망하게 회복 후 진료대 위에서 네 발로 씩씩하게 걸으며 최종 완치 판정."
+      }
+    ]
+  },
+  "distribution_b2b": {
+    "livestock": "산업동물(송아지·자돈 설사병)은 엠오바이오(MOBIO) 전국 총판 대리점 조직을 통해 오프라인 공급 체결"
+  }
+}

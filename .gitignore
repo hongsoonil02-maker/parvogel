@@ -37,4 +37,15 @@ coverage/
 inspect_*
 all_frames/
 raw_source_videos/
-scripts/
+scripts/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Marketing Factory generated outputs
+marketing_factory/output/*.mp4
+marketing_factory/output/*.jpg
+marketing_factory/drafts/*
+!marketing_factory/drafts/.gitkeep
+marketing_factory/data/published_ledger.json

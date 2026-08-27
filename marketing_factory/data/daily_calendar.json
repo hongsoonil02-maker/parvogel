@@ -1,0 +1,53 @@
+{
+  "schedule": {
+    "Monday": {
+      "theme_id": "emergency_golden_time",
+      "target": "b2c_emergency",
+      "headline_core": "새벽에 아기 강아지가 피똥 싸고 쓰러졌을 때: 골든타임 72시간 대처법",
+      "focus_scene": "Day 1 (초진 응급 발작)",
+      "video_file": "parvogel_case_01_seizure.mp4"
+    },
+    "Tuesday": {
+      "theme_id": "stress_free_pumping",
+      "target": "b2c_caregiver",
+      "headline_core": "주사기 거부하는 강아지, 입가에 대고 1초만 누르세요 (스트레스 제로 급여)",
+      "focus_scene": "Day 2 (케이지 집중 안정화)",
+      "video_file": "parvogel_case_02_lethargy.mp4"
+    },
+    "Wednesday": {
+      "theme_id": "miraculous_standing",
+      "target": "b2c_viral",
+      "headline_core": "안락사 위기였던 0.6kg 아기 푸들이 스스로 네 발로 일어선 순간",
+      "focus_scene": "Day 2~3 (자가 기립 반응)",
+      "video_file": "parvogel_case_03_standing.mp4"
+    },
+    "Thursday": {
+      "theme_id": "clinical_science",
+      "target": "b2b_veterinary",
+      "headline_core": "장 점막 물리적 코팅과 1-deoxinojirimycin: 파보·급성 장염 임상 치료 메커니즘",
+      "focus_scene": "Day 3 (신경계 안정 및 진료대 반응)",
+      "video_file": "김동준원장_동영상 4-1.mp4"
+    },
+    "Friday": {
+      "theme_id": "mukbang_recovery",
+      "target": "b2c_viral",
+      "headline_core": "곡기 끊었던 강아지가 3일 만에 그릇까지 핥아먹은 기적의 식욕 부활",
+      "focus_scene": "Day 4 (캔사료 폭풍 완식 먹방)",
+      "video_file": "parvogel_case_05_eating.mp4"
+    },
+    "Saturday": {
+      "theme_id": "complete_cure",
+      "target": "b2c_emotional",
+      "headline_core": "쓰러진 55일령 강아지의 기적의 7일 회복 실화: 씩씩하게 걸어서 퇴원합니다",
+      "focus_scene": "Day 6~7 (네 발 기립 보행 완치)",
+      "video_file": "김동준원장_동영상 6-1.mp4"
+    },
+    "Sunday": {
+      "theme_id": "livestock_special",
+      "target": "b2b_livestock",
+      "headline_core": "축산농가 송아지·자돈 바이러스성 설사 폐사율 제로 도전 (엠오바이오 총판 연계)",
+      "focus_scene": "전 축종 적용 및 장 점막 보호",
+      "video_file": "parvogel_case_05_eating.mp4"
+    }
+  }
+}
