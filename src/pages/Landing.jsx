@@ -385,7 +385,7 @@ const Landing = () => {
     ]
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-24">
+        <div className="min-h-screen bg-gray-50 pb-24 overflow-x-hidden w-full max-w-full">
             <SEO />
             {/* 스크린리더용 본문 바로가기 (접근성) — HashRouter 환경이라 href 대신 스크롤+포커스 처리 */}
             <a

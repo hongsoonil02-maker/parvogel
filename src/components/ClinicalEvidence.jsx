@@ -3,6 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 const ClinicalEvidence = () => {
   const { t } = useTranslation();
+  const [selectedVirus, setSelectedVirus] = React.useState(null);
+
+  // ESC 키로 모달 닫기
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedVirus) {
+        setSelectedVirus(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedVirus]);
 
   return (
     <section id="clinical" className="py-12 md:py-24 bg-slate-100 border-y border-slate-200">
@@ -145,45 +157,115 @@ const ClinicalEvidence = () => {
               <p className="text-slate-600 mb-6 leading-relaxed text-sm md:text-base font-normal">
                 {t('clinical.card3_desc', 'DNG-1000의 핵심 균주인 Bacillus subtilis MORI가 생산하는 DNJ 성분의 바이러스 계통별 억제 효과입니다.')}
               </p>
-              <div className="w-full overflow-x-auto rounded-2xl border border-slate-200 shadow-sm mb-6">
-                <table className="w-full text-sm border-collapse table-fixed min-w-[300px]">
+              <div className="w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm mb-6">
+                <table className="w-full text-sm border-collapse table-fixed">
                   <colgroup>
-                    <col style={{width: '27%'}} />
-                    <col style={{width: '43%'}} />
-                    <col style={{width: '30%'}} />
+                    <col style={{width: '32%'}} />
+                    <col style={{width: '46%'}} />
+                    <col style={{width: '22%'}} />
                   </colgroup>
                   <thead>
                     <tr className="bg-primary-700 text-white">
-                      <th className="px-2 sm:px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_col1', '바이러스 계통')}</th>
-                      <th className="px-2 sm:px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_header', '대상 바이러스')}</th>
-                      <th className="px-1 sm:px-3 py-3 text-center font-bold text-xs">{t('clinical.table3_col3', '효과')}</th>
+                      <th className="px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_col1', '바이러스 계통')}</th>
+                      <th className="px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_header', '대상 바이러스')}</th>
+                      <th className="px-1 py-3 text-center font-bold text-xs">{t('clinical.table3_col3', '효과')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 sm:px-3 py-3 text-xs text-slate-500 break-words font-medium">Arteriviruses</td>
-                      <td className="px-2 sm:px-3 py-3 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)')}</td>
-                      <td className="px-1 sm:px-3 py-3 text-center"><span className="inline-flex items-center justify-center bg-primary-100 text-primary-800 text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs">{t('clinical.table3_effect', '효과 확인')}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Arteriviruses</td>
+                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)')}</td>
+                      <td className="px-1 py-2.5 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVirus({
+                            group: 'Arteriviruses',
+                            target: t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)'),
+                            efficacy: t('clinical.table3_effect', '효과 확인'),
+                            desc: 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분의 동맥바이러스 복제 억제 기전 입증'
+                          })}
+                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
+                          aria-label={`${t('clinical.table3_row1', 'PRRSV')} 효과 확인 모달 열기`}
+                        >
+                          {t('clinical.table3_effect', '효과 확인')}
+                        </button>
+                      </td>
                     </tr>
                     <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 sm:px-3 py-3 text-xs text-slate-500 break-words font-medium">Orthomyxoviridae</td>
-                      <td className="px-2 sm:px-3 py-3 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row2', '조류독감 A (AIV)')}</td>
-                      <td className="px-1 sm:px-3 py-3 text-center"><span className="inline-flex items-center justify-center bg-primary-100 text-primary-800 text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs">{t('clinical.table3_effect', '효과 확인')}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Orthomyxoviridae</td>
+                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row2', '조류독감 A (AIV)')}</td>
+                      <td className="px-1 py-2.5 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVirus({
+                            group: 'Orthomyxoviridae',
+                            target: t('clinical.table3_row2', '조류독감 A (AIV)'),
+                            efficacy: t('clinical.table3_effect', '효과 확인'),
+                            desc: '오르토믹소바이러스과 인플루엔자 바이러스 외피 단백질 합성 억제 및 증식 저해 효과 확인'
+                          })}
+                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
+                          aria-label={`${t('clinical.table3_row2', '조류독감 A')} 효과 확인 모달 열기`}
+                        >
+                          {t('clinical.table3_effect', '효과 확인')}
+                        </button>
+                      </td>
                     </tr>
                     <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 sm:px-3 py-3 text-xs text-slate-500 break-words font-medium">Pestiviruses</td>
-                      <td className="px-2 sm:px-3 py-3 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)')}</td>
-                      <td className="px-1 sm:px-3 py-3 text-center"><span className="inline-flex items-center justify-center bg-primary-100 text-primary-800 text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs">{t('clinical.table3_effect', '효과 확인')}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Pestiviruses</td>
+                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)')}</td>
+                      <td className="px-1 py-2.5 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVirus({
+                            group: 'Pestiviruses',
+                            target: t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)'),
+                            efficacy: t('clinical.table3_effect', '효과 확인'),
+                            desc: '소화기 감염 페스티바이러스 복제 억제 및 장점막 손상 완화 보조 작용 입증'
+                          })}
+                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
+                          aria-label={`${t('clinical.table3_row3', '소 바이러스성 설사병')} 효과 확인 모달 열기`}
+                        >
+                          {t('clinical.table3_effect', '효과 확인')}
+                        </button>
+                      </td>
                     </tr>
                     <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 sm:px-3 py-3 text-xs text-slate-500 break-words font-medium">Bunyaviridae</td>
-                      <td className="px-2 sm:px-3 py-3 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row4', '아카바네, 아이노 바이러스')}</td>
-                      <td className="px-1 sm:px-3 py-3 text-center"><span className="inline-flex items-center justify-center bg-primary-100 text-primary-800 text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs">{t('clinical.table3_effect', '효과 확인')}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Bunyaviridae</td>
+                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row4', '아카바네, 아이노 바이러스')}</td>
+                      <td className="px-1 py-2.5 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVirus({
+                            group: 'Bunyaviridae',
+                            target: t('clinical.table3_row4', '아카바네, 아이노 바이러스'),
+                            efficacy: t('clinical.table3_effect', '효과 확인'),
+                            desc: '부냐바이러스과 아카바네 및 아이노 바이러스에 대한 항바이러스 활성 및 증식 저해 확인'
+                          })}
+                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
+                          aria-label={`${t('clinical.table3_row4', '아카바네, 아이노 바이러스')} 효과 확인 모달 열기`}
+                        >
+                          {t('clinical.table3_effect', '효과 확인')}
+                        </button>
+                      </td>
                     </tr>
                     <tr className="hover:bg-primary-50/50 transition-colors">
-                      <td className="px-2 sm:px-3 py-3 text-xs text-slate-500 break-words font-medium">Rhabdoviridae</td>
-                      <td className="px-2 sm:px-3 py-3 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row5', '소유행열 바이러스 (BEF)')}</td>
-                      <td className="px-1 sm:px-3 py-3 text-center"><span className="inline-flex items-center justify-center bg-primary-100 text-primary-800 text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-xs">{t('clinical.table3_effect', '효과 확인')}</span></td>
+                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Rhabdoviridae</td>
+                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row5', '소유행열 바이러스 (BEF)')}</td>
+                      <td className="px-1 py-2.5 text-center">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedVirus({
+                            group: 'Rhabdoviridae',
+                            target: t('clinical.table3_row5', '소유행열 바이러스 (BEF)'),
+                            efficacy: t('clinical.table3_effect', '효과 확인'),
+                            desc: '랍도바이러스과 소유행열 바이러스에 대한 유의미한 증식 억제 효과 검증'
+                          })}
+                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
+                          aria-label={`${t('clinical.table3_row5', '소유행열 바이러스')} 효과 확인 모달 열기`}
+                        >
+                          {t('clinical.table3_effect', '효과 확인')}
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -257,6 +339,84 @@ const ClinicalEvidence = () => {
 
         </div>
       </div>
+
+      {/* 효과 확인 상세 검증 모달 (z-[85]) */}
+      {selectedVirus && (
+        <div
+          className="fixed inset-0 z-[85] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in"
+          onClick={() => setSelectedVirus(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('clinical.modalTitle', '항바이러스 임상 효과 상세 검증')}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 닫기 버튼 */}
+            <button
+              onClick={() => setSelectedVirus(null)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer"
+              aria-label={t('common.close', '닫기')}
+            >
+              ✕
+            </button>
+
+            {/* 헤더 */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-11 h-11 rounded-2xl bg-primary-100 text-primary-700 flex items-center justify-center text-xl font-bold shadow-xs">
+                🔬
+              </span>
+              <div>
+                <span className="text-xs font-black text-primary-600 uppercase tracking-wider">
+                  {selectedVirus.group}
+                </span>
+                <h4 className="text-base sm:text-lg font-extrabold text-slate-900 break-keep">
+                  {selectedVirus.target}
+                </h4>
+              </div>
+            </div>
+
+            {/* 데이터 요약 카드 */}
+            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 mb-4 space-y-3 text-xs text-slate-700">
+              <div className="flex items-center justify-between pb-2.5 border-b border-slate-200">
+                <span className="text-slate-500 font-bold">{t('clinical.table3_col3', '임상 효과')}</span>
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800">
+                  <span>✓</span>
+                  <span>{selectedVirus.efficacy}</span>
+                </span>
+              </div>
+              <div>
+                <span className="text-slate-500 font-bold block mb-1">검증 연구 및 작용 기전</span>
+                <p className="font-medium text-slate-800 leading-relaxed break-keep">
+                  {selectedVirus.desc}
+                </p>
+              </div>
+              <div className="pt-2 border-t border-slate-200 text-slate-500 text-[11px] leading-normal break-keep">
+                📌 경상국립대학교 수의과대학 이후장 교수 연구진 학술 연구 데이터 기반
+              </div>
+            </div>
+
+            {/* 하단 액션 버튼 */}
+            <div className="flex gap-2">
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent('1-deoxynojirimycin ' + selectedVirus.group + ' antiviral')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs rounded-xl shadow-md transition-all text-center cursor-pointer"
+              >
+                <span>🔍 Google 학술 논문 검색</span>
+              </a>
+              <button
+                onClick={() => setSelectedVirus(null)}
+                className="py-2.5 px-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition-all cursor-pointer"
+              >
+                {t('common.close', '닫기')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
