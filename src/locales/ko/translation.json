@@ -122,7 +122,14 @@
     "card4_quote3_author": "김동준 원장 (사랑동물병원 원장)",
     "card4_quote4": "\"인체에도 좋을 거 같은데...\"",
     "card4_quote4_author": "윤화영 교수 (전 서울대학교 수의과대학 내과학 교수 · 전 서울대 동물병원 내과과장)",
-    "card4_note": "파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 급여 기준을 철저히 검증하고 있습니다."
+    "card4_note": "파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 급여 기준을 철저히 검증하고 있습니다.",
+    "mechanismLabel": "검증 연구 및 작용 기전",
+    "researchBasis": "경상국립대학교 수의과대학 이후장 교수 연구진 학술 연구 데이터 기반",
+    "virusDescArteri": "DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분의 동맥바이러스 복제 억제 기전 입증",
+    "virusDescOrtho": "오르토믹소바이러스과 인플루엔자 바이러스 외피 단백질 합성 억제 및 증식 저해 효과 확인",
+    "virusDescPesti": "소화기 감염 페스티바이러스 복제 억제 및 장점막 손상 완화 보조 작용 입증",
+    "virusDescBunya": "부냐바이러스과 아카바네 및 아이노 바이러스에 대한 항바이러스 활성 및 증식 저해 확인",
+    "virusDescRhabdo": "랍도바이러스과 소유행열 바이러스에 대한 유의미한 증식 억제 효과 검증"
   },
   "tech": {
     "badge": "기술 데이터",
@@ -395,6 +402,10 @@
     "productMedia": "제품 미디어 선택",
     "playProductVideo": "제품 영상 재생",
     "viewImage": "크게 보기",
+    "productPhoto": "파보겔 제품 사진",
+    "bottleFront": "파보겔 5가지 복합제 전면",
+    "bottleBack": "파보겔 후면 성분표",
+    "bottleGroup": "파보겔 100ml, 200ml, 500ml 용량별 라인업",
     "toolbarLabel": "웹 접근성 설정 도구",
     "title": "장애인 접근 편의 도구",
     "contrastOn": "고대비 켜기",

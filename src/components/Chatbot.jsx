@@ -18,11 +18,11 @@ export default function Chatbot() {
 
     useEffect(() => {
         setMessages(prev => {
-            const newMsgs = [...prev];
-            if (newMsgs.length > 0 && newMsgs[0].role === 'assistant') {
-                newMsgs[0].content = t('chat.greeting');
+            if (prev.length > 0 && prev[0].role === 'assistant') {
+                // 불변성 유지: 첫 인사말 객체를 새로 생성해 교체
+                return [{ ...prev[0], content: t('chat.greeting') }, ...prev.slice(1)];
             }
-            return newMsgs;
+            return prev;
         });
     }, [i18n.language, t]);
 
@@ -74,7 +74,15 @@ export default function Chatbot() {
                 throw new Error('Network response was not ok');
             }
 
+            // 응답이 JSON이 아니거나(예: SPA HTML fallback) reply가 비어 있으면 에러로 처리
+            const contentType = response.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                throw new Error('Unexpected non-JSON response');
+            }
             const data = await response.json();
+            if (!data || typeof data.reply !== 'string' || !data.reply.trim()) {
+                throw new Error('Empty reply');
+            }
             setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
         } catch (error) {
             console.error('Chat error:', error);

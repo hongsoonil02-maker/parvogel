@@ -7,7 +7,7 @@ import AnimalSelector from '../components/AnimalSelector'
 import AudioTestimonial from '../components/AudioTestimonial'
 import StickyBottomCTA from '../components/StickyBottomCTA'
 import OrderForm from '../components/OrderForm'
-import { getStoreUrl, hasProductUrl } from '../config/storeLinks'
+import { getStoreUrl } from '../config/storeLinks'
 import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
 
@@ -199,46 +199,35 @@ const Landing = () => {
             params.append('message', formData.message)
             params.append('timestamp', new Date().toISOString())
 
-            let json = null
-            let isSuccess = false
+            // Apps Script 웹앱은 Access-Control-Allow-Origin: * 로 CORS를 정상 지원하므로
+            // 일반 CORS 요청만 사용하고 서버가 반환하는 status 값만 신뢰한다.
+            // (no-cors 폴백은 opaque 응답이라 실제 저장 실패도 성공으로 오인되므로 사용하지 않는다.)
+            const response = await fetch(scriptURL, {
+                method: 'POST',
+                body: params,
+                signal: controller.signal,
+            })
 
-            try {
-                const response = await fetch(scriptURL, {
-                    method: 'POST',
-                    body: params,
-                    signal: controller.signal,
-                })
-                if (response.ok || response.type === 'opaque') {
-                    isSuccess = true
-                    try {
-                        json = await response.json()
-                    } catch (err) { /* ignore json parse */ }
-                }
-            } catch (fetchErr) {
-                if (fetchErr.name === 'AbortError') throw fetchErr;
-                // CORS redirect fallback to no-cors mode
-                try {
-                    await fetch(scriptURL, {
-                        method: 'POST',
-                        body: params,
-                        mode: 'no-cors',
-                        signal: controller.signal,
-                    })
-                    isSuccess = true
-                } catch (fallbackErr) {
-                    console.error('Fallback submit error:', fallbackErr)
-                }
-            }
-
-            if (json && json.status === 'duplicate') {
-                alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
-                return
-            }
-            if (json && json.status === 'error') {
+            if (!response.ok) {
                 alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
                 return
             }
-            if (!isSuccess && (!json || json.status !== 'success')) {
+
+            let json = null
+            try {
+                json = await response.json()
+            } catch (err) {
+                // 응답을 파싱하지 못하면 저장 여부를 확신할 수 없으므로 실패로 처리한다.
+                console.error('Order response parse error:', err)
+                alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
+                return
+            }
+
+            if (json.status === 'duplicate') {
+                alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
+                return
+            }
+            if (json.status !== 'success') {
                 alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
                 return
             }
@@ -679,7 +668,7 @@ const Landing = () => {
                                 ) : (
                                     <img
                                         src={activeMedia}
-                                        alt="파보겔 제품 사진"
+                                        alt={t('a11y.productPhoto', '파보겔 제품 사진')}
                                         className="w-full h-full object-cover animate-fade-in"
                                         loading="eager"
                                     />
@@ -764,10 +753,10 @@ const Landing = () => {
                     {/* Product Images (Front & Back) */}
                     <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt="파보겔 5가지 복합제 전면" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt="파보겔 후면 성분표" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                     </div>
 
@@ -905,7 +894,7 @@ const Landing = () => {
 
                     {/* Product Lineup Image */}
                     <div className="max-w-4xl mx-auto mt-10 mb-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
-                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt="파보겔 100ml, 200ml, 500ml 용량별 라인업" className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -1004,12 +993,10 @@ const Landing = () => {
                             <p className="text-gray-600 mb-4">{t('order.online')}</p>
                             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
                                 <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
-                                    {!hasProductUrl && <span className="absolute -top-2.5 -right-2.5 px-2 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-black rounded-full shadow">{t('store.comingSoon')}</span>}
                                     <span className="text-xl">🚀</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
                                 </a>
                                 <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
-                                    {!hasProductUrl && <span className="absolute -top-2.5 -right-2.5 px-2 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-black rounded-full shadow">{t('store.comingSoon')}</span>}
                                     <span className="text-xl">🛍️</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.naver')}</span>
                                 </a>
@@ -1062,7 +1049,7 @@ const Landing = () => {
                                 <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                 </a>
-                                <a href="mailto:soonilhong@naver.com" className="text-gray-400 hover:text-white transition-colors">
+                                <a href="mailto:name_hyosun@naver.com" className="text-gray-400 hover:text-white transition-colors">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </a>
                             </div>
@@ -1089,7 +1076,7 @@ const Landing = () => {
                             <ul className="space-y-2">
                                 <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-white transition-colors">{t('footer.support1')}</button></li>
                                 <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">{t('footer.support2')}</a></li>
-                                <li><a href="mailto:soonilhong@naver.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
+                                <li><a href="mailto:name_hyosun@naver.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
                                 {/* FAQ 페이지가 없어 AI 상담 챗봇으로 연결 */}
                                 <li><button type="button" onClick={() => window.dispatchEvent(new CustomEvent('parvogel:open-chat'))} className="hover:text-white transition-colors">{t('footer.support4')}</button></li>
                             </ul>

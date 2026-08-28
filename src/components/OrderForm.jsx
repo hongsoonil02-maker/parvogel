@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { getStoreUrl } from '../config/storeLinks'
 
 // 채널별 할인율 (소비자 정가 대비). 실제 공급 정책에 맞게 조정하세요.
 const PRICING = {
@@ -64,7 +65,7 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <a
-                            href="https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090"
+                            href={getStoreUrl('coupang')}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
@@ -73,7 +74,7 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                             <span aria-hidden="true">➔</span>
                         </a>
                         <a
-                            href="https://smartstore.naver.com/petschury/products/13718496355"
+                            href={getStoreUrl('naver')}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"

@@ -122,7 +122,14 @@
     "card4_quote3_author": "Director Dong-jun Kim (Sarang Animal Hospital)",
     "card4_quote4": "\"It might be good for humans too...\"",
     "card4_quote4_author": "Prof. Hwa-young Yoon (Former Professor of Internal Medicine, Seoul National University College of Veterinary Medicine · Former Head of Internal Medicine, Seoul National University Veterinary Hospital)",
-    "card4_note": "Parvogel's academic and advisory panel is composed of veterinary experts, including former faculty of Seoul National University College of Veterinary Medicine, who rigorously validate the clinical data and administration standards."
+    "card4_note": "Parvogel's academic and advisory panel is composed of veterinary experts, including former faculty of Seoul National University College of Veterinary Medicine, who rigorously validate the clinical data and administration standards.",
+    "mechanismLabel": "Validation research & mechanism of action",
+    "researchBasis": "Based on academic research data from Prof. Hoo-jang Lee's team, College of Veterinary Medicine, Gyeongsang National University",
+    "virusDescArteri": "Demonstrated inhibition of arterivirus replication by the DNJ component produced by the DNG-1000 core strain (Bacillus subtilis MORI)",
+    "virusDescOrtho": "Confirmed inhibition of envelope protein synthesis and suppression of proliferation of Orthomyxoviridae influenza viruses",
+    "virusDescPesti": "Demonstrated inhibition of enteric pestivirus replication and supportive mitigation of intestinal mucosal damage",
+    "virusDescBunya": "Confirmed antiviral activity and proliferation inhibition against Bunyaviridae Akabane and Aino viruses",
+    "virusDescRhabdo": "Verified significant proliferation-inhibiting effect against the Rhabdoviridae bovine ephemeral fever virus"
   },
   "tech": {
     "badge": "Core Technology",
@@ -499,6 +506,10 @@
     "productMedia": "Select product media",
     "playProductVideo": "Play product video",
     "viewImage": "View larger",
+    "productPhoto": "Parvogel product photo",
+    "bottleFront": "Parvogel 5-in-1 complex, front",
+    "bottleBack": "Parvogel back label ingredients",
+    "bottleGroup": "Parvogel 100ml, 200ml, 500ml lineup by volume",
     "toolbarLabel": "Accessibility Tools",
     "title": "Accessibility Menu (A11y)",
     "contrastOn": "Enable High Contrast",

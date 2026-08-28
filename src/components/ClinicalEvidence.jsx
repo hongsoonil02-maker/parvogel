@@ -182,7 +182,7 @@ const ClinicalEvidence = () => {
                             group: 'Arteriviruses',
                             target: t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)'),
                             efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분의 동맥바이러스 복제 억제 기전 입증'
+                            desc: t('clinical.virusDescArteri', 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분의 동맥바이러스 복제 억제 기전 입증')
                           })}
                           className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
                           aria-label={`${t('clinical.table3_row1', 'PRRSV')} 효과 확인 모달 열기`}
@@ -201,7 +201,7 @@ const ClinicalEvidence = () => {
                             group: 'Orthomyxoviridae',
                             target: t('clinical.table3_row2', '조류독감 A (AIV)'),
                             efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: '오르토믹소바이러스과 인플루엔자 바이러스 외피 단백질 합성 억제 및 증식 저해 효과 확인'
+                            desc: t('clinical.virusDescOrtho', '오르토믹소바이러스과 인플루엔자 바이러스 외피 단백질 합성 억제 및 증식 저해 효과 확인')
                           })}
                           className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
                           aria-label={`${t('clinical.table3_row2', '조류독감 A')} 효과 확인 모달 열기`}
@@ -220,7 +220,7 @@ const ClinicalEvidence = () => {
                             group: 'Pestiviruses',
                             target: t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)'),
                             efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: '소화기 감염 페스티바이러스 복제 억제 및 장점막 손상 완화 보조 작용 입증'
+                            desc: t('clinical.virusDescPesti', '소화기 감염 페스티바이러스 복제 억제 및 장점막 손상 완화 보조 작용 입증')
                           })}
                           className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
                           aria-label={`${t('clinical.table3_row3', '소 바이러스성 설사병')} 효과 확인 모달 열기`}
@@ -239,7 +239,7 @@ const ClinicalEvidence = () => {
                             group: 'Bunyaviridae',
                             target: t('clinical.table3_row4', '아카바네, 아이노 바이러스'),
                             efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: '부냐바이러스과 아카바네 및 아이노 바이러스에 대한 항바이러스 활성 및 증식 저해 확인'
+                            desc: t('clinical.virusDescBunya', '부냐바이러스과 아카바네 및 아이노 바이러스에 대한 항바이러스 활성 및 증식 저해 확인')
                           })}
                           className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
                           aria-label={`${t('clinical.table3_row4', '아카바네, 아이노 바이러스')} 효과 확인 모달 열기`}
@@ -258,7 +258,7 @@ const ClinicalEvidence = () => {
                             group: 'Rhabdoviridae',
                             target: t('clinical.table3_row5', '소유행열 바이러스 (BEF)'),
                             efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: '랍도바이러스과 소유행열 바이러스에 대한 유의미한 증식 억제 효과 검증'
+                            desc: t('clinical.virusDescRhabdo', '랍도바이러스과 소유행열 바이러스에 대한 유의미한 증식 억제 효과 검증')
                           })}
                           className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
                           aria-label={`${t('clinical.table3_row5', '소유행열 바이러스')} 효과 확인 모달 열기`}
@@ -387,13 +387,13 @@ const ClinicalEvidence = () => {
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 font-bold block mb-1">검증 연구 및 작용 기전</span>
+                <span className="text-slate-500 font-bold block mb-1">{t('clinical.mechanismLabel', '검증 연구 및 작용 기전')}</span>
                 <p className="font-medium text-slate-800 leading-relaxed break-keep">
                   {selectedVirus.desc}
                 </p>
               </div>
               <div className="pt-2 border-t border-slate-200 text-slate-500 text-[11px] leading-normal break-keep">
-                📌 경상국립대학교 수의과대학 이후장 교수 연구진 학술 연구 데이터 기반
+                📌 {t('clinical.researchBasis', '경상국립대학교 수의과대학 이후장 교수 연구진 학술 연구 데이터 기반')}
               </div>
             </div>
 
