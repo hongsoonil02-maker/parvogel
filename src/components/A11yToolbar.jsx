@@ -264,11 +264,11 @@ const A11yToolbar = () => {
         </div>
       )}
 
-      {/* 플로팅 접근성 토글 버튼 (파보겔 시그니처 딥네이비 & 시안 블루 테두리 + 유니버설 접근성 아이콘) */}
+      {/* 플로팅 접근성 토글 버튼 (파보겔 시그니처 딥블루 + 유니버설 접근성 아이콘) */}
       <button
         ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#0b192c] hover:bg-[#1e3a8a] active:bg-[#030712] text-cyan-300 w-14 h-14 min-w-[48px] min-h-[48px] rounded-full shadow-2xl border-2 border-cyan-400/90 flex items-center justify-center focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400/50 transition-all hover:scale-110 active:scale-95 group cursor-pointer"
+        className="bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white w-14 h-14 min-w-[48px] min-h-[48px] rounded-full shadow-2xl border-2 border-primary-300/90 flex items-center justify-center focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-400/50 transition-all hover:scale-110 active:scale-95 group cursor-pointer"
         aria-label={t('a11y.openMenu', '장애인 접근 편의 도구 열기')}
         aria-expanded={isOpen}
         aria-haspopup="dialog"

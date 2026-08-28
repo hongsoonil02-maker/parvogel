@@ -101,7 +101,7 @@ export default function Chatbot() {
             {/* 챗봇 토글 버튼 (56px 원형, WCAG 48px 이상 터치 타겟, z-[80] 전역 항상 노출) */}
             <button
                 onClick={toggleChat}
-                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-14 h-14 min-w-[48px] min-h-[48px] bg-[#0284c7] hover:bg-[#0369a1] active:bg-[#075985] text-white rounded-full shadow-2xl border-2 border-cyan-300/90 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400/50 transition-all hover:scale-110 active:scale-95 group cursor-pointer`}
+                className={`${isOpen ? 'hidden' : 'flex'} items-center justify-center w-14 h-14 min-w-[48px] min-h-[48px] bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white rounded-full shadow-2xl border-2 border-primary-300/90 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-400/50 transition-all hover:scale-110 active:scale-95 group cursor-pointer`}
                 aria-label={t('chat.openButton', 'AI 맞춤 상담 챗봇 열기')}
                 aria-expanded={isOpen}
                 aria-haspopup="dialog"
