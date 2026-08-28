@@ -753,10 +753,10 @@ const Landing = () => {
                     {/* Product Images (Front & Back) */}
                     <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                     </div>
 
