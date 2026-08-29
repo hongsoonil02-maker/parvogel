@@ -63,16 +63,16 @@ export default function AnimalSelector() {
   return (
     <section 
       aria-label={t('animalSelector.title', '모든 동물의 신생아 설사, 파보겔(Parvogel) 하나로!')}
-      className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 my-12 border border-blue-500/30 shadow-2xl"
+      className="bg-white text-slate-800 rounded-3xl p-6 sm:p-10 my-12 border border-slate-200 shadow-xl"
     >
       <div className="text-center max-w-2xl mx-auto mb-8">
-        <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-black rounded-full uppercase tracking-wider border border-blue-400/30">
+        <span className="px-3.5 py-1.5 bg-blue-100 text-blue-800 text-xs font-black rounded-full uppercase tracking-wider border border-blue-200">
           {t('animalSelector.tag', '🐾 전 축종 신생아 맞춤 솔루션')}
         </span>
-        <h3 className="text-2xl sm:text-3xl font-black text-white mt-2 break-keep leading-snug">
+        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-3 break-keep leading-snug">
           {t('animalSelector.title', '모든 동물의 신생아 설사, 파보겔(Parvogel) 하나로!')}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+        <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
           {t('animalSelector.sub', '동물 축종을 선택하시면 권장 용량 및 지사 효과를 확인하실 수 있습니다.')}
         </p>
       </div>
@@ -98,8 +98,8 @@ export default function AnimalSelector() {
               onClick={() => setSelectedId(item.id)}
               className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                 isSelected
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40 scale-105 ring-2 ring-blue-400'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105 ring-2 ring-blue-400'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200/90 border border-slate-200'
               }`}
             >
               <span className="text-base sm:text-lg">{item.icon}</span>
@@ -109,33 +109,33 @@ export default function AnimalSelector() {
         })}
       </div>
 
-      {/* 디테일 카드 */}
-      <div role="tabpanel" aria-label={selectedAnimalName} className="bg-slate-800/90 rounded-2xl p-6 border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
+      {/* 디테일 카드 (밝고 화사한 스타일) */}
+      <div role="tabpanel" aria-label={selectedAnimalName} className="bg-slate-50/90 rounded-2xl p-6 sm:p-7 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
         <div className="space-y-3 text-left w-full md:w-2/3">
-          <div className="inline-block px-3 py-1 bg-blue-900/60 text-blue-300 text-xs font-bold rounded-lg border border-blue-500/30">
+          <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-lg border border-blue-200">
             💡 {selectedAnimalHighlight}
           </div>
-          <h4 className="text-xl font-extrabold text-white flex items-center gap-2">
+          <h4 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
             <span>{currentIcon}</span> {selectedAnimalName} {t('animalSelector.guideTitle', '맞춤 투여 가이드')}
           </h4>
-          <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
+          <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
             {effectsList.map((effect, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-blue-400 font-bold">✓</span>
+                <span className="text-blue-600 font-bold">✓</span>
                 <span>{effect}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="w-full md:w-1/3 bg-slate-900 p-4 rounded-xl border border-blue-500/40 text-center">
-          <span className="text-[10px] text-blue-400 font-bold uppercase tracking-wider block">
+        <div className="w-full md:w-1/3 bg-white p-5 rounded-2xl border border-blue-200 shadow-md text-center">
+          <span className="text-[10px] text-blue-700 font-bold uppercase tracking-wider block">
             {t('animalSelector.dosageTag', '권장 급여 용량')}
           </span>
-          <span className="text-sm sm:text-base font-black text-amber-400 block mt-1">
+          <span className="text-sm sm:text-base font-black text-amber-700 block mt-1">
             {selectedAnimalDosage}
           </span>
-          <span className="text-[11px] text-slate-400 block mt-2">
+          <span className="text-[11px] text-slate-500 block mt-2">
             {t('animalSelector.notice', '* 1-deoxinojirimycin & 특허균주 고농축 액상 제제')}
           </span>
         </div>

@@ -431,9 +431,9 @@ export default function ParvogelClinicalDocumentary() {
               </span>
             </div>
 
-            {/* 비디오 9:16 스마트폰 프레임 뷰어 */}
-            <div className="relative rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 p-3 sm:p-5 flex items-center justify-center shadow-inner">
-              <div className="w-full max-w-[260px] sm:max-w-[290px] aspect-[9/16] rounded-2xl overflow-hidden bg-black border-2 border-slate-700 shadow-2xl relative">
+            {/* 비디오 9:16 스마트폰 프레임 뷰어 (환한 배경 및 세련된 스마트폰 베젤) */}
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-blue-50/80 via-slate-100/90 to-slate-100 border border-slate-200 p-3 sm:p-6 flex items-center justify-center shadow-inner">
+              <div className="w-full max-w-[260px] sm:max-w-[290px] aspect-[9/16] rounded-2xl overflow-hidden bg-slate-900 border-4 border-white shadow-2xl ring-1 ring-slate-200 relative">
                 <video
                   ref={videoRef}
                   key={selectedVideo.file}

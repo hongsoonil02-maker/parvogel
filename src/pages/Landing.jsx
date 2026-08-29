@@ -1027,34 +1027,34 @@ const Landing = () => {
             </div>
             </main>
 
-            {/* Footer */}
-            <footer className="bg-gray-900 text-gray-300 py-16">
+            {/* Footer (전체 배경색과 일치하는 밝고 세련된 프리미엄 테마) */}
+            <footer className="bg-slate-100/90 text-slate-600 py-16 border-t border-slate-200">
 
                 <div className="section-container">
                     <div className="grid md:grid-cols-4 gap-12 mb-12">
                         <div className="md:col-span-2">
                             <div className="flex items-center gap-2 mb-4">
-                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${primaryBg}`}>
+                                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${primaryBg} shadow-md`}>
                                     <span className="text-white font-extrabold text-xl">P</span>
                                 </div>
-                                <span className="font-extrabold text-xl text-white">{t('nav.brandName')} <span className={`${primaryText} font-black`}>Parvogel</span></span>
+                                <span className="font-extrabold text-xl text-slate-900">{t('nav.brandName')} <span className={`${primaryText} font-black`}>Parvogel</span></span>
                             </div>
-                            <p className="text-gray-400 mb-6 max-w-sm">
+                            <p className="text-slate-600 mb-6 max-w-sm leading-relaxed text-sm">
                                 {t('footer.desc')}
                             </p>
                             <div className="flex gap-4">
-                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg>
                                 </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                 </a>
-                                <a href="mailto:name_hyosun@naver.com" className="text-gray-400 hover:text-white transition-colors">
+                                <a href="mailto:name_hyosun@naver.com" className="text-slate-400 hover:text-blue-600 transition-colors">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </a>
                             </div>
                             <div className="mt-8 flex flex-col items-center md:items-start">
-                                <span className="text-xs font-bold text-gray-400 mb-3 text-center md:text-left block w-full">
+                                <span className="text-xs font-bold text-slate-500 mb-3 text-center md:text-left block w-full">
                                     {t('footer.qrOrderGuide', '스마트폰 카메라로 즉시 주문')}
                                 </span>
                                 <div className="flex justify-center md:justify-start gap-6 items-center w-full">
@@ -1067,39 +1067,39 @@ const Landing = () => {
                         </div>
 
                         <div>
-                            <h4 className="font-bold text-white mb-4">{t('footer.productInfo')}</h4>
-                            <ul className="space-y-2">
-                                <li><button type="button" onClick={() => scrollToSection('about')} className="hover:text-white transition-colors">{t('footer.productInfo1')}</button></li>
-                                <li><button type="button" onClick={() => scrollToSection('features')} className="hover:text-white transition-colors">{t('footer.productInfo2')}</button></li>
-                                <li><button type="button" onClick={() => scrollToSection('clinical')} className="hover:text-white transition-colors">{t('footer.productInfo3')}</button></li>
-                                <li><button type="button" onClick={() => scrollToSection('target')} className="hover:text-white transition-colors">{t('footer.productInfo4')}</button></li>
+                            <h4 className="font-bold text-slate-900 mb-4">{t('footer.productInfo')}</h4>
+                            <ul className="space-y-2 text-sm">
+                                <li><button type="button" onClick={() => scrollToSection('about')} className="hover:text-blue-600 transition-colors">{t('footer.productInfo1')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('features')} className="hover:text-blue-600 transition-colors">{t('footer.productInfo2')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('clinical')} className="hover:text-blue-600 transition-colors">{t('footer.productInfo3')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('target')} className="hover:text-blue-600 transition-colors">{t('footer.productInfo4')}</button></li>
                             </ul>
                         </div>
 
                         <div>
-                            <h4 className="font-bold text-white mb-4">{t('footer.support')}</h4>
-                            <ul className="space-y-2">
-                                <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-white transition-colors">{t('footer.support1')}</button></li>
-                                <li><a href="tel:02-6949-5708" className="hover:text-white transition-colors">{t('footer.support2')}</a></li>
-                                <li><a href="mailto:name_hyosun@naver.com" className="hover:text-white transition-colors">{t('footer.support3')}</a></li>
+                            <h4 className="font-bold text-slate-900 mb-4">{t('footer.support')}</h4>
+                            <ul className="space-y-2 text-sm">
+                                <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-blue-600 transition-colors">{t('footer.support1')}</button></li>
+                                <li><a href="tel:02-6949-5708" className="hover:text-blue-600 transition-colors">{t('footer.support2')}</a></li>
+                                <li><a href="mailto:name_hyosun@naver.com" className="hover:text-blue-600 transition-colors">{t('footer.support3')}</a></li>
                                 {/* FAQ 페이지가 없어 AI 상담 챗봇으로 연결 */}
-                                <li><button type="button" onClick={() => window.dispatchEvent(new CustomEvent('parvogel:open-chat'))} className="hover:text-white transition-colors">{t('footer.support4')}</button></li>
+                                <li><button type="button" onClick={() => window.dispatchEvent(new CustomEvent('parvogel:open-chat'))} className="hover:text-blue-600 transition-colors">{t('footer.support4')}</button></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div className="border-t border-gray-800 pt-8">
+                    <div className="border-t border-slate-200/90 pt-8">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
-                            <p className="text-gray-500 text-sm">
+                            <p className="text-slate-500 text-sm">
                                 {t('footer.copyright')}
                             </p>
-                            <div className="flex gap-6 text-sm text-gray-500">
-                                <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">{t('footer.privacy')}</button>
-                                <button onClick={() => setLegalType('terms')} className="hover:text-white transition-colors">{t('footer.terms')}</button>
-                                <button onClick={() => setLegalType('business')} className="hover:text-white transition-colors">{t('footer.business')}</button>
+                            <div className="flex gap-6 text-sm text-slate-500">
+                                <button onClick={() => setLegalType('privacy')} className="hover:text-slate-800 transition-colors">{t('footer.privacy')}</button>
+                                <button onClick={() => setLegalType('terms')} className="hover:text-slate-800 transition-colors">{t('footer.terms')}</button>
+                                <button onClick={() => setLegalType('business')} className="hover:text-slate-800 transition-colors">{t('footer.business')}</button>
                             </div>
                         </div>
-                        <div className="text-center text-gray-500 text-xs space-y-1">
+                        <div className="text-center text-slate-500 text-xs space-y-1">
                             <p>{t('footer.seller')}</p>
                             <p>{t('footer.businessNo')}</p>
                             <p>{t('footer.address')}</p>
