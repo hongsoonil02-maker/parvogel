@@ -23,7 +23,7 @@ export default function QrCode({ value, size = 160, label }) {
             <div className="p-2 bg-white rounded-xl shadow-md border border-gray-200">
                 <img src={dataUrl} alt={label || 'QR Code'} width={size} height={size} className="block" />
             </div>
-            {label && <p className="mt-2 text-sm font-semibold text-gray-700 text-center">{label}</p>}
+            {label && <p className="mt-2 text-xs sm:text-sm font-bold text-slate-200 text-center tracking-tight">{label}</p>}
         </div>
     );
 }

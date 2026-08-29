@@ -1053,11 +1053,16 @@ const Landing = () => {
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                 </a>
                             </div>
-                            <div className="mt-6 flex gap-4">
-                                <Suspense fallback={<div className="w-[96px] h-[96px]" />}>
-                                    <QrCode value={getStoreUrl('coupang')} size={96} label={t('footer.coupang')} />
-                                    <QrCode value={getStoreUrl('naver')} size={96} label={t('footer.naver')} />
-                                </Suspense>
+                            <div className="mt-8 flex flex-col items-center md:items-start">
+                                <span className="text-xs font-bold text-gray-400 mb-3 text-center md:text-left block w-full">
+                                    {t('footer.qrOrderGuide', '스마트폰 카메라로 즉시 주문')}
+                                </span>
+                                <div className="flex justify-center md:justify-start gap-6 items-center w-full">
+                                    <Suspense fallback={<div className="w-[100px] h-[100px]" />}>
+                                        <QrCode value={getStoreUrl('coupang')} size={100} label={t('footer.coupang')} />
+                                        <QrCode value={getStoreUrl('naver')} size={100} label={t('footer.naver')} />
+                                    </Suspense>
+                                </div>
                             </div>
                         </div>
 
