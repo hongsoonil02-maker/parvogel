@@ -190,11 +190,11 @@ export default function ParvogelClinicalDocumentary() {
     <section 
       id="parvogel-clinical-doc" 
       aria-labelledby="parvogel-doc-heading"
-      className="py-14 sm:py-22 bg-gradient-to-b from-[#0f1d38] via-[#16274a] to-[#0f1d38] text-white relative overflow-hidden border-y border-blue-900/50"
+      className="py-14 sm:py-22 bg-gradient-to-b from-slate-100 via-blue-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
     >
       {/* 배경 은은한 글로우 조명 */}
       <div 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/15 blur-[140px] pointer-events-none rounded-full" 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/10 blur-[130px] pointer-events-none rounded-full" 
         aria-hidden="true" 
       />
       
@@ -202,28 +202,28 @@ export default function ParvogelClinicalDocumentary() {
         
         {/* 헤더 섹션 */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-900/70 border border-blue-400/40 text-blue-200 text-xs sm:text-sm font-black mb-4 shadow-md shadow-blue-950/40">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping motion-reduce:hidden" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/90 border border-blue-200 text-blue-800 text-xs sm:text-sm font-black mb-4 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping motion-reduce:hidden" aria-hidden="true" />
             <span>{t('doc.badge', '📹 파보 장염·급성 설사 7일간의 리얼 임상 다큐멘터리')}</span>
           </div>
           
-          {/* 타이틀: 짙은 배경 위에서 화사하게 빛나는 시네마틱 타이틀 */}
-          <h2 id="parvogel-doc-heading" className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+          {/* 타이틀: 2번째 줄에 '기적의 7일 회복 실화'를 명확하게 단독 배치하여 줄바꿈 완성도 극대화 */}
+          <h2 id="parvogel-doc-heading" className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
             <span className="block break-keep">
               {t('doc.title_line1', '쓰러진 55일령 강아지의')}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-amber-300 break-keep mt-1 sm:mt-2">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-amber-600 break-keep mt-1 sm:mt-2">
               {t('doc.title_line2', '기적의 7일 회복 실화')}
             </span>
           </h2>
           
-          <p className="text-xs sm:text-base text-slate-300 font-medium break-keep leading-relaxed max-w-2xl mx-auto px-2">
+          <p className="text-xs sm:text-base text-slate-600 font-medium break-keep leading-relaxed max-w-2xl mx-auto px-2">
             {t('doc.subtitle', '극심한 장염과 발작으로 위기에 처했던 아기 푸들이 주사기 없이 원터치 펌프로 급여 후 네 발로 일어서기까지의 7일간 무편집 직캠 기록입니다.')}
           </p>
 
-          {/* 환축 스펙 & 프로필 바 (짙은 배경 위에서 화이트 카드로 강력한 대비와 가독성 제공) */}
+          {/* 환축 스펙 & 프로필 바 (화이트 카드 톤앤매너 일치) */}
           <div 
-            className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 bg-white/95 p-3.5 sm:p-4 rounded-2xl border border-white/20 shadow-2xl backdrop-blur-md text-start text-slate-800"
+            className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 bg-white/95 p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-md backdrop-blur-md text-start text-slate-800"
             aria-label={t('doc.spec_title', '환축 스펙')}
           >
             <div className="border-e border-slate-200 pe-2.5">
@@ -245,9 +245,9 @@ export default function ParvogelClinicalDocumentary() {
           </div>
         </header>
 
-        {/* 🎬 2분 55초 풀 다큐멘터리 프리미엄 시청 배너 (로열 블루-인디고 카드) */}
-        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-800 border border-blue-400/40 shadow-2xl shadow-blue-950/50 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-white backdrop-blur-xl">
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        {/* 🎬 2분 55초 풀 다큐멘터리 프리미엄 시청 배너 (사용자 요청: 직캠 파란색 박스 배경색만 약간 짙은 프리미엄 로열 딥블루로 적용) */}
+        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-[#11224d] via-[#1a3473] to-[#11224d] border border-blue-400/40 shadow-2xl shadow-blue-950/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-white backdrop-blur-xl">
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
           
           <div className="text-start space-y-2 relative z-10">
             <div className="flex items-center gap-2 flex-wrap">
@@ -269,7 +269,7 @@ export default function ParvogelClinicalDocumentary() {
           <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0 z-10">
             <button
               onClick={() => setIsDocuModalOpen(true)}
-              className="px-6 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm rounded-2xl shadow-xl shadow-amber-500/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              className="px-6 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-sm rounded-2xl shadow-xl shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
               aria-label={t('doc.docuWatchBtn', '다큐 영상 전체 시청 (2분 55초)')}
             >
               <span className="text-lg" aria-hidden="true">▶</span>
@@ -285,7 +285,7 @@ export default function ParvogelClinicalDocumentary() {
           </div>
         </div>
 
-        {/* 3단계 스텝퍼 탭 (짙은 배경 위에서 화사하고 또렷한 화이트 카드 탭) */}
+        {/* 3단계 스텝퍼 탭 (밝은 메디컬 테마) */}
         <nav 
           role="tablist" 
           aria-label={t('doc.nav_aria', '치료 경과 단계 네비게이션')} 
@@ -301,21 +301,21 @@ export default function ParvogelClinicalDocumentary() {
                 aria-selected={isActive}
                 aria-controls={`step-panel-${step.id}`}
                 onClick={() => handleSelectStep(idx)}
-                className={`flex-1 text-start p-3.5 sm:p-4 rounded-2xl border min-h-[48px] transition-all duration-300 relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+                className={`flex-1 text-start p-3.5 sm:p-4 rounded-2xl border min-h-[48px] transition-all duration-300 relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                   isActive
-                    ? 'bg-white border-blue-500 shadow-xl shadow-blue-950/40 ring-2 ring-blue-400'
-                    : 'bg-white/90 border-white/30 hover:bg-white text-slate-700 shadow-md'
+                    ? 'bg-blue-50/90 border-blue-600 shadow-md shadow-blue-500/10 ring-2 ring-blue-500/20'
+                    : 'bg-white border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-600 shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className={`text-[11px] font-extrabold px-2 py-0.5 rounded-full ${isActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
+                  <span className={`text-[11px] font-extrabold px-2 py-0.5 rounded-full ${isActive ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'}`}>
                     {step.stepNum}
                   </span>
-                  <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-blue-700' : 'text-slate-500'}`}>
+                  <span className={`text-[11px] font-mono font-bold ${isActive ? 'text-blue-700' : 'text-slate-400'}`}>
                     {step.period}
                   </span>
                 </div>
-                <h3 className="text-xs sm:text-base font-bold line-clamp-1 text-slate-900">
+                <h3 className={`text-xs sm:text-base font-bold line-clamp-1 ${isActive ? 'text-slate-900' : 'text-slate-700'}`}>
                   {step.title}
                 </h3>
               </button>
@@ -468,13 +468,13 @@ export default function ParvogelClinicalDocumentary() {
           </article>
         </div>
 
-        {/* 하단 6대 영상 아카이브 그리드 (짙은 배경 위 화이트 카드) */}
+        {/* 하단 6대 영상 아카이브 그리드 (화이트/라이트 메디컬 룩) */}
         <section aria-labelledby="parvo-archive-heading" className="mt-8 sm:mt-12">
           <div className="text-start mb-6">
-            <h3 id="parvo-archive-heading" className="text-lg sm:text-2xl font-extrabold text-white break-keep">
+            <h3 id="parvo-archive-heading" className="text-lg sm:text-2xl font-extrabold text-slate-900 break-keep">
               {t('doc.archive_heading', '📹 7일간의 임상 치료 순서별 6대 직캠 아카이브')}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1 break-keep">
+            <p className="text-xs sm:text-sm text-slate-600 mt-1 break-keep">
               {t('doc.archive_subheading', '치료 일자별(Day 1 ~ Day 7) 순서대로 정렬된 리얼 진료실 영상입니다. 카드를 클릭하면 상단 플레이어와 STEP이 자동 동기화됩니다.')}
             </p>
           </div>
