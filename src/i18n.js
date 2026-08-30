@@ -116,7 +116,9 @@ i18n.on('languageChanged', (lng) => {
     try {
         localStorage.setItem('parvogel_user_lang', base);
         localStorage.setItem('i18nextLng', base);
-    } catch (e) {}
+    } catch (e) {
+        // localStorage may be unavailable (e.g. private mode); ignore.
+    }
 
     if (!loaded.has(base)) {
         loadLanguage(base).then(() => i18n.changeLanguage(lng));
