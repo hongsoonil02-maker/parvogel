@@ -33,6 +33,8 @@ from core.video_maker import ParvogelVideoMaker
 from adapters.telegram_adapter import TelegramAdapter
 from adapters.discord_adapter import DiscordAdapter
 from adapters.twitter_adapter import TwitterAdapter
+from adapters.youtube_adapter import YouTubeAdapter
+from adapters.instagram_adapter import InstagramAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
 
 
@@ -48,7 +50,9 @@ class ParvogelMarketingMaster:
         self.adapters = [
             TelegramAdapter(),
             DiscordAdapter(),
-            TwitterAdapter()
+            TwitterAdapter(),
+            YouTubeAdapter(),
+            InstagramAdapter()
         ]
         self.ledger_path = os.path.join(DATA_DIR, "published_ledger.json")
 

@@ -202,17 +202,20 @@ class ParvogelContentFormatter:
     # 5. 유튜브 쇼츠 메타데이터
     def _format_youtube_shorts(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("youtube_shorts")
-        return {
-            "title": f"안락사 위기 0.6kg 아기 강아지가 7일 만에 일어선 기적 #shorts",
-            "description": f"""쓰러진 55일령 강아지의 기적의 7일 회복 실화 직캠!
+        title = n.get('headline', '안락사 위기 0.6kg 아기 강아지가 7일 만에 일어선 기적')[:100]
+        description = f"""쓰러진 55일령 강아지의 기적의 7일 회복 실화 직캠!
 주사기 없이 1초 펌프로 입안에 꿀꺽!
 
 📹 풀영상 & 임상 일지 확인: {links['landing']}
 🚀 쿠팡 로켓배송: {links['coupang']}
 🟢 네이버 스마트스토어: {links['smartstore']}
 
-#파보겔 #강아지설사 #파보장염 #토이푸들 #새끼강아지 #shorts #동물병원""",
+#파보겔 #강아지설사 #파보장염 #토이푸들 #새끼강아지 #shorts #동물병원"""
+        return {
+            "title": title,
+            "description": description[:5000],
             "pinned_comment": f"우리 아기 강아지 급성 장염 골든타임 파보겔 1초 케어! 쿠팡 로켓배송으로 내일 아침 도착: {links['coupang']}",
+            "tags": ["파보겔", "강아지설사", "파보장염", "토이푸들", "새끼강아지", "shorts", "동물병원"],
             "links": links
         }
 

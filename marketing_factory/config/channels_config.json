@@ -29,13 +29,13 @@
     },
     "YouTube_Shorts": {
       "enabled": true,
-      "publish_mode": "draft_only",
+      "publish_mode": "auto",
       "type": "video_shortform",
       "description": "유튜브 쇼츠 9:16 비디오 및 메타데이터"
     },
     "Instagram_Reels": {
       "enabled": true,
-      "publish_mode": "draft_only",
+      "publish_mode": "auto",
       "type": "video_shortform",
       "description": "인스타그램 릴스 & 틱톡 숏폼 비디오"
     },
