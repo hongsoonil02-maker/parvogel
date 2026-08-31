@@ -27,14 +27,9 @@ CONFIG_DIR = os.path.join(FACTORY_DIR, "config")
 def load_all_envs():
     from dotenv import load_dotenv
     local_env = os.path.join(FACTORY_DIR, ".env")
-    saas_env = os.environ.get("PARVOGEL_SAAS_ENV")
-    if not saas_env:
-        saas_env = os.path.join(FACTORY_DIR, "100_bagger_saas", ".env")
     
     if os.path.exists(local_env):
         load_dotenv(local_env)
-    if os.path.exists(saas_env):
-        load_dotenv(saas_env)
 
 load_all_envs()
 
