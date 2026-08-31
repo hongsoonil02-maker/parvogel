@@ -4,6 +4,11 @@ Video Maker — 파보겔(Parvogel) 9:16 쇼츠/릴스 자동 생성 엔진
 - 6대 무편집 진료실 실사 직캠을 1080x1920 스마트폰 최적화 비디오로 렌더링
 - 상하단 고대비 후킹 자막 바 및 정품 파보겔 브랜딩 자동 합성
 - 유튜브 쇼츠, 인스타 릴스, 틱톡 즉시 업로드용 MP4 생성
+
+NOTE: 본 모듈은 비디오 파일 생성만 담당합니다.
+      실제 플랫폼 업로드는 별도의 uploader adapter가 필요합니다.
+      현재 output/ 폴더에 생성된 MP4를 수동 업로드하거나,
+      YouTube Data API / Instagram Graph API 업로더를 추가로 구현하세요.
 """
 
 import os

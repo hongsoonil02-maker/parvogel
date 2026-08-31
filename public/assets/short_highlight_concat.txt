@@ -1,6 +1,0 @@
-file 'short_highlight_01.mp4'
-file 'short_highlight_02.mp4'
-file 'short_highlight_03.mp4'
-file 'short_highlight_04.mp4'
-file 'short_highlight_05.mp4'
-file 'short_highlight_06.mp4'

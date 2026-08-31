@@ -102,12 +102,19 @@ class ParvogelMarketingMaster:
         print("\n[STEP 4/4] Publishing and archiving content...")
         results = {}
 
-        # 4-1. 소셜 API 직접 배포 (Telegram, Discord, Twitter)
+        # 4-1. 소셜 API 직접 배포 (publish_mode=auto 인 채널만)
         with ThreadPoolExecutor(max_workers=3) as executor:
             future_to_adapter = {}
             for adapter in self.adapters:
+                ch_key = "Twitter_X" if adapter.name == "Twitter_X" else adapter.name
+                ch_cfg = self.formatter.config.get("channels", {}).get(ch_key, {})
+                publish_mode = ch_cfg.get("publish_mode", "auto")
+                
+                if publish_mode != "auto":
+                    results[adapter.name] = "SKIPPED_DRAFT_ONLY"
+                    continue
+                    
                 if adapter.validate_config():
-                    ch_key = "Twitter_X" if adapter.name == "Twitter_X" else adapter.name
                     data = formatted_channels.get(ch_key, {})
                     future = executor.submit(adapter.publish, data)
                     future_to_adapter[future] = adapter.name

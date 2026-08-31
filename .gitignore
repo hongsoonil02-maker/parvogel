@@ -48,4 +48,12 @@ marketing_factory/output/*.mp4
 marketing_factory/output/*.jpg
 marketing_factory/drafts/*
 !marketing_factory/drafts/.gitkeep
-marketing_factory/data/published_ledger.json
+marketing_factory/data/published_ledger.json
+# Large video binaries (use Git LFS for history)
+public/assets/*.mp4
+# Marketing Factory intermediate outputs (keep final assets only)
+public/assets/short_highlight_0[1-6].mp4
+public/assets/short_story_0[1-7].mp4
+public/assets/short_highlight_concat.txt
+public/assets/short_story_concat.txt
+
