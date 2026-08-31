@@ -289,22 +289,22 @@ export default function ParvogelClinicalDocumentary() {
         </div>
 
         {/* 🎬 숏폼 스토리 배너 */}
-        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 shadow-2xl shadow-slate-900/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-white backdrop-blur-xl">
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-slate-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-blue-50/90 via-white to-blue-50/90 border border-blue-200/60 shadow-xl shadow-blue-900/5 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-slate-900 backdrop-blur-xl">
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
           <div className="text-start space-y-2 relative z-10">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-black px-3 py-1 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 text-slate-950 shadow-md">
+              <span className="text-xs font-black px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md">
                 {t('doc.shortModalBadge', '🎬 1분 숏폼 스토리')}
               </span>
-              <span className="text-xs text-slate-300 font-bold">
+              <span className="text-xs text-blue-800 font-bold">
                 {t('doc.shortSpec', '케이스 영상 하이라이트 · 반응형 숏폼')}
               </span>
             </div>
-            <h3 className="text-lg sm:text-2xl font-black text-white leading-snug break-keep">
+            <h3 className="text-lg sm:text-2xl font-black text-slate-900 leading-snug break-keep">
               {t('doc.shortBannerTitle', '증상에서 회복까지, 1분으로 보는 파보겔 스토리')}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl break-keep">
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-2xl break-keep">
               {t('doc.shortBannerDesc', '발작·무기력·식욕 회복·기립까지, 실제 임상 케이스 영상으로 엮은 1분 숏폼입니다. 하단 버튼을 누르면 바로 시청할 수 있습니다.')}
             </p>
           </div>
@@ -312,7 +312,7 @@ export default function ParvogelClinicalDocumentary() {
           <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0 z-10">
             <button
               onClick={() => setIsShortModalOpen(true)}
-              className="px-6 py-3.5 bg-gradient-to-r from-slate-100 to-slate-200 hover:from-white hover:to-slate-100 text-slate-950 font-black text-sm rounded-2xl shadow-xl shadow-slate-900/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+              className="px-6 py-3.5 bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white font-black text-sm rounded-2xl shadow-xl shadow-blue-900/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               aria-label={t('doc.shortWatchBtn', '숏폼 영상 시청 (약 1분)')}
             >
               <span className="text-lg" aria-hidden="true">▶</span>
