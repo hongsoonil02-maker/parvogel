@@ -11,6 +11,9 @@ export default function ParvogelClinicalDocumentary() {
   const videoRef = useRef(null);
 
   const docuVideoUrl = `${import.meta.env.BASE_URL}assets/parvogel_clinical_documentary_v2.mp4?v=20260828`;
+  const shortVideoUrl = `${import.meta.env.BASE_URL}assets/${encodeURIComponent('Video Project 6_final.mp4')}`;
+  const shortThumbUrl = `${import.meta.env.BASE_URL}assets/short_story_thumb.jpg`;
+  const [isShortModalOpen, setIsShortModalOpen] = useState(false);
 
   const handleCopyDocuLink = (e) => {
     if (e && e.stopPropagation) e.stopPropagation();
@@ -281,6 +284,39 @@ export default function ParvogelClinicalDocumentary() {
               aria-label={t('doc.docuCopyBtnMobile', '공유 링크 복사')}
             >
               <span>{copySuccess ? t('doc.docuCopied', '✅ 링크 복사완료!') : t('doc.docuCopyBtnMobile', '🔗 공유 링크 복사')}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* 🎬 숏폼 스토리 배너 */}
+        <div className="max-w-5xl mx-auto mb-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 shadow-2xl shadow-slate-900/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 text-white backdrop-blur-xl">
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-slate-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+
+          <div className="text-start space-y-2 relative z-10">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xs font-black px-3 py-1 rounded-full bg-gradient-to-r from-slate-200 to-slate-300 text-slate-950 shadow-md">
+                {t('doc.shortModalBadge', '🎬 1분 숏폼 스토리')}
+              </span>
+              <span className="text-xs text-slate-300 font-bold">
+                {t('doc.shortSpec', '케이스 영상 하이라이트 · 반응형 숏폼')}
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-2xl font-black text-white leading-snug break-keep">
+              {t('doc.shortBannerTitle', '증상에서 회복까지, 1분으로 보는 파보겔 스토리')}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl break-keep">
+              {t('doc.shortBannerDesc', '발작·무기력·식욕 회복·기립까지, 실제 임상 케이스 영상으로 엮은 1분 숏폼입니다. 하단 버튼을 누르면 바로 시청할 수 있습니다.')}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto shrink-0 z-10">
+            <button
+              onClick={() => setIsShortModalOpen(true)}
+              className="px-6 py-3.5 bg-gradient-to-r from-slate-100 to-slate-200 hover:from-white hover:to-slate-100 text-slate-950 font-black text-sm rounded-2xl shadow-xl shadow-slate-900/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+              aria-label={t('doc.shortWatchBtn', '숏폼 영상 시청 (약 1분)')}
+            >
+              <span className="text-lg" aria-hidden="true">▶</span>
+              <span>{t('doc.shortWatchBtn', '숏폼 영상 시청 (약 1분)')}</span>
             </button>
           </div>
         </div>
@@ -669,6 +705,69 @@ export default function ParvogelClinicalDocumentary() {
               >
                 <span>⬇ {t('doc.docuDownload', '영상 다운로드')}</span>
               </a>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 숏폼 스토리 영상 모달 */}
+      {isShortModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('doc.shortModalTitle', '파보겔 임상 케이스 스토리 숏폼')}
+          className="fixed inset-0 z-[70] bg-black/95 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4"
+          onClick={() => setIsShortModalOpen(false)}
+        >
+          <div
+            className="relative max-w-sm sm:max-w-md w-[94vw] sm:w-full bg-slate-900/95 rounded-3xl p-3.5 sm:p-5 pb-5 sm:pb-6 border border-blue-500/40 flex flex-col shadow-2xl max-h-[92dvh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-2.5 sm:mb-3 border-b border-white/10 pb-2.5 sm:pb-3 text-start">
+              <div>
+                <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 me-2 inline-block">
+                  {t('doc.shortModalBadge', '🎬 1분 숏폼 스토리')}
+                </span>
+                <h4 className="text-xs sm:text-base font-bold text-white block mt-1 line-clamp-1">
+                  {t('doc.shortModalTitle', '파보겔 임상 케이스 스토리')}
+                </h4>
+              </div>
+              <button
+                onClick={() => setIsShortModalOpen(false)}
+                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold text-base shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
+                aria-label={t('common.close', '닫기')}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="w-full max-w-[270px] sm:max-w-[310px] max-h-[48vh] sm:max-h-[54vh] mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl border border-blue-500/30 flex items-center justify-center relative">
+              <video
+                key="parvogel-short-video"
+                controls
+                autoPlay
+                playsInline
+                aria-label={t('doc.shortModalTitle', '파보겔 임상 케이스 스토리 숏폼')}
+                className="w-full h-full object-cover"
+              >
+                <source src={shortVideoUrl} type="video/mp4" />
+                브라우저가 비디오를 지원하지 않습니다.
+              </video>
+            </div>
+
+            <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <a
+                href={shortVideoUrl}
+                download="파보겔_임상케이스_스토리_숏폼.mp4"
+                className="flex-1 py-2.5 px-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-lg shadow-blue-950/60"
+              >
+                <span>⬇ {t('doc.shortDownload', '숏폼 다운로드')}</span>
+              </a>
+              <button
+                onClick={() => setIsShortModalOpen(false)}
+                className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-1 shrink-0"
+              >
+                {t('common.close', '닫기')}
+              </button>
             </div>
           </div>
         </div>
