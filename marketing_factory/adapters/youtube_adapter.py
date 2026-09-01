@@ -107,6 +107,8 @@ class YouTubeAdapter(BaseMarketingAdapter):
             resp = requests.post(token_url, data=payload, timeout=10)
             if resp.status_code == 200:
                 return resp.json().get("access_token", "")
+            err_body = resp.text[:300]
+            print(f"[FAIL] YouTube token refresh HTTP {resp.status_code}: {err_body}")
         except Exception as e:
             print(f"[EXCEPTION] YouTube token refresh: {e}")
         return ""
