@@ -193,7 +193,7 @@ export default function ParvogelClinicalDocumentary() {
     <section 
       id="parvogel-clinical-doc" 
       aria-labelledby="parvogel-doc-heading"
-      className="py-14 sm:py-22 bg-gradient-to-b from-slate-100 via-blue-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
+      className="py-[2.1rem] sm:py-[3.3rem] bg-gradient-to-b from-slate-100 via-blue-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
     >
       {/* 배경 은은한 글로우 조명 */}
       <div 
