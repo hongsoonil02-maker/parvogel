@@ -3,3 +3,11 @@ public/assets/short_story_final.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/short_highlight_final.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/*.mp4 filter=lfs diff=lfs merge=lfs -text
 public/assets/video.mp4 -filter -diff -merge
+public/assets/parvogel_clinical_documentary_v2.mp4 -filter -diff -merge
+"public/assets/Video Project 6_final.mp4" -filter -diff -merge
+public/assets/parvogel_case_01_seizure.mp4 -filter -diff -merge
+public/assets/parvogel_case_02_lethargy.mp4 -filter -diff -merge
+public/assets/parvogel_case_03_standing.mp4 -filter -diff -merge
+public/assets/parvogel_case_05_eating.mp4 -filter -diff -merge
+"public/assets/김동준원장_동영상 4-1.mp4" -filter -diff -merge
+"public/assets/김동준원장_동영상 6-1.mp4" -filter -diff -merge
