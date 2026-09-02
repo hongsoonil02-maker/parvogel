@@ -538,7 +538,7 @@ const Landing = () => {
 
             {/* Hero Section */}
             <main id="main-content" tabIndex={-1}>
-            <section id="hero" className="relative pt-[0.98rem] pb-[0.5rem] sm:pt-[1.47rem] sm:pb-[0.7rem] lg:pt-[1.96rem] lg:pb-[0.8rem] flex items-center justify-center overflow-hidden">
+            <section id="hero" className="relative py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] flex items-center justify-center overflow-hidden">
                 {/* Background */}
                 <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
@@ -597,7 +597,7 @@ const Landing = () => {
             </section>
 
             {/* About Section */}
-            <section id="about" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-white">
+            <section id="about" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                         <div>
@@ -738,7 +738,7 @@ const Landing = () => {
             </section>
 
             {/* Features Section */}
-            <section id="features" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-gray-50">
+            <section id="features" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
@@ -786,7 +786,7 @@ const Landing = () => {
 
 
             {/* Target Animals Section */}
-            <section id="target" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-gray-50">
+            <section id="target" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
@@ -841,7 +841,7 @@ const Landing = () => {
             </section>
 
             {/* Testimonials Section */}
-            <section id="testimonials" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-white" aria-label={t('testimonials.title')}>
+            <section id="testimonials" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white" aria-label={t('testimonials.title')}>
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
@@ -880,7 +880,7 @@ const Landing = () => {
             </section>
 
             {/* Products Section */}
-            <section id="products" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-gray-50">
+            <section id="products" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
@@ -963,7 +963,7 @@ const Landing = () => {
             </section>
 
             {/* Order Section */}
-            <section id="order" className="py-[1.47rem] sm:py-[2.058rem] lg:py-[2.352rem] bg-white">
+            <section id="order" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
