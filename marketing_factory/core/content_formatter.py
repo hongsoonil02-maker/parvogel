@@ -31,7 +31,7 @@ class ParvogelContentFormatter:
         self.config = self._load_json(os.path.join(CONFIG_DIR, "channels_config.json"))
         self.keywords = self._load_json(os.path.join(DATA_DIR, "keywords_seo.json"))
         
-        self.landing_base = self.config.get("site_landing_url", "https://hongsoonil02-maker.github.io/parvogel/")
+        self.landing_base = self.config.get("site_landing_url", "https://parvogel.kr/")
         self.smartstore_base = self.config.get("smartstore_url", "https://smartstore.naver.com/petschury/products/13718496355")
         self.coupang_base = self.config.get("coupang_url", "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090")
 
@@ -59,8 +59,44 @@ class ParvogelContentFormatter:
             "Naver_Blog": self._format_naver_blog(narrative),
             "YouTube_Shorts": self._format_youtube_shorts(narrative),
             "Instagram_Reels": self._format_instagram_reels(narrative),
+            "Facebook_Page": self._format_facebook_page(narrative),
+            "TikTok": self._format_tiktok(narrative),
             "LinkedIn_B2B": self._format_linkedin(narrative),
             "Clinic_Cold_DM": self._format_cold_dm(narrative)
+        }
+
+    # Facebook 페이지 포맷팅
+    def _format_facebook_page(self, n: Dict[str, Any]) -> Dict[str, Any]:
+        links = self._build_utm_links("facebook_page")
+        tags = " ".join(self.keywords.get("hashtags", {}).get("b2c_general", [])[:6])
+        text = f"""🐾 {n.get('headline')}
+
+{n.get('subheadline')}
+
+✅ 1초 원터치 펌프 급여: 주사기 거부하는 강아지도 스트레스 없이 안전 투약!
+✅ 1-deoxinojirimycin 특허성분 + 천연 몬모릴로나이트 장 점막 실크 코팅
+✅ 투약 3일 만에 그릇까지 싹싹 핥아먹는 기적의 식욕 회복!
+
+📹 7일간의 무편집 진료실 회복 영상 확인: {links['landing']}
+🚀 쿠팡 로켓배송 즉시 구매: {links['coupang']}
+🟢 네이버 스마트스토어 구매: {links['smartstore']}
+
+{tags}"""
+        return {
+            "title": n.get('headline', '파보겔 임상 케이스'),
+            "caption": text,
+            "text": text,
+            "links": links
+        }
+
+    # TikTok 포맷팅
+    def _format_tiktok(self, n: Dict[str, Any]) -> Dict[str, Any]:
+        links = self._build_utm_links("tiktok")
+        tags = "#파보겔 #강아지설사 #파보장염 #새끼강아지 #동물병원 #shorts"
+        title = f"{n.get('headline', '55일령 아기 강아지의 기적')} {tags}"[:150]
+        return {
+            "title": title,
+            "links": links
         }
 
     # 1. 텔레그램 (실시간 공지)

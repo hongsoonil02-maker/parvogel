@@ -2,7 +2,8 @@
 """
 Instagram Reels Adapter — Meta Graph API 자동 업로드
 - Instagram Business/Creator 계정에 Reels 업로드
-- META_APP_ID, META_APP_SECRET, META_ACCESS_TOKEN, META_IG_ACCOUNT_ID 필요
+- Resumable Upload 세션을 통해 로컬 비디오 파일을 직접 Instagram Reels로 업로드 지원
+- META_ACCESS_TOKEN, META_IG_ACCOUNT_ID 필요 (영구 시스템 토큰 지원)
 """
 
 import os
@@ -18,89 +19,77 @@ class InstagramAdapter(BaseMarketingAdapter):
 
     def validate_config(self) -> bool:
         return bool(
-            os.getenv("META_APP_ID")
-            and os.getenv("META_APP_SECRET")
-            and os.getenv("META_ACCESS_TOKEN")
+            os.getenv("META_ACCESS_TOKEN")
             and os.getenv("META_IG_ACCOUNT_ID")
         )
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
         ig_account_id = os.getenv("META_IG_ACCOUNT_ID")
         access_token = os.getenv("META_ACCESS_TOKEN")
-        app_id = os.getenv("META_APP_ID")
-        app_secret = os.getenv("META_APP_SECRET")
 
-        valid_token = self._validate_token(access_token, app_id, app_secret)
-        if not valid_token:
-            access_token = self._refresh_facebook_token(access_token, app_id, app_secret)
-            if not access_token:
-                print("[FAIL] Instagram token refresh failed")
-                return False
-
-        video_url = content_data.get("video_url") or content_data.get("video_path", "")
+        video_path = content_data.get("video_path") or ""
         caption = content_data.get("caption", content_data.get("description", ""))
         title = content_data.get("title", "파보겔 임상 케이스")
 
-        if video_url and video_url.startswith("http"):
-            container_id = self._create_reel_container(ig_account_id, access_token, video_url, caption)
-        else:
-            print("[INFO] Instagram Reels requires a publicly accessible video URL. Skipping auto-upload.")
-            print(f"        Upload '{video_url}' manually or host it on a CDN.")
+        if not video_path or not os.path.exists(video_path):
+            print(f"[FAIL] Instagram video file not found: {video_path}")
             return False
 
+        container_id = self._upload_local_reel_container(ig_account_id, access_token, video_path, caption)
         if not container_id:
             return False
 
         return self._publish_reel(ig_account_id, access_token, container_id)
 
-    def _validate_token(self, token: str, app_id: str, app_secret: str) -> bool:
-        url = f"https://graph.facebook.com/debug_token?input_token={token}&access_token={app_id}|{app_secret}"
-        try:
-            resp = requests.get(url, timeout=10)
-            if resp.status_code == 200:
-                data = resp.json().get("data", {})
-                return data.get("is_valid", False)
-        except Exception:
-            pass
-        return False
-
-    def _refresh_facebook_token(self, token: str, app_id: str, app_secret: str) -> str:
-        url = f"https://graph.facebook.com/v18.0/oauth/access_token"
-        params = {
-            "grant_type": "fb_exchange_token",
-            "client_id": app_id,
-            "client_secret": app_secret,
-            "fb_exchange_token": token
-        }
-        try:
-            resp = requests.get(url, params=params, timeout=10)
-            if resp.status_code == 200:
-                return resp.json().get("access_token", "")
-        except Exception as e:
-            print(f"[EXCEPTION] Instagram token refresh: {e}")
-        return ""
-
-    def _create_reel_container(self, ig_account_id: str, access_token: str, video_url: str, caption: str) -> str:
-        url = f"https://graph.facebook.com/v18.0/{ig_account_id}/media"
-        payload = {
+    def _upload_local_reel_container(self, ig_account_id: str, access_token: str, video_path: str, caption: str) -> str:
+        """Meta Resumable Upload 프로토콜을 사용해 로컬 비디오 직접 업로드"""
+        file_size = os.path.getsize(video_path)
+        
+        # 1. 컨테이너 초기화 (upload_type=resumable)
+        init_url = f"https://graph.facebook.com/v18.0/{ig_account_id}/media"
+        init_payload = {
             "media_type": "REELS",
-            "video_url": video_url,
+            "upload_type": "resumable",
             "caption": caption[:2200],
             "share_to_feed": True,
             "access_token": access_token
         }
+        
         try:
-            resp = requests.post(url, data=payload, timeout=15)
-            if resp.status_code in [200, 201]:
-                container_id = resp.json().get("id", "")
-                if container_id:
-                    print(f"[INFO] Instagram reel container created: {container_id}")
-                    return container_id
+            init_resp = requests.post(init_url, data=init_payload, timeout=15)
+            if init_resp.status_code not in [200, 201]:
+                print(f"[FAIL] Instagram init error: {init_resp.status_code} - {init_resp.text[:200]}")
+                return ""
+                
+            init_data = init_resp.json()
+            container_id = init_data.get("id")
+            upload_url = init_data.get("uri")
+            
+            if not upload_url:
+                print(f"[FAIL] Instagram upload uri missing in response: {init_data}")
+                return ""
+                
+            # 2. 로컬 비디오 바이너리 업로드 (rupload.facebook.com)
+            with open(video_path, "rb") as vf:
+                video_bytes = vf.read()
+                
+            upload_headers = {
+                "Authorization": f"OAuth {access_token}",
+                "offset": "0",
+                "file_size": str(file_size),
+                "Content-Type": "application/octet-stream"
+            }
+            
+            up_resp = requests.post(upload_url, data=video_bytes, headers=upload_headers, timeout=120)
+            if up_resp.status_code in [200, 201]:
+                print(f"[INFO] Instagram local video uploaded to container: {container_id}")
+                return container_id
             else:
-                print(f"[FAIL] Instagram container error: {resp.status_code} - {resp.text[:200]}")
+                print(f"[FAIL] Instagram binary upload failed: {up_resp.status_code} - {up_resp.text[:200]}")
+                return ""
         except Exception as e:
-            print(f"[EXCEPTION] Instagram create container: {e}")
-        return ""
+            print(f"[EXCEPTION] Instagram upload local reel: {e}")
+            return ""
 
     def _publish_reel(self, ig_account_id: str, access_token: str, container_id: str) -> bool:
         url = f"https://graph.facebook.com/v18.0/{ig_account_id}/media_publish"
@@ -108,22 +97,26 @@ class InstagramAdapter(BaseMarketingAdapter):
             "creation_id": container_id,
             "access_token": access_token
         }
-        max_retries = 12
+        max_retries = 15
+        print("[INFO] Waiting for Instagram Reel processing...")
         for attempt in range(max_retries):
+            time.sleep(6)
             try:
                 resp = requests.post(url, data=payload, timeout=15)
                 if resp.status_code in [200, 201]:
                     media_id = resp.json().get("id", "unknown")
                     print(f"[SUCCESS] Instagram Reel published (ID: {media_id})")
                     return True
-                elif resp.status_code == 400 and "processing" in resp.text.lower():
-                    time.sleep(5)
+                
+                resp_data = resp.json()
+                error_msg = resp_data.get("error", {}).get("message", "")
+                if "processing" in error_msg.lower() or "not ready" in error_msg.lower():
                     continue
                 else:
                     print(f"[FAIL] Instagram publish error: {resp.status_code} - {resp.text[:200]}")
                     return False
             except Exception as e:
-                print(f"[EXCEPTION] Instagram publish: {e}")
-                time.sleep(5)
+                print(f"[EXCEPTION] Instagram publish attempt {attempt+1}: {e}")
+                
         print("[FAIL] Instagram Reel publishing timed out")
         return False

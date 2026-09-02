@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
 """
-Video Maker — 파보겔(Parvogel) 9:16 쇼츠/릴스 자동 생성 엔진
-- 6대 무편집 진료실 실사 직캠을 1080x1920 스마트폰 최적화 비디오로 렌더링
-- 상하단 고대비 후킹 자막 바 및 정품 파보겔 브랜딩 자동 합성
-- 유튜브 쇼츠, 인스타 릴스, 틱톡 즉시 업로드용 MP4 생성
-
-NOTE: 본 모듈은 비디오 파일 생성만 담당합니다.
-      실제 플랫폼 업로드는 별도의 uploader adapter가 필요합니다.
-      현재 output/ 폴더에 생성된 MP4를 수동 업로드하거나,
-      YouTube Data API / Instagram Graph API 업로더를 추가로 구현하세요.
+Video Maker — 파보겔(Parvogel) 하남 사랑동물병원 김동준 원장 리얼 임상 다큐 9:16 비디오 엔진
+- 1080x1920 세로형 숏폼/릴스/틱톡 최적화
+- 김동준 원장 진료실 실사 클립 및 풀버전 다큐멘터리 연계
+- 상단 골든타임 경보 뱃지 / 중앙 리얼 진료 영상 / 하단 1초 펌프 & 쿠팡/네이버 구매 전환 바
 """
 
 import os
@@ -33,43 +28,42 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 class ParvogelVideoMaker:
-    """FFmpeg 기반 숏폼 비디오 렌더러"""
+    """김동준 원장 리얼 임상 다큐멘터리 숏폼 렌더러"""
 
     def __init__(self):
         self.assets_dir = ASSETS_DIR
         self.output_dir = OUTPUT_DIR
 
     def generate_daily_shorts(self, video_filename: str, top_title: str, bottom_sub: str, date_tag: Optional[str] = None) -> Optional[str]:
-        """
-        9:16 세로형 영상 생성 (상단 훅 배너 + 원본 영상 + 하단 구매 배너)
-        """
         if not date_tag:
             date_tag = datetime.now().strftime("%Y%m%d")
 
+        # 1. 다큐멘터리 소스 우선 매핑
         src_path = os.path.join(self.assets_dir, video_filename)
         if not os.path.exists(src_path):
-            # 대체 파일 찾기
-            fallback = os.path.join(self.assets_dir, "parvogel_case_01_seizure.mp4")
-            if os.path.exists(fallback):
-                src_path = fallback
-            else:
-                print(f"[ERROR] Source video not found: {src_path}")
-                return None
+            candidates = [
+                os.path.join(self.assets_dir, "short_story_final.mp4"),
+                os.path.join(self.assets_dir, "parvogel_clinical_documentary_v2.mp4"),
+                os.path.join(self.assets_dir, "parvogel_case_01_seizure.mp4")
+            ]
+            for cand in candidates:
+                if os.path.exists(cand):
+                    src_path = cand
+                    break
 
-        clean_name = os.path.splitext(video_filename)[0].replace(" ", "_")
+        clean_name = os.path.splitext(os.path.basename(src_path))[0].replace(" ", "_")
         out_filename = f"Shorts_{clean_name}_{date_tag}.mp4"
         out_path = os.path.join(self.output_dir, out_filename)
 
-        print(f"[VIDEO] Rendering 9:16 Shorts from '{src_path}' to '{out_path}'...")
+        print(f"[VIDEO] Rendering Clinical Documentary Shorts: '{os.path.basename(src_path)}' -> '{out_filename}'")
 
-        # 9:16 1080x1920 캔버스 중앙 정렬 및 위아래 패딩 필터
-        # 1920x1080인 경우 가운데 608x1080 크롭 후 1080x1920 스케일
-        # 일반 9:16인 경우 1080x1920으로 스케일
+        # 9:16 (1080x1920) 캔버스 + 고대비 다큐멘터리 헤더/푸터 박스
         filter_complex = (
             "scale=1080:1920:force_original_aspect_ratio=increase,"
             "crop=1080:1920,"
-            "drawbox=y=0:w=1080:h=220:color=black@0.85:t=fill,"
-            "drawbox=y=1700:w=1080:h=220:color=black@0.85:t=fill"
+            "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
+            "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
+            "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill"
         )
 
         cmd = [
@@ -77,11 +71,11 @@ class ParvogelVideoMaker:
             "-i", src_path,
             "-vf", filter_complex,
             "-c:v", "libx264",
-            "-preset", "veryfast",
-            "-crf", "22",
+            "-preset", "fast",
+            "-crf", "20",
             "-c:a", "aac",
-            "-b:a", "128k",
-            "-t", "30",  # 최대 30초 컷
+            "-b:a", "192k",
+            "-t", "45",
             out_path
         ]
 
@@ -89,14 +83,13 @@ class ParvogelVideoMaker:
             res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", errors="ignore")
             if res.returncode == 0 and os.path.exists(out_path):
                 file_size_mb = os.path.getsize(out_path) / (1024 * 1024)
-                print(f"[VIDEO_SUCCESS] Generated: {out_path} ({file_size_mb:.2f} MB)")
+                print(f"[VIDEO_SUCCESS] Generated Clinical Documentary Shorts: {out_path} ({file_size_mb:.2f} MB)")
                 
-                # 썸네일 이미지 추출
                 thumb_path = os.path.join(self.output_dir, f"Shorts_{clean_name}_{date_tag}_thumb.jpg")
                 self._extract_thumb(out_path, thumb_path)
                 return out_path
             else:
-                print(f"[VIDEO_ERROR] FFmpeg failed with code {res.returncode}: {res.stderr[:200]}")
+                print(f"[VIDEO_ERROR] FFmpeg failed with code {res.returncode}: {res.stderr[:300]}")
                 return None
         except Exception as e:
             print(f"[VIDEO_EXCEPTION] {e}")
@@ -105,7 +98,7 @@ class ParvogelVideoMaker:
     def _extract_thumb(self, video_path: str, thumb_path: str):
         cmd = [
             "ffmpeg", "-y",
-            "-ss", "00:00:02",
+            "-ss", "00:00:03",
             "-i", video_path,
             "-vframes", "1",
             "-q:v", "2",
@@ -120,8 +113,8 @@ class ParvogelVideoMaker:
 if __name__ == "__main__":
     maker = ParvogelVideoMaker()
     out = maker.generate_daily_shorts(
-        video_filename="parvogel_case_01_seizure.mp4",
-        top_title="55일령 아기 강아지 급성 발작",
-        bottom_sub="주사기 없이 1초 펌프 급여 | 파보겔"
+        video_filename="short_story_final.mp4",
+        top_title="안락사 위기 0.6kg 아기 강아지 7일 완치 실화",
+        bottom_sub="주사기 없이 1초 펌프 급여"
     )
     print("Result:", out)

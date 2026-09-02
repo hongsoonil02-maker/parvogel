@@ -35,6 +35,9 @@ from adapters.discord_adapter import DiscordAdapter
 from adapters.twitter_adapter import TwitterAdapter
 from adapters.youtube_adapter import YouTubeAdapter
 from adapters.instagram_adapter import InstagramAdapter
+from adapters.facebook_adapter import FacebookAdapter
+from adapters.tiktok_adapter import TikTokAdapter
+from adapters.bluesky_adapter import BlueskyAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
 
 
@@ -51,8 +54,11 @@ class ParvogelMarketingMaster:
             TelegramAdapter(),
             DiscordAdapter(),
             TwitterAdapter(),
+            BlueskyAdapter(),
             YouTubeAdapter(),
-            InstagramAdapter()
+            InstagramAdapter(),
+            FacebookAdapter(),
+            TikTokAdapter()
         ]
         self.ledger_path = os.path.join(DATA_DIR, "published_ledger.json")
 
@@ -119,7 +125,9 @@ class ParvogelMarketingMaster:
                     continue
                     
                 if adapter.validate_config():
-                    data = formatted_channels.get(ch_key, {})
+                    data = formatted_channels.get(ch_key, {}).copy()
+                    if rendered_video:
+                        data["video_path"] = rendered_video
                     future = executor.submit(adapter.publish, data)
                     future_to_adapter[future] = adapter.name
                 else:

@@ -1,5 +1,5 @@
 {
-  "site_landing_url": "https://hongsoonil02-maker.github.io/parvogel/",
+  "site_landing_url": "https://parvogel.kr/",
   "smartstore_url": "https://smartstore.naver.com/petschury/products/13718496355",
   "coupang_url": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
   "channels": {
@@ -37,7 +37,19 @@
       "enabled": true,
       "publish_mode": "auto",
       "type": "video_shortform",
-      "description": "인스타그램 릴스 & 틱톡 숏폼 비디오"
+      "description": "인스타그램 릴스 숏폼 비디오"
+    },
+    "Facebook_Page": {
+      "enabled": true,
+      "publish_mode": "auto",
+      "type": "video_shortform",
+      "description": "페이스북 페이지 피드 및 릴스 비디오"
+    },
+    "TikTok": {
+      "enabled": true,
+      "publish_mode": "auto",
+      "type": "video_shortform",
+      "description": "틱톡 공식 비디오 업로드"
     },
     "LinkedIn_B2B": {
       "enabled": true,

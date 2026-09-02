@@ -21,7 +21,7 @@ class DiscordAdapter(BaseMarketingAdapter):
             "title": content_data.get("title", "파보겔 임상 업데이트"),
             "description": content_data.get("description", ""),
             "color": content_data.get("color", 0x3b82f6),
-            "url": content_data.get("url", "https://hongsoonil02-maker.github.io/parvogel/"),
+            "url": content_data.get("url", "https://parvogel.kr/"),
             "fields": content_data.get("fields", []),
             "footer": {"text": "파보겔(Parvo Gel) 공식 마케팅 자동화 팩토리"}
         }
