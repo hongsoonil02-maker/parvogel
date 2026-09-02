@@ -563,15 +563,15 @@ const Landing = () => {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-10 max-w-3xl mx-auto text-center leading-relaxed animate-fade-in-up whitespace-pre-line break-keep" style={{ animationDelay: '100ms' }}>
+                        <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center leading-relaxed animate-fade-in-up whitespace-pre-line" style={{ animationDelay: '100ms' }}>
                             {t('hero.subtitle')}{'\n'}{t('hero.subtitle2')}
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-fade-in-up w-full max-w-2xl mx-auto" style={{ animationDelay: '200ms' }}>
                             <button
                                 onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className={`btn-primary w-full sm:w-auto ${primaryBg} ${primaryHover} text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5`}
+                                className={`btn-primary w-full sm:flex-1 h-16 sm:h-20 ${primaryBg} ${primaryHover} text-base sm:text-lg px-6 flex items-center justify-center`}
                             >
                                 <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -584,7 +584,7 @@ const Landing = () => {
                             </button>
                             <button
                                 onClick={() => scrollToSection('clinical')}
-                                className={`btn-secondary w-full sm:w-auto text-lg px-10 py-5 ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
+                                className={`btn-secondary w-full sm:flex-1 h-16 sm:h-20 text-lg px-6 flex items-center justify-center ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
                             >
                                 {t('hero.cta2')}
                             </button>
