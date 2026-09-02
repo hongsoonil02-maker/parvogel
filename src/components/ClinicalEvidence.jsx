@@ -17,7 +17,7 @@ const ClinicalEvidence = () => {
   }, [selectedVirus]);
 
   return (
-    <section id="clinical" className="py-[1.8rem] md:py-[3.6rem] bg-slate-100 border-y border-slate-200 overflow-hidden w-full max-w-full">
+    <section id="clinical" className="py-[1.26rem] md:py-[2.52rem] bg-slate-100 border-y border-slate-200 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-primary-900 break-keep">{t('clinical.title', '학술 검증 및 임상 시험 데이터')}</h2>
