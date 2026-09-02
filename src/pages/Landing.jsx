@@ -563,8 +563,9 @@ const Landing = () => {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center leading-relaxed animate-fade-in-up whitespace-pre-line" style={{ animationDelay: '100ms' }}>
-                            {t('hero.subtitle')}{'\n'}{t('hero.subtitle2')}
+                        <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
+                            <span className="block">{t('hero.subtitle')}</span>
+                            <span className="block mt-1 sm:mt-2">{t('hero.subtitle2')}</span>
                         </p>
 
                         {/* CTA Buttons */}
