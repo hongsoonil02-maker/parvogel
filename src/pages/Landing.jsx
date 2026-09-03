@@ -10,6 +10,7 @@ import OrderForm from '../components/OrderForm'
 import { getStoreUrl } from '../config/storeLinks'
 import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
+import FAQ from '../components/FAQ'
 
 const Chatbot = lazy(() => import('../components/Chatbot'))
 const QrCode = lazy(() => import('../components/QrCode'))
@@ -48,6 +49,7 @@ const Landing = () => {
             ? crypto.randomUUID()
             : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
 
+    const [persona, setPersona] = useState('pet') // 'pet' | 'livestock'
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
@@ -56,7 +58,7 @@ const Landing = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY)
-            const sections = ['hero', 'about', 'features', 'clinical', 'target', 'testimonials', 'products', 'order']
+            const sections = ['hero', 'about', 'animal-guide', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order']
             const scrollPosition = window.scrollY + 200
 
             for (const section of sections) {
@@ -280,10 +282,10 @@ const Landing = () => {
 
     const navItems = [
         { id: 'about', label: t('nav.about') },
+        { id: 'animal-guide', label: '축종별처방' },
         { id: 'features', label: t('nav.features') },
         { id: 'clinical', label: t('nav.clinical') },
-        { id: 'target', label: t('nav.target') },
-        { id: 'testimonials', label: t('nav.testimonials') },
+        { id: 'faq', label: '자주묻는질문' },
         { id: 'order', label: t('nav.order') },
     ]
 
@@ -549,45 +551,124 @@ const Landing = () => {
 
                 <div className="section-container relative z-10 py-6">
                     <div className="max-w-5xl mx-auto text-center">
-                        {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur border border-gray-200 shadow-lg mb-6 animate-fade-in-up">
-                            <span className={`w-3.5 h-3.5 sm:w-2.5 sm:h-2.5 rounded-full ${primaryBg} animate-pulse flex-shrink-0`} />
-                            <span className="text-sm font-semibold text-gray-700 text-center leading-snug">{t('hero.badge').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</span>
+                        {/* Persona Toggle Tabs */}
+                        <div className="inline-flex p-1.5 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-md mb-6 animate-fade-in-up">
+                            <button
+                                type="button"
+                                onClick={() => setPersona('pet')}
+                                className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center gap-2 ${
+                                    persona === 'pet'
+                                        ? `${primaryBg} text-white shadow`
+                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                                }`}
+                            >
+                                <span className="text-base">🐶🐱</span>
+                                <span>반려동물 (자견·자묘/보호자)</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setPersona('livestock')}
+                                className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center gap-2 ${
+                                    persona === 'livestock'
+                                        ? 'bg-amber-600 text-white shadow'
+                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                                }`}
+                            >
+                                <span className="text-base">🐮🐷</span>
+                                <span>산업동물 (송아지·자돈/축산농가)</span>
+                            </button>
                         </div>
 
-                        {/* Main Title */}
-                        <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-8 animate-fade-in-up break-keep ${gradientText}`}>
-                            {t('hero.title').split('\n').map((line, i) => (
-                                <span key={i} className="block">{line}</span>
-                            ))}
+                        {/* Main Title - Dynamic according to persona */}
+                        <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`}>
+                            {persona === 'pet' ? (
+                                <>
+                                    <span className="block">파보·급성장염·혈변 시</span>
+                                    <span className="block text-primary-600">가장 먼저 손이 가는 1초 펌프 상비약</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="block">신생 송아지·자돈 수양성 설사</span>
+                                    <span className="block text-amber-700">24시간 내 분변 경도 정상화 솔루션</span>
+                                </>
+                            )}
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
-                            <span className="block">{t('hero.subtitle')}</span>
-                            <span className="block mt-1 sm:mt-2">{t('hero.subtitle2')}</span>
+                            {persona === 'pet' ? (
+                                <>
+                                    <span className="block font-medium">구토, 복통, 혈변, 식욕부진, 곡기 끊김 — 주사기 스트레스 없는 기호성 겔 타입</span>
+                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">초미세 나노 몬모릴로나이트 장 점막 즉각 코팅 & 유해 바이러스 흡착 배출</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="block font-medium">로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어</span>
+                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 98.5% 흡착 제거)</span>
+                                </>
+                            )}
                         </p>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-fade-in-up w-full max-w-2xl mx-auto" style={{ animationDelay: '200ms' }}>
-                            <button
-                                onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className={`btn-primary w-full sm:flex-1 h-16 sm:h-20 ${primaryBg} ${primaryHover} text-base sm:text-lg px-6 flex items-center justify-center`}
+                        {/* CTA Buttons - Decoupled Direct Ecommerce vs Wholesale */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
+                            <a
+                                href={getStoreUrl('coupang')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                             >
-                                <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                </svg>
-                                <span className="inline-flex flex-col items-center leading-tight">
-                                    {t('hero.cta1').split('\n').map((line, i) => (
-                                        <span key={i} className="block whitespace-nowrap">{line}</span>
-                                    ))}
-                                </span>
+                                <span className="text-xl">🚀</span>
+                                <div className="text-left leading-tight">
+                                    <div className="text-[10px] text-rose-200 font-bold uppercase tracking-wider">긴급 내일 아침 도착</div>
+                                    <div className="text-sm sm:text-base font-extrabold">쿠팡 로켓배송 즉시구매</div>
+                                </div>
+                            </a>
+
+                            <a
+                                href={getStoreUrl('naver')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                            >
+                                <span className="text-xl">🟢</span>
+                                <div className="text-left leading-tight">
+                                    <div className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider">네이버페이 포인트 적립</div>
+                                    <div className="text-sm sm:text-base font-extrabold">네이버 스마트스토어</div>
+                                </div>
+                            </a>
+
+                            <button
+                                onClick={() => {
+                                    setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' }));
+                                    setIsOrderModalOpen(true);
+                                    setIsOrderComplete(false);
+                                }}
+                                className={`w-full sm:flex-1 h-14 sm:h-16 ${primaryBg} ${primaryHover} text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5`}
+                            >
+                                <span className="text-xl">🏥</span>
+                                <div className="text-left leading-tight">
+                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">병원/농가 최대 55% 할인</div>
+                                    <div className="text-sm sm:text-base font-extrabold">도매 공급가 견적 신청</div>
+                                </div>
                             </button>
+                        </div>
+
+                        {/* Quick link to clinical & dosage */}
+                        <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 font-semibold">
+                            <button
+                                onClick={() => scrollToSection('animal-guide')}
+                                className="hover:text-primary-600 underline flex items-center gap-1"
+                            >
+                                <span>🐾 우리 아이 맞춤 급여량 확인</span>
+                                <span aria-hidden="true">➔</span>
+                            </button>
+                            <span className="text-slate-300">|</span>
                             <button
                                 onClick={() => scrollToSection('clinical')}
-                                className={`btn-secondary w-full sm:flex-1 h-16 sm:h-20 text-lg px-6 flex items-center justify-center ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
+                                className="hover:text-primary-600 underline flex items-center gap-1"
                             >
-                                {t('hero.cta2')}
+                                <span>📊 학술 임상 증거 데이터</span>
+                                <span aria-hidden="true">➔</span>
                             </button>
                         </div>
 
@@ -778,6 +859,11 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
+
+            {/* 축종별 맞춤 효능 탭 (상단 최적 위치로 승격) */}
+            <div id="animal-guide" className="section-container">
+                <AnimalSelector />
+            </div>
 
             {/* Clinical Evidence Section */}
             <ClinicalEvidence />
@@ -1014,9 +1100,8 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* 축종별 맞춤 효능 탭 & 오디오 리포트 위젯 */}
-            <div className="section-container">
-                <AnimalSelector />
+            {/* 현장 수의사 임상 육성 리포트 */}
+            <div className="section-container my-8">
                 <AudioTestimonial
                     tKey="audioTestimonial"
                     audioUrl={`${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`}
@@ -1026,6 +1111,9 @@ const Landing = () => {
                     audioUrl={`${import.meta.env.BASE_URL}assets/jeongseongdae-call.m4a`}
                 />
             </div>
+
+            {/* 자주 묻는 질문 (FAQ) */}
+            <FAQ />
             </main>
 
             {/* Footer (전체 배경색과 일치하는 밝고 세련된 프리미엄 테마) */}
@@ -1083,8 +1171,7 @@ const Landing = () => {
                                 <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-blue-600 transition-colors">{t('footer.support1')}</button></li>
                                 <li><a href="tel:02-6949-5708" className="hover:text-blue-600 transition-colors">{t('footer.support2')}</a></li>
                                 <li><a href="mailto:name_hyosun@naver.com" className="hover:text-blue-600 transition-colors">{t('footer.support3')}</a></li>
-                                {/* FAQ 페이지가 없어 AI 상담 챗봇으로 연결 */}
-                                <li><button type="button" onClick={() => window.dispatchEvent(new CustomEvent('parvogel:open-chat'))} className="hover:text-blue-600 transition-colors">{t('footer.support4')}</button></li>
+                                <li><button type="button" onClick={() => scrollToSection('faq')} className="hover:text-blue-600 transition-colors">{t('footer.support4', '자주 묻는 질문 (FAQ)')}</button></li>
                             </ul>
                         </div>
                     </div>

@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1024, initial-scale=1.0">
+<title>파보겔 A4 알림판 - 파보겔 실사 블루 시그니처 에디션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #cad7e6;
+    color: #0f172a;
+  }
+
+  /* 인쇄 전용 스타일 (A4 단 1페이지 칼인쇄 절대 준수) */
+  @media print {
+    @page {
+      size: 210mm 297mm;
+      margin: 0;
+    }
+    html, body {
+      background: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      overflow: hidden !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .no-print {
+      display: none !important;
+    }
+    #a4 {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      page-break-inside: avoid !important;
+      page-break-after: avoid !important;
+    }
+  }
+
+  /* 화면 전용 컨트롤 패널 */
+  .ctrl-panel {
+    width: 210mm;
+    max-width: 96vw;
+    margin: 16px auto 16px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0, 43, 144, 0.15);
+    padding: 14px 20px;
+    border: 1.5px solid #93c5fd;
+  }
+
+  .ctrl-btn {
+    background: #002b90;
+    color: #ffffff;
+    border: none;
+    padding: 9px 24px;
+    border-radius: 99px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 43, 144, 0.35);
+    transition: all 0.2s;
+  }
+  .ctrl-btn:hover {
+    background: #001c7b;
+    transform: translateY(-1px);
+  }
+
+  .ctrl-input {
+    border: 1.5px solid #93c5fd;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+  }
+  .ctrl-input:focus {
+    border-color: #002b90;
+    box-shadow: 0 0 0 2px rgba(0, 43, 144, 0.2);
+  }
+
+  /* A4 컨테이너 (정확한 210mm x 297mm) */
+  #a4 {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    margin: 0 auto 30px;
+    background: #f4f8fc;
+    box-shadow: 0 20px 60px rgba(0, 30, 100, 0.22);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* 상단/하단 파보겔 실사 딥블루 띠 */
+  .color-bar {
+    height: 8px;
+    background: #00227a;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  /* 1. 헤더 */
+  .header-wrap {
+    padding: 18px 28px 10px;
+    flex-shrink: 0;
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .store-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: #002b90;
+    letter-spacing: -0.6px;
+    line-height: 1.2;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+  .solution-badge {
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    border-radius: 99px;
+    padding: 3px 14px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0284c7;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .header-tel {
+    font-size: 16px;
+    font-weight: 900;
+    color: #002b90;
+    letter-spacing: 0.2px;
+  }
+  .header-divider {
+    height: 1px;
+    background: #cbd5e1;
+    margin-top: 12px;
+  }
+
+  /* 2. 히어로 타이틀 */
+  .hero-wrap {
+    text-align: center;
+    padding: 6px 28px 4px;
+    flex-shrink: 0;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffe4e6;
+    border: 1px solid #facfe7;
+    border-radius: 99px;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #be123c;
+    box-shadow: 0 1px 4px rgba(190, 18, 60, 0.08);
+  }
+  .hero-sub {
+    font-size: 17.5px;
+    font-weight: 800;
+    color: #64748b;
+    margin-top: 7px;
+    letter-spacing: -0.3px;
+  }
+  .hero-main {
+    font-size: 33px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-top: 4px;
+    letter-spacing: -0.8px;
+  }
+  .hero-product-name {
+    color: #002b90;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+  /* '기'자: 블러 없이, 메인 폰트보다 약간 작고 은은하게(0.65em, 55% 투명도) 배치하여 자연스럽게 '동물용 활명수'로 연상 */
+  .ghost-gi {
+    display: inline-block;
+    font-size: 0.65em;
+    opacity: 0.55;
+    margin: 0 -1.5px;
+    vertical-align: 2px;
+    color: #475569;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .hero-strong {
+    color: #e11d48;
+    display: block;
+    margin-top: 4px;
+    font-size: 31px;
+  }
+
+  /* 3. 증상 5구 카드 */
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 10px 28px 8px;
+    flex-shrink: 0;
+  }
+  .symptom-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 9px 0 7px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 43, 144, 0.04);
+  }
+  .symptom-icon {
+    font-size: 23px;
+    line-height: 1.1;
+  }
+  .symptom-name {
+    font-size: 12px;
+    font-weight: 900;
+    color: #002b90;
+    margin-top: 4px;
+  }
+
+  /* 4. 메인 배너 (파보겔 실사 블루 시그니처) */
+  .banner-wrap {
+    padding: 0 28px;
+    margin-top: 18px; /* 메인 배너 및 하단 전체를 아래로 1줄(8px) 내려줌 */
+    position: relative;
+    flex-shrink: 0;
+  }
+  .banner-badge {
+    position: absolute;
+    top: -15px; /* 노란색 박스를 위로 올려 밑의 글씨를 전혀 가리지 않도록 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: 1px solid #fef3c7;
+    color: #001c7b;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 99px;
+    padding: 4px 22px;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.35);
+    z-index: 2;
+    white-space: nowrap;
+  }
+  .banner-box {
+    background: linear-gradient(135deg, #001a6e 0%, #002b90 50%, #013ca6 100%);
+    border: 2px solid #38bdf8;
+    border-radius: 16px;
+    padding: 15px 26px 12px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 26px rgba(0, 43, 144, 0.3);
+  }
+  .banner-desc {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #93c5fd;
+    line-height: 1.35;
+  }
+  .banner-product-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #ffffff;
+    margin-top: 3px;
+  }
+  .banner-price-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #60a5fa;
+    margin-left: 6px;
+  }
+  .banner-price-val {
+    font-size: 45px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 2px 6px rgba(0, 20, 80, 0.6);
+    letter-spacing: -1px;
+  }
+  .banner-price-won {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    margin-left: 2px;
+  }
+
+  /* 5. 바디 2단 그리드 (높이 칼맞춤 및 여백 정돈) */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 205px 1fr;
+    gap: 12px;
+    padding: 12px 28px 8px;
+    flex-shrink: 0;
+  }
+
+  /* 좌측 컬럼 */
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* 좌측 상단: 파보겔 병 사진 박스 (핵심성분 박스와 높이 1:1 일치: 200px) */
+  .bottle-card {
+    background: #ffffff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 14px;
+    padding: 10px 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.07);
+    height: 200px; /* 핵심성분 박스와 정확히 동일한 높이 */
+    flex-shrink: 0;
+  }
+  .bottle-img-wrap {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bottle-img {
+    height: 100%;
+    max-height: 150px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 10px rgba(0, 43, 144, 0.22));
+  }
+  .bottle-caption {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #002b90;
+    margin-top: 4px;
+    text-align: center;
+    letter-spacing: -0.3px;
+  }
+
+  /* 좌측 하단: VET EXCLUSIVE CARE 박스 (우측 효능 박스와 높이 1:1 일치: 185px) */
+  .safe-care-card {
+    background: linear-gradient(135deg, #001a6e 0%, #002b90 100%);
+    border: 1.5px solid #38bdf8;
+    border-radius: 14px;
+    padding: 29px 14px 12px; /* 맨위 상단 여백 1줄(약 7px) 더 추가 확보: 총 29px */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 185px; /* 우측 효과 박스와 정확히 동일한 높이 */
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.25);
+    flex-shrink: 0;
+  }
+  .safe-header {
+    font-size: 12px;
+    font-weight: 900;
+    color: #38bdf8;
+    text-align: center;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+    padding-bottom: 6px;
+  }
+  .safe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 13px; /* 밑줄과 글씨줄 사이 자연스러운 여백 */
+  }
+  .safe-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.35;
+  }
+  .safe-item-icon {
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .safe-item b {
+    color: #60a5fa;
+    font-weight: 900;
+  }
+
+  /* 우측 컬럼 */
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* 우측 상단: 핵심 성분 카드 (좌측 사진박스와 높이 1:1 일치: 200px, 박스 중앙 가운데 맞춤) */
+  .ingredients-card {
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 3px 10px rgba(0, 43, 144, 0.04);
+    height: 200px; /* 사진박스와 정확히 동일한 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 상하 수직 중앙 정렬 */
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 핵심 성분 타이틀 박스 가로 중앙 맞춤 */
+    gap: 6px;
+    margin-top: -5px; /* 핵심 성분 부분만 반줄 위로 이동 */
+    margin-bottom: 12px; /* 타이틀 아래 균형 잡힌 간격 */
+  }
+  .card-header-title {
+    font-size: 14.5px;
+    font-weight: 900;
+    color: #002b90;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-header-badge {
+    background: #002b90;
+    color: #e0f2fe;
+    font-size: 10.5px;
+    font-weight: 800;
+    border-radius: 99px;
+    padding: 2px 10px;
+  }
+
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 7px 12px; /* 성분들을 자연스럽게 펼쳐 하단에 딱 1줄 여백 안착 */
+  }
+  .ingredient-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .num-circle {
+    width: 17px;
+    height: 17px;
+    background: #002b90;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ing-title {
+    font-size: 11.5px;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+  .ing-desc {
+    font-size: 9px;
+    color: #475569;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  /* 우측 하단: 효과 카드 (중간 여백 2줄로 압축, 높이 185px) */
+  .effects-card {
+    background: linear-gradient(135deg, #001a6e 0%, #002b90 100%);
+    border: 1.5px solid #38bdf8;
+    border-radius: 14px;
+    padding: 12px 16px 11px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 185px; /* 좌측 안심케어 박스와 정확히 동일한 높이 */
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.25);
+    flex-shrink: 0;
+  }
+  .effects-title {
+    font-size: 14.5px;
+    font-weight: 900;
+    color: #fcd34d;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 6px;
+  }
+  .effects-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    /* 중간 여백을 딱 2줄(약 12px)로 압축 */
+    margin-bottom: 11px;
+  }
+  .effect-sub-box {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 8px;
+    padding: 7px 4px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .effect-sub-icon {
+    font-size: 17px;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .effect-sub-text {
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+  .effect-sub-text span {
+    color: #93c5fd;
+  }
+
+  .effects-bottom-row {
+    border-top: 1px solid rgba(56, 189, 248, 0.35);
+    padding-top: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .info-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10.5px;
+    line-height: 1.2;
+  }
+  .info-pill {
+    background: #38bdf8;
+    color: #001c7b;
+    font-size: 9.5px;
+    font-weight: 900;
+    border-radius: 4px;
+    padding: 1px 6px;
+    flex-shrink: 0;
+  }
+  .info-val {
+    color: #bae6fd;
+    font-weight: 700;
+  }
+  .shake-tip {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #fcd34d;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  /* 6. 데스크 문의 배너 (자연스럽게 위로 올라오고 여백 확장) */
+  .desk-banner {
+    margin: 10px 28px 4px;
+    background: #fef2f2;
+    border: 1.5px solid #fecaca;
+    border-radius: 14px;
+    padding: 11px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(190, 18, 60, 0.05);
+  }
+  .desk-title {
+    font-size: 15px;
+    font-weight: 900;
+    color: #9f1239;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .desk-sub {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #881337;
+    margin-top: 3px;
+    line-height: 1.35;
+  }
+  .desk-btn {
+    background: #e11c48;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 900;
+    border-radius: 99px;
+    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(225, 28, 72, 0.35);
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* 7. 최하단 구매처 영역 (푸터 공간 최적화 & QR 코드 대폭 확대) */
+  .footer-wrap {
+    padding: 6px 28px 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-top: 1.5px solid #bfdbfe;
+    background: #ffffff;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #002b90;
+    flex: 1;
+    min-width: 0;
+  }
+  .footer-check {
+    color: #002b90;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .footer-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.35;
+  }
+  .footer-store {
+    font-weight: 900;
+    color: #002b90;
+    font-size: 13px;
+  }
+  .footer-tel {
+    font-weight: 900;
+    color: #002b90;
+    margin-left: 5px;
+  }
+
+  .qr-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #ffffff;
+    border: 1.5px solid #38bdf8;
+    border-radius: 11px;
+    padding: 4px 12px 4px 6px;
+    flex-shrink: 0;
+    margin-left: 14px;
+    box-shadow: 0 2px 8px rgba(0, 43, 144, 0.08);
+    text-decoration: none;
+  }
+  .qr-img {
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+  }
+  .qr-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+  }
+  .qr-badge {
+    background: #03c75a;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 7px;
+    border-radius: 3.5px;
+    display: inline-block;
+    width: fit-content;
+    letter-spacing: -0.2px;
+    line-height: 1.15;
+  }
+  .qr-label-main {
+    font-size: 12.5px;
+    font-weight: 900;
+    color: #002b90;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    white-space: nowrap;
+  }
+  .qr-label-sub {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #0284c7;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- 화면 전용 컨트롤 패널 (2줄로 여유있게 정리) -->
+<div class="no-print ctrl-panel">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #e2e8f0;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <b style="color:#002b90; font-size:15px;">🐾 파보겔 A4 알림판 인쇄 설정</b>
+      <span style="font-size:11px; color:#64748b;">(취급 동물병원 및 펫샵 전용 실시간 편집기)</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="color:#0284c7; font-size:11px; font-weight:700;">* 인쇄 설정: 대상 'A4' · 여백 '없음(None)' 권장</span>
+      <button class="ctrl-btn" onclick="window.print()">🖨️ A4 인쇄 / PDF 저장</button>
+    </div>
+  </div>
+
+  <!-- 입력 필드 2줄 여유 있는 그리드 -->
+  <div style="display:flex; flex-direction:column; gap:8px;">
+    <!-- 1줄: 상호명, 주소, 스토어 QR -->
+    <div style="display:grid; grid-template-columns: 1.1fr 2fr auto; gap:8px; align-items:center;">
+      <input id="in_name" class="ctrl-input" type="text" value="에스앤제이 동물병원" placeholder="상호명" oninput="sync()">
+      <input id="in_addr" class="ctrl-input" type="text" value="경기도 용인시 처인구 포곡읍 선장1로 98-8" placeholder="매장 주소 (비워두면 자동 숨김)" oninput="sync()">
+      <label style="font-size:12px; font-weight:700; color:#002b90; display:flex; align-items:center; gap:5px; cursor:pointer; padding:0 4px; white-space:nowrap;">
+        <input id="toggle_qr" type="checkbox" checked onchange="toggleQR(this.checked)"> 스토어 QR
+      </label>
+    </div>
+
+    <!-- 2줄: 상단 상담전화, 하단 구매전화, 판매가 -->
+    <div style="display:grid; grid-template-columns: 1.1fr 1.1fr 1fr; gap:8px; align-items:center;">
+      <input id="in_top_tel" class="ctrl-input" type="text" value="TEL: 010-5407-5708" placeholder="상단 직통/상담 전화" oninput="sync()">
+      <input id="in_bot_tel" class="ctrl-input" type="text" value="TEL: 031-321-6562" placeholder="하단 구매/대표 전화" oninput="sync()">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <span style="font-size:12px; font-weight:800; color:#002b90; white-space:nowrap;">판매가:</span>
+        <input id="in_price" class="ctrl-input" type="text" value="18,000" placeholder="판매가 (예: 18,000)" oninput="sync()" style="text-align:right; font-weight:800; color:#002b90; flex:1;">
+        <span style="font-size:12px; font-weight:800; color:#002b90;">원</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== A4 PAGE (210mm x 297mm) ======================== -->
+<div id="a4">
+
+  <!-- 1. 최상단 컬러 바 (파보겔 실사 블루) -->
+  <div class="color-bar"></div>
+
+  <!-- 2. 상단 헤더 -->
+  <div class="header-wrap">
+    <div class="header-row">
+      <div class="store-title" id="topStoreName">에스앤제이 동물병원</div>
+      <div class="header-right">
+        <div class="solution-badge">
+          <span>🐾</span>
+          <span>수의사 추천 장 건강 솔루션</span>
+        </div>
+        <div class="header-tel" id="topTel">TEL: 010-5407-5708</div>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+  </div>
+
+  <!-- 3. 히어로 타이틀 영역 -->
+  <div class="hero-wrap">
+    <div class="hero-badge">
+      <span>🐾</span>
+      <span>우리 아이가 힘들어할 때 가장 먼저 찾는 이름</span>
+    </div>
+    <div class="hero-sub">토하고 설사하는 우리 아이</div>
+    <div class="hero-main">
+      <span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>
+      <span class="hero-strong">한 병이면 든든합니다</span>
+    </div>
+  </div>
+
+  <!-- 4. 증상 5구 아이콘 그리드 -->
+  <div class="symptoms-grid">
+    <div class="symptom-card">
+      <div class="symptom-icon">🤢</div>
+      <div class="symptom-name">구토</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom-icon">💧</div>
+      <div class="symptom-name">설사</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom-icon">😖</div>
+      <div class="symptom-name">복통</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom-icon">🍽️</div>
+      <div class="symptom-name">식욕부진</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom-icon">😿</div>
+      <div class="symptom-name">기력저하</div>
+    </div>
+  </div>
+
+  <!-- 5. 메인 배너 (정상 판매가 - 파보겔 실사 블루) -->
+  <div class="banner-wrap">
+    <div class="banner-badge"><span style="color:#ffffff; font-size:13.5px; margin-right:4px; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35)); vertical-align:-0.5px;">★</span>수의사 임상 처방 · 모든 동물에 사용 가능</div>
+    <div class="banner-box">
+      <div>
+        <div class="banner-desc">수의사 임상 처방 프리미엄 정장 지사제</div>
+        <div class="banner-product-title">
+          <span>파보겔 (100ml 액상)</span>
+          <span class="banner-price-label">정상 판매가</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:baseline;">
+        <span class="banner-price-val" id="bannerPrice">18,000</span>
+        <span class="banner-price-won">원</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 메인 바디 (좌우 2단 높이 1:1 완벽 칼맞춤) -->
+  <div class="body-grid">
+    
+    <!-- 좌측 컬럼: 사진 박스 (200px) + 안심 처방 박스 (185px) -->
+    <div class="left-column">
+      <!-- 1) 40% 축소된 파보겔 100ml 액상 병 사진 카드 (200px) -->
+      <div class="bottle-card">
+        <div class="bottle-img-wrap">
+          <img class="bottle-img" src="parvogel-bottle-crop.png" alt="파보겔 100ml 액상 병"
+               onerror="this.src='parvogel-authentic.png';">
+        </div>
+        <div class="bottle-caption">파보겔 100ml 액상</div>
+      </div>
+
+      <!-- 2) 파보겔 안심 케어 보증 카드 (185px, 줄간격 정돈) -->
+      <div class="safe-care-card">
+        <div class="safe-header">VET EXCLUSIVE CARE</div>
+        <div class="safe-list">
+          <div class="safe-item">
+            <span class="safe-item-icon">🛡️</span>
+            <span><b>100% 정품</b> 수의사 직접 처방</span>
+          </div>
+          <div class="safe-item">
+            <span class="safe-item-icon">🔬</span>
+            <span><b>특허균주 MORI</b> 배합 포뮬러</span>
+          </div>
+          <div class="safe-item">
+            <span class="safe-item-icon">⚡</span>
+            <span><b>급속 전해질</b> 탈수 수분 보충</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 우측 컬럼: 핵심 성분 (200px) + 우리 아이에게 이렇게 좋아요 (185px) -->
+    <div class="right-column">
+      
+      <!-- 핵심 성분 5가지 복합체 (사진 박스와 높이 200px 정확히 일치) -->
+      <div class="ingredients-card">
+        <div class="card-header-row">
+          <span style="font-size:15px;">💊</span>
+          <span class="card-header-title">핵심 성분</span>
+          <span class="card-header-badge">5가지 복합체</span>
+        </div>
+        
+        <div class="ingredient-grid">
+          <!-- 1. 항균·항바이러스 -->
+          <div class="ingredient-item">
+            <div class="num-circle">1</div>
+            <div>
+              <div class="ing-title">항균·항바이러스 작용</div>
+              <div class="ing-desc">
+                1-deoxynojirimycin(DNJ) 천연성분 함유<br>
+                특허균주 <b>Bacillus Subtilis MORI</b><br>
+                <span style="font-size:8.5px; color:#475569;">Patent <b style="color:#000000; font-weight:900;">No. 201188042602.8</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. 장 기능 개선 -->
+          <div class="ingredient-item">
+            <div class="num-circle">2</div>
+            <div>
+              <div class="ing-title">장 기능 개선 및 정장 작용</div>
+              <div class="ing-desc">포도당 (즉각 에너지 공급)</div>
+            </div>
+          </div>
+
+          <!-- 3. 상피세포 회복 -->
+          <div class="ingredient-item">
+            <div class="num-circle">3</div>
+            <div>
+              <div class="ing-title">상피세포 회복</div>
+              <div class="ing-desc">비타민 A</div>
+            </div>
+          </div>
+
+          <!-- 4. 전해질 보충 -->
+          <div class="ingredient-item">
+            <div class="num-circle">4</div>
+            <div>
+              <div class="ing-title">전해질 보충</div>
+              <div class="ing-desc">Sodium acetate · Sodium propionate</div>
+            </div>
+          </div>
+
+          <!-- 5. 연변·설사 개선 -->
+          <div class="ingredient-item" style="grid-column: 1 / -1; margin-top: 1px;">
+            <div class="num-circle">5</div>
+            <div>
+              <div class="ing-title">연변·설사 개선, 곰팡이 독소 제거</div>
+              <div class="ing-desc">면역 증강 및 장 환경 개선 — <b>고순도 초미세 나노 몬모릴로나이트</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우리 아이에게 이렇게 좋아요 (중간 여백 2줄로 압축, 높이 185px) -->
+      <div class="effects-card">
+        <div>
+          <div class="effects-title">
+            <span>✅</span>
+            <span>우리 아이에게 이렇게 좋아요</span>
+          </div>
+          
+          <div class="effects-3col">
+            <div class="effect-sub-box">
+              <div class="effect-sub-icon">🛡️</div>
+              <div class="effect-sub-text">
+                <span>파보·로타·코로나 등</span><br>장질병 저항력 향상에 도움
+              </div>
+            </div>
+            <div class="effect-sub-box">
+              <div class="effect-sub-icon">💪</div>
+              <div class="effect-sub-text">
+                면역 기능과<br><span>건강 상태 유지에 도움</span>
+              </div>
+            </div>
+            <div class="effect-sub-box">
+              <div class="effect-sub-icon">🌱</div>
+              <div class="effect-sub-text">
+                장 기능 개선 및<br><span>정장 작용에 도움</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="effects-bottom-row">
+          <div class="info-line">
+            <span class="info-pill">대상</span>
+            <span class="info-val">개·고양이·조류·토끼·햄스터·파충류 등 모든 동물</span>
+          </div>
+          <div class="info-line">
+            <span class="info-pill">용법</span>
+            <span class="info-val">1일 두당 2~4ml, 5~7일간 경구 급여</span>
+          </div>
+          <div class="shake-tip">
+            <span>💡</span>
+            <span>가라앉는 성분이 있어 흔들어서 급여하세요</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. 데스크 문의 배너 (자연스럽게 위로 올라와 안정적인 여백 확보) -->
+  <div class="desk-banner">
+    <div>
+      <div class="desk-title">
+        <span>💡</span>
+        <span>투약 용량 및 구매 안내는 안내 데스크에 문의하세요!</span>
+      </div>
+      <div class="desk-sub">
+        우리 아이 체중(kg)에 따른 1일 2~4ml 맞춤 급여법을 <b>수의사 선생님께서 직접</b> 친절히 상담해 드립니다.
+      </div>
+    </div>
+    <button class="desk-btn" onclick="window.print()">
+      <span>지금 데스크 문의</span>
+      <span>➔</span>
+    </button>
+  </div>
+
+  <!-- 8. 하단 구매처 & QR -->
+  <div class="footer-wrap">
+    <div class="footer-left">
+      <span class="footer-check">✔</span>
+      <div class="footer-text">
+        <span>구매처: </span>
+        <span class="footer-store" id="bottomStoreName">에스앤제이 동물병원</span>
+        <span style="color:#475569;" id="bottomStoreAddrWrap"> (<span id="bottomStoreAddr">경기도 용인시 처인구 포곡읍 선장1로 98-8</span>)</span>
+        <span style="color:#94a3b8;"> | </span>
+        <span class="footer-tel" id="bottomTel">TEL: 031-321-6562</span>
+      </div>
+    </div>
+
+    <!-- 네이버 스마트스토어 QR 코드 (푸터 공간 최대 확대형) -->
+    <a id="qrContainer" class="qr-box" href="https://smartstore.naver.com/petschury/products/13718496355" target="_blank" title="네이버 스마트스토어(펫츄리) 즉시 구매">
+      <img class="qr-img" src="dm-qr-naver.png" alt="네이버 스마트스토어 QR" onerror="this.parentElement.style.display='none'">
+      <div class="qr-label-group">
+        <span class="qr-badge">네이버페이</span>
+        <div class="qr-label-main">스마트스토어</div>
+        <div class="qr-label-sub">카메라 즉시주문</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 9. 최하단 컬러 바 (파보겔 실사 블루) -->
+  <div class="color-bar"></div>
+
+</div>
+<!-- ======================== END A4 ======================== -->
+
+<script>
+function sync() {
+  var n = document.getElementById('in_name').value || '에스앤제이 동물병원';
+  var a = document.getElementById('in_addr').value || '';
+  var topT = document.getElementById('in_top_tel').value || 'TEL: 010-5407-5708';
+  var botT = document.getElementById('in_bot_tel').value || 'TEL: 031-321-6562';
+  
+  if (topT && !topT.startsWith('TEL') && !topT.startsWith('Tel') && !topT.startsWith('tel')) {
+    topT = 'TEL: ' + topT;
+  }
+  if (botT && !botT.startsWith('TEL') && !botT.startsWith('Tel') && !botT.startsWith('tel')) {
+    botT = 'TEL: ' + botT;
+  }
+
+  // 상단 헤더
+  document.getElementById('topStoreName').textContent = n;
+  document.getElementById('topTel').textContent = topT;
+
+  // 하단 구매처
+  var botNameEl = document.getElementById('bottomStoreName');
+  if (botNameEl) botNameEl.textContent = n;
+
+  var addrEl = document.getElementById('bottomStoreAddr');
+  var addrWrap = document.getElementById('bottomStoreAddrWrap');
+  if (addrWrap && addrEl) {
+    if (a.trim() === '') {
+      addrWrap.style.display = 'none';
+    } else {
+      addrWrap.style.display = 'inline';
+      addrEl.textContent = a;
+    }
+  }
+
+  var botTelEl = document.getElementById('bottomTel');
+  if (botTelEl) botTelEl.textContent = botT;
+
+  // 판매가 동기화
+  var priceEl = document.getElementById('in_price');
+  var bannerPriceEl = document.getElementById('bannerPrice');
+  if (priceEl && bannerPriceEl) {
+    var p = priceEl.value.trim();
+    if (!p) p = '18,000';
+    var cleanNum = p.replace(/,/g, '');
+    if (/^\d+$/.test(cleanNum)) {
+      p = Number(cleanNum).toLocaleString();
+    }
+    bannerPriceEl.textContent = p;
+  }
+}
+
+function toggleQR(show) {
+  var qr = document.getElementById('qrContainer');
+  if (qr) {
+    qr.style.display = show ? 'flex' : 'none';
+  }
+}
+
+// 초기 실행
+sync();
+</script>
+
+</body>
+</html>
