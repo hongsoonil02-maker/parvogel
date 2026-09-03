@@ -647,7 +647,7 @@ const Landing = () => {
                             >
                                 <span className="text-xl">🏥</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">병원/농가 최대 55% 할인</div>
+                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">병원/농가 최대 50% 할인</div>
                                     <div className="text-sm sm:text-base font-extrabold">도매 공급가 견적 신청</div>
                                 </div>
                             </button>
