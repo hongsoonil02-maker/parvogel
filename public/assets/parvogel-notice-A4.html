@@ -771,6 +771,20 @@
         <span style="font-size:12px; font-weight:800; color:#002b90;">원</span>
       </div>
     </div>
+
+    <!-- 3줄: 메인 카피 테마 선택 (반려동물 / 축산농가 / 통합형) -->
+    <div style="display:flex; align-items:center; gap:12px; background:#eff6ff; padding:6px 12px; border-radius:8px; border:1px solid #bfdbfe;">
+      <span style="font-size:12px; font-weight:900; color:#002b90; white-space:nowrap;">🎯 메인 카피 선택:</span>
+      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="all" checked onchange="switchTheme('all')"> 🐾 통합형 (개·고양이·송아지 전축종 비상 상비약)
+      </label>
+      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="livestock" onchange="switchTheme('livestock')"> 🐮 가축·농가형 (설사로 고생하는 송아지·어린 가축)
+      </label>
+      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="pet" onchange="switchTheme('pet')"> 🐶🐱 반려동물형 (파보·급성장염·혈변 1초 펌프 상비약)
+      </label>
+    </div>
   </div>
 </div>
 
@@ -797,12 +811,12 @@
 
   <!-- 3. 히어로 타이틀 영역 -->
   <div class="hero-wrap">
-    <div class="hero-badge">
+    <div class="hero-badge" id="heroBadge">
       <span>🐾</span>
-      <span>우리 아이가 힘들어할 때 가장 먼저 찾는 이름</span>
+      <span id="heroBadgeText">설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약</span>
     </div>
-    <div class="hero-sub">토하고 설사하는 우리 아이</div>
-    <div class="hero-main">
+    <div class="hero-sub" id="heroSubText">토하고 설사하는 우리 아이 & 어린 가축</div>
+    <div class="hero-main" id="heroMainText">
       <span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>
       <span class="hero-strong">한 병이면 든든합니다</span>
     </div>
@@ -1100,6 +1114,41 @@ function toggleQR(show) {
   }
 }
 
+var currentTheme = 'all';
+
+function switchTheme(mode) {
+  currentTheme = mode;
+  var bText = document.getElementById('heroBadgeText');
+  var sText = document.getElementById('heroSubText');
+  var mText = document.getElementById('heroMainText');
+
+  if (mode === 'livestock') {
+    // 🐮 가축·농가 중심 카피
+    if (bText) bText.textContent = '설사로 고생하는 송아지·어린 가축을 위한 비상 상비약';
+    if (sText) sText.textContent = '신생 송아지·자돈 수양성 설사 & 분변 이상 시';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
+                        '<span class="hero-strong">24시간 내 빠른 분변 정상화</span>';
+    }
+  } else if (mode === 'pet') {
+    // 🐶🐱 반려동물 중심 카피
+    if (bText) bText.textContent = '파보·급성장염·혈변 시 가장 먼저 손이 가는 1초 펌프 상비약';
+    if (sText) sText.textContent = '토하고 설사하며 곡기 끊긴 우리 아이 (강아지·고양이)';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
+                        '<span class="hero-strong">장 점막 즉각 코팅 & 독소 흡착</span>';
+    }
+  } else {
+    // 🐾 통합형 (개·고양이·송아지 전축종)
+    if (bText) bText.textContent = '설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약';
+    if (sText) sText.textContent = '토하고 설사하는 우리 아이 & 어린 가축';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
+                        '<span class="hero-strong">한 병이면 든든합니다</span>';
+    }
+  }
+}
+
 // URL 파라미터 파싱 및 초기값 주입
 (function initFromUrl() {
   try {
@@ -1110,11 +1159,22 @@ function toggleQR(show) {
     if (params.get('botTel')) document.getElementById('in_bot_tel').value = params.get('botTel');
     if (params.get('price')) document.getElementById('in_price').value = params.get('price');
     if (params.get('qr') === 'false' || params.get('qr') === '0') {
-      var qrRadios = document.getElementsByName('qr_opt');
-      if (qrRadios && qrRadios[1]) {
-        qrRadios[1].checked = true;
+      var qrChk = document.getElementById('toggle_qr');
+      if (qrChk) {
+        qrChk.checked = false;
         toggleQR(false);
       }
+    }
+    if (params.get('theme')) {
+      var t = params.get('theme');
+      var radios = document.getElementsByName('theme_opt');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].value === t) {
+          radios[i].checked = true;
+          break;
+        }
+      }
+      switchTheme(t);
     }
   } catch (e) {
     console.warn('URL param parse error:', e);

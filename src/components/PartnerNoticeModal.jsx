@@ -33,6 +33,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
         addr: '',
         price: '18,000',
         includeQr: true,
+        theme: 'all', // 'all' (통합형) | 'livestock' (송아지·어린가축) | 'pet' (반려동물)
     })
 
     // 실물 POP 보드판 신청 상태
@@ -122,6 +123,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
         if (noticeData.botTel) targetUrl.searchParams.set('botTel', noticeData.botTel)
         if (noticeData.price) targetUrl.searchParams.set('price', noticeData.price)
         if (!noticeData.includeQr) targetUrl.searchParams.set('qr', 'false')
+        if (noticeData.theme) targetUrl.searchParams.set('theme', noticeData.theme)
         if (autoPrint) targetUrl.searchParams.set('autoPrint', 'true')
 
         window.open(targetUrl.toString(), '_blank')
@@ -458,6 +460,37 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                         placeholder="매장 도로명 주소 (미입력 시 생략됨)"
                                         className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-xs text-slate-800 focus:outline-none focus:border-blue-600"
                                     />
+                                </div>
+
+                                {/* 메인 카피 테마 선택기 */}
+                                <div className="bg-white p-3 rounded-xl border border-blue-200 space-y-1.5">
+                                    <span className="block text-[11px] font-black text-blue-950">
+                                        🎯 매장 맞춤 메인 카피 선택 (매장 주요 고객층에 맞춤 설정)
+                                    </span>
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-xs">
+                                        {[
+                                            { id: 'all', icon: '🐾', title: '통합형', desc: '개·고양이·송아지 전축종' },
+                                            { id: 'livestock', icon: '🐮', title: '가축·농가형', desc: '송아지·어린가축 설사 해결' },
+                                            { id: 'pet', icon: '🐶🐱', title: '반려동물형', desc: '파보·급성장염 1초 펌프' },
+                                        ].map(opt => (
+                                            <button
+                                                key={opt.id}
+                                                type="button"
+                                                onClick={() => setNoticeData(prev => ({ ...prev, theme: opt.id }))}
+                                                className={`p-2 rounded-lg border text-left transition-all ${
+                                                    noticeData.theme === opt.id
+                                                        ? 'border-blue-600 bg-blue-50/80 text-blue-950 shadow-sm ring-1 ring-blue-600'
+                                                        : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white'
+                                                }`}
+                                            >
+                                                <div className="font-bold text-[11px] flex items-center gap-1">
+                                                    <span>{opt.icon}</span>
+                                                    <span>{opt.title}</span>
+                                                </div>
+                                                <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">{opt.desc}</div>
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <div className="flex items-center gap-3 pt-1">
