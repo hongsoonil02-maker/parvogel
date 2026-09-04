@@ -1100,8 +1100,36 @@ function toggleQR(show) {
   }
 }
 
+// URL 파라미터 파싱 및 초기값 주입
+(function initFromUrl() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('name')) document.getElementById('in_name').value = params.get('name');
+    if (params.get('addr')) document.getElementById('in_addr').value = params.get('addr');
+    if (params.get('topTel')) document.getElementById('in_top_tel').value = params.get('topTel');
+    if (params.get('botTel')) document.getElementById('in_bot_tel').value = params.get('botTel');
+    if (params.get('price')) document.getElementById('in_price').value = params.get('price');
+    if (params.get('qr') === 'false' || params.get('qr') === '0') {
+      var qrRadios = document.getElementsByName('qr_opt');
+      if (qrRadios && qrRadios[1]) {
+        qrRadios[1].checked = true;
+        toggleQR(false);
+      }
+    }
+  } catch (e) {
+    console.warn('URL param parse error:', e);
+  }
+})();
+
 // 초기 실행
 sync();
+
+// 자동 인쇄 요청 파라미터 처리
+if (new URLSearchParams(window.location.search).get('autoPrint') === 'true') {
+  setTimeout(function() {
+    window.print();
+  }, 500);
+}
 </script>
 
 </body>

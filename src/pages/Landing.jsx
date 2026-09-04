@@ -14,6 +14,7 @@ import FAQ from '../components/FAQ'
 
 const Chatbot = lazy(() => import('../components/Chatbot'))
 const QrCode = lazy(() => import('../components/QrCode'))
+const PartnerNoticeModal = lazy(() => import('../components/PartnerNoticeModal'))
 
 const Landing = () => {
     const { t, i18n } = useTranslation()
@@ -22,6 +23,7 @@ const Landing = () => {
     const langMenuRef = useRef(null)
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
     const [isOrderComplete, setIsOrderComplete] = useState(false)
+    const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
         requestType: 'consumer',
@@ -465,6 +467,17 @@ const Landing = () => {
                                 </div>
                             </div>
 
+                            {/* B2B 취급점·도매 파트너스 전용 버튼 */}
+                            <button
+                                type="button"
+                                onClick={() => setIsPartnerModalOpen(true)}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-blue-900 to-indigo-900 text-white hover:from-blue-800 hover:to-indigo-800 shadow-sm transition-all border border-blue-700/50"
+                                title="도매점·동물병원·펫샵 사업자 전용 맞춤 알림판 및 POP 보드판 지원"
+                            >
+                                <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                                <span>취급점·도매 지원</span>
+                            </button>
+
                             <button
                                 onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                                 className={`btn-primary ${primaryBg} ${primaryHover} text-sm px-6 py-2.5`}
@@ -525,6 +538,18 @@ const Landing = () => {
                                         ))}
                                     </div>
                                 </div>
+
+                                <button
+                                    type="button"
+                                    onClick={() => { setIsPartnerModalOpen(true); setIsMobileMenuOpen(false); }}
+                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex items-center justify-between shadow-sm mt-1"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span>🏢</span>
+                                        <span>취급점·도매 파트너스 지원센터</span>
+                                    </span>
+                                    <span className="text-[10px] bg-amber-400 text-slate-950 font-extrabold px-2 py-0.5 rounded-full">A4·보드판 무료</span>
+                                </button>
 
                                 <button
                                     onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); setIsMobileMenuOpen(false); }}
@@ -1096,6 +1121,36 @@ const Landing = () => {
                                 </Suspense>
                             </div>
                         </div>
+
+                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 */}
+                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 text-white shadow-2xl border border-indigo-800/60 relative overflow-hidden text-start">
+                            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+                            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                                <div className="space-y-2 max-w-2xl">
+                                    <div className="flex items-center gap-2">
+                                        <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                            B2B Partners Only
+                                        </span>
+                                        <span className="text-xs text-blue-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
+                                    </div>
+                                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                                        매장 홍보용 <span className="text-amber-400">맞춤 A4 알림판</span> &amp; <span className="text-cyan-300">실물 POP 보드판</span> 무상 지원
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
+                                        파보겔을 취급하시는 원장님과 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
+                                        <strong> A4 안내판 즉시 출력 엔진</strong>과 <strong>하드 폼보드 쇼카드(POP) 실물</strong>을 본사에서 100% 무상으로 지원해 드립니다.
+                                    </p>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsPartnerModalOpen(true)}
+                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
+                                    <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
+                                    <span>➔</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1172,6 +1227,15 @@ const Landing = () => {
                                 <li><a href="tel:02-6949-5708" className="hover:text-blue-600 transition-colors">{t('footer.support2')}</a></li>
                                 <li><a href="mailto:name_hyosun@naver.com" className="hover:text-blue-600 transition-colors">{t('footer.support3')}</a></li>
                                 <li><button type="button" onClick={() => scrollToSection('faq')} className="hover:text-blue-600 transition-colors">{t('footer.support4', '자주 묻는 질문 (FAQ)')}</button></li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        onClick={() => setIsPartnerModalOpen(true)}
+                                        className="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"
+                                    >
+                                        <span>🏢 취급점·도매 파트너 지원 (A4·보드판)</span>
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -1306,6 +1370,16 @@ const Landing = () => {
             {/* Chatbot */}
             <Suspense fallback={null}>
                 <Chatbot />
+            </Suspense>
+
+            {/* 도매점·취급점 전용 B2B 파트너 포털 모달 (A4 알림판 & POP 보드판) */}
+            <Suspense fallback={null}>
+                {isPartnerModalOpen && (
+                    <PartnerNoticeModal
+                        isOpen={isPartnerModalOpen}
+                        onClose={() => setIsPartnerModalOpen(false)}
+                    />
+                )}
             </Suspense>
 
 
