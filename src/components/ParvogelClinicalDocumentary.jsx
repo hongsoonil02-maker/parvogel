@@ -203,8 +203,8 @@ export default function ParvogelClinicalDocumentary() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* 헤더 섹션 */}
-        <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-14">
+        {/* 헤더 섹션 (하단 배너 카드들과 좌우 너비 max-w-5xl 동일하게 수직 정렬) */}
+        <header className="text-center max-w-5xl mx-auto mb-8 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/90 border border-blue-200 text-blue-800 text-xs sm:text-sm font-black mb-4 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping motion-reduce:hidden" aria-hidden="true" />
             <span>{t('doc.badge', '📹 파보 장염·급성 설사 7일간의 리얼 임상 다큐멘터리')}</span>
