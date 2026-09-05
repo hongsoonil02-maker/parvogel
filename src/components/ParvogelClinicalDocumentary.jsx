@@ -50,28 +50,28 @@ export default function ParvogelClinicalDocumentary() {
     }
   }, [isDocuModalOpen]);
 
-  // 다국어 자동 변환 지원 임상 단계 데이터
+  // 다국어 자동 변환 지원 임상 단계 데이터 (보호자 공감형 감정 여정 & 김동준 원장 단독 케어)
   const steps = useMemo(() => [
     {
       id: 'step1',
       stepNum: t('doc.step1_num', 'STEP 01'),
       period: t('doc.step1_period', 'Day 1 ~ Day 2'),
-      title: t('doc.step1_title', '응급 내원, 전신 발작 및 입원 집중 케어'),
-      desc: t('doc.step1_desc', '급성 장염과 장독소 쇼크로 쓰러진 55일령 환축에게 스트레스 없이 입원 집중 안정화 진행')
+      title: t('doc.step1_title', '숨도 못 쉬던 위급한 밤… 수액 대신 1초 펌프로 시작된 안도'),
+      desc: t('doc.step1_desc', '수액 바늘조차 꽂기 힘겨웠던 55일령 아기 푸들에게 다른 약물 일체 배제, 오직 파보겔 단독 급여만으로 장독소 쇼크를 진정시키고 체온과 의식을 되찾았습니다.')
     },
     {
       id: 'step2',
       stepNum: t('doc.step2_num', 'STEP 02'),
       period: t('doc.step2_period', 'Day 2 ~ Day 4'),
-      title: t('doc.step2_title', '신경계 정상화, 자가 기립 및 캔사료 폭풍 완식'),
-      desc: t('doc.step2_desc', '경련이 완전히 멈추고 네 발로 서서 반응하며, 곡기를 끊었던 환축이 그릇까지 핥아먹는 기적의 식욕 폭발')
+      title: t('doc.step2_title', '곡기 끊었던 아이가 그릇까지 핥아먹다! 기적의 식욕 폭발'),
+      desc: t('doc.step2_desc', '경련이 완전히 멈추고 스스로 네 발로 일어서더니, 3일 동안 아무것도 입에 대지 못했던 아이가 캔사료를 폭풍 흡입하며 장 기능이 되살아났습니다.')
     },
     {
       id: 'step3',
       stepNum: t('doc.step3_num', 'STEP 03'),
       period: t('doc.step3_period', 'Day 6 ~ Day 7'),
-      title: t('doc.step3_title', '네 발 기립 보행 및 감동의 최종 완치 퇴원'),
-      desc: t('doc.step3_desc', '보행 및 전신 자세 반사가 완벽히 정상화되어 네 발로 당당히 서서 꼬리 치며 감동의 퇴원')
+      title: t('doc.step3_title', '네 발로 당당히 서서 꼬리 치며 엄마 품으로! 감동의 완치 퇴원'),
+      desc: t('doc.step3_desc', '보행 반사와 컨디션이 100% 정상화되어 진료대를 씩씩하게 걸어 다니며, 안락사 위기를 이겨내고 기적처럼 가족 품으로 돌아갔습니다.')
     }
   ], [t]);
 
@@ -245,6 +245,37 @@ export default function ParvogelClinicalDocumentary() {
               <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 block">{t('doc.prognosis_title', '최종 예후')}</span>
               <span className="text-xs sm:text-sm font-black text-amber-700 break-keep">{t('doc.prognosis_val', '7일 만에 기립 완치 퇴원!')}</span>
             </div>
+          </div>
+
+          {/* 💬 김동준 원장이 전하는 보호자 안심 진료실 노트 (48시간 단독 투약 기적 스토리) */}
+          <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-blue-50/90 via-white to-amber-50/60 border border-blue-200/80 shadow-sm text-start">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div className="flex items-center gap-2">
+                <span className="text-sm sm:text-base">🩺</span>
+                <span className="text-xs sm:text-sm font-black text-slate-900">
+                  김동준 수의사가 전하는 진료실 이야기
+                </span>
+                <span className="text-[11px] font-bold text-blue-700 bg-blue-100/80 px-2 py-0.5 rounded-full">
+                  하남 사랑동물병원
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  ✓ 독한 약 배제
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-cyan-100 text-cyan-800 border border-cyan-200">
+                  ✓ 주사 바늘 스트레스 0%
+                </span>
+                <span className="text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-200">
+                  ✓ 48시간 파보겔 단독 처방
+                </span>
+              </div>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed break-keep font-medium">
+              “0.6kg에 불과한 너무 작고 쇠약한 아기 푸들이라 핏줄에 수액 바늘을 꽂거나 독한 약을 쓰기조차 위험했습니다.
+              <strong> 첫 내원 후 이틀(48시간) 동안 수액이나 기타 보조 처방 일체 없이, 오직 파보겔만을 1초 펌프로 부드럽게 급여</strong>했습니다.
+              지친 아기 장에 무리를 주지 않고 유해 독소를 씻어내자, 아이는 바늘 고통 없이 기적처럼 스스로 고개를 들고 밥그릇을 싹싹 비워냈습니다.”
+            </p>
           </div>
         </header>
 

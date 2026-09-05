@@ -56,6 +56,65 @@ const Landing = () => {
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
 
+    // 보호자 공감 4대 메인 카피 로테이션 (12초 주기 자동 전환 및 일자별 기본값, 수동 인디케이터 지원)
+    const petHeroCopies = useMemo(() => [
+        {
+            id: 'copy-a',
+            badge: '✨ 7일간의 기적 임상 실화',
+            headlineLine1: '설사·혈변으로 곡기 끊겨 쓰러졌던 아이,',
+            headlineLine2: '단 3일 만에 밥그릇 싹싹 비우고 다시 꼬리 칩니다.',
+            sub1: '수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임',
+            sub2: '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출'
+        },
+        {
+            id: 'copy-b',
+            badge: '🚨 24시간 안심 응급 상비약',
+            headlineLine1: '병원 문 닫은 새벽, 갑작스런 구토와 물설사…',
+            headlineLine2: '아이 숨이 잦아들 때 엄마가 건넬 수 있는 가장 빠른 1초',
+            sub1: '주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔',
+            sub2: '아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정'
+        },
+        {
+            id: 'copy-c',
+            badge: '🩺 수의사 진료실 고백 실화',
+            headlineLine1: '안락사까지 고민했던 위기의 55일령 아기 강아지,',
+            headlineLine2: '수액 한 방울 없이 오직 파보겔 하나로 다시 일어섰습니다.',
+            sub1: '첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복',
+            sub2: '하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증'
+        },
+        {
+            id: 'copy-d',
+            badge: '🌿 스트레스 0% 간편 급여',
+            headlineLine1: '약 먹이기 전쟁은 이제 끝내세요.',
+            headlineLine2: '아픈 아이에게 1초 만에 쏙, 스스로 핥아먹고 살아납니다.',
+            sub1: '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔',
+            sub2: '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게'
+        }
+    ], []);
+
+    // 일자 기반 시작 인덱스 (매일 다른 기본 카피)
+    const initialCopyIndex = useMemo(() => {
+        const day = new Date().getDate();
+        return day % petHeroCopies.length;
+    }, [petHeroCopies.length]);
+
+    const [currentCopyIdx, setCurrentCopyIdx] = useState(initialCopyIndex);
+    const [isCopyFading, setIsCopyFading] = useState(false);
+
+    useEffect(() => {
+        if (persona !== 'pet') return;
+        const timer = setInterval(() => {
+            setIsCopyFading(true);
+            setTimeout(() => {
+                setCurrentCopyIdx(prev => (prev + 1) % petHeroCopies.length);
+                setIsCopyFading(false);
+            }, 300);
+        }, 12000); // 12초마다 자연스럽게 페이드 로테이션
+        return () => clearInterval(timer);
+    }, [persona, petHeroCopies.length]);
+
+    const currentPetCopy = petHeroCopies[currentCopyIdx];
+
     // Scroll effect for header
     useEffect(() => {
         const handleScroll = () => {
@@ -605,34 +664,61 @@ const Landing = () => {
                         </div>
 
                         {/* Main Title - Dynamic according to persona */}
-                        <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`}>
-                            {persona === 'pet' ? (
-                                <>
-                                    <span className="block">파보·급성장염·혈변 시</span>
-                                    <span className="block text-primary-600">가장 먼저 손이 가는 1초 펌프 상비약</span>
-                                </>
-                            ) : (
-                                <>
+                        {persona === 'pet' ? (
+                            <div className={`transition-all duration-300 ${isCopyFading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}>
+                                {/* Rotation Category Badge */}
+                                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs sm:text-sm font-bold mb-4 shadow-sm">
+                                    <span>{currentPetCopy.badge}</span>
+                                    <span className="text-[10px] text-blue-400 font-mono">({currentCopyIdx + 1}/{petHeroCopies.length})</span>
+                                </div>
+
+                                <h1 className={`text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-tight text-center mb-5 break-keep text-slate-900`}>
+                                    <span className="block text-slate-800">{currentPetCopy.headlineLine1}</span>
+                                    <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-amber-600">
+                                        {currentPetCopy.headlineLine2}
+                                    </span>
+                                </h1>
+
+                                <p className="text-xs sm:text-base lg:text-lg text-slate-600 mb-5 max-w-3xl mx-auto text-center leading-relaxed break-keep flex flex-col items-center">
+                                    <span className="block font-semibold text-slate-700">{currentPetCopy.sub1}</span>
+                                    <span className="block mt-1 text-xs sm:text-sm text-slate-500 font-normal">{currentPetCopy.sub2}</span>
+                                </p>
+
+                                {/* Rotation Indicators (보호자가 직접 눌러서 다른 카피도 확인 가능) */}
+                                <div className="flex items-center justify-center gap-2 mb-6" aria-label="메인 카피 넘기기">
+                                    {petHeroCopies.map((copy, idx) => (
+                                        <button
+                                            key={copy.id}
+                                            type="button"
+                                            onClick={() => {
+                                                setIsCopyFading(true);
+                                                setTimeout(() => {
+                                                    setCurrentCopyIdx(idx);
+                                                    setIsCopyFading(false);
+                                                }, 200);
+                                            }}
+                                            aria-label={`메인 카피 ${idx + 1}번 보기`}
+                                            className={`transition-all duration-300 rounded-full ${
+                                                currentCopyIdx === idx 
+                                                    ? 'w-8 h-2 bg-blue-600 shadow-sm' 
+                                                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                                            }`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`}>
                                     <span className="block">신생 송아지·자돈 수양성 설사</span>
                                     <span className="block text-amber-700">24시간 내 분변 경도 정상화 솔루션</span>
-                                </>
-                            )}
-                        </h1>
-
-                        {/* Subtitle */}
-                        <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
-                            {persona === 'pet' ? (
-                                <>
-                                    <span className="block font-medium">구토, 복통, 혈변, 식욕부진, 곡기 끊김 — 주사기 스트레스 없는 기호성 겔 타입</span>
-                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">초미세 나노 몬모릴로나이트 장 점막 즉각 코팅 & 유해 바이러스 흡착 배출</span>
-                                </>
-                            ) : (
-                                <>
+                                </h1>
+                                <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
                                     <span className="block font-medium">로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어</span>
                                     <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 98.5% 흡착 제거)</span>
-                                </>
-                            )}
-                        </p>
+                                </p>
+                            </div>
+                        )}
 
                         {/* CTA Buttons - Decoupled Direct Ecommerce vs Wholesale */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>

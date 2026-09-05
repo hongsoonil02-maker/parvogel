@@ -24,16 +24,24 @@ class ParvogelMarketingMaster:
     def run_channels(self):
         self.log("=== [파보겔] 온·오프라인 멀티채널 마케팅 자동 배포 파이프라인 가동 ===")
         
+        # 0. 보호자 공감 로테이션 메인 카피 배포 패키징
+        copies_file = os.path.join(self.output_dir, 'rotating_hero_copies.json')
+        if os.path.exists(copies_file):
+            with open(copies_file, 'r', encoding='utf-8') as f:
+                hero_copies = json.load(f)
+            self.log(f"[Hero Copies] {len(hero_copies)}개 보호자 공감 로테이션 메인 카피 패키징 완료")
+
         shorts_file = os.path.join(self.output_dir, 'shorts_reels_scripts.json')
         if os.path.exists(shorts_file):
             with open(shorts_file, 'r', encoding='utf-8') as f:
                 scripts = json.load(f)
-            self.log(f"[Shorts/Reels] {len(scripts)}개 숏폼 대본 패키징 완료")
+            self.log(f"[Shorts/Reels] {len(scripts)}개 숏폼 대본 (김동준 원장 단독 처방 스토리 연동) 패키징 완료")
             manifest = []
             for s in scripts:
                 manifest.append({
                     'platform': ['YouTube Shorts', 'Instagram Reels', 'TikTok'],
                     'title': s['title'],
+                    'hook_copy': s.get('hookCopy', ''),
                     'video_asset': s['video'],
                     'cta_link': 'https://smartstore.naver.com/petschury/products/13718496355'
                 })
