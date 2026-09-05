@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense, lazy } from 'react'
+import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ClinicalEvidence from '../components/ClinicalEvidence'
