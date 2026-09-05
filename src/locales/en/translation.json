@@ -598,5 +598,92 @@
     "docuCopied": "✅ Video link copied!",
     "docuCopyBtnMobile": "🔗 Share Video Link",
     "docuDownload": "Download Video"
+  },
+  "heroCopies": {
+    "copyA": {
+      "badge": "✨ 7-Day Miracle Clinical Recovery",
+      "headlineLine1": "A collapsed puppy who couldn't eat from diarrhea and hematochezia",
+      "headlineLine2": "Cleaned out the food bowl completely in just 3 days",
+      "headlineLine3": "Standing tall on all four paws and wagging joyfully",
+      "sub1": "55-day-old toy poodle who couldn't endure IV fluids or heavy meds — secured golden time with a 1-second pump without syringe stress",
+      "sub2": "Dr. Kim Dong-jun (Hanam Sarang Animal Hospital) exclusive prescription case · Instant mucosal coating & toxin elimination"
+    },
+    "copyB": {
+      "badge": "🚨 24/7 Emergency First-Aid Essential",
+      "headlineLine1": "Sudden midnight vomiting and watery diarrhea after clinics close",
+      "headlineLine2": "When your pet is shivering and breath grows faint",
+      "headlineLine3": "The fastest 1 second a caregiver can give",
+      "sub1": "Zero syringe resistance! High-purity montmorillonite gel gently licked even by collapsed pets",
+      "sub2": "No struggling with sick pets — direct 1-second pump to the mouth instantly calms the gut"
+    },
+    "copyC": {
+      "badge": "🩺 Clinic Chart Truth by Veterinarian",
+      "headlineLine1": "55-day-old toy poodle facing euthanasia crisis",
+      "headlineLine2": "Without IV fluids or toxic harsh antibiotics",
+      "headlineLine3": "Miraculously stood up with Parvogel alone",
+      "sub1": "Dramatic vitality recovery achieved by exclusive oral dosing without other drugs for the first 48 hours",
+      "sub2": "Verified by 7 days of real handwritten charts and uncut direct-cam footage from Dr. Kim Dong-jun"
+    },
+    "copyD": {
+      "badge": "🌿 0% Stress Effortless Oral Administration",
+      "headlineLine1": "End the stressful medicine-feeding battles",
+      "headlineLine2": "No syringe vomiting or foaming — done in 1 second",
+      "headlineLine3": "Pets eagerly lick it up and regain life",
+      "sub1": "No powder spitting, no syringe bite wounds — patented composite gel gently soothing delicate intestines",
+      "sub2": "Ultra-fine nano processing provides rapid absorption & toxin trapping, giving peace of mind to guardians"
+    }
+  },
+  "heroLivestock": {
+    "title1": "Neonatal Calves & Piglets Watery Diarrhea",
+    "title2": "Fecal Consistency Normalization Within 24 Hours",
+    "sub1": "Comprehensive defense against Rotavirus, Coronavirus, E. coli diarrhea and pre-weaning mortality",
+    "sub2": "18-month room temp storage · Verified by Gyeongsang National University Vet School (98.5% toxin adsorption)"
+  },
+  "heroPersona": {
+    "pet": "Companion Animals (Puppy/Kitten/Guardian)",
+    "livestock": "Livestock (Calf/Piglet/Farm)"
+  },
+  "heroCta": {
+    "coupangBadge": "Urgent Morning Delivery",
+    "coupangText": "Buy on Coupang Rocket",
+    "naverBadge": "Naver Pay Points",
+    "naverText": "Naver Smart Store",
+    "wholesaleBadge": "Up to 50% Off Clinics & Farms",
+    "wholesaleText": "Request Wholesale Quotation",
+    "quickDosage": "Check Custom Dosage for My Pet",
+    "quickClinical": "Academic & Clinical Evidence",
+    "partnerCenter": "Retailers & Wholesale Partner Center",
+    "partnerBadge": "Free A4 & POP Board"
+  },
+  "stickyCta": {
+    "title": "Parvogel Neonatal Antidiarrheal Care Solution",
+    "sub": "High-purity Ultra-fine Nano Montmorillonite Formula",
+    "buyBtn": "🚀 Buy on Coupang Rocket",
+    "consultBtn": "📦 Bulk & Direct Order Inquiry"
+  },
+  "a11y": {
+    "openButton": "Open Accessibility Tools",
+    "title": "Accessibility Options",
+    "contrastOn": "Turn On High Contrast",
+    "contrastOff": "Turn Off High Contrast",
+    "largeTextOn": "Enlarge Text",
+    "largeTextOff": "Restore Text Size",
+    "reduceMotionOn": "Reduce Motion",
+    "reduceMotionOff": "Enable Motion Effects",
+    "readableFontOn": "Enhance Line Spacing",
+    "readableFontOff": "Restore Default Spacing",
+    "ttsOn": "Listen to Page (TTS)",
+    "ttsOff": "Stop Audio Narration"
+  },
+  "chat": {
+    "openButton": "Open AI Clinical Assistant",
+    "close": "Close Assistant",
+    "title": "Parvogel AI Clinical Assistant",
+    "subtitle": "24/7 Real-Time Professional Guide",
+    "greeting": "Hello! I am the official Parvogel AI clinical guide. Feel free to ask about dosage, species instructions, clinical cases, or purchasing.",
+    "placeholder": "Type your question... (e.g., Dosage for a 2kg puppy?)",
+    "send": "Send",
+    "error": "A temporary error occurred while retrieving the response. Please try again in a moment.",
+    "messages": "Chat message log"
   }
 }

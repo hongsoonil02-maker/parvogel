@@ -56,45 +56,64 @@ const Landing = () => {
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
 
-    // 보호자 공감 4대 메인 카피 로테이션 (3줄 한글 완벽 가운데 맞춤, 12초 주기 자동 전환)
+    // 지원 언어 목록 및 현지화 표기 메타데이터
+    const languageOptions = useMemo(() => [
+        { code: 'ko', label: '한국어', flag: '🇰🇷' },
+        { code: 'en', label: 'English', flag: '🇺🇸' },
+        { code: 'ja', label: '日本語', flag: '🇯🇵' },
+        { code: 'zh', label: '中文', flag: '🇨🇳' },
+        { code: 'es', label: 'Español', flag: '🇪🇸' },
+        { code: 'fr', label: 'Français', flag: '🇫🇷' },
+        { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+        { code: 'th', label: 'ไทย', flag: '🇹🇭' },
+        { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
+        { code: 'ru', label: 'Русский', flag: '🇷🇺' },
+        { code: 'pt', label: 'Português', flag: '🇧🇷' },
+        { code: 'ar', label: 'العربية', flag: '🇸🇦' },
+        { code: 'id', label: 'Bahasa Indonesia', flag: '🇮🇩' },
+        { code: 'ms', label: 'Bahasa Melayu', flag: '🇲🇾' },
+        { code: 'tr', label: 'Türkçe', flag: '🇹🇷' }
+    ], []);
+
+    // 보호자 공감 4대 메인 카피 로테이션 (다국어 연동, 12초 주기 자동 전환)
     const petHeroCopies = useMemo(() => [
         {
             id: 'copy-a',
-            badge: '✨ 7일간의 기적 임상 실화',
-            headlineLine1: '설사·혈변으로 곡기 끊겨 쓰러졌던 아이',
-            headlineLine2: '단 3일 만에 밥그릇 싹싹 비워내고',
-            headlineLine3: '다시 건강하게 네 발로 서서 꼬리 칩니다',
-            sub1: '수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임',
-            sub2: '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출'
+            badge: t('heroCopies.copyA.badge', '✨ 7일간의 기적 임상 실화'),
+            headlineLine1: t('heroCopies.copyA.headlineLine1', '설사·혈변으로 곡기 끊겨 쓰러졌던 아이'),
+            headlineLine2: t('heroCopies.copyA.headlineLine2', '단 3일 만에 밥그릇 싹싹 비워내고'),
+            headlineLine3: t('heroCopies.copyA.headlineLine3', '다시 건강하게 네 발로 서서 꼬리 칩니다'),
+            sub1: t('heroCopies.copyA.sub1', '수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임'),
+            sub2: t('heroCopies.copyA.sub2', '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출')
         },
         {
             id: 'copy-b',
-            badge: '🚨 24시간 안심 응급 상비약',
-            headlineLine1: '병원 문 닫은 새벽 갑작스런 구토와 물설사',
-            headlineLine2: '바들바들 떨며 아이 숨이 잦아들 때',
-            headlineLine3: '엄마가 건넬 수 있는 가장 빠른 1초',
-            sub1: '주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔',
-            sub2: '아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정'
+            badge: t('heroCopies.copyB.badge', '🚨 24시간 안심 응급 상비약'),
+            headlineLine1: t('heroCopies.copyB.headlineLine1', '병원 문 닫은 새벽 갑작스런 구토와 물설사'),
+            headlineLine2: t('heroCopies.copyB.headlineLine2', '바들바들 떨며 아이 숨이 잦아들 때'),
+            headlineLine3: t('heroCopies.copyB.headlineLine3', '엄마가 건넬 수 있는 가장 빠른 1초'),
+            sub1: t('heroCopies.copyB.sub1', '주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔'),
+            sub2: t('heroCopies.copyB.sub2', '아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정')
         },
         {
             id: 'copy-c',
-            badge: '🩺 수의사 진료실 고백 실화',
-            headlineLine1: '안락사 위기의 55일령 아기 푸들',
-            headlineLine2: '수액도 독한 약도 일체 없이',
-            headlineLine3: '오직 파보겔 하나로 기적처럼 일어섰습니다',
-            sub1: '첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복',
-            sub2: '하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증'
+            badge: t('heroCopies.copyC.badge', '🩺 수의사 진료실 고백 실화'),
+            headlineLine1: t('heroCopies.copyC.headlineLine1', '안락사 위기의 55일령 아기 푸들'),
+            headlineLine2: t('heroCopies.copyC.headlineLine2', '수액도 독한 약도 일체 없이'),
+            headlineLine3: t('heroCopies.copyC.headlineLine3', '오직 파보겔 하나로 기적처럼 일어섰습니다'),
+            sub1: t('heroCopies.copyC.sub1', '첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복'),
+            sub2: t('heroCopies.copyC.sub2', '하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증')
         },
         {
             id: 'copy-d',
-            badge: '🌿 스트레스 0% 간편 급여',
-            headlineLine1: '약 먹이기 전쟁은 이제 끝내세요',
-            headlineLine2: '주사기 거품 토해냄 없이 1초 만에 쏙',
-            headlineLine3: '아이가 스스로 맛있게 핥아먹고 살아납니다',
-            sub1: '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔',
-            sub2: '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게'
+            badge: t('heroCopies.copyD.badge', '🌿 스트레스 0% 간편 급여'),
+            headlineLine1: t('heroCopies.copyD.headlineLine1', '약 먹이기 전쟁은 이제 끝내세요'),
+            headlineLine2: t('heroCopies.copyD.headlineLine2', '주사기 거품 토해냄 없이 1초 만에 쏙'),
+            headlineLine3: t('heroCopies.copyD.headlineLine3', '아이가 스스로 맛있게 핥아먹고 살아납니다'),
+            sub1: t('heroCopies.copyD.sub1', '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔'),
+            sub2: t('heroCopies.copyD.sub2', '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게')
         }
-    ], []);
+    ], [t, i18n.language]);
 
     // 일자 기반 시작 인덱스 (매일 다른 기본 카피)
     const initialCopyIndex = useMemo(() => {
@@ -504,27 +523,32 @@ const Landing = () => {
                                     aria-label="언어 선택 (Select Language)"
                                     aria-haspopup="listbox"
                                     aria-expanded={isLangOpen}
-                                    className="flex items-center gap-1 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
                                 >
-                                    <span className="text-xs font-bold text-gray-700">{i18n.language.toUpperCase()}</span>
+                                    <span className="text-xs">{languageOptions.find(o => o.code === i18n.language)?.flag || '🌐'}</span>
+                                    <span className="text-xs font-bold text-gray-700">{languageOptions.find(o => o.code === i18n.language)?.label || i18n.language.toUpperCase()}</span>
                                     <svg className={`w-3 h-3 text-gray-500 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
-                                <div className={`absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 z-50 transition-all duration-200 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-                                    <div className="py-1 max-h-64 overflow-y-auto" role="listbox">
-                                        {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
+                                <div className={`absolute end-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 transition-all duration-200 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                                    <div className="py-1 max-h-72 overflow-y-auto" role="listbox">
+                                        {languageOptions.map((opt) => (
                                             <button
-                                                key={lang}
-                                                onClick={() => { i18n.changeLanguage(lang); setIsLangOpen(false); }}
+                                                key={opt.code}
+                                                onClick={() => { i18n.changeLanguage(opt.code); setIsLangOpen(false); }}
                                                 role="option"
-                                                aria-selected={i18n.language === lang}
-                                                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors ${i18n.language === lang
-                                                    ? `${primaryBg} text-white`
+                                                aria-selected={i18n.language === opt.code}
+                                                className={`w-full text-start px-3.5 py-2 text-xs flex items-center justify-between hover:bg-gray-100 transition-colors ${i18n.language === opt.code
+                                                    ? `${primaryBg} text-white font-bold`
                                                     : 'text-gray-700'
                                                     }`}
                                             >
-                                                {lang.toUpperCase()}
+                                                <span className="flex items-center gap-2">
+                                                    <span>{opt.flag}</span>
+                                                    <span>{opt.label}</span>
+                                                </span>
+                                                <span className={`text-[10px] uppercase font-mono ${i18n.language === opt.code ? 'text-white/80' : 'text-gray-400'}`}>{opt.code}</span>
                                             </button>
                                         ))}
                                     </div>
@@ -539,7 +563,7 @@ const Landing = () => {
                                 title="도매점·동물병원·펫샵 사업자 전용 맞춤 알림판 및 POP 보드판 지원"
                             >
                                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-                                <span>취급점·도매 지원</span>
+                                <span>{t('heroCta.partnerCenter', '취급점·도매 파트너스')}</span>
                             </button>
 
                             <button
@@ -587,17 +611,18 @@ const Landing = () => {
                                 {/* Language Toggle - Mobile */}
                                 <div className="px-4 py-3">
                                     <p className="text-xs font-semibold text-gray-500 mb-2">{t('nav.selectLanguage')}</p>
-                                    <div className="flex flex-wrap gap-1">
-                                        {['ko', 'en', 'ja', 'zh', 'es', 'fr', 'de', 'th', 'vi', 'ru', 'pt', 'ar', 'id', 'ms', 'tr'].map((lang) => (
+                                    <div className="grid grid-cols-3 gap-1.5">
+                                        {languageOptions.map((opt) => (
                                             <button
-                                                key={lang}
-                                                onClick={() => { i18n.changeLanguage(lang); setIsMobileMenuOpen(false); }}
-                                                className={`text-xs font-bold px-2 py-1 rounded-full transition-all ${i18n.language === lang
-                                                    ? `${primaryBg} text-white shadow-sm`
-                                                    : 'text-gray-600 bg-gray-100 hover:bg-gray-200'
+                                                key={opt.code}
+                                                onClick={() => { i18n.changeLanguage(opt.code); setIsMobileMenuOpen(false); }}
+                                                className={`text-[11px] font-bold py-1.5 px-2 rounded-xl transition-all flex items-center justify-center gap-1 ${i18n.language === opt.code
+                                                    ? `${primaryBg} text-white shadow-sm font-black`
+                                                    : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
                                                     }`}
                                             >
-                                                {lang.toUpperCase()}
+                                                <span>{opt.flag}</span>
+                                                <span className="truncate">{opt.label}</span>
                                             </button>
                                         ))}
                                     </div>
@@ -610,9 +635,9 @@ const Landing = () => {
                                 >
                                     <span className="flex items-center gap-2">
                                         <span>🏢</span>
-                                        <span>취급점·도매 파트너스 지원센터</span>
+                                        <span>{t('heroCta.partnerCenter', '취급점·도매 파트너스 지원센터')}</span>
                                     </span>
-                                    <span className="text-[10px] bg-amber-400 text-slate-950 font-extrabold px-2 py-0.5 rounded-full">A4·보드판 무료</span>
+                                    <span className="text-[10px] bg-amber-400 text-slate-950 font-extrabold px-2 py-0.5 rounded-full">{t('heroCta.partnerBadge', 'A4·보드판 무료')}</span>
                                 </button>
 
                                 <button
@@ -652,7 +677,7 @@ const Landing = () => {
                                 }`}
                             >
                                 <span className="text-base">🐶🐱</span>
-                                <span>반려동물 (자견·자묘/보호자)</span>
+                                <span>{t('heroPersona.pet', '반려동물 (자견·자묘/보호자)')}</span>
                             </button>
                             <button
                                 type="button"
@@ -664,7 +689,7 @@ const Landing = () => {
                                 }`}
                             >
                                 <span className="text-base">🐮🐷</span>
-                                <span>산업동물 (송아지·자돈/축산농가)</span>
+                                <span>{t('heroPersona.livestock', '산업동물 (송아지·자돈/축산농가)')}</span>
                             </button>
                         </div>
 
@@ -716,12 +741,12 @@ const Landing = () => {
                         ) : (
                             <div>
                                 <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`}>
-                                    <span className="block">신생 송아지·자돈 수양성 설사</span>
-                                    <span className="block text-amber-700">24시간 내 분변 경도 정상화 솔루션</span>
+                                    <span className="block">{t('heroLivestock.title1', '신생 송아지·자돈 수양성 설사')}</span>
+                                    <span className="block text-amber-700">{t('heroLivestock.title2', '24시간 내 분변 경도 정상화 솔루션')}</span>
                                 </h1>
                                 <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
-                                    <span className="block font-medium">로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어</span>
-                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 98.5% 흡착 제거)</span>
+                                    <span className="block font-medium">{t('heroLivestock.sub1', '로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어')}</span>
+                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">{t('heroLivestock.sub2', '상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 98.5% 흡착 제거)')}</span>
                                 </p>
                             </div>
                         )}
@@ -736,8 +761,8 @@ const Landing = () => {
                             >
                                 <span className="text-xl">🚀</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-rose-200 font-bold uppercase tracking-wider">긴급 내일 아침 도착</div>
-                                    <div className="text-sm sm:text-base font-extrabold">쿠팡 로켓배송 즉시구매</div>
+                                    <div className="text-[10px] text-rose-200 font-bold uppercase tracking-wider">{t('heroCta.coupangBadge', '긴급 내일 아침 도착')}</div>
+                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.coupangText', '쿠팡 로켓배송 즉시구매')}</div>
                                 </div>
                             </a>
 
@@ -749,8 +774,8 @@ const Landing = () => {
                             >
                                 <span className="text-xl">🟢</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider">네이버페이 포인트 적립</div>
-                                    <div className="text-sm sm:text-base font-extrabold">네이버 스마트스토어</div>
+                                    <div className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider">{t('heroCta.naverBadge', '네이버페이 포인트 적립')}</div>
+                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.naverText', '네이버 스마트스토어')}</div>
                                 </div>
                             </a>
 
@@ -764,8 +789,8 @@ const Landing = () => {
                             >
                                 <span className="text-xl">🏥</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">병원/농가 최대 50% 할인</div>
-                                    <div className="text-sm sm:text-base font-extrabold">도매 공급가 견적 신청</div>
+                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">{t('heroCta.wholesaleBadge', '병원/농가 최대 50% 할인')}</div>
+                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.wholesaleText', '도매 공급가 견적 신청')}</div>
                                 </div>
                             </button>
                         </div>
@@ -776,7 +801,7 @@ const Landing = () => {
                                 onClick={() => scrollToSection('animal-guide')}
                                 className="hover:text-primary-600 underline flex items-center gap-1"
                             >
-                                <span>🐾 우리 아이 맞춤 급여량 확인</span>
+                                <span>🐾 {t('heroCta.quickDosage', '우리 아이 맞춤 급여량 확인')}</span>
                                 <span aria-hidden="true">➔</span>
                             </button>
                             <span className="text-slate-300">|</span>
@@ -784,7 +809,7 @@ const Landing = () => {
                                 onClick={() => scrollToSection('clinical')}
                                 className="hover:text-primary-600 underline flex items-center gap-1"
                             >
-                                <span>📊 학술 임상 증거 데이터</span>
+                                <span>📊 {t('heroCta.quickClinical', '학술 임상 증거 데이터')}</span>
                                 <span aria-hidden="true">➔</span>
                             </button>
                         </div>

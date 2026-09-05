@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>파보겔(PARVOGEL) 펫샵·분양센터 대표님 전용 B2B 특별 안내서</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap');
+    
+    @page {
+      size: 210mm 297mm;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      background: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .sheet {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      background: #ffffff;
+      padding: 13mm 16mm 11mm 16mm;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+  /* 인쇄 전용 스타일 (A4 단 1페이지 칼인쇄 절대 준수) */
+  @media print {
+    @page {
+      size: 210mm 297mm;
+      margin: 0;
+    }
+    html, body {
+      background: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      overflow: hidden !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .sheet {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      padding: 12mm 15mm 10mm 15mm !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      overflow: hidden !important;
+      page-break-inside: avoid !important;
+      page-break-after: avoid !important;
+    }
+  }
+
+    /* 상단/하단 파보겔 실사 딥블루 띠 */
+    .color-bar {
+      height: 6px;
+      background: #00227a;
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 3px;
+    }
+
+    /* Header */
+    .header {
+      border-bottom: 2px solid #002b90;
+      padding-bottom: 8px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .brand-title {
+      font-size: 21px;
+      font-weight: 900;
+      color: #00227a;
+      letter-spacing: -0.5px;
+    }
+    .brand-title span {
+      color: #0044cc;
+    }
+
+    .doc-tag {
+      font-size: 11px;
+      font-weight: 800;
+      background: #eff6ff;
+      color: #002b90;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #bfdbfe;
+    }
+
+    /* Hero / Pain Point */
+    .hero {
+      margin-top: 13px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-left: 6px solid #002b90;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 6px rgba(0, 43, 144, 0.04);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #e11d48;
+      margin-bottom: 3px;
+    }
+
+    .hero-heading {
+      font-size: 16px;
+      font-weight: 900;
+      color: #00227a;
+      line-height: 1.4;
+      letter-spacing: -0.4px;
+    }
+
+    .hero-desc {
+      font-size: 11.5px;
+      color: #334155;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 13.5px;
+      font-weight: 900;
+      color: #00227a;
+      margin: 14px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 3 Core Points */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+
+    .point-card {
+      background: #f0f7ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+
+    .point-num {
+      font-size: 10px;
+      font-weight: 900;
+      color: #ffffff;
+      background: #002b90;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 5px;
+    }
+
+    .point-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #00227a;
+      margin-bottom: 4px;
+    }
+
+    .point-desc {
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    /* Clinical & Science Proof Box */
+    .proof-box {
+      margin-top: 13px;
+      background: #ffffff;
+      border: 1.5px solid #93c5fd;
+      border-radius: 8px;
+      padding: 11px 15px;
+      box-shadow: 0 2px 8px rgba(0, 43, 144, 0.05);
+    }
+
+    .proof-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+
+    .proof-head strong {
+      font-size: 12.5px;
+      color: #00227a;
+      font-weight: 900;
+    }
+
+    .proof-text {
+      font-size: 11px;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .ref-link-box {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #bfdbfe;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      color: #002b90;
+    }
+
+    /* Benefits Table */
+    .benefit-table {
+      margin-top: 6px;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .benefit-table th {
+      background: #002b90;
+      color: #ffffff;
+      font-weight: 800;
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1.5px solid #00227a;
+    }
+    .benefit-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #1e293b;
+      line-height: 1.4;
+      background: #ffffff;
+    }
+    .benefit-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* QR / Channels Grid (쿠팡, 네이버, 공식몰) */
+    .channels-container {
+      margin-top: 13px;
+      background: #f4f8fc;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+
+    .channels-header {
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #00227a;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .qr-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 43, 144, 0.04);
+    }
+
+    .qr-card img {
+      width: 62px;
+      height: 62px;
+      display: block;
+      margin-bottom: 4px;
+      border-radius: 4px;
+    }
+
+    .qr-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 3px;
+      display: inline-block;
+    }
+
+    .qr-badge.coupang { background: #fee2e2; color: #dc2626; }
+    .qr-badge.naver { background: #dcfce7; color: #16a34a; }
+    .qr-badge.official { background: #e0f2fe; color: #002b90; }
+
+    .qr-name {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #00227a;
+    }
+
+    .qr-desc {
+      font-size: 9px;
+      color: #64748b;
+      margin-top: 1px;
+    }
+
+    /* CTA Section */
+    .cta-container {
+      margin-top: 13px;
+      background: linear-gradient(135deg, #001f66 0%, #002b90 100%);
+      border: 1px solid #001a55;
+      border-radius: 8px;
+      padding: 11px 16px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 34, 122, 0.25);
+    }
+
+    .cta-text h3 {
+      font-size: 14px;
+      font-weight: 900;
+      color: #60a5fa;
+      margin-bottom: 3px;
+    }
+
+    .cta-text p {
+      font-size: 10.5px;
+      color: #e2e8f0;
+      line-height: 1.35;
+    }
+
+    .cta-contact {
+      text-align: right;
+    }
+
+    .cta-btn-call {
+      display: inline-block;
+      background: #fbbf24;
+      color: #001f66;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 3px;
+    }
+
+    .cta-sub {
+      font-size: 10px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 7px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-align: center;
+      font-size: 9.5px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .footer-row-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .footer-row-top span {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer-dot {
+      color: #94a3b8;
+      font-size: 8px;
+    }
+
+    .footer-row-bottom {
+      font-size: 9px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    /* Floating control bar for print */
+    .control-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 10px 24px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .btn-print {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="control-bar no-print">
+    <span style="color: white; font-size: 13px; font-weight: 700;">📄 펫샵·켄넬 B2B 우편 발송용 A4 안내장 (공식 팩트 검증판)</span>
+    <button class="btn-print" onclick="window.print()">🖨️ 바로 인쇄하기 (PDF 저장)</button>
+  </div>
+
+  <div class="sheet">
+    <!-- Top Signature Deep Blue Bar -->
+    <div class="color-bar"></div>
+
+    <!-- Top Content Area -->
+    <div>
+      <div class="header">
+        <div>
+          <div class="brand-title">PARVOGEL <span>B2B PARTNER</span></div>
+          <div style="font-size: 10.5px; color: #64748b; margin-top: 2px;">1-DNJ 및 고순도 나노 몬모릴로나이트 기반 어린 자견 급성 장염 긴급 방어제</div>
+        </div>
+        <div class="doc-tag">전국 펫샵·분양센터 대표님 친전</div>
+      </div>
+
+      <!-- Hero / Pain Point -->
+      <div class="hero">
+        <span class="hero-badge">⚠️ 자견 입식 및 분양 대기 긴급 리스크 관리</span>
+        <h1 class="hero-heading">"자견 1마리의 설사가 전 매장 집단 폐사로 번지는 공포,<br>파보겔(PARVOGEL)이 원장님의 매장을 24시간 철통 방어합니다."</h1>
+        <p class="hero-desc">
+          면역 공백기(생후 45~90일) 갓 입식된 어린 강아지들은 환경 변화 스트레스만으로도 장 점막이 쉽게 무너집니다.<br>
+          골든타임 24~48시간 안에 잡지 못하면 수백만 원의 치료비 손실과 매장 폐쇄 위기를 맞게 됩니다.
+        </p>
+      </div>
+
+      <!-- 3 Core Points for Petshops -->
+      <div class="section-title">💡 전국 펫샵·분양센터가 파보겔을 상비하는 3가지 과학적 이유</div>
+      <div class="grid-3">
+        <div class="point-card">
+          <span class="point-num">01. 특허 균주 DNJ</span>
+          <div class="point-title">1-DNJ 바이러스 억제</div>
+          <div class="point-desc">특허 균주(Bacillus subtilis MORI)가 생산하는 천연 <strong>1-Deoxynojirimycin(DNJ)</strong> 성분이 바이러스 복제 및 장내 유해균 증식을 차단.</div>
+        </div>
+        <div class="point-card">
+          <span class="point-num">02. 초미세 흡착 공정</span>
+          <div class="point-title">나노 몬모릴로나이트</div>
+          <div class="point-desc">비표면적 800㎡/g 이상의 고순도 나노 공법 점토 광물이 장내 독소 및 바이러스를 98.5% 물리적 흡착하여 배출.</div>
+        </div>
+        <div class="point-card">
+          <span class="point-num">03. 스트레스 0%</span>
+          <div class="point-title">1초 펌프 & 분양 마진</div>
+          <div class="point-desc">주사기 거품 토해냄 없이 입가에 1초 펌핑 급여. 분양 고객에게 "첫 2주 필수 상비약"으로 패키지 판매하여 높은 객단가 창출.</div>
+        </div>
+      </div>
+
+      <!-- Real Veterinary & Academic Proof -->
+      <div class="proof-box">
+        <div class="proof-head">
+          <span style="font-size: 16px;">🩺</span>
+          <strong>서울대 출신 · 하남 사랑동물병원 김동준 원장 단독 케어 다큐멘터리 실화</strong>
+        </div>
+        <div class="proof-text">
+          "수액 바늘조차 꽂기 힘겨웠던 55일령 초소형 아기 푸들의 파보 장염 응급 위기 — <strong>수액 및 기타 독한 약물을 일체 배제하고 첫 48시간 파보겔 단독 집중 투여</strong>만으로 장독소 쇼크를 진정시키고 스스로 네 발로 일어나 밥그릇을 싹싹 비워냈습니다." (실제 진료 차트 및 7일간 무편집 임상 다큐멘터리 영상 공개 중)
+        </div>
+        <div class="ref-link-box">
+          <span>🔬 <strong>글로벌 학술 연구 입증</strong>: 1-Deoxynojirimycin(DNJ) 항바이러스 및 장점막 보호 기전</span>
+          <span style="font-weight: 700; color: #166534;">Google 학술검색: 1-deoxynojirimycin antiviral</span>
+        </div>
+      </div>
+
+      <!-- Benefit Table -->
+      <div class="section-title">📦 펫샵·켄넬 취급점 파트너 특별 공급 혜택</div>
+      <table class="benefit-table">
+        <tr>
+          <th style="width: 25%;">구분</th>
+          <th>혜택 내용</th>
+        </tr>
+        <tr>
+          <td><strong>도매 공급가 혜택</strong></td>
+          <td>초도 물량 <strong>20병 단위</strong> 취급점 특가 공급 지원 (첫 거래 이후 정기 주문 시 <strong>최소 50병 단위</strong> 출고)</td>
+        </tr>
+        <tr>
+          <td><strong>오프라인 홍보물 지원</strong></td>
+          <td>매장 카운터 비치용 <strong>A4 컬러 알림판 거치대 + 분양 고객 전달용 리플릿 50부</strong> 무상 제공</td>
+        </tr>
+        <tr>
+          <td><strong>테스트 샘플 우선 지원</strong></td>
+          <td>현재 매장에 설사·묽은 변을 보이는 자견이 있을 경우 <strong>테스트용 2병 당일 무상 택배 발송</strong></td>
+        </tr>
+      </table>
+
+      <!-- Channels & QR Codes Section (쿠팡, 네이버 스마트스토어, 공식몰) -->
+      <div class="channels-container">
+        <div class="channels-header">
+          <span>🛒 <strong>파보겔 공식 유통 채널 및 실시간 확인</strong> (스마트폰 카메라로 QR코드를 비춰보세요)</span>
+          <span style="font-size: 10.5px; color: #64748b;">쿠팡 로켓 / 네이버 스마트스토어 공식 입점</span>
+        </div>
+        <div class="qr-grid">
+          <!-- Coupang -->
+          <div class="qr-card">
+            <span class="qr-badge coupang">🚀 쿠팡 로켓배송</span>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.coupang.com%2Fvp%2Fproducts%2F9690739565%3FitemId%3D28983118193%26vendorItemId%3D95912261090" alt="쿠팡 로켓배송 QR">
+            <div class="qr-name">쿠팡 공식 입점</div>
+            <div class="qr-desc">당일/익일 새벽 로켓배송</div>
+          </div>
+          <!-- Naver Smartstore -->
+          <div class="qr-card">
+            <span class="qr-badge naver">🟢 네이버 스마트스토어</span>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fsmartstore.naver.com%2Fpetschury%2Fproducts%2F13718496355" alt="네이버 스마트스토어 QR">
+            <div class="qr-name">펫츄리 공식 스토어</div>
+            <div class="qr-desc">네이버페이 구매 및 리뷰 확인</div>
+          </div>
+          <!-- Official Partner / Landing -->
+          <div class="qr-card">
+            <span class="qr-badge official">🌐 공식 랜딩 & 임상영상</span>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fparvogel.kr" alt="공식 홈페이지 QR">
+            <div class="qr-name">parvogel.kr</div>
+            <div class="qr-desc">김동준 원장 임상 다큐 풀영상</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA & Footer -->
+    <div>
+      <div class="cta-container">
+        <div class="cta-text">
+          <h3>초도 테스트 샘플 2병 및 취급점 도매가표 즉시 요청</h3>
+          <p>전화 주셔서 <strong>"우편물 보고 샘플 요청합니다"</strong>라고 말씀해 주시면<br>대표님 매장으로 샘플 2병과 A4 전시 세트를 당일 발송해 드립니다.</p>
+        </div>
+        <div class="cta-contact">
+          <a href="tel:010-5543-5708" class="cta-btn-call">📞 대표이사 직통: 010-5543-5708</a>
+          <div class="cta-sub">본사 대표번호: 02-6949-5708 | 온라인: parvogel.kr</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-row-top">
+          <span>(주)한국아그로 펫츄리 사업부</span>
+          <span class="footer-dot">●</span>
+          <span>본사 대표: 02-6949-5708</span>
+          <span class="footer-dot">●</span>
+          <span>학술·임상: 서울대학교 수의과대학 출신의 자문단</span>
+        </div>
+        <div class="footer-row-bottom">
+          본 우편물은 지자체 인허가 등록 동물판매업(펫샵·켄넬) 대표님께 발송되는 공식 B2B 상비 솔루션 안내문입니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Signature Deep Blue Bar -->
+    <div class="color-bar" style="margin-top: 6px;"></div>
+  </div>
+
+</body>
+</html>
