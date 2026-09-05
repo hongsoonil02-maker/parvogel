@@ -793,6 +793,18 @@
       <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
         <input type="radio" name="theme_opt" value="livestock" onchange="switchTheme('livestock')"> 🐮 가축·농가형 (송아지 설사)
       </label>
+      <label style="font-size:11.5px; font-weight:700; color:#b45309; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="custom" onchange="switchTheme('custom')"> ✍️ 우리 매장 맞춤 카피 (직접 입력)
+      </label>
+    </div>
+
+    <!-- 4줄 (선택): 사용자 정의 카피 직접 편집 영역 -->
+    <div id="custom_copy_wrap" style="display:none; align-items:center; gap:8px; background:#fffbeb; padding:7px 12px; border-radius:8px; border:1px solid #fde68a;">
+      <span style="font-size:11.5px; font-weight:800; color:#92400e; white-space:nowrap;">✍️ 전체 카피 수정:</span>
+      <input id="in_custom_copy" class="ctrl-input" type="text" style="flex:1; font-weight:700; color:#1e293b; background:#ffffff;"
+             placeholder="상단 뱃지문구 | 서브 헤드라인 | 메인 굵은 글씨 (구분자: |)"
+             oninput="applyCustomCopy(this.value)">
+      <span style="font-size:11px; color:#b45309; font-weight:600; white-space:nowrap;">(구분자: |)</span>
     </div>
   </div>
 </div>
@@ -1163,8 +1175,22 @@ function switchTheme(mode) {
       mText.innerHTML = '<span class="hero-product-name">주사기 거품 토해냄 없이 1초 만에 쏙</span>' +
                         '<span class="hero-strong">아이가 스스로 맛있게 핥아먹고 살아납니다</span>';
     }
+  } else if (mode === 'custom') {
+    // ✍️ 우리 매장 맞춤 카피 (사용자 직접 입력)
+    var customWrap = document.getElementById('custom_copy_wrap');
+    if (customWrap) customWrap.style.display = 'flex';
+    var inCustom = document.getElementById('in_custom_copy');
+    var val = inCustom ? inCustom.value : '';
+    if (!val) {
+      val = localStorage.getItem('parvogel_partner_custom_copy') || '✨ 우리 동네 1등 상비약 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활명수 파보겔로 빠르게 활력을 되찾아주세요';
+      if (inCustom) inCustom.value = val;
+    }
+    applyCustomCopy(val);
+    return;
   } else if (mode === 'livestock') {
     // 🐮 가축·농가 중심 카피
+    var customWrap = document.getElementById('custom_copy_wrap');
+    if (customWrap) customWrap.style.display = 'none';
     if (bText) bText.textContent = '설사로 고생하는 송아지·어린 가축을 위한 비상 상비약';
     if (sText) sText.textContent = '신생 송아지·자돈 수양성 설사 & 분변 이상 시';
     if (mText) {
@@ -1173,6 +1199,8 @@ function switchTheme(mode) {
     }
   } else if (mode === 'pet') {
     // 🐶🐱 반려동물 중심 카피
+    var customWrap = document.getElementById('custom_copy_wrap');
+    if (customWrap) customWrap.style.display = 'none';
     if (bText) bText.textContent = '파보·급성장염·혈변 시 가장 먼저 손이 가는 1초 펌프 상비약';
     if (sText) sText.textContent = '토하고 설사하며 곡기 끊긴 우리 아이 (강아지·고양이)';
     if (mText) {
@@ -1181,6 +1209,8 @@ function switchTheme(mode) {
     }
   } else {
     // 🐾 통합형 (개·고양이·송아지 전축종)
+    var customWrap = document.getElementById('custom_copy_wrap');
+    if (customWrap) customWrap.style.display = 'none';
     if (bText) bText.textContent = '설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약';
     if (sText) sText.textContent = '토하고 설사하는 우리 아이 & 어린 가축';
     if (mText) {
@@ -1188,6 +1218,44 @@ function switchTheme(mode) {
                         '<span class="hero-strong">한 병이면 든든합니다</span>';
     }
   }
+
+  var customWrapDefault = document.getElementById('custom_copy_wrap');
+  if (customWrapDefault && mode !== 'custom') customWrapDefault.style.display = 'none';
+}
+
+// 사용자 정의 카피 전체 텍스트를 파싱하여 배지, 서브, 메인에 실시간 반영
+function applyCustomCopy(rawText) {
+  if (!rawText) return;
+  // HTML 태그 제거 (XSS 방어)
+  var clean = rawText.replace(/<[^>]*>?/gm, '').trim();
+
+  // '|' 또는 줄바꿈으로 3개 영역 분할
+  var parts = clean.split(/[|\n]/).map(function(s) { return s.trim(); }).filter(Boolean);
+
+  var bText = document.getElementById('heroBadgeText');
+  var sText = document.getElementById('heroSubText');
+  var mText = document.getElementById('heroMainText');
+
+  if (parts.length === 1) {
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">' + parts[0] + '</span>';
+    }
+  } else if (parts.length === 2) {
+    if (sText) sText.textContent = parts[0];
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">' + parts[1] + '</span>';
+    }
+  } else if (parts.length >= 3) {
+    if (bText) bText.textContent = parts[0];
+    if (sText) sText.textContent = parts[1];
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">' + parts[2] + '</span>';
+    }
+  }
+
+  try {
+    localStorage.setItem('parvogel_partner_custom_copy', clean);
+  } catch (e) {}
 }
 
 // URL 파라미터 파싱 및 초기값 주입
@@ -1206,6 +1274,10 @@ function switchTheme(mode) {
         toggleQR(false);
       }
     }
+    if (params.get('customCopy')) {
+      var inCustom = document.getElementById('in_custom_copy');
+      if (inCustom) inCustom.value = params.get('customCopy');
+    }
     if (params.get('theme')) {
       var t = params.get('theme');
       var radios = document.getElementsByName('theme_opt');
@@ -1216,6 +1288,13 @@ function switchTheme(mode) {
         }
       }
       switchTheme(t);
+    } else {
+      // 파라미터가 없더라도 로컬스토리지에 저장된 커스텀 카피가 있으면 확인
+      var savedCustom = localStorage.getItem('parvogel_partner_custom_copy');
+      if (savedCustom) {
+        var inCustom = document.getElementById('in_custom_copy');
+        if (inCustom) inCustom.value = savedCustom;
+      }
     }
   } catch (e) {
     console.warn('URL param parse error:', e);

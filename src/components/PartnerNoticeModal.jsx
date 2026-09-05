@@ -26,15 +26,30 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
     })
 
     // A4 알림판 커스텀 데이터
-    const [noticeData, setNoticeData] = useState({
-        storeName: '',
-        topTel: '',
-        botTel: '',
-        addr: '',
-        price: '18,000',
-        includeQr: true,
-        theme: 'all', // 'all' (통합형) | 'livestock' (송아지·어린가축) | 'pet' (반려동물)
+    const [noticeData, setNoticeData] = useState(() => {
+        const saved = typeof window !== 'undefined' ? localStorage.getItem('parvogel_partner_custom_copy') : null
+        return {
+            storeName: '',
+            topTel: '',
+            botTel: '',
+            addr: '',
+            price: '18,000',
+            includeQr: true,
+            theme: saved ? 'custom' : 'all',
+            customCopy: saved || '✨ 우리 동네 1등 상비약 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활명수 파보겔로 빠르게 활력을 되찾아주세요',
+        }
     })
+
+    // 사용자 정의 카피 변경 시 로컬스토리지 자동 저장
+    useEffect(() => {
+        if (noticeData.customCopy) {
+            try {
+                localStorage.setItem('parvogel_partner_custom_copy', noticeData.customCopy)
+            } catch (e) {
+                console.warn('localStorage save failed:', e)
+            }
+        }
+    }, [noticeData.customCopy])
 
     // 실물 POP 보드판 신청 상태
     const [boardRequest, setBoardRequest] = useState({
@@ -124,6 +139,9 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
         if (noticeData.price) targetUrl.searchParams.set('price', noticeData.price)
         if (!noticeData.includeQr) targetUrl.searchParams.set('qr', 'false')
         if (noticeData.theme) targetUrl.searchParams.set('theme', noticeData.theme)
+        if (noticeData.theme === 'custom' && noticeData.customCopy) {
+            targetUrl.searchParams.set('customCopy', noticeData.customCopy)
+        }
         if (autoPrint) targetUrl.searchParams.set('autoPrint', 'true')
 
         window.open(targetUrl.toString(), '_blank')
@@ -518,6 +536,13 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                 title: '가축·축산 농가 전용', 
                                                 desc: '신생 송아지·자돈 수양성 설사 발생 시 24시간 내 빠른 분변 정상화' 
                                             },
+                                            { 
+                                                id: 'custom', 
+                                                icon: '✍️', 
+                                                tag: '직접 입력',
+                                                title: '우리 매장 맞춤 카피', 
+                                                desc: '지역 상권이나 단골 고객 맞춤형으로 원하는 메인 문구를 직접 자유롭게 작성' 
+                                            },
                                         ].map(opt => (
                                             <button
                                                 key={opt.id}
@@ -548,6 +573,31 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                             </button>
                                         ))}
                                     </div>
+
+                                    {/* 사용자 정의 카피 선택 시 전체 3줄 한 번에 입력하는 텍스트에어리어 */}
+                                    {noticeData.theme === 'custom' && (
+                                        <div className="mt-3 p-3 bg-amber-50/70 border border-amber-200 rounded-xl space-y-2 animate-fadeIn">
+                                            <div className="flex items-center justify-between">
+                                                <label className="text-[11px] font-black text-amber-950 flex items-center gap-1">
+                                                    <span>✍️</span>
+                                                    <span>전체 카피 직접 입력 (상단뱃지 | 서브설명 | 메인강조)</span>
+                                                </label>
+                                                <span className="text-[10px] font-bold text-amber-700">
+                                                    구분자: <code className="bg-amber-100 px-1 py-0.5 rounded text-amber-900 font-black">|</code> (또는 줄바꿈)
+                                                </span>
+                                            </div>
+                                            <textarea
+                                                rows={3}
+                                                value={noticeData.customCopy}
+                                                onChange={(e) => setNoticeData(prev => ({ ...prev, customCopy: e.target.value }))}
+                                                placeholder="예: ✨ 우리 동네 1등 상비약 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활명수 파보겔로 빠르게 활력을 되찾아주세요"
+                                                className="w-full px-3 py-2 bg-white border border-amber-300 rounded-lg text-xs font-bold text-slate-800 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-500 placeholder:font-normal placeholder:text-slate-400"
+                                            />
+                                            <div className="flex flex-wrap items-center justify-between text-[10px] text-amber-800/90 pt-0.5">
+                                                <span>💡 <b>입력 팁:</b> `상단 뱃지문구 | 서브 헤드라인 | 메인 굵은 글씨` 순으로 입력하시면 A4에 최적 분할 렌더링됩니다</span>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="flex items-center gap-3 pt-1">
