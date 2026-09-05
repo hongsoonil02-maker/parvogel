@@ -125,19 +125,27 @@ class ParvogelContentEnricher:
         return json.loads(content)
 
     def _generate_template_narrative(self, theme: Dict[str, Any], date_str: str) -> Dict[str, Any]:
-        """고품질 수의학 기반 결정론적 템플릿"""
+        """고품질 수의학 기반 결정론적 템플릿 (랜딩 4대 메인 카피 3줄 완벽 연동)"""
         theme_id = theme.get("theme_id", "emergency")
         scene = theme.get("focus_scene", "Day 1")
         video_file = theme.get("video_file", "parvogel_case_01_seizure.mp4")
+        badge = theme.get("badge", "✨ 7일간의 기적 임상 실화")
+        l1 = theme.get("headline_line1", "설사·혈변으로 곡기 끊겨 쓰러졌던 아이")
+        l2 = theme.get("headline_line2", "단 3일 만에 밥그릇 싹싹 비워내고")
+        l3 = theme.get("headline_line3", "다시 건강하게 네 발로 서서 꼬리 칩니다")
 
         return {
             "date": date_str,
             "theme_id": theme_id,
-            "headline": theme.get("headline_core"),
-            "subheadline": "쓰러진 55일령 강아지의 기적의 7일 회복 실화 — 1초 펌프로 입안에 꿀꺽!",
-            "pain_point": "급성 장염과 심한 설사로 탈진해 쓰러진 아기 강아지, 억지로 가루약을 먹이려다 거품을 물고 거부할 때 보호자의 가슴은 무너져 내립니다.",
-            "clinical_solution": "파보겔은 1-deoxinojirimycin과 특허균주(Patent No. 2011B0042620.8) 복합 성분이 무너진 장 점막에 즉시 물리적 보호막을 입히고 체내 독소를 빠르게 흡착 배출합니다.",
-            "video_highlight": f"하남 사랑동물병원 김동준 원장님의 실제 진료실 직캠 ({scene}): 주사기 없이 한 손으로 펌핑하여 입가에 대주자 스트레스 없이 삼키고 스스로 일어선 감동의 순간.",
+            "badge": badge,
+            "line1": l1,
+            "line2": l2,
+            "line3": l3,
+            "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
+            "subheadline": f"{badge} — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임!",
+            "pain_point": "급성 장염과 심한 설사로 탈진해 쓰러진 아기 강아지, 억지로 가루약이나 주사기를 들이대다 거품을 물고 거부할 때 보호자의 가슴은 무너져 내립니다.",
+            "clinical_solution": "하남 사랑동물병원 김동준 원장 단독 처방 케이스: 첫 48시간 기타 약물과 수액을 일체 배제하고 오직 파보겔 단독 투약만으로 장 점막 물리적 코팅 및 독소 흡착 배출을 이끌어냈습니다.",
+            "video_highlight": f"하남 사랑동물병원 김동준 원장님의 실제 진료실 직캠 ({scene}): 주사기 없이 한 손으로 펌핑하여 입가에 대주자 스트레스 없이 핥아먹고 스스로 일어선 감동의 순간.",
             "cta_text": "골든타임을 놓치지 마세요! 네이버 스마트스토어(펫츄리) 및 쿠팡 로켓배송으로 내일 아침 즉시 받아보실 수 있습니다.",
             "video_file": video_file,
             "source": "Clinical-Verified-Template"

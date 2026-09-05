@@ -1,52 +1,134 @@
 {
+  "rotating_hero_copies": {
+    "copy-a": {
+      "id": "copy-a",
+      "badge": "✨ 7일간의 기적 임상 실화",
+      "line1": "설사·혈변으로 곡기 끊겨 쓰러졌던 아이",
+      "line2": "단 3일 만에 밥그릇 싹싹 비워내고",
+      "line3": "다시 건강하게 네 발로 서서 꼬리 칩니다",
+      "sub1": "수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임",
+      "sub2": "하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출"
+    },
+    "copy-b": {
+      "id": "copy-b",
+      "badge": "🚨 24시간 안심 응급 상비약",
+      "line1": "병원 문 닫은 새벽 갑작스런 구토와 물설사",
+      "line2": "바들바들 떨며 아이 숨이 잦아들 때",
+      "line3": "엄마가 건넬 수 있는 가장 빠른 1초",
+      "sub1": "주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔",
+      "sub2": "아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정"
+    },
+    "copy-c": {
+      "id": "copy-c",
+      "badge": "🩺 수의사 진료실 고백 실화",
+      "line1": "안락사 위기의 55일령 아기 푸들",
+      "line2": "수액도 독한 약도 일체 없이",
+      "line3": "오직 파보겔 하나로 기적처럼 일어섰습니다",
+      "sub1": "첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복",
+      "sub2": "하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증"
+    },
+    "copy-d": {
+      "id": "copy-d",
+      "badge": "🌿 스트레스 0% 간편 급여",
+      "line1": "약 먹이기 전쟁은 이제 끝내세요",
+      "line2": "주사기 거품 토해냄 없이 1초 만에 쏙",
+      "line3": "아이가 스스로 맛있게 핥아먹고 살아납니다",
+      "sub1": "가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔",
+      "sub2": "초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게"
+    },
+    "livestock": {
+      "id": "livestock",
+      "badge": "🐮 축산·농가 안심 솔루션",
+      "line1": "신생 송아지·자돈 급성 수양성 설사",
+      "line2": "24시간 내 빠른 분변 정상화",
+      "line3": "한우·낙농 농가 폐사율 80% 저감 솔루션",
+      "sub1": "엠오바이오(MOBIO) 전국 대리점 공급 대용량 500ml 원터치 펌프",
+      "sub2": "분말제제 보정 스트레스 없이 구강 내 3초 직투여로 농가 생산성 극대화"
+    }
+  },
   "schedule": {
     "Monday": {
       "theme_id": "emergency_golden_time",
+      "copy_id": "copy-b",
       "target": "b2c_emergency",
-      "headline_core": "새벽에 아기 강아지가 피똥 싸고 쓰러졌을 때: 골든타임 72시간 대처법",
+      "badge": "🚨 24시간 안심 응급 상비약",
+      "headline_line1": "병원 문 닫은 새벽 갑작스런 구토와 물설사",
+      "headline_line2": "바들바들 떨며 아이 숨이 잦아들 때",
+      "headline_line3": "엄마가 건넬 수 있는 가장 빠른 1초",
+      "headline_core": "병원 문 닫은 새벽 갑작스런 구토와 물설사, 엄마가 건넬 수 있는 가장 빠른 1초",
       "focus_scene": "Day 1 (김동준 원장 초진 응급 다큐)",
-      "video_file": "short_story_final.mp4"
+      "video_file": "parvogel_case_01_seizure.mp4"
     },
     "Tuesday": {
       "theme_id": "stress_free_pumping",
+      "copy_id": "copy-d",
       "target": "b2c_caregiver",
-      "headline_core": "주사기 거부하는 강아지, 입가에 대고 1초만 누르세요 (스트레스 제로 급여)",
-      "focus_scene": "Day 2 (김동준 원장 진료실 다큐 풀버전)",
-      "video_file": "short_story_final.mp4"
+      "badge": "🌿 스트레스 0% 간편 급여",
+      "headline_line1": "약 먹이기 전쟁은 이제 끝내세요",
+      "headline_line2": "주사기 거품 토해냄 없이 1초 만에 쏙",
+      "headline_line3": "아이가 스스로 맛있게 핥아먹고 살아납니다",
+      "headline_core": "약 먹이기 전쟁은 이제 끝! 주사기 없이 입가에 1초 펌프 누르면 꿀꺽",
+      "focus_scene": "Day 2 (김동준 원장 1초 펌프 급여 다큐)",
+      "video_file": "parvogel_case_02_lethargy.mp4"
     },
     "Wednesday": {
       "theme_id": "miraculous_standing",
+      "copy_id": "copy-c",
       "target": "b2c_viral",
-      "headline_core": "안락사 위기였던 0.6kg 아기 푸들이 스스로 네 발로 일어선 순간",
+      "badge": "🩺 수의사 진료실 고백 실화",
+      "headline_line1": "안락사 위기의 55일령 아기 푸들",
+      "headline_line2": "수액도 독한 약도 일체 없이",
+      "headline_line3": "오직 파보겔 하나로 기적처럼 일어섰습니다",
+      "headline_core": "안락사 위기 55일령 아기 강아지, 수액 없이 오직 파보겔 단독으로 다시 일어선 순간",
       "focus_scene": "Day 2~3 (자가 기립 다큐 하이라이트)",
-      "video_file": "short_story_final.mp4"
+      "video_file": "parvogel_case_03_standing.mp4"
     },
     "Thursday": {
       "theme_id": "clinical_science",
+      "copy_id": "copy-c",
       "target": "b2b_veterinary",
-      "headline_core": "장 점막 물리적 코팅과 1-deoxinojirimycin: 파보·급성 장염 임상 치료 메커니즘",
+      "badge": "🩺 수의사 진료실 고백 실화",
+      "headline_line1": "첫 48시간 기타 약물·수액 일체 배제",
+      "headline_line2": "1-deoxinojirimycin 특허균주 복합제",
+      "headline_line3": "장 점막 물리적 실크 코팅과 독소 흡착 배출",
+      "headline_core": "첫 48시간 수액 배제! 오직 파보겔 단독 투약만으로 입증된 약리적 효능과 신뢰",
       "focus_scene": "Day 3 (김동준 원장 신경계 안정 진료대 영상)",
       "video_file": "김동준원장_동영상 4-1.mp4"
     },
     "Friday": {
       "theme_id": "mukbang_recovery",
+      "copy_id": "copy-a",
       "target": "b2c_viral",
+      "badge": "✨ 7일간의 기적 임상 실화",
+      "headline_line1": "설사·혈변으로 곡기 끊겨 쓰러졌던 아이",
+      "headline_line2": "단 3일 만에 밥그릇 싹싹 비워내고",
+      "headline_line3": "다시 건강하게 네 발로 서서 꼬리 칩니다",
       "headline_core": "곡기 끊었던 강아지가 3일 만에 그릇까지 핥아먹은 기적의 식욕 부활",
       "focus_scene": "Day 4 (다큐 먹방 완식 하이라이트)",
-      "video_file": "short_story_final.mp4"
+      "video_file": "parvogel_case_05_eating.mp4"
     },
     "Saturday": {
       "theme_id": "complete_cure",
+      "copy_id": "copy-a",
       "target": "b2c_emotional",
+      "badge": "✨ 7일간의 기적 임상 실화",
+      "headline_line1": "쓰러졌던 아기가 7일 만에 기적의 퇴원",
+      "headline_line2": "네 발로 당당히 서서 꼬리 치며",
+      "headline_line3": "사랑하는 가족의 품으로 돌아갑니다",
       "headline_core": "쓰러진 55일령 강아지의 기적의 7일 회복 실화: 씩씩하게 걸어서 퇴원합니다",
       "focus_scene": "Day 6~7 (김동준 원장 진료대 보행 완치 퇴원)",
       "video_file": "김동준원장_동영상 6-1.mp4"
     },
     "Sunday": {
       "theme_id": "livestock_special",
+      "copy_id": "livestock",
       "target": "b2b_livestock",
+      "badge": "🐮 축산·농가 안심 솔루션",
+      "headline_line1": "신생 송아지·자돈 급성 수양성 설사",
+      "headline_line2": "24시간 내 빠른 분변 정상화",
+      "headline_line3": "한우·낙농 농가 폐사율 80% 저감 솔루션",
       "headline_core": "축산농가 송아지·자돈 바이러스성 설사 폐사율 제로 도전 (엠오바이오 총판 연계)",
-      "focus_scene": "김동준 원장 7일 임상 완치 풀스토리 다큐",
+      "focus_scene": "산업동물 대용량 500ml 원터치 급여 솔루션",
       "video_file": "short_story_final.mp4"
     }
   }
