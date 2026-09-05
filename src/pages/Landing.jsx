@@ -56,13 +56,14 @@ const Landing = () => {
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
 
-    // 보호자 공감 4대 메인 카피 로테이션 (12초 주기 자동 전환 및 일자별 기본값, 수동 인디케이터 지원)
+    // 보호자 공감 4대 메인 카피 로테이션 (3줄 한글 완벽 가운데 맞춤, 12초 주기 자동 전환)
     const petHeroCopies = useMemo(() => [
         {
             id: 'copy-a',
             badge: '✨ 7일간의 기적 임상 실화',
             headlineLine1: '설사·혈변으로 곡기 끊겨 쓰러졌던 아이',
-            headlineLine2: '단 3일 만에 밥그릇 싹싹 비우고 다시 꼬리 칩니다',
+            headlineLine2: '단 3일 만에 밥그릇 싹싹 비워내고',
+            headlineLine3: '다시 건강하게 네 발로 서서 꼬리 칩니다',
             sub1: '수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임',
             sub2: '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출'
         },
@@ -70,7 +71,8 @@ const Landing = () => {
             id: 'copy-b',
             badge: '🚨 24시간 안심 응급 상비약',
             headlineLine1: '병원 문 닫은 새벽 갑작스런 구토와 물설사',
-            headlineLine2: '아이 숨이 잦아들 때 엄마가 건넬 수 있는 가장 빠른 1초',
+            headlineLine2: '바들바들 떨며 아이 숨이 잦아들 때',
+            headlineLine3: '엄마가 건넬 수 있는 가장 빠른 1초',
             sub1: '주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔',
             sub2: '아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정'
         },
@@ -78,7 +80,8 @@ const Landing = () => {
             id: 'copy-c',
             badge: '🩺 수의사 진료실 고백 실화',
             headlineLine1: '안락사까지 고민했던 위기의 55일령 아기 강아지',
-            headlineLine2: '수액 한 방울 없이 오직 파보겔 하나로 다시 일어섰습니다',
+            headlineLine2: '핏줄에 꽂는 수액 한 방울 없이',
+            headlineLine3: '오직 파보겔 하나로 기적처럼 다시 일어섰습니다',
             sub1: '첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복',
             sub2: '하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증'
         },
@@ -86,7 +89,8 @@ const Landing = () => {
             id: 'copy-d',
             badge: '🌿 스트레스 0% 간편 급여',
             headlineLine1: '약 먹이기 전쟁은 이제 끝내세요',
-            headlineLine2: '아픈 아이에게 1초 만에 쏙 스스로 핥아먹고 살아납니다',
+            headlineLine2: '주사기 거품 토해냄 없이 1초 만에 쏙',
+            headlineLine3: '아이가 스스로 맛있게 핥아먹고 살아납니다',
             sub1: '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔',
             sub2: '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게'
         }
@@ -673,10 +677,11 @@ const Landing = () => {
                                     <span className="text-[10px] text-blue-400 font-mono">({currentCopyIdx + 1}/{petHeroCopies.length})</span>
                                 </div>
 
-                                <h1 className={`text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-tight text-center mb-5 break-keep text-slate-900`}>
-                                    <span className="block text-slate-800">{currentPetCopy.headlineLine1}</span>
+                                <h1 className={`text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-snug sm:leading-tight text-center mb-5 break-keep text-slate-900`}>
+                                    <span className="block text-slate-700">{currentPetCopy.headlineLine1}</span>
+                                    <span className="block mt-1 sm:mt-1.5 text-slate-900">{currentPetCopy.headlineLine2}</span>
                                     <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-amber-600">
-                                        {currentPetCopy.headlineLine2}
+                                        {currentPetCopy.headlineLine3}
                                     </span>
                                 </h1>
 
