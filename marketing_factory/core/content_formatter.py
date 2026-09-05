@@ -312,27 +312,40 @@ Learn more about Parvo Gel veterinary formulation & clinical data:
 #VeterinaryMedicine #CanineEnteritis #Parvovirus #ClinicalCase #AnimalHealth #ParvoGel"""
         return {"content": text.strip(), "links": links}
 
-    # 8. 전국 동물병원 / 유통대리점 콜드 DM
+    # 8. 전국 동물약국 / 유통대리점 B2B 모바일 메시지 (LMS / 카카오 알림톡 최적화)
     def _format_cold_dm(self, n: Dict[str, Any]) -> Dict[str, Any]:
-        links = self._build_utm_links("clinic_dm")
-        letter = f"""원장님 안녕하십니까, 한국아그로 수의사업부입니다.
+        links = self._build_utm_links("pharmacy_b2b")
+        badge = n.get('badge', '✨ 7일간의 기적 임상 실화')
+        l1 = n.get('line1', '설사·혈변으로 곡기 끊겨 쓰러졌던 아이')
+        l2 = n.get('line2', '단 3일 만에 밥그릇 싹싹 비워내고')
+        l3 = n.get('line3', '다시 건강하게 네 발로 서서 꼬리 칩니다')
 
-최근 어린 환축들의 급성 장염 및 파보 바이러스 치료 시, 극심한 투약 스트레스와 가루약 거부로 처방에 애로를 겪으시는 원장님들이 많으십니다.
+        letter = f"""[약사님 전용 B2B 안내] 동물용 1초 펌프 장 상비약 '파보겔' 취급 안내
 
-하남 사랑동물병원 김동준 원장님께서 전신 발작 증세를 보인 55일령 푸들 환축에게 주사기 없이 [파보겔 1초 원터치 펌프]로 처치하여, 단 7일 만에 완치 퇴원시킨 실제 무편집 진료실 임상 직캠을 원장님께 공유해 드리고자 합니다.
+약사님 안녕하십니까, 한국아그로 펫케어사업부입니다.
 
-🔬 [학술 및 성분 데이터]:
-- 1-deoxinojirimycin (DNJ) + Patent No. 2011B0042620.8 (Bacillus subtilis MORI)
-- 초미세 몬모릴로나이트 장 점막 물리적 보호막 코팅
-- 정식등록 보조사료
+최근 어린 반려동물의 급성 장염·설사로 내방한 보호자분들 중, 가루약 거부나 주사기 투약 스트레스로 복약 지도에 애로를 겪으시는 약사님들이 많으십니다.
 
-📹 김동준 원장님 7일간의 무편집 직캠 아카이브:
-{links['landing']}#parvogel-clinical-doc
+이에 보호자가 1초 만에 스트레스 없이 급여할 수 있는 [원터치 펌프형 동물용 상비약 파보겔]을 안내해 드립니다.
 
-병원 내 샘플 신청이나 공급 단가 문의를 원하시면 본 메시지에 회신 주시거나 담당자 번호로 연락 부탁드립니다.
-감사합니다.
+📌 [{badge}]
+- {l1}
+- {l2}
+- {l3}
 
-한국아그로 수의헬스케어팀 배상"""
+💡 [약사님 복약상담 특장점]:
+1. [스트레스 0% 1초 펌프]: 주사기·바늘 없이 입가에 대고 1초 펌핑 시 스스로 완식!
+2. [과학적 특허 조성물]: 1-deoxinojirimycin (DNJ) + 특허 제2011B0042620.8호 복합제
+3. [물리적 점막 보호]: 초미세 몬모릴로나이트 장 점막 즉각 코팅 & 독소 흡착 배출
+4. [매장 맞춤 A4 알림판 & POP 무료 지원]: 약국 전용 안내문 즉시 인쇄 지원
+
+📹 55일령 아기 푸들 7일 회복 무편집 직캠 & 제품 상세:
+{links['landing']}
+
+📦 [약국 초도 물량 및 도매 단가 안내]:
+본 메시지 회신 또는 고객센터(031-321-6562 / 010-5407-5708)로 문의주시면 약국 공급가 및 무료 POP 지원 패키지를 즉시 발송해 드립니다.
+
+한국아그로 펫헬스케어팀 드림"""
         return {"content": letter.strip(), "links": links}
 
 
