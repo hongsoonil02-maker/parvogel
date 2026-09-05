@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // 기본 파트너 인증 코드 (실제 운영 시 여러 유효 코드 목록 또는 접두어 검증 가능)
