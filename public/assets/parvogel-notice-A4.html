@@ -772,17 +772,26 @@
       </div>
     </div>
 
-    <!-- 3줄: 메인 카피 테마 선택 (반려동물 / 축산농가 / 통합형) -->
-    <div style="display:flex; align-items:center; gap:12px; background:#eff6ff; padding:6px 12px; border-radius:8px; border:1px solid #bfdbfe;">
+    <!-- 3줄: 메인 카피 테마 선택 (랜딩페이지 4대 카피 + 축산/통합) -->
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; background:#eff6ff; padding:7px 12px; border-radius:8px; border:1px solid #bfdbfe;">
       <span style="font-size:12px; font-weight:900; color:#002b90; white-space:nowrap;">🎯 메인 카피 선택:</span>
-      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
-        <input type="radio" name="theme_opt" value="all" checked onchange="switchTheme('all')"> 🐾 통합형 (개·고양이·송아지 전축종 비상 상비약)
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="copy-a" onchange="switchTheme('copy-a')"> ✨ 임상 실화 (3일 회복)
       </label>
-      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
-        <input type="radio" name="theme_opt" value="livestock" onchange="switchTheme('livestock')"> 🐮 가축·농가형 (설사로 고생하는 송아지·어린 가축)
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="copy-b" onchange="switchTheme('copy-b')"> 🚨 새벽 응급 (골든타임 1초)
       </label>
-      <label style="font-size:12px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
-        <input type="radio" name="theme_opt" value="pet" onchange="switchTheme('pet')"> 🐶🐱 반려동물형 (파보·급성장염·혈변 1초 펌프 상비약)
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="copy-c" onchange="switchTheme('copy-c')"> 🩺 수의사 고백 (단독 처방)
+      </label>
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="copy-d" onchange="switchTheme('copy-d')"> 🌿 간편 급여 (1초 쏙)
+      </label>
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="all" checked onchange="switchTheme('all')"> 🐾 통합형 (전축종 상비약)
+      </label>
+      <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
+        <input type="radio" name="theme_opt" value="livestock" onchange="switchTheme('livestock')"> 🐮 가축·농가형 (송아지 설사)
       </label>
     </div>
   </div>
@@ -1122,7 +1131,39 @@ function switchTheme(mode) {
   var sText = document.getElementById('heroSubText');
   var mText = document.getElementById('heroMainText');
 
-  if (mode === 'livestock') {
+  if (mode === 'copy-a') {
+    // ✨ 7일간의 기적 임상 실화
+    if (bText) bText.textContent = '7일간의 기적 임상 실화 · 몬스멕타 파보겔 단독 처방 케이스';
+    if (sText) sText.textContent = '설사·혈변으로 곡기 끊겨 쓰러졌던 아이';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">단 3일 만에 밥그릇 싹싹 비워내고</span>' +
+                        '<span class="hero-strong">다시 건강하게 네 발로 서서 꼬리 칩니다</span>';
+    }
+  } else if (mode === 'copy-b') {
+    // 🚨 24시간 안심 응급 상비약
+    if (bText) bText.textContent = '24시간 안심 응급 상비약 · 병원 문 닫은 야간 골든타임';
+    if (sText) sText.textContent = '병원 문 닫은 새벽 갑작스런 구토와 물설사';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">바들바들 떨며 아이 숨이 잦아들 때</span>' +
+                        '<span class="hero-strong">엄마가 건넬 수 있는 가장 빠른 1초</span>';
+    }
+  } else if (mode === 'copy-c') {
+    // 🩺 수의사 진료실 고백 실화
+    if (bText) bText.textContent = '수의사 진료실 고백 실화 · 하남 사랑동물병원 김동준 원장';
+    if (sText) sText.textContent = '안락사 위기의 55일령 아기 푸들';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">수액도 독한 약도 일체 없이</span>' +
+                        '<span class="hero-strong">오직 파보겔 하나로 기적처럼 일어섰습니다</span>';
+    }
+  } else if (mode === 'copy-d') {
+    // 🌿 스트레스 0% 간편 급여
+    if (bText) bText.textContent = '스트레스 0% 간편 급여 · 약 먹이기 전쟁 해방';
+    if (sText) sText.textContent = '약 먹이기 전쟁은 이제 끝내세요';
+    if (mText) {
+      mText.innerHTML = '<span class="hero-product-name">주사기 거품 토해냄 없이 1초 만에 쏙</span>' +
+                        '<span class="hero-strong">아이가 스스로 맛있게 핥아먹고 살아납니다</span>';
+    }
+  } else if (mode === 'livestock') {
     // 🐮 가축·농가 중심 카피
     if (bText) bText.textContent = '설사로 고생하는 송아지·어린 가축을 위한 비상 상비약';
     if (sText) sText.textContent = '신생 송아지·자돈 수양성 설사 & 분변 이상 시';

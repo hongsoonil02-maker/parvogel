@@ -463,31 +463,88 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                 </div>
 
                                 {/* 메인 카피 테마 선택기 */}
-                                <div className="bg-white p-3 rounded-xl border border-blue-200 space-y-1.5">
-                                    <span className="block text-[11px] font-black text-blue-950">
-                                        🎯 매장 맞춤 메인 카피 선택 (매장 주요 고객층에 맞춤 설정)
-                                    </span>
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-xs">
+                                <div className="bg-white p-3.5 rounded-xl border border-blue-200 space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <span className="block text-[11.5px] font-black text-blue-950 flex items-center gap-1">
+                                            <span>🎯</span>
+                                            <span>A4 알림판 메인 카피 테마 선택 (랜딩페이지 4대 카피 연동)</span>
+                                        </span>
+                                        <span className="text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+                                            매장 타겟 맞춤 선택
+                                        </span>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                                         {[
-                                            { id: 'all', icon: '🐾', title: '통합형', desc: '개·고양이·송아지 전축종' },
-                                            { id: 'livestock', icon: '🐮', title: '가축·농가형', desc: '송아지·어린가축 설사 해결' },
-                                            { id: 'pet', icon: '🐶🐱', title: '반려동물형', desc: '파보·급성장염 1초 펌프' },
+                                            { 
+                                                id: 'copy-a', 
+                                                icon: '✨', 
+                                                tag: '임상 실화',
+                                                title: '7일간의 기적 임상 실화', 
+                                                desc: '단 3일 만에 밥그릇 싹싹 비워내고 다시 건강하게 네 발로 일어섭니다' 
+                                            },
+                                            { 
+                                                id: 'copy-b', 
+                                                icon: '🚨', 
+                                                tag: '응급 상비약',
+                                                title: '24시간 안심 응급 상비약', 
+                                                desc: '병원 문 닫은 새벽 갑작스런 구토·물설사, 엄마가 건넬 수 있는 가장 빠른 1초' 
+                                            },
+                                            { 
+                                                id: 'copy-c', 
+                                                icon: '🩺', 
+                                                tag: '수의사 고백',
+                                                title: '수의사 진료실 고백 실화', 
+                                                desc: '안락사 위기 55일령 아기 푸들, 수액·독한 약 없이 오직 파보겔 단독 회복' 
+                                            },
+                                            { 
+                                                id: 'copy-d', 
+                                                icon: '🌿', 
+                                                tag: '간편 급여',
+                                                title: '스트레스 0% 간편 급여', 
+                                                desc: '약 먹이기 전쟁 끝, 주사기 거품 토해냄 없이 1초 만에 맛있게 핥아먹습니다' 
+                                            },
+                                            { 
+                                                id: 'all', 
+                                                icon: '🐾', 
+                                                tag: '전축종 추천',
+                                                title: '통합형 (반려동물 & 가축)', 
+                                                desc: '개·고양이부터 송아지까지, 토하고 설사할 때 동물용 활명수 한 병이면 든든합니다' 
+                                            },
+                                            { 
+                                                id: 'livestock', 
+                                                icon: '🐮', 
+                                                tag: '축산 전문',
+                                                title: '가축·축산 농가 전용', 
+                                                desc: '신생 송아지·자돈 수양성 설사 발생 시 24시간 내 빠른 분변 정상화' 
+                                            },
                                         ].map(opt => (
                                             <button
                                                 key={opt.id}
                                                 type="button"
                                                 onClick={() => setNoticeData(prev => ({ ...prev, theme: opt.id }))}
-                                                className={`p-2 rounded-lg border text-left transition-all ${
+                                                className={`p-2.5 rounded-xl border text-left transition-all ${
                                                     noticeData.theme === opt.id
-                                                        ? 'border-blue-600 bg-blue-50/80 text-blue-950 shadow-sm ring-1 ring-blue-600'
-                                                        : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white'
+                                                        ? 'border-blue-600 bg-blue-50/90 text-blue-950 shadow-sm ring-2 ring-blue-600'
+                                                        : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white hover:bg-slate-50'
                                                 }`}
                                             >
-                                                <div className="font-bold text-[11px] flex items-center gap-1">
-                                                    <span>{opt.icon}</span>
-                                                    <span>{opt.title}</span>
+                                                <div className="flex items-center justify-between mb-0.5">
+                                                    <div className="font-black text-xs text-slate-900 flex items-center gap-1.5">
+                                                        <span>{opt.icon}</span>
+                                                        <span>{opt.title}</span>
+                                                    </div>
+                                                    <span className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded ${
+                                                        noticeData.theme === opt.id 
+                                                            ? 'bg-blue-600 text-white' 
+                                                            : 'bg-slate-100 text-slate-600'
+                                                    }`}>
+                                                        {opt.tag}
+                                                    </span>
                                                 </div>
-                                                <div className="text-[10px] text-slate-500 mt-0.5 leading-tight">{opt.desc}</div>
+                                                <div className="text-[10.5px] text-slate-500 mt-1 leading-snug line-clamp-2">
+                                                    {opt.desc}
+                                                </div>
                                             </button>
                                         ))}
                                     </div>
