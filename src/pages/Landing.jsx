@@ -830,7 +830,7 @@ const Landing = () => {
                                         <span className="text-xs text-amber-100 font-bold">선착순 무료 지원</span>
                                     </div>
                                     <h3 className="text-base sm:text-lg font-black tracking-tight mt-0.5">
-                                        파보겔(200ml) 정품 1병 무료 체험 & 도매 특가 신청
+                                        파보겔 정품 1병 무료 체험 & 도매 특가 신청
                                     </h3>
                                     <p className="text-xs text-amber-100 mt-0.5">
                                         배송비 전액 본사 부담 · 주소만 남겨주시면 당일 우체국 택배 발송
