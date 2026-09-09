@@ -410,12 +410,9 @@ const Landing = () => {
     const primaryShadow = 'shadow-primary-500/25'
 
     const navItems = [
-        { id: 'about', label: t('nav.about') },
-        { id: 'animal-guide', label: '축종별처방' },
-        { id: 'features', label: t('nav.features') },
-        { id: 'clinical', label: t('nav.clinical') },
+        { id: 'features', label: '특징·임상' },
+        { id: 'testimonials', label: '실제후기' },
         { id: 'faq', label: '자주묻는질문' },
-        { id: 'order', label: t('nav.order') },
     ]
 
     const features = [
@@ -539,13 +536,13 @@ const Landing = () => {
                             </span>
                         </div>
 
-                        {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-2 lg:gap-3">
+                        {/* Desktop Nav - Clean & Focused */}
+                        <div className="hidden md:flex items-center gap-4 lg:gap-6">
                             {navItems.map(item => (
                                 <button
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
-                                    className={`relative text-[13px] lg:text-sm font-semibold transition-colors px-1 ${activeSection === item.id
+                                    className={`relative text-sm font-semibold transition-colors px-1 ${activeSection === item.id
                                         ? primaryText
                                         : 'text-gray-600 hover:text-gray-900'
                                         }`}
@@ -556,34 +553,31 @@ const Landing = () => {
                                     )}
                                 </button>
                             ))}
-                            <Link to="/blog" className="relative text-[13px] lg:text-sm font-semibold transition-colors px-1 text-gray-600 hover:text-gray-900">
-                                전문가 칼럼
+                            <Link to="/blog" className="relative text-sm font-semibold transition-colors px-1 text-gray-600 hover:text-gray-900">
+                                칼럼
                             </Link>
 
-                            {/* Language Toggle - Desktop Dropdown */}
+                            {/* Language Toggle - Desktop Compact */}
                             <div className="relative" ref={langMenuRef}>
                                 <button
                                     onClick={() => setIsLangOpen(!isLangOpen)}
-                                    aria-label="언어 선택 (Select Language)"
+                                    aria-label="Select Language"
                                     aria-haspopup="listbox"
                                     aria-expanded={isLangOpen}
-                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 rounded-full border border-gray-200 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                    className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
                                 >
-                                    <span className="text-xs">{languageOptions.find(o => o.code === i18n.language)?.flag || '🌐'}</span>
-                                    <span className="text-xs font-bold text-gray-700">{languageOptions.find(o => o.code === i18n.language)?.label || i18n.language.toUpperCase()}</span>
-                                    <svg className={`w-3 h-3 text-gray-500 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
+                                    <span>{languageOptions.find(o => o.code === i18n.language)?.flag || '🌐'}</span>
+                                    <span>{(languageOptions.find(o => o.code === i18n.language)?.code || 'KO').toUpperCase()}</span>
                                 </button>
-                                <div className={`absolute end-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 transition-all duration-200 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-                                    <div className="py-1 max-h-72 overflow-y-auto" role="listbox">
+                                <div className={`absolute end-0 mt-2 w-40 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 transition-all duration-200 ${isLangOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                                    <div className="py-1 max-h-64 overflow-y-auto" role="listbox">
                                         {languageOptions.map((opt) => (
                                             <button
                                                 key={opt.code}
                                                 onClick={() => { i18n.changeLanguage(opt.code); setIsLangOpen(false); }}
                                                 role="option"
                                                 aria-selected={i18n.language === opt.code}
-                                                className={`w-full text-start px-3.5 py-2 text-xs flex items-center justify-between hover:bg-gray-100 transition-colors ${i18n.language === opt.code
+                                                className={`w-full text-start px-3 py-1.5 text-xs flex items-center justify-between hover:bg-gray-100 transition-colors ${i18n.language === opt.code
                                                     ? `${primaryBg} text-white font-bold`
                                                     : 'text-gray-700'
                                                     }`}
@@ -592,14 +586,13 @@ const Landing = () => {
                                                     <span>{opt.flag}</span>
                                                     <span>{opt.label}</span>
                                                 </span>
-                                                <span className={`text-[10px] uppercase font-mono ${i18n.language === opt.code ? 'text-white/80' : 'text-gray-400'}`}>{opt.code}</span>
                                             </button>
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
-                            {/* 무료 샘플 1병 신청 강조 버튼 */}
+                            {/* 원클릭 무료 샘플 1병 신청 직관적 메인 버튼 */}
                             <button
                                 type="button"
                                 onClick={() => {
@@ -608,109 +601,97 @@ const Landing = () => {
                                         requestType: 'sample_petshop',
                                         product: 'parvogel-200ml',
                                         quantity: 1,
-                                        message: '[상단 헤더 클릭] 펫샵/브리더 본품 1병 무료 샘플 신청'
+                                        message: '[헤더 원클릭] 펫샵/브리더 정품 1병 무료 샘플 신청'
                                     }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white hover:from-amber-600 hover:to-orange-600 shadow-md hover:shadow-lg transition-all transform hover:scale-105"
-                                title="펫샵·브리더 전용 파보겔 본품 1병 무료체험"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-md hover:shadow-orange-400/40 hover:scale-105 active:scale-95 transition-all"
                             >
-                                <span className="animate-bounce">🎁</span>
-                                <span>본품 1병 무료신청</span>
-                            </button>
-
-                            {/* B2B 취급점·도매 파트너스 전용 버튼 */}
-                            <button
-                                type="button"
-                                onClick={() => setIsPartnerModalOpen(true)}
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-blue-900 to-indigo-900 text-white hover:from-blue-800 hover:to-indigo-800 shadow-sm transition-all border border-blue-700/50"
-                                title="도매점·동물병원·펫샵 사업자 전용 맞춤 알림판 및 POP 보드판 지원"
-                            >
-                                <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-                                <span>{t('heroCta.partnerCenter', '취급점·도매 파트너스')}</span>
-                            </button>
-
-                            <button
-                                onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className={`btn-primary ${primaryBg} ${primaryHover} text-sm px-6 py-2.5`}
-                            >
-                                {t('nav.order')}
+                                <span className="text-base">🎁</span>
+                                <span>정품 1병 무료체험</span>
                             </button>
                         </div>
 
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
-                            aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-                            aria-expanded={isMobileMenuOpen}
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                {isMobileMenuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
-                        </button>
+                        {/* Mobile Header Right: One-touch Sample Button + Menu Hamburger */}
+                        <div className="flex md:hidden items-center gap-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        requestType: 'sample_petshop',
+                                        product: 'parvogel-200ml',
+                                        quantity: 1,
+                                        message: '[모바일 헤더] 펫샵/브리더 정품 1병 무료 샘플 신청'
+                                    }));
+                                    setIsOrderModalOpen(true);
+                                    setIsOrderComplete(false);
+                                }}
+                                className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-sm active:scale-95 transition-transform"
+                            >
+                                <span>🎁</span>
+                                <span>1병 무료체험</span>
+                            </button>
+
+                            <button
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+                                aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                                aria-expanded={isMobileMenuOpen}
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {isMobileMenuOpen ? (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    ) : (
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                    )}
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
-                    {/* Mobile Menu */}
+                    {/* Mobile Menu Dropdown */}
                     {isMobileMenuOpen && (
-                        <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down">
+                        <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
                                 {navItems.map(item => (
                                     <button
                                         key={item.id}
                                         onClick={() => scrollToSection(item.id)}
-                                        className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-colors ${activeSection === item.id
+                                        className={`text-left px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${activeSection === item.id
                                             ? `${primaryBgLight} ${primaryText}`
-                                            : 'text-gray-600 hover:bg-gray-50'
+                                            : 'text-gray-700 hover:bg-gray-50'
                                             }`}
                                     >
                                         {item.label}
                                     </button>
                                 ))}
+                                <Link
+                                    to="/blog"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-700 hover:bg-gray-50"
+                                >
+                                    전문가 칼럼
+                                </Link>
 
-                                {/* Language Toggle - Mobile */}
-                                <div className="px-4 py-3">
-                                    <p className="text-xs font-semibold text-gray-500 mb-2">{t('nav.selectLanguage')}</p>
-                                    <div className="grid grid-cols-3 gap-1.5">
-                                        {languageOptions.map((opt) => (
+                                <div className="pt-2 border-t border-gray-100 flex items-center justify-between px-2">
+                                    <span className="text-xs font-semibold text-gray-500">언어 / Language</span>
+                                    <div className="flex gap-1">
+                                        {languageOptions.slice(0, 3).map((opt) => (
                                             <button
                                                 key={opt.code}
                                                 onClick={() => { i18n.changeLanguage(opt.code); setIsMobileMenuOpen(false); }}
-                                                className={`text-[11px] font-bold py-1.5 px-2 rounded-xl transition-all flex items-center justify-center gap-1 ${i18n.language === opt.code
-                                                    ? `${primaryBg} text-white shadow-sm font-black`
-                                                    : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
+                                                className={`text-xs px-2.5 py-1 rounded-lg font-bold ${i18n.language === opt.code
+                                                    ? `${primaryBg} text-white`
+                                                    : 'bg-gray-100 text-gray-700'
                                                     }`}
                                             >
-                                                <span>{opt.flag}</span>
-                                                <span className="truncate">{opt.label}</span>
+                                                {opt.code.toUpperCase()}
                                             </button>
                                         ))}
                                     </div>
                                 </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() => { setIsPartnerModalOpen(true); setIsMobileMenuOpen(false); }}
-                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex items-center justify-between shadow-sm mt-1"
-                                >
-                                    <span className="flex items-center gap-2">
-                                        <span>🏢</span>
-                                        <span>{t('heroCta.partnerCenter', '취급점·도매 파트너스 지원센터')}</span>
-                                    </span>
-                                    <span className="text-[10px] bg-amber-400 text-slate-950 font-extrabold px-2 py-0.5 rounded-full">{t('heroCta.partnerBadge', 'A4·보드판 무료')}</span>
-                                </button>
-
-                                <button
-                                    onClick={() => { setIsOrderModalOpen(true); setIsOrderComplete(false); setIsMobileMenuOpen(false); }}
-                                    className={`btn-primary ${primaryBg} ${primaryHover} mt-2`}
-                                >
-                                    {t('nav.order')}
-                                </button>
                             </div>
                         </div>
                     )}
