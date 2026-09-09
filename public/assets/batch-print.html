@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파보겔 펫샵 맞춤 포스터 일괄 연속 인쇄기 (Batch Print Manager)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+
+  /* 화면 전용 컨트롤 대시보드 */
+  .manager-header {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 24px 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .manager-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .manager-desc {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .manager-container {
+    max-width: 1100px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    border: 1px solid #cbd5e1;
+  }
+
+  .input-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+  .data-textarea {
+    width: 100%;
+    height: 160px;
+    padding: 14px;
+    border: 1.5px solid #94a3b8;
+    border-radius: 10px;
+    font-family: monospace, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    background: #f8fafc;
+    color: #0f172a;
+    resize: vertical;
+  }
+  .data-textarea:focus {
+    border-color: #0284c7;
+    outline: none;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-generate {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    transition: all 0.2s;
+  }
+  .btn-generate:hover {
+    background: #0369a1;
+  }
+  .btn-print-all {
+    background: #e11d48;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 99px;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
+    transition: all 0.2s;
+    display: none;
+  }
+  .btn-print-all:hover {
+    background: #be123c;
+    transform: translateY(-1px);
+  }
+  .btn-sample {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .status-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284c7;
+  }
+
+  /* 인쇄 전용 CSS (A4 연속 인쇄 절대 규격 준수) */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    body, html {
+      background: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 210mm !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    @page {
+      size: 210mm 297mm;
+      margin: 0;
+    }
+    .a4-page {
+      page-break-after: always !important;
+      page-break-inside: avoid !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      overflow: hidden !important;
+    }
+  }
+
+  /* 화면 미리보기 컨테이너 */
+  #printPagesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  /* A4 스타일 (기존 parvogel-notice-A4 규격과 1:1 일치) */
+  .a4-page {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    background: #f4f8fc;
+    box-shadow: 0 15px 45px rgba(0, 30, 100, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .color-bar {
+    height: 8px;
+    background: #00227a;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .header-wrap {
+    padding: 18px 28px 10px;
+    flex-shrink: 0;
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .store-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: #002b90;
+    letter-spacing: -0.6px;
+    line-height: 1.2;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+  .solution-badge {
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    border-radius: 99px;
+    padding: 3px 14px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #0284c7;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .header-tel {
+    font-size: 16px;
+    font-weight: 900;
+    color: #002b90;
+    letter-spacing: 0.2px;
+  }
+  .header-divider {
+    height: 1px;
+    background: #cbd5e1;
+    margin-top: 12px;
+  }
+
+  .hero-wrap {
+    text-align: center;
+    padding: 6px 28px 4px;
+    flex-shrink: 0;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffe4e6;
+    border: 1px solid #facfe7;
+    border-radius: 99px;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #be123c;
+    box-shadow: 0 1px 4px rgba(190, 18, 60, 0.08);
+  }
+  .hero-sub {
+    font-size: 17.5px;
+    font-weight: 800;
+    color: #64748b;
+    margin-top: 7px;
+    letter-spacing: -0.3px;
+  }
+  .hero-main {
+    font-size: 33px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-top: 4px;
+    letter-spacing: -0.8px;
+  }
+  .hero-product-name {
+    color: #002b90;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+  .ghost-gi {
+    display: inline-block;
+    font-size: 0.65em;
+    opacity: 0.55;
+    margin: 0 -1.5px;
+    vertical-align: 2px;
+    color: #475569;
+    font-weight: 800;
+  }
+  .hero-strong {
+    color: #e11d48;
+    display: block;
+    margin-top: 4px;
+    font-size: 31px;
+  }
+
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 10px 28px 8px;
+    flex-shrink: 0;
+  }
+  .symptom-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 9px 0 7px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 43, 144, 0.04);
+  }
+  .symptom-icon {
+    font-size: 23px;
+    line-height: 1.1;
+  }
+  .symptom-name {
+    font-size: 12px;
+    font-weight: 900;
+    color: #002b90;
+    margin-top: 3px;
+  }
+
+  .banner-wrap {
+    padding: 4px 28px 8px;
+    flex-shrink: 0;
+  }
+  .banner-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #00227a;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 14px;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 -2px 6px rgba(0, 34, 122, 0.2);
+  }
+  .banner-box {
+    background: #002b90;
+    border-radius: 0 14px 14px 14px;
+    padding: 12px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.22);
+  }
+  .banner-desc {
+    font-size: 11.5px;
+    color: #93c5fd;
+    font-weight: 700;
+  }
+  .banner-product-title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.4px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .banner-price-label {
+    background: #ffd000;
+    color: #001c7b;
+    font-size: 10.5px;
+    font-weight: 900;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .banner-price-val {
+    font-size: 32px;
+    font-weight: 900;
+    color: #ffd000;
+    letter-spacing: -0.8px;
+  }
+  .banner-price-won {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-left: 2px;
+  }
+
+  .body-grid {
+    padding: 2px 28px 8px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 14px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bottle-card {
+    background: #ffffff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 14px;
+    padding: 8px 12px 6px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+  }
+  .bottle-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+  .bottle-img {
+    max-height: 165px;
+    width: auto;
+    object-fit: contain;
+  }
+  .bottle-caption {
+    font-size: 11px;
+    font-weight: 900;
+    color: #002b90;
+    margin-top: 4px;
+  }
+
+  .safe-care-card {
+    background: #ffffff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 185px;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.08);
+  }
+  .safe-header {
+    font-size: 10.5px;
+    font-weight: 900;
+    color: #0284c7;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e0f2fe;
+    padding-bottom: 4px;
+  }
+  .safe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .safe-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    color: #1e293b;
+  }
+  .safe-item-icon {
+    font-size: 14px;
+  }
+
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ingredients-card {
+    background: #ffffff;
+    border: 1.5px solid #93c5fd;
+    border-radius: 14px;
+    padding: 10px 16px 8px;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.08);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  .card-header-title {
+    font-size: 14.5px;
+    font-weight: 900;
+    color: #002b90;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-header-badge {
+    background: #002b90;
+    color: #e0f2fe;
+    font-size: 10.5px;
+    font-weight: 800;
+    border-radius: 99px;
+    padding: 2px 10px;
+  }
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 6px 10px;
+  }
+  .ingredient-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .num-circle {
+    width: 16px;
+    height: 16px;
+    background: #002b90;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9.5px;
+    font-weight: 900;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ing-title {
+    font-size: 11px;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+  .ing-desc {
+    font-size: 8.5px;
+    color: #475569;
+    line-height: 1.25;
+    margin-top: 1px;
+  }
+
+  .effects-card {
+    background: linear-gradient(135deg, #001a6e 0%, #002b90 100%);
+    border: 1.5px solid #38bdf8;
+    border-radius: 14px;
+    padding: 10px 14px 9px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 185px;
+    box-shadow: 0 4px 14px rgba(0, 43, 144, 0.25);
+  }
+  .effects-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #fcd34d;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .effects-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .effect-sub-box {
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 8px;
+    padding: 6px 3px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .effect-sub-icon {
+    font-size: 15px;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .effect-sub-text {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+  .effect-sub-text span {
+    color: #93c5fd;
+  }
+
+  .effects-bottom-row {
+    border-top: 1px solid rgba(56, 189, 248, 0.35);
+    padding-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .info-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  .info-pill {
+    background: #38bdf8;
+    color: #001c7b;
+    font-size: 9px;
+    font-weight: 900;
+    border-radius: 4px;
+    padding: 1px 5px;
+    flex-shrink: 0;
+  }
+  .info-val {
+    color: #bae6fd;
+    font-weight: 700;
+  }
+  .shake-tip {
+    font-size: 10px;
+    font-weight: 800;
+    color: #fcd34d;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .desk-banner {
+    margin: 8px 28px 4px;
+    background: #fef2f2;
+    border: 1.5px solid #fecaca;
+    border-radius: 14px;
+    padding: 10px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .desk-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #9f1239;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .desk-sub {
+    font-size: 11px;
+    font-weight: 700;
+    color: #881337;
+    margin-top: 2px;
+  }
+  .desk-btn {
+    background: #e11c48;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 99px;
+    padding: 7px 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .footer-wrap {
+    padding: 6px 28px 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-top: 1.5px solid #bfdbfe;
+    background: #ffffff;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #002b90;
+    flex: 1;
+    min-width: 0;
+  }
+  .footer-check {
+    color: #002b90;
+    font-size: 15px;
+    font-weight: 900;
+  }
+  .footer-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .footer-store {
+    font-weight: 900;
+    color: #002b90;
+    font-size: 13px;
+  }
+  .footer-tel {
+    font-weight: 900;
+    color: #002b90;
+    margin-left: 4px;
+  }
+
+  .qr-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #38bdf8;
+    border-radius: 10px;
+    padding: 4px 10px 4px 5px;
+    flex-shrink: 0;
+    margin-left: 12px;
+    text-decoration: none;
+  }
+  .qr-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .qr-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .qr-badge {
+    background: #03c75a;
+    color: #ffffff;
+    font-size: 8.5px;
+    font-weight: 900;
+    padding: 1.5px 6px;
+    border-radius: 3px;
+    width: fit-content;
+  }
+  .qr-label-main {
+    font-size: 11.5px;
+    font-weight: 900;
+    color: #002b90;
+  }
+  .qr-label-sub {
+    font-size: 9px;
+    font-weight: 700;
+    color: #0284c7;
+  }
+</style>
+</head>
+<body>
+
+<!-- 대시보드 (화면 전용) -->
+<div class="no-print manager-header">
+  <div class="manager-title">
+    <span>🖨️</span>
+    <span>파보겔 펫샵·켄넬 맞춤 A4 포스터 일괄 연속 인쇄기</span>
+  </div>
+  <p class="manager-desc">
+    구글 시트나 엑셀에서 <b>[펫샵 매장명 / 전화번호 / 주소]</b> 목록을 복사해서 아래에 붙여넣으세요.<br>
+    50군데든 100군데든 <b>원클릭으로 각 펫샵 이름과 전화번호가 인쇄된 맞춤 포스터 50~100장이 순서대로 자동 생성</b>되어 한 번에 출력(Ctrl+P)됩니다.
+  </p>
+</div>
+
+<div class="no-print manager-container">
+  <label class="input-label" for="batchInput">
+    📋 구글 시트 / 엑셀 데이터 붙여넣기 (열 구분: 탭 또는 쉼표, 줄바꿈으로 매장 구분)
+  </label>
+  <textarea id="batchInput" class="data-textarea" placeholder="[예시 형식: 매장명, 전화번호, 주소]
+도그마루 강남본점	02-555-1234	서울 강남구 역삼동
+야옹아멍멍해봐 수원인계점	031-234-5678	경기 수원시 팔달구
+포포즈 펫살롱 일산점	031-900-1122	경기 고양시 일산동구
+펫타운 대전유성점	042-822-3344	대전 유성구 온천동"></textarea>
+
+  <div class="btn-group">
+    <button class="btn-generate" onclick="generateBatchPages()">⚡ 1단계: 맞춤 포스터 일괄 생성하기</button>
+    <button id="btnPrintAll" class="btn-print-all" onclick="window.print()">🖨️ 2단계: 전체 연속 인쇄하기 (A4 일괄 출력)</button>
+    <button class="btn-sample" onclick="loadSampleData()">📝 테스트용 5개 매장 샘플 채우기</button>
+    <span id="batchStatus" class="status-text"></span>
+  </div>
+</div>
+
+<!-- 생성된 A4 페이지들이 연속으로 렌더링되는 영역 -->
+<div id="printPagesContainer"></div>
+
+<script>
+// 샘플 데이터 주입
+function loadSampleData() {
+  var sample = "도그마루 강남본점\t02-555-1234\t서울 강남구 테헤란로 123\n" +
+               "야옹아멍멍해봐 수원인계점\t031-234-5678\t경기 수원시 팔달구 권광로 45\n" +
+               "포포즈 펫살롱 일산점\t031-900-1122\t경기 고양시 일산동구 중앙로 67\n" +
+               "펫타운 대전유성점\t042-822-3344\t대전 유성구 대학로 89\n" +
+               "아이러브독 부산서면점\t051-808-9900\t부산 부산진구 중앙대로 101";
+  document.getElementById('batchInput').value = sample;
+}
+
+// 텍스트 파싱 및 일괄 렌더링
+function generateBatchPages() {
+  var raw = document.getElementById('batchInput').value.trim();
+  if (!raw) {
+    alert('구글 시트나 엑셀에서 복사한 매장 목록을 입력창에 붙여넣어 주세요!');
+    return;
+  }
+
+  var lines = raw.split('\n');
+  var storeList = [];
+
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line) continue;
+
+    // 탭(\t) 또는 쉼표(,)로 분리
+    var parts = line.includes('\t') ? line.split('\t') : line.split(',');
+    var name = (parts[0] || '').trim();
+    var tel = (parts[1] || '').trim();
+    var addr = (parts[2] || '').trim();
+
+    if (name) {
+      storeList.push({ name: name, tel: tel, addr: addr });
+    }
+  }
+
+  if (storeList.length === 0) {
+    alert('유효한 매장 데이터가 없습니다.');
+    return;
+  }
+
+  var container = document.getElementById('printPagesContainer');
+  container.innerHTML = '';
+
+  for (var k = 0; k < storeList.length; k++) {
+    var s = storeList[k];
+    var pageHtml = createA4Html(s.name, s.tel, s.addr, k + 1, storeList.length);
+    container.innerHTML += pageHtml;
+  }
+
+  var btnPrint = document.getElementById('btnPrintAll');
+  btnPrint.style.display = 'inline-block';
+  btnPrint.innerHTML = '🖨️ 2단계: ' + storeList.length + '개 매장 맞춤 포스터 한 번에 인쇄하기';
+
+  var status = document.getElementById('batchStatus');
+  status.textContent = '✅ 총 ' + storeList.length + '개 매장의 맞춤 포스터가 준비되었습니다! 아래 미리보기를 확인하시고 [전체 연속 인쇄]를 누르세요.';
+  
+  window.scrollTo({ top: 350, behavior: 'smooth' });
+}
+
+// 개별 A4 포스터 HTML 템플릿 생성
+function createA4Html(storeName, tel, addr, currentIdx, totalCount) {
+  var telDisplay = tel ? 'TEL: ' + tel : 'TEL: 010-5407-5708';
+  var addrDisplay = addr ? ' (' + addr + ')' : '';
+
+  return `
+  <div class="a4-page">
+    <!-- 최상단 컬러 바 -->
+    <div class="color-bar"></div>
+
+    <!-- 상단 헤더 -->
+    <div class="header-wrap">
+      <div class="header-row">
+        <div class="store-title">${storeName}</div>
+        <div class="header-right">
+          <div class="solution-badge">
+            <span>🐾</span>
+            <span>공식 지정 장 건강 솔루션</span>
+          </div>
+          <div class="header-tel">${telDisplay}</div>
+        </div>
+      </div>
+      <div class="header-divider"></div>
+    </div>
+
+    <!-- 히어로 타이틀 영역 -->
+    <div class="hero-wrap">
+      <div class="hero-badge">
+        <span>🐾</span>
+        <span>설사로 고생하는 어린 자견·반려동물을 위한 비상 상비약</span>
+      </div>
+      <div class="hero-sub">토하고 설사하는 우리 아이 (어린 강아지·고양이)</div>
+      <div class="hero-main">
+        <span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>
+        <span class="hero-strong">한 병이면 든든합니다</span>
+      </div>
+    </div>
+
+    <!-- 증상 5구 아이콘 그리드 -->
+    <div class="symptoms-grid">
+      <div class="symptom-card">
+        <div class="symptom-icon">🤢</div>
+        <div class="symptom-name">구토</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">💧</div>
+        <div class="symptom-name">설사</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">😖</div>
+        <div class="symptom-name">복통</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">🍽️</div>
+        <div class="symptom-name">식욕부진</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">😿</div>
+        <div class="symptom-name">기력저하</div>
+      </div>
+    </div>
+
+    <!-- 메인 배너 -->
+    <div class="banner-wrap">
+      <div class="banner-badge">★ 공식 지정 처방 · 모든 동물에 사용 가능</div>
+      <div class="banner-box">
+        <div>
+          <div class="banner-desc">수의사 임상 검증 프리미엄 정장 지사제</div>
+          <div class="banner-product-title">
+            <span>파보겔 (100ml 액상)</span>
+            <span class="banner-price-label">정상 판매가</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:baseline;">
+          <span class="banner-price-val">18,000</span>
+          <span class="banner-price-won">원</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메인 바디 -->
+    <div class="body-grid">
+      <!-- 좌측 -->
+      <div class="left-column">
+        <div class="bottle-card">
+          <div class="bottle-img-wrap">
+            <img class="bottle-img" src="parvogel-bottle-crop.png" alt="파보겔 액상 병" onerror="this.src='parvogel-authentic.png';">
+          </div>
+          <div class="bottle-caption">파보겔 100ml 액상 정품</div>
+        </div>
+
+        <div class="safe-care-card">
+          <div class="safe-header">PET SHOP EXCLUSIVE CARE</div>
+          <div class="safe-list">
+            <div class="safe-item">
+              <span class="safe-item-icon">🛡️</span>
+              <span><b>100% 정품</b> 공식 지정 매장</span>
+            </div>
+            <div class="safe-item">
+              <span class="safe-item-icon">🔬</span>
+              <span><b>특허균주 MORI</b> 배합 포뮬러</span>
+            </div>
+            <div class="safe-item">
+              <span class="safe-item-icon">⚡</span>
+              <span><b>급속 전해질</b> 탈수 수분 보충</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측 -->
+      <div class="right-column">
+        <div class="ingredients-card">
+          <div class="card-header-row">
+            <span style="font-size:14px;">💊</span>
+            <span class="card-header-title">핵심 성분</span>
+            <span class="card-header-badge">5가지 복합체</span>
+          </div>
+          
+          <div class="ingredient-grid">
+            <div class="ingredient-item">
+              <div class="num-circle">1</div>
+              <div>
+                <div class="ing-title">항균·항바이러스 작용</div>
+                <div class="ing-desc">
+                  1-DNJ 천연성분 함유<br>
+                  특허균주 <b>Bacillus Subtilis MORI</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="num-circle">2</div>
+              <div>
+                <div class="ing-title">장 기능 개선 & 정장 작용</div>
+                <div class="ing-desc">포도당 (즉각 에너지 공급)</div>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="num-circle">3</div>
+              <div>
+                <div class="ing-title">상피세포 회복</div>
+                <div class="ing-desc">비타민 A</div>
+              </div>
+            </div>
+
+            <div class="ingredient-item">
+              <div class="num-circle">4</div>
+              <div>
+                <div class="ing-title">전해질 보충</div>
+                <div class="ing-desc">Sodium acetate · propionate</div>
+              </div>
+            </div>
+
+            <div class="ingredient-item" style="grid-column: 1 / -1;">
+              <div class="num-circle">5</div>
+              <div>
+                <div class="ing-title">연변·설사 개선, 독소 물리적 흡착</div>
+                <div class="ing-desc">장 환경 즉각 보호 — <b>고순도 나노 몬모릴로나이트</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="effects-card">
+          <div>
+            <div class="effects-title">
+              <span>✅</span>
+              <span>우리 아이에게 이렇게 좋아요</span>
+            </div>
+            
+            <div class="effects-3col">
+              <div class="effect-sub-box">
+                <div class="effect-sub-icon">🛡️</div>
+                <div class="effect-sub-text"><span>파보·로타·코로나 등</span><br>장질병 저항력 향상</div>
+              </div>
+              <div class="effect-sub-box">
+                <div class="effect-sub-icon">💪</div>
+                <div class="effect-sub-text">면역 기능과<br><span>건강 상태 유지</span></div>
+              </div>
+              <div class="effect-sub-box">
+                <div class="effect-sub-icon">🥣</div>
+                <div class="effect-sub-text"><span>소화 흡수 촉진</span><br>& 빠른 식욕 회복</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="effects-bottom-row">
+            <div class="info-line">
+              <span class="info-pill">대상</span>
+              <span class="info-val">어린 강아지·고양이 및 모든 동물</span>
+            </div>
+            <div class="info-line">
+              <span class="info-pill">용법</span>
+              <span class="info-val">1일 두당 2~4ml, 5~7일간 경구 급여</span>
+            </div>
+            <div class="shake-tip">
+              <span>💡</span>
+              <span>가라앉는 성분이 있어 가볍게 흔들어서 급여하세요</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 데스크 문의 배너 -->
+    <div class="desk-banner">
+      <div>
+        <div class="desk-title">
+          <span>💡</span>
+          <span>투약 용량 및 구매 안내는 매장 카운터에 문의하세요!</span>
+        </div>
+        <div class="desk-sub">
+          우리 아이 체중(kg)에 따른 1일 2~4ml 맞춤 급여법을 <b>전문 매니저가 직접</b> 친절히 안내해 드립니다.
+        </div>
+      </div>
+      <button class="desk-btn">
+        <span>매장 문의</span>
+        <span>➔</span>
+      </button>
+    </div>
+
+    <!-- 하단 구매처 & QR -->
+    <div class="footer-wrap">
+      <div class="footer-left">
+        <span class="footer-check">✔</span>
+        <div class="footer-text">
+          <span>공식 취급점: </span>
+          <span class="footer-store">${storeName}</span>
+          <span style="color:#475569;">${addrDisplay}</span>
+          <span style="color:#94a3b8;"> | </span>
+          <span class="footer-tel">${telDisplay}</span>
+        </div>
+      </div>
+
+      <div class="qr-box">
+        <img class="qr-img" src="dm-qr-naver.png" alt="스토어 QR" onerror="this.parentElement.style.display='none'">
+        <div class="qr-label-group">
+          <span class="qr-badge">네이버페이</span>
+          <div class="qr-label-main">스마트스토어</div>
+          <div class="qr-label-sub">정품 공식인증</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 최하단 컬러 바 -->
+    <div class="color-bar"></div>
+  </div>
+  `;
+}
+</script>
+
+</body>
+</html>
