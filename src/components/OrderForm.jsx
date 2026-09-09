@@ -156,7 +156,11 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                 </div>
                 <div>
                     <label htmlFor={`${idPrefix}contactName`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
-                        {formData.requestType === 'hospital' ? t('order.vetName') : t('order.contactName')} <span className="text-accent-500">*</span>
+                        {formData.requestType === 'hospital'
+                            ? t('order.vetName')
+                            : (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder' || formData.requestType === 'wholesale')
+                                ? '대표자명'
+                                : t('order.contactName')} <span className="text-accent-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -164,7 +168,7 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         name="contactName"
                         value={formData.contactName}
                         onChange={onChange}
-                        placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : t('order.contactNamePh')}
+                        placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : '예: 홍길동 (대표자)'}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         required
                     />
