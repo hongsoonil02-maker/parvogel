@@ -235,36 +235,45 @@ const Landing = () => {
 
     // URL 쿼리 파라미터 감지 (MMS 문자 링크: ?sample=petshop 또는 ?ref=petshop 또는 #/?sample=petshop 등 모든 HashRouter 경로 지원)
     useEffect(() => {
-        // 1) 일반 window.location.search 확인
-        let params = new URLSearchParams(window.location.search)
-        let sampleType = params.get('sample') || params.get('ref')
+        const checkAndOpenSampleModal = () => {
+            // 1) 일반 window.location.search 확인
+            let params = new URLSearchParams(window.location.search)
+            let sampleType = params.get('sample') || params.get('ref')
 
-        // 2) HashRouter 구조 (예: /#/?sample=petshop 또는 /#/sample=petshop)인 경우 해시 내부 쿼리스트링 추출
-        if (!sampleType && window.location.hash.includes('?')) {
-            const hashSearch = window.location.hash.substring(window.location.hash.indexOf('?'))
-            params = new URLSearchParams(hashSearch)
-            sampleType = params.get('sample') || params.get('ref')
+            // 2) HashRouter 구조 (예: /#/?sample=petshop 또는 /#/?ref=petshop)인 경우 해시 내부 쿼리스트링 추출
+            if (!sampleType && window.location.hash.includes('?')) {
+                const hashSearch = window.location.hash.substring(window.location.hash.indexOf('?'))
+                params = new URLSearchParams(hashSearch)
+                sampleType = params.get('sample') || params.get('ref')
+            }
+
+            if (sampleType === 'petshop' || sampleType === 'pet') {
+                setFormData(prev => ({
+                    ...prev,
+                    requestType: 'sample_petshop',
+                    product: 'parvogel-200ml',
+                    quantity: 1,
+                    message: '[MMS 문자 유입] 펫샵 본품 1병 무료 샘플 신청'
+                }))
+                setIsOrderModalOpen(true)
+                setIsOrderComplete(false)
+            } else if (sampleType === 'breeder' || sampleType === 'kennel') {
+                setFormData(prev => ({
+                    ...prev,
+                    requestType: 'sample_breeder',
+                    product: 'parvogel-200ml',
+                    quantity: 1,
+                    message: '[MMS 문자 유입] 브리더/켄넬 본품 1병 무료 샘플 신청'
+                }))
+                setIsOrderModalOpen(true)
+                setIsOrderComplete(false)
+            }
         }
 
-        if (sampleType === 'petshop' || sampleType === 'pet') {
-            setFormData(prev => ({
-                ...prev,
-                requestType: 'sample_petshop',
-                product: 'parvogel-200ml',
-                quantity: 1,
-                message: '[MMS 문자 유입] 펫샵 본품 1병 무료 샘플 신청'
-            }))
-            setIsOrderModalOpen(true)
-        } else if (sampleType === 'breeder' || sampleType === 'kennel') {
-            setFormData(prev => ({
-                ...prev,
-                requestType: 'sample_breeder',
-                product: 'parvogel-200ml',
-                quantity: 1,
-                message: '[MMS 문자 유입] 브리더/켄넬 본품 1병 무료 샘플 신청'
-            }))
-            setIsOrderModalOpen(true)
-        }
+        // 마운트 즉시 실행 및 비동기 라우터 초기화 대비 200ms 후 재확인
+        checkAndOpenSampleModal()
+        const timer = setTimeout(checkAndOpenSampleModal, 200)
+        return () => clearTimeout(timer)
     }, [])
 
     const handleInputChange = (e) => {
@@ -590,6 +599,27 @@ const Landing = () => {
                                 </div>
                             </div>
 
+                            {/* 무료 샘플 1병 신청 강조 버튼 */}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        requestType: 'sample_petshop',
+                                        product: 'parvogel-200ml',
+                                        quantity: 1,
+                                        message: '[상단 헤더 클릭] 펫샵/브리더 본품 1병 무료 샘플 신청'
+                                    }));
+                                    setIsOrderModalOpen(true);
+                                    setIsOrderComplete(false);
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white hover:from-amber-600 hover:to-orange-600 shadow-md hover:shadow-lg transition-all transform hover:scale-105"
+                                title="펫샵·브리더 전용 파보겔 본품 1병 무료체험"
+                            >
+                                <span className="animate-bounce">🎁</span>
+                                <span>본품 1병 무료신청</span>
+                            </button>
+
                             {/* B2B 취급점·도매 파트너스 전용 버튼 */}
                             <button
                                 type="button"
@@ -785,6 +815,47 @@ const Landing = () => {
                                 </p>
                             </div>
                         )}
+
+                        {/* 🎁 펫샵 & 브리더 전용 본품 1병 무료체험 하이라이트 배너 */}
+                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-amber-300 animate-pulse-slow">
+                            <div className="flex items-center gap-3 text-left">
+                                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl shadow-inner shrink-0">
+                                    🎁
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="bg-white text-orange-700 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                            전국 펫샵 · 브리더 전용
+                                        </span>
+                                        <span className="text-xs text-amber-100 font-bold">선착순 무료 지원</span>
+                                    </div>
+                                    <h3 className="text-base sm:text-lg font-black tracking-tight mt-0.5">
+                                        파보겔(200ml) 정품 1병 무료 체험 & 도매 특가 신청
+                                    </h3>
+                                    <p className="text-xs text-amber-100 mt-0.5">
+                                        배송비 전액 본사 부담 · 주소만 남겨주시면 당일 우체국 택배 발송
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        requestType: 'sample_petshop',
+                                        product: 'parvogel-200ml',
+                                        quantity: 1,
+                                        message: '[히어로 배너 클릭] 펫샵/브리더 본품 1병 무료 샘플 신청'
+                                    }));
+                                    setIsOrderModalOpen(true);
+                                    setIsOrderComplete(false);
+                                }}
+                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-amber-50 text-orange-700 hover:text-orange-800 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
+                            >
+                                <span>지금 무료 1병 받기</span>
+                                <span aria-hidden="true">➔</span>
+                            </button>
+                        </div>
 
                         {/* CTA Buttons - Decoupled Direct Ecommerce vs Wholesale */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
