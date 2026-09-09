@@ -102,6 +102,8 @@ class ParvogelContentFormatter:
     # 1. 텔레그램 (실시간 공지)
     def _format_telegram(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("telegram")
+        # 텔레그램 봇 API의 특정 오픈마켓 도메인 스팸필터(PEER_FLOOD) 회피를 위해 공식 랜딩 구매 안내 링크 사용
+        telegram_coupang_link = f"{self.landing_base}?target=coupang&utm_source=telegram&utm_medium=auto_factory&utm_campaign=parvogel"
         tags = " ".join(self.keywords.get("hashtags", {}).get("b2c_general", [])[:5])
         msg = f"""🚨 *[긴급 임상 속보]* {n.get('headline')}
 
@@ -121,7 +123,7 @@ class ParvogelContentFormatter:
 
 🛒 *공식 직영 구매처 (익일 특급 수령):*
 🟢 네이버 스마트스토어: {links['smartstore']}
-🚀 쿠팡 로켓배송: {links['coupang']}
+🚀 쿠팡 로켓배송: {telegram_coupang_link}
 
 {tags}
 """

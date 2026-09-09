@@ -233,6 +233,40 @@ const Landing = () => {
         }
     }
 
+    // URL 쿼리 파라미터 감지 (MMS 문자 링크: ?sample=petshop 또는 ?ref=petshop 또는 #/?sample=petshop 등 모든 HashRouter 경로 지원)
+    useEffect(() => {
+        // 1) 일반 window.location.search 확인
+        let params = new URLSearchParams(window.location.search)
+        let sampleType = params.get('sample') || params.get('ref')
+
+        // 2) HashRouter 구조 (예: /#/?sample=petshop 또는 /#/sample=petshop)인 경우 해시 내부 쿼리스트링 추출
+        if (!sampleType && window.location.hash.includes('?')) {
+            const hashSearch = window.location.hash.substring(window.location.hash.indexOf('?'))
+            params = new URLSearchParams(hashSearch)
+            sampleType = params.get('sample') || params.get('ref')
+        }
+
+        if (sampleType === 'petshop' || sampleType === 'pet') {
+            setFormData(prev => ({
+                ...prev,
+                requestType: 'sample_petshop',
+                product: 'parvogel-200ml',
+                quantity: 1,
+                message: '[MMS 문자 유입] 펫샵 본품 1병 무료 샘플 신청'
+            }))
+            setIsOrderModalOpen(true)
+        } else if (sampleType === 'breeder' || sampleType === 'kennel') {
+            setFormData(prev => ({
+                ...prev,
+                requestType: 'sample_breeder',
+                product: 'parvogel-200ml',
+                quantity: 1,
+                message: '[MMS 문자 유입] 브리더/켄넬 본품 1병 무료 샘플 신청'
+            }))
+            setIsOrderModalOpen(true)
+        }
+    }, [])
+
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setFormData(prev => ({ ...prev, [name]: value }))
@@ -241,8 +275,9 @@ const Landing = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!formData.hospitalName || !formData.contactName || !formData.phone
-            || (formData.requestType === 'wholesale' && !formData.bizNumber)) {
-            alert(t('order.requiredFieldsAlert'))
+            || (formData.requestType === 'wholesale' && !formData.bizNumber)
+            || ((formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') && !formData.address)) {
+            alert('상호명, 담당자 성함, 연락처, 그리고 택배 받으실 주소는 필수 입력 항목입니다.')
             return
         }
         if (submittingRef.current || isSubmitting) return

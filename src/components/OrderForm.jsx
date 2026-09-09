@@ -27,8 +27,10 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
             {/* 신청 구분 */}
             <div>
                 <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
-                <div className={`grid gap-2 ${variant === 'modal' ? 'grid-cols-3' : 'sm:grid-cols-3'}`}>
+                <div className={`grid gap-2 ${variant === 'modal' ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-5'}`}>
                     {[
+                        { value: 'sample_petshop', icon: '🎁', label: '펫샵 본품 1병 무료' },
+                        { value: 'sample_breeder', icon: '🐾', label: '브리더 본품 1병 무료' },
                         { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
                         { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
                         { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
@@ -37,12 +39,12 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                             key={opt.value}
                             type="button"
                             onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
-                            className={`${variant === 'modal' ? 'px-2 text-xs' : 'px-3 text-sm'} py-3 rounded-xl border-2 font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
-                                ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-sm'
+                            className={`${variant === 'modal' ? 'px-2 text-xs' : 'px-2.5 text-xs sm:text-sm'} py-3 rounded-xl border-2 font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
+                                ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-md ring-2 ring-primary-500/20'
                                 : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
                         >
                             <span className="text-lg">{opt.icon}</span>
-                            <span className="break-keep">{opt.label}</span>
+                            <span className="break-keep text-center leading-tight">{opt.label}</span>
                         </button>
                     ))}
                 </div>
@@ -85,6 +87,38 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                     </div>
                 </div>
             )}
+            {formData.requestType === 'sample_petshop' && (
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border border-amber-300 shadow-sm text-start">
+                    <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
+                        <span className="text-xs font-black text-amber-900 flex items-center gap-1.5">
+                            <span>🎁</span>
+                            <span>[전국 펫샵·분양샵 전용] 파보겔 본품 1병 무료 체험 & 도매 제휴 신청</span>
+                        </span>
+                        <span className="text-[10px] font-bold text-amber-800 bg-white/90 px-2 py-0.5 rounded-full border border-amber-300">
+                            선착순 1병 증정
+                        </span>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed break-keep">
+                        {t('order.sampleNotePetshop', '💡 펫샵/분양샵 대표님께 파보겔 본품 1병과 B2B 특별 공급 단가표를 무료 발송해 드립니다. (발송 완료 후 송장번호 안내)')}
+                    </p>
+                </div>
+            )}
+            {formData.requestType === 'sample_breeder' && (
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border border-blue-300 shadow-sm text-start">
+                    <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
+                        <span className="text-xs font-black text-blue-900 flex items-center gap-1.5">
+                            <span>🐾</span>
+                            <span>[전문 브리더·켄넬 전용] 자견 설사 방어용 파보겔 본품 1병 무료 체험</span>
+                        </span>
+                        <span className="text-[10px] font-bold text-blue-800 bg-white/90 px-2 py-0.5 rounded-full border border-blue-300">
+                            선착순 1병 증정
+                        </span>
+                    </div>
+                    <p className="text-xs text-slate-700 leading-relaxed break-keep">
+                        {t('order.sampleNoteBreeder', '💡 전문 브리더/켄넬 대표님께 자견 설사 방어용 파보겔 본품 1병과 농장 전용 번들 특가표를 무료 발송해 드립니다.')}
+                    </p>
+                </div>
+            )}
             {formData.requestType === 'hospital' && (
                 <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
                     💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
@@ -101,9 +135,13 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                     <label htmlFor={`${idPrefix}hospitalName`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
                         {formData.requestType === 'hospital'
                             ? t('order.hospitalNameOnly')
-                            : formData.requestType === 'wholesale'
-                                ? t('order.companyName')
-                                : t('order.hospitalName')} <span className="text-accent-500">*</span>
+                            : formData.requestType === 'sample_petshop'
+                                ? '펫샵/매장명'
+                                : formData.requestType === 'sample_breeder'
+                                    ? '켄넬/견사명 (농장명)'
+                                    : formData.requestType === 'wholesale'
+                                        ? t('order.companyName')
+                                        : t('order.hospitalName')} <span className="text-accent-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -185,7 +223,11 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
 
             <div>
                 <label htmlFor={`${idPrefix}address`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
-                    {formData.requestType === 'wholesale' ? t('order.region') : t('order.address')}
+                    {formData.requestType === 'wholesale'
+                        ? t('order.region')
+                        : (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
+                            ? '우편번호 및 택배 받으실 주소 (필수)'
+                            : t('order.address')} {(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') && <span className="text-accent-500">*</span>}
                 </label>
                 <textarea
                     id={`${idPrefix}address`}
@@ -193,8 +235,11 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                     value={formData.address}
                     onChange={onChange}
                     rows={2}
-                    placeholder={formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
+                    placeholder={(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
+                        ? '예: 경기도 남양주시 화도읍 ... (우체국 택배로 무료 발송됩니다)'
+                        : formData.requestType === 'wholesale' ? t('order.regionPh') : t('order.addressPh')}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
+                    required={(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')}
                 />
             </div>
 
@@ -215,6 +260,11 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         <option value="50-199">{t('order.volume2')}</option>
                         <option value="200+">{t('order.volume3')}</option>
                     </select>
+                </div>
+            ) : (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') ? (
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-bold text-emerald-900 flex items-center gap-2">
+                    <span>📦</span>
+                    <span>지원 혜택: 파보겔 정품 1병 무료 제공 + B2B 특가 공급 안내문 동봉 (배송비 전액 본사 부담)</span>
                 </div>
             ) : (
                 <div className={`grid sm:grid-cols-2 ${gapClass}`}>
@@ -264,22 +314,28 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                     name="message"
                     value={formData.message}
                     onChange={onChange}
-                    rows={3}
-                    placeholder={t('order.messagePh')}
+                    rows={2}
+                    placeholder={(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
+                        ? '배송 시 요청사항이나 추가로 궁금하신 점을 적어주세요.'
+                        : t('order.messagePh')}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all resize-none"
                 />
             </div>
 
-            {/* 결제 계좌 정보 */}
-            <div className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 text-center">
-                <span className="font-bold block mb-1 text-gray-900">무통장 입금 안내</span>
-                농협 301-0133-0281-01 <span className="text-gray-500 ml-2">예금주: (주)한국아그로</span>
-            </div>
+            {/* 결제 계좌 정보 (샘플 신청 시에는 숨김) */}
+            {!(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') && (
+                <div className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 text-center">
+                    <span className="font-bold block mb-1 text-gray-900">무통장 입금 안내</span>
+                    농협 301-0133-0281-01 <span className="text-gray-500 ml-2">예금주: (주)한국아그로</span>
+                </div>
+            )}
 
             <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 rounded-xl font-bold text-lg transition-all bg-primary-600 hover:bg-primary-700 text-white shadow-primary-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
+                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 shadow-orange-500/25'
+                    : 'bg-primary-600 hover:bg-primary-700 shadow-primary-500/25'}`}
             >
                 {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">
@@ -290,7 +346,9 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         {t('order.submitting')}
                     </span>
                 ) : (
-                    t('order.submit')
+                    (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
+                        ? '🎁 파보겔 본품 1병 무료체험 신청하기 (택배비 무료)'
+                        : t('order.submit')
                 )}
             </button>
 
