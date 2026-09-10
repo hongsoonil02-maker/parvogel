@@ -1,0 +1,718 @@
+<html>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function cnj_win_view(img){
+  img_conf1= new Image();
+  img_conf1.src=(img);
+  cnj_view_conf(img);
+}
+
+function cnj_view_conf(img){
+  if((img_conf1.width!=0)&&(img_conf1.height!=0)){
+    cnj_view_img(img);
+  }
+  else{
+    funzione="cnj_view_conf('"+img+"')";
+    intervallo=setTimeout(funzione,20);
+  }
+}
+
+
+
+var cnj_img_view = null;
+
+function cnj_view_img(img){
+
+    if(cnj_img_view != null) {
+      if(!cnj_img_view.closed) {
+      cnj_img_view.close();
+      }
+    }
+
+  cnj_width=img_conf1.width+20;
+  cnj_height=img_conf1.height+20;
+  str_img="width="+cnj_width+",height="+cnj_height+",scrollbars=1";
+
+   cnj_img_view=window.open("about:blank","",str_img);
+   cnj_img_view.document.open();   // document.open()
+   cnj_img_view.document.writeln("<html>");
+   cnj_img_view.document.writeln("<head>");
+   cnj_img_view.document.writeln("<title>이미지파일 보기</title>");
+   cnj_img_view.document.writeln("<meta http-equiv='content-type' content='text/html; charset=euc-kr'>");
+   cnj_img_view.document.writeln("<meta http-equiv='imagetoolbar' content='no'>");
+   //var start="<";
+   //cnj_img_view.document.writeln("<script language='javascript'>");
+   //cnj_img_view.document.writeln("function click() {");
+   //cnj_img_view.document.writeln("if ((event.button==1) || (event.button==2))  {");
+   //cnj_img_view.document.writeln("top.close();");
+   //cnj_img_view.document.writeln("      }");
+   //cnj_img_view.document.writeln("}");
+   //cnj_img_view.document.writeln("document.onmousedown=click");
+   //cnj_img_view.document.writeln(start+"/script>");
+   cnj_img_view.document.writeln("</head>");
+   cnj_img_view.document.writeln("<body leftmargin=0 marginwidth=0 topmargin=0 marginheight=0>");
+   cnj_img_view.document.writeln("<img src="+ img +" border=0 style='cursor:pointer' onclick='javascript:top.close()'>")
+   cnj_img_view.document.writeln("</body></html>");
+   cnj_img_view.document.close();
+
+   cnj_img_view.focus();
+  return;
+}
+//-->
+</script>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--meta name="robots" content="ALL"-->
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<META http-equiv="Content-Style-Type" content="text/css">
+<meta name="generator" content="유기견보호센터 유기견찾기 유기견무료분양" />
+<META http-equiv="imagetoolbar" content="no">
+<META http-equiv="author" contents="종합유기견보호센터">
+<META NAME="KEYWORDS" CONTENT="유기견,유기견보호센터,유기동물보호센터,유기견보호소,유기묘보호소,유기견찾기,유기견입양,유기견무료분양,유기동물무료분양,유기동물입양,강아지무료분양,고양이무료분양">
+ <META NAME="DESCRIPTION" CONTENT="찾았습니다.,보호중인동물,유기견,유기묘보호소,보호센터,임보">
+<title>유기강아지보호중! 찾았습니다. - 유기동물보호 종합유기견보호센터</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<link rel="STYLESHEET" href="../Yu_include/Buddy.css" type="text/css">
+</head>
+<body  background="../images/pattern.GIF" topmargin="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  	<tr align="center">
+    	<td>
+
+<link rel="STYLESHEET" href="https://www.zooseyo.or.kr/css/main.css" type="text/css">
+<link rel="shortcut icon" href="https://www.zooseyo.or.kr/favicon.ico" type="image/x-icon">
+<header class="main-header">
+	<div class="header-top">
+		<div class="spacer"></div>
+		
+		<div class="header-top-left-menu">
+			<img src="/images/main/new-start-topmenu-img.JPG" usemap="#HeaderMap" border="0">
+		</div>
+
+		<div class="header-logo">
+			<a href="/"><img src="/images/main/top-003img.jpg" alt="메인 로고"></a>
+		</div>
+		
+		<div class="header-top-right-menu">
+			<a href="/">HOME</a>
+						&nbsp;|&nbsp;
+			<a href="/">로그인</a>
+			&nbsp;|&nbsp;
+			<a href="/Yu_member/member01.html">회원가입</a>
+					</div>
+		
+		<div class="spacer"></div>
+		
+		<div class="spacer"></div>
+		<div class="spacer"></div>
+		<div class="header-bottom-right-banner">
+			<img src="/images/main/naverbanner.gif" alt="네이버 배너">
+		</div>
+		<div class="spacer"></div>
+	</div>
+
+	<div class="main-nav">
+		<img src="/images/main/new-topmenu-img.GIF" usemap="#TopmenuMap" alt="메인 메뉴">
+	</div>
+</header>
+
+<map name="HeaderMap">
+	<area shape="rect" href="javascript:;" coords="8,0,124,17" onclick="javascript:this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.zooseyo.or.kr/');" style="cursor:pointer;">
+	<area shape="rect" href="javascript:;" coords="131,0,221,17" onclick="window.external.AddFavorite('http://www.zooseyo.or.kr/', '☆ 종합유기견보호센터 전국유기견분양센터 ☆')" style="cursor:pointer;">
+</map>
+<map name="TopmenuMap">
+	<area shape="rect" href="/Yu_board/petfind.html" alt="동물찾아요" coords="131,19,272,56">
+	<area shape="rect" href="/Yu_board/petcare.html" alt="긴급보호" coords="401,19,566,56">
+	<area shape="rect" href="/Yu_board/volunteer_listD.php" alt="봉사&후원" coords="665,19,789,56">
+	<area shape="rect" href="/Yu_board/bbs.html?id=5" alt="찾았어요" coords="881,19,956,56">
+	<area shape="rect" href="/Yu_board/freesale_ty_1.html?ty=1" alt="무료분양" coords="1000,19,1030,56">
+	<area shape="rect" href="/Yu_board/freesale_ty_2.html?ty=2" alt="유기동물무료입양" coords="1040,19,1070,56">
+</map>
+
+<script language="JavaScript">
+function na_open_window(name, url, left, top, width, height, toolbar, menubar, statusbar, scrollbar, resizable) {
+    toolbar_str = toolbar ? 'yes' : 'no';
+    menubar_str = menubar ? 'yes' : 'no';
+    statusbar_str = statusbar ? 'yes' : 'no';
+    scrollbar_str = scrollbar ? 'yes' : 'no';
+    resizable_str = resizable ? 'yes' : 'no';
+    window.open(url, name, 'left='+left+',top='+top+',width='+width+',height='+height+',toolbar='+toolbar_str+',menubar='+menubar_str+',status='+statusbar_str+',scrollbars='+scrollbar_str+',resizable='+resizable_str);
+}
+</script>      <table width="1082" border="0" cellpadding="0" cellspacing="0">        
+        <tr>
+        		<td height="10"></td>
+        </tr>
+        <tr> 
+          <td> 
+            <table width="1082" border="0" cellpadding="0" cellspacing="0">
+              <tr> 
+                <td width="44">&nbsp;</td>
+                <!--td width="241"><a href="http://www.lifesaju.com/life/life_on.asp?sel=2" target="_blank"><img src="../images/banner/sub_left.GIF" width="241" height="82"></a></td-->
+				<!--td width="241"><a href="https://cafe.naver.com/6655happyclub" target="_blank"><img src="/inc/banner_right.gif" width="210" height="60" border="0"></a></td-->
+				<td width="241"><a href="/Yu_board/freesale_ty_1.html?ty=1"><img src="/inc/top-banner-left.gif" width="210" height="60" border="0" alt="유기동물 무료분양합니다. "></a></td>
+                <!--td width="500"><img src="../images/banner/sub_center.GIF" width="500" height="81"></td-->
+				<td width="500"><a href="/Yu_board/petfind.html"><img src="../images/main/sub-top-misspet-02.gif" width="500" height="81"></a></td>
+                <!--td width="240"><a href="http://www.zooseyo.com/" target="_blank"><img src="../images/banner/sub_right.GIF" width="240" height="81"></a></td-->
+				<td width="240"><a href="/Yu_board/bbs.html?id=5"><img src="/inc/top-banner-right.png" width="240" height="81"></a></td>
+                <td width="54">&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>			<table width="1082" border="0" cellpadding="0" cellspacing="0">
+        		<tr>           
+             	<td colspan=3 height="3"></td>
+            </tr> 
+            <tr> 
+               <td height="22">&nbsp;</td>
+               <td height="22" align="left"><img src="../images/join/join-top-point.gif" width="8" height="5" align="absmiddle"> 
+                 	<font color="8e8170"><a href="/">Home</a> > 반려동물 보호중입니다</font></td>
+               <td height="22">&nbsp;</td>
+            </tr>
+            <tr> 
+                <td width="44">&nbsp;</td>
+                <td width="984"><img src="../images/join/join-top-line.gif" width="984" height="9"></td>
+                <td width="54">&nbsp;</td>
+            </tr>
+         </table>       	<table width="1082" border="0" cellpadding="0" cellspacing="0">
+          	<tr>
+            	<td width="44">&nbsp;</td>
+               <td width="206" valign="top">
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
+function preload() {
+	MM_preloadImages('../images/leftmenu/join-left-2-2img.gif'
+							,'../images/leftmenu/join-left-3-2img.gif'
+							,'../images/leftmenu/join-left-4-2img.gif'
+							,'../images/leftmenu/join-left-community-1-2img.gif'
+							,'../images/leftmenu/join-left-community-2-2img.gif'
+							,'../images/leftmenu/join-left-community-5-2img.gif'
+							,'../images/leftmenu/join-left-community-6-2img.gif');
+}
+window.onload=preload;
+//-->
+</script>
+                  <table width="206" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <table width="206" border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td><img src="../images/leftmenu/join-left-1-1img.gif" width="206" height="53"></td>
+                          </tr>
+                          <tr>
+                            <td><a href="/Yu_board/petfind_up.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image124','','../images/leftmenu/join-left-2-2img.gif',1)"><img name="Image124" border="0" src="../images/leftmenu/join-left-2-1img.gif" width="206" height="33"></a></td>
+                          </tr>
+                          <tr>
+                            <td><a href="/Yu_board/petcare.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image125','','../images/leftmenu/join-left-3-2img.gif',1)"><img name="Image125" border="0" src="../images/leftmenu/join-left-3-1img.gif" width="206" height="40"></a></td>
+                          </tr>
+                          <tr>
+                            <td><a href="/Yu_abandon/abandonment_list_api.php" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image126','','../images/leftmenu/join-left-4-2img.gif',1)"><img name="Image126" border="0" src="../images/leftmenu/join-left-4-1img.gif" width="206" height="49"></a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="206" border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td><img src="../images/leftmenu/join-left-community-00.gif" width="206" height="61"></td>
+                          </tr>
+						  <tr>
+                            <td><a href="/Yu_board/freesale_ty_1.html?ty=1" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image112','','../images/leftmenu/join-left-community-01-on.gif',1)"><img name="Image112" border="0" src="../images/leftmenu/join-left-community-01.gif"></a></td>
+                          </tr>
+						  <tr>
+                            <td><a href="/Yu_board/freesale_ty_2.html?ty=2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image113','','../images/leftmenu/join-left-community-02-on.gif',1)"><img name="Image113" border="0" src="../images/leftmenu/join-left-community-02.gif"></a></td>
+                          </tr>
+						  <tr>
+                            <td><a href="/Yu_board/bbs.html?id=5" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image116','','../images/leftmenu/join-left-community-03-on.gif',1)"><img name="Image116" border="0" src="../images/leftmenu/join-left-community-03.gif"></a></td>
+                          </tr>
+                          <tr>
+                            <td>
+										<table width="206" border="0" cellpadding="0" cellspacing="0" style="display:none;">
+                                <tr>
+                                  <td>
+												<a href="/Yu_board/freesale_ty_1.html?ty=1" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image112','','../images/leftmenu/join-left-community-1-2img.gif',1)"><img name="Image112" border="0" src="../images/leftmenu/join-left-community-1-1img.gif" width="105" height="119"></a>
+											 </td>
+                                  <td>
+												<a href="/Yu_board/freesale_ty_2.html?ty=2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image113','','../images/leftmenu/join-left-community-2-2img.gif',1)"><img name="Image113" border="0" src="../images/leftmenu/join-left-community-2-1img.gif" width="101" height="119"></a>
+											 </td>
+                                </tr>
+                                <tr>
+                                  <td valign="top"><a href="/Yu_board/bbs.html?id=5" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image116','','../images/leftmenu/join-left-community-5-2img.gif',1)"><img name="Image116" border="0" src="../images/leftmenu/join-left-community-5-1img.gif" width="105" height="119"></a></td>
+                                  <td>
+											
+												<a href="/Yu_board/pethelper.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image117','','../images/leftmenu/join-left-community-7-2img.gif',1)"><img name="Image117" border="0" src="../images/leftmenu/join-left-community-7-1img.gif" width="101" height="120"></a>
+											 </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                 	</table><!--설문조사-->
+<div class="poll-container">
+    <iframe name="hiddenpollwindow" class="hidden-iframe"></iframe>
+    <div class="poll-main">
+                <form action="/Yu_include/poll_submit.php" method="post" name="poll" target="hiddenpollwindow">
+            <input type="hidden" name="no" value="1">
+            <div class="poll-question">반려동물 잃고 슬펐던 기간?</div>
+            <div class="poll-options">
+                                <label>
+                    <input type="radio" name="answer_no" value="1">
+                    <span>1개월</span>
+                </label>
+                                <label>
+                    <input type="radio" name="answer_no" value="2">
+                    <span>6개월</span>
+                </label>
+                                <label>
+                    <input type="radio" name="answer_no" value="3">
+                    <span>1년간</span>
+                </label>
+                                <label>
+                    <input type="radio" name="answer_no" value="4">
+                    <span>3년간</span>
+                </label>
+                                <label>
+                    <input type="radio" name="answer_no" value="5">
+                    <span>평생</span>
+                </label>
+                            </div>
+            <div class="poll-actions">
+                <button type="submit" class="vote-button">투표</button>
+                <button type="button" class="result-button" onclick="javascript:alert('투표를 하셔야 결과를 보실 수 있습니다');">결과</button>
+            </div>
+        </form>
+            </div>
+</div>               </td>
+               <td width="779" valign="top">
+                  <table width="779" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="12">&nbsp;</td>
+                      <td width="767">
+                        <table width="767" border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td><img src="../images/board/detail-01-img.GIF" width="767" height="149"></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <table width="767" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td width="19" background="../images/board/detail-02-img.GIF"></td>
+                                  <td bgcolor="#FFFFFF" width="729" valign="top">
+                                    <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td>
+                                          <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td width="158"><img src="../images/board/detail-contant-01-img.GIF" width="157" height="34"></td>
+                                              <td width="235">1234</td>
+                                              <td width="108"><img src="../images/board/detail-contant-06-img.GIF" width="103" height="34"></td>
+                                              <td width="228">2026-08-25</td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td width="158"><img src="../images/board/detail-contant-02-img.GIF" width="157" height="34"></td>
+                                              <td width="235"><img src="/images/board/pet_find_phoneblind_img.gif" width="72" height="17" border="0" align="absmiddle"></td>
+                                              <td width="108"><img src="../images/board/detail-contant-07-img.GIF" width="108" height="34"></td>
+                                              <td width="228">암컷</td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td width="158"><img src="../images/board/detail-contant-03-img.GIF" width="152" height="34"></td>
+                                              <td width="571">서울 123</td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td width="158"><img src="../images/board/detail-contant-04-img.GIF" width="157" height="34"></td>
+                                              <td width="571">찾았습니다.</td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <table width="729" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                              <td width="158" valign="top"><img src="../images/board/detail-contant-05-img.GIF" width="157" height="34"></td>
+                                              <td width="571" height="100" valign="top">
+                                                	<p><br>1234<br><br></p>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr align="center">
+                                        <td align="center"><br>
+										<img src="/pet_care/photo/1788382206_42314300.jpg" width="303" height="232" onClick="javascript:cnj_win_view('/pet_care/photo/1788382206_42314300.jpg');" style="cursor:pointer;">&nbsp;&nbsp;<img src="/pet_care/photo/1788382206_67983900.jpg" width="303" height="232" onClick="javascript:cnj_win_view('/pet_care/photo/1788382206_67983900.jpg');" style="cursor:pointer;">                                        <br></td>
+                                      </tr>
+                                      <tr>
+                                        <td height="2"><img src="../images/board/registration-menu-line.GIF" width="729" height="1"></td>
+                                      </tr>
+                                      <tr valign="top">
+                                        <td>
+                                          <style type="text/css">
+#layer1 {
+	position:absolute;
+	width:216px;
+	height:148px;
+	z-index:1;
+	left: 1px;
+	top: 1px;
+}
+</style>
+<script type="text/javascript">
+<!--//
+function commentsend(){
+	var f = document.formcomment;
+
+	if( !f.cname.value ) {
+		alert("이름을 입력하세요!");
+		f.cname.focus();
+		return;
+	}
+
+	if(!f.cpass.value) {
+		alert('비밀번호를 입력하세요!');
+		f.cpass.focus();
+		return;
+	}
+
+	if( f.cpass.value.length < 4 ) {
+		alert('비밀번호는 4자 이상 입력하셔야 합니다!');
+		f.cpass.focus();
+		return;
+	}
+
+	if(!f.comment.value) {
+		alert('내용을 입력하세요!');
+		f.com.focus();
+		return;
+	}
+	f.target="hiddenwindow";
+	f.action="comment_writeproc.php";
+	f.submit()
+}
+
+	function DP_GetObjectTop(obj) {
+		if (obj.offsetParent == document.body)
+			return obj.offsetTop;
+		else
+			return obj.offsetTop + DP_GetObjectTop(obj.offsetParent);
+	}
+
+	function DP_GetObjectLeft(obj) {
+		if (obj.offsetParent == document.body)
+			return obj.offsetLeft;
+		else
+			return obj.offsetLeft + DP_GetObjectLeft(obj.offsetParent);
+	}
+
+	function commentdel(com_no, obj, sw) {
+		if (sw > 0) {
+			var top = document.body.clientTop + DP_GetObjectTop(obj);
+			var left = document.body.clientLeft + DP_GetObjectLeft(obj);
+
+			document.all.Layer1.style.pixelTop = top + obj.offsetHeight;
+			document.all.Layer1.style.pixelLeft = left;
+			document.all.Layer1.style.visibility = "visible";
+			document.form_delete.commno.value = com_no;
+			document.form_delete.pass.value="";
+			document.form_delete.pass.focus();;
+		} else {
+			document.all.Layer1.style.visibility = "hidden";
+			document.form_delete.commno.value = "";
+		}
+
+
+	}
+
+		//레이어 드래그 함수
+
+		var dragapproved=false
+		function drag_dropie()
+		{
+			if (dragapproved==true)
+			{
+				document.all.Layer1.style.pixelLeft=tempx+event.clientX-iex
+				document.all.Layer1.style.pixelTop=tempy+event.clientY-iey
+				return false
+			}
+		}
+
+		function initializedragie()
+		{
+			iex=event.clientX
+			iey=event.clientY
+			tempx=Layer1.style.pixelLeft
+			tempy=Layer1.style.pixelTop
+			dragapproved=true
+			document.onmousemove=drag_dropie
+		}
+
+		if (document.all)
+		{
+			document.onmouseup=new Function("dragapproved=false")
+		}
+//-->
+</script>
+<table width="720" border="0" cellpadding="0" cellspacing="0">
+	<tr height=20><td colspan=3></td></tr>
+	<tr height=40>
+   	<td width="50">&nbsp;</td>
+      <td width="652">
+      	<b><font color="12436c">이동민</font></b>&nbsp;(2026-09-04 19:31:36) <img src="../images/btn_comment_del.gif" width="11" height="11" align="absmiddle" onClick="commentdel('101704', this, 1);" style="cursor:pointer;">
+         <br>안녕하세요 입양 원해요. 다음주 화요일내로 방문할 수 있습니다<img src="/images/realtime-icon-new.gif" width="15" height="15" align="absmiddle">      </td>
+      <td width="27">&nbsp;</td>
+  	</tr>
+   <tr>
+   	<td colspan="3"><img src="../images/board/detail-line.GIF" width="729" height="2"></td>
+   </tr>
+
+   <tr>
+   	<td width="50">&nbsp;</td>
+      <td width="652">
+      	<table width="652" border="0" cellpadding="0" cellspacing="0">
+      		<tr bgcolor="eaeaea">
+            	<td>
+               	<table width="652" border="0" cellpadding="3">
+         				<tr bgcolor="#FFFFFF">
+         					<td>
+         						<table width="652" border="0" cellpadding="0" cellspacing="0">
+                          		<tr>
+         								<td width="112" bgcolor="f4f4f4">
+               							<div align="center"><b>댓글달기</b></div>
+               						</td>
+               						<td width="540">
+               							<table width="540" border="0" height="58" cellpadding="3" cellspacing="0">
+															<iframe name="hiddenwindow" frameborder='no' style='border:0px; width:0;height:0;'></iframe>
+               								<form name="formcomment" method="post">
+               								<input type="hidden" name="boardid" value="1">
+               								<input type="hidden" name="docuno" value="17967">
+               								<input type="hidden" name="mid" value="">
+															<input type="hidden" name="doc_id" value="lock1023">
+															<input type="hidden" name="domain" value="yugigeun">
+															<input type="hidden" name="oid" value="">
+																<tr>
+																	<td>
+																		이름 <input type="text" name="cname" maxlength=10 size="15" style="padding-left:3px; border: 1px solid rgb(204, 204, 204);"
+																																				value="">&nbsp;&nbsp;&nbsp;&nbsp;
+																		비밀번호 <input type="password" name="cpass" maxlength=6  size="11" style="padding-left:3px; border: 1px solid rgb(204, 204, 204);">
+                     							</td>
+                     						</tr>
+                     						<tr>
+                        						<td>
+                           						<input type="text" name="comment" size="50" maxlength="100" style="padding-left:3px; border: 1px solid rgb(204, 204, 204);width:300px" value="">
+                           						<img src="../images/board/detail-re.GIF" height="21" align="absmiddle" onclick="commentsend();" style="cursor:pointer;">
+                        							<font color="df516b">*100자까지 가능합니다.</font>
+                     							</td>
+                     						</tr>
+                     						</form>
+                     					</table>
+                     				</td>
+                  				</tr>
+               				</table>
+               			</td>
+               		</tr>
+               	</table>
+             	</td>
+           	</tr>
+			</table>
+		</td>
+    	<td width="27">&nbsp;</td>
+  	</tr>
+</table>
+		<!--댓글 삭제 레이어------------------------------------------------------------------------------------------------------------->
+          <div id="Layer1" style="visibility:hidden">
+            	<table border="0" cellpadding="0" cellspacing="0" width="216" height="148" background="../ucc/imgs/re_back.gif">
+                	<tr>
+                    	<td width="186" height="27"></td>
+                    	<td width="30" height="27">
+                        		<p><img src="../ucc/imgs/win_close.gif" width="18" height="16" border="0" onClick="commentdel('', this, 0);"></p>
+                    	</td>
+                	</tr>
+                	<tr>
+                    	<td width="216" colspan="2">
+                        		<table border=0 cellspacing=0 cellpadding=0 width="138" align="center">
+                        		<form method="post" name="form_delete" action="comment_delproc.php">
+                        			<input type=hidden name="commno" value="">
+                                	<TBODY>
+                                		<tr>
+                                   		<td height=16 width="57">
+                                        		<p style="LINE-HEIGHT: 13pt">비밀번호&nbsp;</p>
+                                    		</td>
+                                    		<td height=16 width="81">
+                                    			<input type="password" class=box_02 maxlength=6 size=6 name="pass" style="BORDER-BOTTOM: rgb(204,204,204) 1px solid; BORDER-LEFT: rgb(204,204,204) 1px solid; BACKGROUND-COLOR: rgb(248,248,248); BORDER-TOP: rgb(204,204,204) 1px solid; BORDER-RIGHT: rgb(204,204,204) 1px solid">
+                                    		</td>
+                                		</tr>
+                                	</TBODY>
+                            	</table>
+                            	<table align="center" border="0" cellpadding="0" cellspacing="0" width="141" style="margin-top:10;">
+                                	<tr>
+                                    	<td width="141" align="center">
+                                        	<p><img src="../ucc/imgs/btn_list_del.gif" width="63" height="23" border="0" onClick="checkIt2(document.form_delete);" style="cursor:pointer;margin-right:5;">
+                                        	<img src="../ucc/imgs/win_close2.gif" width="63" height="23" border="0" onClick="commentdel('', this, 0);" style="cursor:pointer;"></p>
+                                    	</td>
+                                	</tr>
+                              </form>
+                            	</table>
+                        	</td>
+                	</tr>
+            	</table>
+          </div>
+		<script language="javascript">
+		function checkIt2(form) {
+			if( !form.pass.value ) {
+				alert('비밀번호를 입력하세요!');
+				form.pass.focus();
+				return;
+			}
+			form.target="hiddenwindow";
+			form.action="comment_delproc.php";
+			form.submit();
+		}
+		</script>
+		<!--댓글 삭제 레이어 끝--------------------------------------------------------------------------------------------------------->                                      	</td>
+                                   	</tr>
+                                    <tr>
+                                    	<td>
+                                       	<table width="729" border="0" cellpadding="0" cellspacing="0">
+                                          	<tr>
+                                             	<td width="50" height="54">&nbsp;</td>
+                                                <td width="652" height="54" align="right">
+												&nbsp;<a href="petcare.html?page=&animal="><img src="../images/board/detail-list.GIF" width="63" height="21"></a>
+                                                </td>
+                                                <td width="27">&nbsp;</td>
+                                            	</tr>
+                                         	</table>
+                                      	</td>
+                                  	</tr>
+                                	</table>
+                                  </td>
+                                  <td width="19" background="../images/board/detail-03-img.GIF"></td>
+                                </tr>
+                            	</table>
+                            		</td>
+                          		</tr>
+                          		<tr>
+                            		<td><img src="../images/board/detail-04-img.GIF" width="767" height="30"></td>
+                          		</tr>
+                        	</table>
+                     	</td>
+                    	</tr>
+                  </table>
+          		</td>
+        		</tr>
+     		</table>
+<div class="footer-container">
+	<div class="footer-logo">
+		<img src="https://www.zooseyo.or.kr/images/main/top-003img.jpg" alt="종합유기견보호센터 로고">
+	</div>
+	<div class="footer-text">
+		<p>상호: (주)상상유니버스 유기견보호센터 <span>|</span> 서울특별시 마포구 동교로23길 21, 2층 <span>|</span> 대표자 : 정민수 <span>|</span> <a href="#" onclick="javascript:window.open('http://www.zooseyo.or.kr/Yu_member/doc2_member.html', 'customer_info' , 'width=602,height=754,scrollbars=auto');return false;" style="color: #74734c; text-decoration: none;">개인정보 취급방침</a></p>
+		<p>사업자번호 : 898-87-00897 <span>|</span> <a href="#" onclick="javascript:window.open('/popup/customer_info.html', 'customer_info' , 'width=602,height=754,scrollbars=auto');return false;" style="color: #74734c; text-decoration: none;">상담센터 [상담문의하기]</a> (상담시간 10:00~16:00, 토일 휴무) <span>|</span> 개인정보관리자 : 정민수</p>
+		<p>동물판매업 등록번호: 제3130000-045-2018-0050호 <span>|</span> 통신판매업 등록번호 제2020-서울마포-0181호</p>
+		<p>E-mail: master@<a href="https://www.zooseyo.com" style="color: inherit; text-decoration: none;" target="_blank">zooseyo.com</a></p> 
+		<p>Copyright (c) 2013 종합유기견보호센터 All Rights Reserved</p>
+	</div>
+</div>
+
+
+	
+
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38519329-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+<!--
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
+<script type="text/javascript">
+if (!wcs_add) var wcs_add={};
+wcs_add["wa"] = "s_17c5b9bf158b";
+if (!_nasa) var _nasa={};
+wcs.inflow();
+wcs_do(_nasa);
+</script>
+-->
+
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "1d0177938189b00";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+
+
+
+    	</td>
+  	</tr>
+</table>
+</body>
+</html>
