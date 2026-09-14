@@ -3,11 +3,10 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ mode }) => {
     const isProd = mode === 'production'
-    const isGhPages = process.env.GITHUB_PAGES === 'true'
     return {
         plugins: [react()],
-        // 커스텀 도메인(parvogel.kr)에서는 절대경로 '/', GitHub Pages 서브경로에서는 '/parvogel/' 필요
-        base: isGhPages ? '/parvogel/' : '/',
+        // HOTFIX: parvogel.kr 커스텀 도메인은 항상 '/' — '/parvogel/' 사용 시 JS/CSS 404로 백지 발생 (2026-09-14 정지 원인)
+        base: '/',
         esbuild: {
             drop: isProd ? ['console', 'debugger'] : [],
         },

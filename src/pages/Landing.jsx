@@ -316,11 +316,7 @@ const Landing = () => {
         try {
             const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
                 || import.meta.env.VITE_APPS_SCRIPT_URL
-                || '';
-            if (!scriptURL) {
-                alert('주문 서버 주소가 설정되지 않았습니다. 관리자에게 문의해 주세요.');
-                return;
-            }
+                || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec';
 
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')

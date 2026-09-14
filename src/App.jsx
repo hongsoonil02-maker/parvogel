@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Landing from './pages/Landing';
 
@@ -7,9 +7,7 @@ import Landing from './pages/Landing';
 const BlogList = lazy(() => import('./pages/BlogList'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 
-// 커스텀 도메인(parvogel.kr)에서는 BrowserRouter, GitHub Pages 서브경로 호환 위해 HashRouter 폴백
-const isCustomDomain = typeof window !== 'undefined' && window.location.hostname === 'parvogel.kr';
-const Router = isCustomDomain ? BrowserRouter : HashRouter;
+const Router = HashRouter;
 
 function App() {
   return (
