@@ -6,9 +6,9 @@ export default function StickyBottomCTA({ onOpenOrder }) {
   const { t } = useTranslation();
 
   return (
-    <nav 
+    <nav
       aria-label="Quick Action Footer Bar"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-blue-500/30 shadow-[0_-4px_20px_rgba(0,0,0,0.3)] px-4 py-3 sm:px-6 text-white"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-blue-500/30 shadow-[0_-4px_20px_rgba(0,0,0,0.3)] px-4 py-3 sm:px-6 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] text-white"
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
         <div className="hidden md:flex items-center gap-3">

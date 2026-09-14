@@ -147,6 +147,11 @@ section:not(#hero) {
     @apply py-12 sm:py-16 lg:py-20 !important;
 }
 
+/* 스티키 바 safe-area 대응: 하단 콘텐츠가 가려지지 않도록 */
+#faq, #order {
+    scroll-margin-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
 /* ============================================================
    한글 줄맞춤 및 타이포그래피 줄바꿈 균형 (Korean Line-Break & Wrap)
    ============================================================ */

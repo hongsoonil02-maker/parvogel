@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import ClinicalEvidence from '../components/ClinicalEvidence'
-import ParvogelClinicalDocumentary from '../components/ParvogelClinicalDocumentary'
 import AnimalSelector from '../components/AnimalSelector'
 import AudioTestimonial from '../components/AudioTestimonial'
 import StickyBottomCTA from '../components/StickyBottomCTA'
@@ -13,6 +11,8 @@ import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import PartnerNoticeModal from '../components/PartnerNoticeModal'
 
+const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
+const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
 const Chatbot = lazy(() => import('../components/Chatbot'))
 const QrCode = lazy(() => import('../components/QrCode'))
 
@@ -123,18 +123,21 @@ const Landing = () => {
 
     const [currentCopyIdx, setCurrentCopyIdx] = useState(initialCopyIndex);
     const [isCopyFading, setIsCopyFading] = useState(false);
+    const [isAutoRotatePaused, setIsAutoRotatePaused] = useState(false);
 
     useEffect(() => {
-        if (persona !== 'pet') return;
+        if (persona !== 'pet' || isAutoRotatePaused) return;
+        // 접근성: prefers-reduced-motion이면 자동 로테이션 비활성화
+        if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const timer = setInterval(() => {
             setIsCopyFading(true);
             setTimeout(() => {
                 setCurrentCopyIdx(prev => (prev + 1) % petHeroCopies.length);
                 setIsCopyFading(false);
             }, 300);
-        }, 12000); // 12초마다 자연스럽게 페이드 로테이션
+        }, 12000);
         return () => clearInterval(timer);
-    }, [persona, petHeroCopies.length]);
+    }, [persona, petHeroCopies.length, isAutoRotatePaused]);
 
     const currentPetCopy = petHeroCopies[currentCopyIdx];
 
@@ -312,7 +315,12 @@ const Landing = () => {
 
         try {
             const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
-                || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec'
+                || import.meta.env.VITE_APPS_SCRIPT_URL
+                || '';
+            if (!scriptURL) {
+                alert('주문 서버 주소가 설정되지 않았습니다. 관리자에게 문의해 주세요.');
+                return;
+            }
 
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')
@@ -739,9 +747,15 @@ const Landing = () => {
                             </button>
                         </div>
 
-                        {/* Main Title - Dynamic according to persona */}
+                        {/* Main Title - Dynamic according to persona (h1은 pet일 때만, livestock는 p로 H1 중복 방지) */}
                         {persona === 'pet' ? (
-                            <div className={`transition-all duration-300 ${isCopyFading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}>
+                            <div
+                                className={`transition-all duration-300 ${isCopyFading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
+                                onMouseEnter={() => setIsAutoRotatePaused(true)}
+                                onMouseLeave={() => setIsAutoRotatePaused(false)}
+                                onFocus={() => setIsAutoRotatePaused(true)}
+                                onBlur={() => setIsAutoRotatePaused(false)}
+                            >
                                 {/* Rotation Category Badge */}
                                 <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs sm:text-sm font-bold mb-4 shadow-sm">
                                     <span>{currentPetCopy.badge}</span>
@@ -786,13 +800,13 @@ const Landing = () => {
                             </div>
                         ) : (
                             <div>
-                                <h1 className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`}>
+                                <p className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`} role="heading" aria-level="2">
                                     <span className="block">{t('heroLivestock.title1', '신생 송아지·자돈 수양성 설사')}</span>
                                     <span className="block text-amber-700">{t('heroLivestock.title2', '24시간 내 분변 경도 정상화 솔루션')}</span>
-                                </h1>
+                                </p>
                                 <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
                                     <span className="block font-medium">{t('heroLivestock.sub1', '로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어')}</span>
-                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">{t('heroLivestock.sub2', '상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 98.5% 흡착 제거)')}</span>
+                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">{t('heroLivestock.sub2', '상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 흡착에 도움을 줄 수 있음*)')}</span>
                                 </p>
                             </div>
                         )}
@@ -838,7 +852,7 @@ const Landing = () => {
                             </button>
                         </div>
 
-                        {/* CTA Buttons - Decoupled Direct Ecommerce vs Wholesale */}
+                        {/* CTA Buttons - Primary 2 CTA (Hick's Law 해소: 쿠팡 vs 무료체험) */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
                             <a
                                 href={getStoreUrl('coupang')}
@@ -853,32 +867,35 @@ const Landing = () => {
                                 </div>
                             </a>
 
-                            <a
-                                href={getStoreUrl('naver')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
-                            >
-                                <span className="text-xl">🟢</span>
-                                <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-emerald-200 font-bold uppercase tracking-wider">{t('heroCta.naverBadge', '네이버페이 포인트 적립')}</div>
-                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.naverText', '네이버 스마트스토어')}</div>
-                                </div>
-                            </a>
-
                             <button
                                 onClick={() => {
-                                    setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' }));
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        requestType: 'sample_petshop',
+                                        product: 'parvogel-200ml',
+                                        quantity: 1,
+                                        message: '[히어로 CTA] 무료체험 1병 신청'
+                                    }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className={`w-full sm:flex-1 h-14 sm:h-16 ${primaryBg} ${primaryHover} text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5`}
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                             >
-                                <span className="text-xl">🏥</span>
+                                <span className="text-xl">🎁</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">{t('heroCta.wholesaleBadge', '병원/농가 최대 50% 할인')}</div>
-                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.wholesaleText', '도매 공급가 견적 신청')}</div>
+                                    <div className="text-[10px] text-amber-100 font-bold uppercase tracking-wider">선착순 무료체험</div>
+                                    <div className="text-sm sm:text-base font-extrabold">정품 1병 무료체험 신청</div>
                                 </div>
+                            </button>
+                        </div>
+                        {/* Secondary CTAs - 텍스트 링크로 축소 (시각적 계층화) */}
+                        <div className="flex items-center justify-center gap-3 mb-6 text-xs sm:text-sm">
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-800 font-bold underline underline-offset-4">
+                                🟢 네이버 스마트스토어 →
+                            </a>
+                            <span className="text-slate-300">|</span>
+                            <button onClick={() => { setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }} className="text-primary-700 hover:text-primary-800 font-bold underline underline-offset-4">
+                                🏥 도매 공급가 견적 신청 →
                             </button>
                         </div>
 
@@ -972,6 +989,8 @@ const Landing = () => {
                                         loop
                                         muted
                                         playsInline
+                                        preload="metadata"
+                                        poster={`${import.meta.env.BASE_URL}images/bottle_front.png`}
                                         aria-label={t('a11y.productVideo', '파보겔 제품 소개 영상')}
                                         className="w-full h-full object-cover"
                                         src={`${import.meta.env.BASE_URL}assets/video.mp4`}
@@ -981,7 +1000,8 @@ const Landing = () => {
                                         src={activeMedia}
                                         alt={t('a11y.productPhoto', '파보겔 제품 사진')}
                                         className="w-full h-full object-cover animate-fade-in"
-                                        loading="eager"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 )}
                             </div>
@@ -998,7 +1018,7 @@ const Landing = () => {
                                         }`}
                                     onClick={() => setActiveMedia('video')}
                                 >
-                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline aria-hidden="true" tabIndex={-1} />
+                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}images/bottle_front.png`} aria-hidden="true" tabIndex={-1} />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                                         <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                             <path d="M4.5 3a.5.5 0 00-.5.5v13a.5.5 0 00.757.429l11-6.5a.5.5 0 000-.858l-11-6.5A.5.5 0 004.5 3z" />
@@ -1061,13 +1081,13 @@ const Landing = () => {
                         </p>
                     </div>
 
-                    {/* Product Images (Front & Back) */}
+                    {/* Product Images (Front & Back) — lazy + async decode */}
                     <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                     </div>
 
@@ -1094,11 +1114,15 @@ const Landing = () => {
                 <AnimalSelector />
             </div>
 
-            {/* Clinical Evidence Section */}
-            <ClinicalEvidence />
+            {/* Clinical Evidence Section — lazy */}
+            <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>
+                <ClinicalEvidence />
+            </Suspense>
 
-            {/* 리얼 6단계 임상 다큐멘터리 (일자별 치료 순서 동기화) */}
-            <ParvogelClinicalDocumentary />
+            {/* 리얼 6단계 임상 다큐멘터리 — lazy */}
+            <Suspense fallback={<div className="py-16 text-center text-slate-400">다큐멘터리 로딩 중...</div>}>
+                <ParvogelClinicalDocumentary />
+            </Suspense>
 
 
             {/* Target Animals Section */}
@@ -1210,7 +1234,7 @@ const Landing = () => {
 
                     {/* Product Lineup Image */}
                     <div className="max-w-4xl mx-auto mt-10 mb-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
-                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} className="w-full h-auto object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} className="w-full h-auto object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">

@@ -58,21 +58,24 @@ export default function FAQ() {
                   isOpen ? 'border-primary-500 ring-2 ring-primary-100' : 'border-slate-200 hover:border-slate-300'
                 }`}
               >
+                <h3 className="m-0">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
                   className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="shrink-0 w-7 h-7 rounded-lg bg-primary-50 text-primary-700 font-extrabold text-sm flex items-center justify-center border border-primary-200">
+                  <span className="flex items-center gap-3">
+                    <span className="shrink-0 w-7 h-7 rounded-lg bg-primary-50 text-primary-700 font-extrabold text-sm flex items-center justify-center border border-primary-200" aria-hidden="true">
                       Q
                     </span>
                     <span className="font-bold text-slate-900 text-base sm:text-lg break-keep">
                       {faq.q}
                     </span>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
+                  </span>
+                  <span className="flex items-center gap-2 shrink-0">
                     <span className="hidden sm:inline-block px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-slate-100 text-slate-600">
                       {faq.badge}
                     </span>
@@ -81,16 +84,18 @@ export default function FAQ() {
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </div>
+                  </span>
                 </button>
+                </h3>
 
                 {isOpen && (
-                  <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100 pt-4 animate-fade-in break-keep bg-slate-50/50">
+                  <div id={`faq-answer-${index}`} role="region" aria-labelledby={`faq-question-${index}`} className="px-5 pb-6 sm:px-6 sm:pb-6 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100 pt-4 animate-fade-in break-keep bg-slate-50/50">
                     <div className="flex items-start gap-3">
-                      <span className="shrink-0 w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 font-extrabold text-sm flex items-center justify-center border border-emerald-200 mt-0.5">
+                      <span className="shrink-0 w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 font-extrabold text-sm flex items-center justify-center border border-emerald-200 mt-0.5" aria-hidden="true">
                         A
                       </span>
                       <p className="flex-1 whitespace-pre-line text-slate-700">

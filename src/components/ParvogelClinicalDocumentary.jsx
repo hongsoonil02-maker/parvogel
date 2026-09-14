@@ -507,6 +507,7 @@ export default function ParvogelClinicalDocumentary() {
                   controls
                   playsInline
                   preload="metadata"
+                  poster={`${import.meta.env.BASE_URL}assets/clinical_thumbs/${selectedVideo.thumb}`}
                   aria-label={`${selectedVideo.stepNum} ${selectedVideo.title}`}
                   className="w-full h-full object-cover"
                 >
@@ -653,8 +654,9 @@ export default function ParvogelClinicalDocumentary() {
               <video
                 key="parvogel-docu-video-v2"
                 controls
-                autoPlay
                 playsInline
+                preload="metadata"
+                poster={`${import.meta.env.BASE_URL}assets/short_story_thumb.jpg`}
                 aria-label={t('doc.docuModalTitle', '김동준 원장 55일령 발작 환축 7일간의 기적 다큐멘터리')}
                 className="w-full h-full object-cover"
               >
@@ -775,8 +777,9 @@ export default function ParvogelClinicalDocumentary() {
               <video
                 key="parvogel-short-video"
                 controls
-                autoPlay
                 playsInline
+                preload="metadata"
+                poster={shortThumbUrl}
                 aria-label={t('doc.shortModalTitle', '파보겔 임상 케이스 스토리 숏폼')}
                 className="w-full h-full object-cover"
               >

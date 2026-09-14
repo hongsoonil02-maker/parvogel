@@ -86,17 +86,29 @@ const ClinicalEvidence = () => {
                   <span className="shrink-0">📚</span>
                   <span className="break-keep">{t('clinical.paperRef1', 'Smectite & Montmorillonite 독소 흡착·지사 글로벌 연구 자료')}</span>
                 </span>
+                <div className="flex gap-1.5">
                 <a
-                  href="https://www.google.com/search?q=smectite+and+montmorillonite+adsorption"
+                  href="https://pubmed.ncbi.nlm.nih.gov/?term=smectite+montmorillonite+adsorption+diarrhea"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-700 hover:bg-primary-800 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
-                  <span>🔍</span>
-                  <span className="break-keep">{t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
+                  <span>🔬</span>
+                  <span className="break-keep">PubMed 검색</span>
                   <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                 </a>
+                <a
+                  href="https://scholar.google.com/scholar?q=smectite+and+montmorillonite+adsorption"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-white border border-primary-300 text-primary-700 text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md"
+                >
+                  <span>🎓</span>
+                  <span className="break-keep">Scholar</span>
+                </a>
+                </div>
               </div>
+              <p className="text-[11px] text-slate-500 mt-2 break-keep">* 표면적·입자도 수치는 원료 시험성적서 조건에서의 비교값이며, 개체별 효과 차가 있을 수 있습니다.</p>
             </div>
           </div>
 
@@ -144,6 +156,7 @@ const ClinicalEvidence = () => {
                   <p className="text-xs font-bold text-primary-700">{t('clinical.table2_row4_result', '증식 억제에 도움')}</p>
                 </div>
               </div>
+              <p className="text-[11px] text-slate-500 mt-3 break-keep">* 상기 수치는 시험 조건(100ppm, pH 2.0 등)에서의 참고값이며, 보조사료는 질병 치료를 대체하지 않습니다. 자세한 조건은 문의 시 성적서를 제공합니다.</p>
             </div>
           </div>
 
@@ -288,17 +301,29 @@ const ClinicalEvidence = () => {
                   <span className="shrink-0">📚</span>
                   <span className="break-keep">{t('clinical.paperRef2', '1-Deoxynojirimycin(DNJ) 학술 논문 및 글로벌 연구 자료')}</span>
                 </span>
+                <div className="flex gap-1.5">
                 <a
-                  href="https://www.google.com/search?q=1-deoxynojirimycin+antiviral"
+                  href="https://pubmed.ncbi.nlm.nih.gov/?term=1-deoxynojirimycin+antiviral"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-primary-700 hover:bg-primary-800 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 >
-                  <span>🔍</span>
-                  <span className="break-keep">{t('clinical.searchGoogle', 'Google 학술 논문 검색')}</span>
+                  <span>🔬</span>
+                  <span className="break-keep">PubMed 검색</span>
                   <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                 </a>
+                <a
+                  href="https://scholar.google.com/scholar?q=1-deoxynojirimycin+antiviral"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 shrink-0 bg-white border border-primary-300 text-primary-700 text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow-md"
+                >
+                  <span>🎓</span>
+                  <span className="break-keep">Scholar</span>
+                </a>
+                </div>
               </div>
+              <p className="text-[11px] text-slate-500 mt-2 break-keep">* DNJ 항바이러스 효과는 체외(in vitro) 및 기초 연구 기반이며, 보조사료는 질병 치료를 대체하지 않습니다.</p>
             </div>
           </div>
 
@@ -400,12 +425,12 @@ const ClinicalEvidence = () => {
             {/* 하단 액션 버튼 */}
             <div className="flex gap-2">
               <a
-                href={`https://www.google.com/search?q=${encodeURIComponent('1-deoxynojirimycin ' + selectedVirus.group + ' antiviral')}`}
+                href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent('1-deoxynojirimycin ' + selectedVirus.group + ' antiviral')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs rounded-xl shadow-md transition-all text-center cursor-pointer"
               >
-                <span>🔍 Google 학술 논문 검색</span>
+                <span>🔬 PubMed 검색</span>
               </a>
               <button
                 onClick={() => setSelectedVirus(null)}

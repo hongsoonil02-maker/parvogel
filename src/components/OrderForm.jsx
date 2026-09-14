@@ -24,14 +24,23 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
 
     return (
         <form onSubmit={onSubmit} className={variant === 'modal' ? 'space-y-4' : 'space-y-6'}>
-            {/* 신청 구분 */}
+            {/* 신청 구분 — 2그룹 계층화 (개인 vs B2B) */}
             <div>
                 <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
-                <div className={`grid gap-2 ${variant === 'modal' ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2 sm:grid-cols-5'}`}>
+                <p className="text-[11px] text-slate-500 mb-2">개인 구매는 쿠팡/네이버 바로구매를 권장합니다. 펫샵·브리더·병원·도매는 아래 B2B 탭에서 신청해 주세요.</p>
+                {/* 그룹 1: 개인 */}
+                <p className="text-[11px] font-bold text-slate-600 mt-1 mb-1">개인 · 보호자</p>
+                <div className="grid gap-2 grid-cols-1 sm:grid-cols-1 mb-3">
+                    <button type="button" onClick={() => setFormData(prev => ({ ...prev, requestType: 'consumer' }))} className={`py-3 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${formData.requestType === 'consumer' ? 'border-emerald-600 bg-emerald-50 text-emerald-800 shadow-md ring-2 ring-emerald-500/20' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}>
+                        <span>🛒</span><span className="break-keep text-center leading-tight">{t('order.requestConsumer')} — 쿠팡/네이버 빠른 배송</span>
+                    </button>
+                </div>
+                {/* 그룹 2: B2B */}
+                <p className="text-[11px] font-bold text-slate-600 mb-1">병원 · 펫샵 · 브리더 · 도매 (B2B)</p>
+                <div className={`grid gap-2 ${variant === 'modal' ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-4'}`}>
                     {[
-                        { value: 'sample_petshop', icon: '🎁', label: '펫샵 본품 1병 무료' },
-                        { value: 'sample_breeder', icon: '🐾', label: '브리더 본품 1병 무료' },
-                        { value: 'consumer', icon: '🛒', label: t('order.requestConsumer') },
+                        { value: 'sample_petshop', icon: '🎁', label: '펫샵 1병 무료' },
+                        { value: 'sample_breeder', icon: '🐾', label: '브리더 1병 무료' },
                         { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
                         { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
                     ].map(opt => (

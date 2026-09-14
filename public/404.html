@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>파보겔 — 페이지를 찾을 수 없습니다</title>
+<script>
+// GitHub Pages SPA fallback — BrowserRouter에서 새로고침 시 index로 복구
+(function(){
+  var l = window.location;
+  var base = l.protocol + '//' + l.host;
+  var path = l.pathname + l.search + l.hash;
+  // hash 라우팅 폴백: 병원/블로그 직접 접속 시 해시로 변환
+  if (!l.hash || !l.hash.startsWith('#/')) {
+    // 커스텀 도메인에서는 BrowserRouter이므로 index.html 서빙 후 React가 라우팅 처리
+    // 404.html이 로드되면 세션에 원래 경로 저장 후 루트로 리다이렉트
+    try { sessionStorage.setItem('__spa_redirect', path); } catch(e) {}
+    window.location.replace(base + '/');
+  }
+})();
+</script>
+</head>
+<body>
+<p>페이지를 찾을 수 없습니다. <a href="/">홈으로 이동</a></p>
+</body>
+</html>
