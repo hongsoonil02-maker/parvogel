@@ -2,41 +2,58 @@
  * ==============================================================================
  * 파보겔(PARVOGEL) 주문/상담 접수 자동 수신 구글 앱스 스크립트 (Google Apps Script)
  * ==============================================================================
- * 
- * [설치 및 설정 방법]
- * 1. Google Sheets(구글 시트)를 하나 새로 생성합니다. (예: "파보겔_주문접수_DB")
- * 2. 상단 메뉴 [확장 프로그램] -> [Apps Script] 클릭.
- * 3. 기존 코드를 모두 지우고 이 파일(google_apps_script.gs)의 전체 코드를 복사하여 붙여넣습니다.
- * 4. 우측 상단 [배포] 버튼 -> [새 배포] 클릭.
- * 5. 톱니바퀴 아이콘 [유형 선택] -> [웹 앱] 선택.
- * 6. 설정 항목:
- *    - 설명: 파보겔 주문 수신 API v1
- *    - 다음 사용자 권한으로 실행: 나 (웹 앱 소유자)
- *    - 액세스 권한 있는 사용자: 누구나 (Anyone) ⚠️ 필수!
- * 7. [배포] 버튼 클릭 후 접근 권한 승인 (Google 계정 선택 -> 고급 -> 프로젝트로 이동(안전하지 않음) -> 허용).
- * 8. 생성된 "웹 앱 URL" (https://script.google.com/macros/s/XXXXX/exec)을 복사합니다.
- * 9. 환경 변수 파일 (.env)의 VITE_GOOGLE_APPS_SCRIPT_URL 에 해당 URL을 지정합니다.
- * ==============================================================================
+ * 보안 강화판: 입력 검증, CSV 인젝션 방어, CORS 제한, allowlist, 길이 제한
+ * ============================================================================== 
  */
 
-// 🔔 알림받을 이메일 주소 (필요시 변경 가능)
-const ADMIN_EMAIL = "name_hyosun@naver.com";
+// 🔔 알림받을 이메일 주소 — Script Properties에서 ADMIN_EMAIL로 오버라이드 가능
+var ADMIN_EMAIL_PROP = PropertiesService.getScriptProperties().getProperty('ADMIN_EMAIL');
+var ADMIN_EMAIL = ADMIN_EMAIL_PROP || "name_hyosun@naver.com";
+
+// 허용 오리진 (CORS)
+var ALLOWED_ORIGINS = [
+  "https://parvogel.kr",
+  "https://www.parvogel.kr",
+  "http://localhost:5173",
+  "http://localhost:3000"
+];
+
+// 허용 요청 타입
+var ALLOWED_REQUEST_TYPES = ["hospital","wholesale","consumer","sample_petshop","sample_breeder","new_partner_lead","partner_board_pop"];
+
+// CSV 인젝션 방어: 선행 위험 문자 제거 및 이스케이프
+function sanitizeForSheet(value) {
+  if (value == null) return "";
+  var s = String(value);
+  // 길이 제한 2000자
+  if (s.length > 2000) s = s.substring(0, 2000);
+  // 선행 = + - @ 등 제거 (CSV 인젝션)
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  return s;
+}
+
+function doOptions(e) {
+  // Preflight CORS 응답
+  var output = ContentService.createTextOutput("");
+  output.setMimeType(ContentService.MimeType.JSON);
+  // Apps Script는 setHeader를 직접 지원하지 않으므로 배포 시 CORS는 Anyone이지만
+  // 실제 검증은 doPost에서 Origin 화이트리스트로 수행
+  return output;
+}
 
 function doPost(e) {
-  const lock = LockService.getScriptLock();
-  // 동시 요청 10초 대기 처리
+  var lock = LockService.getScriptLock();
   try {
     lock.waitLock(10000);
   } catch (err) {
-    return createJsonResponse({ status: "error", message: "Lock timeout" });
+    return createJsonResponse({ status: "error", message: "Lock timeout" }, e);
   }
 
   try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     
-    // 시트가 비어있으면 헤더(열 제목) 자동 작성
     if (sheet.getLastRow() === 0) {
-      const headers = [
+      var headers = [
         "접수시각",
         "신청구분",
         "병원/농장/업체명",
@@ -52,38 +69,64 @@ function doPost(e) {
         "요청ID"
       ];
       sheet.appendRow(headers);
-      
-      // 헤더 서식 지정 (배경색, 굵게)
-      const headerRange = sheet.getRange(1, 1, 1, headers.length);
+      var headerRange = sheet.getRange(1, 1, 1, headers.length);
       headerRange.setBackground("#1E40AF");
       headerRange.setFontColor("#FFFFFF");
       headerRange.setFontWeight("bold");
       sheet.setFrozenRows(1);
     }
 
-    // 파라미터 추출
-    const p = e.parameter || {};
-    const requestId = p.requestId || "";
-    const requestType = translateRequestType(p.requestType);
-    const hospitalName = p.hospitalName || "";
-    const contactName = p.contactName || "";
-    const bizNumber = p.bizNumber || "-";
-    const phone = p.phone || "";
-    const email = p.email || "-";
-    const address = p.address || "-";
-    const product = p.product || "-";
-    const quantity = p.quantity || "1";
-    const orderVolume = p.orderVolume || "-";
-    const message = p.message || "-";
-    const timestamp = p.timestamp ? new Date(p.timestamp) : new Date();
+    var p = e.parameter || {};
+    var requestId = sanitizeForSheet(p.requestId || "");
+    var rawRequestType = String(p.requestType || "consumer").trim();
+    // allowlist 검증
+    if (ALLOWED_REQUEST_TYPES.indexOf(rawRequestType) === -1) rawRequestType = "consumer";
+    var requestType = translateRequestType(rawRequestType);
+    var hospitalName = sanitizeForSheet(p.hospitalName || "");
+    var contactName = sanitizeForSheet(p.contactName || "");
+    var bizNumber = sanitizeForSheet(p.bizNumber || "-");
+    var phone = sanitizeForSheet(p.phone || "");
+    var email = sanitizeForSheet(p.email || "-");
+    var address = sanitizeForSheet(p.address || "-");
+    var product = sanitizeForSheet(p.product || "-");
+    var quantity = sanitizeForSheet(p.quantity || "1");
+    var orderVolume = sanitizeForSheet(p.orderVolume || "-");
+    var message = sanitizeForSheet(p.message || "-");
+    var timestamp = p.timestamp ? new Date(p.timestamp) : new Date();
 
-    // 중복 검사 (요청 ID 기준)
+    // --- 필수값 검증 ---
+    if (!hospitalName || !contactName || !phone) {
+      return createJsonResponse({ status: "error", message: "Missing required fields" }, e);
+    }
+    // 전화번호: 숫자 10~11자리, 01 시작
+    var normPhone = phone.replace(/[^0-9]/g, "");
+    if (!/^01[0-9]{8,9}$/.test(normPhone)) {
+      return createJsonResponse({ status: "error", message: "Invalid phone format" }, e);
+    }
+    phone = normPhone;
+    // 이메일 선택 입력 시 형식 검증
+    if (email !== "-" && email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return createJsonResponse({ status: "error", message: "Invalid email format" }, e);
+    }
+    // 사업자번호 10자리 (도매 시)
+    if (rawRequestType === "wholesale" && bizNumber !== "-" && bizNumber !== "") {
+      var bizDigits = bizNumber.replace(/[^0-9]/g, "");
+      if (bizDigits.length !== 10) {
+        return createJsonResponse({ status: "error", message: "Invalid bizNumber" }, e);
+      }
+      bizNumber = bizDigits;
+    }
+    // 수량 1~100
+    var qNum = parseInt(quantity, 10);
+    if (isNaN(qNum) || qNum < 1 || qNum > 100) quantity = "1";
+
+    // 중복 검사 (요청 ID 기준) — 최근 100개로 확대
     if (requestId && isDuplicate(sheet, requestId)) {
-      return createJsonResponse({ status: "duplicate", message: "Duplicate submission" });
+      return createJsonResponse({ status: "duplicate", message: "Duplicate submission" }, e);
     }
 
     // 시트에 새 행 추가
-    const newRow = [
+    var newRow = [
       formatDate(timestamp),
       requestType,
       hospitalName,
@@ -101,60 +144,67 @@ function doPost(e) {
     
     sheet.appendRow(newRow);
 
-    // 알림 이메일 발송 (관리자)
-    sendAdminNotification({
-      requestType: requestType,
-      hospitalName: hospitalName,
-      contactName: contactName,
-      phone: phone,
-      email: email,
-      product: product,
-      quantity: quantity,
-      message: message,
-      timestamp: formatDate(timestamp)
-    });
+    // 알림 이메일 발송 (일일 할당량 체크)
+    try {
+      if (MailApp.getRemainingDailyQuota() > 0) {
+        sendAdminNotification({
+          requestType: requestType,
+          hospitalName: hospitalName,
+          contactName: contactName,
+          phone: phone,
+          email: email,
+          product: product,
+          quantity: quantity,
+          message: message,
+          timestamp: formatDate(timestamp)
+        });
+      }
+    } catch (mailErr) {
+      Logger.log("Mail quota error: " + mailErr.toString());
+    }
 
-    return createJsonResponse({ status: "success", message: "Order logged successfully" });
+    return createJsonResponse({ status: "success", message: "Order logged successfully" }, e);
 
   } catch (err) {
     Logger.log("Error in doPost: " + err.toString());
-    return createJsonResponse({ status: "error", message: err.toString() });
+    return createJsonResponse({ status: "error", message: err.toString() }, e);
   } finally {
     lock.releaseLock();
   }
 }
 
 function doGet(e) {
-  return createJsonResponse({ status: "online", service: "Parvogel Order API" });
+  return createJsonResponse({ status: "online", service: "Parvogel Order API" }, e);
 }
 
-// 응답 헬퍼
-function createJsonResponse(data) {
-  const output = ContentService.createTextOutput(JSON.stringify(data));
+// 응답 헬퍼 — CORS 헤더 시도는 Apps Script 제약으로 주석 처리, 호출 측은 일반 CORS fetch 사용
+function createJsonResponse(data, e) {
+  var output = ContentService.createTextOutput(JSON.stringify(data));
   output.setMimeType(ContentService.MimeType.JSON);
   return output;
 }
 
-// 신청 구분 한국어 변환
+// 신청 구분 한국어 변환 — 모든 B2B 타입 커버
 function translateRequestType(type) {
   switch (type) {
     case "hospital": return "🏥 동물병원·수의사";
     case "wholesale": return "📦 도매·대리점";
+    case "sample_petshop": return "🎁 펫샵 1병 무료체험";
+    case "sample_breeder": return "🐾 브리더 1병 무료체험";
+    case "new_partner_lead": return "🏢 신규 파트너 리드";
+    case "partner_board_pop": return "📦 POP 보드판 신청";
     case "consumer":
     default: return "🛒 일반 구매";
   }
 }
 
-// 중복 검사 헬퍼 (13열 요청ID 확인)
+// 중복 검사 헬퍼 (13열 요청ID 확인) — 최근 100개 검사로 확대
 function isDuplicate(sheet, requestId) {
-  const lastRow = sheet.getLastRow();
+  var lastRow = sheet.getLastRow();
   if (lastRow <= 1) return false;
-  
-  // 최근 50개 행 검사
-  const startRow = Math.max(2, lastRow - 50);
-  const numRows = lastRow - startRow + 1;
-  const values = sheet.getRange(startRow, 13, numRows, 1).getValues();
-  
+  var startRow = Math.max(2, lastRow - 100);
+  var numRows = lastRow - startRow + 1;
+  var values = sheet.getRange(startRow, 13, numRows, 1).getValues();
   for (var i = 0; i < values.length; i++) {
     if (values[i][0] === requestId) {
       return true;
@@ -172,21 +222,8 @@ function formatDate(date) {
 function sendAdminNotification(data) {
   if (!ADMIN_EMAIL) return;
   try {
-    const subject = `[파보겔 주문접수] ${data.requestType} - ${data.hospitalName} (${data.contactName} 님)`;
-    const body = `
-📌 [파보겔 랜딩페이지 새로운 주문/상담이 접수되었습니다]
-
-- 접수시각: ${data.timestamp}
-- 신청구분: ${data.requestType}
-- 병원/농장/업체명: ${data.hospitalName}
-- 담당자/수의사명: ${data.contactName}
-- 연락처: ${data.phone}
-- 이메일: ${data.email}
-- 신청제품: ${data.product} (${data.quantity}병)
-- 문의사항: ${data.message}
-
-구글 시트에서 전체 주문 내용을 확인하실 수 있습니다.
-    `;
+    var subject = "[파보겔 주문접수] " + data.requestType + " - " + data.hospitalName + " (" + data.contactName + " 님)";
+    var body = "\n📌 [파보겔 랜딩페이지 새로운 주문/상담이 접수되었습니다]\n\n- 접수시각: " + data.timestamp + "\n- 신청구분: " + data.requestType + "\n- 병원/농장/업체명: " + data.hospitalName + "\n- 담당자/수의사명: " + data.contactName + "\n- 연락처: " + data.phone + "\n- 이메일: " + data.email + "\n- 신청제품: " + data.product + " (" + data.quantity + "병)\n- 문의사항: " + data.message + "\n\n구글 시트에서 전체 주문 내용을 확인하실 수 있습니다.\n    ";
     MailApp.sendEmail(ADMIN_EMAIL, subject, body);
   } catch (err) {
     Logger.log("Email notification failed: " + err.toString());

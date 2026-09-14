@@ -10,6 +10,7 @@ import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import PartnerNoticeModal from '../components/PartnerNoticeModal'
+import FeedDisclaimer from '../components/FeedDisclaimer'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -55,6 +56,8 @@ const Landing = () => {
     const [scrollY, setScrollY] = useState(0)
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
+    const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+    const aboutVideoRef = useRef(null)
 
     // 지원 언어 목록 및 현지화 표기 메타데이터
     const languageOptions = useMemo(() => [
@@ -113,7 +116,7 @@ const Landing = () => {
             sub1: t('heroCopies.copyD.sub1', '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔'),
             sub2: t('heroCopies.copyD.sub2', '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게')
         }
-    ], [t, i18n.language]);
+    ], [t]);
 
     // 일자 기반 시작 인덱스 (매일 다른 기본 카피)
     const initialCopyIndex = useMemo(() => {
@@ -141,27 +144,54 @@ const Landing = () => {
 
     const currentPetCopy = petHeroCopies[currentCopyIdx];
 
-    // Scroll effect for header
+    // Scroll effect for header (scrollY) + IntersectionObserver for activeSection
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            setScrollY(window.scrollY)
-            const sections = ['hero', 'about', 'animal-guide', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order']
-            const scrollPosition = window.scrollY + 200
-
-            for (const section of sections) {
-                const element = document.getElementById(section)
-                if (element) {
-                    const { offsetTop, offsetHeight } = element
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section)
-                        break
-                    }
-                }
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setScrollY(window.scrollY);
+                    ticking = false;
+                });
+                ticking = true;
             }
-        }
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        return () => window.removeEventListener('scroll', handleScroll)
+    useEffect(() => {
+        const sections = ['hero', 'about', 'animal-guide', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order'];
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+        sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+        return () => observer.disconnect();
+    }, [])
+
+    // 히어로/어바웃 비디오 지연 로드 — 뷰포트 진입 시에만 네트워크 요청
+    useEffect(() => {
+        const el = aboutVideoRef.current || document.getElementById('about');
+        if (!el) return;
+        const obs = new IntersectionObserver((entries) => {
+            if (entries.some(e => e.isIntersecting)) {
+                setShouldLoadVideo(true);
+                obs.disconnect();
+            }
+        }, { rootMargin: '200px' });
+        obs.observe(el);
+        // 사용자가 비디오 썸네일을 직접 클릭해도 즉시 로드
+        const onActivate = () => setShouldLoadVideo(true);
+        el.addEventListener('click', onActivate, { once: true });
+        return () => { obs.disconnect(); el.removeEventListener('click', onActivate); };
     }, [])
 
     // Set document lang & dir attributes for accessibility and cultural respect
@@ -203,10 +233,12 @@ const Landing = () => {
         }
     }, [isLangOpen])
 
-    // 모달 열림 시 ESC 닫기 + 배경 스크롤 잠금 (접근성·모바일 UX)
+    // 모달 열림 시 ESC 닫기 + 배경 스크롤 잠금 + 포커스 트랩 + 포커스 복귀 (접근성)
+    const lastFocusRef = useRef(null)
     useEffect(() => {
         const modalOpen = isOrderModalOpen || Boolean(legalType) || isPartnerModalOpen
         if (!modalOpen) return
+        lastFocusRef.current = document.activeElement
         const handleKey = (e) => {
             if (e.key === 'Escape') {
                 setIsOrderModalOpen(false)
@@ -214,13 +246,34 @@ const Landing = () => {
                 setLegalType(null)
                 setIsPartnerModalOpen(false)
             }
+            // 포커스 트랩: Tab이 모달 밖으로 나가지 않도록
+            if (e.key === 'Tab') {
+                const modal = document.querySelector('[role="dialog"][aria-modal="true"]')
+                if (!modal) return
+                const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])')
+                if (focusable.length === 0) return
+                const first = focusable[0]
+                const last = focusable[focusable.length - 1]
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
         }
         document.addEventListener('keydown', handleKey)
         const prevOverflow = document.body.style.overflow
         document.body.style.overflow = 'hidden'
+        // 모달 첫 포커스 요소로 이동
+        setTimeout(() => {
+            const modal = document.querySelector('[role="dialog"][aria-modal="true"]')
+            const firstFocus = modal?.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+            if (firstFocus) firstFocus.focus()
+        }, 50)
         return () => {
             document.removeEventListener('keydown', handleKey)
             document.body.style.overflow = prevOverflow
+            // 포커스 복귀
+            if (lastFocusRef.current && lastFocusRef.current.focus) {
+                lastFocusRef.current.focus()
+            }
         }
     }, [isOrderModalOpen, legalType, isPartnerModalOpen])
 
@@ -280,7 +333,14 @@ const Landing = () => {
     }, [])
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target
+        let { name, value } = e.target
+        if (name === 'quantity') {
+            // 숫자만 허용, 정수 1~100, 'e', '.' 차단
+            let n = parseInt(String(value).replace(/[^0-9]/g, ''), 10)
+            if (Number.isNaN(n)) n = ''
+            else n = Math.min(100, Math.max(1, n))
+            value = n === '' ? '' : String(n)
+        }
         setFormData(prev => ({ ...prev, [name]: value }))
     }
 
@@ -292,11 +352,38 @@ const Landing = () => {
             alert('상호명, 담당자 성함, 연락처, 그리고 택배 받으실 주소는 필수 입력 항목입니다.')
             return
         }
+        // 전화번호 엄격 검증: 10~11자리 숫자, 01로 시작
+        const rawPhone = formData.phone.replace(/[^0-9]/g, '')
+        if (!/^01[0-9]{8,9}$/.test(rawPhone)) {
+            alert('연락처는 010-1234-5678 형식의 10~11자리 숫자(01로 시작)로 입력해 주세요.')
+            return
+        }
+        // 사업자번호 패턴 (도매)
+        if (formData.requestType === 'wholesale' && formData.bizNumber) {
+            const biz = formData.bizNumber.replace(/[^0-9]/g, '')
+            if (biz.length !== 10) {
+                alert('사업자등록번호는 10자리 숫자로 입력해 주세요. (예: 123-45-67890)')
+                return
+            }
+        }
+        // 이메일 선택 입력 시 형식 검증
+        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            alert('이메일 형식이 올바르지 않습니다.')
+            return
+        }
+        // 수량 정수 검증 (일반 구매 시)
+        if (formData.requestType === 'consumer' || formData.requestType === 'hospital') {
+            const q = parseInt(formData.quantity, 10)
+            if (!Number.isInteger(q) || q < 1 || q > 100) {
+                alert('수량은 1~100 사이의 정수로 입력해 주세요.')
+                return
+            }
+        }
         if (submittingRef.current || isSubmitting) return
         submittingRef.current = true
         setIsSubmitting(true)
 
-        const normPhone = formData.phone.replace(/[^0-9]/g, '')
+        const normPhone = rawPhone
         let last = null
         try {
             last = JSON.parse(localStorage.getItem(SUBMISSION_LAST_KEY))
@@ -315,8 +402,11 @@ const Landing = () => {
 
         try {
             const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
-                || import.meta.env.VITE_APPS_SCRIPT_URL
-                || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec';
+                || import.meta.env.VITE_APPS_SCRIPT_URL;
+            if (!scriptURL) {
+                alert('주문 서비스 설정이 누락되었습니다. 관리자에게 문의해 주세요. (VITE_GOOGLE_APPS_SCRIPT_URL 미설정)');
+                return;
+            }
 
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')
@@ -531,7 +621,7 @@ const Landing = () => {
                 <nav className="section-container" aria-label="메인 네비게이션">
                     <div className="flex items-center justify-between h-16 md:h-20">
                         {/* Logo */}
-                        <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter') scrollToSection('hero') }} onClick={() => scrollToSection('hero')}>
+                        <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToSection('hero'); } }} onClick={() => scrollToSection('hero')}>
                             <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${primaryBg} shadow-lg`}>
                                 <span className="text-white font-extrabold text-2xl">P</span>
                             </div>
@@ -853,7 +943,7 @@ const Landing = () => {
                             <a
                                 href={getStoreUrl('coupang')}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                                 className="w-full sm:flex-1 h-14 sm:h-16 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                             >
                                 <span className="text-xl">🚀</span>
@@ -886,7 +976,7 @@ const Landing = () => {
                         </div>
                         {/* Secondary CTAs - 텍스트 링크로 축소 (시각적 계층화) */}
                         <div className="flex items-center justify-center gap-3 mb-6 text-xs sm:text-sm">
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-800 font-bold underline underline-offset-4">
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-emerald-700 hover:text-emerald-800 font-bold underline underline-offset-4">
                                 🟢 네이버 스마트스토어 →
                             </a>
                             <span className="text-slate-300">|</span>
@@ -916,6 +1006,9 @@ const Landing = () => {
 
                         
 
+                        <div className="max-w-3xl mx-auto mt-6">
+                            <FeedDisclaimer />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -976,21 +1069,35 @@ const Landing = () => {
 
 
                         </div>
-                        <div className="relative">
-                            {/* Main product image / video */}
+                        <div className="relative" ref={aboutVideoRef}>
+                            {/* Main product image / video — 뷰포트 진입 시에만 비디오 Fetch (LCP 차단 해소) */}
                             <div className="relative aspect-[4/5] max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
                                 {activeMedia === 'video' ? (
-                                    <video
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        preload="metadata"
-                                        poster={`${import.meta.env.BASE_URL}images/bottle_front.png`}
-                                        aria-label={t('a11y.productVideo', '파보겔 제품 소개 영상')}
-                                        className="w-full h-full object-cover"
-                                        src={`${import.meta.env.BASE_URL}assets/video.mp4`}
-                                    />
+                                    shouldLoadVideo ? (
+                                        <video
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            preload="metadata"
+                                            poster={`${import.meta.env.BASE_URL}images/bottle_front.png`}
+                                            aria-label={t('a11y.productVideo', '파보겔 제품 소개 영상')}
+                                            className="w-full h-full object-cover"
+                                            src={`${import.meta.env.BASE_URL}assets/video.mp4`}
+                                        />
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            onClick={() => setShouldLoadVideo(true)}
+                                            className="w-full h-full relative group focus:outline-none"
+                                            aria-label={t('a11y.playProductVideo', '제품 영상 재생')}
+                                        >
+                                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.productPhoto', '파보겔 제품 사진')} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                            <span className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/35 transition-colors">
+                                                <span className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-xl text-slate-900 text-2xl">▶</span>
+                                            </span>
+                                        </button>
+                                    )
                                 ) : (
                                     <img
                                         src={activeMedia}
@@ -1012,9 +1119,9 @@ const Landing = () => {
                                         ? 'border-primary-500 opacity-100'
                                         : 'border-transparent opacity-60 hover:opacity-100'
                                         }`}
-                                    onClick={() => setActiveMedia('video')}
+                                    onClick={() => { setShouldLoadVideo(true); setActiveMedia('video'); }}
                                 >
-                                    <video src={`${import.meta.env.BASE_URL}assets/video.mp4`} className="w-full h-full object-cover opacity-80" muted playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}images/bottle_front.png`} aria-hidden="true" tabIndex={-1} />
+                                    <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt="" className="w-full h-full object-cover opacity-80" loading="lazy" decoding="async" />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                                         <svg className="w-8 h-8 text-white drop-shadow" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                             <path d="M4.5 3a.5.5 0 00-.5.5v13a.5.5 0 00.757.429l11-6.5a.5.5 0 000-.858l-11-6.5A.5.5 0 004.5 3z" />
@@ -1044,7 +1151,7 @@ const Landing = () => {
                             </div>
                             {/* Floating badges */}
                             {/* Coupang Floating Badge */}
-                            <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="absolute -top-3 -right-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] hover:scale-105 transition-transform animate-cute-float">
+                            <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute -top-3 -end-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] hover:scale-105 transition-transform animate-cute-float">
                                 <span className="text-xl" aria-hidden="true">🚀</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-orange-500 uppercase tracking-wider">{t('about.coupang')}</span>
@@ -1052,7 +1159,7 @@ const Landing = () => {
                                 </div>
                             </a>
                             {/* Naver Floating Badge */}
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="absolute bottom-16 -left-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] hover:scale-105 transition-transform animate-cute-float-alt">
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute bottom-16 -start-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] hover:scale-105 transition-transform animate-cute-float-alt">
                                 <span className="text-xl" aria-hidden="true">🛍️</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">{t('about.naver')}</span>
@@ -1077,13 +1184,13 @@ const Landing = () => {
                         </p>
                     </div>
 
-                    {/* Product Images (Front & Back) — lazy + async decode */}
+                    {/* Product Images (Front & Back) — lazy + async decode + width/height CLS 방지 */}
                     <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} className="w-full h-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} width="600" height="800" className="w-full h-auto object-cover aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} className="w-full h-full object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} width="600" height="800" className="w-full h-auto object-cover aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                     </div>
 
@@ -1119,6 +1226,9 @@ const Landing = () => {
             <Suspense fallback={<div className="py-16 text-center text-slate-400">다큐멘터리 로딩 중...</div>}>
                 <ParvogelClinicalDocumentary />
             </Suspense>
+            <div className="section-container">
+                <FeedDisclaimer />
+            </div>
 
 
             {/* Target Animals Section */}
@@ -1230,7 +1340,7 @@ const Landing = () => {
 
                     {/* Product Lineup Image */}
                     <div className="max-w-4xl mx-auto mt-10 mb-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
-                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} className="w-full h-auto object-cover" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} width="900" height="600" className="w-full h-auto object-cover aspect-[3/2]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -1328,11 +1438,11 @@ const Landing = () => {
                         <div className="mt-12 text-center">
                             <p className="text-gray-600 mb-4">{t('order.online')}</p>
                             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
                                     <span className="text-xl">🚀</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
                                 </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="relative flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
                                     <span className="text-xl">🛍️</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.naver')}</span>
                                 </a>
@@ -1411,10 +1521,10 @@ const Landing = () => {
                                 {t('footer.desc')}
                             </p>
                             <div className="flex gap-4">
-                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-slate-400 hover:text-blue-600 transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg>
                                 </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-600 transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-slate-400 hover:text-blue-600 transition-colors">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" /></svg>
                                 </a>
                                 <a href="mailto:name_hyosun@naver.com" className="text-slate-400 hover:text-blue-600 transition-colors">

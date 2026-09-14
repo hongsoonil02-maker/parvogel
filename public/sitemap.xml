@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://parvogel.kr/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://parvogel.kr/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://parvogel.kr/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://parvogel.kr/og-image.png</image:loc><image:title>파보겔(Parvogel)</image:title></image:image>
+    <image:image><image:loc>https://parvogel.kr/images/bottle_front.png</image:loc></image:image>
+    <image:image><image:loc>https://parvogel.kr/images/bottle_group.png</image:loc></image:image>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://parvogel.kr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://parvogel.kr/?lng=en" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://parvogel.kr/?lng=ja" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://parvogel.kr/?lng=zh" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://parvogel.kr/?lng=es" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://parvogel.kr/?lng=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://parvogel.kr/?lng=de" />
+    <xhtml:link rel="alternate" hreflang="th" href="https://parvogel.kr/?lng=th" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://parvogel.kr/?lng=vi" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://parvogel.kr/?lng=ru" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://parvogel.kr/?lng=pt" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://parvogel.kr/?lng=ar" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://parvogel.kr/?lng=id" />
+    <xhtml:link rel="alternate" hreflang="ms" href="https://parvogel.kr/?lng=ms" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://parvogel.kr/?lng=tr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://parvogel.kr/" />
+  </url>
+  <url><loc>https://parvogel.kr/blog</loc><lastmod>2026-09-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://parvogel.kr/blog/ingredients-lineup</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority><image:image><image:loc>https://parvogel.kr/images/bottle_group.png</image:loc></image:image></url>
+  <url><loc>https://parvogel.kr/blog/calf-diarrhea</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority><image:image><image:loc>https://parvogel.kr/assets/parvogel-4.jpg</image:loc></image:image></url>
+  <url><loc>https://parvogel.kr/blog/nanomontmorillonite</loc><lastmod>2026-08-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority><image:image><image:loc>https://parvogel.kr/assets/parvogel-2.jpg</image:loc></image:image></url>
 </urlset>

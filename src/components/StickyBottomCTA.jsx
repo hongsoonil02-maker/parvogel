@@ -29,7 +29,7 @@ export default function StickyBottomCTA({ onOpenOrder }) {
           <a
             href={getStoreUrl('coupang')}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
             aria-label={t('stickyCta.buyBtn', '쿠팡 로켓배송 구매')}
             className="relative flex-1 md:flex-initial px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-rose-400"
           >

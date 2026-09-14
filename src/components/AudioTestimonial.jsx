@@ -108,16 +108,17 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={Math.round(progress * 100)}
+                aria-valuetext={`${formatTime(currentTime)} / ${formatTime(duration)}`}
                 tabIndex={0}
                 onClick={seek}
                 onKeyDown={(e) => {
-                  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                    const audio = audioRef.current;
-                    if (audio && audio.duration) {
-                      const step = 5;
-                      audio.currentTime += e.key === 'ArrowRight' ? step : -step;
-                    }
-                  }
+                  const audio = audioRef.current;
+                  if (!audio || !audio.duration) return;
+                  if (e.key === 'ArrowRight') { e.preventDefault(); audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); }
+                  else if (e.key === 'ArrowLeft') { e.preventDefault(); audio.currentTime = Math.max(0, audio.currentTime - 5); }
+                  else if (e.key === 'Home') { e.preventDefault(); audio.currentTime = 0; }
+                  else if (e.key === 'End') { e.preventDefault(); audio.currentTime = audio.duration; }
+                  else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); togglePlay(); }
                 }}
                 className="w-full bg-slate-200 h-1.5 rounded-full mt-1.5 overflow-hidden cursor-pointer"
               >

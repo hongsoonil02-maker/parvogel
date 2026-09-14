@@ -64,11 +64,11 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
 
     if (!isOpen) return null
 
-    // 코드 인증 처리
+    // 코드 인증 처리 — 엄격 allowlist 검증 (우회 차단)
     const handleCodeVerify = (e) => {
         e.preventDefault()
         const clean = partnerCode.trim().toUpperCase()
-        if (VALID_PARTNER_CODES.includes(clean) || clean.startsWith('PARVO') || clean.length >= 6) {
+        if (VALID_PARTNER_CODES.includes(clean)) {
             setAuthError('')
             setStep('editor')
             if (!noticeData.storeName && bizForm.storeName) {
@@ -109,19 +109,21 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
             address: bizForm.addr,
         }))
 
-        // 신규 파트너 DB 전송 (Apps Script 백그라운드)
+        // 신규 파트너 DB 전송 (Apps Script) — CORS 정상 요청, 실패 시에도 에디터 진입 허용
         try {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfD0j2r08gZ5mZ9sL1Fh_hJ-zW8t5q3l7k/exec'
-            const params = new URLSearchParams()
-            params.append('requestType', 'new_partner_lead')
-            params.append('hospitalName', bizForm.storeName)
-            params.append('contactName', bizForm.managerName || '대표자')
-            params.append('phone', bizForm.phone)
-            params.append('address', bizForm.addr)
-            params.append('message', `[신규 사업자 알림판 신청] 업종: ${bizForm.bizType}, 사업자번호: ${bizForm.bizNumber}`)
-            fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' }).catch(() => {})
+            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL
+            if (scriptURL) {
+                const params = new URLSearchParams()
+                params.append('requestType', 'new_partner_lead')
+                params.append('hospitalName', bizForm.storeName)
+                params.append('contactName', bizForm.managerName || '대표자')
+                params.append('phone', bizForm.phone.replace(/[^0-9]/g,''))
+                params.append('address', bizForm.addr)
+                params.append('message', `[신규 사업자 알림판 신청] 업종: ${bizForm.bizType}, 사업자번호: ${bizForm.bizNumber}`)
+                fetch(scriptURL, { method: 'POST', body: params }).catch(() => {})
+            }
         } catch (err) {
-            // 무시
+            console.warn('partner lead logging failed', err)
         }
 
         setStep('editor')
@@ -155,23 +157,33 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
             return
         }
 
+        // 전화번호 검증
+        const normBoardPhone = boardRequest.phone.replace(/[^0-9]/g,'')
+        if (!/^01[0-9]{8,9}$/.test(normBoardPhone)) {
+            alert('연락처는 010-1234-5678 형식으로 입력해 주세요.')
+            return
+        }
         setIsSubmittingBoard(true)
         try {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfD0j2r08gZ5mZ9sL1Fh_hJ-zW8t5q3l7k/exec'
+            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL
+            if (!scriptURL) { alert('배송 신청 서비스 설정이 누락되었습니다.'); setIsSubmittingBoard(false); return; }
             const params = new URLSearchParams()
             params.append('requestType', 'partner_board_pop')
             params.append('hospitalName', noticeData.storeName || bizForm.storeName || '파트너 매장')
             params.append('contactName', boardRequest.recipientName)
-            params.append('phone', boardRequest.phone)
+            params.append('phone', normBoardPhone)
             params.append('address', boardRequest.address)
             params.append('quantity', boardRequest.requestQty)
             params.append('message', `[실물 POP 보드판 무료 발송 신청] 수량: ${boardRequest.requestQty}개 / 전달사항: ${boardRequest.notes}`)
 
-            await fetch(scriptURL, { method: 'POST', body: params, mode: 'no-cors' })
+            const resp = await fetch(scriptURL, { method: 'POST', body: params })
+            if (!resp.ok) throw new Error('Server error')
+            const json = await resp.json().catch(() => ({ status: 'success' }))
+            if (json.status !== 'success' && json.status !== 'duplicate') throw new Error(json.message || 'Server error')
             setIsBoardSubmitted(true)
         } catch (err) {
             console.error(err)
-            setIsBoardSubmitted(true) // no-cors 특성 감안
+            alert('배송 신청 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 010-5407-5708로 연락해 주세요.')
         } finally {
             setIsSubmittingBoard(false)
         }

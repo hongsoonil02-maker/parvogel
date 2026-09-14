@@ -169,10 +169,10 @@
     "v4": "Akabane · Aino Virus",
     "v5": "Bovine Ephemeral Fever Virus (BEF)",
     "virusNote": "Cited from Korea Agro DNG-1000 related test documents",
-    "virusTableTitle": "바이러스 계통별 억제 효과",
-    "colVirusGroup": "바이러스 계통",
-    "colTarget": "대상 바이러스",
-    "colEffect2": "효과",
+    "virusTableTitle": "Virus Inhibition by Strain",
+    "colVirusGroup": "Virus Family",
+    "colTarget": "Target Virus",
+    "colEffect2": "Effect",
     "vg1Group": "Arteriviruses",
     "vg1Target": "PRRSV (돼지생식기호흡기증후군)",
     "vg1Effect": "효과 확인",
@@ -256,10 +256,10 @@
     "p1Price": "18,000 KRW",
     "p2Name": "Parvogel 200ml",
     "p2Desc": "Medium-large dogs & Multi-pet / 7-day intensive care (Best)",
-    "p2Price": "45,000 KRW",
+    "p2Price": "30,000 KRW",
     "p3Name": "Parvogel 500ml",
     "p3Desc": "Animal hospitals & Farms / High-capacity economical choice",
-    "p3Price": "120,000 KRW",
+    "p3Price": "75,000 KRW",
     "recommended": "Recommended",
     "order": "Order Now",
     "inquiry": "Inquire",
@@ -383,20 +383,21 @@
     "naver": "Naver Shopping"
   },
   "chat": {
-    "title": "AI Veterinarian Consultation",
-    "subtitle": "24-hour quick consultation",
-    "greeting": "Hello! I'm Parvogel's professional AI veterinarian. Ask me anything about neonatal diarrhea.",
-    "placeholder": "Ask anything...",
+    "openButton": "Open AI Clinical Assistant",
+    "close": "Close Assistant",
+    "title": "Parvogel AI Clinical Assistant",
+    "subtitle": "24/7 Real-Time Professional Guide",
+    "greeting": "Hello! I am the official Parvogel AI clinical guide. Feel free to ask about dosage, species instructions, clinical cases, or purchasing.",
+    "placeholder": "Type your question... (e.g., Dosage for a 2kg puppy?)",
     "send": "Send",
-    "error": "Sorry, a temporary communication error occurred. Please try again shortly, or for urgent inquiries call 010-5407-5708 or use the order form below.",
-    "close": "Close chat",
-    "messages": "Consultation messages"
+    "error": "A temporary error occurred while retrieving the response. Please try again in a moment.",
+    "messages": "Chat message log"
   },
   "stickyCta": {
-    "title": "PARVOGEL Neonatal Diarrhea Care Supplement",
-    "sub": "High-Purity Ultrafine Nano Montmorillonite Formula",
+    "title": "Parvogel Neonatal Antidiarrheal Care Solution",
+    "sub": "High-purity Ultra-fine Nano Montmorillonite Formula",
     "buyBtn": "🚀 Buy on Coupang Rocket",
-    "consultBtn": "📦 Wholesale / Direct Order Inquiry"
+    "consultBtn": "📦 Bulk & Direct Order Inquiry"
   },
   "animalSelector": {
     "tag": "🐾 Customized Solution for All Neonatal Animals",
@@ -501,29 +502,18 @@
     "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
   },
   "a11y": {
-    "skipToContent": "Skip to Content",
-    "productVideo": "Parvogel product introduction video",
-    "productMedia": "Select product media",
-    "playProductVideo": "Play product video",
-    "viewImage": "View larger",
-    "productPhoto": "Parvogel product photo",
-    "bottleFront": "Parvogel 5-in-1 complex, front",
-    "bottleBack": "Parvogel back label ingredients",
-    "bottleGroup": "Parvogel 100ml, 200ml, 500ml lineup by volume",
-    "toolbarLabel": "Accessibility Tools",
-    "title": "Accessibility Menu (A11y)",
-    "contrastOn": "Enable High Contrast",
-    "contrastOff": "Disable High Contrast",
-    "largeTextOn": "Enlarge Text Size",
-    "largeTextOff": "Reset Text Size",
-    "openMenu": "Open Accessibility Tools",
+    "openButton": "Open Accessibility Tools",
+    "title": "Accessibility Options",
+    "contrastOn": "Turn On High Contrast",
+    "contrastOff": "Turn Off High Contrast",
+    "largeTextOn": "Enlarge Text",
+    "largeTextOff": "Restore Text Size",
     "reduceMotionOn": "Reduce Motion",
-    "reduceMotionOff": "Enable Animations",
+    "reduceMotionOff": "Enable Motion Effects",
     "readableFontOn": "Enhance Line Spacing",
-    "readableFontOff": "Reset Spacing",
-    "readAloudOn": "Read Page Aloud (TTS)",
-    "readAloudOff": "Stop Speech",
-    "ttsNotSupported": "Speech synthesis is not supported on this browser."
+    "readableFontOff": "Restore Default Spacing",
+    "ttsOn": "Listen to Page (TTS)",
+    "ttsOff": "Stop Audio Narration"
   },
   "store": {
     "comingSoon": "Coming Soon"
@@ -654,36 +644,5 @@
     "quickClinical": "Academic & Clinical Evidence",
     "partnerCenter": "Retailers & Wholesale Partner Center",
     "partnerBadge": "Free A4 & POP Board"
-  },
-  "stickyCta": {
-    "title": "Parvogel Neonatal Antidiarrheal Care Solution",
-    "sub": "High-purity Ultra-fine Nano Montmorillonite Formula",
-    "buyBtn": "🚀 Buy on Coupang Rocket",
-    "consultBtn": "📦 Bulk & Direct Order Inquiry"
-  },
-  "a11y": {
-    "openButton": "Open Accessibility Tools",
-    "title": "Accessibility Options",
-    "contrastOn": "Turn On High Contrast",
-    "contrastOff": "Turn Off High Contrast",
-    "largeTextOn": "Enlarge Text",
-    "largeTextOff": "Restore Text Size",
-    "reduceMotionOn": "Reduce Motion",
-    "reduceMotionOff": "Enable Motion Effects",
-    "readableFontOn": "Enhance Line Spacing",
-    "readableFontOff": "Restore Default Spacing",
-    "ttsOn": "Listen to Page (TTS)",
-    "ttsOff": "Stop Audio Narration"
-  },
-  "chat": {
-    "openButton": "Open AI Clinical Assistant",
-    "close": "Close Assistant",
-    "title": "Parvogel AI Clinical Assistant",
-    "subtitle": "24/7 Real-Time Professional Guide",
-    "greeting": "Hello! I am the official Parvogel AI clinical guide. Feel free to ask about dosage, species instructions, clinical cases, or purchasing.",
-    "placeholder": "Type your question... (e.g., Dosage for a 2kg puppy?)",
-    "send": "Send",
-    "error": "A temporary error occurred while retrieving the response. Please try again in a moment.",
-    "messages": "Chat message log"
   }
 }

@@ -90,7 +90,14 @@ i18n
         lng: initialLng,
         fallbackLng: 'ko',
         supportedLngs: SUPPORTED_LANGS,
-        interpolation: { escapeValue: false }
+        interpolation: { escapeValue: false },
+        // 개발 환경에서 누락 키 경고 — W-1 누락 탐지용
+        saveMissing: false,
+        missingKeyHandler: (lngs, ns, key) => {
+            if (import.meta.env.DEV) {
+                console.warn(`[i18n missing] ${lngs.join(',')}:${ns}:${key}`);
+            }
+        },
     });
 
 const syncDocumentLanguage = (language) => {
@@ -116,7 +123,7 @@ i18n.on('languageChanged', (lng) => {
     try {
         localStorage.setItem('parvogel_user_lang', base);
         localStorage.setItem('i18nextLng', base);
-    } catch (e) {}
+    } catch (_e) { /* ignore */ }
 
     if (!loaded.has(base)) {
         loadLanguage(base).then(() => i18n.changeLanguage(lng));

@@ -10,9 +10,9 @@ export default function ParvogelClinicalDocumentary() {
   const [copySuccess, setCopySuccess] = useState(false);
   const videoRef = useRef(null);
 
-  const docuVideoUrl = `${import.meta.env.BASE_URL}assets/parvogel_clinical_documentary_v2.mp4?v=20260828`;
-  const shortVideoUrl = `${import.meta.env.BASE_URL}assets/${encodeURIComponent('Video Project 6_final.mp4')}`;
-  const shortThumbUrl = `${import.meta.env.BASE_URL}assets/short_story_thumb.jpg`;
+  const docuVideoUrl = useMemo(() => `${import.meta.env.BASE_URL}assets/parvogel_clinical_documentary_v2.mp4?v=20260828`, []);
+  const shortVideoUrl = useMemo(() => `${import.meta.env.BASE_URL}assets/${encodeURIComponent('Video Project 6_final.mp4')}`, []);
+  const shortThumbUrl = useMemo(() => `${import.meta.env.BASE_URL}assets/short_story_thumb.jpg`, []);
   const [isShortModalOpen, setIsShortModalOpen] = useState(false);
 
   const handleCopyDocuLink = (e) => {
@@ -28,27 +28,38 @@ export default function ParvogelClinicalDocumentary() {
     }
   };
 
-  // 모달 키보드 ESC 닫기 접근성 지원
+  // 모달 키보드 ESC 닫기 + 포커스 트랩 + 스크롤 락 (접근성)
   useEffect(() => {
+    const anyOpen = isDocuModalOpen || isShortModalOpen;
+    if (!anyOpen) return;
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isDocuModalOpen) {
+      if (e.key === 'Escape') {
         setIsDocuModalOpen(false);
+        setIsShortModalOpen(false);
+      }
+      if (e.key === 'Tab') {
+        const modal = document.querySelector('[role="dialog"][aria-modal="true"]');
+        if (!modal) return;
+        const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isDocuModalOpen]);
-
-  // 모달 활성화 시 배경 스크롤 락
-  useEffect(() => {
-    if (isDocuModalOpen) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = prev;
-      };
-    }
-  }, [isDocuModalOpen]);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const modal = document.querySelector('[role="dialog"][aria-modal="true"]');
+      modal?.querySelector('button, [href], input, [tabindex]:not([tabindex="-1"])')?.focus();
+    }, 50);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prev;
+    };
+  }, [isDocuModalOpen, isShortModalOpen]);
 
   // 다국어 자동 변환 지원 임상 단계 데이터 (보호자 공감형 감정 여정 & 김동준 원장 단독 케어)
   const steps = useMemo(() => [
@@ -463,7 +474,7 @@ export default function ParvogelClinicalDocumentary() {
               <a
                 href="https://smartstore.naver.com/petschury/products/13718496355"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                 aria-label={t('doc.smartstore_btn', '네이버 스마트스토어 즉시 구매 (새 창 열림)')}
                 className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
               >
@@ -473,7 +484,7 @@ export default function ParvogelClinicalDocumentary() {
               <a
                 href="https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                 aria-label={t('doc.coupang_btn', '쿠팡 로켓배송 즉시 구매 (새 창 열림)')}
                 className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
               >

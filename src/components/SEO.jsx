@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { SITE_URL, absoluteUrl } from '../config/site';
 
+const SUPPORTED_HREFLANGS = ['ko','en','ja','zh','es','fr','de','th','vi','ru','pt','ar','id','ms','tr'];
+
 export default function SEO({ title, description, url, type = 'website', image, structuredData, breadcrumbs }) {
   const siteUrl = SITE_URL;
   const defaultTitle = '파보겔(Parvo Gel) — 급성 설사·장염 보조 케어 보조사료 | 반려견·전축종';
@@ -57,12 +59,33 @@ export default function SEO({ title, description, url, type = 'website', image, 
         "description": "급성 장염·발작 증상의 55일령 환축 임상 관찰 영상. 보조사료 파보겔 급여 후 경과 관찰 기록.",
         "thumbnailUrl": seo.image,
         "uploadDate": "2026-08-28",
-        "contentUrl": absoluteUrl('/assets/parvogel_clinical_documentary_v2.mp4')
+        "embedUrl": absoluteUrl('/#video'),
+        "contentUrl": absoluteUrl('/og-image.png')
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs ? breadcrumbs.map((b, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "name": b.name,
+          "item": absoluteUrl(b.url)
+        })) : [
+          { "@type": "ListItem", "position": 1, "name": "홈", "item": SITE_URL },
+          { "@type": "ListItem", "position": 2, "name": "파보겔", "item": SITE_URL }
+        ]
       }
     ]
   };
 
   const schema = structuredData || defaultStructuredData;
+
+  // hreflang: generate ?lng= alternates + x-default (ko)
+  const hreflangLinks = SUPPORTED_HREFLANGS.map((lng) => ({
+    rel: 'alternate',
+    hreflang: lng,
+    href: lng === 'ko' ? siteUrl : `${siteUrl}?lng=${lng}`,
+  }));
+  const xDefaultHref = siteUrl;
 
   return (
     <Helmet>
@@ -70,6 +93,10 @@ export default function SEO({ title, description, url, type = 'website', image, 
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <link rel="canonical" href={seo.url} />
+      {hreflangLinks.map((l) => (
+        <link key={l.hreflang} rel={l.rel} hrefLang={l.hreflang} href={l.href} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={xDefaultHref} />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
@@ -77,7 +104,11 @@ export default function SEO({ title, description, url, type = 'website', image, 
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       <meta property="og:image" content={seo.image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="파보겔(Parvogel) — 5가지 복합 겔 타입 보조사료" />
       <meta property="og:site_name" content="파보겔 (Parvogel)" />
+      <meta name="author" content="(주)한국아그로" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -85,6 +116,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.image} />
+      <meta name="twitter:image:alt" content="파보겔(Parvogel) — 5가지 복합 겔 타입 보조사료" />
 
       {/* Schema.org JSON-LD */}
       {schema && (

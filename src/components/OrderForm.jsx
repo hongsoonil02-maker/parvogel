@@ -78,7 +78,7 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         <a
                             href={getStoreUrl('coupang')}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                             className="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
                         >
                             <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송 (내일 아침 도착)')}</span>
@@ -87,7 +87,7 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         <a
                             href={getStoreUrl('naver')}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                             className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
                         >
                             <span>🟢 {t('order.smartstoreBtn', '네이버 펫츄리 (네이버페이 구매)')}</span>
@@ -196,6 +196,10 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         value={formData.bizNumber}
                         onChange={onChange}
                         placeholder={t('order.bizNumberPh')}
+                        inputMode="numeric"
+                        pattern="[0-9\-]*"
+                        maxLength={12}
+                        title="사업자등록번호 10자리 (예: 123-45-67890)"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         required
                     />
@@ -214,6 +218,11 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         value={formData.phone}
                         onChange={onChange}
                         placeholder={t('order.phonePh')}
+                        inputMode="numeric"
+                        pattern="01[0-9\-]{8,11}"
+                        maxLength={13}
+                        title="010-1234-5678 형식"
+                        autoComplete="tel"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         required
                     />
@@ -229,6 +238,9 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                         value={formData.email}
                         onChange={onChange}
                         placeholder={t('order.emailPh')}
+                        autoComplete="email"
+                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                        title="올바른 이메일 형식으로 입력해 주세요"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                     />
                 </div>
@@ -312,6 +324,10 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                             onChange={onChange}
                             min="1"
                             max="100"
+                            step="1"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            onKeyDown={(e) => { if (['e','E','.','-','+'].includes(e.key)) e.preventDefault(); }}
                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         />
                     </div>
