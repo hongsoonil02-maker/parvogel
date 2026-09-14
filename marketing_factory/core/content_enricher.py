@@ -35,6 +35,8 @@ load_all_envs()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENAI_MAX_DAILY_COST_USD = float(os.getenv("OPENAI_MAX_DAILY_COST", "2.0"))
+DAILY_COST_TRACK = os.path.join(DATA_DIR, "daily_cost.json")
 
 
 class ParvogelContentEnricher:
@@ -66,21 +68,70 @@ class ParvogelContentEnricher:
         schedule = self.calendar_data.get("schedule", {})
         return schedule.get(day_name, schedule.get("Monday", {}))
 
+    def _check_cost_guard(self) -> bool:
+        """일일 비용 가드 — 초과 시 AI 호출 차단 후 템플릿 강제"""
+        try:
+            if os.path.exists(DAILY_COST_TRACK):
+                with open(DAILY_COST_TRACK, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                today = datetime.datetime.now().strftime("%Y-%m-%d")
+                if data.get("date") == today and data.get("usd", 0) >= OPENAI_MAX_DAILY_COST_USD:
+                    print(f"[COST_GUARD] Daily limit ${OPENAI_MAX_DAILY_COST_USD} reached, forcing template.")
+                    return False
+        except Exception:
+            pass
+        return True
+
+    def _add_cost(self, usd: float):
+        try:
+            today = datetime.datetime.now().strftime("%Y-%m-%d")
+            data = {"date": today, "usd": usd}
+            if os.path.exists(DAILY_COST_TRACK):
+                with open(DAILY_COST_TRACK, "r", encoding="utf-8") as f:
+                    prev = json.load(f)
+                if prev.get("date") == today:
+                    data["usd"] = prev.get("usd", 0) + usd
+            with open(DAILY_COST_TRACK, "w", encoding="utf-8") as f:
+                json.dump(data, f)
+        except Exception:
+            pass
+
+    BANNED_PHRASES = ["정식허가", "치료제", "완치 보장", "100% 치료", "부작용 없음"]
+    REPLACEMENTS = {"정식허가": "정식등록", "치료제": "보조사료", "완치 보장": "완화에 도움을 줄 수 있음", "100% 치료": "증상 완화에 도움", "부작용 없음": "수의사 상담 권장"}
+
+    def _sanitize_narrative(self, d: Dict[str, Any]) -> Dict[str, Any]:
+        txt = json.dumps(d, ensure_ascii=False)
+        for banned, repl in self.REPLACEMENTS.items():
+            txt = txt.replace(banned, repl)
+        return json.loads(txt)
+
     def generate_narrative(self, day_name: Optional[str] = None) -> Dict[str, Any]:
-        """AI 또는 정밀 수의학 템플릿을 통해 당일 마케팅 패키지 생성"""
+        """AI 또는 정밀 수의학 템플릿을 통해 당일 마케팅 패키지 생성 — OpenAI→Gemini→템플릿 3단 폴백"""
         theme = self.get_daily_theme(day_name)
         today_date = datetime.datetime.now().strftime("%Y-%m-%d")
         
-        # 1. OpenAI 호출 시도
-        if self.openai_client:
+        # 1. OpenAI (비용 가드 통과 시)
+        if self.openai_client and self._check_cost_guard():
             try:
                 ai_result = self._generate_with_openai(theme)
                 if ai_result:
                     ai_result["date"] = today_date
                     ai_result["source"] = "OpenAI-GPT4o"
-                    return ai_result
+                    self._add_cost(0.02)
+                    return self._sanitize_narrative(ai_result)
             except Exception as e:
-                print(f"[INFO] OpenAI failed, falling back to rule-based template engine: {e}")
+                print(f"[INFO] OpenAI failed, trying Gemini: {e}")
+
+        # 1b. Gemini 2차 폴백
+        if GEMINI_API_KEY:
+            try:
+                g_result = self._generate_with_gemini(theme)
+                if g_result:
+                    g_result["date"] = today_date
+                    g_result["source"] = "Gemini-1.5"
+                    return self._sanitize_narrative(g_result)
+            except Exception as e:
+                print(f"[INFO] Gemini failed, falling back to template: {e}")
 
         # 2. 고품질 룰베이스 수의학 템플릿 엔진 (100% 무오류 보장)
         return self._generate_template_narrative(theme, today_date)
@@ -124,6 +175,20 @@ class ParvogelContentEnricher:
         content = response.choices[0].message.content
         return json.loads(content)
 
+    def _generate_with_gemini(self, theme: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        import requests
+        prompt = f"""당신은 수의학 카피라이터. 파보겔(정식등록 보조사료) 오늘 테마 {theme.get('headline_core')}에 대해 JSON headline/subheadline/pain_point/clinical_solution/video_highlight/cta_text 6키를 작성. 보조사료는 치료 대체 불가."""
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+        body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseMimeType": "application/json"}}
+        r = requests.post(url, json=body, timeout=12)
+        if r.status_code == 200:
+            try:
+                txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                return json.loads(txt)
+            except Exception:
+                return None
+        return None
+
     def _generate_template_narrative(self, theme: Dict[str, Any], date_str: str) -> Dict[str, Any]:
         """고품질 수의학 기반 결정론적 템플릿 (랜딩 4대 메인 카피 3줄 완벽 연동)"""
         theme_id = theme.get("theme_id", "emergency")
@@ -134,7 +199,7 @@ class ParvogelContentEnricher:
         l2 = theme.get("headline_line2", "단 3일 만에 밥그릇 싹싹 비워내고")
         l3 = theme.get("headline_line3", "다시 건강하게 네 발로 서서 꼬리 칩니다")
 
-        return {
+        out = {
             "date": date_str,
             "theme_id": theme_id,
             "badge": badge,
@@ -144,12 +209,13 @@ class ParvogelContentEnricher:
             "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
             "subheadline": f"{badge} — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임!",
             "pain_point": "급성 장염과 심한 설사로 탈진해 쓰러진 아기 강아지, 억지로 가루약이나 주사기를 들이대다 거품을 물고 거부할 때 보호자의 가슴은 무너져 내립니다.",
-            "clinical_solution": "하남 사랑동물병원 김동준 원장 단독 처방 케이스: 첫 48시간 기타 약물과 수액을 일체 배제하고 오직 파보겔 단독 투약만으로 장 점막 물리적 코팅 및 독소 흡착 배출을 이끌어냈습니다.",
+            "clinical_solution": "하남 사랑동물병원 김동준 원장 단독 처방 케이스: 1-deoxinojirimycin 및 특허균주(Patent No. 2011B0042620.8) 기반, 첫 48시간 기타 약물과 수액을 일체 배제하고 오직 파보겔 단독 투약만으로 장 점막 물리적 코팅 및 독소 흡착 배출을 이끌어냈습니다. *보조사료는 질병 치료를 대체하지 않습니다.",
             "video_highlight": f"하남 사랑동물병원 김동준 원장님의 실제 진료실 직캠 ({scene}): 주사기 없이 한 손으로 펌핑하여 입가에 대주자 스트레스 없이 핥아먹고 스스로 일어선 감동의 순간.",
             "cta_text": "골든타임을 놓치지 마세요! 네이버 스마트스토어(펫츄리) 및 쿠팡 로켓배송으로 내일 아침 즉시 받아보실 수 있습니다.",
             "video_file": video_file,
             "source": "Clinical-Verified-Template"
         }
+        return self._sanitize_narrative(out)
 
 
 if __name__ == "__main__":

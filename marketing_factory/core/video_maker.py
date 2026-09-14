@@ -57,14 +57,41 @@ class ParvogelVideoMaker:
 
         print(f"[VIDEO] Rendering Clinical Documentary Shorts: '{os.path.basename(src_path)}' -> '{out_filename}'")
 
-        # 9:16 (1080x1920) 캔버스 + 고대비 다큐멘터리 헤더/푸터 박스
-        filter_complex = (
-            "scale=1080:1920:force_original_aspect_ratio=increase,"
-            "crop=1080:1920,"
-            "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
-            "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
-            "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill"
-        )
+        # 원본 duration 조회 — 45초 강제 컷 대신 실제 길이의 min(45, duration) 적용 (9초 이하 루프 방지)
+        duration = self._probe_duration(src_path)
+        target_t = min(45, max(7, int(duration) if duration else 45)) if duration else 45
+        # 짧은 클립은 루프 없이 그대로, 긴 클립은 45초 컷
+        t_args = ["-t", str(target_t)] if duration and duration > target_t else []
+
+        # 9:16 (1080x1920) 캔버스 + 헤더/푸터 박스 + 타이틀 텍스트 (top_title/bottom_sub 실사용)
+        # 폰트: 리눅스 러너 DejaVu, 윈도우 맑은고딕 폴백, 없으면 drawtext 스킵해도 박스는 유지
+        safe_top = top_title.replace(":", " ").replace("'", "").replace('"', "")[:28]
+        safe_bottom = bottom_sub.replace(":", " ").replace("'", "").replace('"', "")[:32]
+        # 색상·위치: 상단 빨간 배지 + 흰 타이틀, 하단 흰 서브
+        font_path_candidates = [
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+            "C:/Windows/Fonts/malgun.ttf",
+        ]
+        font_file = next((p for p in font_path_candidates if os.path.exists(p)), None)
+        if font_file:
+            filter_complex = (
+                "scale=1080:1920:force_original_aspect_ratio=increase,"
+                "crop=1080:1920,"
+                "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
+                "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
+                f"drawtext=fontfile={font_file}:text='{safe_top}':fontcolor=white:fontsize=38:x=(w-text_w)/2:y=100,"
+                "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill,"
+                f"drawtext=fontfile={font_file}:text='{safe_bottom}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=1720"
+            )
+        else:
+            filter_complex = (
+                "scale=1080:1920:force_original_aspect_ratio=increase,"
+                "crop=1080:1920,"
+                "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
+                "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
+                "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill"
+            )
 
         cmd = [
             "ffmpeg", "-y",
@@ -75,9 +102,7 @@ class ParvogelVideoMaker:
             "-crf", "20",
             "-c:a", "aac",
             "-b:a", "192k",
-            "-t", "45",
-            out_path
-        ]
+        ] + t_args + [out_path]
 
         try:
             res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", errors="ignore")
@@ -94,6 +119,18 @@ class ParvogelVideoMaker:
         except Exception as e:
             print(f"[VIDEO_EXCEPTION] {e}")
             return None
+
+    def _probe_duration(self, path: str) -> float | None:
+        try:
+            res = subprocess.run(
+                ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", path],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", errors="ignore", timeout=5
+            )
+            if res.returncode == 0 and res.stdout.strip():
+                return float(res.stdout.strip())
+        except Exception:
+            pass
+        return None
 
     def _extract_thumb(self, video_path: str, thumb_path: str):
         cmd = [

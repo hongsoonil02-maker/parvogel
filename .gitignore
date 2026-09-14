@@ -58,3 +58,4 @@ public/assets/short_highlight_concat.txt
 public/assets/short_story_concat.txt
 
 marketing_factory/.env
+marketing_factory/data/daily_cost.json

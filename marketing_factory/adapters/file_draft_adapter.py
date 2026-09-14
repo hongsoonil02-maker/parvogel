@@ -6,6 +6,7 @@ File Draft Adapter — 소셜 및 블로그 포스팅용 즉시 복사 패키지
 """
 
 import os
+import json
 from datetime import datetime
 from typing import Dict, Any
 from .base_adapter import BaseMarketingAdapter

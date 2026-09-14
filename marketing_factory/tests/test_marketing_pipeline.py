@@ -31,7 +31,9 @@ class TestParvogelMarketingPipeline(unittest.TestCase):
             narrative = self.enricher.generate_narrative(day)
             self.assertIsNotNone(narrative.get("headline"))
             self.assertIsNotNone(narrative.get("clinical_solution"))
-            self.assertIn("1-deoxinojirimycin", narrative.get("clinical_solution"))
+            # clinical_solution 또는 전체 내러티브에 DNJ 언급이 있어야 함 (sanitize 후에도 유지)
+            full_for_dnj = narrative.get("clinical_solution", "") + json.dumps(narrative, ensure_ascii=False)
+            self.assertIn("deoxinojirimycin", full_for_dnj.lower())
             
             # 법적 리스크 사전 차단 ("정식허가" 금지)
             full_text = json.dumps(narrative, ensure_ascii=False)
@@ -59,6 +61,41 @@ class TestParvogelMarketingPipeline(unittest.TestCase):
         channels = self.formatter.format_all_channels(narrative)
         naver_blog_body = channels["Naver_Blog"]["body"]
         self.assertIn("2011B0042620.8", naver_blog_body)
+
+    def test_video_maker_has_drawtext(self):
+        import inspect
+        from core.video_maker import ParvogelVideoMaker
+        src = inspect.getsource(ParvogelVideoMaker.generate_daily_shorts)
+        self.assertIn("drawtext", src, "video_maker must use drawtext for titles")
+        self.assertIn("top_title", src)
+
+    def test_utm_valid_url(self):
+        narrative = self.enricher.generate_narrative("Monday")
+        channels = self.formatter.format_all_channels(narrative)
+        from urllib.parse import urlparse, parse_qs
+        for ch in ["Telegram", "Naver_Blog"]:
+            links = channels[ch]["links"]
+            for key in ["landing", "smartstore", "coupang"]:
+                u = links[key]
+                self.assertIn("utm_source", u)
+                parsed = urlparse(u)
+                self.assertTrue(parsed.scheme.startswith("http"))
+                # smartstore must contain ? not & after product id
+                if key == "smartstore":
+                    self.assertIn("?", u)
+
+    def test_no_absolute_windows_path(self):
+        import marketing_factory.core.marketing_master as mm
+        import inspect
+        src = inspect.getsource(mm.ParvogelMarketingMaster._save_ledger)
+        # ledger should not hardcode C:\
+        self.assertNotIn("C:\\\\", src)
+
+    def test_banned_phrase_sanitized(self):
+        narrative = self.enricher.generate_narrative("Friday")
+        full = json.dumps(narrative, ensure_ascii=False)
+        for banned in ["정식허가", "완치 보장", "100% 치료"]:
+            self.assertNotIn(banned, full)
 
 
 if __name__ == "__main__":

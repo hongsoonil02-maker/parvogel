@@ -76,8 +76,14 @@ class YouTubeAdapter(BaseMarketingAdapter):
             print("[FAIL] YouTube upload URL not found in response")
             return False
 
-        with open(video_path, "rb") as f:
-            video_data = f.read()
+        # 스트리밍 업로드 — 메모리에 전체 적재 없이 8KB씩 전송
+        def _gen():
+            with open(video_path, "rb") as f:
+                while True:
+                    chunk = f.read(8192)
+                    if not chunk:
+                        break
+                    yield chunk
 
         upload_headers = {
             "Authorization": f"Bearer {access_token}",
@@ -85,7 +91,7 @@ class YouTubeAdapter(BaseMarketingAdapter):
             "Content-Length": str(video_size)
         }
 
-        upload_resp = requests.put(upload_url, data=video_data, headers=upload_headers, timeout=120)
+        upload_resp = requests.put(upload_url, data=_gen(), headers=upload_headers, timeout=180)
 
         if upload_resp.status_code in [200, 201]:
             video_id = upload_resp.json().get("id", "unknown")

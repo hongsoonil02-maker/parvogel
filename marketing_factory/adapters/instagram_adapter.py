@@ -45,8 +45,8 @@ class InstagramAdapter(BaseMarketingAdapter):
         """Meta Resumable Upload 프로토콜을 사용해 로컬 비디오 직접 업로드"""
         file_size = os.path.getsize(video_path)
         
-        # 1. 컨테이너 초기화 (upload_type=resumable)
-        init_url = f"https://graph.facebook.com/v18.0/{ig_account_id}/media"
+        # 1. 컨테이너 초기화 (upload_type=resumable) — v20.0 + 토큰 만료 핸들링
+        init_url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media"
         init_payload = {
             "media_type": "REELS",
             "upload_type": "resumable",
@@ -58,6 +58,14 @@ class InstagramAdapter(BaseMarketingAdapter):
         try:
             init_resp = requests.post(init_url, data=init_payload, timeout=15)
             if init_resp.status_code not in [200, 201]:
+                # 토큰 만료(190) 감지
+                try:
+                    err = init_resp.json().get("error", {})
+                    if err.get("code") == 190:
+                        print(f"[FAIL] Instagram token expired (190): {err.get('message')[:150]}")
+                        return ""
+                except Exception:
+                    pass
                 print(f"[FAIL] Instagram init error: {init_resp.status_code} - {init_resp.text[:200]}")
                 return ""
                 
@@ -92,7 +100,7 @@ class InstagramAdapter(BaseMarketingAdapter):
             return ""
 
     def _publish_reel(self, ig_account_id: str, access_token: str, container_id: str) -> bool:
-        url = f"https://graph.facebook.com/v18.0/{ig_account_id}/media_publish"
+        url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media_publish"
         payload = {
             "creation_id": container_id,
             "access_token": access_token

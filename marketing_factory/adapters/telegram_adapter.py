@@ -11,7 +11,7 @@ from typing import Dict, Any
 from .base_adapter import BaseMarketingAdapter
 
 MAX_RETRIES = 3
-BASE_BACKOFF_SEC = 30
+BASE_BACKOFF_SEC = 15
 
 class TelegramAdapter(BaseMarketingAdapter):
     name = "Telegram"

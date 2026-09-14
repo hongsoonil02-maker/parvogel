@@ -75,9 +75,17 @@ class ParvogelMarketingMaster:
         with open(self.ledger_path, "w", encoding="utf-8") as f:
             json.dump(ledger, f, indent=2, ensure_ascii=False)
 
-    def run_daily_pipeline(self, target_day: str = None) -> Dict[str, Any]:
+    def _is_duplicate_today(self, date_str: str) -> bool:
+        ledger = self._load_ledger()
+        return any(e.get("date") == date_str for e in ledger)
+
+    def run_daily_pipeline(self, target_day: str = None, force: bool = False) -> Dict[str, Any]:
         start_time = datetime.datetime.now()
         date_str = start_time.strftime("%Y-%m-%d")
+        # 중복 실행 방지 — 같은 날짜 2회 실행 시 스팸 차단 (force=True면 우회)
+        if not force and not target_day and self._is_duplicate_today(date_str):
+            print(f"⏭️  Duplicate run blocked: {date_str} already in ledger. Use force=True to override.")
+            return {"date": date_str, "status": "SKIP_DUPLICATE", "publish_results": {}}
         print("=" * 65)
         print(f"🏭 [PARVOGEL MARKETING FACTORY] Starting Daily Run: {date_str}")
         print("=" * 65)
@@ -141,24 +149,46 @@ class ParvogelMarketingMaster:
                 except Exception as e:
                     results[ad_name] = f"ERROR: {e}"
 
-        # 4-2. 포스팅 원고 drafts/ 폴더 보관 (블로그, 숏폼, 릴스, 링크드인, DM)
+        # 4-2. 포스팅 원고 drafts/ 폴더 보관 — draft_only 채널은 ARCHIVED_DRAFT로만, auto 채널은 SUCCESS/FAILED 유지
         for ch_name, ch_content in formatted_channels.items():
             draft_path = self.draft_adapter.publish_draft(ch_name, ch_content, date_str)
-            if ch_name not in results:
+            ch_cfg = self.formatter.config.get("channels", {}).get(ch_name, {})
+            if ch_cfg.get("publish_mode") == "draft_only":
+                results[ch_name] = f"ARCHIVED_DRAFT: {os.path.basename(draft_path)}"
+            elif ch_name not in results:
                 results[ch_name] = f"ARCHIVED_DRAFT: {os.path.basename(draft_path)}"
 
-        # 5. 배포 장부 업데이트
+        # 5. 배포 장부 업데이트 — rendered_video는 절대경로 대신 상대경로 저장 (리눅스/윈도우 호환)
         ledger = self._load_ledger()
+        rel_rendered = None
+        if rendered_video:
+            try:
+                rel_rendered = os.path.relpath(rendered_video, FACTORY_DIR).replace(os.sep, "/")
+            except Exception:
+                rel_rendered = os.path.basename(rendered_video)
         ledger_entry = {
             "timestamp": start_time.isoformat(),
             "date": date_str,
             "theme": narrative.get("headline"),
             "video_file": target_video,
-            "rendered_video": rendered_video,
+            "rendered_video": rel_rendered or rendered_video,
+            "rendered_video_abs": rendered_video,
             "publish_results": results
         }
         ledger.append(ledger_entry)
         self._save_ledger(ledger)
+
+        # 6. 실패 알림 — Discord 웹훅으로 실패 목록 브로드캐스트 (관찰성)
+        failed = {k: v for k, v in results.items() if v in ("FAILED", "SKIPPED_NO_KEY") or str(v).startswith("ERROR") or str(v).startswith("FAILED")}
+        if failed:
+            try:
+                import requests
+                wh = os.getenv("DISCORD_WEBHOOK_URL")
+                if wh:
+                    fail_lines = "\n".join(f"• {k}: {v}" for k, v in failed.items())
+                    requests.post(wh, json={"content": f"⚠️ Factory {date_str} 일부 실패\n{fail_lines[:1500]}"}, timeout=5)
+            except Exception:
+                pass
 
         duration = (datetime.datetime.now() - start_time).total_seconds()
         print("\n" + "=" * 65)

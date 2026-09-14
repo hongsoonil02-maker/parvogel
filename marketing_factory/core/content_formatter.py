@@ -42,12 +42,19 @@ class ParvogelContentFormatter:
         return {}
 
     def _build_utm_links(self, channel: str) -> Dict[str, str]:
-        """채널별 UTM 추적 파라미터가 결합된 구매 링크 생성"""
+        """채널별 UTM 추적 파라미터가 결합된 구매 링크 생성 — URL에 ? 여부 자동 분기"""
+        from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
         ch_lower = channel.lower().replace(" ", "_").replace("(", "").replace(")", "")
+        def _append(base: str) -> str:
+            parsed = urlparse(base)
+            qs = dict(parse_qsl(parsed.query))
+            qs.update({"utm_source": ch_lower, "utm_medium": "auto_factory", "utm_campaign": "parvogel"})
+            new_q = urlencode(qs)
+            return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_q, parsed.fragment))
         return {
-            "landing": f"{self.landing_base}?utm_source={ch_lower}&utm_medium=auto_factory&utm_campaign=parvogel",
-            "smartstore": f"{self.smartstore_base}&utm_source={ch_lower}&utm_medium=auto_factory&utm_campaign=parvogel",
-            "coupang": f"{self.coupang_base}&utm_source={ch_lower}&utm_medium=auto_factory&utm_campaign=parvogel"
+            "landing": _append(self.landing_base),
+            "smartstore": _append(self.smartstore_base),
+            "coupang": _append(self.coupang_base)
         }
 
     def format_all_channels(self, narrative: Dict[str, Any]) -> Dict[str, Any]:
