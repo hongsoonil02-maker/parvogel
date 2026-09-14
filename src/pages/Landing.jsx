@@ -79,7 +79,9 @@ const Landing = () => {
     ], []);
 
     // 보호자 공감 4대 메인 카피 로테이션 (다국어 연동, 12초 주기 자동 전환)
-    const petHeroCopies = useMemo(() => [
+    const petHeroCopies = useMemo(() => {
+        void i18n.language;
+        return [
         {
             id: 'copy-a',
             badge: t('heroCopies.copyA.badge', '✨ 7일간의 기적 임상 실화'),
@@ -116,7 +118,8 @@ const Landing = () => {
             sub1: t('heroCopies.copyD.sub1', '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔'),
             sub2: t('heroCopies.copyD.sub2', '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게')
         }
-    ], [t]);
+        ];
+    }, [t, i18n.language]);
 
     // 일자 기반 시작 인덱스 (매일 다른 기본 카피)
     const initialCopyIndex = useMemo(() => {
@@ -402,11 +405,8 @@ const Landing = () => {
 
         try {
             const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL
-                || import.meta.env.VITE_APPS_SCRIPT_URL;
-            if (!scriptURL) {
-                alert('주문 서비스 설정이 누락되었습니다. 관리자에게 문의해 주세요. (VITE_GOOGLE_APPS_SCRIPT_URL 미설정)');
-                return;
-            }
+                || import.meta.env.VITE_APPS_SCRIPT_URL
+                || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec';
 
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')

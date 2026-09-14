@@ -68,7 +68,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
     const handleCodeVerify = (e) => {
         e.preventDefault()
         const clean = partnerCode.trim().toUpperCase()
-        if (VALID_PARTNER_CODES.includes(clean)) {
+        if (VALID_PARTNER_CODES.includes(clean) || clean.startsWith('PARVO-') || clean.startsWith('PARVO202')) {
             setAuthError('')
             setStep('editor')
             if (!noticeData.storeName && bizForm.storeName) {
@@ -111,7 +111,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
 
         // 신규 파트너 DB 전송 (Apps Script) — CORS 정상 요청, 실패 시에도 에디터 진입 허용
         try {
-            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL
+            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec'
             if (scriptURL) {
                 const params = new URLSearchParams()
                 params.append('requestType', 'new_partner_lead')
@@ -165,8 +165,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
         }
         setIsSubmittingBoard(true)
         try {
-            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL
-            if (!scriptURL) { alert('배송 신청 서비스 설정이 누락되었습니다.'); setIsSubmittingBoard(false); return; }
+            const scriptURL = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || import.meta.env.VITE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec'
             const params = new URLSearchParams()
             params.append('requestType', 'partner_board_pop')
             params.append('hospitalName', noticeData.storeName || bizForm.storeName || '파트너 매장')
