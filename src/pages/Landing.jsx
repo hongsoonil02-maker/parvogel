@@ -11,6 +11,8 @@ import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import PartnerNoticeModal from '../components/PartnerNoticeModal'
 import FeedDisclaimer from '../components/FeedDisclaimer'
+import findSampleRecipient from '../utils/sampleCheck'
+import DuplicateSampleModal from '../components/DuplicateSampleModal'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -25,6 +27,8 @@ const Landing = () => {
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
     const [isOrderComplete, setIsOrderComplete] = useState(false)
     const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
+    const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
+    const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
         requestType: 'consumer',
@@ -347,12 +351,33 @@ const Landing = () => {
         setFormData(prev => ({ ...prev, [name]: value }))
     }
 
+    const handleConvertToOrder = (targetType = 'wholesale') => {
+        setIsDuplicateModalOpen(false)
+        const recipient = duplicateSampleRecipient
+        setFormData(prev => ({
+            ...prev,
+            requestType: targetType,
+            hospitalName: prev.hospitalName || recipient?.shopName || '',
+            contactName: prev.contactName || recipient?.name || '',
+            phone: prev.phone || recipient?.phoneDisplay || recipient?.phone || '',
+            address: prev.address || recipient?.address || '',
+            quantity: prev.quantity && parseInt(prev.quantity, 10) > 1 ? prev.quantity : (targetType === 'wholesale' ? 10 : 1),
+            message: '[B2B 정식 발주] 1차 무료 샘플(1병) 수령 완료 거래처 추가 도매 발주 신청'
+        }))
+        setIsOrderModalOpen(true)
+        setIsOrderComplete(false)
+    }
+
+    const triggerDuplicateSampleGuide = (matched) => {
+        setDuplicateSampleRecipient(matched)
+        setIsDuplicateModalOpen(true)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!formData.hospitalName || !formData.contactName || !formData.phone
-            || (formData.requestType === 'wholesale' && !formData.bizNumber)
             || ((formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') && !formData.address)) {
-            alert('상호명, 담당자 성함, 연락처, 그리고 택배 받으실 주소는 필수 입력 항목입니다.')
+            alert('상호명, 담당자 성함, 연락처, 그리고 배송 받으실 주소는 필수 입력 항목입니다.')
             return
         }
         // 전화번호 엄격 검증: 10~11자리 숫자, 01로 시작
@@ -360,6 +385,16 @@ const Landing = () => {
         if (!/^01[0-9]{8,9}$/.test(rawPhone)) {
             alert('연락처는 010-1234-5678 형식의 10~11자리 숫자(01로 시작)로 입력해 주세요.')
             return
+        }
+
+        // 무료 샘플 중복 신청 친절 안내 & 정식 B2B 발주 유도
+        const isSample = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
+        if (isSample) {
+            const matched = findSampleRecipient(rawPhone, formData.hospitalName)
+            if (matched) {
+                triggerDuplicateSampleGuide(matched)
+                return
+            }
         }
         // 사업자번호 패턴 (도매)
         if (formData.requestType === 'wholesale' && formData.bizNumber) {
@@ -449,7 +484,13 @@ const Landing = () => {
             }
 
             if (json.status === 'duplicate') {
-                alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
+                const matched = findSampleRecipient(normPhone, formData.hospitalName) || {
+                    shopName: formData.hospitalName,
+                    name: formData.contactName,
+                    phoneDisplay: formData.phone,
+                    address: formData.address
+                }
+                triggerDuplicateSampleGuide(matched)
                 return
             }
             if (json.status !== 'success') {
@@ -1431,6 +1472,7 @@ const Landing = () => {
                                 isSubmitting={isSubmitting}
                                 products={products}
                                 variant="section"
+                                onTriggerDuplicateModal={triggerDuplicateSampleGuide}
                             />
                         </div>
 
@@ -1648,6 +1690,7 @@ const Landing = () => {
                                         isSubmitting={isSubmitting}
                                         products={products}
                                         variant="modal"
+                                        onTriggerDuplicateModal={triggerDuplicateSampleGuide}
                                     />
                                 </div>
                             )}
@@ -1711,6 +1754,16 @@ const Landing = () => {
                 <PartnerNoticeModal
                     isOpen={isPartnerModalOpen}
                     onClose={() => setIsPartnerModalOpen(false)}
+                />
+            )}
+
+            {/* 무료 샘플 중복 신청자 친절 안내 및 B2B 정식 발주 전환 모달 */}
+            {isDuplicateModalOpen && (
+                <DuplicateSampleModal
+                    isOpen={isDuplicateModalOpen}
+                    onClose={() => setIsDuplicateModalOpen(false)}
+                    matchedRecipient={duplicateSampleRecipient}
+                    onConvertToOrder={handleConvertToOrder}
                 />
             )}
 
