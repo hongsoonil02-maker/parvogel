@@ -13,6 +13,8 @@ import PartnerNoticeModal from '../components/PartnerNoticeModal'
 import FeedDisclaimer from '../components/FeedDisclaimer'
 import findSampleRecipient from '../utils/sampleCheck'
 import DuplicateSampleModal from '../components/DuplicateSampleModal'
+import { verifyBusinessApplicant, VERIFICATION_STATUS } from '../utils/businessVerification'
+import CertifiedBusinessNoticeModal from '../components/CertifiedBusinessNoticeModal'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -29,6 +31,8 @@ const Landing = () => {
     const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
     const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
+    const [isCertifiedNoticeOpen, setIsCertifiedNoticeOpen] = useState(false)
+    const [isPartnerMode, setIsPartnerMode] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
         requestType: 'consumer',
@@ -311,6 +315,7 @@ const Landing = () => {
             }
 
             if (sampleType === 'petshop' || sampleType === 'pet') {
+                setIsPartnerMode(true)
                 setFormData(prev => ({
                     ...prev,
                     requestType: 'sample_petshop',
@@ -321,6 +326,7 @@ const Landing = () => {
                 setIsOrderModalOpen(true)
                 setIsOrderComplete(false)
             } else if (sampleType === 'breeder' || sampleType === 'kennel') {
+                setIsPartnerMode(true)
                 setFormData(prev => ({
                     ...prev,
                     requestType: 'sample_breeder',
@@ -330,6 +336,8 @@ const Landing = () => {
                 }))
                 setIsOrderModalOpen(true)
                 setIsOrderComplete(false)
+            } else if (sampleType === 'b2b' || sampleType === 'partner') {
+                setIsPartnerMode(true)
             }
         }
 
@@ -387,14 +395,21 @@ const Landing = () => {
             return
         }
 
-        // 무료 샘플 중복 신청 친절 안내 & 정식 B2B 발주 유도
+        // 무료 샘플 신청 시 1,400 사업자 인증 및 중복 신청/일반인 검증
         const isSample = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
         if (isSample) {
-            const matched = findSampleRecipient(rawPhone, formData.hospitalName)
-            if (matched) {
-                triggerDuplicateSampleGuide(matched)
+            const vResult = verifyBusinessApplicant(rawPhone, formData.hospitalName, formData.bizNumber)
+            // 1. 기존 116건 수령 완료 거래처 -> 기분 좋은 VIP 정식 도매 발주 모달 유도
+            if (vResult.status === VERIFICATION_STATUS.ALREADY_RECEIVED) {
+                triggerDuplicateSampleGuide(vResult.data)
                 return
             }
+            // 2. 미등록 일반인 또는 일반 개인 -> 거부감 없는 정중한 사업자 전용 안내 및 쿠팡/네이버 구매 안내 모달 노출
+            if (vResult.status === VERIFICATION_STATUS.UNVERIFIED_PUBLIC) {
+                setIsCertifiedNoticeOpen(true)
+                return
+            }
+            // 3. 1,400 타깃 인허가 사업자(VERIFIED_TARGET) -> 계속 진행하여 본품 1병 무료 발송 접수!
         }
         // 사업자번호 패턴 (도매)
         if (formData.requestType === 'wholesale' && formData.bizNumber) {
@@ -1473,6 +1488,8 @@ const Landing = () => {
                                 products={products}
                                 variant="section"
                                 onTriggerDuplicateModal={triggerDuplicateSampleGuide}
+                                onTriggerCertNotice={() => setIsCertifiedNoticeOpen(true)}
+                                isVerifiedPartner={isPartnerMode}
                             />
                         </div>
 
@@ -1691,6 +1708,8 @@ const Landing = () => {
                                         products={products}
                                         variant="modal"
                                         onTriggerDuplicateModal={triggerDuplicateSampleGuide}
+                                        onTriggerCertNotice={() => setIsCertifiedNoticeOpen(true)}
+                                        isVerifiedPartner={isPartnerMode}
                                     />
                                 </div>
                             )}
@@ -1764,6 +1783,16 @@ const Landing = () => {
                     onClose={() => setIsDuplicateModalOpen(false)}
                     matchedRecipient={duplicateSampleRecipient}
                     onConvertToOrder={handleConvertToOrder}
+                />
+            )}
+
+            {/* 일반인/미등록 사업자 대상 정중한 무료 샘플 지원 정책 안내 및 쿠팡/네이버 전환 모달 */}
+            {isCertifiedNoticeOpen && (
+                <CertifiedBusinessNoticeModal
+                    isOpen={isCertifiedNoticeOpen}
+                    onClose={() => setIsCertifiedNoticeOpen(false)}
+                    applicantPhone={formData.phone}
+                    applicantShop={formData.hospitalName}
                 />
             )}
 

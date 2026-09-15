@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { getStoreUrl } from '../config/storeLinks'
 import findSampleRecipient from '../utils/sampleCheck'
+import { verifyBusinessApplicant, VERIFICATION_STATUS, normalizePhone } from '../utils/businessVerification'
 
 // 채널별 할인율 (소비자 정가 대비). 실제 공급 정책에 맞게 조정하세요.
 const PRICING = {
@@ -17,15 +18,30 @@ const PRICING = {
  * 주문/상담 폼 — 페이지 섹션과 모달에서 공통 사용
  * variant: 'section' | 'modal' (id 중복 방지 및 간격 차이)
  */
-const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, products, variant = 'section', onTriggerDuplicateModal }) => {
+const OrderForm = ({
+    formData,
+    onChange,
+    setFormData,
+    onSubmit,
+    isSubmitting,
+    products,
+    variant = 'section',
+    onTriggerDuplicateModal,
+    onTriggerCertNotice,
+    isVerifiedPartner = false
+}) => {
     const { t } = useTranslation()
     const idPrefix = variant === 'modal' ? 'modal-' : ''
     const gapClass = variant === 'modal' ? 'gap-4' : 'gap-6'
     const labelMb = variant === 'modal' ? 'mb-1' : 'mb-2'
 
     const isSampleType = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
-    const matchedRecipient = isSampleType ? findSampleRecipient(formData.phone, formData.hospitalName) : null
+    const verification = isSampleType ? verifyBusinessApplicant(formData.phone, formData.hospitalName, formData.bizNumber) : null
+    const matchedRecipient = verification?.status === VERIFICATION_STATUS.ALREADY_RECEIVED ? verification.data : null
+    const isVerifiedTarget = verification?.status === VERIFICATION_STATUS.VERIFIED_TARGET
+    const isUnverifiedPublic = verification?.status === VERIFICATION_STATUS.UNVERIFIED_PUBLIC && normalizePhone(formData.phone).length >= 10
     const matchedWholesaleRecipient = formData.requestType === 'wholesale' ? findSampleRecipient(formData.phone, formData.hospitalName) : null
+    const isPartnerVerified = isVerifiedPartner || !!matchedWholesaleRecipient || isVerifiedTarget
 
     return (
         <form onSubmit={onSubmit} className={variant === 'modal' ? 'space-y-4' : 'space-y-6'}>
@@ -167,6 +183,43 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                 </div>
             )}
 
+            {isVerifiedTarget && (
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-300 shadow-sm text-start animate-fade-in flex items-center justify-between gap-3">
+                    <div className="text-xs text-emerald-950 leading-relaxed break-keep">
+                        <div className="font-black flex items-center gap-1.5 text-emerald-900 mb-0.5">
+                            <span>✅</span>
+                            <span>정부 인허가 타깃 사업자 인증 완료</span>
+                        </div>
+                        <p className="text-slate-700">
+                            {verification?.data?.shopName ? <strong>{verification.data.shopName}</strong> : '대표님'}, 정부 인허가 정식 등록 시설로 확인되었습니다. 본품(200ml) 1병 무료 샘플 발송 대상입니다.
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {isUnverifiedPublic && (
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-300 shadow-sm text-start animate-fade-in flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div className="text-xs text-slate-700 leading-relaxed break-keep">
+                        <div className="font-bold flex items-center gap-1 text-slate-900 mb-0.5">
+                            <span>🛡️</span>
+                            <span>정부 인허가 동물판매업·생산업 사업자 전용 안내</span>
+                        </div>
+                        <p className="text-slate-600">
+                            본 무료 샘플은 사업장 전용 프로그램입니다. 일반 반려인 고객님의 1~2병 주문은 쿠팡/네이버 당일 배송을 이용해 주세요.
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (onTriggerCertNotice) onTriggerCertNotice()
+                        }}
+                        className="shrink-0 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
+                    >
+                        안내 보기 ➔
+                    </button>
+                </div>
+            )}
+
             {formData.requestType === 'wholesale' && matchedWholesaleRecipient && (
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-300 shadow-sm text-start animate-fade-in flex items-center justify-between gap-3">
                     <div className="text-xs text-emerald-950 leading-relaxed break-keep">
@@ -188,12 +241,16 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
 
             {formData.requestType === 'hospital' && (
                 <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                    💡 {t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })}
+                    💡 {isPartnerVerified
+                        ? t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })
+                        : '동물병원·수의사 정식 공급은 면허 및 사업자 확인 후 병원 전용 비공개 견적서(단가표)를 통해 별도 안내드립니다.'}
                 </div>
             )}
             {formData.requestType === 'wholesale' && (
                 <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                    💡 {t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })}
+                    💡 {isPartnerVerified
+                        ? t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })
+                        : '도매 공급가는 사업자등록증 확인 후 수량별 특별 파트너 견적서 및 비공개 단가표를 통해 안내드립니다.'}
                 </div>
             )}
 
@@ -434,8 +491,10 @@ const OrderForm = ({ formData, onChange, setFormData, onSubmit, isSubmitting, pr
                 ) : (
                     (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
                         ? (matchedRecipient
-                            ? '📦 B2B 정식 발주로 전환하기 (특가 혜택)'
-                            : '🎁 파보겔 본품 1병 무료체험 신청하기 (택배비 무료)')
+                            ? '📦 B2B 정식 도매 발주로 전환하기 (우대 혜택)'
+                            : isVerifiedTarget
+                                ? '✅ 인증 완료: 본품 1병 무료 샘플 신청하기 (무료 배송)'
+                                : '🎁 사업자 본품 1병 무료체험 신청하기 (택배비 무료)')
                         : t('order.submit')
                 )}
             </button>

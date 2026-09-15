@@ -78,7 +78,7 @@ const DuplicateSampleModal = ({
                                     자견 설사 방어 및 추가 상비용 물량이 필요하신가요?
                                 </p>
                                 <p className="text-slate-600">
-                                    이미 1병의 무료 체험 본품을 받아보신 파트너 대표님께는 <strong>B2B 도매 공급 특가(최대 55% 파격 할인)</strong>로 신속하게 정식 발주를 접수해 드립니다.
+                                    이미 1병의 무료 체험 본품을 받아보신 파트너 대표님께는 <strong>B2B 도매 공급 특별 우대가</strong>로 신속하게 정식 발주를 접수해 드립니다.
                                 </p>
                             </div>
                         </div>
