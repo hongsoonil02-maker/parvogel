@@ -607,6 +607,7 @@ const Landing = () => {
     const targetAnimals = [
         { icon: '🐶', name: t('target.puppy', '강아지 (자견/반려견)'), age: t('target.puppyAge', '전 연령 (생후 30일령~)'), diseases: t('target.puppyDisease', '파보바이러스/코로나장염/급성 설사·혈변') },
         { icon: '🐱', name: t('target.cat', '고양이 (자묘/반려묘)'), age: t('target.catAge', '전 연령 (생후 30일령~)'), diseases: t('target.catDisease', '범백(FPLV)/급성 세균성 장염/수분 손실') },
+        { icon: '🦜', name: t('target.bird', '앵무새·조류 (반려조)'), age: t('target.birdAge', '이유조 및 성조 전 연령'), diseases: t('target.birdDisease', '급성 수양성 설사/소낭 정체/사료 곰팡이 독소') },
         { icon: '🐄', name: t('target.calf'), age: t('target.calfAge'), diseases: t('target.calfDisease') },
         { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
         { icon: '🐐', name: t('target.kid'), age: t('target.kidAge'), diseases: t('target.kidDisease') },
@@ -641,6 +642,13 @@ const Landing = () => {
             clinic: t('testimonials.t4Clinic'),
             role: t('testimonials.t4Role'),
             content: t('testimonials.t4Content'),
+            rating: 5,
+        },
+        {
+            name: t('testimonials.t5Name', '홍효선 대표'),
+            clinic: t('testimonials.t5Clinic', '반려조 가정 (앵무새 꼬미)'),
+            role: t('testimonials.t5Role', '앵무새 보호자 실화'),
+            content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
             rating: 5,
         },
     ]
@@ -872,8 +880,8 @@ const Landing = () => {
                                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                                 }`}
                             >
-                                <span className="text-base">🐶🐱</span>
-                                <span>{t('heroPersona.pet', '반려동물 (자견·자묘/보호자)')}</span>
+                                <span className="text-base">🐶🐱🦜</span>
+                                <span>{t('heroPersona.pet', '반려동물 (강아지·고양이·앵무새)')}</span>
                             </button>
                             <button
                                 type="button"

@@ -538,7 +538,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                 icon: '🐾', 
                                                 tag: '전축종 추천',
                                                 title: '통합형 (반려동물 & 가축)', 
-                                                desc: '개·고양이부터 송아지까지, 토하고 설사할 때 동물용 활명수 한 병이면 든든합니다' 
+                                                desc: '개·고양이·앵무새(새)부터 송아지까지, 토하고 설사할 때 동물용 활명수 한 병이면 든든합니다' 
                                             },
                                             { 
                                                 id: 'livestock', 

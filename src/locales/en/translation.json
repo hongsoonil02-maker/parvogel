@@ -245,7 +245,10 @@
     "puppyDisease": "Parvovirus / Coronavirus enteritis / Acute diarrhea",
     "cat": "Cat / Kitten",
     "catAge": "All ages (from 30 days)",
-    "catDisease": "Feline panleukopenia / Acute enteritis"
+    "catDisease": "Feline panleukopenia / Acute enteritis",
+    "bird": "Parrot & Pet Birds",
+    "birdAge": "All ages (weanlings & adult birds)",
+    "birdDisease": "Watery diarrhea / Crop stasis / Feed mycotoxins"
   },
   "products": {
     "badge": "Product Lineup",
@@ -502,6 +505,16 @@
           "Rapid electrolyte and vitality restoration"
         ],
         "highlight": "Feline panleukopenia & acute enteritis stress-free 1-sec care"
+      },
+      "bird": {
+        "name": "Parrot & Pet Birds",
+        "dosage": "1-2 drops (0.1-0.2ml, on beak or mixed in hand-feeding formula/water, 2x daily)",
+        "effects": [
+          "100% non-absorbable physical mucosal coating tailored for avian short digestive tracts",
+          "Immediately binds and expels acute watery diarrhea pathogens and seed/feed mycotoxins",
+          "Zero-stress stress-free administration by simply dabbing one drop on the beak"
+        ],
+        "highlight": "[Clinical Proof] Parrot 'Ggomi' acute watery diarrhea normalized in 24 hours!"
       }
     }
   },
@@ -658,7 +671,7 @@
     "sub2": "18-month room temp storage · Verified by Gyeongsang National University Vet School (98.5% toxin adsorption)"
   },
   "heroPersona": {
-    "pet": "Companion Animals (Puppy/Kitten/Guardian)",
+    "pet": "Companion Animals (Puppy / Kitten / Parrot)",
     "livestock": "Livestock (Calf/Piglet/Farm)"
   },
   "heroCta": {
