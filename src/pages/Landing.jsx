@@ -1403,8 +1403,17 @@ const Landing = () => {
                     </div>
 
                     {/* Product Lineup Image */}
-                    <div className="max-w-4xl mx-auto mt-10 mb-16 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
-                        <img src={`${import.meta.env.BASE_URL}images/bottle_group.png`} alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')} width="900" height="600" className="w-full h-auto object-cover aspect-[3/2]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                    <div className="max-w-2xl mx-auto mt-8 mb-14 rounded-3xl shadow-xl border border-slate-100 bg-white p-4 sm:p-8 flex items-center justify-center overflow-hidden">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/bottle_group.png`}
+                            alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')}
+                            width="1086"
+                            height="1448"
+                            className="w-auto h-auto max-h-[560px] sm:max-h-[640px] max-w-full object-contain mx-auto"
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => { e.target.style.display = 'none'; }}
+                        />
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
