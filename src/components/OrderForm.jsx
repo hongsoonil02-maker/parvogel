@@ -129,7 +129,7 @@ const OrderForm = ({
                         </span>
                     </div>
                     <p className="text-xs text-slate-700 leading-relaxed break-keep">
-                        {t('order.sampleNotePetshop', '💡 펫샵/분양샵 대표님께 파보겔 본품 1병과 B2B 특별 공급 단가표를 무료 발송해 드립니다. (발송 완료 후 송장번호 안내)')}
+                        {t('order.sampleNotePetshop', '💡 펫샵/분양샵 대표님께 파보겔 200ml 정품 1병과 알림판에 사용되는 예(A4)를 인쇄 동봉하여 무료 발송해 드립니다. (발송 완료 후 송장번호 안내)')}
                     </p>
                 </div>
             )}
@@ -403,7 +403,7 @@ const OrderForm = ({
             ) : (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') ? (
                 <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-bold text-emerald-900 flex items-center gap-2">
                     <span>📦</span>
-                    <span>지원 혜택: 파보겔 정품 1병 무료 제공 + B2B 특가 공급 안내문 동봉 (배송비 전액 본사 부담)</span>
+                    <span>지원 혜택: 파보겔 200ml 정품 1병 무상제공 + 알림판에 사용되는 예(A4) 인쇄 동봉 (배송비 전액 본사 부담)</span>
                 </div>
             ) : (
                 <div className={`grid sm:grid-cols-2 ${gapClass}`}>
