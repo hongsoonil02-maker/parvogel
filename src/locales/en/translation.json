@@ -278,8 +278,8 @@
   },
   "testimonials": {
     "badge": "Field Voices",
-    "title": "Veterinarians, Pharmacists, and Farmers Prove It",
-    "subtitle": "Parvogel's capabilities verified at 200+ animal hospitals, pharmacies, and farms nationwide",
+    "title": "Veterinarians, Pharmacists, Breeders, and Farmers Prove It",
+    "subtitle": "Parvogel's capabilities verified at animal hospitals, pharmacies, kennels, and farms nationwide",
     "t1Name": "Director Kim",
     "t1Clinic": "OO Animal Hospital (Gyeonggi)",
     "t1Role": "20 years cattle clinical experience",
@@ -291,7 +291,19 @@
     "t3Name": "Pharmacist Lee",
     "t3Clinic": "OO Animal Pharmacy (Jeonbuk)",
     "t3Role": "15 years animal pharmacy operation",
-    "t3Content": "After entering Coupang and Naver Shopping, repurchase rate is 78%. 100ml small packages are easy for beginner farmers to purchase, 500ml secures full-time farmer regulars."
+    "t3Content": "After entering Coupang and Naver Shopping, repurchase rate is 78%. 100ml small packages are easy for beginner farmers to purchase, 500ml secures full-time farmer regulars.",
+    "t4Name": "Farmer Son Seong-bin",
+    "t4Clinic": "Hanwoo Beef Cattle Farm",
+    "t4Role": "Calf Breeding",
+    "t4Content": "\"The effect is genuinely great. It cured it in one shot. Thank you so much for sending the calf diarrhea treatment, Dr. Hong.\"",
+    "t5Name": "CEO Hyo-sun Hong",
+    "t5Clinic": "Pet Bird Family (Parrot Ggomi)",
+    "t5Role": "Pet Bird Guardian Real Story",
+    "t5Content": "\"My parrot (Ggomi) was facing a fatal crisis due to sudden watery diarrhea, but just one drop of Parvogel completely stopped the diarrhea the very next morning, regaining full energy.\"",
+    "t6Name": "Guam Farm CEO",
+    "t6Clinic": "Professional Kennel & Breeder (Gongju, Chungnam)",
+    "t6Role": "Professional Breeder Recovery Real Story",
+    "t6Content": "\"Puppies were suffering from severe diarrhea and bloody stools, but right the next day after administering Parvogel, both diarrhea and bloody stools completely stopped. The effect was so evident that I recommended it to fellow breeders on-site and sold 5 bottles right away.\""
   },
   "order": {
     "badge": "Order & Consultation",

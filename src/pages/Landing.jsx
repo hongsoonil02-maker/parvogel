@@ -652,6 +652,13 @@ const Landing = () => {
             content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
             rating: 5,
         },
+        {
+            name: t('testimonials.t6Name', '구암농장 대표'),
+            clinic: t('testimonials.t6Clinic', '충남 공주 전문 켄넬·브리더'),
+            role: t('testimonials.t6Role', '전문 브리더 자견 완치 실화'),
+            content: t('testimonials.t6Content', '"설사와 혈변을 보이던 어린 강아지들에게 파보겔을 먹이자마자 바로 다음 날 거짓말처럼 설사·혈변이 뚝 멈췄습니다. 효과가 너무 확실해서 주변 지인들에게 입소문 내어 5병을 즉석 현장 판매했습니다. 적극 추천합니다."'),
+            rating: 5,
+        },
     ]
 
     const products = [
