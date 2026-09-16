@@ -8,8 +8,8 @@ import { verifyBusinessApplicant, VERIFICATION_STATUS, normalizePhone } from '..
 const PRICING = {
     hospitalDiscount: 45,
     wholesaleTiers: [
-        { min: 10, max: 49, discount: 50 },
-        { min: 50, max: 199, discount: 55 },
+        { min: 10, max: 49, discount: 45 },
+        { min: 50, max: 199, discount: 50 },
         { min: 200, max: null, discount: null },
     ],
 }
@@ -158,7 +158,7 @@ const OrderForm = ({
                             <span>{matchedRecipient.shopName} 대표님, 1차 무료 본품 샘플(1병)이 이미 발송(접수)되었습니다!</span>
                         </div>
                         <p className="text-slate-700 break-keep">
-                            무료 샘플은 사업자당 최초 1회 제공됩니다. 추가 물량은 B2B 도매 특가(최대 55% 할인)로 바로 발주하실 수 있습니다.
+                            무료 샘플은 사업자당 최초 1회 제공됩니다. 추가 물량은 B2B 도매 특가(최대 50% 할인)로 바로 발주하실 수 있습니다.
                         </p>
                     </div>
                     <button
