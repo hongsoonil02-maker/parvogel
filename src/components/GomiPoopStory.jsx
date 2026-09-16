@@ -8,6 +8,20 @@ export default function GomiPoopStory() {
   const [isZoomModalOpen, setIsZoomModalOpen] = useState(false);
   const [zoomImageSrc, setZoomImageSrc] = useState('');
   const [zoomImageTitle, setZoomImageTitle] = useState('');
+  const [copiedShorts, setCopiedShorts] = useState(false);
+
+  const SHORTS_URL = 'https://youtube.com/shorts/2vGdq9EbDwA?si=ukVhGir33kIiorQU';
+
+  const handleCopyShortsLink = () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(SHORTS_URL).then(() => {
+        setCopiedShorts(true);
+        setTimeout(() => setCopiedShorts(false), 2000);
+      });
+    } else {
+      alert('유튜브 숏츠 링크: ' + SHORTS_URL);
+    }
+  };
 
   const afterImages = [
     {
@@ -39,7 +53,7 @@ export default function GomiPoopStory() {
       <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-200/25 rounded-full blur-3xl pointer-events-none" />
 
       {/* 헤더 섹션 */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 relative z-10">
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-amber-100 to-emerald-100 text-amber-900 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-amber-300 shadow-sm mb-4">
           <span className="text-base">🦜</span>
           <span>파보겔 대표 반려조 '꼬미'의 24시간 리얼 회복기</span>
@@ -56,8 +70,108 @@ export default function GomiPoopStory() {
         </p>
       </div>
 
+      {/* 🎬 홍대표 제작 유튜브 숏츠 공식 영상 쇼케이스 */}
+      <div className="mb-12 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-amber-400/50 shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          {/* 좌측: 세로 9:16 모바일 최적화 숏츠 임베드 플레이어 */}
+          <div className="w-full max-w-[280px] sm:max-w-[300px] shrink-0 mx-auto">
+            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-300/60 bg-black group">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/2vGdq9EbDwA?rel=0"
+                title="홍대표 제작 - 앵무새 꼬미 파보겔 24시간 임상실화 유튜브 숏츠"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-between px-1 text-[11px] text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                <span className="font-bold text-red-400">YouTube Shorts</span>
+              </span>
+              <span className="font-mono text-amber-300">ID: 2vGdq9EbDwA</span>
+            </div>
+          </div>
+
+          {/* 우측: 숏츠 핵심 설명 & 바로가기 버튼 */}
+          <div className="flex-1 text-center lg:text-left space-y-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-600 text-white text-xs font-black rounded-full uppercase tracking-wider shadow-sm">
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>YouTube Shorts 공식 직캠</span>
+              </span>
+              <span className="px-2.5 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[11px] font-bold rounded-full">
+                홍효선 대표 직접 촬영·편집
+              </span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-snug break-keep">
+              "물설사로 쓰러졌던 꼬미가 파보겔 1방울로 살아난 24시간!"
+            </h3>
+
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed break-keep">
+              낙조(폐사) 위기였던 앵무새 꼬미에게 밤사이 파보겔 1방울을 투여한 뒤, 
+              다음 날 아침 거짓말처럼 <strong>단단한 알맹이 정상 변을 보고 밥그릇을 싹 비워내는</strong> 전 과정을 
+              홍대표가 생생한 직캠 쇼츠로 담아 유튜브에 공개했습니다.
+            </p>
+
+            {/* 3대 핵심 체크 포인트 */}
+            <div className="grid sm:grid-cols-3 gap-2.5 py-2 text-xs text-left">
+              <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                <div className="text-amber-400 font-bold mb-1">⚡ 골든타임 1초 급여</div>
+                <div className="text-slate-300 text-[11px]">부리 끝에 1방울(0.1ml) 톡! 스트레스 없이 스스로 핥아먹음</div>
+              </div>
+              <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                <div className="text-emerald-400 font-bold mb-1">✨ 24시간 만에 정상화</div>
+                <div className="text-slate-300 text-[11px]">지독했던 물설사 뚝 멎고 쑥색 둥근 알맹이 대변 완벽 형성</div>
+              </div>
+              <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                <div className="text-sky-300 font-bold mb-1">💡 조류 집사 필독 상식</div>
+                <div className="text-slate-300 text-[11px]">신문지 물 번짐은 소변! 알맹이가 잡혀있다면 설사가 멎은 것</div>
+              </div>
+            </div>
+
+            {/* 액션 버튼 그룹 */}
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <a
+                href={SHORTS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-black text-sm bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-red-600/40 hover:scale-105 active:scale-95 transition-all"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span>유튜브 숏츠 앱/새창으로 보기</span>
+                <span className="text-xs">↗</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={handleCopyShortsLink}
+                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-slate-500 transition-all active:scale-95"
+              >
+                <span>{copiedShorts ? '✅ 복사 완료!' : '🔗 숏츠 링크 복사'}</span>
+              </button>
+
+              <a
+                href="#gomi-chat-proof"
+                className="inline-flex items-center gap-1 px-3 py-3 text-xs font-semibold text-amber-300 hover:text-amber-200 underline decoration-amber-400/50 underline-offset-4"
+              >
+                <span>카톡 & 비포/애프터 사진 증거 보기 ↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* 2단 구성: 좌측 리얼 카톡 대화 / 우측 비포-애프터 실물 비교 */}
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
+      <div id="gomi-chat-proof" className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
         
         {/* 좌측: 리얼 부녀 카카오톡 대화방 UI (5컬럼) */}
         <div className="lg:col-span-5 bg-white/90 backdrop-blur rounded-2xl border border-slate-200 shadow-lg overflow-hidden flex flex-col">
@@ -143,6 +257,29 @@ export default function GomiPoopStory() {
                   ㅇㅇ
                 </div>
                 <div className="text-[10px] text-slate-500">오전 9:11</div>
+              </div>
+            </div>
+
+            {/* 홍대표 메시지 3: 유튜브 숏츠 공유 */}
+            <div className="flex items-start gap-2">
+              <div className="w-8 h-8 rounded-full bg-slate-300 overflow-hidden flex-shrink-0 border border-white/50">
+                <img src="/images/gomi/kakao_chat_proof.png" alt="Jessica" className="w-full h-full object-cover" />
+              </div>
+              <div className="space-y-1 max-w-[85%]">
+                <div className="text-[11px] text-slate-700 font-medium">Jessica Hong</div>
+                <div className="bg-white p-2.5 rounded-2xl rounded-tl-none shadow-xs text-slate-800 leading-snug border border-slate-100 space-y-2">
+                  <p>이거 24시간 완치 과정 <strong>유튜브 숏츠 직캠</strong>으로도 제작해서 올렸어! 🎬</p>
+                  <a 
+                    href={SHORTS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-red-600 bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-lg border border-red-200 transition-colors"
+                  >
+                    <span>▶️ 유튜브 숏츠 영상 보러가기</span>
+                    <span className="text-[10px]">↗</span>
+                  </a>
+                </div>
+                <div className="text-[10px] text-slate-500 text-right">오전 9:12</div>
               </div>
             </div>
 

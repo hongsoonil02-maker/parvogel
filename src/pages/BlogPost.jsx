@@ -12,6 +12,34 @@ export default function BlogPost() {
     return <Navigate to="/blog" replace />;
   }
 
+  // 인라인 마크다운 (bold, links) 파싱
+  const renderInline = (str) => {
+    const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g;
+    const parts = str.split(regex);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+      }
+      const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+      if (linkMatch) {
+        const isExt = linkMatch[2].startsWith('http');
+        return (
+          <a
+            key={i}
+            href={linkMatch[2]}
+            target={isExt ? '_blank' : undefined}
+            rel={isExt ? 'noopener noreferrer' : undefined}
+            className="text-primary-600 hover:text-primary-700 underline font-bold transition-colors inline-flex items-center gap-0.5"
+          >
+            <span>{linkMatch[1]}</span>
+            {isExt && <span className="text-xs">↗</span>}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
+
   // 간단한 마크다운/줄바꿈 파싱
   const renderContent = (text) => {
     return text.split('\n').map((line, idx) => {
@@ -32,24 +60,55 @@ export default function BlogPost() {
           </figure>
         );
       }
+
+      // 유튜브 숏츠/비디오 임베드 (@[youtube](id))
+      const ytMatch = line.match(/^@\[youtube\]\((.*?)\)\s*$/);
+      if (ytMatch) {
+        const videoId = ytMatch[1];
+        return (
+          <div key={idx} className="my-8 max-w-[320px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-2 border-red-500/40 bg-black">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+              title="YouTube Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full border-0"
+            />
+          </div>
+        );
+      }
+
+      // 구분선
+      if (line.trim() === '---') {
+        return <hr key={idx} className="my-8 border-gray-200" />;
+      }
+
+      // 인용문 (> text)
+      if (line.startsWith('> ')) {
+        return (
+          <blockquote key={idx} className="my-4 pl-4 py-2 border-l-4 border-amber-500 bg-amber-50/50 text-slate-800 italic text-base md:text-lg rounded-r-xl">
+            {renderInline(line.replace(/^>\s*/, ''))}
+          </blockquote>
+        );
+      }
+
+      // 제목 H3
       if (line.startsWith('### ')) {
         return <h3 key={idx} className="text-xl md:text-2xl font-bold text-gray-900 mt-8 mb-4">{line.replace('### ', '')}</h3>;
       }
+
+      // 리스트
       if (line.match(/^[0-9]+\.\s/)) {
-        return <p key={idx} className="text-gray-700 text-base md:text-lg mb-2 font-medium pl-4">{line}</p>;
+        return <p key={idx} className="text-gray-700 text-base md:text-lg mb-2 font-medium pl-4">{renderInline(line)}</p>;
       }
+
+      // 빈 줄
       if (line.trim() === '') return <br key={idx} />;
       
-      // bold처리 (**text**)
-      const parts = line.split(/(\*\*.*?\*\*)/g);
+      // 일반 문단
       return (
         <p key={idx} className="text-gray-700 text-base md:text-lg mb-4 leading-relaxed break-keep">
-          {parts.map((part, i) => {
-            if (part.startsWith('**') && part.endsWith('**')) {
-              return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
-            }
-            return part;
-          })}
+          {renderInline(line)}
         </p>
       );
     });

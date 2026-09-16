@@ -618,6 +618,7 @@ const Landing = () => {
 
     const testimonials = [
         {
+            id: 't1',
             name: t('testimonials.t1Name'),
             clinic: t('testimonials.t1Clinic'),
             role: t('testimonials.t1Role'),
@@ -625,6 +626,7 @@ const Landing = () => {
             rating: 5,
         },
         {
+            id: 't2',
             name: t('testimonials.t2Name'),
             clinic: t('testimonials.t2Clinic'),
             role: t('testimonials.t2Role'),
@@ -632,6 +634,7 @@ const Landing = () => {
             rating: 5,
         },
         {
+            id: 't3',
             name: t('testimonials.t3Name'),
             clinic: t('testimonials.t3Clinic'),
             role: t('testimonials.t3Role'),
@@ -639,6 +642,7 @@ const Landing = () => {
             rating: 5,
         },
         {
+            id: 't4',
             name: t('testimonials.t4Name'),
             clinic: t('testimonials.t4Clinic'),
             role: t('testimonials.t4Role'),
@@ -646,18 +650,30 @@ const Landing = () => {
             rating: 5,
         },
         {
+            id: 't5',
             name: t('testimonials.t5Name', '홍효선 대표'),
             clinic: t('testimonials.t5Clinic', '반려조 가정 (앵무새 꼬미)'),
             role: t('testimonials.t5Role', '앵무새 보호자 실화'),
             content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
             rating: 5,
+            badge: '🦜 24시간 완치 쇼츠',
         },
         {
+            id: 't6',
             name: t('testimonials.t6Name', '구암농장 대표'),
             clinic: t('testimonials.t6Clinic', '충남 공주 전문 켄넬·브리더'),
             role: t('testimonials.t6Role', '전문 브리더 자견 완치 실화'),
             content: t('testimonials.t6Content', '"설사와 혈변을 보이던 어린 강아지들에게 파보겔을 먹이자마자 바로 다음 날 거짓말처럼 설사·혈변이 뚝 멈췄습니다. 효과가 너무 확실해서 주변 지인들에게 입소문 내어 5병을 즉석 현장 판매했습니다. 적극 추천합니다."'),
             rating: 5,
+        },
+        {
+            id: 't7',
+            name: t('testimonials.t7Name', '충주 루미가든 대표'),
+            clinic: t('testimonials.t7Clinic', '충북 충주 (에스앤제이 동물병원 구매 고객)'),
+            role: t('testimonials.t7Role', '100ml 병원 구매 후 500ml 5병 도매 재발주 실화'),
+            content: t('testimonials.t7Content', '"충주 에스앤제이 동물병원에서 100ml 1병을 처음 사서 먹여봤는데 설사가 잡히고 효과가 너무너무 좋았습니다. 본사 무료 샘플 1병도 신청해 써보고 품질에 확신을 얻어, 어제 500ml 대용량 5병을 도매가로 대량 구매했습니다!"'),
+            rating: 5,
+            badge: t('testimonials.t7Badge', '🔥 500ml 5병 도매 재구매'),
         },
     ]
 
@@ -1376,25 +1392,70 @@ const Landing = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                         {testimonials.map((testimonial, i) => (
                             <div
-                                key={i}
-                                className="card relative"
+                                key={testimonial.id || i}
+                                className={`card relative flex flex-col justify-between ${testimonial.id === 't7' ? 'ring-2 ring-amber-400 bg-gradient-to-b from-amber-50/40 via-white to-white' : ''}`}
                                 style={{ animationDelay: `${i * 150}ms` }}
                             >
-                                <div className="flex items-center gap-1 mb-4">
-                                    {[...Array(testimonial.rating)].map((_, j) => (
-                                        <svg key={j} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                    ))}
+                                {testimonial.badge && (
+                                    <span className="absolute top-4 right-4 px-2.5 py-0.5 text-[10px] font-black rounded-full bg-amber-100 text-amber-800 border border-amber-300 shadow-xs">
+                                        {testimonial.badge}
+                                    </span>
+                                )}
+                                <div>
+                                    <div className="flex items-center gap-1 mb-4">
+                                        {[...Array(testimonial.rating)].map((_, j) => (
+                                            <svg key={j} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed mb-6 break-keep">&quot;{testimonial.content}&quot;</p>
                                 </div>
-                                <p className="text-gray-700 leading-relaxed mb-6 break-keep">&quot;{testimonial.content}&quot;</p>
                                 <div className="border-t border-gray-100 pt-4">
                                     <p className="font-bold text-gray-900 break-keep">{testimonial.name}</p>
                                     <p className="text-sm text-gray-500 break-keep">{testimonial.clinic}</p>
                                     <p className="text-xs text-gray-400 mt-1 break-keep">{testimonial.role}</p>
+
+                                    {/* 꼬미 숏츠 영상 링크 */}
+                                    {testimonial.id === 't5' && (
+                                        <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                                            <a
+                                                href="https://youtube.com/shorts/2vGdq9EbDwA?si=ukVhGir33kIiorQU"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 text-xs font-black text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-all shadow-xs"
+                                            >
+                                                <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                                </svg>
+                                                <span>유튜브 숏츠 직캠 보기</span>
+                                                <span className="text-[10px]">↗</span>
+                                            </a>
+                                            <button
+                                                type="button"
+                                                onClick={() => scrollToSection('gomi-story')}
+                                                className="text-xs font-semibold text-emerald-700 hover:underline"
+                                            >
+                                                배변 증거 보기 ↓
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {/* 루미가든 블로그 상세 스토리 링크 */}
+                                    {testimonial.id === 't7' && (
+                                        <div className="mt-3 pt-3 border-t border-gray-100">
+                                            <Link
+                                                to="/blog/chungju-rumigarden-case"
+                                                className="inline-flex items-center gap-1.5 text-xs font-black text-amber-800 hover:text-amber-900 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-lg border border-amber-300 transition-all shadow-xs w-full justify-center"
+                                            >
+                                                <span>📖 루미가든 500ml 도매 재구매 스토리</span>
+                                                <span className="text-[10px]">➔</span>
+                                            </Link>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
