@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, Suspense, lazy } from 'rea
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import AnimalSelector from '../components/AnimalSelector'
+import GomiPoopStory from '../components/GomiPoopStory'
 import AudioTestimonial from '../components/AudioTestimonial'
 import StickyBottomCTA from '../components/StickyBottomCTA'
 import OrderForm from '../components/OrderForm'
@@ -1279,6 +1280,11 @@ const Landing = () => {
             {/* 축종별 맞춤 효능 탭 (상단 최적 위치로 승격) */}
             <div id="animal-guide" className="section-container">
                 <AnimalSelector />
+            </div>
+
+            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 배변 판별 가이드 */}
+            <div className="section-container">
+                <GomiPoopStory />
             </div>
 
             {/* Clinical Evidence Section — lazy */}

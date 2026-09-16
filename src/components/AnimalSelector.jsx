@@ -146,6 +146,21 @@ export default function AnimalSelector() {
           <span className="text-[11px] text-slate-500 block mt-2">
             {t('animalSelector.notice', '* 1-deoxinojirimycin & 특허균주 고농축 액상 제제')}
           </span>
+          {selectedId === 'bird' && (
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById('gomi-story');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full py-2 px-3 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-xs font-bold rounded-xl shadow hover:from-amber-600 hover:to-emerald-700 transition-all flex items-center justify-center gap-1 hover:scale-[1.02]"
+              >
+                <span>🦜 대표 반려조 '꼬미'의 배변 회복 실화 보기</span>
+                <span>↓</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
