@@ -56,17 +56,17 @@ export default function GomiPoopStory() {
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-amber-100 to-emerald-100 text-amber-900 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-amber-300 shadow-sm mb-4">
           <span className="text-base">🦜</span>
-          <span>파보겔 대표 반려조 '꼬미'의 24시간 리얼 회복기</span>
+          <span>파보겔 대표 반려조 &apos;꼬미&apos;의 24시간 리얼 회복기</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 break-keep leading-snug">
-          "새 안 키워본 사람은 몰라요!"<br className="hidden sm:inline" />
+          &quot;새 안 키워본 사람은 몰라요!&quot;<br className="hidden sm:inline" />
           <span className="bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent ml-1 sm:ml-2">
             물기가 번졌어도 알맹이가 잡히면 멎은 겁니다
           </span>
         </h2>
         <p className="text-sm sm:text-base text-slate-600 mt-3 break-keep max-w-2xl mx-auto leading-relaxed">
           새는 장이 짧아 급성 설사 시 24~48시간 만에 탈수로 낙조(폐사) 위험에 처합니다.<br className="hidden md:inline" />
-          파보겔 홍대표가 앵무새 '꼬미'의 급성 설사를 직접 케어하며 기록한 리얼 배변 데이터와 조류 집사 필독 상식을 공개합니다.
+          파보겔 홍대표가 앵무새 &apos;꼬미&apos;의 급성 설사를 직접 케어하며 기록한 리얼 배변 데이터와 조류 집사 필독 상식을 공개합니다.
         </p>
       </div>
 
@@ -111,7 +111,7 @@ export default function GomiPoopStory() {
             </div>
 
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-snug break-keep">
-              "물설사로 쓰러졌던 꼬미가 파보겔 1방울로 살아난 24시간!"
+              &quot;물설사로 쓰러졌던 꼬미가 파보겔 1방울로 살아난 24시간!&quot;
             </h3>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed break-keep">
@@ -186,7 +186,7 @@ export default function GomiPoopStory() {
                   Jessica Hong (홍대표)
                   <span className="text-[10px] font-normal text-slate-600 bg-white/60 px-1.5 py-0.5 rounded">파보겔 개발대표</span>
                 </div>
-                <div className="text-[10px] text-slate-600">반려조 '꼬미' 케어 리얼톡</div>
+                <div className="text-[10px] text-slate-600">반려조 &apos;꼬미&apos; 케어 리얼톡</div>
               </div>
             </div>
             <button
@@ -216,7 +216,7 @@ export default function GomiPoopStory() {
                 <div className="bg-white p-2 rounded-2xl rounded-tl-none shadow-xs text-slate-800 space-y-1.5 border border-slate-100">
                   <div className="text-[11px] text-slate-500 bg-slate-50 p-1.5 rounded border border-slate-100 flex items-center gap-1">
                     <span>🖼️ 사진 2장</span>
-                    <span className="font-bold text-amber-700">"설사꼬미"</span>
+                    <span className="font-bold text-amber-700">&quot;설사꼬미&quot;</span>
                   </div>
                   <p className="leading-snug">
                     이게 멎은건데 ㅎㅎㅎ 이게 근데 나는 아는데.. 아빠가 보기에도 알겠나?
@@ -290,7 +290,7 @@ export default function GomiPoopStory() {
                 <span className="bg-white text-emerald-700 text-[10px] px-1.5 py-0.2 rounded font-black">설사 완전 종료 확인</span>
               </div>
               <p className="text-emerald-50 text-[11px] leading-relaxed">
-                "홍대표님 말씀이 정확합니다. 고체 대변이 둥글게 모양(형태)을 뭉쳐 내보내고 있으며, 흰 요산이 정상 분리되었습니다. 신문지 테두리 수분은 정상적인 소변(다뇨) 배출일 뿐 설사가 아닙니다!"
+                &quot;홍대표님 말씀이 정확합니다. 고체 대변이 둥글게 모양(형태)을 뭉쳐 내보내고 있으며, 흰 요산이 정상 분리되었습니다. 신문지 테두리 수분은 정상적인 소변(다뇨) 배출일 뿐 설사가 아닙니다!&quot;
               </p>
             </div>
           </div>
@@ -393,7 +393,7 @@ export default function GomiPoopStory() {
               <div className="flex items-center gap-2">
                 <span className="text-xl">💡</span>
                 <h3 className="text-sm sm:text-base font-bold text-amber-400">
-                  초보 조류 집사가 꼭 알아야 할 '새 똥' 3요소
+                  초보 조류 집사가 꼭 알아야 할 &apos;새 똥&apos; 3요소
                 </h3>
               </div>
               <span className="text-[11px] text-slate-400 font-medium">조류 소화생리학</span>

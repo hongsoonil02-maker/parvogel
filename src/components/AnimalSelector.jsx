@@ -156,7 +156,7 @@ export default function AnimalSelector() {
                 }}
                 className="w-full py-2 px-3 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-xs font-bold rounded-xl shadow hover:from-amber-600 hover:to-emerald-700 transition-all flex items-center justify-center gap-1 hover:scale-[1.02]"
               >
-                <span>🦜 대표 반려조 '꼬미'의 배변 회복 실화 보기</span>
+                <span>🦜 대표 반려조 &apos;꼬미&apos;의 배변 회복 실화 보기</span>
                 <span>↓</span>
               </button>
             </div>
