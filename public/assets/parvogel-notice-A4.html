@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1024, initial-scale=1.0">
+<title>파보겔 A4 알림판 - 펫샵·도매점용</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;word-break:keep-all;overflow-wrap:break-word;}
+  body{font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:#e8eef7;}
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff!important;margin:0;padding:0;}
+    .no-print{display:none!important;}
+    #a4{width:210mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;border:none!important;border-radius:0!important;}
+  }
+</style>
+</head>
+<body style="display:flex;flex-direction:column;align-items:center;padding:24px 0;">
+
+<!-- Editor Controls -->
+<div class="no-print" style="width:980px;max-width:95vw;margin-bottom:16px;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:16px 20px;border:1px solid #e0e7ff;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+    <b style="color:#0f2c5e;font-size:14px;">파보겔 A4 알림판 — 몬스멕타 원본 1:1 · 딥블루 교체</b>
+    <button onclick="window.print()" style="background:#0f2c5e;color:#fff;border:none;padding:8px 20px;border-radius:99px;font-weight:700;font-size:13px;cursor:pointer;">인쇄 / PDF 저장</button>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+    <input id="in_name" type="text" value="펫샷/도매점 상호" placeholder="취급점 상호" oninput="sync()" style="border:1.5px solid #c7d2fe;border-radius:8px;padding:6px 10px;font-size:13px;font-weight:700;color:#0f2c5e;">
+    <input id="in_addr" type="text" value="주소를 입력하세요" placeholder="주소" oninput="sync()" style="border:1.5px solid #c7d2fe;border-radius:8px;padding:6px 10px;font-size:12px;">
+    <input id="in_tel" type="text" value="TEL: 00-000-0000" placeholder="전화번호" oninput="sync()" style="border:1.5px solid #c7d2fe;border-radius:8px;padding:6px 10px;font-size:12px;">
+  </div>
+  <p style="font-size:10px;color:#94a3b8;margin-top:6px;">상호/주소/전화 입력 시 상단+하단 구매처 동시 반영 · QR은 네이버 스마트스토어 고정</p>
+</div>
+
+<!-- ======================== A4 PAGE ======================== -->
+<div id="a4" style="width:210mm;min-height:297mm;background:#f4f7fb;box-shadow:0 20px 60px rgba(0,0,0,.12);overflow:hidden;display:flex;flex-direction:column;">
+
+  <!-- TOP BAR -->
+  <div style="background:linear-gradient(135deg,#0a2540,#0f2c5e 40%,#1a3f7a);padding:8px 24px;display:flex;justify-content:space-between;align-items:center;color:#fff;flex-shrink:0;">
+    <div>
+      <span id="topStoreName" style="font-size:12px;font-weight:900;">펫샷/도매점 상호</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="font-size:11px;">🐾</span>
+      <span style="font-size:10px;font-weight:700;letter-spacing:0.5px;">수의사 추천 장 건강 솔루션</span>
+    </div>
+    <div>
+      <span id="topTel" style="font-size:10px;font-weight:700;color:#93c5fd;">TEL: 00-000-0000</span>
+    </div>
+  </div>
+
+  <!-- HERO TEXT -->
+  <div style="text-align:center;padding:10px 24px 2px;flex-shrink:0;">
+    <p style="font-size:10.5px;font-weight:700;color:#3b5998;letter-spacing:1px;">우리 아이가 힘들어할 때, 가장 먼저 찾는 이름</p>
+    <h1 style="font-size:22px;font-weight:900;color:#0f2c5e;line-height:1.3;margin-top:4px;">토하고 설사하는 우리 아이<br><span style="color:#d8a21d;">한 병이면 든든합니다</span></h1>
+  </div>
+
+  <!-- SYMPTOMS ROW -->
+  <div style="display:flex;gap:6px;padding:6px 24px;flex-shrink:0;">
+    <div style="flex:1;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:10px 0 8px;text-align:center;">
+      <div style="font-size:20px;">🤢</div><div style="font-size:10px;font-weight:900;color:#374151;margin-top:3px;">구토</div>
+    </div>
+    <div style="flex:1;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:10px 0 8px;text-align:center;">
+      <div style="font-size:20px;">💧</div><div style="font-size:10px;font-weight:900;color:#374151;margin-top:3px;">설사</div>
+    </div>
+    <div style="flex:1;background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:10px 0 8px;text-align:center;">
+      <div style="font-size:20px;">😖</div><div style="font-size:10px;font-weight:900;color:#374151;margin-top:3px;">복통</div>
+    </div>
+    <div style="flex:1;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px 0 8px;text-align:center;">
+      <div style="font-size:20px;">🍽️</div><div style="font-size:10px;font-weight:900;color:#374151;margin-top:3px;">식욕부진</div>
+    </div>
+    <div style="flex:1;background:#faf5ff;border:1px solid #e9d5ff;border-radius:12px;padding:10px 0 8px;text-align:center;">
+      <div style="font-size:20px;">😿</div><div style="font-size:10px;font-weight:900;color:#374151;margin-top:3px;">기력저하</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT BANNER -->
+  <div style="margin:6px 24px 0;background:linear-gradient(135deg,#0a2540,#0f2c5e 30%,#1a4d8c);border-radius:16px;padding:14px 18px;color:#fff;display:flex;align-items:center;gap:14px;overflow:hidden;flex-shrink:0;position:relative;">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#b8860b,#fbbf24,#b8860b);"></div>
+    <div style="flex:1;">
+      <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:3px 10px;font-size:8px;font-weight:700;letter-spacing:1px;">🐾 동물용 활기명수</div>
+      <div style="font-size:10px;color:#93c5fd;font-weight:700;margin-top:2px;">수의사 임상 처방 프리미엄 정장 지사제</div>
+      <div style="font-size:24px;font-weight:900;margin-top:4px;line-height:1.1;">파보겔 <span style="font-size:10px;font-weight:400;color:#93c5fd;">Parvo Gel</span></div>
+      <div style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;">
+        <span style="background:#fff;color:#0f2c5e;font-size:10px;font-weight:900;border-radius:99px;padding:3px 12px;">파보겔 (100ml 액상)</span>
+        <span style="font-size:9px;color:#93c5fd;">정상 판매가</span>
+      </div>
+      <div style="font-size:8px;color:#93c5fd;margin-top:2px;letter-spacing:0.5px;">⭐ 수의사 임상 처방 · 모든 동물에 사용 가능</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:36px;font-weight:900;color:#fbbf24;line-height:1;">18,000</div>
+      <div style="font-size:14px;font-weight:900;color:#fbbf24;">원</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div style="display:flex;gap:10px;padding:8px 24px;flex:1;min-height:0;">
+
+    <!-- LEFT: Bottle (30% smaller) -->
+    <div style="width:36%;display:flex;align-items:flex-start;">
+      <div style="background:#f0f4fa;border-radius:14px;padding:10px;text-align:center;border:1px solid #dbe4f0;width:100%;">
+        <img src="../images/bottle_front.png" style="max-height:210px;max-width:100%;object-fit:contain;display:block;margin:0 auto;" alt="파보겔 전면"
+          onerror="this.src='parvogel-authentic.png';this.onerror=null;">
+        <div style="font-size:8px;font-weight:900;color:#0f2c5e;margin-top:6px;">파보겔 100ml 액상</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Ingredients + Effects -->
+    <div style="width:64%;display:flex;flex-direction:column;gap:7px;">
+
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-size:16px;">💊</span>
+        <span style="font-size:13px;font-weight:900;color:#0f2c5e;">핵심 성분</span>
+        <span style="font-size:11px;font-weight:700;color:#0f2c5e;background:#e0e7ff;border-radius:99px;padding:2px 10px;">5가지 복합체</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+        <div style="background:#f0f6ff;border:1px solid #dbeafe;border-radius:10px;padding:7px 9px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+            <span style="background:#0f2c5e;color:#fff;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;">1</span>
+            <span style="font-size:9.5px;font-weight:900;color:#0f2c5e;">항균·항바이러스 작용</span>
+          </div>
+          <div style="font-size:8.5px;color:#475569;line-height:1.4;">1-deoxynojirimycin(DNJ) 천연성분 함유, 특허균주 <b style="color:#1e293b;">Bacillus Subtilis MORI</b><br><span style="font-size:7.5px;color:#94a3b8;">Patent No. 201188042602.8</span></div>
+        </div>
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:7px 9px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+            <span style="background:#16a34a;color:#fff;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;">2</span>
+            <span style="font-size:9.5px;font-weight:900;color:#166534;">장 기능 개선 및 정장 작용</span>
+          </div>
+          <div style="font-size:8.5px;color:#475569;">포도당</div>
+        </div>
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:7px 9px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+            <span style="background:#d97706;color:#fff;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;">3</span>
+            <span style="font-size:9.5px;font-weight:900;color:#92400e;">상피세포 회복</span>
+          </div>
+          <div style="font-size:8.5px;color:#475569;">비타민 A</div>
+        </div>
+        <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:7px 9px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+            <span style="background:#0284c7;color:#fff;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;">4</span>
+            <span style="font-size:9.5px;font-weight:900;color:#0c4a6e;">전해질 보충</span>
+          </div>
+          <div style="font-size:8.5px;color:#475569;">Sodium acetate · Sodium propionate</div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#0f2c5e,#1a4d8c);border-radius:10px;padding:7px 12px;color:#fff;">
+        <div style="display:flex;align-items:center;gap:4px;margin-bottom:2px;">
+          <span style="background:#fbbf24;color:#0f2c5e;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;">5</span>
+          <span style="font-size:9.5px;font-weight:900;">연변·설사 개선, 곰팡이 독소 제거</span>
+        </div>
+        <div style="font-size:8.5px;color:#bfdbfe;padding-left:19px;">면역 증강 및 장 환경 개선 — 고순도 초미세 나노 몬모릴로나이트</div>
+      </div>
+
+      <div style="background:#f0f6ff;border:1px solid #dbeafe;border-radius:12px;padding:8px 12px;">
+        <div style="font-size:11px;font-weight:900;color:#0f2c5e;margin-bottom:5px;">✅ 우리 아이에게 이렇게 좋아요</div>
+        <div style="display:flex;gap:12px;">
+          <div style="flex:1;text-align:center;"><div style="font-size:15px;">🛡️</div><div style="font-size:8.5px;font-weight:700;color:#374151;margin-top:2px;">파보·로타·코로나 등<br>장질병 저항력 향상에 도움</div></div>
+          <div style="flex:1;text-align:center;"><div style="font-size:15px;">💪</div><div style="font-size:8.5px;font-weight:700;color:#374151;margin-top:2px;">면역 기능과<br>건강 상태 유지에 도움</div></div>
+          <div style="flex:1;text-align:center;"><div style="font-size:15px;">🌱</div><div style="font-size:8.5px;font-weight:700;color:#374151;margin-top:2px;">장 기능 개선 및<br>정장 작용에 도움</div></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;">
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:7px 10px;">
+          <span style="font-size:9.5px;font-weight:900;color:#0f2c5e;">대상</span>
+          <span style="font-size:8.5px;color:#475569;margin-left:4px;">개·고양이·조류·토끼·햄스터·파충류 등 모든 동물</span>
+        </div>
+        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:7px 10px;">
+          <span style="font-size:9.5px;font-weight:900;color:#0f2c5e;">용법</span>
+          <span style="font-size:8.5px;font-weight:900;color:#0f2c5e;margin-left:4px;">1일 두당 2~4ml, 5~7일간 경구 급여</span>
+        </div>
+      </div>
+
+      <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:5px 10px;font-size:8.5px;color:#92400e;font-weight:700;">
+        💡 가라앉는 성분이 있어 <u>흔들어서 급여</u>하세요
+      </div>
+
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:7px 12px;font-size:8.5px;color:#475569;line-height:1.5;">
+        💡 투약 용량 및 구매 안내는 <b style="color:#0f2c5e;">안내 데스크에 문의</b>하세요!<br>
+        우리 아이 체중(kg)에 따른 1일 2~4ml 맞춤 급여법을 <b style="color:#0f2c5e;">수의사 선생님께서 직접</b> 친절히 상담해 드립니다.
+      </div>
+
+      <div style="text-align:center;">
+        <span style="display:inline-block;background:#0f2c5e;color:#fff;font-size:9.5px;font-weight:900;border-radius:99px;padding:4px 18px;">지금 데스크 문의 ➔</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER: 구매처 + QR -->
+  <div style="margin:0 24px 10px;border:2px dashed #0f2c5e;border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,#f0f6ff,#fff);flex-shrink:0;position:relative;">
+    <div style="font-size:14px;">✔</div>
+    <div style="flex:1;min-width:0;">
+      <span style="font-size:10px;font-weight:900;color:#0f2c5e;">구매처: </span>
+      <span id="bottomStoreName" style="font-size:10px;font-weight:900;color:#0f2c5e;">펫샷/도매점 상호</span>
+      <span style="font-size:9px;color:#64748b;"> (<span id="bottomStoreAddr">주소를 입력하세요</span>)</span>
+      <span style="font-size:9px;color:#64748b;"> | </span>
+      <span id="bottomTel" style="font-size:9px;font-weight:700;color:#0f2c5e;">TEL: 00-000-0000</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:4px;text-align:center;">
+        <img src="dm-qr-naver.png" alt="네이버 스마트스토어 QR" style="width:40px;height:40px;object-fit:contain;">
+        <div style="font-size:6px;font-weight:900;color:#03c75a;margin-top:1px;">네이버 스토어</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ======================== END A4 ======================== -->
+
+<script>
+function sync(){
+  var n = document.getElementById('in_name').value || '펫샷/도매점 상호';
+  var a = document.getElementById('in_addr').value || '주소를 입력하세요';
+  var t = document.getElementById('in_tel').value || 'TEL: 00-000-0000';
+  if(!t.startsWith('TEL')) t = 'TEL: ' + t;
+  document.getElementById('topStoreName').textContent = n;
+  document.getElementById('topTel').textContent = t;
+  document.getElementById('bottomStoreName').textContent = n;
+  document.getElementById('bottomStoreAddr').textContent = a;
+  document.getElementById('bottomTel').textContent = t;
+}
+sync();
+</script>
+
+<div class="no-print" style="margin-top:12px;font-size:11px;color:#94a3b8;text-align:center;">
+  파일: <code style="background:#fff;padding:2px 8px;border:1px solid #e2e8f0;border-radius:4px;">public/assets/parvogel-notice-A4.html</code>
+  — 브라우저에서 열기 → 상호 입력 → Ctrl+P로 A4 인쇄/PDF
+</div>
+
+</body>
+</html>
