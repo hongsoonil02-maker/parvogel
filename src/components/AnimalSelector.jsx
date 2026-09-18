@@ -5,6 +5,8 @@ const animalKeys = [
   { id: 'puppy', icon: '🐶' },
   { id: 'cat', icon: '🐱' },
   { id: 'bird', icon: '🦜' },
+  { id: 'hamster', icon: '🐹' },
+  { id: 'salamander', icon: '🦎' },
   { id: 'calf', icon: '🐮' },
   { id: 'piglet', icon: '🐷' },
   { id: 'goat', icon: '🐐' },
@@ -20,6 +22,8 @@ export default function AnimalSelector() {
     selectedId === 'puppy' ? '강아지 (자견/반려견)' :
     selectedId === 'cat' ? '고양이 (자묘/반려묘)' :
     selectedId === 'bird' ? '앵무새·조류 (반려조)' :
+    selectedId === 'hamster' ? '햄스터·소동물 (기니피그/친칠라)' :
+    selectedId === 'salamander' ? '도롱뇽·특수동물 (우파루파/파충·양서류)' :
     selectedId === 'calf' ? '송아지' : 
     selectedId === 'piglet' ? '갓난돼지 (자돈)' : 
     selectedId === 'goat' ? '새끼 염소' : 
@@ -29,62 +33,71 @@ export default function AnimalSelector() {
   const selectedAnimalHighlight = t(`animalSelector.animals.${selectedId}.highlight`, 
     selectedId === 'puppy' ? '55일령 0.6kg 푸들 7일 완치 실화! 파보·급성장염 1초 펌프 긴급 케어' :
     selectedId === 'cat' ? '범백·급성장염 고양이 주사기 스트레스 ZERO 1초 안심 케어' :
-    selectedId === 'bird' ? '[실화 입증] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비약' :
-    selectedId === 'calf' ? '한우/젖소 신생 송아지 설사 고농축 흡착제' : 
-    selectedId === 'piglet' ? '양돈 농가 포유자돈 위장관 보호 필수품' : 
-    selectedId === 'goat' ? '흑염소/산양 농가 신생아 설사 구원투수' : 
-    selectedId === 'lamb' ? '면양/양 사육 농가 신생아 안정제' : '말 신생아 급성 설사 긴급 장 점막 가드'
+    selectedId === 'bird' ? '[실화 검증] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비약' :
+    selectedId === 'hamster' ? '웻테일(치명적 급성 설사) 긴급 케어! 천연 미네랄로 장 점막 즉각 코팅 & 독소 배출' :
+    selectedId === 'salamander' ? '수질성·식이성 소화 장애 시 점막 안정화! 천연 성분으로 양서·파충류 안심 케어' :
+    selectedId === 'calf' ? '한우/젖소 신생 송아지 설사 고농도 흡착제' : 
+    selectedId === 'piglet' ? '자돈 설사 및 포유자돈 위장관 보호 필수제' : 
+    selectedId === 'goat' ? '염소과 사양 농가 신생축 설사 구원투수' : 
+    selectedId === 'lamb' ? '면양/육양 사육 농가 신생축 안정제' : '말 신생축 급성 설사 긴급 장 점막 가드'
   );
 
   const selectedAnimalDosage = t(`animalSelector.animals.${selectedId}.dosage`, 
     selectedId === 'puppy' ? '1회 1~2 펌프 (1초 입안 직투여, 1일 2~3회)' :
-    selectedId === 'cat' ? '1회 1 펌프 (1초 입가 직투여, 1일 2회)' :
+    selectedId === 'cat' ? '1회 1 펌프 (1초 구강 직투여, 1일 2회)' :
     selectedId === 'bird' ? '1회 1~2방울 (0.1~0.2ml, 부리 끝 도포 또는 이유식/물에 희석, 1일 2회)' :
-    selectedId === 'calf' ? '1회 15~30ml (증상시 1일 2회 급여)' : 
+    selectedId === 'hamster' ? '1회 0.05~0.1ml (1~2방울, 미세 스포이드 입안 직투여 또는 급수기에 희석, 1일 2~3회)' :
+    selectedId === 'salamander' ? '개체 크기에 따라 1회 1방울(0.05ml) 미세 급여 또는 사육 수조/먹이에 소량 코팅 급여' :
+    selectedId === 'calf' ? '1회 15~30ml (증상별 1일 2회 급여)' : 
     selectedId === 'piglet' ? '1회 2~5ml (주사기 입안 직투여)' : 
     selectedId === 'goat' ? '1회 5~10ml (1일 2회)' : 
     selectedId === 'lamb' ? '1회 5~10ml (1일 2회)' : '1회 20~40ml (1일 2회)'
   );
 
-  // effects 리스트를 t.returns로 배열 처리하거나 개별 인덱스로 안전 호출
   const rawEffects = t(`animalSelector.animals.${selectedId}.effects`, { returnObjects: true });
   const effectsList = Array.isArray(rawEffects) ? rawEffects : [
-    selectedId === 'puppy' ? '1-deoxinojirimycin & 특허균주 복합제가 장 점막 즉각 물리적 코팅' :
+    selectedId === 'puppy' ? '1-deoxinojirimycin & 특허균주 복합체의 장 점막 즉각 물리적 코팅' :
     selectedId === 'cat' ? '초미세 몬모릴로나이트의 위장관 벽 보호 및 탈수 방지' :
     selectedId === 'bird' ? '조류의 짧은 소화기에 무리 없는 비흡수성 천연 몬모릴로나이트 장벽 물리적 코팅' :
-    selectedId === 'calf' ? '로타·코로나·대장균 바이러스 및 독소 강력 흡착 배출' : '수인성 설사 및 유제품 흡수 장애 진정',
+    selectedId === 'hamster' ? '체구가 작은 소동물의 장 상피세포에 무리 없는 비흡수성 천연 나노 미네랄 물리적 코팅' :
+    selectedId === 'salamander' ? '양서류 특유의 민감한 체내 점막과 소화기를 물리적으로 보호하는 천연 미네랄 방어막' :
+    selectedId === 'calf' ? '로타·코로나·대장균 바이러스 및 독소 강력 흡착 배출' : '원인성 설사 및 약제성 장수 장애 진정',
 
-    selectedId === 'puppy' ? '바이러스 및 병원성 독소 체외 흡착 배출로 혈변·경련 급속 안정화' :
+    selectedId === 'puppy' ? '바이러스 및 병원성 독소 체외 흡착 배출로 구토·경련 급속 안정화' :
     selectedId === 'cat' ? '주사기 거부하는 예민한 고양이도 1초 펌프로 스트레스 제로 급여' :
-    selectedId === 'bird' ? '낙조(폐사) 위험 1순위 급성 수양성 설사 및 사료 마이코톡신·세균 독소 즉각 배출' :
-    selectedId === 'calf' ? '장 점막 물리적 보호막 형성으로 탈수 예방' : '장내 유해균 길항작용으로 정상 세균총 유지',
+    selectedId === 'bird' ? '낙조(폐사) 위험 1순위 급성 영양성 설사 및 사료 마이코톡신·세균 독소 즉각 배출' :
+    selectedId === 'hamster' ? '웻테일 유발 세균 독소 및 식이 이상 유해 독소 체외 강력 흡착 배출' :
+    selectedId === 'salamander' ? '수질 오염 및 먹이 이상으로 인한 소화관 내 유해 독소 신속 흡착 배출' :
+    selectedId === 'calf' ? '장 점막 물리적 보호막 형성으로 탈수 예방' : '장내 유해균 길항작용으로 정상 세균총 복원',
 
-    selectedId === 'puppy' ? '곡기 끊고 쓰러진 환축의 식욕 3일 만에 폭풍 완식 부활' :
+    selectedId === 'puppy' ? '곡기 끊고 쓰러진 환축의 식욕 3일 만에 완전 회복 실화' :
     selectedId === 'cat' ? '빠른 전해질 및 에너지 공급으로 활력 정상화' :
     selectedId === 'bird' ? '주사기 스트레스 없이 부리 끝에 한 방울 톡 묻혀주는 안심 간편 급여' :
-    selectedId === 'calf' ? '설사 발병 즉시 투여 시 24시간 이내 분변 경도 정상화' : '이유 전 신생아 폐사율 대폭 감소'
+    selectedId === 'hamster' ? '미세 방울 급여로 급성 설사 시 치명적인 탈수와 급격한 폐사 위험 골든타임 방어' :
+    selectedId === 'salamander' ? '독한 화학 약품/항생제 부담 없는 천연 바이오 미네랄로 특수동물 소화기 항상성 유지' :
+    selectedId === 'calf' ? '설사 발병 즉시 투여 시 24시간 이내 분변 경도 정상화' : '이유 전 신생축 폐사율 획기적 감소'
   ];
 
   const currentIcon = animalKeys.find(a => a.id === selectedId)?.icon || '🐶';
 
   return (
     <section 
-      aria-label={t('animalSelector.title', '모든 동물의 신생아 설사, 파보겔(Parvogel) 하나로!')}
+      aria-label={t('animalSelector.title', '모든 동물의 신생아·소화기 설사, 파보겔(Parvogel) 하나로')}
       className="bg-white text-slate-800 rounded-3xl p-6 sm:p-10 my-12 border border-slate-200 shadow-xl"
     >
       <div className="text-center max-w-2xl mx-auto mb-8">
         <span className="px-3.5 py-1.5 bg-blue-100 text-blue-800 text-xs font-black rounded-full uppercase tracking-wider border border-blue-200">
-          {t('animalSelector.tag', '🐾 전 축종 신생아 맞춤 솔루션')}
+          {t('animalSelector.tag', '전 축종 & 모든 반려동물·특수동물 맞춤 솔루션')}
         </span>
         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-3 break-keep leading-snug">
-          {t('animalSelector.title', '모든 동물의 신생아 설사, 파보겔(Parvogel) 하나로!')}
+          {t('animalSelector.title', '개·고양이·새·햄스터·도롱뇽부터 가축까지, 파보겔(Parvogel) 하나로')}
         </h3>
         <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
-          {t('animalSelector.sub', '동물 축종을 선택하시면 권장 용량 및 지사 효과를 확인하실 수 있습니다.')}
+          {t('animalSelector.sub', '동물 축종을 선택하시면 권장 용량 및 지사·장 점막 보호 효과를 확인하실 수 있습니다.')}
         </p>
       </div>
 
-      {/* 탭 버튼 목록 (강아지/고양이/송아지/자돈/염소/양/말) */}
+      {/* 탭 버튼 목록 */}
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8" role="tablist">
         {animalKeys.map((item) => {
           const isSelected = selectedId === item.id;
@@ -92,6 +105,8 @@ export default function AnimalSelector() {
             item.id === 'puppy' ? '강아지 (반려견)' :
             item.id === 'cat' ? '고양이 (반려묘)' :
             item.id === 'bird' ? '앵무새 (반려조)' :
+            item.id === 'hamster' ? '햄스터 (소동물)' :
+            item.id === 'salamander' ? '도롱뇽 (특수동물)' :
             item.id === 'calf' ? '송아지' : 
             item.id === 'piglet' ? '갓난돼지 (자돈)' : 
             item.id === 'goat' ? '새끼 염소' : 
@@ -117,19 +132,19 @@ export default function AnimalSelector() {
         })}
       </div>
 
-      {/* 디테일 카드 (밝고 화사한 스타일) */}
+      {/* 디테일 카드 */}
       <div role="tabpanel" aria-label={selectedAnimalName} className="bg-slate-50/90 rounded-2xl p-6 sm:p-7 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
         <div className="space-y-3 text-left w-full md:w-2/3">
           <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-lg border border-blue-200">
-            💡 {selectedAnimalHighlight}
+            ✓ {selectedAnimalHighlight}
           </div>
           <h4 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-            <span>{currentIcon}</span> {selectedAnimalName} {t('animalSelector.guideTitle', '맞춤 투여 가이드')}
+            <span>{currentIcon}</span> {selectedAnimalName} {t('animalSelector.guideTitle', '맞춤 급여 가이드')}
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
             {effectsList.map((effect, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">✓</span>
+                <span className="text-blue-600 font-bold">✔</span>
                 <span>{effect}</span>
               </li>
             ))}
@@ -144,7 +159,7 @@ export default function AnimalSelector() {
             {selectedAnimalDosage}
           </span>
           <span className="text-[11px] text-slate-500 block mt-2">
-            {t('animalSelector.notice', '* 1-deoxinojirimycin & 특허균주 고농축 액상 제제')}
+            {t('animalSelector.notice', '* 1-deoxinojirimycin & 특허균주·나노 몬모릴로나이트 고농도 액상 제제')}
           </span>
           {selectedId === 'bird' && (
             <div className="mt-3 pt-3 border-t border-slate-100">
@@ -156,8 +171,8 @@ export default function AnimalSelector() {
                 }}
                 className="w-full py-2 px-3 bg-gradient-to-r from-amber-500 to-emerald-600 text-white text-xs font-bold rounded-xl shadow hover:from-amber-600 hover:to-emerald-700 transition-all flex items-center justify-center gap-1 hover:scale-[1.02]"
               >
-                <span>🦜 대표 반려조 '꼬미'의 배변 회복 실화 보기</span>
-                <span>↓</span>
+                <span>🦜 실제 반려조 \'꼬미\'의 배변 회복 실화 보기</span>
+                <span>→</span>
               </button>
             </div>
           )}
