@@ -96,8 +96,8 @@ const Landing = () => {
             badge: t('heroCopies.copyA.badge', '✨ 7일간의 기적 임상 실화'),
             headlineLine1: t('heroCopies.copyA.headlineLine1', '설사·혈변으로 곡기 끊겨 쓰러졌던 아이'),
             headlineLine2: t('heroCopies.copyA.headlineLine2', '단 3일 만에 밥그릇 싹싹 비워내고'),
-            headlineLine3: t('heroCopies.copyA.headlineLine3', '다시 건강하게 네 발로 서서 꼬리 칩니다'),
-            sub1: t('heroCopies.copyA.sub1', '수액도 다른 약도 힘겨웠던 55일령 아기 푸들 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임'),
+            headlineLine3: t('heroCopies.copyA.headlineLine3', '다시 생생하게 기운 차려 품으로 안깁니다'),
+            sub1: t('heroCopies.copyA.sub1', '강아지·고양이는 물론 앵무새·소동물·송아지까지 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임'),
             sub2: t('heroCopies.copyA.sub2', '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출')
         },
         {
@@ -174,7 +174,7 @@ const Landing = () => {
     }, []);
 
     useEffect(() => {
-        const sections = ['hero', 'about', 'animal-guide', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order'];
+        const sections = ['hero', 'animal-guide', 'about', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order'];
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -1101,6 +1101,16 @@ const Landing = () => {
                 </div>
             </section>
 
+            {/* 축종별 맞춤 효능 탭 (Hero 직하단 황금 배치: 모든 반려동물/소동물/가축 보호자 즉각 확인) */}
+            <div id="animal-guide" className="section-container pt-4 pb-2">
+                <AnimalSelector />
+            </div>
+
+            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 배변 판별 가이드 */}
+            <div className="section-container pb-6">
+                <GomiPoopStory />
+            </div>
+
             {/* About Section */}
             <section id="about" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
@@ -1299,16 +1309,6 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
-
-            {/* 축종별 맞춤 효능 탭 (상단 최적 위치로 승격) */}
-            <div id="animal-guide" className="section-container">
-                <AnimalSelector />
-            </div>
-
-            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 배변 판별 가이드 */}
-            <div className="section-container">
-                <GomiPoopStory />
-            </div>
 
             {/* Clinical Evidence Section — lazy */}
             <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>

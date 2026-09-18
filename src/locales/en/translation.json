@@ -414,32 +414,18 @@
     "messages": "Chat message log"
   },
   "a11y": {
-    "openButton": "Open accessibility tools",
-    "title": "Accessibility Tools",
-    "contrastOn": "Turn on high contrast",
-    "contrastOff": "Turn off high contrast",
-    "largeTextOn": "Increase text size",
-    "largeTextOff": "Reset text size",
-    "reduceMotionOn": "Reduce motion",
-    "reduceMotionOff": "Enable motion effects",
-    "readableFontOn": "Increase line height",
-    "readableFontOff": "Reset line height",
-    "ttsOn": "Read aloud (TTS)",
-    "ttsOff": "Stop reading aloud",
-    "skipToContent": "Skip to content",
-    "productVideo": "Parvogel product video",
-    "productMedia": "Select product media",
-    "playProductVideo": "Play product video",
-    "viewImage": "View enlarged image",
-    "productPhoto": "Parvogel product photo",
-    "bottleFront": "Parvogel 5-in-1 compound front view",
-    "bottleBack": "Parvogel ingredients label rear view",
-    "bottleGroup": "Parvogel 100ml, 200ml, 500ml product lineup",
-    "toolbarLabel": "Accessibility settings toolbar",
-    "openMenu": "Open accessibility tools",
-    "readAloudOn": "Read text aloud",
-    "readAloudOff": "Stop reading text",
-    "ttsNotSupported": "This browser does not support text-to-speech (TTS)."
+    "openButton": "Open Accessibility Tools",
+    "title": "Accessibility Options",
+    "contrastOn": "Turn On High Contrast",
+    "contrastOff": "Turn Off High Contrast",
+    "largeTextOn": "Enlarge Text",
+    "largeTextOff": "Restore Text Size",
+    "reduceMotionOn": "Reduce Motion",
+    "reduceMotionOff": "Enable Motion Effects",
+    "readableFontOn": "Enhance Line Spacing",
+    "readableFontOff": "Restore Default Spacing",
+    "ttsOn": "Listen to Page (TTS)",
+    "ttsOff": "Stop Audio Narration"
   },
   "stickyCta": {
     "title": "Parvogel Neonatal Antidiarrheal Care Solution",
@@ -559,20 +545,6 @@
     "businessTitle": "Business Information",
     "businessBody": "Company Name: Korea Agro Co., Ltd. | Registration No.: 123-45-67890 | Representative: Soon-il Hong | Address: Republic of Korea"
   },
-  "a11y": {
-    "openButton": "Open Accessibility Tools",
-    "title": "Accessibility Options",
-    "contrastOn": "Turn On High Contrast",
-    "contrastOff": "Turn Off High Contrast",
-    "largeTextOn": "Enlarge Text",
-    "largeTextOff": "Restore Text Size",
-    "reduceMotionOn": "Reduce Motion",
-    "reduceMotionOff": "Enable Motion Effects",
-    "readableFontOn": "Enhance Line Spacing",
-    "readableFontOff": "Restore Default Spacing",
-    "ttsOn": "Listen to Page (TTS)",
-    "ttsOff": "Stop Audio Narration"
-  },
   "store": {
     "comingSoon": "Coming Soon"
   },
@@ -652,8 +624,8 @@
       "badge": "✨ 7-Day Miracle Clinical Recovery",
       "headlineLine1": "A collapsed puppy who couldn't eat from diarrhea and hematochezia",
       "headlineLine2": "Cleaned out the food bowl completely in just 3 days",
-      "headlineLine3": "Standing tall on all four paws and wagging joyfully",
-      "sub1": "55-day-old toy poodle who couldn't endure IV fluids or heavy meds — secured golden time with a 1-second pump without syringe stress",
+      "headlineLine3": "Full of vitality and joyfully returning to your arms",
+      "sub1": "From puppies and kittens to parrots, hamsters, and calves — secured golden time with a 1-second pump without syringe stress",
       "sub2": "Dr. Kim Dong-jun (Hanam Sarang Animal Hospital) exclusive prescription case · Instant mucosal coating & toxin elimination"
     },
     "copyB": {
