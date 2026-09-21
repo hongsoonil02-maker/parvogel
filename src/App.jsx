@@ -3,9 +3,10 @@ import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Landing from './pages/Landing';
 
-// Lazy loading for Blog components
+// Lazy loading for Blog components and Monsmecta Gateway
 const BlogList = lazy(() => import('./pages/BlogList'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
+const MonsmectaGateway = lazy(() => import('./pages/MonsmectaGateway'));
 
 const Router = HashRouter;
 
@@ -37,6 +38,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/monsmecta" element={<MonsmectaGateway />} />
+            <Route path="/vet" element={<MonsmectaGateway />} />
           </Routes>
         </Suspense>
       </Router>

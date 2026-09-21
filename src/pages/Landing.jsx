@@ -16,6 +16,7 @@ import findSampleRecipient from '../utils/sampleCheck'
 import DuplicateSampleModal from '../components/DuplicateSampleModal'
 import { verifyBusinessApplicant, VERIFICATION_STATUS } from '../utils/businessVerification'
 import CertifiedBusinessNoticeModal from '../components/CertifiedBusinessNoticeModal'
+import MonsmectaNoticeModal from '../components/MonsmectaNoticeModal'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -33,6 +34,7 @@ const Landing = () => {
     const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
     const [isCertifiedNoticeOpen, setIsCertifiedNoticeOpen] = useState(false)
+    const [isMonsmectaModalOpen, setIsMonsmectaModalOpen] = useState(false)
     const [isPartnerMode, setIsPartnerMode] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
@@ -339,6 +341,8 @@ const Landing = () => {
                 setIsOrderComplete(false)
             } else if (sampleType === 'b2b' || sampleType === 'partner') {
                 setIsPartnerMode(true)
+            } else if (sampleType === 'monsmecta' || params.get('q') === 'monsmecta' || params.get('product') === 'monsmecta') {
+                setIsMonsmectaModalOpen(true)
             }
         }
 
@@ -701,6 +705,19 @@ const Landing = () => {
             >
                 {t('a11y.skipToContent', '본문 바로가기')}
             </a>
+            {/* 동물병원 수의사 전용 몬스멕타 공식 안내 탑바 */}
+            <div className="bg-slate-950 text-slate-200 text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-center gap-2 relative z-50">
+                <span className="bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded font-bold text-[10px] border border-blue-500/40">
+                    수의사 처방 전용
+                </span>
+                <span className="text-slate-300 text-[11px] sm:text-xs">
+                    동물병원 전용 점막보호제 <strong>[몬스멕타]</strong> 공식 안내 및 취급 병원 안내
+                </span>
+                <Link to="/monsmecta" className="text-blue-400 hover:text-blue-300 font-bold underline underline-offset-4 ml-1">
+                    바로가기 →
+                </Link>
+            </div>
+
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -1866,6 +1883,12 @@ const Landing = () => {
                     onClose={() => setIsPartnerModalOpen(false)}
                 />
             )}
+
+            {/* 몬스멕타 검색 유입 안내 및 동물병원/파보겔 전환 모달 */}
+            <MonsmectaNoticeModal
+                isOpen={isMonsmectaModalOpen}
+                onClose={() => setIsMonsmectaModalOpen(false)}
+            />
 
             {/* 무료 샘플 중복 신청자 친절 안내 및 B2B 정식 발주 전환 모달 */}
             {isDuplicateModalOpen && (

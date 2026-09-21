@@ -1,0 +1,120 @@
+<!-- 
+  [한국아그로 본사 웹사이트용 몬스멕타 안내 팝업 소스코드]
+  - 사용법: 카페24, 아임웹, 고도몰 또는 기존 웹사이트의 <head> 또는 <body> 하단에 그대로 붙여넣으시면 됩니다.
+  - 기능: 
+    1. 수의사 전용 제품 공지 및 비공개 영역 안내
+    2. 일반인 대상 가정 상비용 파보겔(쿠팡/스마트스토어) 구매 연결
+    3. 수의사용 발주/상담 직통 유선 연결
+    4. '오늘 하루 보지 않기' 쿠키/로컬스토리지 지원
+-->
+<div id="monsmecta-lock-modal" style="display:none; position:fixed; z-index:999999; inset:0; background:rgba(15, 23, 42, 0.82); backdrop-filter:blur(6px); font-family:-apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif; align-items:center; justify-center; padding:16px;">
+  <div style="background:#0f172a; color:#f8fafc; border:1px solid #334155; border-radius:24px; max-width:540px; width:100%; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); overflow:hidden; position:relative; text-align:left;">
+    
+    <!-- 상단 헤더 배너 -->
+    <div style="background:linear-gradient(135deg, #1d4ed8, #4338ca, #0f172a); padding:24px 28px; border-bottom:1px solid #334155; position:relative;">
+      <button onclick="closeMonsmectaModal()" style="position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center;">✕</button>
+      <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:999px; font-size:11px; font-weight:700; color:#bfdbfe; margin-bottom:10px;">
+        <span>🛡️</span> <span>(주)한국아그로 수의사업부 공식 안내</span>
+      </div>
+      <h2 style="margin:0; font-size:22px; font-weight:900; line-height:1.35; color:#ffffff;">
+        몬스멕타(Monsmecta)는<br>동물병원 수의사 전용 처방 제품입니다
+      </h2>
+      <p style="margin:8px 0 0 0; font-size:13px; color:#cbd5e1; line-height:1.5;">
+        본 제품은 임상 수의사의 진단 및 처방이 필요한 전문 제재로 일반 온라인 판매가 제한됩니다.
+      </p>
+    </div>
+
+    <!-- 본문 내용 -->
+    <div style="padding:22px 26px;">
+      
+      <!-- 비공개 영역 정책 공지 박스 -->
+      <div style="background:#020617; border:1px solid #1e293b; border-left:4px solid #f59e0b; border-radius:14px; padding:14px 16px; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:6px; color:#fbbf24; font-size:12px; font-weight:800; margin-bottom:4px;">
+          <span>🔒</span> <span>비공개 영역 (수의사 전용)</span>
+        </div>
+        <p style="margin:0; font-size:12px; color:#e2e8f0; line-height:1.6;">
+          <strong>공급 단가, 병원 발주 시스템, 수의사 전용 임상 프로토콜 다운로드는 사업자 등록증 인증 회원에게만 노출됩니다.</strong><br>
+          <span style="color:#94a3b8;">* 일반인 및 비인증 사용자에게는 도매 가격 및 발주 기능이 절대 공개되지 않습니다.</span>
+        </p>
+      </div>
+
+      <!-- 선택 가이드 2가지 -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        
+        <!-- 옵션 1: 동물병원 내원 -->
+        <div style="background:#1e293b; border:1px solid #334155; border-radius:16px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; color:#60a5fa;">🏥 환축 정밀 진단 및 처방 필요 시</div>
+            <div style="font-size:13px; font-weight:800; color:#ffffff; margin-top:2px;">인근 취급 동물병원 내원 안내</div>
+            <div style="font-size:11px; color:#94a3b8; margin-top:2px;">혈변·탈수 등 응급 장염 증상 시 동물병원 방문 권장</div>
+          </div>
+          <a href="tel:010-5407-5708" style="flex-shrink:0; background:#2563eb; color:#ffffff; text-decoration:none; padding:10px 14px; border-radius:12px; font-size:12px; font-weight:700;">
+            병원 문의 📞
+          </a>
+        </div>
+
+        <!-- 옵션 2: 파보겔 온라인 구매 -->
+        <div style="background:rgba(6, 78, 59, 0.35); border:1px solid rgba(16, 185, 129, 0.5); border-radius:16px; padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size:11px; font-weight:700; color:#34d399;">🚀 야간·휴일 긴급 가정 상비용</div>
+            <span style="background:rgba(16, 185, 129, 0.2); color:#6ee7b7; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">익일 로켓수령</span>
+          </div>
+          <div style="font-size:13px; font-weight:800; color:#ffffff; margin-top:4px;">
+            동일 나노 복합 포뮬러 가정 상비용 [파보겔] 즉시 구매
+          </div>
+          <p style="margin:4px 0 10px 0; font-size:11px; color:#cbd5e1; line-height:1.5;">
+            몬스멕타와 동일한 초미세 나노 몬모릴로나이트(800m²/g) & 특허 유산균 배양물이 함유된 1초 원터치 펌프형 가정용 보조사료입니다.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <a href="https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090" target="_blank" rel="noopener noreferrer" style="background:#e31837; color:#fff; text-align:center; padding:10px; border-radius:10px; text-decoration:none; font-size:12px; font-weight:800;">
+              쿠팡 로켓배송
+            </a>
+            <a href="https://smartstore.naver.com/petschury/products/13718496355" target="_blank" rel="noopener noreferrer" style="background:#03c75a; color:#fff; text-align:center; padding:10px; border-radius:10px; text-decoration:none; font-size:12px; font-weight:800;">
+              네이버 스마트스토어
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 하단 바 -->
+      <div style="margin-top:16px; padding-top:14px; border-top:1px solid #1e293b; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:#94a3b8;">
+        <label style="cursor:pointer; display:flex; align-items:center; gap:6px;">
+          <input type="checkbox" id="monsmecta-hide-today" onchange="handleHideToday(this)" style="cursor:pointer;">
+          <span>오늘 하루 보지 않기</span>
+        </label>
+        <button onclick="closeMonsmectaModal()" style="background:none; border:none; color:#cbd5e1; cursor:pointer; text-decoration:underline;">
+          닫기
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var STORAGE_KEY = 'hide_monsmecta_notice_date';
+    var today = new Date().toISOString().slice(0, 10);
+    var savedDate = localStorage.getItem(STORAGE_KEY);
+    
+    // 오늘 하루 보지 않기가 설정되어 있지 않은 경우에만 노출
+    if (savedDate !== today) {
+      var modal = document.getElementById('monsmecta-lock-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+  })();
+
+  function closeMonsmectaModal() {
+    var modal = document.getElementById('monsmecta-lock-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function handleHideToday(chk) {
+    if (chk.checked) {
+      var today = new Date().toISOString().slice(0, 10);
+      localStorage.setItem('hide_monsmecta_notice_date', today);
+      setTimeout(closeMonsmectaModal, 300);
+    }
+  }
+</script>
