@@ -730,19 +730,6 @@ const Landing = () => {
                 </button>
             </div>
 
-            {/* 동물병원 수의사 전용 몬스멕타 공식 안내 탑바 */}
-            <div className="bg-slate-950 text-slate-200 text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-center gap-2 relative z-50">
-                <span className="bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded font-bold text-[10px] border border-blue-500/40">
-                    수의사 처방 전용
-                </span>
-                <span className="text-slate-300 text-[11px] sm:text-xs">
-                    동물병원 전용 점막보호제 <strong>[몬스멕타]</strong> 공식 안내 및 취급 병원 안내
-                </span>
-                <Link to="/monsmecta" className="text-blue-400 hover:text-blue-300 font-bold underline underline-offset-4 ml-1">
-                    바로가기 →
-                </Link>
-            </div>
-
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
@@ -1794,6 +1781,14 @@ const Landing = () => {
                                     >
                                         <span>🏢 취급점·도매 파트너 지원 (A4·보드판)</span>
                                     </button>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/monsmecta"
+                                        className="text-slate-400 hover:text-slate-600 transition-colors text-xs block pt-1"
+                                    >
+                                        동물병원 수의사 전용 안내 (몬스멕타)
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
