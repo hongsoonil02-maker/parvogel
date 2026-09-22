@@ -17,6 +17,7 @@ import DuplicateSampleModal from '../components/DuplicateSampleModal'
 import { verifyBusinessApplicant, VERIFICATION_STATUS } from '../utils/businessVerification'
 import CertifiedBusinessNoticeModal from '../components/CertifiedBusinessNoticeModal'
 import MonsmectaNoticeModal from '../components/MonsmectaNoticeModal'
+import ChuseokGiftModal from '../components/ChuseokGiftModal'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -35,6 +36,8 @@ const Landing = () => {
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
     const [isCertifiedNoticeOpen, setIsCertifiedNoticeOpen] = useState(false)
     const [isMonsmectaModalOpen, setIsMonsmectaModalOpen] = useState(false)
+    const [isChuseokModalOpen, setIsChuseokModalOpen] = useState(false)
+    const [initialChuseokCode, setInitialChuseokCode] = useState('')
     const [isPartnerMode, setIsPartnerMode] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
@@ -343,6 +346,11 @@ const Landing = () => {
                 setIsPartnerMode(true)
             } else if (sampleType === 'monsmecta' || params.get('q') === 'monsmecta' || params.get('product') === 'monsmecta') {
                 setIsMonsmectaModalOpen(true)
+            } else if (sampleType === 'chuseok' || params.get('chuseok') || params.get('event') === 'chuseok' || params.get('code')) {
+                if (params.get('code')) {
+                    setInitialChuseokCode(params.get('code'))
+                }
+                setIsChuseokModalOpen(true)
             }
         }
 
@@ -705,6 +713,23 @@ const Landing = () => {
             >
                 {t('a11y.skipToContent', '본문 바로가기')}
             </a>
+            {/* 추석 한가위 지인 특별 선물 탑바 */}
+            <div className="bg-gradient-to-r from-amber-950 via-slate-900 to-amber-950 text-amber-200 text-xs py-2 px-3 sm:px-4 border-b border-amber-800/60 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 relative z-50 shadow-inner">
+                <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-black text-[10px] sm:text-xs border border-amber-400/30 flex items-center gap-1">
+                    <span>🌕</span> 2026 한가위 지인 특별 선물
+                </span>
+                <span className="text-slate-200 text-[11px] sm:text-xs font-medium">
+                    추석 안부 문자를 받으셨나요? <strong>파보겔 100ml 1병 무료 선물</strong> (초대코드 입력)
+                </span>
+                <button
+                    type="button"
+                    onClick={() => setIsChuseokModalOpen(true)}
+                    className="text-amber-400 hover:text-amber-300 font-extrabold underline underline-offset-4 ml-1 flex items-center gap-0.5 cursor-pointer text-xs"
+                >
+                    <span>선물 신청하기</span> <span>→</span>
+                </button>
+            </div>
+
             {/* 동물병원 수의사 전용 몬스멕타 공식 안내 탑바 */}
             <div className="bg-slate-950 text-slate-200 text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-center gap-2 relative z-50">
                 <span className="bg-blue-600/30 text-blue-300 px-2 py-0.5 rounded font-bold text-[10px] border border-blue-500/40">
@@ -791,6 +816,16 @@ const Landing = () => {
                                 </div>
                             </div>
 
+                            {/* 추석 지인 선물 신청 직관적 버튼 */}
+                            <button
+                                type="button"
+                                onClick={() => setIsChuseokModalOpen(true)}
+                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-white shadow-md hover:shadow-amber-400/40 hover:scale-105 active:scale-95 transition-all border border-amber-300/40"
+                            >
+                                <span className="text-base">🌕</span>
+                                <span>추석 지인 선물</span>
+                            </button>
+
                             {/* 원클릭 무료 샘플 1병 신청 직관적 메인 버튼 */}
                             <button
                                 type="button"
@@ -812,8 +847,17 @@ const Landing = () => {
                             </button>
                         </div>
 
-                        {/* Mobile Header Right: One-touch Sample Button + Menu Hamburger */}
-                        <div className="flex md:hidden items-center gap-2">
+                        {/* Mobile Header Right: Chuseok Button + One-touch Sample Button + Menu Hamburger */}
+                        <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
+                            <button
+                                type="button"
+                                onClick={() => setIsChuseokModalOpen(true)}
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-600 to-yellow-500 text-white shadow-sm active:scale-95 transition-transform border border-amber-300/40"
+                            >
+                                <span>🌕</span>
+                                <span>추석선물</span>
+                            </button>
+
                             <button
                                 type="button"
                                 onClick={() => {
@@ -827,7 +871,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-sm active:scale-95 transition-transform"
+                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-sm active:scale-95 transition-transform"
                             >
                                 <span>🎁</span>
                                 <span>1병 무료체험</span>
@@ -854,6 +898,20 @@ const Landing = () => {
                     {isMobileMenuOpen && (
                         <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setIsChuseokModalOpen(true);
+                                    }}
+                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-amber-50 to-orange-50 text-amber-950 border border-amber-300 flex items-center justify-between shadow-sm"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="text-base">🌕</span>
+                                        <span>추석 지인 100ml 선물 신청</span>
+                                    </span>
+                                    <span className="text-[11px] text-amber-800 bg-amber-200/90 px-2 py-0.5 rounded-full font-black">코드인증</span>
+                                </button>
                                 {navItems.map(item => (
                                     <button
                                         key={item.id}
@@ -1909,6 +1967,26 @@ const Landing = () => {
                     applicantShop={formData.hospitalName}
                 />
             )}
+
+            {/* 화면 우측 하단 추석 지인 선물 플로팅 퀵 버튼 */}
+            <div className="fixed bottom-24 right-4 z-40 md:bottom-28 md:right-8 print:hidden">
+                <button
+                    type="button"
+                    onClick={() => setIsChuseokModalOpen(true)}
+                    className="flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-slate-950/90 hover:bg-slate-900 text-amber-300 border-2 border-amber-400/60 shadow-2xl backdrop-blur-md text-xs sm:text-sm font-black hover:scale-105 active:scale-95 transition-all group"
+                >
+                    <span className="text-lg group-hover:rotate-12 transition-transform">🌕</span>
+                    <span className="text-white font-extrabold tracking-tight">추석 지인 선물</span>
+                    <span className="bg-amber-500 text-slate-950 text-[10px] px-1.5 py-0.5 rounded font-black">무료</span>
+                </button>
+            </div>
+
+            {/* 추석 한가위 지인 한정 파보겔(100ml 1병) 선물 신청 모달 */}
+            <ChuseokGiftModal
+                isOpen={isChuseokModalOpen}
+                onClose={() => setIsChuseokModalOpen(false)}
+                initialCode={initialChuseokCode}
+            />
 
 
             {/* Custom Styles */}

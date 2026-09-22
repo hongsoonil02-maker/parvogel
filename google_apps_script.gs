@@ -19,7 +19,7 @@ var ALLOWED_ORIGINS = [
 ];
 
 // 허용 요청 타입
-var ALLOWED_REQUEST_TYPES = ["hospital","wholesale","consumer","sample_petshop","sample_breeder","new_partner_lead","partner_board_pop"];
+var ALLOWED_REQUEST_TYPES = ["hospital","wholesale","consumer","sample_petshop","sample_breeder","new_partner_lead","partner_board_pop","sample_chuseok_friend"];
 
 // CSV 인젝션 방어: 선행 위험 문자 제거 및 이스케이프
 function sanitizeForSheet(value) {
@@ -191,6 +191,7 @@ function translateRequestType(type) {
     case "wholesale": return "📦 도매·대리점";
     case "sample_petshop": return "🎁 펫샵 1병 무료체험";
     case "sample_breeder": return "🐾 브리더 1병 무료체험";
+    case "sample_chuseok_friend": return "🌕 추석 지인 100ml 선물";
     case "new_partner_lead": return "🏢 신규 파트너 리드";
     case "partner_board_pop": return "📦 POP 보드판 신청";
     case "consumer":
