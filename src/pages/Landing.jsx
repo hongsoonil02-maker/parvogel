@@ -1782,14 +1782,6 @@ const Landing = () => {
                                         <span>🏢 취급점·도매 파트너 지원 (A4·보드판)</span>
                                     </button>
                                 </li>
-                                <li>
-                                    <Link
-                                        to="/monsmecta"
-                                        className="text-slate-400 hover:text-slate-600 transition-colors text-xs block pt-1"
-                                    >
-                                        동물병원 수의사 전용 안내 (몬스멕타)
-                                    </Link>
-                                </li>
                             </ul>
                         </div>
                     </div>
