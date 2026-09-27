@@ -174,6 +174,45 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  var action = (e && e.parameter && e.parameter.action) ? e.parameter.action : "";
+
+  // 추석 지인 선물 신청 행 내보내기
+  if (action === "export_chuseok") {
+    try {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var lastRow = sheet.getLastRow();
+      if (lastRow <= 1) {
+        return createJsonResponse({ status: "ok", count: 0, rows: [] }, e);
+      }
+      var data = sheet.getRange(2, 1, lastRow - 1, 13).getValues();
+      var result = [];
+      for (var i = 0; i < data.length; i++) {
+        var row = data[i];
+        // 신청구분 열(col2)에 추석 키워드 포함 여부로 필터
+        var reqType = String(row[1]);
+        if (reqType.indexOf("추석") === -1 && reqType.indexOf("chuseok") === -1) continue;
+        result.push({
+          timestamp:    String(row[0]),
+          requestType:  reqType,
+          name:         String(row[2]),   // 병원/농장/업체명 → 수신인 이름
+          contactName:  String(row[3]),   // 담당자명
+          bizNo:        String(row[4]),
+          phone:        String(row[5]),
+          email:        String(row[6]),
+          address:      String(row[7]),
+          product:      String(row[8]),
+          quantity:     String(row[9]),
+          orderVolume:  String(row[10]),
+          message:      String(row[11]),
+          requestId:    String(row[12])
+        });
+      }
+      return createJsonResponse({ status: "ok", count: result.length, rows: result }, e);
+    } catch(err) {
+      return createJsonResponse({ status: "error", message: err.toString() }, e);
+    }
+  }
+
   return createJsonResponse({ status: "online", service: "Parvogel Order API" }, e);
 }
 
