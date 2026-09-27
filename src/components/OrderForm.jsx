@@ -52,7 +52,7 @@ const OrderForm = ({
                 {/* 그룹 1: 개인 */}
                 <p className="text-[11px] font-bold text-slate-600 mt-1 mb-1">개인 · 보호자</p>
                 <div className="grid gap-2 grid-cols-1 sm:grid-cols-1 mb-3">
-                    <button type="button" onClick={() => setFormData(prev => ({ ...prev, requestType: 'consumer' }))} className={`py-3 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${formData.requestType === 'consumer' ? 'border-emerald-600 bg-emerald-50 text-emerald-800 shadow-md ring-2 ring-emerald-500/20' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}>
+                    <button type="button" onClick={() => setFormData(prev => ({ ...prev, requestType: 'consumer' }))} className={`py-3 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${formData.requestType === 'consumer' ? 'border-primary-800 bg-primary-50 text-primary-950 shadow-md ring-2 ring-primary-700/20' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}>
                         <span>🛒</span><span className="break-keep text-center leading-tight">{t('order.requestConsumer')} — 쿠팡/네이버 빠른 배송</span>
                     </button>
                 </div>
@@ -82,9 +82,9 @@ const OrderForm = ({
 
             {/* 채널별 가격 안내 및 소비자 즉시 구매 패스트트랙 */}
             {formData.requestType === 'consumer' && (
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-primary-50 to-emerald-50 border border-emerald-300 shadow-sm text-start">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-primary-50 via-slate-50 to-primary-50 border border-primary-200 shadow-sm text-start">
                     <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
-                        <span className="text-xs font-black text-emerald-900 flex items-center gap-1.5">
+                        <span className="text-xs font-black text-primary-950 flex items-center gap-1.5">
                             <span>⚡</span>
                             <span>{t('order.fastTrackTitle', '빠른 익일 수령 & 간편 카드결제를 원하시는 보호자님')}</span>
                         </span>
@@ -100,7 +100,7 @@ const OrderForm = ({
                             href={getStoreUrl('coupang')}
                             target="_blank"
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                            className="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
+                            className="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
                         >
                             <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송 (내일 아침 도착)')}</span>
                             <span aria-hidden="true">➔</span>
@@ -109,9 +109,9 @@ const OrderForm = ({
                             href={getStoreUrl('naver')}
                             target="_blank"
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                            className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
+                            className="py-2.5 px-3 rounded-xl bg-primary-900 hover:bg-primary-950 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-primary-700/50"
                         >
-                            <span>🟢 {t('order.smartstoreBtn', '네이버 펫츄리 (네이버페이 구매)')}</span>
+                            <span>🛍️ {t('order.smartstoreBtn', '네이버 펫츄리 (네이버페이 구매)')}</span>
                             <span aria-hidden="true">➔</span>
                         </a>
                     </div>
