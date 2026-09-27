@@ -714,22 +714,24 @@ const Landing = () => {
             >
                 {t('a11y.skipToContent', '본문 바로가기')}
             </a>
-            {/* 추석 한가위 지인 특별 선물 탑바 */}
-            <div className="bg-gradient-to-r from-amber-950 via-slate-900 to-amber-950 text-amber-200 text-xs py-2 px-3 sm:px-4 border-b border-amber-800/60 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 relative z-50 shadow-inner">
-                <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-black text-[10px] sm:text-xs border border-amber-400/30 flex items-center gap-1">
-                    <span>🌕</span> 2026 한가위 지인 특별 선물
-                </span>
-                <span className="text-slate-200 text-[11px] sm:text-xs font-medium">
-                    추석 안부 문자를 받으셨나요? <strong>파보겔 100ml 1병 무료 선물</strong> (초대코드 입력)
-                </span>
-                <button
-                    type="button"
-                    onClick={() => setIsChuseokModalOpen(true)}
-                    className="text-amber-400 hover:text-amber-300 font-extrabold underline underline-offset-4 ml-1 flex items-center gap-0.5 cursor-pointer text-xs"
-                >
-                    <span>선물 신청하기</span> <span>→</span>
-                </button>
-            </div>
+            {/* 추석 한가위 지인 특별 선물 탑바 (한국어 사용자 및 국내 접속자 문화권 맞춤 표기) */}
+            {(!i18n.language || i18n.language.startsWith('ko')) && (
+                <div className="bg-gradient-to-r from-amber-950 via-slate-900 to-amber-950 text-amber-200 text-xs py-2 px-3 sm:px-4 border-b border-amber-800/60 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 relative z-50 shadow-inner">
+                    <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-black text-[10px] sm:text-xs border border-amber-400/30 flex items-center gap-1">
+                        <span>🌕</span> 2026 한가위 지인 특별 선물
+                    </span>
+                    <span className="text-slate-200 text-[11px] sm:text-xs font-medium">
+                        추석 안부 문자를 받으셨나요? <strong>파보겔 100ml 1병 무료 선물</strong> (초대코드 입력)
+                    </span>
+                    <button
+                        type="button"
+                        onClick={() => setIsChuseokModalOpen(true)}
+                        className="text-amber-400 hover:text-amber-300 font-extrabold underline underline-offset-4 ml-1 flex items-center gap-0.5 cursor-pointer text-xs focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-400"
+                    >
+                        <span>선물 신청하기</span> <span>→</span>
+                    </button>
+                </div>
+            )}
 
             {/* Header */}
             <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
@@ -804,15 +806,17 @@ const Landing = () => {
                                 </div>
                             </div>
 
-                            {/* 추석 지인 선물 신청 직관적 버튼 */}
-                            <button
-                                type="button"
-                                onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-slate-900 via-primary-950 to-primary-900 text-white shadow-md hover:shadow-primary-500/25 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
-                            >
-                                <span className="text-base">🌕</span>
-                                <span>추석 지인 선물</span>
-                            </button>
+                            {/* 추석 지인 선물 신청 직관적 버튼 (한국어 전용) */}
+                            {(!i18n.language || i18n.language.startsWith('ko')) && (
+                                <button
+                                    type="button"
+                                    onClick={() => setIsChuseokModalOpen(true)}
+                                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-slate-900 via-primary-950 to-primary-900 text-white shadow-md hover:shadow-primary-500/25 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
+                                >
+                                    <span className="text-base">🌕</span>
+                                    <span>추석 지인 선물</span>
+                                </button>
+                            )}
 
                             {/* 원클릭 무료 샘플 1병 신청 직관적 메인 버튼 */}
                             <button
@@ -837,14 +841,16 @@ const Landing = () => {
 
                         {/* Mobile Header Right: Chuseok Button + One-touch Sample Button + Menu Hamburger */}
                         <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
-                            <button
-                                type="button"
-                                onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-900 to-primary-950 text-white shadow-sm active:scale-95 transition-transform border border-primary-500/40"
-                            >
-                                <span>🌕</span>
-                                <span>추석선물</span>
-                            </button>
+                            {(!i18n.language || i18n.language.startsWith('ko')) && (
+                                <button
+                                    type="button"
+                                    onClick={() => setIsChuseokModalOpen(true)}
+                                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-900 to-primary-950 text-white shadow-sm active:scale-95 transition-transform border border-primary-500/40"
+                                >
+                                    <span>🌕</span>
+                                    <span>추석선물</span>
+                                </button>
+                            )}
 
                             <button
                                 type="button"
@@ -886,20 +892,22 @@ const Landing = () => {
                     {isMobileMenuOpen && (
                         <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setIsChuseokModalOpen(true);
-                                    }}
-                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-amber-50 to-orange-50 text-amber-950 border border-amber-300 flex items-center justify-between shadow-sm"
-                                >
-                                    <span className="flex items-center gap-2">
-                                        <span className="text-base">🌕</span>
-                                        <span>추석 지인 100ml 선물 신청</span>
-                                    </span>
-                                    <span className="text-[11px] text-amber-800 bg-amber-200/90 px-2 py-0.5 rounded-full font-black">코드인증</span>
-                                </button>
+                                {(!i18n.language || i18n.language.startsWith('ko')) && (
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            setIsChuseokModalOpen(true);
+                                        }}
+                                        className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-amber-50 to-orange-50 text-amber-950 border border-amber-300 flex items-center justify-between shadow-sm"
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <span className="text-base">🌕</span>
+                                            <span>추석 지인 100ml 선물 신청</span>
+                                        </span>
+                                        <span className="text-[11px] text-amber-800 bg-amber-200/90 px-2 py-0.5 rounded-full font-black">코드인증</span>
+                                    </button>
+                                )}
                                 {navItems.map(item => (
                                     <button
                                         key={item.id}
@@ -920,19 +928,24 @@ const Landing = () => {
                                     전문가 칼럼
                                 </Link>
 
-                                <div className="pt-2 border-t border-gray-100 flex items-center justify-between px-2">
-                                    <span className="text-xs font-semibold text-gray-500">언어 / Language</span>
-                                    <div className="flex gap-1">
-                                        {languageOptions.slice(0, 3).map((opt) => (
+                                <div className="pt-3 border-t border-gray-100 px-2 space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-xs font-bold text-gray-700">🌐 언어 선택 / Language</span>
+                                        <span className="text-[10px] text-gray-400">14개국어 지원</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 gap-1.5 max-h-36 overflow-y-auto p-1 bg-slate-50 rounded-xl border border-slate-200">
+                                        {languageOptions.map((opt) => (
                                             <button
                                                 key={opt.code}
+                                                type="button"
                                                 onClick={() => { i18n.changeLanguage(opt.code); setIsMobileMenuOpen(false); }}
-                                                className={`text-xs px-2.5 py-1 rounded-lg font-bold ${i18n.language === opt.code
-                                                    ? `${primaryBg} text-white`
-                                                    : 'bg-gray-100 text-gray-700'
+                                                className={`text-[11px] py-1.5 px-2 rounded-lg font-bold flex items-center justify-center gap-1 transition-all ${i18n.language === opt.code
+                                                    ? 'bg-primary-900 text-white shadow-sm'
+                                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-slate-200/60'
                                                     }`}
                                             >
-                                                {opt.code.toUpperCase()}
+                                                <span>{opt.flag}</span>
+                                                <span>{opt.code.toUpperCase()}</span>
                                             </button>
                                         ))}
                                     </div>
