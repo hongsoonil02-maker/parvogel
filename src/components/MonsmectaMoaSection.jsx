@@ -5,7 +5,7 @@ export default function MonsmectaMoaSection() {
     {
       id: 'trap',
       step: 'MECHANISM 01',
-      title: '정전기적 자성 포획 (LIQI Nano Trap)',
+      title: '정전기적 자성 포획 (나노 몬모릴로나이트 트랩)',
       sub: 'T-O-T 3층 판상 나노 입자의 병원체 흡착',
       desc: '판상 규산염 단면의 국소 양전하(+) 부위가 바이러스 캡시드와 세균 표면 부착 단백질(CS31A)의 음전하(-) 부위를 자석처럼 강력 포획합니다.',
       metrics: [

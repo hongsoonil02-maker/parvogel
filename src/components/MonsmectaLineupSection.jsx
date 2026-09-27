@@ -10,7 +10,7 @@ export default function MonsmectaLineupSection() {
       subTitle: '초미세 나노 점막보호 & 전해질 평형 포뮬러',
       description: '급성 바이러스성 장염(CPV/CCoV) 및 유해균 독소로 인한 급성 수양성 설사·구토 응급 제재',
       coreIngredients: [
-        { label: 'LIQI 나노 몬모릴로나이트', val: 'D90 ≤ 3μm, 비표면적 > 800m²/g, 양이온교환능(CEC) ≥ 130 mmol/100g' },
+        { label: '고순도 나노 몬모릴로나이트', val: 'D90 ≤ 3μm, 비표면적 > 800m²/g, 양이온교환능(CEC) ≥ 130 mmol/100g' },
         { label: 'DNG1000', val: '1-DNJ ≥ 1,000 mg/kg 고순도 복합' },
         { label: '유기산 완충계', val: '위산 완충 pH 4.5~5.5 안정화 설계' }
       ],
@@ -31,7 +31,7 @@ export default function MonsmectaLineupSection() {
       subTitle: '간문맥 독소 유입 차단 & 간세포 항산화 방어',
       description: '장-간 순환계 독소 흡착과 간세포 글루타치온(GSH) 합성을 동시 촉진하는 간 기능 특화 처방',
       coreIngredients: [
-        { label: '오리지널 나노 포뮬러', val: 'LIQI 몬모릴로나이트 + 1-DNJ 복합 베이스' },
+        { label: '오리지널 나노 포뮬러', val: '나노 몬모릴로나이트 + 1-DNJ 복합 베이스' },
         { label: '실리마린 (Silymarin)', val: '밀크씨슬 고농축 유효 추출물' },
         { label: 'L-메치오닌 (L-Methionine)', val: '간세포 해독 효소 및 항산화 전구체' }
       ],
@@ -52,7 +52,7 @@ export default function MonsmectaLineupSection() {
       subTitle: '요독증 흡착 배출 & 대사성 산증 완충 교정',
       description: '만성 신부전(CKD) 및 요독 수치 상승 시 장내 요독 전구체를 흡착하여 신장 여과 부담 0% 달성',
       coreIngredients: [
-        { label: '오리지널 나노 포뮬러', val: 'LIQI 정전기 흡착 베이스' },
+        { label: '오리지널 나노 포뮬러', val: '나노 몬모릴로나이트 정전기 흡착 베이스' },
         { label: '아세트산 / 프로피온산', val: '간외 조직 ACS 대사 즉각 HCO3- 생성계' },
         { label: '비타민 B12 (시아노코발라민)', val: '적혈구 조혈 작용 및 신경계 기력 회복' }
       ],
