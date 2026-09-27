@@ -1090,16 +1090,16 @@ const Landing = () => {
                         </div>
 
                         {/* CTA Buttons - Primary 2 CTA (Hick's Law 해소: 쿠팡 vs 무료체험) */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-6 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-5 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
                             <a
                                 href={getStoreUrl('coupang')}
                                 target="_blank"
                                 rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-slate-700/50"
                             >
                                 <span className="text-xl">🚀</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-rose-200 font-bold uppercase tracking-wider">{t('heroCta.coupangBadge', '긴급 내일 아침 도착')}</div>
+                                    <div className="text-[10px] text-rose-300 font-bold uppercase tracking-wider">{t('heroCta.coupangBadge', '긴급 내일 아침 도착')}</div>
                                     <div className="text-sm sm:text-base font-extrabold">{t('heroCta.coupangText', '쿠팡 로켓배송 즉시구매')}</div>
                                 </div>
                             </a>
@@ -1115,24 +1115,35 @@ const Landing = () => {
                                     }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
-                                }}
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-850 via-primary-900 to-primary-950 hover:from-primary-800 hover:to-primary-900 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-500/40"
+                                    }}
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 hover:from-primary-900 hover:to-primary-850 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-600/40"
                             >
                                 <span className="text-xl">🎁</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-primary-200 font-bold uppercase tracking-wider">선착순 무료체험</div>
+                                    <div className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">선착순 무료 지원</div>
                                     <div className="text-sm sm:text-base font-extrabold">정품 1병 무료체험 신청</div>
                                 </div>
                             </button>
                         </div>
-                        {/* Secondary CTAs - 텍스트 링크로 축소 (시각적 계층화) */}
-                        <div className="flex items-center justify-center gap-3 mb-6 text-xs sm:text-sm">
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-primary-700 hover:text-primary-800 font-bold underline underline-offset-4">
-                                🛍️ 네이버 스마트스토어 →
+                        {/* Secondary CTAs - 네이버 스마트스토어 & 도매 공급가 버튼 */}
+                        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                            <a
+                                href={getStoreUrl('naver')}
+                                target="_blank"
+                                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary-900 hover:bg-primary-950 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-primary-950/30 transition-all border border-primary-700/50"
+                            >
+                                <span>🛍️</span>
+                                <span>네이버 스마트스토어 즉시구매</span>
+                                <span aria-hidden="true">➔</span>
                             </a>
-                            <span className="text-slate-300">|</span>
-                            <button onClick={() => { setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }} className="text-primary-700 hover:text-primary-800 font-bold underline underline-offset-4">
-                                🏥 도매 공급가 견적 신청 →
+                            <button
+                                onClick={() => { setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-primary-50 text-primary-950 text-xs sm:text-sm font-bold shadow-sm border border-primary-200 transition-all"
+                            >
+                                <span>🏥</span>
+                                <span>도매 공급가 견적 신청</span>
+                                <span aria-hidden="true">➔</span>
                             </button>
                         </div>
 

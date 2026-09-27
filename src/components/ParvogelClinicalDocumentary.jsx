@@ -476,9 +476,9 @@ export default function ParvogelClinicalDocumentary() {
                 target="_blank"
                 rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                 aria-label={t('doc.smartstore_btn', '네이버 스마트스토어 즉시 구매 (새 창 열림)')}
-                className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 hover:from-primary-900 hover:to-primary-850 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 border border-primary-600/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
-                <span>{t('doc.smartstore_btn', '🟢 네이버 스마트스토어(펫츄리) 즉시 구매')}</span>
+                <span>🛍️ {t('doc.smartstore_btn', '네이버 스마트스토어(펫츄리) 즉시 구매')}</span>
                 <span aria-hidden="true">➔</span>
               </a>
               <a
@@ -486,9 +486,9 @@ export default function ParvogelClinicalDocumentary() {
                 target="_blank"
                 rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                 aria-label={t('doc.coupang_btn', '쿠팡 로켓배송 즉시 구매 (새 창 열림)')}
-                className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+                className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-black text-xs sm:text-sm transition-all shadow-lg flex items-center justify-center gap-2 border border-slate-700/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
               >
-                <span>{t('doc.coupang_btn', '🚀 쿠팡 로켓배송 즉시 구매')}</span>
+                <span>🚀 {t('doc.coupang_btn', '쿠팡 로켓배송 즉시 구매')}</span>
                 <span aria-hidden="true">➔</span>
               </a>
             </div>
