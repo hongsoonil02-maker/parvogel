@@ -14,8 +14,8 @@ export default function MonsmectaMoaSection() {
         { label: '살모넬라/대장균 흡착 소요시간', value: '15~20분 내 99.9%' }
       ],
       icon: '🧲',
-      gradient: 'from-blue-500/20 to-indigo-500/10',
-      border: 'border-blue-500/40'
+      gradient: 'from-emerald-900/50 to-[#002217]',
+      border: 'border-emerald-600/50'
     },
     {
       id: 'inhibit',
@@ -29,8 +29,8 @@ export default function MonsmectaMoaSection() {
         { label: '작용 기전', value: 'α-Glucosidase I, II 경쟁적 저해' }
       ],
       icon: '🛡️',
-      gradient: 'from-indigo-500/20 to-purple-500/10',
-      border: 'border-indigo-500/40'
+      gradient: 'from-teal-900/50 to-[#002217]',
+      border: 'border-teal-600/50'
     },
     {
       id: 'buffer',
@@ -44,15 +44,15 @@ export default function MonsmectaMoaSection() {
         { label: '염증성 지표 (CRP)', value: '48.3% 유의적 감소' }
       ],
       icon: '⚡',
-      gradient: 'from-emerald-500/20 to-teal-500/10',
-      border: 'border-emerald-500/40'
+      gradient: 'from-[#004d35]/60 to-[#002217]',
+      border: 'border-emerald-500/60'
     }
   ];
 
   return (
-    <section className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl">
-      <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold">
+    <section className="bg-gradient-to-br from-[#003828] via-[#002d20] to-[#001f16] border border-emerald-700/60 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl relative overflow-hidden text-slate-100">
+      <div className="space-y-2 relative">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold">
           <span>Mode of Action (MOA)</span>
           <span>·</span>
           <span>수의약리학적 정량 데이터</span>
@@ -60,20 +60,20 @@ export default function MonsmectaMoaSection() {
         <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight break-keep">
           특허 출원 3대 나노 작용 기전 (MOA)
         </h2>
-        <p className="text-slate-400 text-xs sm:text-sm max-w-3xl leading-relaxed break-keep">
+        <p className="text-emerald-100/70 text-xs sm:text-sm max-w-3xl leading-relaxed break-keep">
           몸속에 흡수되어 간과 신장에 해독 부담을 주는 화학 약물과 달리, 물리·화학적 정전기 트랩과 효소 제어로 병원체를 즉시 격리 배출합니다.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6 relative">
         {moaModules.map((m) => (
           <div
             key={m.id}
-            className={`rounded-2xl border ${m.border} bg-gradient-to-b ${m.gradient} to-slate-950 p-6 flex flex-col justify-between space-y-4`}
+            className={`rounded-2xl border ${m.border} bg-gradient-to-b ${m.gradient} p-6 flex flex-col justify-between space-y-4 shadow-lg backdrop-blur-sm`}
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black tracking-widest text-blue-300 uppercase">
+                <span className="text-[10px] font-black tracking-widest text-emerald-300 uppercase">
                   {m.step}
                 </span>
                 <span className="text-2xl">{m.icon}</span>
@@ -81,20 +81,20 @@ export default function MonsmectaMoaSection() {
               <h3 className="text-base sm:text-lg font-black text-white tracking-tight break-keep leading-snug">
                 {m.title}
               </h3>
-              <p className="text-xs text-blue-200/80 font-medium break-keep leading-normal">
+              <p className="text-xs text-emerald-200/90 font-medium break-keep leading-normal">
                 {m.sub}
               </p>
-              <p className="text-xs text-slate-300 leading-relaxed break-keep pt-1">
+              <p className="text-xs text-slate-200 leading-relaxed break-keep pt-1">
                 {m.desc}
               </p>
             </div>
 
-            <div className="bg-slate-950/80 rounded-xl p-3.5 border border-slate-800 space-y-2 pt-3">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">정량 검증 지표</p>
+            <div className="bg-[#002217]/90 rounded-xl p-3.5 border border-emerald-900/80 space-y-2 pt-3">
+              <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">정량 검증 지표</p>
               {m.metrics.map((met, idx) => (
-                <div key={idx} className="flex items-center justify-between text-xs py-1 border-b border-slate-900 last:border-0">
-                  <span className="text-slate-400 text-[11px]">{met.label}</span>
-                  <span className="font-bold text-emerald-400 text-xs">{met.value}</span>
+                <div key={idx} className="flex items-center justify-between text-xs py-1 border-b border-emerald-950 last:border-0">
+                  <span className="text-slate-300 text-[11px]">{met.label}</span>
+                  <span className="font-bold text-emerald-300 text-xs">{met.value}</span>
                 </div>
               ))}
             </div>

@@ -5,7 +5,7 @@ export default function MonsmectaLineupSection() {
     {
       id: 'original',
       badge: 'B2B STANDARD',
-      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      badgeColor: 'bg-emerald-800 text-emerald-200 border-emerald-600/50',
       title: 'MONSMECTA (오리지널)',
       subTitle: '초미세 나노 점막보호 & 전해질 평형 포뮬러',
       description: '급성 바이러스성 장염(CPV/CCoV) 및 유해균 독소로 인한 급성 수양성 설사·구토 응급 제재',
@@ -20,13 +20,13 @@ export default function MonsmectaLineupSection() {
         'PEDV 바이러스 증식 억제 농도 IC50 = 57.76 μM 증식 차단'
       ],
       icon: '🛡️',
-      borderColor: 'border-blue-500/40',
-      accentGradient: 'from-blue-600/20 to-indigo-600/10'
+      borderColor: 'border-emerald-600/60',
+      accentGradient: 'from-emerald-900/40 to-[#00281d]'
     },
     {
       id: 'hepamax',
       badge: 'GUT-LIVER AXIS',
-      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+      badgeColor: 'bg-amber-900/60 text-amber-200 border-amber-600/50',
       title: 'MONSMECTA HEPAMAX',
       subTitle: '간문맥 독소 유입 차단 & 간세포 항산화 방어',
       description: '장-간 순환계 독소 흡착과 간세포 글루타치온(GSH) 합성을 동시 촉진하는 간 기능 특화 처방',
@@ -41,13 +41,13 @@ export default function MonsmectaLineupSection() {
         '면역 저하 자견 생독백신 항체 형성률 33% → 90% 수직 상승'
       ],
       icon: '🧪',
-      borderColor: 'border-amber-500/50',
-      accentGradient: 'from-amber-600/20 to-orange-600/10'
+      borderColor: 'border-amber-600/60',
+      accentGradient: 'from-amber-950/40 to-[#00281d]'
     },
     {
       id: 'renal',
       badge: 'GUT-KIDNEY AXIS',
-      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      badgeColor: 'bg-teal-900/60 text-teal-200 border-teal-600/50',
       title: 'MONSMECTA RENAL DETOX',
       subTitle: '요독증 흡착 배출 & 대사성 산증 완충 교정',
       description: '만성 신부전(CKD) 및 요독 수치 상승 시 장내 요독 전구체를 흡착하여 신장 여과 부담 0% 달성',
@@ -62,16 +62,18 @@ export default function MonsmectaLineupSection() {
         '조절 T세포(Treg) 확대로 염증 지표 CRP 48.3% 유의적 감소'
       ],
       icon: '🌿',
-      borderColor: 'border-emerald-500/50',
-      accentGradient: 'from-emerald-600/20 to-teal-600/10'
+      borderColor: 'border-teal-600/60',
+      accentGradient: 'from-teal-950/40 to-[#00281d]'
     }
   ];
 
   return (
-    <section className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl relative overflow-hidden">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+    <section className="bg-gradient-to-br from-[#003828] via-[#002d20] to-[#001f16] border border-emerald-700/60 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl relative overflow-hidden text-slate-100">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-emerald-800/80 pb-6 relative">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-bold mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold mb-2">
             <span>Gut-Liver-Kidney Axis</span>
             <span>·</span>
             <span>특허 명세서 3대 전문 처방</span>
@@ -79,21 +81,21 @@ export default function MonsmectaLineupSection() {
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight break-keep">
             수의사 전용 3대 처방 라인업 (장-간-신장 축)
           </h2>
-          <p className="text-slate-400 text-xs sm:text-sm mt-1 break-keep">
+          <p className="text-emerald-100/70 text-xs sm:text-sm mt-1 break-keep">
             단순 장 증상 완화를 넘어, 장 점막 코팅부터 간문맥 독소 차단 및 신장 요독 배출까지 수의약리학적으로 설계되었습니다.
           </p>
         </div>
-        <div className="flex items-center gap-2 text-xs text-slate-400 shrink-0">
+        <div className="flex items-center gap-2 text-xs text-emerald-300 shrink-0">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
           <span>동물병원 처방용 v3.0</span>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-6 relative">
         {lineups.map((item) => (
           <div
             key={item.id}
-            className={`rounded-2xl border ${item.borderColor} bg-gradient-to-b ${item.accentGradient} via-slate-900/90 to-slate-950 p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 shadow-xl`}
+            className={`rounded-2xl border ${item.borderColor} bg-gradient-to-b ${item.accentGradient} p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 shadow-xl backdrop-blur-sm`}
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -105,17 +107,17 @@ export default function MonsmectaLineupSection() {
 
               <div>
                 <h3 className="text-lg font-black text-white tracking-tight">{item.title}</h3>
-                <p className="text-xs text-blue-300/90 font-medium mt-0.5">{item.subTitle}</p>
-                <p className="text-xs text-slate-300 mt-2 leading-relaxed break-keep">{item.description}</p>
+                <p className="text-xs text-emerald-300 font-medium mt-0.5">{item.subTitle}</p>
+                <p className="text-xs text-slate-200 mt-2 leading-relaxed break-keep">{item.description}</p>
               </div>
 
               {/* 핵심 성분 테이블 */}
-              <div className="bg-slate-950/80 rounded-xl p-3.5 border border-slate-800 space-y-2 text-xs">
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">핵심 성분 & 약리 규격</p>
+              <div className="bg-[#002217]/90 rounded-xl p-3.5 border border-emerald-900/80 space-y-2 text-xs">
+                <p className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">핵심 성분 & 약리 규격</p>
                 {item.coreIngredients.map((ing, idx) => (
-                  <div key={idx} className="border-b border-slate-900 last:border-0 pb-1.5 last:pb-0">
-                    <span className="text-slate-200 font-semibold">{ing.label}</span>
-                    <p className="text-[11px] text-slate-400 leading-normal">{ing.val}</p>
+                  <div key={idx} className="border-b border-emerald-950 last:border-0 pb-1.5 last:pb-0">
+                    <span className="text-white font-semibold">{ing.label}</span>
+                    <p className="text-[11px] text-emerald-100/70 leading-normal">{ing.val}</p>
                   </div>
                 ))}
               </div>
@@ -125,10 +127,10 @@ export default function MonsmectaLineupSection() {
                 <p className="text-[11px] font-bold text-amber-300 flex items-center gap-1">
                   <span>📊</span> <span>주요 적응증 & 검증 데이터</span>
                 </p>
-                <ul className="space-y-1 text-xs text-slate-300 leading-relaxed">
+                <ul className="space-y-1 text-xs text-slate-200 leading-relaxed">
                   {item.clinicalData.map((data, idx) => (
                     <li key={idx} className="flex items-start gap-1.5">
-                      <span className="text-blue-400 mt-0.5 font-bold">•</span>
+                      <span className="text-emerald-400 mt-0.5 font-bold">•</span>
                       <span className="break-keep">{data}</span>
                     </li>
                   ))}
@@ -136,10 +138,10 @@ export default function MonsmectaLineupSection() {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-800/80 mt-6">
-              <div className="text-[11px] text-slate-400 flex items-center justify-between">
+            <div className="pt-6 border-t border-emerald-800/60 mt-6">
+              <div className="text-[11px] text-emerald-200/80 flex items-center justify-between">
                 <span>간·신장 대사 부담</span>
-                <strong className="text-emerald-400 font-bold">0% (체외 배출)</strong>
+                <strong className="text-emerald-300 font-black text-xs">0% (체외 배출)</strong>
               </div>
             </div>
           </div>
