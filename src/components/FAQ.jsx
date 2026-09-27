@@ -100,7 +100,7 @@ export default function FAQ() {
                 {isOpen && (
                   <div id={`faq-answer-${index}`} role="region" aria-labelledby={`faq-question-${index}`} className="px-5 pb-6 sm:px-6 sm:pb-6 text-slate-600 leading-relaxed text-sm sm:text-base border-t border-slate-100 pt-4 animate-fade-in break-keep bg-slate-50/50">
                     <div className="flex items-start gap-3">
-                      <span className="shrink-0 w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 font-extrabold text-sm flex items-center justify-center border border-emerald-200 mt-0.5" aria-hidden="true">
+                      <span className="shrink-0 w-7 h-7 rounded-lg bg-primary-50 text-primary-700 font-extrabold text-sm flex items-center justify-center border border-primary-200 mt-0.5" aria-hidden="true">
                         A
                       </span>
                       <p className="flex-1 whitespace-pre-line text-slate-700">

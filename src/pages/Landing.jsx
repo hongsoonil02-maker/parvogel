@@ -808,7 +808,7 @@ const Landing = () => {
                             <button
                                 type="button"
                                 onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-white shadow-md hover:shadow-amber-400/40 hover:scale-105 active:scale-95 transition-all border border-amber-300/40"
+                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-slate-900 via-primary-900 to-blue-900 text-white shadow-md hover:shadow-blue-500/25 hover:scale-105 active:scale-95 transition-all border border-blue-400/40"
                             >
                                 <span className="text-base">🌕</span>
                                 <span>추석 지인 선물</span>
@@ -828,7 +828,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-md hover:shadow-orange-400/40 hover:scale-105 active:scale-95 transition-all"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-600 via-blue-600 to-primary-700 text-white shadow-md hover:shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all border border-blue-400/30"
                             >
                                 <span className="text-base">🎁</span>
                                 <span>정품 1병 무료체험</span>
@@ -840,7 +840,7 @@ const Landing = () => {
                             <button
                                 type="button"
                                 onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-600 to-yellow-500 text-white shadow-sm active:scale-95 transition-transform border border-amber-300/40"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-900 to-primary-900 text-white shadow-sm active:scale-95 transition-transform border border-blue-400/40"
                             >
                                 <span>🌕</span>
                                 <span>추석선물</span>
@@ -859,7 +859,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-sm active:scale-95 transition-transform"
+                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-600 to-blue-700 text-white shadow-sm active:scale-95 transition-transform"
                             >
                                 <span>🎁</span>
                                 <span>1병 무료체험</span>
@@ -1049,22 +1049,22 @@ const Landing = () => {
                         )}
 
                         {/* 🎁 펫샵 & 브리더 전용 본품 1병 무료체험 하이라이트 배너 */}
-                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-amber-300 animate-pulse-slow">
+                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary-900 via-blue-900 to-slate-900 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-blue-400/50 animate-pulse-slow">
                             <div className="flex items-center gap-3 text-left">
                                 <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl shadow-inner shrink-0">
                                     🎁
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-white text-orange-700 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                        <span className="bg-blue-500/30 border border-blue-300/50 text-blue-100 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                             전국 펫샵 · 브리더 전용
                                         </span>
-                                        <span className="text-xs text-amber-100 font-bold">선착순 무료 지원</span>
+                                        <span className="text-xs text-amber-300 font-bold">선착순 무료 지원</span>
                                     </div>
-                                    <h3 className="text-base sm:text-lg font-black tracking-tight mt-0.5">
+                                    <h3 className="text-base sm:text-lg font-black tracking-tight mt-0.5 text-white">
                                         파보겔 정품 1병 무료 체험 & 도매 특가 신청
                                     </h3>
-                                    <p className="text-xs text-amber-100 mt-0.5">
+                                    <p className="text-xs text-blue-200 mt-0.5">
                                         배송비 전액 본사 부담 · 주소만 남겨주시면 당일 우체국 택배 발송
                                     </p>
                                 </div>
@@ -1082,7 +1082,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-amber-50 text-orange-700 hover:text-orange-800 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
+                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-blue-50 text-primary-900 hover:text-blue-900 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
                             >
                                 <span>지금 무료 1병 받기</span>
                                 <span aria-hidden="true">➔</span>
@@ -1116,19 +1116,19 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-600 to-blue-700 hover:from-primary-700 hover:to-blue-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-blue-400/30"
                             >
                                 <span className="text-xl">🎁</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-amber-100 font-bold uppercase tracking-wider">선착순 무료체험</div>
+                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">선착순 무료체험</div>
                                     <div className="text-sm sm:text-base font-extrabold">정품 1병 무료체험 신청</div>
                                 </div>
                             </button>
                         </div>
                         {/* Secondary CTAs - 텍스트 링크로 축소 (시각적 계층화) */}
                         <div className="flex items-center justify-center gap-3 mb-6 text-xs sm:text-sm">
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-emerald-700 hover:text-emerald-800 font-bold underline underline-offset-4">
-                                🟢 네이버 스마트스토어 →
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-blue-700 hover:text-blue-800 font-bold underline underline-offset-4">
+                                🛍️ 네이버 스마트스토어 →
                             </a>
                             <span className="text-slate-300">|</span>
                             <button onClick={() => { setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }} className="text-primary-700 hover:text-primary-800 font-bold underline underline-offset-4">
@@ -1505,7 +1505,7 @@ const Landing = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => scrollToSection('gomi-story')}
-                                                className="text-xs font-semibold text-emerald-700 hover:underline"
+                                                className="text-xs font-semibold text-blue-700 hover:underline"
                                             >
                                                 배변 증거 보기 ↓
                                             </button>

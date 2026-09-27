@@ -46,21 +46,21 @@ export default function GomiPoopStory() {
     <section 
       id="gomi-story" 
       aria-label="대표 반려조 꼬미의 배변 회복 실화"
-      className="my-16 sm:my-20 bg-gradient-to-b from-amber-50/70 via-white to-emerald-50/50 rounded-3xl p-6 sm:p-10 lg:p-12 border border-amber-200/80 shadow-2xl relative overflow-hidden"
+      className="my-16 sm:my-20 bg-gradient-to-b from-blue-50/70 via-white to-slate-50 rounded-3xl p-6 sm:p-10 lg:p-12 border border-blue-200/80 shadow-2xl relative overflow-hidden"
     >
       {/* 배경 장식 패턴 */}
-      <div className="absolute -top-16 -right-16 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-200/25 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-16 -right-16 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* 헤더 섹션 */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-amber-100 to-emerald-100 text-amber-900 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-amber-300 shadow-sm mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-900 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-blue-300 shadow-sm mb-4">
           <span className="text-base">🦜</span>
           <span>파보겔 대표 반려조 '꼬미'의 24시간 리얼 회복기</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 break-keep leading-snug">
           "새 안 키워본 사람은 몰라요!"<br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent ml-1 sm:ml-2">
+          <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-primary-700 bg-clip-text text-transparent ml-1 sm:ml-2">
             물기가 번졌어도 알맹이가 잡히면 멎은 겁니다
           </span>
         </h2>
@@ -284,12 +284,12 @@ export default function GomiPoopStory() {
             </div>
 
             {/* AI 정밀 분석 콜아웃 */}
-            <div className="mt-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-3 rounded-xl shadow-md text-xs">
+            <div className="mt-2 bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-3 rounded-xl shadow-md text-xs">
               <div className="flex items-center gap-1.5 font-bold mb-1">
                 <span>🤖 AI 수의생리학 정밀 판정</span>
-                <span className="bg-white text-emerald-700 text-[10px] px-1.5 py-0.2 rounded font-black">설사 완전 종료 확인</span>
+                <span className="bg-amber-300 text-slate-950 text-[10px] px-1.5 py-0.2 rounded font-black">설사 완전 종료 확인</span>
               </div>
-              <p className="text-emerald-50 text-[11px] leading-relaxed">
+              <p className="text-blue-100 text-[11px] leading-relaxed">
                 "홍대표님 말씀이 정확합니다. 고체 대변이 둥글게 모양(형태)을 뭉쳐 내보내고 있으며, 흰 요산이 정상 분리되었습니다. 신문지 테두리 수분은 정상적인 소변(다뇨) 배출일 뿐 설사가 아닙니다!"
               </p>
             </div>
@@ -335,11 +335,11 @@ export default function GomiPoopStory() {
             </div>
 
             {/* AFTER: 회복된 정상 변 */}
-            <div className="bg-white rounded-2xl border-2 border-emerald-300 shadow-md p-4 flex flex-col relative overflow-hidden group">
-              <div className="absolute top-3 right-3 bg-emerald-100 text-emerald-800 text-[11px] font-black px-2.5 py-1 rounded-full border border-emerald-300">
+            <div className="bg-white rounded-2xl border-2 border-blue-400 shadow-md p-4 flex flex-col relative overflow-hidden group">
+              <div className="absolute top-3 right-3 bg-blue-100 text-blue-900 text-[11px] font-black px-2.5 py-1 rounded-full border border-blue-300">
                 AFTER · 회복 완벽
               </div>
-              <div className="text-xs font-bold text-emerald-700 flex items-center gap-1 mb-2">
+              <div className="text-xs font-bold text-primary-700 flex items-center gap-1 mb-2">
                 <span>✅</span>
                 <span>알맹이 형성 · 정상 대변</span>
               </div>
@@ -347,7 +347,7 @@ export default function GomiPoopStory() {
               {/* 이미지 뷰어 */}
               <div 
                 onClick={() => handleOpenZoom(afterImages[selectedAfterIdx].src, 'AFTER: 단단하게 모양을 잡고 나온 건강한 정상 변')}
-                className="w-full aspect-square rounded-xl overflow-hidden bg-slate-100 border border-emerald-200 relative cursor-pointer group-hover:shadow-inner transition-shadow"
+                className="w-full aspect-square rounded-xl overflow-hidden bg-slate-100 border border-blue-200 relative cursor-pointer group-hover:shadow-inner transition-shadow"
               >
                 <img 
                   src={afterImages[selectedAfterIdx].src} 
@@ -367,7 +367,7 @@ export default function GomiPoopStory() {
                     onClick={() => setSelectedAfterIdx(idx)}
                     className={`flex-1 py-1 px-1.5 text-[10px] font-bold rounded-md transition-colors ${
                       selectedAfterIdx === idx 
-                        ? 'bg-emerald-600 text-white' 
+                        ? 'bg-primary-600 text-white' 
                         : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                     }`}
                   >
@@ -378,7 +378,7 @@ export default function GomiPoopStory() {
 
               {/* 분석 설명 */}
               <div className="mt-3 text-xs text-slate-700 space-y-1.5 flex-1">
-                <div className="font-bold text-emerald-900">🟢 장벽 물리적 코팅 & 안정화</div>
+                <div className="font-bold text-primary-950">🔵 장벽 물리적 코팅 & 안정화</div>
                 <p className="text-slate-600 text-[11px] leading-relaxed">
                   짙은 쑥색의 <strong>고체 대변이 동글동글하게 알맹이 형태를 완벽히 유지</strong>하고 있습니다. 위에 하얀 요산(Urate)이 분리되어 얹혔으며, 신문지 테두리 수분은 정상 소변(다뇨)입니다.
                 </p>
@@ -401,7 +401,7 @@ export default function GomiPoopStory() {
 
             <div className="grid sm:grid-cols-3 gap-3 text-xs">
               <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                <div className="text-emerald-400 font-bold mb-1 flex items-center gap-1">
+                <div className="text-blue-400 font-bold mb-1 flex items-center gap-1">
                   <span>1. 고체 대변</span>
                 </div>
                 <p className="text-slate-300 text-[11px] leading-relaxed">
@@ -429,11 +429,11 @@ export default function GomiPoopStory() {
             </div>
 
             {/* 조류 맞춤 파보겔 급여 권장량 안내 */}
-            <div className="bg-emerald-950/60 border border-emerald-500/40 rounded-xl p-3 flex items-start gap-3">
+            <div className="bg-blue-950/70 border border-blue-500/40 rounded-xl p-3 flex items-start gap-3">
               <span className="text-2xl">🦜</span>
               <div className="text-xs">
-                <span className="font-bold text-emerald-300">조류·앵무새 파보겔 안심 급여법:</span>
-                <p className="text-emerald-100 text-[11px] mt-0.5 leading-relaxed">
+                <span className="font-bold text-amber-300">조류·앵무새 파보겔 안심 급여법:</span>
+                <p className="text-blue-100 text-[11px] mt-0.5 leading-relaxed">
                   새는 매우 예민하여 주사기로 억지로 먹이면 기도 흡인(질식) 위험이 있습니다. 파보겔은 <strong>부리 끝에 1~2방울(0.1~0.2ml) 톡 묻혀주면</strong> 아이가 혀로 핥아먹어 스트레스 없이 1초 만에 장 점막을 코팅할 수 있습니다.
                 </p>
               </div>
