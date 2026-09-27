@@ -81,15 +81,17 @@ export default function ParvogelNanoActionStory() {
       <div className="section-container space-y-12">
         {/* 1. 상단 공감 (Pain Point) */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs sm:text-sm font-bold animate-pulse">
-            <span>🚨</span>
-            <span>긴급 상황: 우리 아이가 아플 때</span>
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight break-keep leading-snug">
-            "갑자기 시작된 노란 위산 구토와 피비린내 나는 혈변 설사…<br className="hidden sm:inline" />
-            <span className="text-rose-600">당황하셨나요?</span>"
+          <div className="flex justify-center">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs sm:text-sm font-bold animate-pulse">
+              <span>🚨</span>
+              <span>긴급 상황: 우리 아이가 아플 때</span>
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight text-center leading-snug break-keep max-w-2xl mx-auto">
+            <span className="block text-balance">"갑자기 시작된 노란 위산 구토와 피비린내 나는 혈변 설사…</span>
+            <span className="block mt-1 sm:mt-1.5 text-rose-600">당황하셨나요?"</span>
           </h2>
-          <p className="text-slate-600 text-xs sm:text-base leading-relaxed break-keep">
+          <p className="text-slate-600 text-xs sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
             바이러스성 장염이나 급성 장염은 초기 대처가 아이의 생명을 좌우합니다.<br />
             아픈 아이를 붙잡고 독한 가루약을 억지로 먹이느라 주사기 전쟁을 치르지 마세요.
           </p>
