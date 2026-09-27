@@ -1,0 +1,129 @@
+{
+  "rdate": "20260924",
+  "rtime": "1400",
+  "total": 3724,
+  "success": 3724,
+  "fail": 0,
+  "batches": [
+    {
+      "batch": 1,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253070",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253070",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 2,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253074",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253074",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 3,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253078",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253078",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 4,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253082",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253082",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 5,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253090",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253090",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 6,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253103",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253103",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 7,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1460253126",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253126",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 8,
+      "count": 224,
+      "success": 224,
+      "fail": 0,
+      "msg_id": "1460253146",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1460253146",
+        "success_cnt": 224,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    }
+  ]
+}

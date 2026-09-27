@@ -3,6 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { getStoreUrl } from '../config/storeLinks';
 
+import MonsmectaLineupSection from '../components/MonsmectaLineupSection';
+import MonsmectaMoaSection from '../components/MonsmectaMoaSection';
+import MonsmectaClinicalCase from '../components/MonsmectaClinicalCase';
+
 export default function MonsmectaGateway() {
   const [showVetContactModal, setShowVetContactModal] = useState(false);
   const [vetForm, setVetForm] = useState({
@@ -25,7 +29,7 @@ export default function MonsmectaGateway() {
         <title>몬스멕타(Monsmecta) 공식 안내 — 동물병원 수의사 전용 처방 점막보호제 | (주)한국아그로</title>
         <meta
           name="description"
-          content="몬스멕타(Monsmecta)는 동물병원 수의사 전용 처방 보조제입니다. 일반 온라인 유통이 엄격히 제한되며, 가정 상비용으로는 동일 나노 포뮬러의 파보겔(Parvogel)을 이용해 주시기 바랍니다."
+          content="몬스멕타(Monsmecta)는 동물병원 수의사 전용 처방 보조제입니다. 장-간-신장 축(Gut-Liver-Kidney Axis) 3중 전문 처방 솔루션으로 일반 온라인 유통이 엄격히 제한됩니다."
         />
         <meta
           name="keywords"
@@ -70,26 +74,39 @@ export default function MonsmectaGateway() {
       </header>
 
       {/* 메인 히어로 섹션 */}
-      <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 w-full space-y-10">
+      <main className="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16 w-full space-y-12">
         {/* 긴급 안내 뱃지 및 메인 타이틀 */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold animate-pulse">
-            <span>🛡️</span>
-            <span>공식 공지: 동물병원 수의사 전용 처방 제품 안내</span>
+        <div className="text-center space-y-5 max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/40 text-xs font-bold">
+              [특허 출원 완료]
+            </span>
+            <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold">
+              [MIC 0.05% 포획 동역학]
+            </span>
+            <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold">
+              [위산 완충 pH 4.5~5.5]
+            </span>
+            <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/40 text-xs font-bold">
+              [간·신장 대사 부담 0%]
+            </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight break-keep">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-white">
-              몬스멕타(Monsmecta)
-            </span>
-            는<br />
-            동물병원 수의사 전용 처방 제품입니다
-          </h1>
+          <div className="space-y-2">
+            <p className="text-xs sm:text-sm font-extrabold text-blue-400 tracking-wider uppercase">
+              수의사 전용 장 점막 보호 & 전해질 평형 솔루션 | MONSMECTA
+            </p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight break-keep">
+              초미세 나노 몬모릴로나이트 × 1-DNJ × 유기산 완충계<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-200 to-white">
+                장-간-신장 축(Gut-Liver-Kidney Axis)
+              </span> 3중 전문 처방
+            </h1>
+          </div>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed break-keep">
-            네이버 검색을 통해 본 페이지에 유입되신 보호자님 및 원장님께 안내드립니다.<br className="hidden sm:inline" />
-            몬스멕타는 환축의 정밀 진단과 전문 수의사의 처방이 수반되어야 하는 임상 전용 제재로,
-            <span className="text-amber-300 font-semibold"> 일반 온라인 쇼핑몰 판매가 엄격히 제한</span>됩니다.
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed break-keep max-w-2xl mx-auto">
+            위산 완충(pH 4.5~5.5), 파보/코로나 바이러스 정전기적 포획, 15분 내 유해균 99.9% 흡착 배출.<br />
+            환축의 간과 신장에 대사 부담이 없는 100% 천연 수의약리학적 처방 솔루션입니다.
           </p>
         </div>
 
@@ -198,6 +215,15 @@ export default function MonsmectaGateway() {
             </div>
           </div>
         </div>
+
+        {/* 🌟 3대 처방 라인업 (Gut-Liver-Kidney Axis) */}
+        <MonsmectaLineupSection />
+
+        {/* 🌟 3대 나노 작용 기전 (MOA: 정전기 트랩 / 외피합성차단 / 완충전해질) */}
+        <MonsmectaMoaSection />
+
+        {/* 🌟 실전 응급 임상 케이스 (S&J 동물병원 연합 증례 - 수액 0mL 단독 투여) */}
+        <MonsmectaClinicalCase />
 
         {/* 학술 자문단 검증 요약 섹션 (신뢰도 극대화: 박봉균 교수 & 정성대 원장) */}
         <div className="bg-slate-800/40 border border-slate-700/60 rounded-3xl p-6 sm:p-8 space-y-6">

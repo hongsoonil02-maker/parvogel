@@ -21,6 +21,7 @@ import ChuseokGiftModal from '../components/ChuseokGiftModal'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
+const ParvogelNanoActionStory = lazy(() => import('../components/ParvogelNanoActionStory'))
 const Chatbot = lazy(() => import('../components/Chatbot'))
 const QrCode = lazy(() => import('../components/QrCode'))
 
@@ -1330,6 +1331,11 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
+
+            {/* 🌟 B2C 나노 스펀지 3단계 작용 & 4대 핵심 셀링포인트 스토리라인 (신규 개편안 반영) */}
+            <Suspense fallback={<div className="py-12 text-center text-slate-400">스토리라인 로딩 중...</div>}>
+                <ParvogelNanoActionStory />
+            </Suspense>
 
             {/* Features Section */}
             <section id="features" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
