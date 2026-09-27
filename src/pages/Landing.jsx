@@ -808,7 +808,7 @@ const Landing = () => {
                             <button
                                 type="button"
                                 onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-slate-900 via-primary-900 to-blue-900 text-white shadow-md hover:shadow-blue-500/25 hover:scale-105 active:scale-95 transition-all border border-blue-400/40"
+                                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-slate-900 via-primary-950 to-primary-900 text-white shadow-md hover:shadow-primary-500/25 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
                             >
                                 <span className="text-base">🌕</span>
                                 <span>추석 지인 선물</span>
@@ -828,7 +828,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-600 via-blue-600 to-primary-700 text-white shadow-md hover:shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all border border-blue-400/30"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-700 via-primary-600 to-primary-800 text-white shadow-md hover:shadow-primary-500/30 hover:scale-105 active:scale-95 transition-all border border-primary-400/30"
                             >
                                 <span className="text-base">🎁</span>
                                 <span>정품 1병 무료체험</span>
@@ -840,7 +840,7 @@ const Landing = () => {
                             <button
                                 type="button"
                                 onClick={() => setIsChuseokModalOpen(true)}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-900 to-primary-900 text-white shadow-sm active:scale-95 transition-transform border border-blue-400/40"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-900 to-primary-950 text-white shadow-sm active:scale-95 transition-transform border border-primary-500/40"
                             >
                                 <span>🌕</span>
                                 <span>추석선물</span>
@@ -859,7 +859,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-600 to-blue-700 text-white shadow-sm active:scale-95 transition-transform"
+                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-700 to-primary-800 text-white shadow-sm active:scale-95 transition-transform"
                             >
                                 <span>🎁</span>
                                 <span>1병 무료체험</span>
@@ -994,15 +994,15 @@ const Landing = () => {
                                 onBlur={() => setIsAutoRotatePaused(false)}
                             >
                                 {/* Rotation Category Badge */}
-                                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs sm:text-sm font-bold mb-4 shadow-sm">
+                                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-100/90 border border-primary-200 text-primary-900 text-xs sm:text-sm font-bold mb-4 shadow-sm">
                                     <span>{currentPetCopy.badge}</span>
-                                    <span className="text-[10px] text-blue-400 font-mono">({currentCopyIdx + 1}/{petHeroCopies.length})</span>
+                                    <span className="text-[10px] text-primary-700 font-mono">({currentCopyIdx + 1}/{petHeroCopies.length})</span>
                                 </div>
 
                                 <h1 className={`text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-snug sm:leading-tight text-center mb-5 break-keep text-slate-900`}>
                                     <span className="block text-slate-700">{currentPetCopy.headlineLine1}</span>
                                     <span className="block mt-1 sm:mt-1.5 text-slate-900">{currentPetCopy.headlineLine2}</span>
-                                    <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-amber-600">
+                                    <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary-800 via-primary-600 to-amber-600">
                                         {currentPetCopy.headlineLine3}
                                     </span>
                                 </h1>
@@ -1028,7 +1028,7 @@ const Landing = () => {
                                             aria-label={`메인 카피 ${idx + 1}번 보기`}
                                             className={`transition-all duration-300 rounded-full ${
                                                 currentCopyIdx === idx 
-                                                    ? 'w-8 h-2 bg-blue-600 shadow-sm' 
+                                                    ? 'w-8 h-2 bg-primary-600 shadow-sm' 
                                                     : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
                                             }`}
                                         />
@@ -1049,14 +1049,14 @@ const Landing = () => {
                         )}
 
                         {/* 🎁 펫샵 & 브리더 전용 본품 1병 무료체험 하이라이트 배너 */}
-                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary-900 via-blue-900 to-slate-900 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-blue-400/50 animate-pulse-slow">
+                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary-950 via-primary-900 to-slate-900 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-primary-500/40 animate-pulse-slow">
                             <div className="flex items-center gap-3 text-left">
                                 <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl shadow-inner shrink-0">
                                     🎁
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-blue-500/30 border border-blue-300/50 text-blue-100 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                        <span className="bg-primary-800/80 border border-primary-400/40 text-primary-100 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                             전국 펫샵 · 브리더 전용
                                         </span>
                                         <span className="text-xs text-amber-300 font-bold">선착순 무료 지원</span>
@@ -1082,7 +1082,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-blue-50 text-primary-900 hover:text-blue-900 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
+                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-primary-50 text-primary-900 hover:text-primary-950 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
                             >
                                 <span>지금 무료 1병 받기</span>
                                 <span aria-hidden="true">➔</span>
@@ -1116,18 +1116,18 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-600 to-blue-700 hover:from-primary-700 hover:to-blue-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-blue-400/30"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-400/30"
                             >
                                 <span className="text-xl">🎁</span>
                                 <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">선착순 무료체험</div>
+                                    <div className="text-[10px] text-primary-200 font-bold uppercase tracking-wider">선착순 무료체험</div>
                                     <div className="text-sm sm:text-base font-extrabold">정품 1병 무료체험 신청</div>
                                 </div>
                             </button>
                         </div>
                         {/* Secondary CTAs - 텍스트 링크로 축소 (시각적 계층화) */}
                         <div className="flex items-center justify-center gap-3 mb-6 text-xs sm:text-sm">
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-blue-700 hover:text-blue-800 font-bold underline underline-offset-4">
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="text-primary-700 hover:text-primary-800 font-bold underline underline-offset-4">
                                 🛍️ 네이버 스마트스토어 →
                             </a>
                             <span className="text-slate-300">|</span>
@@ -1675,18 +1675,18 @@ const Landing = () => {
                         </div>
 
                         {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 */}
-                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-blue-950 text-white shadow-2xl border border-blue-500/40 relative overflow-hidden text-start">
-                            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white shadow-2xl border border-primary-500/40 relative overflow-hidden text-start">
+                            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-blue-600 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                                        <span className="bg-primary-600 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                                             B2B Partners Only
                                         </span>
-                                        <span className="text-xs text-blue-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
+                                        <span className="text-xs text-primary-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                                        매장 홍보용 <span className="text-blue-300">맞춤 A4 알림판</span> &amp; <span className="text-sky-300">실물 POP 보드판</span> 무상 지원
+                                        매장 홍보용 <span className="text-primary-300">맞춤 A4 알림판</span> &amp; <span className="text-amber-300">실물 POP 보드판</span> 무상 지원
                                     </h3>
                                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                                         파보겔을 취급하시는 원장님과 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
@@ -1696,7 +1696,7 @@ const Landing = () => {
                                 <button
                                     type="button"
                                     onClick={() => setIsPartnerModalOpen(true)}
-                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white font-black text-sm shadow-xl hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 border border-blue-400/30"
+                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-black text-sm shadow-xl hover:shadow-primary-500/25 transition-all flex items-center justify-center gap-2 border border-primary-400/30"
                                 >
                                     <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
                                     <span>➔</span>

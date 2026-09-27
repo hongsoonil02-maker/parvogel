@@ -91,7 +91,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
             <button
               onClick={togglePlay}
               aria-label={isPlaying ? 'Pause audio interview' : 'Play audio interview'}
-              className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md transition-transform active:scale-95 shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-12 h-12 bg-primary-600 hover:bg-primary-700 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-md transition-transform active:scale-95 shrink-0 focus:outline-none focus:ring-2 focus:ring-primary-400"
             >
               {isPlaying ? '⏸' : '▶'}
             </button>
@@ -99,7 +99,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
               <div className="text-xs font-extrabold text-slate-900 truncate">
                 {T('docName', '김동준 원장 (사랑동물병원)')}
               </div>
-              <div className="text-[10px] text-blue-700 font-bold">
+              <div className="text-[10px] text-primary-700 font-bold">
                 {T('docSub', '파보겔(로타겔) 임상 오디오 리포트')}
               </div>
               <div
@@ -122,7 +122,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
                 }}
                 className="w-full bg-slate-200 h-1.5 rounded-full mt-1.5 overflow-hidden cursor-pointer"
               >
-                <div className="h-full bg-blue-600" style={{ width: `${progress * 100}%` }} />
+                <div className="h-full bg-primary-600" style={{ width: `${progress * 100}%` }} />
               </div>
               <div className="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
                 <span>{formatTime(currentTime)}</span>

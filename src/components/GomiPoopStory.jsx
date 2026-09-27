@@ -46,21 +46,21 @@ export default function GomiPoopStory() {
     <section 
       id="gomi-story" 
       aria-label="대표 반려조 꼬미의 배변 회복 실화"
-      className="my-16 sm:my-20 bg-gradient-to-b from-blue-50/70 via-white to-slate-50 rounded-3xl p-6 sm:p-10 lg:p-12 border border-blue-200/80 shadow-2xl relative overflow-hidden"
+      className="my-16 sm:my-20 bg-gradient-to-b from-primary-50/60 via-white to-slate-50 rounded-3xl p-6 sm:p-10 lg:p-12 border border-primary-200/80 shadow-2xl relative overflow-hidden"
     >
       {/* 배경 장식 패턴 */}
-      <div className="absolute -top-16 -right-16 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-primary-900/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* 헤더 섹션 */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-900 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-blue-300 shadow-sm mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary-100 to-primary-50 text-primary-950 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-primary-300 shadow-sm mb-4">
           <span className="text-base">🦜</span>
           <span>파보겔 대표 반려조 '꼬미'의 24시간 리얼 회복기</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 break-keep leading-snug">
           "새 안 키워본 사람은 몰라요!"<br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-primary-700 bg-clip-text text-transparent ml-1 sm:ml-2">
+          <span className="bg-gradient-to-r from-primary-800 via-primary-600 to-primary-700 bg-clip-text text-transparent ml-1 sm:ml-2">
             물기가 번졌어도 알맹이가 잡히면 멎은 겁니다
           </span>
         </h2>
@@ -71,14 +71,14 @@ export default function GomiPoopStory() {
       </div>
 
       {/* 🎬 홍대표 제작 유튜브 숏츠 공식 영상 쇼케이스 */}
-      <div className="mb-12 bg-gradient-to-br from-slate-900 via-primary-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-blue-500/40 shadow-2xl relative overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="mb-12 bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-primary-500/40 shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-primary-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-900/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* 좌측: 세로 9:16 모바일 최적화 숏츠 임베드 플레이어 */}
           <div className="w-full max-w-[280px] sm:max-w-[300px] shrink-0 mx-auto">
-            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-400/50 bg-black group">
+            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-primary-400/50 bg-black group">
               <iframe
                 src="https://www.youtube-nocookie.com/embed/2vGdq9EbDwA?rel=0"
                 title="홍대표 제작 - 앵무새 꼬미 파보겔 24시간 임상실화 유튜브 숏츠"
@@ -284,12 +284,12 @@ export default function GomiPoopStory() {
             </div>
 
             {/* AI 정밀 분석 콜아웃 */}
-            <div className="mt-2 bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-3 rounded-xl shadow-md text-xs">
+            <div className="mt-2 bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white p-3 rounded-xl shadow-md text-xs">
               <div className="flex items-center gap-1.5 font-bold mb-1">
                 <span>🤖 AI 수의생리학 정밀 판정</span>
                 <span className="bg-amber-300 text-slate-950 text-[10px] px-1.5 py-0.2 rounded font-black">설사 완전 종료 확인</span>
               </div>
-              <p className="text-blue-100 text-[11px] leading-relaxed">
+              <p className="text-primary-100 text-[11px] leading-relaxed">
                 "홍대표님 말씀이 정확합니다. 고체 대변이 둥글게 모양(형태)을 뭉쳐 내보내고 있으며, 흰 요산이 정상 분리되었습니다. 신문지 테두리 수분은 정상적인 소변(다뇨) 배출일 뿐 설사가 아닙니다!"
               </p>
             </div>
@@ -335,8 +335,8 @@ export default function GomiPoopStory() {
             </div>
 
             {/* AFTER: 회복된 정상 변 */}
-            <div className="bg-white rounded-2xl border-2 border-blue-400 shadow-md p-4 flex flex-col relative overflow-hidden group">
-              <div className="absolute top-3 right-3 bg-blue-100 text-blue-900 text-[11px] font-black px-2.5 py-1 rounded-full border border-blue-300">
+            <div className="bg-white rounded-2xl border-2 border-primary-500 shadow-md p-4 flex flex-col relative overflow-hidden group">
+              <div className="absolute top-3 right-3 bg-primary-100 text-primary-950 text-[11px] font-black px-2.5 py-1 rounded-full border border-primary-300">
                 AFTER · 회복 완벽
               </div>
               <div className="text-xs font-bold text-primary-700 flex items-center gap-1 mb-2">
@@ -347,7 +347,7 @@ export default function GomiPoopStory() {
               {/* 이미지 뷰어 */}
               <div 
                 onClick={() => handleOpenZoom(afterImages[selectedAfterIdx].src, 'AFTER: 단단하게 모양을 잡고 나온 건강한 정상 변')}
-                className="w-full aspect-square rounded-xl overflow-hidden bg-slate-100 border border-blue-200 relative cursor-pointer group-hover:shadow-inner transition-shadow"
+                className="w-full aspect-square rounded-xl overflow-hidden bg-slate-100 border border-primary-200 relative cursor-pointer group-hover:shadow-inner transition-shadow"
               >
                 <img 
                   src={afterImages[selectedAfterIdx].src} 
@@ -429,11 +429,11 @@ export default function GomiPoopStory() {
             </div>
 
             {/* 조류 맞춤 파보겔 급여 권장량 안내 */}
-            <div className="bg-blue-950/80 border border-blue-400/40 rounded-xl p-3 flex items-start gap-3">
+            <div className="bg-primary-950/90 border border-primary-500/40 rounded-xl p-3 flex items-start gap-3">
               <span className="text-2xl">🦜</span>
               <div className="text-xs">
-                <span className="font-bold text-blue-200">조류·앵무새 파보겔 안심 급여법:</span>
-                <p className="text-blue-100 text-[11px] mt-0.5 leading-relaxed">
+                <span className="font-bold text-primary-200">조류·앵무새 파보겔 안심 급여법:</span>
+                <p className="text-primary-100 text-[11px] mt-0.5 leading-relaxed">
                   새는 매우 예민하여 주사기로 억지로 먹이면 기도 흡인(질식) 위험이 있습니다. 파보겔은 <strong>부리 끝에 1~2방울(0.1~0.2ml) 톡 묻혀주면</strong> 아이가 혀로 핥아먹어 스트레스 없이 1초 만에 장 점막을 코팅할 수 있습니다.
                 </p>
               </div>

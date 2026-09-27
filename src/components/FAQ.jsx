@@ -42,7 +42,7 @@ export default function FAQ() {
     <section id="faq" className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
-          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-200 mb-3">
+          <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-primary-100 text-primary-900 border border-primary-200 mb-3">
             {t('faq.badge', 'FAQ')}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 break-keep">

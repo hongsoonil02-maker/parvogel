@@ -192,19 +192,19 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
         <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-fadeIn">
             <div className="relative bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]">
                 {/* 상단 프리미엄 헤더 */}
-                <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white p-5 sm:p-6 flex items-start justify-between relative overflow-hidden">
-                    <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 text-white p-5 sm:p-6 flex items-start justify-between relative overflow-hidden">
+                    <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl pointer-events-none" />
                     <div>
                         <div className="flex items-center gap-2 mb-1.5">
                             <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
                                 B2B Partner Portal
                             </span>
-                            <span className="text-xs text-blue-200 font-medium">도매점·동물약품·펫샵 전용</span>
+                            <span className="text-xs text-primary-200 font-medium">도매점·동물약품·펫샵 전용</span>
                         </div>
                         <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                             파보겔 파트너스 웰컴 패키지 지원센터
                         </h3>
-                        <p className="text-xs sm:text-sm text-blue-200 mt-1">
+                        <p className="text-xs sm:text-sm text-primary-200 mt-1">
                             매장 홍보용 맞춤 A4 알림판 즉시 출력 및 고급 매장 디스플레이 보드판(POP) 무상 지원
                         </p>
                     </div>
@@ -225,10 +225,10 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                     {step === 'auth' && (
                         <div className="space-y-5">
                             {/* 안내 배너 */}
-                            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 flex items-start gap-3">
+                            <div className="bg-primary-50 border border-primary-200 rounded-2xl p-4 flex items-start gap-3">
                                 <span className="text-2xl mt-0.5">🛡️</span>
                                 <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                                    <p className="font-bold text-blue-950 mb-0.5">일반 소비자와 분리된 사업자 전용 페이지입니다.</p>
+                                    <p className="font-bold text-primary-950 mb-0.5">일반 소비자와 분리된 사업자 전용 페이지입니다.</p>
                                     기존 거래처 코드를 보유 중이시거나, 파보겔을 취급 중인 동물약품 대리점·동물병원·펫샵 대표님께만 매장 인쇄물 제작기 및 보드판 지원 서비스를 무료로 제공합니다.
                                 </div>
                             </div>
@@ -279,13 +279,13 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                             <p className="text-xs font-bold text-red-600 mt-1.5">{authError}</p>
                                         ) : (
                                             <p className="text-[11px] text-slate-500 mt-1.5">
-                                                * 발송된 DM 안내문이나 제품 박스에 표기된 코드를 입력해 주세요. (테스트용: <code className="text-blue-600 font-bold">PARVO-BIZ</code>)
+                                                * 발송된 DM 안내문이나 제품 박스에 표기된 코드를 입력해 주세요. (테스트용: <code className="text-primary-700 font-bold">PARVO-BIZ</code>)
                                             </p>
                                         )}
                                     </div>
                                     <button
                                         type="submit"
-                                        className="w-full py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-black text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                                        className="w-full py-3.5 bg-primary-700 hover:bg-primary-800 text-white font-black text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
                                     >
                                         <span>인증하고 맞춤 알림판 에디터 열기</span>
                                         <span>➔</span>
@@ -308,7 +308,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                 onClick={() => setBizForm(prev => ({ ...prev, bizType: t.id }))}
                                                 className={`py-2 text-xs font-bold rounded-lg border text-center transition-all ${
                                                     bizForm.bizType === t.id
-                                                        ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-sm'
+                                                        ? 'border-primary-600 bg-primary-50 text-primary-950 shadow-sm'
                                                         : 'border-slate-200 text-slate-600 bg-white hover:border-slate-300'
                                                 }`}
                                             >
@@ -561,7 +561,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                 onClick={() => setNoticeData(prev => ({ ...prev, theme: opt.id }))}
                                                 className={`p-2.5 rounded-xl border text-left transition-all ${
                                                     noticeData.theme === opt.id
-                                                        ? 'border-blue-600 bg-blue-50/90 text-blue-950 shadow-sm ring-2 ring-blue-600'
+                                                        ? 'border-primary-600 bg-primary-50/90 text-primary-950 shadow-sm ring-2 ring-primary-600'
                                                         : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white hover:bg-slate-50'
                                                 }`}
                                             >
@@ -572,7 +572,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                     </div>
                                                     <span className={`text-[9.5px] font-bold px-1.5 py-0.5 rounded ${
                                                         noticeData.theme === opt.id 
-                                                            ? 'bg-blue-600 text-white' 
+                                                            ? 'bg-primary-600 text-white' 
                                                             : 'bg-slate-100 text-slate-600'
                                                     }`}>
                                                         {opt.tag}
@@ -617,7 +617,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                             type="checkbox"
                                             checked={noticeData.includeQr}
                                             onChange={(e) => setNoticeData(prev => ({ ...prev, includeQr: e.target.checked }))}
-                                            className="w-4 h-4 text-blue-600 rounded"
+                                            className="w-4 h-4 text-primary-600 rounded"
                                         />
                                         <span>소비자용 온라인 상세설명 QR코드 포함</span>
                                     </label>
@@ -636,7 +636,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                 <button
                                     type="button"
                                     onClick={() => openPrintWindow(true)}
-                                    className="py-3 px-4 bg-blue-900 hover:bg-blue-800 text-white font-black text-xs sm:text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 animate-pulse"
+                                    className="py-3 px-4 bg-primary-900 hover:bg-primary-800 text-white font-black text-xs sm:text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 animate-pulse"
                                 >
                                     <span>🖨️ A4 용지 즉시 칼라인쇄 (원클릭)</span>
                                 </button>

@@ -27,7 +27,7 @@ export default function ParvogelNanoActionStory() {
       desc: '초미세 나노 보호막이 위장을 부드럽게 감싸주어, 쓰린 위산 구토와 헛구역질을 15분 만에 진정시킵니다.',
       badge: '위산 구토 차단',
       icon: '🛡️',
-      color: 'border-blue-200 bg-blue-50/50 text-blue-900'
+      color: 'border-primary-200 bg-primary-50/60 text-primary-950'
     },
     {
       step: 'STEP 02',
@@ -36,7 +36,7 @@ export default function ParvogelNanoActionStory() {
       desc: '몸에 좋은 유익균은 그대로 남기고, 파보·코로나 바이러스와 유해균 독소만 자석처럼 강력하게 끌어당겨 묶습니다.',
       badge: '바이러스 99.9% 포획',
       icon: '🧲',
-      color: 'border-indigo-200 bg-indigo-50/50 text-indigo-900'
+      color: 'border-primary-200 bg-primary-50/60 text-primary-950'
     },
     {
       step: 'STEP 03',
@@ -45,7 +45,7 @@ export default function ParvogelNanoActionStory() {
       desc: '체내로 흡수되지 않고 장관만 깨끗이 청소하고 내려가, 연약한 아이의 간과 신장에 부담 없이 변으로 쏙 배출됩니다.',
       badge: '간·신장 부담 0%',
       icon: '🌊',
-      color: 'border-sky-200 bg-sky-50/50 text-sky-950'
+      color: 'border-primary-200 bg-primary-50/60 text-primary-950'
     }
   ];
 
@@ -77,7 +77,7 @@ export default function ParvogelNanoActionStory() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-white via-slate-50 to-blue-50/30">
+    <section className="py-12 sm:py-16 bg-gradient-to-b from-white via-slate-50 to-primary-50/30">
       <div className="section-container space-y-12">
         {/* 1. 상단 공감 (Pain Point) */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
@@ -106,29 +106,29 @@ export default function ParvogelNanoActionStory() {
         </div>
 
         {/* 2. 해결책 제시 (Hero Solution Banner) */}
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-primary-500/40 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
-            <span className="px-3 py-1 rounded-full bg-white/20 text-white text-[11px] font-bold">
+            <span className="px-3 py-1 rounded-full bg-primary-800/80 border border-primary-400/40 text-primary-100 text-[11px] font-bold">
               Veterinary Proven Formula
             </span>
-            <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug break-keep">
+            <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug break-keep text-white">
               동물병원 수의사가 처방하는 응급 장 점막 보호제,<br />
               <span className="text-amber-300">파보겔 (ParvoGel)</span>
             </h3>
-            <p className="text-xs sm:text-sm text-blue-100 leading-relaxed break-keep">
+            <p className="text-xs sm:text-sm text-primary-100/90 leading-relaxed break-keep">
               아픈 아이의 간과 신장에 부담 0%! 자석처럼 바이러스와 독소만 쏙 잡아 배출하는 100% 천연 나노 스펀지
             </p>
           </div>
           <div className="shrink-0 flex flex-col items-center sm:items-end">
             <span className="text-3xl font-black text-amber-300">1초 펌핑</span>
-            <span className="text-xs text-blue-200">스트레스 0% 간편 급여</span>
+            <span className="text-xs text-primary-200">스트레스 0% 간편 급여</span>
           </div>
         </div>
 
         {/* 3. 3단계 나노 스펀지 작용 (3-Step Action) */}
         <div className="space-y-6 max-w-4xl mx-auto">
           <div className="text-center space-y-1">
-            <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">3-Step Action System</span>
+            <span className="text-xs font-bold text-primary-600 tracking-wider uppercase">3-Step Action System</span>
             <h3 className="text-xl sm:text-2xl font-black text-slate-900">
               파보겔이 아이 몸속에서 작용하는 3단계 기적
             </h3>
@@ -173,7 +173,7 @@ export default function ParvogelNanoActionStory() {
               <div key={idx} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-start gap-4">
                 <span className="text-3xl shrink-0 p-2 rounded-xl bg-slate-50">{vp.icon}</span>
                 <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-wide">{vp.point}</span>
+                  <span className="text-[10px] font-extrabold text-primary-700 uppercase tracking-wide">{vp.point}</span>
                   <h4 className="text-sm sm:text-base font-bold text-slate-900 break-keep">{vp.title}</h4>
                   <p className="text-xs text-slate-600 leading-relaxed break-keep">{vp.desc}</p>
                 </div>

@@ -86,7 +86,7 @@ export default function AnimalSelector() {
       className="bg-white text-slate-800 rounded-3xl p-6 sm:p-10 my-12 border border-slate-200 shadow-xl"
     >
       <div className="text-center max-w-2xl mx-auto mb-8">
-        <span className="px-3.5 py-1.5 bg-blue-100 text-blue-800 text-xs font-black rounded-full uppercase tracking-wider border border-blue-200">
+        <span className="px-3.5 py-1.5 bg-primary-100 text-primary-900 text-xs font-black rounded-full uppercase tracking-wider border border-primary-200">
           {t('animalSelector.tag', '전 축종 & 모든 반려동물·특수동물 맞춤 솔루션')}
         </span>
         <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-3 break-keep leading-snug">
@@ -119,9 +119,9 @@ export default function AnimalSelector() {
               role="tab"
               aria-selected={isSelected}
               onClick={() => setSelectedId(item.id)}
-              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-primary-400 ${
                 isSelected
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105 ring-2 ring-blue-400'
+                  ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30 scale-105 ring-2 ring-primary-400'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200/90 border border-slate-200'
               }`}
             >
@@ -135,7 +135,7 @@ export default function AnimalSelector() {
       {/* 디테일 카드 */}
       <div role="tabpanel" aria-label={selectedAnimalName} className="bg-slate-50/90 rounded-2xl p-6 sm:p-7 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
         <div className="space-y-3 text-left w-full md:w-2/3">
-          <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-lg border border-blue-200">
+          <div className="inline-block px-3 py-1 bg-primary-100 text-primary-900 text-xs font-bold rounded-lg border border-primary-200">
             ✓ {selectedAnimalHighlight}
           </div>
           <h4 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
