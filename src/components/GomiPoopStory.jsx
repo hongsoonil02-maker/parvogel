@@ -50,7 +50,7 @@ export default function GomiPoopStory() {
     >
       {/* 배경 장식 패턴 */}
       <div className="absolute -top-16 -right-16 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* 헤더 섹션 */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
@@ -71,14 +71,14 @@ export default function GomiPoopStory() {
       </div>
 
       {/* 🎬 홍대표 제작 유튜브 숏츠 공식 영상 쇼케이스 */}
-      <div className="mb-12 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-amber-400/50 shadow-2xl relative overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-72 h-72 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="mb-12 bg-gradient-to-br from-slate-900 via-primary-950 to-blue-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-blue-500/40 shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* 좌측: 세로 9:16 모바일 최적화 숏츠 임베드 플레이어 */}
           <div className="w-full max-w-[280px] sm:max-w-[300px] shrink-0 mx-auto">
-            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-300/60 bg-black group">
+            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-400/50 bg-black group">
               <iframe
                 src="https://www.youtube-nocookie.com/embed/2vGdq9EbDwA?rel=0"
                 title="홍대표 제작 - 앵무새 꼬미 파보겔 24시간 임상실화 유튜브 숏츠"
@@ -92,7 +92,7 @@ export default function GomiPoopStory() {
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
                 <span className="font-bold text-red-400">YouTube Shorts</span>
               </span>
-              <span className="font-mono text-amber-300">ID: 2vGdq9EbDwA</span>
+              <span className="font-mono text-blue-300">ID: 2vGdq9EbDwA</span>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function GomiPoopStory() {
                 </svg>
                 <span>YouTube Shorts 공식 직캠</span>
               </span>
-              <span className="px-2.5 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[11px] font-bold rounded-full">
+              <span className="px-2.5 py-0.5 bg-blue-500/20 text-blue-200 border border-blue-400/40 text-[11px] font-bold rounded-full">
                 홍효선 대표 직접 촬영·편집
               </span>
             </div>
@@ -123,11 +123,11 @@ export default function GomiPoopStory() {
             {/* 3대 핵심 체크 포인트 */}
             <div className="grid sm:grid-cols-3 gap-2.5 py-2 text-xs text-left">
               <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                <div className="text-amber-400 font-bold mb-1">⚡ 골든타임 1초 급여</div>
+                <div className="text-amber-300 font-bold mb-1">⚡ 골든타임 1초 급여</div>
                 <div className="text-slate-300 text-[11px]">부리 끝에 1방울(0.1ml) 톡! 스트레스 없이 스스로 핥아먹음</div>
               </div>
               <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
-                <div className="text-emerald-400 font-bold mb-1">✨ 24시간 만에 정상화</div>
+                <div className="text-blue-300 font-bold mb-1">✨ 24시간 만에 정상화</div>
                 <div className="text-slate-300 text-[11px]">지독했던 물설사 뚝 멎고 쑥색 둥근 알맹이 대변 완벽 형성</div>
               </div>
               <div className="bg-slate-800/90 p-3 rounded-xl border border-slate-700">
@@ -161,7 +161,7 @@ export default function GomiPoopStory() {
 
               <a
                 href="#gomi-chat-proof"
-                className="inline-flex items-center gap-1 px-3 py-3 text-xs font-semibold text-amber-300 hover:text-amber-200 underline decoration-amber-400/50 underline-offset-4"
+                className="inline-flex items-center gap-1 px-3 py-3 text-xs font-semibold text-blue-300 hover:text-blue-200 underline decoration-blue-400/50 underline-offset-4"
               >
                 <span>카톡 & 비포/애프터 사진 증거 보기 ↓</span>
               </a>
@@ -178,7 +178,7 @@ export default function GomiPoopStory() {
           {/* 카톡 헤더 */}
           <div className="bg-[#a0c0d6] px-4 py-3 border-b border-[#8fb3ca] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center text-xs shadow-inner">
+              <div className="w-8 h-8 rounded-full bg-primary-600 text-white font-bold flex items-center justify-center text-xs shadow-inner">
                 JH
               </div>
               <div>
@@ -388,19 +388,19 @@ export default function GomiPoopStory() {
           </div>
 
           {/* 조류 집사를 위한 수의학적 3대 배변 상식 */}
-          <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="bg-gradient-to-br from-slate-900 via-primary-950 to-blue-950 text-white rounded-2xl p-5 sm:p-6 shadow-xl space-y-4 border border-blue-500/30">
+            <div className="flex items-center justify-between border-b border-blue-900/60 pb-3">
               <div className="flex items-center gap-2">
                 <span className="text-xl">💡</span>
-                <h3 className="text-sm sm:text-base font-bold text-amber-400">
-                  초보 조류 집사가 꼭 알아야 할 '새 똥' 3요소
+                <h3 className="text-sm sm:text-base font-bold text-white">
+                  초보 조류 집사가 꼭 알아야 할 <span className="text-blue-300">'새 똥' 3요소</span>
                 </h3>
               </div>
-              <span className="text-[11px] text-slate-400 font-medium">조류 소화생리학</span>
+              <span className="text-[11px] text-blue-300 font-medium">조류 소화생리학</span>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-3 text-xs">
-              <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/80 p-3 rounded-xl border border-blue-900/40">
                 <div className="text-blue-400 font-bold mb-1 flex items-center gap-1">
                   <span>1. 고체 대변</span>
                 </div>
@@ -409,7 +409,7 @@ export default function GomiPoopStory() {
                 </p>
               </div>
 
-              <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/80 p-3 rounded-xl border border-blue-900/40">
                 <div className="text-slate-200 font-bold mb-1 flex items-center gap-1">
                   <span>2. 흰색 요산</span>
                 </div>
@@ -418,7 +418,7 @@ export default function GomiPoopStory() {
                 </p>
               </div>
 
-              <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/80 p-3 rounded-xl border border-blue-900/40">
                 <div className="text-sky-300 font-bold mb-1 flex items-center gap-1">
                   <span>3. 투명한 소변</span>
                 </div>
@@ -429,10 +429,10 @@ export default function GomiPoopStory() {
             </div>
 
             {/* 조류 맞춤 파보겔 급여 권장량 안내 */}
-            <div className="bg-blue-950/70 border border-blue-500/40 rounded-xl p-3 flex items-start gap-3">
+            <div className="bg-blue-950/80 border border-blue-400/40 rounded-xl p-3 flex items-start gap-3">
               <span className="text-2xl">🦜</span>
               <div className="text-xs">
-                <span className="font-bold text-amber-300">조류·앵무새 파보겔 안심 급여법:</span>
+                <span className="font-bold text-blue-200">조류·앵무새 파보겔 안심 급여법:</span>
                 <p className="text-blue-100 text-[11px] mt-0.5 leading-relaxed">
                   새는 매우 예민하여 주사기로 억지로 먹이면 기도 흡인(질식) 위험이 있습니다. 파보겔은 <strong>부리 끝에 1~2방울(0.1~0.2ml) 톡 묻혀주면</strong> 아이가 혀로 핥아먹어 스트레스 없이 1초 만에 장 점막을 코팅할 수 있습니다.
                 </p>

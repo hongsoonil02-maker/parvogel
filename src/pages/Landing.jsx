@@ -1675,18 +1675,18 @@ const Landing = () => {
                         </div>
 
                         {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 */}
-                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 text-white shadow-2xl border border-indigo-800/60 relative overflow-hidden text-start">
+                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-blue-950 text-white shadow-2xl border border-blue-500/40 relative overflow-hidden text-start">
                             <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                        <span className="bg-blue-600 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                                             B2B Partners Only
                                         </span>
                                         <span className="text-xs text-blue-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
                                     </div>
                                     <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                                        매장 홍보용 <span className="text-amber-400">맞춤 A4 알림판</span> &amp; <span className="text-cyan-300">실물 POP 보드판</span> 무상 지원
+                                        매장 홍보용 <span className="text-blue-300">맞춤 A4 알림판</span> &amp; <span className="text-sky-300">실물 POP 보드판</span> 무상 지원
                                     </h3>
                                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                                         파보겔을 취급하시는 원장님과 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
@@ -1696,7 +1696,7 @@ const Landing = () => {
                                 <button
                                     type="button"
                                     onClick={() => setIsPartnerModalOpen(true)}
-                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm shadow-xl transition-all flex items-center justify-center gap-2"
+                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white font-black text-sm shadow-xl hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 border border-blue-400/30"
                                 >
                                     <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
                                     <span>➔</span>
