@@ -44,8 +44,8 @@ export default function ParvogelNanoActionStory() {
       title: '체내 흡수 0%! Flush 안전 배출',
       desc: '체내로 흡수되지 않고 장관만 깨끗이 청소하고 내려가, 연약한 아이의 간과 신장에 부담 없이 변으로 쏙 배출됩니다.',
       badge: '간·신장 부담 0%',
-      icon: '🌿',
-      color: 'border-emerald-200 bg-emerald-50/50 text-emerald-900'
+      icon: '🌊',
+      color: 'border-sky-200 bg-sky-50/50 text-sky-950'
     }
   ];
 
@@ -162,7 +162,7 @@ export default function ParvogelNanoActionStory() {
         {/* 4. 소비자 언어 4대 핵심 셀링 포인트 */}
         <div className="max-w-4xl mx-auto space-y-6 pt-4">
           <div className="text-center space-y-1">
-            <span className="text-xs font-bold text-emerald-600 tracking-wider uppercase">Why ParvoGel?</span>
+            <span className="text-xs font-bold text-primary-600 tracking-wider uppercase">Why ParvoGel?</span>
             <h3 className="text-xl sm:text-2xl font-black text-slate-900">
               엄마들이 안심하고 선택하는 4가지 절대적 이유
             </h3>
