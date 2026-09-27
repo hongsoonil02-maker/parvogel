@@ -559,19 +559,19 @@ const Landing = () => {
         }
     }
 
-    // Fixed Deep Blue + Gold theme (no toggle)
-    const primaryHover = 'hover:bg-primary-700'
-    const primaryBg = 'bg-primary-600'
-    const primaryText = 'text-primary-600'
+    // Fixed Deep Blue + Gold theme (Parvogel Signature Deep Navy)
+    const primaryHover = 'hover:bg-primary-900'
+    const primaryBg = 'bg-primary-800'
+    const primaryText = 'text-primary-900'
     const primaryBgLight = 'bg-primary-50'
     const primaryBorder = 'border-primary-200'
-    const primaryTextDark = 'text-primary-800'
+    const primaryTextDark = 'text-primary-950'
     const primaryHoverBg = 'hover:bg-primary-100'
-    const primaryHoverBorder = 'hover:border-primary-300'
+    const primaryHoverBorder = 'hover:border-primary-400'
     const gradientText = 'gradient-text'
     const badgePrimary = 'badge-primary'
-    const primaryRing = 'focus:ring-primary-500'
-    const primaryShadow = 'shadow-primary-500/25'
+    const primaryRing = 'focus:ring-primary-700'
+    const primaryShadow = 'shadow-primary-900/25'
 
     const navItems = [
         { id: 'features', label: '특징·임상' },
@@ -828,7 +828,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-700 via-primary-600 to-primary-800 text-white shadow-md hover:shadow-primary-500/30 hover:scale-105 active:scale-95 transition-all border border-primary-400/30"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
                             >
                                 <span className="text-base">🎁</span>
                                 <span>정품 1병 무료체험</span>
@@ -859,7 +859,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-700 to-primary-800 text-white shadow-sm active:scale-95 transition-transform"
+                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-850 to-primary-950 text-white shadow-sm active:scale-95 transition-transform border border-primary-600/40"
                             >
                                 <span>🎁</span>
                                 <span>1병 무료체험</span>
@@ -1116,7 +1116,7 @@ const Landing = () => {
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-400/30"
+                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-850 via-primary-900 to-primary-950 hover:from-primary-800 hover:to-primary-900 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-500/40"
                             >
                                 <span className="text-xl">🎁</span>
                                 <div className="text-left leading-tight">
@@ -1594,7 +1594,7 @@ const Landing = () => {
                                         setIsOrderModalOpen(true);
                                         setIsOrderComplete(false);
                                     }}
-                                    className={`w-full ${i === 1 ? 'btn-primary' : 'btn-secondary'} ${i === 1 ? `${primaryBg} ${primaryHover}` : `${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}`}
+                                    className={`w-full ${i === 1 ? 'btn-primary' : 'btn-secondary'}`}
                                 >
                                     {i === 1 ? t('products.order') : t('products.inquiry')}
                                 </button>
@@ -1607,14 +1607,14 @@ const Landing = () => {
                         <p className="text-sm text-gray-500 mb-4 break-keep">{t('products.channelNote')}</p>
                         <button
                             onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                            className={`btn-primary ${primaryBg} ${primaryHover} inline-flex`}
+                            className="btn-primary inline-flex"
                         >
                             {t('products.bulkCta')}
                         </button>
                         <div className="mt-3">
                             <button
                                 onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder} inline-flex`}
+                                className="btn-secondary inline-flex"
                             >
                                 {t('products.channelCta')}
                             </button>
@@ -1660,7 +1660,7 @@ const Landing = () => {
                                     <span className="text-xl">🚀</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
                                 </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-primary-900 hover:bg-primary-950 text-white rounded-xl border border-primary-700/50 shadow-md transition-colors">
                                     <span className="text-xl">🛍️</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.naver')}</span>
                                 </a>
@@ -1680,7 +1680,7 @@ const Landing = () => {
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-primary-600 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                                        <span className="bg-primary-800 text-primary-100 border border-primary-600/40 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                                             B2B Partners Only
                                         </span>
                                         <span className="text-xs text-primary-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
@@ -1696,7 +1696,7 @@ const Landing = () => {
                                 <button
                                     type="button"
                                     onClick={() => setIsPartnerModalOpen(true)}
-                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-black text-sm shadow-xl hover:shadow-primary-500/25 transition-all flex items-center justify-center gap-2 border border-primary-400/30"
+                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-800 to-primary-900 hover:from-primary-700 hover:to-primary-800 text-white font-black text-sm shadow-xl hover:shadow-primary-950/40 transition-all flex items-center justify-center gap-2 border border-primary-500/40"
                                 >
                                     <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
                                     <span>➔</span>

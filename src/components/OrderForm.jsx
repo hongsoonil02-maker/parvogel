@@ -70,7 +70,7 @@ const OrderForm = ({
                             type="button"
                             onClick={() => setFormData(prev => ({ ...prev, requestType: opt.value }))}
                             className={`${variant === 'modal' ? 'px-2 text-xs' : 'px-2.5 text-xs sm:text-sm'} py-3 rounded-xl border-2 font-bold transition-all flex flex-col items-center gap-1 ${formData.requestType === opt.value
-                                ? 'border-primary-600 bg-primary-50 text-primary-800 shadow-md ring-2 ring-primary-500/20'
+                                ? 'border-primary-800 bg-primary-50 text-primary-950 shadow-md ring-2 ring-primary-700/20'
                                 : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}
                         >
                             <span className="text-lg">{opt.icon}</span>
@@ -82,13 +82,13 @@ const OrderForm = ({
 
             {/* 채널별 가격 안내 및 소비자 즉시 구매 패스트트랙 */}
             {formData.requestType === 'consumer' && (
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-blue-50 to-emerald-50 border border-emerald-300 shadow-sm text-start">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-primary-50 to-emerald-50 border border-emerald-300 shadow-sm text-start">
                     <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
                         <span className="text-xs font-black text-emerald-900 flex items-center gap-1.5">
                             <span>⚡</span>
                             <span>{t('order.fastTrackTitle', '빠른 익일 수령 & 간편 카드결제를 원하시는 보호자님')}</span>
                         </span>
-                        <span className="text-[10px] font-bold text-blue-700 bg-white/90 px-2 py-0.5 rounded-full border border-blue-200">
+                        <span className="text-[10px] font-bold text-primary-900 bg-white/90 px-2 py-0.5 rounded-full border border-primary-200">
                             {t('order.fastTrackBadge', '공식 직영몰 당일 출고')}
                         </span>
                     </div>
@@ -134,13 +134,13 @@ const OrderForm = ({
                 </div>
             )}
             {formData.requestType === 'sample_breeder' && (
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border border-blue-300 shadow-sm text-start">
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-primary-50 via-slate-50 to-primary-50 border border-primary-200 shadow-sm text-start">
                     <div className="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
-                        <span className="text-xs font-black text-blue-900 flex items-center gap-1.5">
+                        <span className="text-xs font-black text-primary-950 flex items-center gap-1.5">
                             <span>🐾</span>
                             <span>[전문 브리더·켄넬 전용] 자견 설사 방어용 파보겔 본품 1병 무료 체험</span>
                         </span>
-                        <span className="text-[10px] font-bold text-blue-800 bg-white/90 px-2 py-0.5 rounded-full border border-blue-300">
+                        <span className="text-[10px] font-bold text-primary-900 bg-white/90 px-2 py-0.5 rounded-full border border-primary-300">
                             선착순 1병 증정
                         </span>
                     </div>
@@ -213,7 +213,7 @@ const OrderForm = ({
                         onClick={() => {
                             if (onTriggerCertNotice) onTriggerCertNotice()
                         }}
-                        className="shrink-0 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
+                        className="shrink-0 px-3 py-1.5 rounded-xl bg-primary-800 hover:bg-primary-900 text-white font-bold text-xs transition-colors shadow-sm"
                     >
                         안내 보기 ➔
                     </button>
@@ -478,7 +478,7 @@ const OrderForm = ({
                 disabled={isSubmitting}
                 className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder')
                     ? 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 shadow-orange-500/25'
-                    : 'bg-primary-600 hover:bg-primary-700 shadow-primary-500/25'}`}
+                    : 'bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 hover:from-primary-900 hover:to-primary-850 shadow-primary-950/30 border border-primary-600/30'}`}
             >
                 {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">

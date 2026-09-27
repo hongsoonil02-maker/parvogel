@@ -7,19 +7,19 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Deep Blue Theme (Parvogel)
+                // Deep Blue Theme (Parvogel Signature Deep Navy)
                 primary: {
-                    50: '#eef3fb',
-                    100: '#d6e2f5',
-                    200: '#aec6ea',
-                    300: '#7ba3da',
-                    400: '#4a7cc4',
-                    500: '#2a5cab',
-                    600: '#1e40af',
-                    700: '#1a3793',
-                    800: '#14387a',
-                    900: '#0f2c5e',
-                    950: '#0a1f44',
+                    50: '#eef4fb',
+                    100: '#d9e6f7',
+                    200: '#b7d0ef',
+                    300: '#85b0e3',
+                    400: '#4d8cd4',
+                    500: '#236cb8',
+                    600: '#154e96',
+                    700: '#113d78',
+                    800: '#0f3363',
+                    900: '#0c274c',
+                    950: '#071830',
                 },
                 // Warm Gold Theme (accent / CTA)
                 accent: {
