@@ -780,7 +780,7 @@ const Landing = () => {
                                 </div>
                             </div>
 
-                            {/* 원클릭 무료 샘플 1병 신청 직관적 메인 버튼 */}
+                            {/* 주문 및 상담 신청 (정품 1병 무료체험 포함) 메인 버튼 */}
                             <button
                                 type="button"
                                 onClick={() => {
@@ -789,7 +789,7 @@ const Landing = () => {
                                         requestType: 'sample_petshop',
                                         product: 'parvogel-200ml',
                                         quantity: 1,
-                                        message: '[헤더 원클릭] 펫샵/브리더 정품 1병 무료 샘플 신청'
+                                        message: '[헤더 원클릭] 펫샵/브리더 정품 1병 무료 샘플 및 주문 신청'
                                     }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
@@ -797,13 +797,13 @@ const Landing = () => {
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
                             >
                                 <span className="text-base">🎁</span>
-                                <span>정품 1병 무료체험</span>
+                                <span>주문 및 상담 신청</span>
+                                <span className="text-xs bg-amber-400 text-primary-950 px-2 py-0.5 rounded-full font-black">1병 무료체험</span>
                             </button>
                         </div>
 
-                        {/* Mobile Header Right: One-touch Sample Button + Menu Hamburger */}
-                        <div className="flex md:hidden items-center gap-1.5 sm:gap-2">
-
+                        {/* Mobile Header Right: Order & Sample Button + Menu Hamburger */}
+                        <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
                             <button
                                 type="button"
                                 onClick={() => {
@@ -812,20 +812,20 @@ const Landing = () => {
                                         requestType: 'sample_petshop',
                                         product: 'parvogel-200ml',
                                         quantity: 1,
-                                        message: '[모바일 헤더] 펫샵/브리더 정품 1병 무료 샘플 신청'
+                                        message: '[모바일 헤더] 주문 및 1병 무료 샘플 신청'
                                     }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-850 to-primary-950 text-white shadow-sm active:scale-95 transition-transform border border-primary-600/40"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md active:scale-95 transition-all border border-primary-500/40 shrink-0 whitespace-nowrap"
                             >
                                 <span>🎁</span>
-                                <span>1병 무료체험</span>
+                                <span>주문·상담 신청</span>
                             </button>
 
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+                                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 shrink-0"
                                 aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                                 aria-expanded={isMobileMenuOpen}
                             >
@@ -844,6 +844,31 @@ const Landing = () => {
                     {isMobileMenuOpen && (
                         <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
+                                {/* 모바일 드롭다운 메뉴 최상단 주문 및 상담 신청 CTA */}
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsMobileMenuOpen(false);
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            requestType: 'sample_petshop',
+                                            product: 'parvogel-200ml',
+                                            quantity: 1,
+                                            message: '[모바일 메뉴] 주문 및 1병 무료 샘플 신청'
+                                        }));
+                                        setIsOrderModalOpen(true);
+                                        setIsOrderComplete(false);
+                                    }}
+                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white flex items-center justify-between shadow-md active:scale-98 transition-all border border-primary-500/40"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="text-base">🎁</span>
+                                        <span>주문 및 상담 신청</span>
+                                    </span>
+                                    <span className="text-[11px] text-amber-300 bg-white/10 px-2.5 py-0.5 rounded-full font-bold border border-white/20">
+                                        1병 무료체험 · 도매
+                                    </span>
+                                </button>
                                 {navItems.map(item => (
                                     <button
                                         key={item.id}
