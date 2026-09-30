@@ -1,0 +1,56 @@
+{
+  "campaign": "Step 2: 미신청 펫샵/브리더 10월 환절기 2차 무료체험",
+  "rdate": "20260930",
+  "rtime": "1400",
+  "total": 1349,
+  "success": 1349,
+  "fail": 0,
+  "title": "(광고)[파보겔] 10월 자견 장염 비상-정품 1병 무료지원",
+  "batches": [
+    {
+      "batch": 1,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1463796623",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1463796623",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 2,
+      "count": 500,
+      "success": 500,
+      "fail": 0,
+      "msg_id": "1463796643",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1463796643",
+        "success_cnt": 500,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    },
+    {
+      "batch": 3,
+      "count": 349,
+      "success": 349,
+      "fail": 0,
+      "msg_id": "1463796675",
+      "response": {
+        "result_code": "1",
+        "message": "reserved",
+        "msg_id": "1463796675",
+        "success_cnt": 349,
+        "error_cnt": 0,
+        "msg_type": "LMS"
+      }
+    }
+  ]
+}

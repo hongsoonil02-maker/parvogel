@@ -663,23 +663,6 @@ const Landing = () => {
             rating: 5,
             badge: '🦜 24시간 완치 쇼츠',
         },
-        {
-            id: 't6',
-            name: t('testimonials.t6Name', '구암농장 대표'),
-            clinic: t('testimonials.t6Clinic', '충남 공주 전문 켄넬·브리더'),
-            role: t('testimonials.t6Role', '전문 브리더 자견 완치 실화'),
-            content: t('testimonials.t6Content', '"설사와 혈변을 보이던 어린 강아지들에게 파보겔을 먹이자마자 바로 다음 날 거짓말처럼 설사·혈변이 뚝 멈췄습니다. 효과가 너무 확실해서 주변 지인들에게 입소문 내어 5병을 즉석 현장 판매했습니다. 적극 추천합니다."'),
-            rating: 5,
-        },
-        {
-            id: 't7',
-            name: t('testimonials.t7Name', '충주 루미가든 대표'),
-            clinic: t('testimonials.t7Clinic', '충북 충주 (에스앤제이 동물병원 구매 고객)'),
-            role: t('testimonials.t7Role', '100ml 병원 구매 후 500ml 5병 도매 재발주 실화'),
-            content: t('testimonials.t7Content', '"충주 에스앤제이 동물병원에서 100ml 1병을 처음 사서 먹여봤는데 설사가 잡히고 효과가 너무너무 좋았습니다. 본사 무료 샘플 1병도 신청해 써보고 품질에 확신을 얻어, 어제 500ml 대용량 5병을 도매가로 대량 구매했습니다!"'),
-            rating: 5,
-            badge: t('testimonials.t7Badge', '🔥 500ml 5병 도매 재구매'),
-        },
     ]
 
     const products = [
@@ -1497,18 +1480,7 @@ const Landing = () => {
                                         </div>
                                     )}
 
-                                    {/* 루미가든 블로그 상세 스토리 링크 */}
-                                    {testimonial.id === 't7' && (
-                                        <div className="mt-3 pt-3 border-t border-gray-100">
-                                            <Link
-                                                to="/blog/chungju-rumigarden-case"
-                                                className="inline-flex items-center gap-1.5 text-xs font-black text-amber-800 hover:text-amber-900 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-lg border border-amber-300 transition-all shadow-xs w-full justify-center"
-                                            >
-                                                <span>📖 루미가든 500ml 도매 재구매 스토리</span>
-                                                <span className="text-[10px]">➔</span>
-                                            </Link>
-                                        </div>
-                                    )}
+
                                 </div>
                             </div>
                         ))}

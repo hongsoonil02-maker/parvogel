@@ -1,0 +1,15 @@
+{
+  "campaign": "Step 1: VIP 116개소 후기 & 도매 재발주",
+  "rdate": "20260929",
+  "rtime": "1400",
+  "count": 116,
+  "title": "[파보겔] 1차 샘플 체험 확인 및 10월 B2B 특가 안내",
+  "response": {
+    "result_code": "1",
+    "message": "reserved",
+    "error_cnt": 1,
+    "msg_id": "1463796616",
+    "success_cnt": 115,
+    "msg_type": "LMS"
+  }
+}
