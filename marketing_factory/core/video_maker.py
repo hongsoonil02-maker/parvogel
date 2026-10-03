@@ -75,14 +75,15 @@ class ParvogelVideoMaker:
         ]
         font_file = next((p for p in font_path_candidates if os.path.exists(p)), None)
         if font_file:
+            safe_font = font_file.replace("\\", "/").replace(":", r"\:")
             filter_complex = (
                 "scale=1080:1920:force_original_aspect_ratio=increase,"
                 "crop=1080:1920,"
                 "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
                 "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
-                f"drawtext=fontfile={font_file}:text='{safe_top}':fontcolor=white:fontsize=38:x=(w-text_w)/2:y=100,"
+                f"drawtext=fontfile='{safe_font}':text='{safe_top}':fontcolor=white:fontsize=38:x=(w-text_w)/2:y=100,"
                 "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill,"
-                f"drawtext=fontfile={font_file}:text='{safe_bottom}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=1720"
+                f"drawtext=fontfile='{safe_font}':text='{safe_bottom}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=1720"
             )
         else:
             filter_complex = (
@@ -114,7 +115,7 @@ class ParvogelVideoMaker:
                 self._extract_thumb(out_path, thumb_path)
                 return out_path
             else:
-                print(f"[VIDEO_ERROR] FFmpeg failed with code {res.returncode}: {res.stderr[:300]}")
+                print(f"[VIDEO_ERROR] FFmpeg failed with code {res.returncode}:\n{res.stderr[-600:]}")
                 return None
         except Exception as e:
             print(f"[VIDEO_EXCEPTION] {e}")

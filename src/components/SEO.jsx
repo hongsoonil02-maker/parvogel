@@ -5,9 +5,8 @@ import { SITE_URL, absoluteUrl } from '../config/site';
 const SUPPORTED_HREFLANGS = ['ko','en','ja','zh','es','fr','de','th','vi','ru','pt','ar','id','ms','tr'];
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData, breadcrumbs }) {
-  const siteUrl = SITE_URL;
-  const defaultTitle = '파보겔(Parvo Gel) — 급성 설사·장염 보조 케어 보조사료 | 반려견·전축종';
-  const defaultDescription = '보조사료 파보겔. 1-deoxinojirimycin & 특허균주 복합, 1초 원터치 펌프 급여. 장 점막 보호막 코팅 및 독소 흡착 배출에 도움을 줄 수 있음. *질병 치료 대체 불가.';
+  const defaultTitle = '파보겔(Parvogel) 공식몰 — 몬스멕타 동물병원 처방 급성설사·파보장염 1초 펌프 보조사료 | 한국아그로';
+  const defaultDescription = '동물병원 몬스멕타 파보겔 단독 처방 케이스 공개. 강아지·고양이 급성 설사·구토·혈변·파보장염 시 1초 펌프로 장 점막 코팅 및 독소 흡착 배출을 돕는 보조사료. 쿠팡 로켓배송 & 네이버 스마트스토어 공식 배송.';
 
   const seo = {
     title: title ? `${title} | 파보겔(Parvogel)` : defaultTitle,

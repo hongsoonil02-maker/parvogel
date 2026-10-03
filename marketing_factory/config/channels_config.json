@@ -23,7 +23,7 @@
     },
     "Naver_Blog": {
       "enabled": true,
-      "publish_mode": "draft_only",
+      "publish_mode": "auto",
       "type": "seo_longform",
       "description": "네이버 블로그 / 카페 정보성 SEO 아티클"
     },

@@ -62,3 +62,7 @@ marketing_factory/data/daily_cost.json
 
 # Always track archive directory
 !archive/**
+
+marketing_factory/data/naver_*
+marketing_factory/*.png
+search_result.txt

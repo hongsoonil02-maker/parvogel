@@ -38,6 +38,7 @@ from adapters.instagram_adapter import InstagramAdapter
 from adapters.facebook_adapter import FacebookAdapter
 from adapters.tiktok_adapter import TikTokAdapter
 from adapters.bluesky_adapter import BlueskyAdapter
+from adapters.naver_blog_adapter import NaverBlogBrowserAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
 
 
@@ -58,7 +59,8 @@ class ParvogelMarketingMaster:
             YouTubeAdapter(),
             InstagramAdapter(),
             FacebookAdapter(),
-            TikTokAdapter()
+            TikTokAdapter(),
+            NaverBlogBrowserAdapter()
         ]
         self.ledger_path = os.path.join(DATA_DIR, "published_ledger.json")
 
@@ -77,14 +79,21 @@ class ParvogelMarketingMaster:
 
     def _is_duplicate_today(self, date_str: str) -> bool:
         ledger = self._load_ledger()
-        return any(e.get("date") == date_str for e in ledger)
+        entry = next((e for e in reversed(ledger) if e.get("date") == date_str), None)
+        if not entry:
+            return False
+        # 네이버 블로그가 성공하지 못했다면 재실행 허용
+        naver_status = entry.get("publish_results", {}).get("Naver_Blog")
+        if naver_status != "SUCCESS":
+            return False
+        return True
 
     def run_daily_pipeline(self, target_day: str = None, force: bool = False) -> Dict[str, Any]:
         start_time = datetime.datetime.now()
         date_str = start_time.strftime("%Y-%m-%d")
-        # 중복 실행 방지 — 같은 날짜 2회 실행 시 스팸 차단 (force=True면 우회)
+        # 중복 실행 방지 — 같은 날짜 전 채널 성공 시 스팸 차단 (force=True면 우회)
         if not force and not target_day and self._is_duplicate_today(date_str):
-            print(f"⏭️  Duplicate run blocked: {date_str} already in ledger. Use force=True to override.")
+            print(f"⏭️  Duplicate run blocked: {date_str} already completed successfully. Use force=True to override.")
             return {"date": date_str, "status": "SKIP_DUPLICATE", "publish_results": {}}
         print("=" * 65)
         print(f"🏭 [PARVOGEL MARKETING FACTORY] Starting Daily Run: {date_str}")
@@ -120,6 +129,15 @@ class ParvogelMarketingMaster:
         print("\n[STEP 4/4] Publishing and archiving content...")
         results = {}
 
+        # 당일 기존 성공 배포 채널 확인 (이미 성공한 채널은 재발행 방지)
+        ledger = self._load_ledger()
+        prev_entry = next((e for e in reversed(ledger) if e.get("date") == date_str), None)
+        prev_success = set()
+        if prev_entry and not force:
+            for ch, st in prev_entry.get("publish_results", {}).items():
+                if st == "SUCCESS" or (isinstance(st, str) and st.startswith("SUCCESS")):
+                    prev_success.add(ch)
+
         # 4-1. 소셜 API 직접 배포 (publish_mode=auto 인 채널만)
         with ThreadPoolExecutor(max_workers=3) as executor:
             future_to_adapter = {}
@@ -130,6 +148,11 @@ class ParvogelMarketingMaster:
                 
                 if publish_mode != "auto":
                     results[adapter.name] = "SKIPPED_DRAFT_ONLY"
+                    continue
+
+                if adapter.name in prev_success:
+                    print(f"⏩ [SKIP] {adapter.name} already successfully published today.")
+                    results[adapter.name] = "SUCCESS (PREVIOUS)"
                     continue
                     
                 if adapter.validate_config():
@@ -202,5 +225,7 @@ class ParvogelMarketingMaster:
 
 
 if __name__ == "__main__":
+    force_flag = "--force" in sys.argv or "-f" in sys.argv
+    target_day_arg = next((arg for arg in sys.argv[1:] if not arg.startswith("-") and not arg.startswith("/")), None)
     master = ParvogelMarketingMaster()
-    master.run_daily_pipeline()
+    master.run_daily_pipeline(target_day=target_day_arg, force=force_flag)

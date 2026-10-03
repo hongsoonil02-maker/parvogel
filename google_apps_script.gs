@@ -104,8 +104,9 @@ function doPost(e) {
       return createJsonResponse({ status: "error", message: "Invalid phone format" }, e);
     }
     phone = normPhone;
-    // 이메일 선택 입력 시 형식 검증
-    if (email !== "-" && email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    // 이메일 선택 입력 시 형식 검증 (sanitize 전 원본 검증)
+    var rawEmail = (p.email || "").trim();
+    if (rawEmail !== "" && rawEmail !== "-" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
       return createJsonResponse({ status: "error", message: "Invalid email format" }, e);
     }
     // 사업자번호 10자리 (도매 시)
@@ -194,8 +195,44 @@ function doGet(e) {
         result.push({
           timestamp:    String(row[0]),
           requestType:  reqType,
-          name:         String(row[2]),   // 병원/농장/업체명 → 수신인 이름
+          hospitalName: String(row[2]),
+          name:         String(row[2]).trim() ? String(row[2]) : String(row[3]),   // 병원/농장/업체명(상호) 없으면 성명
           contactName:  String(row[3]),   // 담당자명
+          bizNo:        String(row[4]),
+          phone:        String(row[5]),
+          email:        String(row[6]),
+          address:      String(row[7]),
+          product:      String(row[8]),
+          quantity:     String(row[9]),
+          orderVolume:  String(row[10]),
+          message:      String(row[11]),
+          requestId:    String(row[12])
+        });
+      }
+      return createJsonResponse({ status: "ok", count: result.length, rows: result }, e);
+    } catch(err) {
+      return createJsonResponse({ status: "error", message: err.toString() }, e);
+    }
+  }
+
+  // 전체 신청 행 내보내기 (알림판 인쇄용)
+  if (action === "export_all") {
+    try {
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      var lastRow = sheet.getLastRow();
+      if (lastRow <= 1) {
+        return createJsonResponse({ status: "ok", count: 0, rows: [] }, e);
+      }
+      var data = sheet.getRange(2, 1, lastRow - 1, 13).getValues();
+      var result = [];
+      for (var i = 0; i < data.length; i++) {
+        var row = data[i];
+        result.push({
+          timestamp:    String(row[0]),
+          requestType:  String(row[1]),
+          hospitalName: String(row[2]),
+          name:         String(row[2]).trim() ? String(row[2]) : String(row[3]),
+          contactName:  String(row[3]),
           bizNo:        String(row[4]),
           phone:        String(row[5]),
           email:        String(row[6]),
