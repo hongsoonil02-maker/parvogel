@@ -39,9 +39,9 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
+    <section id="faq" className="py-6 sm:py-8 lg:py-10 bg-slate-50 border-t border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="inline-block px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-primary-100 text-primary-900 border border-primary-200 mb-3">
             {t('faq.badge', 'FAQ')}
           </span>

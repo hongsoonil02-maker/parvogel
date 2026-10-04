@@ -911,10 +911,10 @@ const Landing = () => {
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
                 </div>
 
-                <div className="section-container relative z-10 py-6">
+                <div className="section-container relative z-10 py-3 sm:py-4">
                     <div className="max-w-5xl mx-auto text-center">
                         {/* Persona Toggle Tabs */}
-                        <div className="inline-flex p-1.5 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-md mb-6 animate-fade-in-up">
+                        <div className="inline-flex p-1.5 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-md mb-4 animate-fade-in-up">
                             <button
                                 type="button"
                                 onClick={() => setPersona('pet')}
@@ -1083,7 +1083,7 @@ const Landing = () => {
                             </button>
                         </div>
                         {/* Secondary CTAs - 네이버 스마트스토어 & 도매 공급가 버튼 */}
-                        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                        <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
                             <a
                                 href={getStoreUrl('naver')}
                                 target="_blank"
@@ -1123,9 +1123,7 @@ const Landing = () => {
                             </button>
                         </div>
 
-                        
-
-                        <div className="max-w-3xl mx-auto mt-6">
+                        <div className="max-w-3xl mx-auto mt-4">
                             <FeedDisclaimer />
                         </div>
                     </div>
@@ -1133,7 +1131,7 @@ const Landing = () => {
             </section>
 
             {/* 축종별 맞춤 효능 탭 (Hero 직하단 황금 배치: 모든 반려동물/소동물/가축 보호자 즉각 확인) */}
-            <div id="animal-guide" className="section-container pt-4 pb-2">
+            <div id="animal-guide" className="section-container pt-2 pb-1">
                 <AnimalSelector />
             </div>
 
@@ -1152,7 +1150,7 @@ const Landing = () => {
                             <p className="section-subtitle mt-4 whitespace-pre-line">
                                 {t('about.desc2')}
                             </p>
-                                <div className="mt-8 grid grid-cols-2 gap-4">
+                                <div className="mt-5 grid grid-cols-2 gap-3.5">
                                     {[
                                         { label: t('about.ingredient'), value: t('about.ingredientVal') },
                                         { label: t('about.form'), value: t('about.formVal') },
@@ -1176,7 +1174,7 @@ const Landing = () => {
                                     ))}
                             </div>
                             {/* Trust indicators */}
-                            <div className="mt-10 flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                            <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-600">
                                 <div className="flex items-center gap-2">
                                     <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                                     <span>{t('about.trust1')}</span>
@@ -1303,8 +1301,8 @@ const Landing = () => {
             {/* Features Section */}
             <section id="features" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('features.badge')}
                         </span>
                         <h2 className="section-title">{t('features.title').split('\n').map((line, i) => (<span key={i} className="block">{line}</span>))}</h2>
@@ -1314,7 +1312,7 @@ const Landing = () => {
                     </div>
 
                     {/* Product Images (Front & Back) — lazy + async decode + width/height CLS 방지 */}
-                    <div className="max-w-4xl mx-auto mt-10 mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="max-w-4xl mx-auto mt-4 mb-6 sm:mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
                             <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} width="600" height="800" className="w-full h-auto object-cover aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
@@ -1352,7 +1350,7 @@ const Landing = () => {
             </Suspense>
 
             {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 조류(새/앵무새) 임상 실화 판별 가이드 */}
-            <div className="section-container pb-6">
+            <div className="section-container pb-2">
                 <GomiPoopStory />
             </div>
 
@@ -1364,8 +1362,8 @@ const Landing = () => {
             {/* Target Animals Section */}
             <section id="target" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('target.badge')}
                         </span>
                         <h2 className="section-title">{t('target.title')}</h2>
@@ -1404,8 +1402,8 @@ const Landing = () => {
                         ))}
                     </div>
 
-                    <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4 break-keep">{t('target.other')}</p>
+                    <div className="text-center mt-6 sm:mt-8">
+                        <p className="text-gray-600 mb-3 break-keep">{t('target.other')}</p>
                         <button
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
@@ -1419,8 +1417,8 @@ const Landing = () => {
             {/* Testimonials Section */}
             <section id="testimonials" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white" aria-label={t('testimonials.title')}>
                 <div className="section-container">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('testimonials.badge')}
                         </span>
                         <h2 className="section-title">{t('testimonials.title')}</h2>
@@ -1492,8 +1490,8 @@ const Landing = () => {
             {/* Products Section */}
             <section id="products" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
                 <div className="section-container">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('products.badge')}
                         </span>
                         <h2 className="section-title">{t('products.title')}</h2>
@@ -1503,7 +1501,7 @@ const Landing = () => {
                     </div>
 
                     {/* Product Lineup Image */}
-                    <div className="max-w-2xl mx-auto mt-8 mb-14 rounded-3xl shadow-xl border border-slate-100 bg-white p-4 sm:p-8 flex items-center justify-center overflow-hidden">
+                    <div className="max-w-2xl mx-auto mt-4 mb-6 sm:mb-8 rounded-3xl shadow-xl border border-slate-100 bg-white p-4 sm:p-6 flex items-center justify-center overflow-hidden">
                         <img
                             src={`${import.meta.env.BASE_URL}images/bottle_group.png`}
                             alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')}
@@ -1560,9 +1558,9 @@ const Landing = () => {
                         ))}
                     </div>
 
-                    <div className="text-center mt-12">
-                        <p className="text-gray-600 mb-4 break-keep">{t('products.bulk')}</p>
-                        <p className="text-sm text-gray-500 mb-4 break-keep">{t('products.channelNote')}</p>
+                    <div className="text-center mt-6 sm:mt-8">
+                        <p className="text-gray-600 mb-3 break-keep">{t('products.bulk')}</p>
+                        <p className="text-sm text-gray-500 mb-3 break-keep">{t('products.channelNote')}</p>
                         <button
                             onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                             className="btn-primary inline-flex"
@@ -1585,8 +1583,8 @@ const Landing = () => {
             <section id="order" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
                     <div className="max-w-3xl mx-auto">
-                        <div className="text-center mb-12">
-                            <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
+                        <div className="text-center mb-6 sm:mb-8">
+                            <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                                 {t('order.badge')}
                             </span>
                             <h2 className="section-title">{t('order.title')}</h2>
@@ -1611,9 +1609,9 @@ const Landing = () => {
                         </div>
 
                         {/* Online Store Links */}
-                        <div className="mt-12 text-center">
-                            <p className="text-gray-600 mb-4">{t('order.online')}</p>
-                            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
+                        <div className="mt-6 sm:mt-8 text-center">
+                            <p className="text-gray-600 mb-3">{t('order.online')}</p>
+                            <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
                                 <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
                                     <span className="text-xl">🚀</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
@@ -1633,7 +1631,7 @@ const Landing = () => {
                         </div>
 
                         {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 */}
-                        <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white shadow-2xl border border-primary-500/40 relative overflow-hidden text-start">
+                        <div className="mt-8 sm:mt-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white shadow-2xl border border-primary-500/40 relative overflow-hidden text-start">
                             <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
@@ -1666,7 +1664,7 @@ const Landing = () => {
             </section>
 
             {/* 현장 수의사 임상 육성 리포트 */}
-            <div className="section-container my-8">
+            <div className="section-container my-4 sm:my-6">
                 <AudioTestimonial
                     tKey="audioTestimonial"
                     audioUrl={`${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`}
@@ -1682,10 +1680,10 @@ const Landing = () => {
             </main>
 
             {/* Footer (전체 배경색과 일치하는 밝고 세련된 프리미엄 테마) */}
-            <footer className="bg-slate-100/90 text-slate-600 py-16 border-t border-slate-200">
+            <footer className="bg-slate-100/90 text-slate-600 py-8 sm:py-10 border-t border-slate-200">
 
                 <div className="section-container">
-                    <div className="grid md:grid-cols-4 gap-12 mb-12">
+                    <div className="grid md:grid-cols-4 gap-8 mb-8">
                         <div className="md:col-span-2">
                             <div className="flex items-center gap-2 mb-4">
                                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${primaryBg} shadow-md`}>

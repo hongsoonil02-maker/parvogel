@@ -83,9 +83,9 @@ export default function AnimalSelector() {
   return (
     <section 
       aria-label={t('animalSelector.title', '모든 동물의 신생아·소화기 설사, 파보겔(Parvogel) 하나로')}
-      className="bg-white text-slate-800 rounded-3xl p-6 sm:p-10 my-12 border border-slate-200 shadow-xl"
+      className="bg-white text-slate-800 rounded-3xl p-5 sm:p-8 my-4 sm:my-6 border border-slate-200 shadow-xl"
     >
-      <div className="text-center max-w-2xl mx-auto mb-8">
+      <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
         <span className="px-3.5 py-1.5 bg-primary-100 text-primary-900 text-xs font-black rounded-full uppercase tracking-wider border border-primary-200">
           {t('animalSelector.tag', '전 축종 & 모든 반려동물·특수동물 맞춤 솔루션')}
         </span>
@@ -98,7 +98,7 @@ export default function AnimalSelector() {
       </div>
 
       {/* 탭 버튼 목록 */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8" role="tablist">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-5 sm:mb-6" role="tablist">
         {animalKeys.map((item) => {
           const isSelected = selectedId === item.id;
           const name = t(`animalSelector.animals.${item.id}.name`, 

@@ -215,7 +215,7 @@ export default function ParvogelClinicalDocumentary() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* 헤더 섹션 (하단 배너 카드들과 좌우 너비 max-w-5xl 동일하게 수직 정렬) */}
-        <header className="text-center max-w-5xl mx-auto mb-8 sm:mb-14">
+        <header className="text-center max-w-5xl mx-auto mb-6 sm:mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-100/90 border border-primary-200 text-primary-900 text-xs sm:text-sm font-black mb-4 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-primary-600 animate-ping motion-reduce:hidden" aria-hidden="true" />
             <span>{t('doc.badge', '📹 파보 장염·급성 설사 7일간의 리얼 임상 다큐멘터리')}</span>
@@ -402,7 +402,7 @@ export default function ParvogelClinicalDocumentary() {
         </nav>
 
         {/* 메인 듀얼 스크린 (화이트 카드 룩으로 위아래 섹션과 자연스럽게 연결) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-12 sm:mb-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-6 sm:mb-8 items-stretch">
           
           {/* 좌측 카드 (5 cols) */}
           <article 
@@ -548,7 +548,7 @@ export default function ParvogelClinicalDocumentary() {
         </div>
 
         {/* 하단 6대 영상 아카이브 그리드 (화이트/라이트 메디컬 룩) */}
-        <section aria-labelledby="parvo-archive-heading" className="mt-8 sm:mt-12">
+        <section aria-labelledby="parvo-archive-heading" className="mt-4 sm:mt-6">
           <div className="text-start mb-6">
             <h3 id="parvo-archive-heading" className="text-lg sm:text-2xl font-extrabold text-slate-900 break-keep">
               {t('doc.archive_heading', '📹 7일간의 임상 치료 순서별 6대 직캠 아카이브')}

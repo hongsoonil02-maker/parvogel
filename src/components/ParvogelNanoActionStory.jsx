@@ -77,8 +77,8 @@ export default function ParvogelNanoActionStory() {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-b from-white via-slate-50 to-primary-50/30">
-      <div className="section-container space-y-12">
+    <section className="py-6 sm:py-8 lg:py-10 bg-gradient-to-b from-white via-slate-50 to-primary-50/30">
+      <div className="section-container space-y-8">
         {/* 1. 상단 공감 (Pain Point) */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="flex justify-center">

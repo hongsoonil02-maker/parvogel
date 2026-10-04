@@ -19,9 +19,9 @@ const ClinicalEvidence = () => {
   return (
     <section id="clinical" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-slate-100 border-y border-slate-200 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-full">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-3xl md:text-4xl font-extrabold text-primary-900 break-keep">{t('clinical.title', '학술 검증 및 임상 시험 데이터')}</h2>
-          <div className="w-24 h-1.5 bg-accent-400 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1.5 bg-accent-400 mx-auto mt-3 rounded-full"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-10 w-full min-w-0">

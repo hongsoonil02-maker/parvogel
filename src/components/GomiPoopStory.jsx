@@ -46,15 +46,15 @@ export default function GomiPoopStory() {
     <section 
       id="gomi-story" 
       aria-label="대표 반려조 꼬미의 배변 회복 실화"
-      className="my-16 sm:my-20 bg-gradient-to-b from-primary-50/60 via-white to-slate-50 rounded-3xl p-6 sm:p-10 lg:p-12 border border-primary-200/80 shadow-2xl relative overflow-hidden"
+      className="my-6 sm:my-8 bg-gradient-to-b from-primary-50/60 via-white to-slate-50 rounded-3xl p-5 sm:p-8 lg:p-10 border border-primary-200/80 shadow-2xl relative overflow-hidden"
     >
       {/* 배경 장식 패턴 */}
       <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary-400/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-primary-900/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* 헤더 섹션 */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary-100 to-primary-50 text-primary-950 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-primary-300 shadow-sm mb-4">
+      <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 relative z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary-100 to-primary-50 text-primary-950 text-xs sm:text-sm font-black rounded-full uppercase tracking-wider border border-primary-300 shadow-sm mb-3">
           <span className="text-base">🦜</span>
           <span>파보겔 대표 반려조 '꼬미'의 24시간 리얼 회복기</span>
         </div>
@@ -64,14 +64,14 @@ export default function GomiPoopStory() {
             물기가 번졌어도 알맹이가 잡히면 멎은 겁니다
           </span>
         </h2>
-        <p className="text-sm sm:text-base text-slate-600 mt-3 break-keep max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-600 mt-2 break-keep max-w-2xl mx-auto leading-relaxed">
           새는 장이 짧아 급성 설사 시 24~48시간 만에 탈수로 낙조(폐사) 위험에 처합니다.<br className="hidden md:inline" />
           파보겔 홍대표가 앵무새 '꼬미'의 급성 설사를 직접 케어하며 기록한 리얼 배변 데이터와 조류 집사 필독 상식을 공개합니다.
         </p>
       </div>
 
       {/* 🎬 홍대표 제작 유튜브 숏츠 공식 영상 쇼케이스 */}
-      <div className="mb-12 bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-primary-500/40 shadow-2xl relative overflow-hidden">
+      <div className="mb-8 bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-primary-500/40 shadow-2xl relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-72 h-72 bg-primary-600/15 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-primary-900/15 rounded-full blur-3xl pointer-events-none" />
 

@@ -67,7 +67,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
   return (
     <section
       aria-label={T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
-      className="bg-white text-slate-800 rounded-3xl p-6 sm:p-8 my-6 border border-slate-200 shadow-lg hover:shadow-xl transition-all"
+      className="bg-white text-slate-800 rounded-3xl p-5 sm:p-6 my-3 sm:my-4 border border-slate-200 shadow-lg hover:shadow-xl transition-all"
     >
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
