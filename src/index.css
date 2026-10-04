@@ -143,10 +143,6 @@
     animation: cute-float-alt 4s ease-in-out infinite;
 }
 
-section:not(#hero) {
-    @apply py-12 sm:py-16 lg:py-20 !important;
-}
-
 /* 스티키 바 safe-area 대응: 하단 콘텐츠가 가려지지 않도록 */
 #faq, #order {
     scroll-margin-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));

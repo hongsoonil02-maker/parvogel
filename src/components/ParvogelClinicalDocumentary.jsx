@@ -548,7 +548,7 @@ export default function ParvogelClinicalDocumentary() {
         </div>
 
         {/* 하단 6대 영상 아카이브 그리드 (화이트/라이트 메디컬 룩) */}
-        <section aria-labelledby="parvo-archive-heading" className="mt-1 sm:mt-2">
+        <div aria-labelledby="parvo-archive-heading" className="mt-1 sm:mt-2">
           <div className="text-start mb-2 sm:mb-3">
             <h3 id="parvo-archive-heading" className="text-lg sm:text-2xl font-extrabold text-slate-900 break-keep">
               {t('doc.archive_heading', '📹 7일간의 임상 치료 순서별 6대 직캠 아카이브')}
@@ -625,7 +625,7 @@ export default function ParvogelClinicalDocumentary() {
               );
             })}
           </div>
-        </section>
+        </div>
 
       </div>
 
