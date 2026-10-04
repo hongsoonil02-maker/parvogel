@@ -204,7 +204,7 @@ export default function ParvogelClinicalDocumentary() {
     <section 
       id="parvogel-clinical-doc" 
       aria-labelledby="parvogel-doc-heading"
-      className="pt-3 sm:pt-4 pb-2 sm:pb-2.5 bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
+      className="pt-3 sm:pt-4 pb-1 bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
     >
       {/* 배경 은은한 글로우 조명 */}
       <div 
@@ -571,7 +571,7 @@ export default function ParvogelClinicalDocumentary() {
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSelectVideo(vid); } }}
                   onClick={() => handleSelectVideo(vid)}
                   aria-label={`${vid.stepNum} ${vid.phase} ${vid.title} ${t('doc.select_video_aria', '영상 선택')}`}
-                  className={`group relative rounded-2xl p-2.5 sm:p-3 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover:shadow-xl text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-[0.98] ${
+                  className={`group relative rounded-2xl p-2 sm:p-2.5 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover:shadow-xl text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-[0.98] ${
                     isSelected
                       ? 'bg-primary-50/90 border-primary-600 ring-2 ring-primary-500/30 shadow-md'
                       : isCurrentStep
@@ -580,7 +580,7 @@ export default function ParvogelClinicalDocumentary() {
                   }`}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center justify-between mb-1.5">
                       <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-full ${
                         isCurrentStep ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-600'
                       }`}>
@@ -592,7 +592,7 @@ export default function ParvogelClinicalDocumentary() {
                     </div>
 
                     {/* 썸네일 */}
-                    <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-black mb-2.5 border border-slate-200 shadow">
+                    <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-black mb-1.5 border border-slate-200 shadow">
                       <img
                         src={`${import.meta.env.BASE_URL}assets/clinical_thumbs/${vid.thumb}`}
                         alt={vid.title}
@@ -614,11 +614,11 @@ export default function ParvogelClinicalDocumentary() {
                       </div>
                     </div>
 
-                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-primary-700 transition-colors line-clamp-2 mb-1 break-keep">
+                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-primary-700 transition-colors line-clamp-2 mb-0.5 break-keep">
                       {vid.title}
                     </h4>
                   </div>
-                  <p className="text-[10px] text-slate-500 line-clamp-2 leading-relaxed mt-1 break-keep">
+                  <p className="text-[10px] text-slate-500 line-clamp-2 leading-snug mt-0.5 break-keep">
                     {vid.desc}
                   </p>
                 </div>

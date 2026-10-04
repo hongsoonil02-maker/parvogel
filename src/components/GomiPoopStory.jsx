@@ -46,7 +46,7 @@ export default function GomiPoopStory() {
     <section 
       id="gomi-story" 
       aria-label="대표 반려조 꼬미의 배변 회복 실화"
-      className="mt-2 sm:mt-3 mb-4 sm:mb-6 bg-gradient-to-b from-primary-50/60 via-white to-slate-50 rounded-3xl p-5 sm:p-8 lg:p-10 border border-primary-200/80 shadow-2xl relative overflow-hidden"
+      className="mt-1 mb-4 sm:mb-6 bg-gradient-to-b from-primary-50/60 via-white to-slate-50 rounded-3xl p-5 sm:p-8 lg:p-10 border border-primary-200/80 shadow-2xl relative overflow-hidden"
     >
       {/* 배경 장식 패턴 */}
       <div className="absolute -top-16 -right-16 w-64 h-64 bg-primary-400/10 rounded-full blur-3xl pointer-events-none" />
