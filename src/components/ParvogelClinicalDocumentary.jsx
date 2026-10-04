@@ -204,7 +204,7 @@ export default function ParvogelClinicalDocumentary() {
     <section 
       id="parvogel-clinical-doc" 
       aria-labelledby="parvogel-doc-heading"
-      className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
+      className="pt-3 sm:pt-4 pb-2 sm:pb-2.5 bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
     >
       {/* 배경 은은한 글로우 조명 */}
       <div 
@@ -402,29 +402,29 @@ export default function ParvogelClinicalDocumentary() {
         </nav>
 
         {/* 메인 듀얼 스크린 (화이트 카드 룩으로 위아래 섹션과 자연스럽게 연결) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-6 sm:mb-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 mb-3 sm:mb-4 items-stretch">
           
           {/* 좌측 카드 (5 cols) */}
           <article 
             id={`step-panel-${currentStep.id}`}
             role="tabpanel"
             aria-labelledby={`step-tab-${currentStep.id}`}
-            className="lg:col-span-5 flex flex-col bg-white rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-xl justify-between"
+            className="lg:col-span-5 flex flex-col bg-white rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-xl justify-between"
           >
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-3 h-3 rounded-full bg-primary-600 shrink-0" aria-hidden="true" />
                 <span className="text-xs font-bold text-primary-700 font-mono">{currentStep.stepNum} · {currentStep.period}</span>
               </div>
-              <h3 className="text-lg sm:text-2xl font-black text-slate-900 mb-3 break-keep">
+              <h3 className="text-lg sm:text-2xl font-black text-slate-900 mb-2.5 break-keep">
                 {currentStep.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 break-keep">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5 break-keep">
                 {currentStep.desc}
               </p>
 
               {/* 법적 리스크 사전 차단 및 신뢰 극대화 배너 */}
-              <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 mb-5 shadow-sm">
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200/90 mb-3.5 shadow-sm">
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/parvogel-authentic.png`} 
                   alt={t('doc.product_name', '파보겔 Parvo Gel 제품 실사')} 
@@ -529,7 +529,7 @@ export default function ParvogelClinicalDocumentary() {
             </div>
 
             {/* 비디오 설명 */}
-            <div className="mt-4 pt-4 border-t border-slate-200 text-start" aria-live="polite">
+            <div className="mt-2.5 pt-2.5 border-t border-slate-200 text-start" aria-live="polite">
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                 <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-primary-100 text-primary-900 font-mono">
                   {selectedVideo.stepNum} · {selectedVideo.phase}
@@ -548,8 +548,8 @@ export default function ParvogelClinicalDocumentary() {
         </div>
 
         {/* 하단 6대 영상 아카이브 그리드 (화이트/라이트 메디컬 룩) */}
-        <section aria-labelledby="parvo-archive-heading" className="mt-4 sm:mt-6">
-          <div className="text-start mb-6">
+        <section aria-labelledby="parvo-archive-heading" className="mt-1 sm:mt-2">
+          <div className="text-start mb-2 sm:mb-3">
             <h3 id="parvo-archive-heading" className="text-lg sm:text-2xl font-extrabold text-slate-900 break-keep">
               {t('doc.archive_heading', '📹 7일간의 임상 치료 순서별 6대 직캠 아카이브')}
             </h3>

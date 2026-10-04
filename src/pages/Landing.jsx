@@ -1350,7 +1350,7 @@ const Landing = () => {
             </Suspense>
 
             {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 조류(새/앵무새) 임상 실화 판별 가이드 */}
-            <div className="section-container pb-2">
+            <div className="section-container py-0">
                 <GomiPoopStory />
             </div>
 
