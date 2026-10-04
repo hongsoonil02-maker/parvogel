@@ -97,6 +97,15 @@
       }
     ]
   },
+  "parrot_case": {
+    "patient": "반려조 앵무새 '꼬미'",
+    "caregiver": "홍효선 대표 (직접 케어 및 관찰 일지)",
+    "initial_symptom": "갑작스러운 수양성 물설사, 소낭 정체 의심, 기력 쇠약 및 낙조(폐사) 위기",
+    "admin_method": "부리 끝에 파보겔 1방울(약 0.1ml) 가볍게 접촉 투여",
+    "prognosis": "투여 다음 날 아침 정상 변(짙은 쑥색 알맹이+요산 분리) 회복, 밥그릇 완식",
+    "video_shorts_id": "2vGdq9EbDwA",
+    "key_learning": "물기가 번져도 단단한 알맹이가 잡히면 설사가 멎은 것 (조류 배변 감별 핵심)"
+  },
   "distribution_b2b": {
     "livestock": "산업동물(송아지·자돈 설사병)은 엠오바이오(MOBIO) 전국 총판 대리점 조직을 통해 오프라인 공급 체결"
   }

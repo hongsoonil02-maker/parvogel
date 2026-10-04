@@ -44,6 +44,15 @@
       "line3": "한우·낙농 농가 폐사율 80% 저감 솔루션",
       "sub1": "엠오바이오(MOBIO) 전국 대리점 공급 대용량 500ml 원터치 펌프",
       "sub2": "분말제제 보정 스트레스 없이 구강 내 3초 직투여로 농가 생산성 극대화"
+    },
+    "bird_parrot": {
+      "id": "bird_parrot",
+      "badge": "🦜 조류·반려조 안심 솔루션",
+      "line1": "새벽에 터진 앵무새의 급성 물설사",
+      "line2": "낙조(폐사) 위기에서 부리 끝 1방울로",
+      "line3": "단 24시간 만에 예쁜 정상 변 부활",
+      "sub1": "약 먹이기 불가능한 조류를 위한 무자극 겔 — 이유식·물 혼합 또는 부리 끝 톡!",
+      "sub2": "홍효선 대표 반려조 '꼬미' 실제 배변 회복 실화 & 유튜브 숏츠 직캠 입증"
     }
   },
   "schedule": {
@@ -130,6 +139,18 @@
       "headline_core": "축산농가 송아지·자돈 바이러스성 설사 폐사율 저감에 도움을 줄 수 있음 (엠오바이오 총판 연계)",
       "focus_scene": "산업동물 대용량 500ml 원터치 급여 솔루션",
       "video_file": "parvogel_case_05_eating.mp4"
+    },
+    "biweekly_bird": {
+      "theme_id": "bird_parrot_special",
+      "copy_id": "bird_parrot",
+      "target": "b2c_bird_caregiver",
+      "badge": "🦜 조류·반려조 안심 솔루션",
+      "headline_line1": "새벽에 터진 앵무새의 급성 물설사",
+      "headline_line2": "낙조(폐사) 위기에서 부리 끝 1방울로",
+      "headline_line3": "단 24시간 만에 예쁜 정상 변 부활",
+      "headline_core": "새 안 키워본 사람은 모릅니다! 앵무새 물설사 낙조 위기, 파보겔 1방울로 24시간 정상 변 회복 실화",
+      "focus_scene": "반려조 꼬미 24시간 배변 회복 실화 직캠 쇼츠",
+      "video_file": "parvogel_case_02_lethargy.mp4"
     }
   }
 }

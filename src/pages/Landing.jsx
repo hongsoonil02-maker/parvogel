@@ -1137,11 +1137,6 @@ const Landing = () => {
                 <AnimalSelector />
             </div>
 
-            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 배변 판별 가이드 */}
-            <div className="section-container pb-6">
-                <GomiPoopStory />
-            </div>
-
             {/* About Section */}
             <section id="about" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
@@ -1355,6 +1350,12 @@ const Landing = () => {
             <Suspense fallback={<div className="py-16 text-center text-slate-400">다큐멘터리 로딩 중...</div>}>
                 <ParvogelClinicalDocumentary />
             </Suspense>
+
+            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 조류(새/앵무새) 임상 실화 판별 가이드 */}
+            <div className="section-container pb-6">
+                <GomiPoopStory />
+            </div>
+
             <div className="section-container">
                 <FeedDisclaimer />
             </div>

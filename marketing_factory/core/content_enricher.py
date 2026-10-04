@@ -62,10 +62,20 @@ class ParvogelContentEnricher:
         return {}
 
     def get_daily_theme(self, day_name: Optional[str] = None) -> Dict[str, Any]:
-        """오늘 요일에 맞는 마케팅 테마 및 타겟팅 추출"""
+        """오늘 요일에 맞는 마케팅 테마 및 타겟팅 추출 (격주/주기적 앵무새·조류 테마 자동 회전)"""
+        now = datetime.datetime.now()
         if not day_name:
-            day_name = datetime.datetime.now().strftime("%A")
+            day_name = now.strftime("%A")
+            # 2주에 1번(짝수 주 화요일) 조류·앵무새 스페셜 테마 자동 분기
+            iso_week = now.isocalendar()[1]
+            if day_name == "Tuesday" and (iso_week % 2 == 0):
+                schedule = self.calendar_data.get("schedule", {})
+                if "biweekly_bird" in schedule:
+                    return schedule["biweekly_bird"]
+
         schedule = self.calendar_data.get("schedule", {})
+        if day_name in ["bird", "parrot", "biweekly_bird"]:
+            return schedule.get("biweekly_bird", schedule.get("Monday", {}))
         return schedule.get(day_name, schedule.get("Monday", {}))
 
     def _check_cost_guard(self) -> bool:
@@ -198,6 +208,25 @@ class ParvogelContentEnricher:
         l1 = theme.get("headline_line1", "설사·혈변으로 곡기 끊겨 쓰러졌던 아이")
         l2 = theme.get("headline_line2", "단 3일 만에 밥그릇 싹싹 비워내고")
         l3 = theme.get("headline_line3", "다시 건강하게 네 발로 서서 꼬리 칩니다")
+
+        if theme_id == "bird_parrot_special":
+            out = {
+                "date": date_str,
+                "theme_id": theme_id,
+                "badge": badge,
+                "line1": l1,
+                "line2": l2,
+                "line3": l3,
+                "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
+                "subheadline": f"{badge} — 체구가 여린 새·앵무새를 위한 부리 끝 1방울 응급 솔루션!",
+                "pain_point": "새는 신진대사가 극도로 빠르고 장이 짧아, 급성 물설사가 시작되면 단 24~48시간 만에 탈수로 '낙조(폐사)' 위험에 처합니다. 가루약이나 알약을 억지로 먹이다 기도로 넘어가 질식할 위험에 밤새 애가 타는 조류 집사의 마음을 깊이 공감합니다.",
+                "clinical_solution": "파보겔 홍효선 대표 반려조 '꼬미' 실제 회복 입증: 순수 천연 나노 몬모릴로나이트의 비흡수성 물리적 메커니즘으로 간·신장 부담 없이 여린 조류 장 점막을 실크 코팅하고 사료 곰팡이 독소와 병원성 유해균을 즉각 흡착 배출합니다. *보조사료는 질병 치료를 대체하지 않습니다.",
+                "video_highlight": "홍효선 대표가 직접 제작한 앵무새 꼬미 24시간 배변 정상화 직캠 쇼츠: 부리 끝 1방울 급여 후 물기만 번지던 수양성 변에서 단단한 알맹이와 정상 요산이 분리되어 배변하는 리얼 검증 데이터.",
+                "cta_text": "소중한 반려조를 위한 24시간 비상 상비약! 네이버 스마트스토어 및 쿠팡 로켓배송으로 즉시 구비해 두세요.",
+                "video_file": video_file,
+                "source": "Bird-Parrot-Clinical-Template"
+            }
+            return self._sanitize_narrative(out)
 
         out = {
             "date": date_str,
