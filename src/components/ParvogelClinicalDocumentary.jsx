@@ -204,7 +204,7 @@ export default function ParvogelClinicalDocumentary() {
     <section 
       id="parvogel-clinical-doc" 
       aria-labelledby="parvogel-doc-heading"
-      className="pt-3 sm:pt-4 pb-1 bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-y border-slate-200/80"
+      className="pt-3 sm:pt-4 pb-0 bg-gradient-to-b from-slate-100 via-primary-50/40 to-slate-50 text-slate-800 relative overflow-hidden border-t border-slate-200/80"
     >
       {/* 배경 은은한 글로우 조명 */}
       <div 
@@ -558,7 +558,7 @@ export default function ParvogelClinicalDocumentary() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5">
             {videos.map((vid, idx) => {
               const isSelected = selectedVideo.id === vid.id;
               const isCurrentStep = currentStep.id === vid.stepId;
@@ -571,7 +571,7 @@ export default function ParvogelClinicalDocumentary() {
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSelectVideo(vid); } }}
                   onClick={() => handleSelectVideo(vid)}
                   aria-label={`${vid.stepNum} ${vid.phase} ${vid.title} ${t('doc.select_video_aria', '영상 선택')}`}
-                  className={`group relative rounded-2xl p-2 sm:p-2.5 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover:shadow-xl text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-[0.98] ${
+                  className={`group relative rounded-xl p-1.5 sm:p-2 border transition-all duration-300 cursor-pointer flex flex-col justify-between hover:shadow-xl text-start focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-[0.98] ${
                     isSelected
                       ? 'bg-primary-50/90 border-primary-600 ring-2 ring-primary-500/30 shadow-md'
                       : isCurrentStep
