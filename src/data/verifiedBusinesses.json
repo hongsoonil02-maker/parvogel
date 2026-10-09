@@ -8210,5 +8210,54 @@
     "name": "이완구",
     "address": "경기도 양주시 옥정동로7다길 62 대길프라자 강아지대공원",
     "group": "알리고_펫샵"
+  },
+  "01071587801": {
+    "type": "sample_received",
+    "orderNum": 188,
+    "shopName": "유앤미펫",
+    "name": "김승기",
+    "address": "인천광역시 남동구 간석동 210-9번지",
+    "group": "알리고_펫샵"
+  },
+  "01048038787": {
+    "type": "sample_received",
+    "orderNum": 189,
+    "shopName": "슈팅가이 켄넬",
+    "name": "신연재",
+    "address": "경북 포항시 북구 청하면 미남리 72번지 C동 (슈팅가이 켄넬)",
+    "group": "알리고_켄넬브리더"
+  },
+  "01024454445": {
+    "type": "sample_received",
+    "orderNum": 190,
+    "shopName": "탑퍼피",
+    "name": "김보송",
+    "address": "경기도 화성시 꽃내음1길 19-26 101호 TOPPUPPY",
+    "group": "알리고_펫샵"
+  },
+  "01024478264": {
+    "type": "sample_received",
+    "orderNum": 191,
+    "shopName": "청주강아지분양 리몽드켄넬",
+    "name": "이정년",
+    "address": "충청북도 청주시 청원구 율량로 38, 102호(주중동)",
+    "group": "알리고_펫샵"
+  },
+  "01037978689": {
+    "type": "sample_received",
+    "orderNum": 192,
+    "shopName": "강아지농장",
+    "name": "이인옥",
+    "address": "경기도 포천시 신북면 호국로 1887-1",
+    "group": "알리고_켄넬브리더"
+  },
+  "01033505188": {
+    "type": "sample_received",
+    "orderNum": 193,
+    "shopName": "강해성",
+    "name": "강해성",
+    "address": "경기도 화성시 장안면 포승장안로 1290-30",
+    "group": "알리고_생산자브리더",
+    "note": "에스앤제이 동물병원 현장 직접 샘플 전달 완료"
   }
 }

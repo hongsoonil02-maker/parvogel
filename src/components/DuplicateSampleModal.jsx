@@ -119,13 +119,24 @@ const DuplicateSampleModal = ({
                             </a>
                         </div>
 
+                        {/* 카카오톡 1:1 상담 바로가기 */}
+                        <a
+                            href="https://pf.kakao.com/_rqxnJX/chat"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-2.5 px-4 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs text-center transition-all shadow-sm flex items-center justify-center gap-1.5"
+                        >
+                            <span>💬 카카오톡 채널 1:1 도매 문의 & 견적 상담</span>
+                            <span>➔</span>
+                        </a>
+
                         {/* 3. 본사 직통 전화 & 닫기 */}
                         <div className="flex items-center justify-between pt-1 gap-2">
                             <a
                                 href="tel:010-5407-5708"
                                 className="text-xs text-slate-500 hover:text-primary-700 font-semibold flex items-center gap-1"
                             >
-                                <span>📞 본사 직통 상담:</span>
+                                <span>📞 본사 직통:</span>
                                 <span className="underline font-bold text-slate-700">010-5407-5708</span>
                             </a>
                             <button

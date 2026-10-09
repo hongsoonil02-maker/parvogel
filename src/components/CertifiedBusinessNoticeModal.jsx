@@ -89,24 +89,38 @@ const CertifiedBusinessNoticeModal = ({
                                     최근 신규 오픈하셨거나 명단에 미등록된 정식 대표님이신가요?
                                 </p>
                                 <p className="text-slate-700">
-                                    정식 동물판매업 등록증, 동물생산업 허가증 또는 사업자등록증을 유선이나 문자로 간편 확인해 주시면 <strong>파보겔 200ml 정품 1병과 알림판에 사용되는 예(A4)를 즉시 무료 발송</strong>해 드립니다.
+                                    카카오톡 1:1 채팅으로 정식 동물판매업 등록증, 생산업 허가증 또는 사업자등록증 사진을 전송해 주시면 <strong>파보겔 200ml 정품 1병과 A4 예방 안내판을 즉시 무료 발송</strong>해 드립니다.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="mt-3 flex flex-col sm:flex-row gap-2">
+                        {/* 카카오톡 1:1 채팅 신청 최우선 메인 버튼 */}
+                        <div className="mt-4 space-y-2">
                             <a
-                                href="tel:010-5407-5708"
-                                className="flex-1 py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
+                                href="https://pf.kakao.com/_rqxnJX/chat"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-3 px-4 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs sm:text-sm text-center transition-all shadow-md flex items-center justify-center gap-2 group"
                             >
-                                <span>📞 본사 직통 인증 문의 (010-5407-5708)</span>
+                                <span className="text-base">💬</span>
+                                <span>카카오톡 1:1 채팅으로 등록증 보내고 무료 샘플 신청</span>
+                                <span className="group-hover:translate-x-1 transition-transform">➔</span>
                             </a>
-                            <a
-                                href="sms:010-5407-5708?body=%5B%ED%8C%8C%EB%B3%B4%EA%B2%94%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%83%98%ED%94%8C%20%EC%9D%B8%EC%A6%9D%20%EC%9A%94%EC%B2%AD%5D%20%EC%83%81%ED%98%B8%EB%AA%85%20%EB%B0%8F%20%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D%EC%A6%9D%EC%9D%84%20%EC%B2%A8%EB%Bu%ED%95%A9%EB%8B%88%EB%8B%A4."
-                                className="py-2.5 px-3 rounded-xl bg-white border border-amber-300 text-amber-900 hover:bg-amber-100/50 font-bold text-xs text-center transition-all shadow-sm flex items-center justify-center gap-1.5"
-                            >
-                                <span>💬 문자로 등록증 사진 전송</span>
-                            </a>
+
+                            <div className="flex flex-col sm:flex-row gap-2">
+                                <a
+                                    href="tel:010-5407-5708"
+                                    className="flex-1 py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
+                                >
+                                    <span>📞 본사 직통 전화 (010-5407-5708)</span>
+                                </a>
+                                <a
+                                    href="sms:010-5407-5708?body=%5B%ED%8C%8C%EB%B3%B4%EA%B2%94%20%EC%82%AC%EC%97%85%EC%9E%90%20%EC%83%98%ED%94%8C%20%EC%9D%B8%EC%A6%9D%20%EC%9A%94%EC%B2%AD%5D%20%EC%83%81%ED%98%B8%EB%AA%85%20%EB%B0%8F%20%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D%EC%A6%9D%EC%9D%84%20%EC%B2%A8%EB%Bu%ED%95%A9%EB%8B%88%EB%8B%A4."
+                                    className="py-2.5 px-3 rounded-xl bg-white border border-amber-300 text-amber-900 hover:bg-amber-100/50 font-bold text-xs text-center transition-all shadow-sm flex items-center justify-center gap-1.5"
+                                >
+                                    <span>✉️ 문자로 사진 전송</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 

@@ -13,10 +13,14 @@ echo.
 echo [2/3] 멀티채널 마케팅 마스터 엔진 가동 (콘텐츠 패키징)...
 python scripts/marketing/parvogel_marketing_master.py
 echo.
-echo [3/3] 파보겔 마케팅 공장 가동 (네이버 블로그 자동 포스팅 및 멀티채널 배포)...
+echo [3/4] 파보겔 마케팅 공장 가동 (네이버 블로그, 바이럴 숏폼 역설계 및 멀티채널 배포)...
 py marketing_factory/core/marketing_master.py
 echo.
+echo [4/4] 숏폼 전환 퍼널 관제 대시보드 업데이트...
+py marketing_factory/core/dashboard_service.py
+echo.
 echo ========================================================
-echo   완료! 네이버 블로그 발행 및 drafts 아카이브 완료.
+echo   완료! 블로그/숏폼 3편/외주 TSV/퍼널 대시보드 갱신 완료.
+echo   대시보드 열람: marketing_factory\output\viral_funnel_dashboard.html
 echo ========================================================
 pause

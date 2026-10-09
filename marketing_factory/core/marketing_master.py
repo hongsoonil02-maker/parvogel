@@ -30,6 +30,9 @@ sys.path.insert(0, FACTORY_DIR)
 from core.content_enricher import ParvogelContentEnricher
 from core.content_formatter import ParvogelContentFormatter
 from core.video_maker import ParvogelVideoMaker
+from core.viral_shortform_engine import ViralShortformEngine
+from core.outsource_dispatcher import OutsourceDispatcher
+from core.dashboard_service import DashboardService
 from adapters.telegram_adapter import TelegramAdapter
 from adapters.discord_adapter import DiscordAdapter
 from adapters.twitter_adapter import TwitterAdapter
@@ -49,6 +52,9 @@ class ParvogelMarketingMaster:
         self.enricher = ParvogelContentEnricher()
         self.formatter = ParvogelContentFormatter()
         self.video_maker = ParvogelVideoMaker()
+        self.viral_engine = ViralShortformEngine()
+        self.outsource_dispatcher = OutsourceDispatcher()
+        self.dashboard_service = DashboardService()
         self.draft_adapter = FileDraftAdapter(DRAFTS_DIR)
         
         self.adapters = [
@@ -213,6 +219,16 @@ class ParvogelMarketingMaster:
             except Exception:
                 pass
 
+        # 5. 바이럴 숏폼 역설계 & 외주 지시서 & 대시보드 자동 업데이트
+        print("\n[STEP 5/5] Updating Viral Shortform Funnel & Analytics Dashboard...")
+        try:
+            viral_pkg = self.viral_engine.generate_full_package(narrative.get('headline', ''))
+            self.outsource_dispatcher.export_batch_spreadsheet_rows([viral_pkg])
+            dash_path = self.dashboard_service.build_html_dashboard()
+            print(f"✓ Updated Funnel Dashboard: {os.path.basename(dash_path)}")
+        except Exception as e:
+            print(f"! Viral Funnel update warning: {e}")
+
         duration = (datetime.datetime.now() - start_time).total_seconds()
         print("\n" + "=" * 65)
         print(f"🎉 [FACTORY RUN COMPLETE] Elapsed: {duration:.2f}s")
@@ -222,6 +238,18 @@ class ParvogelMarketingMaster:
         print("=" * 65)
 
         return ledger_entry
+
+    def generate_viral_shortform_campaign(self, reference_stt: str, source_url: Optional[str] = None) -> Dict[str, Any]:
+        """바이럴 숏폼 역설계 및 3종 숏폼 대본/어셈블러 패키지 생성"""
+        print("\n" + "=" * 65)
+        print("🎯 [VIRAL SHORTFORM ENGINE] Reverse Engineering & Generating 3-Track Scripts")
+        print("=" * 65)
+        pkg = self.viral_engine.generate_full_package(reference_stt, source_url)
+        pkg_file = os.path.join(OUTPUT_DIR, f"viral_campaign_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
+        with open(pkg_file, "w", encoding="utf-8") as f:
+            json.dump(pkg, f, indent=2, ensure_ascii=False)
+        print(f"✓ Saved campaign package: {pkg_file}")
+        return pkg
 
 
 if __name__ == "__main__":

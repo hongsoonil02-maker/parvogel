@@ -926,5 +926,61 @@
     "shopName": "K타운",
     "name": "윤익수",
     "address": "경상북도 경산시 와촌면 상암길37길 124"
+  },
+  {
+    "orderNum": 187,
+    "phone": "01028289779",
+    "phoneDisplay": "010-2828-9779",
+    "shopName": "강아지대공원",
+    "name": "이완구",
+    "address": "경기도 양주시 옥정동로7다길 62 대길프라자 강아지대공원"
+  },
+  {
+    "orderNum": 188,
+    "phone": "01071587801",
+    "phoneDisplay": "010-7158-7801",
+    "shopName": "유앤미펫",
+    "name": "김승기",
+    "address": "인천광역시 남동구 간석동 210-9번지"
+  },
+  {
+    "orderNum": 189,
+    "phone": "01048038787",
+    "phoneDisplay": "010-4803-8787",
+    "shopName": "슈팅가이 켄넬",
+    "name": "신연재",
+    "address": "경북 포항시 북구 청하면 미남리 72번지 C동 (슈팅가이 켄넬)"
+  },
+  {
+    "orderNum": 190,
+    "phone": "01024454445",
+    "phoneDisplay": "010-2445-4445",
+    "shopName": "탑퍼피",
+    "name": "김보송",
+    "address": "경기도 화성시 꽃내음1길 19-26 101호 TOPPUPPY"
+  },
+  {
+    "orderNum": 191,
+    "phone": "01024478264",
+    "phoneDisplay": "010-2447-8264",
+    "shopName": "청주강아지분양 리몽드켄넬",
+    "name": "이정년",
+    "address": "충청북도 청주시 청원구 율량로 38, 102호(주중동)"
+  },
+  {
+    "orderNum": 192,
+    "phone": "01037978689",
+    "phoneDisplay": "010-3797-8689",
+    "shopName": "강아지농장",
+    "name": "이인옥",
+    "address": "경기도 포천시 신북면 호국로 1887-1"
+  },
+  {
+    "orderNum": 193,
+    "phone": "01033505188",
+    "phoneDisplay": "010-3350-5188",
+    "shopName": "강해성",
+    "name": "강해성",
+    "address": "경기도 화성시 장안면 포승장안로 1290-30"
   }
 ]

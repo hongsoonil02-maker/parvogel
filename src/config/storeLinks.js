@@ -9,7 +9,15 @@ export const STORE_LINKS = {
         productUrl: 'https://smartstore.naver.com/petschury/products/13718496355',
         fallbackUrl: 'https://shopping.naver.com',
     },
+    kakao: {
+        channelChatUrl: 'https://pf.kakao.com/_rqxnJX/chat',
+        channelHomeUrl: 'https://pf.kakao.com/_rqxnJX',
+    },
 }
 
 export const getStoreUrl = (store) =>
     STORE_LINKS[store]?.productUrl || STORE_LINKS[store]?.fallbackUrl || '#'
+
+export const getKakaoChannelUrl = () =>
+    STORE_LINKS.kakao.channelChatUrl
+

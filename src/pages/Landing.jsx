@@ -763,6 +763,18 @@ const Landing = () => {
                                 </div>
                             </div>
 
+                            {/* 카카오톡 상담 바로가기 버튼 */}
+                            <a
+                                href="https://pf.kakao.com/_rqxnJX/chat"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] shadow-sm hover:scale-105 active:scale-95 transition-all border border-amber-300"
+                                aria-label="카카오톡 1:1 상담 및 샘플 신청"
+                            >
+                                <span className="text-sm">💬</span>
+                                <span>카톡 1:1 상담</span>
+                            </a>
+
                             {/* 주문 및 상담 신청 (정품 1병 무료체험 포함) 메인 버튼 */}
                             <button
                                 type="button"
@@ -785,8 +797,19 @@ const Landing = () => {
                             </button>
                         </div>
 
-                        {/* Mobile Header Right: Order & Sample Button + Menu Hamburger */}
+                        {/* Mobile Header Right: Kakao + Order & Sample Button + Menu Hamburger */}
                         <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+                            <a
+                                href="https://pf.kakao.com/_rqxnJX/chat"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-[#FEE500] text-[#191919] shadow-sm active:scale-95 transition-all border border-amber-300 shrink-0"
+                                aria-label="카톡 상담"
+                            >
+                                <span>💬</span>
+                                <span>카톡</span>
+                            </a>
+
                             <button
                                 type="button"
                                 onClick={() => {
@@ -803,7 +826,7 @@ const Landing = () => {
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md active:scale-95 transition-all border border-primary-500/40 shrink-0 whitespace-nowrap"
                             >
                                 <span>🎁</span>
-                                <span>주문·상담 신청</span>
+                                <span>주문·신청</span>
                             </button>
 
                             <button
@@ -852,6 +875,23 @@ const Landing = () => {
                                         1병 무료체험 · 도매
                                     </span>
                                 </button>
+
+                                {/* 카카오톡 1:1 상담 모바일 메뉴 버튼 */}
+                                <a
+                                    href="https://pf.kakao.com/_rqxnJX/chat"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] flex items-center justify-between shadow-sm active:scale-98 transition-all border border-amber-300"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="text-base">💬</span>
+                                        <span>카카오톡 1:1 상담 / 샘플 문의</span>
+                                    </span>
+                                    <span className="text-xs font-bold text-amber-900">
+                                        실시간 연결 ➔
+                                    </span>
+                                </a>
                                 {navItems.map(item => (
                                     <button
                                         key={item.id}
@@ -1731,6 +1771,16 @@ const Landing = () => {
                         <div>
                             <h4 className="font-bold text-slate-900 mb-4">{t('footer.support')}</h4>
                             <ul className="space-y-2 text-sm">
+                                <li>
+                                    <a
+                                        href="https://pf.kakao.com/_rqxnJX/chat"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1.5 text-amber-700 font-bold hover:text-amber-800 transition-colors"
+                                    >
+                                        <span>💬 카카오톡 1:1 상담 / 채널 추가</span>
+                                    </a>
+                                </li>
                                 <li><button type="button" onClick={() => scrollToSection('order')} className="hover:text-blue-600 transition-colors">{t('footer.support1')}</button></li>
                                 <li><a href="tel:02-6949-5708" className="hover:text-blue-600 transition-colors">{t('footer.support2')}</a></li>
                                 <li><a href="mailto:name_hyosun@naver.com" className="hover:text-blue-600 transition-colors">{t('footer.support3')}</a></li>

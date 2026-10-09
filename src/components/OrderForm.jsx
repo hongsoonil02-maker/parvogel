@@ -131,6 +131,18 @@ const OrderForm = ({
                     <p className="text-xs text-slate-700 leading-relaxed break-keep">
                         {t('order.sampleNotePetshop', '💡 펫샵/분양샵 대표님께 파보겔 200ml 정품 1병과 알림판에 사용되는 예(A4)를 인쇄 동봉하여 무료 발송해 드립니다. (발송 완료 후 송장번호 안내)')}
                     </p>
+                    <div className="mt-2.5 pt-2 border-t border-amber-200/80 flex items-center justify-between gap-2 flex-wrap">
+                        <span className="text-[11px] text-amber-950 font-bold">사업자등록증 사진만 보내면 1분 접수 완료</span>
+                        <a
+                            href="https://pf.kakao.com/_rqxnJX/chat"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs shadow-sm transition-all"
+                        >
+                            <span>💬 카카오톡으로 간편 신청</span>
+                            <span>➔</span>
+                        </a>
+                    </div>
                 </div>
             )}
             {formData.requestType === 'sample_breeder' && (
@@ -147,6 +159,18 @@ const OrderForm = ({
                     <p className="text-xs text-slate-700 leading-relaxed break-keep">
                         {t('order.sampleNoteBreeder', '💡 전문 브리더/켄넬 대표님께 자견 설사 방어용 파보겔 본품 1병과 농장 전용 번들 특가표를 무료 발송해 드립니다.')}
                     </p>
+                    <div className="mt-2.5 pt-2 border-t border-primary-200/80 flex items-center justify-between gap-2 flex-wrap">
+                        <span className="text-[11px] text-primary-950 font-bold">생산업 허가증/등록증 사진만 보내면 즉시 접수</span>
+                        <a
+                            href="https://pf.kakao.com/_rqxnJX/chat"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs shadow-sm transition-all"
+                        >
+                            <span>💬 카카오톡으로 간편 신청</span>
+                            <span>➔</span>
+                        </a>
+                    </div>
                 </div>
             )}
 

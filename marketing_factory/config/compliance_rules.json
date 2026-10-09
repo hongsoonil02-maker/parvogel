@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "category": "동물용 보조사료 (사료관리법 및 동물약품 광고 가이드라인 준수)",
+  "rules": {
+    "prohibited_terms": [
+      {
+        "banned": "100% 완치",
+        "replacement": "빠른 활력 회복",
+        "reason": "단정적 치료 보장 표현 금지"
+      },
+      {
+        "banned": "완치",
+        "replacement": "정상 컨디션 회복",
+        "reason": "사료관리법상 질병 완치 단정 불가"
+      },
+      {
+        "banned": "치료제",
+        "replacement": "장 점막 긴급 케어 보조사료",
+        "reason": "의약품 오인 방지 (보조사료 표기 필수)"
+      },
+      {
+        "banned": "치료",
+        "replacement": "장 점막 보호 및 회복 케어",
+        "reason": "질병 치료 효능 표방 제한"
+      },
+      {
+        "banned": "처방약",
+        "replacement": "원장실 급여 보조제",
+        "reason": "의약품 처방 용어 완곡 치환"
+      },
+      {
+        "banned": "처방",
+        "replacement": "급여 및 수의사 지도",
+        "reason": "수의사 처방과 보조사료 급여 구분"
+      },
+      {
+        "banned": "정식허가",
+        "replacement": "정식등록",
+        "reason": "보조사료는 '허가'가 아닌 '성분등록' 대상"
+      },
+      {
+        "banned": "부작용 제로",
+        "replacement": "체내 흡수 없는 안전한 천연 미네랄",
+        "reason": "절대적 무부작용 단언 금지"
+      },
+      {
+        "banned": "특효약",
+        "replacement": "임상 검증 솔루션",
+        "reason": "과장 광고성 표현 금지"
+      },
+      {
+        "banned": "치료 보장",
+        "replacement": "회복 보조",
+        "reason": "결과 보장성 과대 표현 금지"
+      }
+    ],
+    "mandatory_disclaimers": {
+      "b2c_dog": "* 본 제품은 동물용 정식등록 보조사료이며 질병의 예방 및 치료를 위한 의약품이 아닙니다. 응급 시 수의사 진료를 권장합니다.",
+      "b2farm_calf": "* 본 제품은 정식등록 보조사료입니다. 심각한 탈수 및 세균 감염 시 수의사의 진료 및 수액 처치와 병행을 권장합니다."
+    },
+    "scientific_claim_tokens": [
+      "초미세 나노 몬모릴로나이트",
+      "장 점막 물리적 실크 보호막 코팅",
+      "병원성 바이러스 및 세균 독소 체외 흡착 배출",
+      "1-deoxinojirimycin (DNJ)",
+      "특허균주 복합체 (Patent No. 2011B0042620.8)",
+      "포도당 및 전해질 급속 공급"
+    ],
+    "visual_asset_policy": {
+      "strict_authentic_only": true,
+      "rule_description": "모든 마케팅 콘텐츠(숏폼, 롱폼, SNS, 상세페이지)는 반드시 파보겔 공식 홈페이지에 등록된 정품 실사 사진만 사용하며 시제품 및 타제품(로타겔 등) 혼재 사진은 전면 배제한다.",
+      "approved_official_photos": [
+        "public/images/bottle_front.png",
+        "public/images/bottle_group.png",
+        "public/images/bottle_back.png"
+      ],
+      "banned_asset_patterns": [
+        "*rotagel*",
+        "*로타겔*",
+        "*parvogel-1*",
+        "*parvogel-2*",
+        "*parvogel-3*",
+        "*parvogel-4*",
+        "*시제품*"
+      ]
+    }
+  }
+}

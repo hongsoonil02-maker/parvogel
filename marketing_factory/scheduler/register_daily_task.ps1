@@ -1,7 +1,7 @@
 # PowerShell script to register Parvogel Daily Marketing Factory Task
 
 $TaskName = "Parvogel_Daily_Marketing_Factory"
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$ScriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { "C:\Users\master\parvogel_landing\marketing_factory\scheduler" }
 $BatPath = Join-Path $ScriptDir "run_marketing_factory.bat"
 $Action = New-ScheduledTaskAction -Execute $BatPath -WorkingDirectory $ScriptDir
 $Trigger = New-ScheduledTaskTrigger -Daily -At 08:30

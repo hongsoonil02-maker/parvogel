@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파보겔(PARVOGEL) 바이럴 숏폼 & D2C 전환 퍼널 관제 대시보드</title>
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.85);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --primary: #10b981;
+            --primary-glow: rgba(16, 185, 129, 0.25);
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .status-live {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .grid-kpi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .kpi-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .kpi-sub {
+            font-size: 12px;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .retention-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-card);
+        }
+        .retention-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .retention-bar-bg {
+            height: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .retention-bar-fill {
+            width: 100%;
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            border-radius: 0 0 6px 6px;
+            transition: height 0.6s ease;
+        }
+        .retention-rate {
+            font-weight: 800;
+            font-size: 15px;
+            color: #fff;
+        }
+        .retention-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .video-card {
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+        .badge-tag {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fbbf24;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #0f172a;
+        }
+        .btn-primary:hover {
+            background: #34d399;
+        }
+        .funnel-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .link-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            padding: 8px 14px;
+            border-radius: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .link-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>🐾 파보겔(PARVOGEL) 바이럴 숏폼 & D2C 퍼널 관제소</h1>
+            <p style="margin:4px 0 0 0;font-size:14px;color:var(--text-muted);">
+                한국아그로 마케팅 자동화 공장 파이프라인 업그레이드 (2026.10)
+            </p>
+        </div>
+        <div class="status-live">● 파이프라인 실시간 가동 중</div>
+    </div>
+
+    <!-- KPI 요약 -->
+    <div class="grid-kpi">
+        <div class="card">
+            <div class="kpi-title">총 숏폼 누적 조회수</div>
+            <div class="kpi-value">18,500 회</div>
+            <div class="kpi-sub">▲ 초반 3초 후킹 유지율 88.4%</div>
+        </div>
+        <div class="card">
+            <div class="kpi-title">댓글 폭탄 리드 획득 (DM)</div>
+            <div class="kpi-value">8 건</div>
+            <div class="kpi-sub">파보: 4 | 골든타임: 2 | 송아지: 2</div>
+        </div>
+        <div class="card">
+            <div class="kpi-title">스마트스토어/쿠팡 유입 클릭</div>
+            <div class="kpi-value">6 회</div>
+            <div class="kpi-sub">고정 댓글 및 자동 DM 유입률 76%</div>
+        </div>
+        <div class="card">
+            <div class="kpi-title">D2C 직접 전환 매출 (추정)</div>
+            <div class="kpi-value">₩45,000</div>
+            <div class="kpi-sub">총 1건 구매 전환 달성</div>
+        </div>
+    </div>
+
+    <!-- 시청 지속 시간 곡선 (Retention Drop-off) -->
+    <div class="section-title">📊 숏폼 구간별 시청 지속률 (Retention Curve)</div>
+    <div class="card">
+        <div class="retention-container">
+            
+            <div class="retention-step">
+                <div class="retention-bar-bg">
+                    <div class="retention-bar-fill" style="height:100.0%;"></div>
+                </div>
+                <div class="retention-rate">100.0%</div>
+                <div class="retention-label">0초 후킹 시작</div>
+            </div>
+            
+            <div class="retention-step">
+                <div class="retention-bar-bg">
+                    <div class="retention-bar-fill" style="height:88.4%;"></div>
+                </div>
+                <div class="retention-rate">88.4%</div>
+                <div class="retention-label">3초 이탈 방지</div>
+            </div>
+            
+            <div class="retention-step">
+                <div class="retention-bar-bg">
+                    <div class="retention-bar-fill" style="height:72.6%;"></div>
+                </div>
+                <div class="retention-rate">72.6%</div>
+                <div class="retention-label">15초 고통/기전</div>
+            </div>
+            
+            <div class="retention-step">
+                <div class="retention-bar-bg">
+                    <div class="retention-bar-fill" style="height:64.1%;"></div>
+                </div>
+                <div class="retention-rate">64.1%</div>
+                <div class="retention-label">30초 반전 회복</div>
+            </div>
+            
+            <div class="retention-step">
+                <div class="retention-bar-bg">
+                    <div class="retention-bar-fill" style="height:57.8%;"></div>
+                </div>
+                <div class="retention-rate">57.8%</div>
+                <div class="retention-label">완독/댓글 CTA</div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- 렌더링 완료된 숏폼 3편 쇼케이스 -->
+    <div class="section-title">🎬 자동 렌더링 숏폼 비디오 라이브러리 (Option A)</div>
+    <div class="videos-grid">
+        
+            <div class="card video-card">
+                <div class="badge-tag">버전 C (한우 송아지 농가)</div>
+                <img src="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_093231_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_C_CALF_FARM_20261007_093231.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 1.26 MB | 생성: 2026-10-07 09:32</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#f59e0b;">● 틱톡: 대기열</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_093231.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 B (수의학 기전)</div>
+                <img src="rendered_shorts/Viral_VERSION_B_DOG_MECHANISM_20261007_093216_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_B_DOG_MECHANISM_20261007_093216.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 11.18 MB | 생성: 2026-10-07 09:32</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 틱톡: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/BUHbqapzNzk" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_B_DOG_MECHANISM_20261007_093216.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/BUHbqapzNzk" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 A (반려견 감성공감)</div>
+                <img src="rendered_shorts/Viral_VERSION_A_DOG_EMPATHY_20261007_093201_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_A_DOG_EMPATHY_20261007_093201.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 8.40 MB | 생성: 2026-10-07 09:32</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 틱톡: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/R185baXjyHw" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_A_DOG_EMPATHY_20261007_093201.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/R185baXjyHw" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 C (한우 송아지 농가)</div>
+                <img src="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_085121_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_C_CALF_FARM_20261007_085121.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 2.12 MB | 생성: 2026-10-07 08:51</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#f59e0b;">● 틱톡: 대기열</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_085121.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 C (한우 송아지 농가)</div>
+                <img src="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_085018_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_C_CALF_FARM_20261007_085018.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 1.54 MB | 생성: 2026-10-07 08:50</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#f59e0b;">● 틱톡: 대기열</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_C_CALF_FARM_20261007_085018.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/vBHWWGlbssE" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 B (수의학 기전)</div>
+                <img src="rendered_shorts/Viral_VERSION_B_DOG_MECHANISM_20261007_084957_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 11.17 MB | 생성: 2026-10-07 08:50</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 틱톡: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/BUHbqapzNzk" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/BUHbqapzNzk" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card video-card">
+                <div class="badge-tag">버전 A (반려견 감성공감)</div>
+                <img src="rendered_shorts/Viral_VERSION_A_DOG_EMPATHY_20261007_084915_thumb.jpg" style="width:100%;height:220px;object-fit:cover;border-radius:8px;" alt="썸네일">
+                <div style="margin-top:12px;">
+                    <h4 style="margin:0 0 6px 0;font-size:15px;color:#f7fafc;">Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4</h4>
+                    <p style="margin:0;font-size:13px;color:#a0aec0;">용량: 8.75 MB | 생성: 2026-10-07 08:49</p>
+                    <div style="margin:8px 0;font-size:12px;display:flex;flex-direction:column;gap:3px;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;">
+                        <div><span style="color:#10b981;font-weight:bold;">● IG 릴스: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 틱톡: 발행완료 (Live)</span></div>
+                        <div><span style="color:#10b981;font-weight:bold;">● 유튜브: 발행완료 (<a href="https://youtube.com/shorts/R185baXjyHw" target="_blank" style="color:#38bdf8;text-decoration:underline;">쇼츠 링크</a>)</span></div>
+                    </div>
+                    <div style="margin-top:10px;display:flex;gap:8px;">
+                        <a href="rendered_shorts/Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4" target="_blank" class="btn btn-primary" style="flex:1;text-align:center;">▶ 원본 재생</a>
+                        <a href="https://youtube.com/shorts/R185baXjyHw" target="_blank" class="btn" style="background:#dc2626;color:white;text-align:center;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px;">🔴 쇼츠 보기</a>
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+
+    <!-- 직결 D2C 스마트스토어 및 랜딩 안내 -->
+    <div class="section-title">🔗 실시간 전환 퍼널 직결 링크 (UTM 매핑)</div>
+    <div class="card">
+        <p style="margin:0 0 12px 0;font-size:14px;color:var(--text-muted);">
+            숏폼 고정 댓글 및 인스타그램/유튜브 프로필 링크로 실시간 트래픽을 유입 중인 공식 채널:
+        </p>
+        <div class="funnel-links">
+            <a href="https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_dashboard" target="_blank" class="link-pill">
+                🟢 네이버 스마트스토어 (펫츄리) 직영몰
+            </a>
+            <a href="https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&utm_source=shorts_dashboard" target="_blank" class="link-pill">
+                🚀 쿠팡 로켓배송 즉시 구매
+            </a>
+            <a href="https://parvogel.kr/?utm_source=shorts_dashboard" target="_blank" class="link-pill">
+                🩺 파보겔 공식 반응형 랜딩페이지
+            </a>
+        </div>
+    </div>
+</body>
+</html>

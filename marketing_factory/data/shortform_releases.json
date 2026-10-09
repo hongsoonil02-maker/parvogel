@@ -1,0 +1,194 @@
+[
+  {
+    "timestamp": "2026-10-07 09:00:53",
+    "campaign": "PARVOGEL_VIRAL_SHORTS_AB_TEST",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4",
+        "trigger_keyword": "파보",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4",
+        "trigger_keyword": "골든타임",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_085121.mp4",
+        "trigger_keyword": "송아지",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-07 09:17:44",
+    "campaign": "PARVOGEL_VIRAL_SHORTS_AB_TEST",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4",
+        "trigger_keyword": "파보",
+        "platform_statuses": {
+          "YouTube_Shorts": "ERROR: ('Connection aborted.', ConnectionAbortedError(10053, '현재 연결은 사용자의 호스트 시스템의 소프트웨어의 의해 중단되었습니다'))",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4",
+        "trigger_keyword": "골든타임",
+        "platform_statuses": {
+          "YouTube_Shorts": "ERROR: ('Connection aborted.', ConnectionAbortedError(10053, '현재 연결은 사용자의 호스트 시스템의 소프트웨어의 의해 중단되었습니다'))",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_085121.mp4",
+        "trigger_keyword": "송아지",
+        "platform_statuses": {
+          "YouTube_Shorts": "ERROR: ('Connection aborted.', ConnectionAbortedError(10053, '현재 연결은 사용자의 호스트 시스템의 소프트웨어의 의해 중단되었습니다'))",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-07 09:20:34",
+    "campaign": "PARVOGEL_VIRAL_SHORTS_AB_TEST",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4",
+        "trigger_keyword": "파보",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4",
+        "trigger_keyword": "골든타임",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_085121.mp4",
+        "trigger_keyword": "송아지",
+        "platform_statuses": {
+          "YouTube_Shorts": "FAILED",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-07 09:23:03",
+    "campaign": "PARVOGEL_VIRAL_SHORTS_AB_TEST",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_084915.mp4",
+        "trigger_keyword": "파보",
+        "youtube_id": "wqqnxnyF9iI",
+        "youtube_url": "https://youtube.com/shorts/wqqnxnyF9iI",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_084957.mp4",
+        "trigger_keyword": "골든타임",
+        "youtube_id": "oJRL-EnenbY",
+        "youtube_url": "https://youtube.com/shorts/oJRL-EnenbY",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_085121.mp4",
+        "trigger_keyword": "송아지",
+        "youtube_id": "F7G_EL6tgHw",
+        "youtube_url": "https://youtube.com/shorts/F7G_EL6tgHw",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-10-07 09:34:43",
+    "campaign": "PARVOGEL_OFFICIAL_PHOTOS_RENEWAL",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화 - 정품 실사 적용본)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_093201.mp4",
+        "trigger_keyword": "파보",
+        "youtube_id": "R185baXjyHw",
+        "youtube_url": "https://youtube.com/shorts/R185baXjyHw",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트 - 정품 실사 적용본)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_093216.mp4",
+        "trigger_keyword": "골든타임",
+        "youtube_id": "BUHbqapzNzk",
+        "youtube_url": "https://youtube.com/shorts/BUHbqapzNzk",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지 - 정품 실사 적용본)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_093231.mp4",
+        "trigger_keyword": "송아지",
+        "youtube_id": "vBHWWGlbssE",
+        "youtube_url": "https://youtube.com/shorts/vBHWWGlbssE",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "SUCCESS",
+          "TikTok": "SUCCESS"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,443 @@
+{
+  "timestamp": "2026-10-07 08:42:23",
+  "reverse_analysis": {
+    "source_url": "https://youtube.com/shorts/sample_viral_123",
+    "total_char_count": 247,
+    "estimated_pacing_wpm": 77,
+    "hook_pattern": {
+      "detected_hook": "절대 강아지에게 가루약을 물에 타서 주사기로 먹이지 마세요! 제가 이거 몰라서 우리 아이 질식할 뻔하고 응급실 달려갔습니다.",
+      "hook_type": "urgency_warning",
+      "viral_trigger": "초반 3초 이탈 방지 극단적 대조 및 충격 경고"
+    },
+    "pain_amplification_pattern": {
+      "core_conflict": "많은 분들이 약 먹일 때 억지로 입 벌려서 주사기 쏘시는데 그러면 기도로 넘어가서 폐렴 옵니다. 그 대신 이 1초 펌프를 입술 옆에 대고 쓱 눌러주면 거부감 없이 핥아먹습니다....",
+      "emotional_leverage": "보호자/농가주의 상실에 대한 극심한 공포와 죄책감 자극"
+    },
+    "solution_pivot_pattern": {
+      "mechanism_reveal": "기존 상식(주사기 강제 급여, 단순 지사제)을 깨뜨리는 새로운 1초 솔루션 도입",
+      "authority_proof": "하남 사랑동물병원 김동준 원장 / 동진동물병원 정성대 원장 임상 실사"
+    },
+    "cta_pattern": {
+      "closing_action": "저희 아이도 이거 먹고 3일 만에 밥그릇 싹 비웠습니다. 지금 댓글로 '파보' 남겨주시면 동물병원 응급 대처법 가이드북 무료로 보내드립니다.",
+      "optimized_pivot": "댓글 유도(선착순/무료 가이드북) -> D2C 링크 퍼널 직결"
+    }
+  },
+  "scripts": {
+    "version_a": {
+      "version_id": "VERSION_A_DOG_EMPATHY",
+      "target": "반려견 초보 보호자 / 2~3개월령 아기 강아지 견주 (B2C)",
+      "title": "🚨 쓰러진 아기 강아지에게 절대 주사기 물리지 마세요 (7일의 기적)",
+      "running_time_sec": 42,
+      "scenes": [
+        {
+          "scene_no": 1,
+          "timecode": "00:00 - 00:04",
+          "broll_id": "BROLL_01",
+          "visual_cue": "0.6kg 아기 푸들이 옆으로 쓰러져 경련하는 위급 상황 (화면 깜빡임 + 긴급 경보음)",
+          "caption": "쓰러진 강아지에게 주사기 억지로 물리지 마세요!",
+          "narration": "급성 장염으로 쓰러진 0.6kg 아기 강아지, 제발 주사기 억지로 쑤셔 넣지 마세요!",
+          "bgm_sound": "🚨 긴급 알람 + 무거운 심장박동 사운드"
+        },
+        {
+          "scene_no": 2,
+          "timecode": "00:04 - 00:12",
+          "broll_id": "BROLL_02",
+          "visual_cue": "입원장 패드 위에 축 늘어져 물도 못 넘기는 환축 클로즈업",
+          "caption": "억지 주사기 급여 = 기도 질식과 극심한 쇼크 유발",
+          "narration": "가루약 타서 주사기로 억지로 쏘면, 기도로 넘어가 폐렴이 오거나 쇼크로 골든타임을 영영 놓칩니다.",
+          "bgm_sound": "낮은 피아노 단음"
+        },
+        {
+          "scene_no": 3,
+          "timecode": "00:12 - 00:22",
+          "broll_id": "BROLL_09",
+          "visual_cue": "파보겔 펌프 바틀을 입가에 대고 가볍게 1초 펌핑 -> 핥아먹는 모습",
+          "caption": "주사기 바늘 0%! 입가에 대고 1초 펌프 누르면 끝",
+          "narration": "이럴 땐 주사기 없이 입가에 대고 1초만 펌핑하세요. 나노 몬모릴로나이트가 짓무른 장 점막을 실크처럼 즉각 코팅해 유해 독소를 싹 잡아 배출합니다.",
+          "bgm_sound": "스위치 전환음 + 희망찬 스트링 시작"
+        },
+        {
+          "scene_no": 4,
+          "timecode": "00:22 - 00:33",
+          "broll_id": "BROLL_05",
+          "visual_cue": "3일 만에 밥그릇에 코를 박고 캔사료를 폭풍 완식하는 반전 먹방",
+          "caption": "단 3일 만에 곡기 끊겼던 아이의 기적의 폭풍 완식!",
+          "narration": "물 한 모금 못 넘기던 아이가 단 3일 만에 밥그릇까지 싹싹 핥아먹더니, 7일 만에 네 발로 씩씩하게 일어났습니다.",
+          "bgm_sound": "경쾌하고 따뜻한 어쿠스틱 리듬"
+        },
+        {
+          "scene_no": 5,
+          "timecode": "00:33 - 00:42",
+          "broll_id": "BROLL_20",
+          "visual_cue": "파보겔 실물 + 댓글창 애니메이션 강조 + 가이드북 표지 그래픽",
+          "caption": "댓글로 '파보' 남겨주시면 [1초 골든타임 대처 가이드북] 즉시 발송!",
+          "narration": "지금 댓글로 '파보'라고 남겨주시면, 수의사가 검증한 [1초 골든타임 응급 대처 가이드북]을 DM으로 즉시 보내드립니다!",
+          "bgm_sound": "팝업 알림 차임벨"
+        }
+      ],
+      "trigger_keyword": "파보",
+      "auto_reply_lead_magnet": "[파보겔 1초 골든타임 응급 대처 가이드북 PDF] 다운로드 링크: https://parvogel.kr/guidebook-puppy",
+      "pinned_comment": "🚨 55일령 아기 강아지 7일 임상 풀버전 직캠은 프로필 링크에서 확인하세요! \n🛒 쿠팡 로켓배송: https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&utm_source=shorts_a\n🟢 네이버 공식 스마트스토어: https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_a\n🎁 댓글로 '파보'를 남기시면 [응급 가이드북]을 즉시 보내드립니다."
+    },
+    "version_b": {
+      "version_id": "VERSION_B_DOG_MECHANISM",
+      "target": "원인 분석형 스마트 보호자 & 다견 가정 (B2C/B2B)",
+      "title": "🔬 단순 지사제를 먹이면 장이 더 망가지는 충격적인 이유",
+      "running_time_sec": 45,
+      "scenes": [
+        {
+          "scene_no": 1,
+          "timecode": "00:00 - 00:04",
+          "broll_id": "BROLL_18",
+          "visual_cue": "장 융모 손상 3D 그래픽 + 빨간 X 표시",
+          "caption": "설사한다고 단순 지사제 먹이면 장이 썩어 들어갑니다",
+          "narration": "강아지 설사한다고 시중 지사제부터 먹이면, 장내 독소가 밖으로 못 빠져나가 장이 마비될 수 있습니다.",
+          "bgm_sound": "⚠️ 경고 비프음"
+        },
+        {
+          "scene_no": 2,
+          "timecode": "00:04 - 00:14",
+          "broll_id": "BROLL_11",
+          "visual_cue": "하남 사랑동물병원 김동준 원장 진료실 인터뷰",
+          "caption": "장 운동 마비 NO! 독소만 자석처럼 흡착 배출해야",
+          "narration": "설사의 본질은 장 점막 붕괴와 바이러스 독소입니다. 억지로 장을 멈추는 게 아니라, 점막을 덮고 독소만 자석처럼 끌어당겨 빼내야 합니다.",
+          "bgm_sound": "진중한 다큐멘터리 브금"
+        },
+        {
+          "scene_no": 3,
+          "timecode": "00:14 - 00:26",
+          "broll_id": "BROLL_10",
+          "visual_cue": "초미세 나노 몬모릴로나이트 겔 텍스처 초근접 + 실크 코팅 메커니즘",
+          "caption": "초미세 몬모릴로나이트의 장 점막 실크 코팅 + 1-DNJ 결합 차단",
+          "narration": "파보겔의 초미세 나노 몬모릴로나이트는 비흡수성 천연 미네랄로 간과 신장 부담 없이 장벽에 실크 보호막을 칩니다. 특허받은 1-DNJ가 바이러스 증식을 방어하죠.",
+          "bgm_sound": "신뢰감 있는 테크 사운드"
+        },
+        {
+          "scene_no": 4,
+          "timecode": "00:26 - 00:36",
+          "broll_id": "BROLL_07",
+          "visual_cue": "진료대 위에서 씩씩하게 걸어 다니며 꼬리 치는 정상 컨디션 회복 퇴원 모습",
+          "caption": "수액·약물 없이 오직 물리적 점막 코팅만으로 회복!",
+          "narration": "실제 동물병원 임상에서도 수액을 배제하고 단독 급여하여 전신 경련 환축을 7일 만에 정상 퇴원시켰습니다.",
+          "bgm_sound": "승리의 브라스 코드"
+        },
+        {
+          "scene_no": 5,
+          "timecode": "00:36 - 00:45",
+          "broll_id": "BROLL_20",
+          "visual_cue": "파보겔 바틀 + 하단 댓글 키워드 '골든타임'",
+          "caption": "댓글로 '골든타임' 남겨주시면 [장 점막 재생 매뉴얼] 무료 전송!",
+          "narration": "우리 아이 장 점막을 살리는 법, 댓글에 '골든타임'이라고 적어주시면 수의학 메커니즘 리포트를 즉시 보내드립니다.",
+          "bgm_sound": "징글 엔딩"
+        }
+      ],
+      "trigger_keyword": "골든타임",
+      "auto_reply_lead_magnet": "[수의사 공인 장 점막 재생 & 탈수 극복 리포트] 다운로드 링크: https://parvogel.kr/report-mechanism",
+      "pinned_comment": "🔬 나노 몬모릴로나이트 MOA 및 동물병원 임상 논문 요약집 무료 배포 중! \n🟢 네이버 공식 스마트스토어(정품): https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_b\n🚀 쿠팡 당일 로켓: https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&utm_source=shorts_b\n💬 댓글로 '골든타임'을 남겨주시면 전문 리포트를 즉시 보내드립니다."
+    },
+    "version_c": {
+      "version_id": "VERSION_C_CALF_FARM",
+      "target": "전국 한우 번식우 농가 & 낙농 농가 대표님 (B2Farm)",
+      "title": "🐄 신생 송아지 설사 한 번에 300만원 날릴 뻔했던 한우 농가 실화",
+      "running_time_sec": 48,
+      "scenes": [
+        {
+          "scene_no": 1,
+          "timecode": "00:00 - 00:05",
+          "broll_id": "BROLL_14",
+          "visual_cue": "우사 바닥에 주저앉아 배앓이로 신음하는 갓 태어난 송아지 샷",
+          "caption": "신생 송아지 흰똥·물설사, 하루 만에 300만원 날아갑니다!",
+          "narration": "갓 태어난 송아지가 흰똥 싸고 젖 못 빨고 주저앉으면, 하루 만에 300만 원짜리 밑소 날아가는 거 순식간입니다.",
+          "bgm_sound": "🚨 둔탁한 경고 드럼비트"
+        },
+        {
+          "scene_no": 2,
+          "timecode": "00:05 - 00:15",
+          "broll_id": "BROLL_17",
+          "visual_cue": "동진동물병원 정성대 원장 통화/임상 차트 그래픽",
+          "caption": "주사기 거부하는 송아지, 위산 산도 망가지면 폐사 직행",
+          "narration": "억지로 쓴 가루약 먹이려다 송아지 스트레스받고 토하면 끝입니다. 송아지 설사는 위산 산도가 깨지고 배앓이가 심해서 젖을 못 빠는 겁니다.",
+          "bgm_sound": "현장감 있는 우사 배경음"
+        },
+        {
+          "scene_no": 3,
+          "timecode": "00:15 - 00:27",
+          "broll_id": "BROLL_15",
+          "visual_cue": "바쁜 농가주가 우사에서 송아지 입안에 파보겔 1초 펌프 직투여",
+          "caption": "우수한 기호성! 입가에 1초 펌핑하면 꿀꺽!",
+          "narration": "동진동물병원 정성대 원장님이 검증한 비결! 1초 펌프로 입안에 쓱 쏴주면, 기호성이 좋아 꿀꺽 삼키고 즉각 위내 산도를 잡아 배앓이가 싹 가라앉습니다.",
+          "bgm_sound": "기운차고 묵직한 베이스 전개"
+        },
+        {
+          "scene_no": 4,
+          "timecode": "00:27 - 00:38",
+          "broll_id": "BROLL_16",
+          "visual_cue": "다음 날 아침 벌떡 일어나 어미소 젖을 힘차게 빠는 송아지",
+          "caption": "다음 날 아침! 벌떡 일어나 어미 젖을 힘차게 빱니다",
+          "narration": "실제 한우 농가에서 투여하자마자 구토가 멎고 배앓이가 풀리더니, 다음 날 아침 벌떡 일어나 젖을 힘차게 빨았습니다.",
+          "bgm_sound": "활기찬 통기타 리듬"
+        },
+        {
+          "scene_no": 5,
+          "timecode": "00:38 - 00:48",
+          "broll_id": "BROLL_20",
+          "visual_cue": "파보겔 대용량 패키지 + 댓글 키워드 '송아지' 자막",
+          "caption": "댓글로 '송아지' 남기시면 [송아지 설사 폐사율 0% 현장 매뉴얼] 즉시 발송!",
+          "narration": "설사철 폐사 없는 번식우 우사 관리법, 지금 댓글로 '송아지'라고 남겨주시면 현장 응급 처치 매뉴얼을 무료로 보내드립니다!",
+          "bgm_sound": "도입부 징글"
+        }
+      ],
+      "trigger_keyword": "송아지",
+      "auto_reply_lead_magnet": "[전국 한우 번식우 농가 필수: 신생 송아지 설사 폐사율 0% 현장 매뉴얼] 무료 다운로드: https://parvogel.kr/farm-manual",
+      "pinned_comment": "🐄 전국 한우·낙농 농가 현장 검증! 송아지 배앓이 완화 & 위내 산도 안정 보조사료 [파보겔] \n🟢 한국아그로 공식 네이버 스마트스토어: https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_calf\n🏢 산업동물 대량 납품 및 대리점 문의: 전국 엠오바이오(MOBIO) 총판 연계\n💬 댓글로 '송아지'를 남기시면 [현장 폐사 방지 매뉴얼 PDF]를 즉시 보내드립니다."
+    }
+  },
+  "assembler_payloads": {
+    "version_a": {
+      "option_a_render": {
+        "mode": "OPTION_A_AUTO_RENDER",
+        "version_id": "VERSION_A_DOG_EMPATHY",
+        "resolution": "1080x1920 (9:16)",
+        "tts_spec": {
+          "engine": "OpenAI TTS or Edge-TTS",
+          "voice_ko": "ko-KR-SunHiNeural (자연스럽고 긴박한 톤) or alloy",
+          "speed": 1.15
+        },
+        "timeline": [
+          {
+            "scene_index": 1,
+            "timecode": "00:00 - 00:04",
+            "broll_id": "BROLL_01",
+            "source_file": "public/assets/parvogel_case_01_seizure.mp4",
+            "duration_sec": 4.0,
+            "visual_cue": "0.6kg 아기 푸들이 옆으로 쓰러져 경련하는 위급 상황 (화면 깜빡임 + 긴급 경보음)",
+            "caption_text": "쓰러진 강아지에게 주사기 억지로 물리지 마세요!",
+            "narration_text": "급성 장염으로 쓰러진 0.6kg 아기 강아지, 제발 주사기 억지로 쑤셔 넣지 마세요!",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 2,
+            "timecode": "00:04 - 00:12",
+            "broll_id": "BROLL_02",
+            "source_file": "public/assets/parvogel_case_02_lethargy.mp4",
+            "duration_sec": 5.0,
+            "visual_cue": "입원장 패드 위에 축 늘어져 물도 못 넘기는 환축 클로즈업",
+            "caption_text": "억지 주사기 급여 = 기도 질식과 극심한 쇼크 유발",
+            "narration_text": "가루약 타서 주사기로 억지로 쏘면, 기도로 넘어가 폐렴이 오거나 쇼크로 골든타임을 영영 놓칩니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 3,
+            "timecode": "00:12 - 00:22",
+            "broll_id": "BROLL_09",
+            "source_file": "public/assets/parvogel-2.jpg",
+            "duration_sec": 3.0,
+            "visual_cue": "파보겔 펌프 바틀을 입가에 대고 가볍게 1초 펌핑 -> 핥아먹는 모습",
+            "caption_text": "주사기 바늘 0%! 입가에 대고 1초 펌프 누르면 끝",
+            "narration_text": "이럴 땐 주사기 없이 입가에 대고 1초만 펌핑하세요. 나노 몬모릴로나이트가 짓무른 장 점막을 실크처럼 즉각 코팅해 유해 독소를 싹 잡아 배출합니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 4,
+            "timecode": "00:22 - 00:33",
+            "broll_id": "BROLL_05",
+            "source_file": "public/assets/parvogel_case_05_eating.mp4",
+            "duration_sec": 6.0,
+            "visual_cue": "3일 만에 밥그릇에 코를 박고 캔사료를 폭풍 완식하는 반전 먹방",
+            "caption_text": "단 3일 만에 곡기 끊겼던 아이의 기적의 폭풍 완식!",
+            "narration_text": "물 한 모금 못 넘기던 아이가 단 3일 만에 밥그릇까지 싹싹 핥아먹더니, 7일 만에 네 발로 씩씩하게 일어났습니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 5,
+            "timecode": "00:33 - 00:42",
+            "broll_id": "BROLL_20",
+            "source_file": "public/assets/parvogel-4.jpg",
+            "duration_sec": 4.0,
+            "visual_cue": "파보겔 실물 + 댓글창 애니메이션 강조 + 가이드북 표지 그래픽",
+            "caption_text": "댓글로 '파보' 남겨주시면 [1초 골든타임 대처 가이드북] 즉시 발송!",
+            "narration_text": "지금 댓글로 '파보'라고 남겨주시면, 수의사가 검증한 [1초 골든타임 응급 대처 가이드북]을 DM으로 즉시 보내드립니다!",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          }
+        ],
+        "full_narration_script": "급성 장염으로 쓰러진 0.6kg 아기 강아지, 제발 주사기 억지로 쑤셔 넣지 마세요! 가루약 타서 주사기로 억지로 쏘면, 기도로 넘어가 폐렴이 오거나 쇼크로 골든타임을 영영 놓칩니다. 이럴 땐 주사기 없이 입가에 대고 1초만 펌핑하세요. 나노 몬모릴로나이트가 짓무른 장 점막을 실크처럼 즉각 코팅해 유해 독소를 싹 잡아 배출합니다. 물 한 모금 못 넘기던 아이가 단 3일 만에 밥그릇까지 싹싹 핥아먹더니, 7일 만에 네 발로 씩씩하게 일어났습니다. 지금 댓글로 '파보'라고 남겨주시면, 수의사가 검증한 [1초 골든타임 응급 대처 가이드북]을 DM으로 즉시 보내드립니다!",
+        "generated_srt": "1\n00:00:00,000 --> 00:00:04,000\n쓰러진 강아지에게 주사기 억지로 물리지 마세요!\n\n2\n00:00:04,000 --> 00:00:12,000\n억지 주사기 급여 = 기도 질식과 극심한 쇼크 유발\n\n3\n00:00:12,000 --> 00:00:22,000\n주사기 바늘 0%! 입가에 대고 1초 펌프 누르면 끝\n\n4\n00:00:22,000 --> 00:00:33,000\n단 3일 만에 곡기 끊겼던 아이의 기적의 폭풍 완식!\n\n5\n00:00:33,000 --> 00:00:42,000\n댓글로 '파보' 남겨주시면 [1초 골든타임 대처 가이드북] 즉시 발송!\n"
+      },
+      "option_b_outsource": {
+        "mode": "OPTION_B_OUTSOURCE_WEBHOOK",
+        "target_system": [
+          "Google_Sheets",
+          "Notion_Database"
+        ],
+        "unit_price_krw": 15000,
+        "title": "🚨 쓰러진 아기 강아지에게 절대 주사기 물리지 마세요 (7일의 기적)",
+        "trigger_keyword": "파보",
+        "work_order_markdown": "# 🎬 [외주 작업 지시서] 파보겔 숏폼 편집 (🚨 쓰러진 아기 강아지에게 절대 주사기 물리지 마세요 (7일의 기적))\n- **의뢰 단가**: 편당 15,000원 ~ 20,000원\n- **규격**: 세로 9:16 (1080 x 1920), 60fps\n- **목표 시간**: 42초 내외\n- **핵심 요구사항**:\n  1. 초반 3초에 이탈하지 않도록 텍스트 강조 애니메이션 및 깜빡임 효과 적용\n  2. 주사기 거부 화면과 1초 펌프 급여 화면의 명확한 대비(Before vs After) 연출\n  3. 마지막 5초에 댓글 유도 키워드 ('파보') 박스 팝업 강조\n- **씬별 세부 가이드**:\n- **[00:00 - 00:04] 씬 1** (BROLL_01)\n  * 🎬 화면: 0.6kg 아기 푸들이 옆으로 쓰러져 경련하는 위급 상황 (화면 깜빡임 + 긴급 경보음)\n  * 📁 원본 파일 경로: `public/assets/parvogel_case_01_seizure.mp4`\n  * 💬 화면 자막: **쓰러진 강아지에게 주사기 억지로 물리지 마세요!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"급성 장염으로 쓰러진 0.6kg 아기 강아지, 제발 주사기 억지로 쑤셔 넣지 마세요!\"\n  * 🎵 효과음/BGM: 🚨 긴급 알람 + 무거운 심장박동 사운드\n- **[00:04 - 00:12] 씬 2** (BROLL_02)\n  * 🎬 화면: 입원장 패드 위에 축 늘어져 물도 못 넘기는 환축 클로즈업\n  * 📁 원본 파일 경로: `public/assets/parvogel_case_02_lethargy.mp4`\n  * 💬 화면 자막: **억지 주사기 급여 = 기도 질식과 극심한 쇼크 유발** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"가루약 타서 주사기로 억지로 쏘면, 기도로 넘어가 폐렴이 오거나 쇼크로 골든타임을 영영 놓칩니다.\"\n  * 🎵 효과음/BGM: 낮은 피아노 단음\n- **[00:12 - 00:22] 씬 3** (BROLL_09)\n  * 🎬 화면: 파보겔 펌프 바틀을 입가에 대고 가볍게 1초 펌핑 -> 핥아먹는 모습\n  * 📁 원본 파일 경로: `public/assets/parvogel-2.jpg`\n  * 💬 화면 자막: **주사기 바늘 0%! 입가에 대고 1초 펌프 누르면 끝** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"이럴 땐 주사기 없이 입가에 대고 1초만 펌핑하세요. 나노 몬모릴로나이트가 짓무른 장 점막을 실크처럼 즉각 코팅해 유해 독소를 싹 잡아 배출합니다.\"\n  * 🎵 효과음/BGM: 스위치 전환음 + 희망찬 스트링 시작\n- **[00:22 - 00:33] 씬 4** (BROLL_05)\n  * 🎬 화면: 3일 만에 밥그릇에 코를 박고 캔사료를 폭풍 완식하는 반전 먹방\n  * 📁 원본 파일 경로: `public/assets/parvogel_case_05_eating.mp4`\n  * 💬 화면 자막: **단 3일 만에 곡기 끊겼던 아이의 기적의 폭풍 완식!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"물 한 모금 못 넘기던 아이가 단 3일 만에 밥그릇까지 싹싹 핥아먹더니, 7일 만에 네 발로 씩씩하게 일어났습니다.\"\n  * 🎵 효과음/BGM: 경쾌하고 따뜻한 어쿠스틱 리듬\n- **[00:33 - 00:42] 씬 5** (BROLL_20)\n  * 🎬 화면: 파보겔 실물 + 댓글창 애니메이션 강조 + 가이드북 표지 그래픽\n  * 📁 원본 파일 경로: `public/assets/parvogel-4.jpg`\n  * 💬 화면 자막: **댓글로 '파보' 남겨주시면 [1초 골든타임 대처 가이드북] 즉시 발송!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"지금 댓글로 '파보'라고 남겨주시면, 수의사가 검증한 [1초 골든타임 응급 대처 가이드북]을 DM으로 즉시 보내드립니다!\"\n  * 🎵 효과음/BGM: 팝업 알림 차임벨\n\n- **영상 업로드 시 고정 댓글 복사본**:\n🚨 55일령 아기 강아지 7일 임상 풀버전 직캠은 프로필 링크에서 확인하세요! \n🛒 쿠팡 로켓배송: https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&utm_source=shorts_a\n🟢 네이버 공식 스마트스토어: https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_a\n🎁 댓글로 '파보'를 남기시면 [응급 가이드북]을 즉시 보내드립니다.\n"
+      }
+    },
+    "version_b": {
+      "option_a_render": {
+        "mode": "OPTION_A_AUTO_RENDER",
+        "version_id": "VERSION_B_DOG_MECHANISM",
+        "resolution": "1080x1920 (9:16)",
+        "tts_spec": {
+          "engine": "OpenAI TTS or Edge-TTS",
+          "voice_ko": "ko-KR-SunHiNeural (자연스럽고 긴박한 톤) or alloy",
+          "speed": 1.15
+        },
+        "timeline": [
+          {
+            "scene_index": 1,
+            "timecode": "00:00 - 00:04",
+            "broll_id": "BROLL_18",
+            "source_file": "public/assets/로타겔,파보겔 인포그래픽.pdf",
+            "duration_sec": 4.0,
+            "visual_cue": "장 융모 손상 3D 그래픽 + 빨간 X 표시",
+            "caption_text": "설사한다고 단순 지사제 먹이면 장이 썩어 들어갑니다",
+            "narration_text": "강아지 설사한다고 시중 지사제부터 먹이면, 장내 독소가 밖으로 못 빠져나가 장이 마비될 수 있습니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 2,
+            "timecode": "00:04 - 00:14",
+            "broll_id": "BROLL_11",
+            "source_file": "public/assets/Video Project 6_final.mp4",
+            "duration_sec": 5.0,
+            "visual_cue": "하남 사랑동물병원 김동준 원장 진료실 인터뷰",
+            "caption_text": "장 운동 마비 NO! 독소만 자석처럼 흡착 배출해야",
+            "narration_text": "설사의 본질은 장 점막 붕괴와 바이러스 독소입니다. 억지로 장을 멈추는 게 아니라, 점막을 덮고 독소만 자석처럼 끌어당겨 빼내야 합니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 3,
+            "timecode": "00:14 - 00:26",
+            "broll_id": "BROLL_10",
+            "source_file": "public/assets/parvogel-3.jpg",
+            "duration_sec": 3.0,
+            "visual_cue": "초미세 나노 몬모릴로나이트 겔 텍스처 초근접 + 실크 코팅 메커니즘",
+            "caption_text": "초미세 몬모릴로나이트의 장 점막 실크 코팅 + 1-DNJ 결합 차단",
+            "narration_text": "파보겔의 초미세 나노 몬모릴로나이트는 비흡수성 천연 미네랄로 간과 신장 부담 없이 장벽에 실크 보호막을 칩니다. 특허받은 1-DNJ가 바이러스 증식을 방어하죠.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 4,
+            "timecode": "00:26 - 00:36",
+            "broll_id": "BROLL_07",
+            "source_file": "public/assets/김동준원장_동영상 6-1.mp4",
+            "duration_sec": 5.0,
+            "visual_cue": "진료대 위에서 씩씩하게 걸어 다니며 꼬리 치는 정상 컨디션 회복 퇴원 모습",
+            "caption_text": "수액·약물 없이 오직 물리적 점막 코팅만으로 회복!",
+            "narration_text": "실제 동물병원 임상에서도 수액을 배제하고 단독 급여하여 전신 경련 환축을 7일 만에 정상 퇴원시켰습니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 5,
+            "timecode": "00:36 - 00:45",
+            "broll_id": "BROLL_20",
+            "source_file": "public/assets/parvogel-4.jpg",
+            "duration_sec": 4.0,
+            "visual_cue": "파보겔 바틀 + 하단 댓글 키워드 '골든타임'",
+            "caption_text": "댓글로 '골든타임' 남겨주시면 [장 점막 재생 매뉴얼] 무료 전송!",
+            "narration_text": "우리 아이 장 점막을 살리는 법, 댓글에 '골든타임'이라고 적어주시면 수의학 메커니즘 리포트를 즉시 보내드립니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          }
+        ],
+        "full_narration_script": "강아지 설사한다고 시중 지사제부터 먹이면, 장내 독소가 밖으로 못 빠져나가 장이 마비될 수 있습니다. 설사의 본질은 장 점막 붕괴와 바이러스 독소입니다. 억지로 장을 멈추는 게 아니라, 점막을 덮고 독소만 자석처럼 끌어당겨 빼내야 합니다. 파보겔의 초미세 나노 몬모릴로나이트는 비흡수성 천연 미네랄로 간과 신장 부담 없이 장벽에 실크 보호막을 칩니다. 특허받은 1-DNJ가 바이러스 증식을 방어하죠. 실제 동물병원 임상에서도 수액을 배제하고 단독 급여하여 전신 경련 환축을 7일 만에 정상 퇴원시켰습니다. 우리 아이 장 점막을 살리는 법, 댓글에 '골든타임'이라고 적어주시면 수의학 메커니즘 리포트를 즉시 보내드립니다.",
+        "generated_srt": "1\n00:00:00,000 --> 00:00:04,000\n설사한다고 단순 지사제 먹이면 장이 썩어 들어갑니다\n\n2\n00:00:04,000 --> 00:00:14,000\n장 운동 마비 NO! 독소만 자석처럼 흡착 배출해야\n\n3\n00:00:14,000 --> 00:00:26,000\n초미세 몬모릴로나이트의 장 점막 실크 코팅 + 1-DNJ 결합 차단\n\n4\n00:00:26,000 --> 00:00:36,000\n수액·약물 없이 오직 물리적 점막 코팅만으로 회복!\n\n5\n00:00:36,000 --> 00:00:45,000\n댓글로 '골든타임' 남겨주시면 [장 점막 재생 매뉴얼] 무료 전송!\n"
+      },
+      "option_b_outsource": {
+        "mode": "OPTION_B_OUTSOURCE_WEBHOOK",
+        "target_system": [
+          "Google_Sheets",
+          "Notion_Database"
+        ],
+        "unit_price_krw": 15000,
+        "title": "🔬 단순 지사제를 먹이면 장이 더 망가지는 충격적인 이유",
+        "trigger_keyword": "골든타임",
+        "work_order_markdown": "# 🎬 [외주 작업 지시서] 파보겔 숏폼 편집 (🔬 단순 지사제를 먹이면 장이 더 망가지는 충격적인 이유)\n- **의뢰 단가**: 편당 15,000원 ~ 20,000원\n- **규격**: 세로 9:16 (1080 x 1920), 60fps\n- **목표 시간**: 45초 내외\n- **핵심 요구사항**:\n  1. 초반 3초에 이탈하지 않도록 텍스트 강조 애니메이션 및 깜빡임 효과 적용\n  2. 주사기 거부 화면과 1초 펌프 급여 화면의 명확한 대비(Before vs After) 연출\n  3. 마지막 5초에 댓글 유도 키워드 ('골든타임') 박스 팝업 강조\n- **씬별 세부 가이드**:\n- **[00:00 - 00:04] 씬 1** (BROLL_18)\n  * 🎬 화면: 장 융모 손상 3D 그래픽 + 빨간 X 표시\n  * 📁 원본 파일 경로: `public/assets/로타겔,파보겔 인포그래픽.pdf`\n  * 💬 화면 자막: **설사한다고 단순 지사제 먹이면 장이 썩어 들어갑니다** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"강아지 설사한다고 시중 지사제부터 먹이면, 장내 독소가 밖으로 못 빠져나가 장이 마비될 수 있습니다.\"\n  * 🎵 효과음/BGM: ⚠️ 경고 비프음\n- **[00:04 - 00:14] 씬 2** (BROLL_11)\n  * 🎬 화면: 하남 사랑동물병원 김동준 원장 진료실 인터뷰\n  * 📁 원본 파일 경로: `public/assets/Video Project 6_final.mp4`\n  * 💬 화면 자막: **장 운동 마비 NO! 독소만 자석처럼 흡착 배출해야** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"설사의 본질은 장 점막 붕괴와 바이러스 독소입니다. 억지로 장을 멈추는 게 아니라, 점막을 덮고 독소만 자석처럼 끌어당겨 빼내야 합니다.\"\n  * 🎵 효과음/BGM: 진중한 다큐멘터리 브금\n- **[00:14 - 00:26] 씬 3** (BROLL_10)\n  * 🎬 화면: 초미세 나노 몬모릴로나이트 겔 텍스처 초근접 + 실크 코팅 메커니즘\n  * 📁 원본 파일 경로: `public/assets/parvogel-3.jpg`\n  * 💬 화면 자막: **초미세 몬모릴로나이트의 장 점막 실크 코팅 + 1-DNJ 결합 차단** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"파보겔의 초미세 나노 몬모릴로나이트는 비흡수성 천연 미네랄로 간과 신장 부담 없이 장벽에 실크 보호막을 칩니다. 특허받은 1-DNJ가 바이러스 증식을 방어하죠.\"\n  * 🎵 효과음/BGM: 신뢰감 있는 테크 사운드\n- **[00:26 - 00:36] 씬 4** (BROLL_07)\n  * 🎬 화면: 진료대 위에서 씩씩하게 걸어 다니며 꼬리 치는 정상 컨디션 회복 퇴원 모습\n  * 📁 원본 파일 경로: `public/assets/김동준원장_동영상 6-1.mp4`\n  * 💬 화면 자막: **수액·약물 없이 오직 물리적 점막 코팅만으로 회복!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"실제 동물병원 임상에서도 수액을 배제하고 단독 급여하여 전신 경련 환축을 7일 만에 정상 퇴원시켰습니다.\"\n  * 🎵 효과음/BGM: 승리의 브라스 코드\n- **[00:36 - 00:45] 씬 5** (BROLL_20)\n  * 🎬 화면: 파보겔 바틀 + 하단 댓글 키워드 '골든타임'\n  * 📁 원본 파일 경로: `public/assets/parvogel-4.jpg`\n  * 💬 화면 자막: **댓글로 '골든타임' 남겨주시면 [장 점막 재생 매뉴얼] 무료 전송!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"우리 아이 장 점막을 살리는 법, 댓글에 '골든타임'이라고 적어주시면 수의학 메커니즘 리포트를 즉시 보내드립니다.\"\n  * 🎵 효과음/BGM: 징글 엔딩\n\n- **영상 업로드 시 고정 댓글 복사본**:\n🔬 나노 몬모릴로나이트 MOA 및 동물병원 임상 논문 요약집 무료 배포 중! \n🟢 네이버 공식 스마트스토어(정품): https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_b\n🚀 쿠팡 당일 로켓: https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090&utm_source=shorts_b\n💬 댓글로 '골든타임'을 남겨주시면 전문 리포트를 즉시 보내드립니다.\n"
+      }
+    },
+    "version_c": {
+      "option_a_render": {
+        "mode": "OPTION_A_AUTO_RENDER",
+        "version_id": "VERSION_C_CALF_FARM",
+        "resolution": "1080x1920 (9:16)",
+        "tts_spec": {
+          "engine": "OpenAI TTS or Edge-TTS",
+          "voice_ko": "ko-KR-SunHiNeural (자연스럽고 긴박한 톤) or alloy",
+          "speed": 1.15
+        },
+        "timeline": [
+          {
+            "scene_index": 1,
+            "timecode": "00:00 - 00:05",
+            "broll_id": "BROLL_14",
+            "source_file": "public/assets/rotagel-parvogel-1.jpg",
+            "duration_sec": 4.0,
+            "visual_cue": "우사 바닥에 주저앉아 배앓이로 신음하는 갓 태어난 송아지 샷",
+            "caption_text": "신생 송아지 흰똥·물설사, 하루 만에 300만원 날아갑니다!",
+            "narration_text": "갓 태어난 송아지가 흰똥 싸고 젖 못 빨고 주저앉으면, 하루 만에 300만 원짜리 밑소 날아가는 거 순식간입니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 2,
+            "timecode": "00:05 - 00:15",
+            "broll_id": "BROLL_17",
+            "source_file": "public/assets/jeongseongdae-call.m4a",
+            "duration_sec": 5.0,
+            "visual_cue": "동진동물병원 정성대 원장 통화/임상 차트 그래픽",
+            "caption_text": "주사기 거부하는 송아지, 위산 산도 망가지면 폐사 직행",
+            "narration_text": "억지로 쓴 가루약 먹이려다 송아지 스트레스받고 토하면 끝입니다. 송아지 설사는 위산 산도가 깨지고 배앓이가 심해서 젖을 못 빠는 겁니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 3,
+            "timecode": "00:15 - 00:27",
+            "broll_id": "BROLL_15",
+            "source_file": "public/assets/rotagel-parvogel-2.jpg",
+            "duration_sec": 4.0,
+            "visual_cue": "바쁜 농가주가 우사에서 송아지 입안에 파보겔 1초 펌프 직투여",
+            "caption_text": "우수한 기호성! 입가에 1초 펌핑하면 꿀꺽!",
+            "narration_text": "동진동물병원 정성대 원장님이 검증한 비결! 1초 펌프로 입안에 쓱 쏴주면, 기호성이 좋아 꿀꺽 삼키고 즉각 위내 산도를 잡아 배앓이가 싹 가라앉습니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 4,
+            "timecode": "00:27 - 00:38",
+            "broll_id": "BROLL_16",
+            "source_file": "public/assets/rotagel-parvogel-3.jpg",
+            "duration_sec": 5.0,
+            "visual_cue": "다음 날 아침 벌떡 일어나 어미소 젖을 힘차게 빠는 송아지",
+            "caption_text": "다음 날 아침! 벌떡 일어나 어미 젖을 힘차게 빱니다",
+            "narration_text": "실제 한우 농가에서 투여하자마자 구토가 멎고 배앓이가 풀리더니, 다음 날 아침 벌떡 일어나 젖을 힘차게 빨았습니다.",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          },
+          {
+            "scene_index": 5,
+            "timecode": "00:38 - 00:48",
+            "broll_id": "BROLL_20",
+            "source_file": "public/assets/parvogel-4.jpg",
+            "duration_sec": 4.0,
+            "visual_cue": "파보겔 대용량 패키지 + 댓글 키워드 '송아지' 자막",
+            "caption_text": "댓글로 '송아지' 남기시면 [송아지 설사 폐사율 0% 현장 매뉴얼] 즉시 발송!",
+            "narration_text": "설사철 폐사 없는 번식우 우사 관리법, 지금 댓글로 '송아지'라고 남겨주시면 현장 응급 처치 매뉴얼을 무료로 보내드립니다!",
+            "ffmpeg_filter_snippet": "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,drawbox=y=1600:w=1080:h=280:color=black@0.85:t=fill"
+          }
+        ],
+        "full_narration_script": "갓 태어난 송아지가 흰똥 싸고 젖 못 빨고 주저앉으면, 하루 만에 300만 원짜리 밑소 날아가는 거 순식간입니다. 억지로 쓴 가루약 먹이려다 송아지 스트레스받고 토하면 끝입니다. 송아지 설사는 위산 산도가 깨지고 배앓이가 심해서 젖을 못 빠는 겁니다. 동진동물병원 정성대 원장님이 검증한 비결! 1초 펌프로 입안에 쓱 쏴주면, 기호성이 좋아 꿀꺽 삼키고 즉각 위내 산도를 잡아 배앓이가 싹 가라앉습니다. 실제 한우 농가에서 투여하자마자 구토가 멎고 배앓이가 풀리더니, 다음 날 아침 벌떡 일어나 젖을 힘차게 빨았습니다. 설사철 폐사 없는 번식우 우사 관리법, 지금 댓글로 '송아지'라고 남겨주시면 현장 응급 처치 매뉴얼을 무료로 보내드립니다!",
+        "generated_srt": "1\n00:00:00,000 --> 00:00:05,000\n신생 송아지 흰똥·물설사, 하루 만에 300만원 날아갑니다!\n\n2\n00:00:05,000 --> 00:00:15,000\n주사기 거부하는 송아지, 위산 산도 망가지면 폐사 직행\n\n3\n00:00:15,000 --> 00:00:27,000\n우수한 기호성! 입가에 1초 펌핑하면 꿀꺽!\n\n4\n00:00:27,000 --> 00:00:38,000\n다음 날 아침! 벌떡 일어나 어미 젖을 힘차게 빱니다\n\n5\n00:00:38,000 --> 00:00:48,000\n댓글로 '송아지' 남기시면 [송아지 설사 폐사율 0% 현장 매뉴얼] 즉시 발송!\n"
+      },
+      "option_b_outsource": {
+        "mode": "OPTION_B_OUTSOURCE_WEBHOOK",
+        "target_system": [
+          "Google_Sheets",
+          "Notion_Database"
+        ],
+        "unit_price_krw": 15000,
+        "title": "🐄 신생 송아지 설사 한 번에 300만원 날릴 뻔했던 한우 농가 실화",
+        "trigger_keyword": "송아지",
+        "work_order_markdown": "# 🎬 [외주 작업 지시서] 파보겔 숏폼 편집 (🐄 신생 송아지 설사 한 번에 300만원 날릴 뻔했던 한우 농가 실화)\n- **의뢰 단가**: 편당 15,000원 ~ 20,000원\n- **규격**: 세로 9:16 (1080 x 1920), 60fps\n- **목표 시간**: 48초 내외\n- **핵심 요구사항**:\n  1. 초반 3초에 이탈하지 않도록 텍스트 강조 애니메이션 및 깜빡임 효과 적용\n  2. 주사기 거부 화면과 1초 펌프 급여 화면의 명확한 대비(Before vs After) 연출\n  3. 마지막 5초에 댓글 유도 키워드 ('송아지') 박스 팝업 강조\n- **씬별 세부 가이드**:\n- **[00:00 - 00:05] 씬 1** (BROLL_14)\n  * 🎬 화면: 우사 바닥에 주저앉아 배앓이로 신음하는 갓 태어난 송아지 샷\n  * 📁 원본 파일 경로: `public/assets/rotagel-parvogel-1.jpg`\n  * 💬 화면 자막: **신생 송아지 흰똥·물설사, 하루 만에 300만원 날아갑니다!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"갓 태어난 송아지가 흰똥 싸고 젖 못 빨고 주저앉으면, 하루 만에 300만 원짜리 밑소 날아가는 거 순식간입니다.\"\n  * 🎵 효과음/BGM: 🚨 둔탁한 경고 드럼비트\n- **[00:05 - 00:15] 씬 2** (BROLL_17)\n  * 🎬 화면: 동진동물병원 정성대 원장 통화/임상 차트 그래픽\n  * 📁 원본 파일 경로: `public/assets/jeongseongdae-call.m4a`\n  * 💬 화면 자막: **주사기 거부하는 송아지, 위산 산도 망가지면 폐사 직행** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"억지로 쓴 가루약 먹이려다 송아지 스트레스받고 토하면 끝입니다. 송아지 설사는 위산 산도가 깨지고 배앓이가 심해서 젖을 못 빠는 겁니다.\"\n  * 🎵 효과음/BGM: 현장감 있는 우사 배경음\n- **[00:15 - 00:27] 씬 3** (BROLL_15)\n  * 🎬 화면: 바쁜 농가주가 우사에서 송아지 입안에 파보겔 1초 펌프 직투여\n  * 📁 원본 파일 경로: `public/assets/rotagel-parvogel-2.jpg`\n  * 💬 화면 자막: **우수한 기호성! 입가에 1초 펌핑하면 꿀꺽!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"동진동물병원 정성대 원장님이 검증한 비결! 1초 펌프로 입안에 쓱 쏴주면, 기호성이 좋아 꿀꺽 삼키고 즉각 위내 산도를 잡아 배앓이가 싹 가라앉습니다.\"\n  * 🎵 효과음/BGM: 기운차고 묵직한 베이스 전개\n- **[00:27 - 00:38] 씬 4** (BROLL_16)\n  * 🎬 화면: 다음 날 아침 벌떡 일어나 어미소 젖을 힘차게 빠는 송아지\n  * 📁 원본 파일 경로: `public/assets/rotagel-parvogel-3.jpg`\n  * 💬 화면 자막: **다음 날 아침! 벌떡 일어나 어미 젖을 힘차게 빱니다** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"실제 한우 농가에서 투여하자마자 구토가 멎고 배앓이가 풀리더니, 다음 날 아침 벌떡 일어나 젖을 힘차게 빨았습니다.\"\n  * 🎵 효과음/BGM: 활기찬 통기타 리듬\n- **[00:38 - 00:48] 씬 5** (BROLL_20)\n  * 🎬 화면: 파보겔 대용량 패키지 + 댓글 키워드 '송아지' 자막\n  * 📁 원본 파일 경로: `public/assets/parvogel-4.jpg`\n  * 💬 화면 자막: **댓글로 '송아지' 남기시면 [송아지 설사 폐사율 0% 현장 매뉴얼] 즉시 발송!** (폰트: 프리텐다드 Bold, 노랑/흰색 강조)\n  * 🎙️ 내레이션(TTS/녹음): \"설사철 폐사 없는 번식우 우사 관리법, 지금 댓글로 '송아지'라고 남겨주시면 현장 응급 처치 매뉴얼을 무료로 보내드립니다!\"\n  * 🎵 효과음/BGM: 도입부 징글\n\n- **영상 업로드 시 고정 댓글 복사본**:\n🐄 전국 한우·낙농 농가 현장 검증! 송아지 배앓이 완화 & 위내 산도 안정 보조사료 [파보겔] \n🟢 한국아그로 공식 네이버 스마트스토어: https://smartstore.naver.com/petschury/products/13718496355?utm_source=shorts_calf\n🏢 산업동물 대량 납품 및 대리점 문의: 전국 엠오바이오(MOBIO) 총판 연계\n💬 댓글로 '송아지'를 남기시면 [현장 폐사 방지 매뉴얼 PDF]를 즉시 보내드립니다.\n"
+      }
+    }
+  }
+}
