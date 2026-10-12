@@ -1,70 +1,74 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "policy": {
     "brand_isolation_strict": true,
-    "description": "한국아그로(법인/수의약품)와 홍순일 개인(100Bagger 퀀트)의 브랜드 및 배포 채널을 100% 엄격 분리 관리"
+    "description": "네이버 3개 공식 계정 완벽 분리 매핑 및 한국아그로 전통 축산약품/백신 라인업 확장"
   },
-  "brands": {
-    "KOREA_AGRO": {
-      "name_kr": "한국아그로",
-      "entity_type": "CORPORATE_BIO_VET",
-      "persona": "정통 동물용의약품 및 바이오 보조사료 전문 수의학 기업",
-      "target_audiences": ["전국 한우/낙농 농가", "동물병원 수의사", "반려견/반려묘/반려조 보호자", "축산 대의원"],
-      "products": [
-        {
-          "id": "ROTAGAL_VACCINE",
-          "name": "로타갈 백신",
-          "type": "동물용의약품 (백신)",
-          "target": "한우/송아지/낙농",
-          "core_value": "송아지 로타·코로나·대장균 복합 장염 방어 및 300만원 폐사 방지",
-          "key_mechanisms": "로타·코로나 바이러스 특이 항체 형성 및 모체 이행항체 극대화",
-          "clinical_reference": "동진동물병원 정성대 원장 임상 자문 및 한우 농가 피드백",
-          "distribution_channels": {
-            "lms": "전국 한우협회 대의원 470개소 전용 알리고 MMS",
-            "naver_blog_category": "한국아그로 축산/백신 연구실",
-            "youtube_playlist": "한국아그로 가축방역TV",
-            "kakao_channel": "한국아그로 축산사업부"
-          }
-        },
-        {
-          "id": "PARVOGEL_MONSMECTA",
-          "name": "파보겔 (몬스멕타)",
-          "type": "정식등록 보조사료",
-          "target": "반려견/반려묘/반려조/자돈",
-          "core_value": "1초 원터치 펌프 급여 및 장 점막 물리적 코팅 응급 상비약",
-          "key_mechanisms": "1-DNJ + 특허균주 Bacillus subtilis MORI + 고순도 나노 몬모릴로나이트",
-          "spelling_rule": "반드시 '몬모릴로나이트' 표기 ('몽모릴로나이트' 엄격 금지)",
-          "clinical_reference": "하남 사랑동물병원 김동준 원장 55일령 0.6kg 토이푸들 7일 완치 실화",
-          "distribution_channels": {
-            "naver_blog_category": "파보겔 반려동물 건강연구소",
-            "youtube_playlist": "파보겔 임상실화TV",
-            "smartstore": "https://smartstore.naver.com/petschury/products/13718496355",
-            "coupang": "https://www.coupang.com/vp/products/9690739565"
-          }
-        }
-      ]
+  "accounts_mapping": {
+    "soonilhong": {
+      "channel_name": "파보겔 공식 블로그",
+      "target_brand": "PARVOGEL_D2C",
+      "focus": "반려동물(강아지/고양이/조류) 1초 펌프 장점막 코팅 보조사료 (파보겔, 몬스멕타)",
+      "products": ["PARVOGEL_MONSMECTA"]
     },
-    "100BAGGER_LABS": {
-      "name_kr": "100Bagger Labs (홍순일 개인)",
-      "entity_type": "PERSONAL_QUANT_FINTECH",
-      "persona": "1인 인디 해커 / 퀀트 시스템 트레이더 홍순일의 AI 알고리즘 연구소",
-      "target_audiences": ["개인 투자자", "서학개미", "시스템 트레이더", "퀀트 개발자"],
-      "products": [
-        {
-          "id": "100BAGGER_APP",
-          "name": "100Bagger.app",
-          "type": "AI 퀀트 알고리즘 SaaS",
-          "target": "한국/미국 주식 투자자",
-          "core_value": "감정 없는 원칙 매매, James 스코어링 & Cameron 돌파 레이더",
-          "key_mechanisms": "수익률 백테스팅 검증, 10-Bagger 성장주 발굴 알고리즘",
-          "distribution_channels": {
-            "naver_blog_category": "홍순일의 AI 퀀트 연구소 (개인 계정)",
-            "youtube_playlist": "100Bagger 퀀트 TV (별도 채널)",
-            "telegram": "100Bagger 실시간 돌파 알림 룸",
-            "landing_url": "https://100baggersaas.vercel.app"
-          }
-        }
-      ]
+    "tnt111": {
+      "channel_name": "한국아그로 축산방역·동물의약품 연구소",
+      "target_brand": "KOREA_AGRO_VET",
+      "focus": "전국 한우/낙농/양돈 가축 방역 의약품 및 전통 보조사료 (로타갈 백신, 베타콜 등)",
+      "products": ["ROTAGAL_VACCINE", "BETACOL_LIVESTOCK"]
+    },
+    "plplurtrte": {
+      "channel_name": "홍순일의 AI 퀀트 연구소",
+      "target_brand": "100BAGGER_LABS",
+      "focus": "100Bagger.app AI 퀀트 알고리즘, 돌파매매, 백테스팅 리포트 (개인 핀테크)",
+      "products": ["100BAGGER_APP"]
+    }
+  },
+  "products": {
+    "ROTAGAL_VACCINE": {
+      "name_kr": "로타갈 백신",
+      "brand": "KOREA_AGRO_VET",
+      "assigned_account": "tnt111",
+      "type": "동물용의약품 (백신)",
+      "target": "한우/송아지/젖소",
+      "core_value": "송아지 로타·코로나·대장균 복합 장염 설사 방어 및 이유 전 폐사율(300만원 손실) 방어",
+      "key_mechanisms": "모체 이행항체 극대화, 분만 전 어미소 면역 증강을 통한 초유 면역 전달",
+      "clinical_reference": "동진동물병원 정성대 원장 임상 자문 및 전국 한우 농가 피드백",
+      "keywords": ["로타갈", "로타갈백신", "송아지설사", "한우송아지폐사", "로타바이러스백신", "한국아그로"],
+      "b2b_lms_target": "전국 한우협회 대의원 470개소"
+    },
+    "BETACOL_LIVESTOCK": {
+      "name_kr": "베타콜 (Betacol)",
+      "brand": "KOREA_AGRO_VET",
+      "assigned_account": "tnt111",
+      "type": "가축용 치료 보조제 / 대사 촉진 및 항스트레스 제제",
+      "target": "한우/젖소/자돈/가금",
+      "core_value": "간 기능 보호, 사료 섭취량 급속 회복, 고열·환절기 대사성 질환 및 폐사 방지",
+      "key_mechanisms": "베타인 및 복합 콜린 배합을 통한 삼투압 조절, 지방간 억제 및 세포막 안정화",
+      "clinical_reference": "한국아그로 축산 현장 임상 증례 데이터",
+      "keywords": ["베타콜", "가축간기능개선제", "송아지대사촉진", "한우식욕부진", "축산보조사료", "한국아그로"]
+    },
+    "PARVOGEL_MONSMECTA": {
+      "name_kr": "파보겔 (몬스멕타)",
+      "brand": "PARVOGEL_D2C",
+      "assigned_account": "soonilhong",
+      "type": "정식등록 보조사료",
+      "target": "반려견/반려묘/반려조/자돈",
+      "core_value": "주사기 거부감 제로 1초 원터치 펌프 급여 및 장 점막 물리적 코팅",
+      "key_mechanisms": "1-DNJ + 특허균주 Bacillus subtilis MORI + 고순도 나노 몬모릴로나이트",
+      "spelling_rule": "반드시 '몬모릴로나이트' 표기 ('몽모릴로나이트' 엄격 금지)",
+      "clinical_reference": "하남 사랑동물병원 김동준 원장 55일령 0.6kg 토이푸들 7일 완치 실화",
+      "keywords": ["파보겔", "몬스멕타", "강아지설사", "파보장염", "몬모릴로나이트", "새설사응급처치"]
+    },
+    "100BAGGER_APP": {
+      "name_kr": "100Bagger.app",
+      "brand": "100BAGGER_LABS",
+      "assigned_account": "plplurtrte",
+      "type": "AI 퀀트 알고리즘 SaaS",
+      "target": "한국/미국 주식 투자자",
+      "core_value": "감정 없는 원칙 매매, James 스코어링 & Cameron 돌파 레이더",
+      "key_mechanisms": "수익률 백테스팅 검증, 10-Bagger 성장주 발굴 알고리즘",
+      "keywords": ["100Bagger", "AI퀀트", "돌파매매", "조건검색식", "자동매매", "시스템트레이딩"]
     }
   }
 }
