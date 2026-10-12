@@ -48,6 +48,10 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
         smartstore_url = links.get("smartstore", "https://smartstore.naver.com/petschury/products/13718496355")
         landing_url = links.get("landing", "https://parvogel.kr/")
 
+        # 오기 방지 (몽모릴로나이트 -> 몬모릴로나이트 자동 치환)
+        body = body.replace("몽모릴로나이트", "몬모릴로나이트")
+        title = title.replace("몽모릴로나이트", "몬모릴로나이트")
+
         # 기본 단락 분리 및 HTML 빌드
         raw_paragraphs = [p.strip() for p in body.split("\n\n") if p.strip()]
         html_parts = []
@@ -261,8 +265,21 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
 
                 page = context.pages[0] if context.pages else context.new_page()
 
+                # 복사장 방식 Stealth 브라우저 지문 위장 (navigator.webdriver 완벽 은닉)
+                page.add_init_script("""() => {
+                    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+                    window.chrome = {
+                        runtime: {},
+                        loadTimes: function() {},
+                        csi: function() {},
+                        app: {}
+                    };
+                    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+                    Object.defineProperty(navigator, 'languages', { get: () => ['ko-KR', 'ko', 'en-US', 'en'] });
+                }""")
+
                 # 글쓰기 페이지 진입
-                print("[NAVER_BLOG] Navigating to blog write page...")
+                print("[NAVER_BLOG] Navigating to blog write page with stealth fingerprint...")
                 page.goto("https://blog.naver.com/GoBlogWrite.naver", wait_until="networkidle", timeout=60000)
                 page.wait_for_timeout(3000)
 

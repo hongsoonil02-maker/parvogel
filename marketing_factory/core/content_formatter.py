@@ -23,6 +23,11 @@ FACTORY_DIR = os.path.dirname(CURRENT_DIR)
 DATA_DIR = os.path.join(FACTORY_DIR, "data")
 CONFIG_DIR = os.path.join(FACTORY_DIR, "config")
 
+try:
+    from .humanizer_engine import BlogHumanizer
+except (ImportError, ValueError):
+    from core.humanizer_engine import BlogHumanizer
+
 
 class ParvogelContentFormatter:
     """8대 채널별 맞춤형 포맷팅 및 트래픽 유도 링크 주입기"""
@@ -30,6 +35,7 @@ class ParvogelContentFormatter:
     def __init__(self):
         self.config = self._load_json(os.path.join(CONFIG_DIR, "channels_config.json"))
         self.keywords = self._load_json(os.path.join(DATA_DIR, "keywords_seo.json"))
+        self.papers_data = self._load_json(os.path.join(DATA_DIR, "scientific_papers.json"))
         
         self.landing_base = self.config.get("site_landing_url", "https://parvogel.kr/")
         self.smartstore_base = self.config.get("smartstore_url", "https://smartstore.naver.com/petschury/products/13718496355")
@@ -245,11 +251,22 @@ class ParvogelContentFormatter:
 
 *연관 검색어: {keywords_str}*
 """
-        return {
+        raw_draft = {
             "title": n.get('headline'),
             "body": post_content.strip(),
             "links": links
         }
+
+        # 수의학 학술 논문 및 공인 특허 인용 리스트 추출
+        citations = []
+        if self.papers_data and "papers" in self.papers_data:
+            for p in self.papers_data.get("papers", []):
+                fmt = p.get("blog_citation_format")
+                if fmt:
+                    citations.append(fmt)
+
+        # AI 티 제거 및 학술 근거 주입 휴머나이징 적용
+        return BlogHumanizer.enhance_naver_draft(raw_draft, paper_citations=citations)
 
     # 5. 유튜브 쇼츠 메타데이터
     def _format_youtube_shorts(self, n: Dict[str, Any]) -> Dict[str, Any]:

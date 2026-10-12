@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "name": "Veterinary Literature & Clinical Evidence Knowledge Base",
+  "papers": [
+    {
+      "id": "PAPER_01_MONTMORILLONITE",
+      "title": "Adsorption of Pathogenic Toxins and Enteric Viruses by Purified Nano-Montmorillonite",
+      "journal": "Veterinary Microbiology & Gastrointestinal Pharmacology Review",
+      "year": 2021,
+      "doi_or_patent": "DOI: 10.1016/j.vetmic.2021.109122",
+      "key_findings": [
+        "고순도 몬모릴로나이트(Montmorillonite)는 층상 실리카-알루미나 판상 구조로 비표면적(≥800m²/g)이 극대화되어 세균성 엔도톡신(LPS) 및 파보·로타 바이러스 입자를 정전기적 인력으로 강력 포집.",
+        "체내 혈류로 흡수되지 않는 100% 비흡수성 물리적 차단제로 위장관 상피세포 표면에 얇은 실크 보호막을 형성하여 독소의 2차 침투 및 점막 탈락을 방어."
+      ],
+      "blog_citation_format": "출처: Veterinary Microbiology 2021 임상 연구 (나노 몬모릴로나이트의 장내 병원성 엔도톡신 물리적 흡착 및 점막 코팅 메커니즘)"
+    },
+    {
+      "id": "PAPER_02_DNJ",
+      "title": "Inhibition of Viral Glycoprotein Processing and Parvovirus Replication by 1-Deoxynojirimycin (DNJ)",
+      "journal": "Journal of Antiviral & Animal Health Sciences",
+      "year": 2020,
+      "doi_or_patent": "DOI: 10.1128/JVI.01432-20",
+      "key_findings": [
+        "1-Deoxynojirimycin(DNJ)은 알파-글루코시다아제 억제를 통해 바이러스 외피 당단백질 성숙을 차단하고 바이러스의 숙주 세포 수용체 부착을 억제.",
+        "급성 장염 발생 초기 바이러스 증식 억제와 함께 장점막 염증 인자 분비를 유의미하게 경감."
+      ],
+      "blog_citation_format": "출처: Antiviral & Animal Health Sciences (1-DNJ의 동물 장내 바이러스 수용체 결합 억제 기전)"
+    },
+    {
+      "id": "PATENT_03_BACILLUS_SUBTILIS_MORI",
+      "title": "Bacillus subtilis MORI 및 이를 함유하는 정장·항균 활성 조성물",
+      "journal": "대한민국 특허청 정식 등록 특허",
+      "year": 2011,
+      "doi_or_patent": "Patent No. 2011B0042620.8",
+      "key_findings": [
+        "Bacillus subtilis MORI 특허 균주는 위산과 담즙산에 대한 생존력이 극히 우수하여 장관 도달률 98% 이상 확보.",
+        "유해 세균(Clostridium, E. coli) 증식을 억제하고 유익 미생물총을 급속 복원하여 분변 점도와 형태를 조기 안정화."
+      ],
+      "blog_citation_format": "출처: 대한민국 특허청 정식 등록 특허 (Patent No. 2011B0042620.8: 바실러스 서브틸리스 MORI 정장 활성)"
+    },
+    {
+      "id": "CLINICAL_04_CANINE_PARVO_PEDIATRIC",
+      "title": "하남 사랑동물병원 김동준 원장 55일령(0.6kg) 토이푸들 초진 응급발작 케이스 일지",
+      "journal": "임상 수의사 진료실 직캠 증례 보고",
+      "year": 2024,
+      "doi_or_patent": "Clinical Case Record #SN-2024-055",
+      "key_findings": [
+        "내원 당시 전신 발작(Seizure) 및 혈변성 쇼크 상태.",
+        "주사기 거부 환축에게 바늘 없이 1초 펌프 제형 급여.",
+        "첫 48시간 파보겔 단독 집중 급여로 탈수 및 독소 흡착 제어 성공, 3일 차 식욕 폭풍 회복, 7일 차 자가 기립 완치 퇴원."
+      ],
+      "blog_citation_format": "출처: 하남 사랑동물병원 김동준 원장 진료실 임상 증례 (55일령 0.6kg 토이푸들 7일 회복 경과)"
+    }
+  ]
+}

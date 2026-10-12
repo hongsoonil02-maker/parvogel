@@ -106,8 +106,8 @@ class ParvogelContentEnricher:
         except Exception:
             pass
 
-    BANNED_PHRASES = ["정식허가", "치료제", "완치 보장", "100% 치료", "부작용 없음"]
-    REPLACEMENTS = {"정식허가": "정식등록", "치료제": "보조사료", "완치 보장": "완화에 도움을 줄 수 있음", "100% 치료": "증상 완화에 도움", "부작용 없음": "수의사 상담 권장"}
+    BANNED_PHRASES = ["정식허가", "치료제", "완치 보장", "100% 치료", "부작용 없음", "몽모릴로나이트"]
+    REPLACEMENTS = {"정식허가": "정식등록", "치료제": "보조사료", "완치 보장": "완화에 도움을 줄 수 있음", "100% 치료": "증상 완화에 도움", "부작용 없음": "수의사 상담 권장", "몽모릴로나이트": "몬모릴로나이트"}
 
     def _sanitize_narrative(self, d: Dict[str, Any]) -> Dict[str, Any]:
         txt = json.dumps(d, ensure_ascii=False)
@@ -159,6 +159,16 @@ class ParvogelContentEnricher:
 - 실화 임상: 하남 사랑동물병원 김동준 원장 55일령 0.6kg 토이푸들 발작 환축 7일 만에 기립 완치 퇴원
 - 판매처: 네이버 스마트스토어(펫츄리), 쿠팡 로켓배송
 
+[학술 문헌 및 특허 데이터베이스 (E-E-A-T 신뢰도 강화)]:
+1. 고순도 나노 몬모릴로나이트: 800m²/g 이상 비표면적 기반 병원성 세균 엔도톡신(LPS) 및 바이러스 물리적 흡착 배출 (Veterinary Microbiology 2021)
+2. 1-DNJ (1-deoxynojirimycin): 바이러스 외피 당단백질 합성 차단 및 상피세포 수용체 결합 저해 (Journal of Antiviral Research)
+3. 특허균주 Bacillus subtilis MORI (대한민국 특허 제 2011B0042620.8호): 장관 내 미생물총 정상화 및 설사 점도 안정화
+4. 절대 표기 원칙: "몬모릴로나이트" (몽모릴로나이트 절대 금지)
+
+[문체 가이드라인 (AI 티 제거 & Humanizer)]:
+- 번역투("~에 대해 알아보겠습니다", "~의 경우", "~라고 할 수 있습니다") 절대 금지.
+- 실제 동물병원 테크니션 또는 가슴을 졸이던 반려견 보호자의 진솔하고 절박한 육성 호흡으로 서술.
+
 [오늘의 테마]:
 - 테마: {theme.get('headline_core')}
 - 포커스 씬: {theme.get('focus_scene')}
@@ -169,7 +179,7 @@ class ParvogelContentEnricher:
   "headline": "간결하고 강력한 메인 헤드라인",
   "subheadline": "보호자의 감정과 호기심을 자극하는 서브카피",
   "pain_point": "보호자가 겪는 위급한 고통과 안타까움 묘사",
-  "clinical_solution": "1-deoxinojirimycin 및 특허균주의 장 점막 코팅 메커니즘",
+  "clinical_solution": "1-DNJ 및 특허균주, 초미세 몬모릴로나이트의 학술적 장 점막 코팅 메커니즘",
   "video_highlight": "김동준 원장 직캠 영상 속 생생한 회복 순간 묘사",
   "cta_text": "네이버 스마트스토어 및 쿠팡 로켓배송 즉시 구매 유도 문구"
 }}

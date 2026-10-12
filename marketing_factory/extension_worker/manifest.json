@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "100Bagger Auto Publisher - Naver & Tistory Extension Worker",
+  "version": "1.0.0",
+  "description": "100baggersaas 백엔드 마케팅 큐와 연동하여 네이버 블로그 스마트에디터 ONE 및 티스토리에 계정 제재 없이 안전하게 글을 자동 발행하는 크롬 확장 프로그램 워커",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "alarms",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://blog.naver.com/*",
+    "https://*.tistory.com/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*",
+    "https://*.100bagger.co.kr/*",
+    "https://*.vercel.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://blog.naver.com/*"
+      ],
+      "js": ["content_naver.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_title": "100Bagger Marketing Worker",
+    "default_popup": "popup.html"
+  }
+}
