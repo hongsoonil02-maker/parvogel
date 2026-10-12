@@ -30,8 +30,8 @@ def save_queue(queue):
     with open(QUEUE_FILE, "w", encoding="utf-8") as f:
         json.dump(queue, f, indent=2, ensure_ascii=False)
 
-def push_post_to_queue(title: str, body: str, links: dict = None, tags: list = None):
-    """백엔드 생성 파이프라인에서 발행 대기열에 글 추가"""
+def push_post_to_queue(title: str, body: str, links: dict = None, tags: list = None, target_brand: str = "KOREA_AGRO", product_id: str = "PARVOGEL_MONSMECTA"):
+    """백엔드 생성 파이프라인에서 발행 대기열에 글 추가 (브랜드별 격리 보장)"""
     # 몬모릴로나이트 무결성 검증
     title = title.replace("몽모릴로나이트", "몬모릴로나이트")
     body = body.replace("몽모릴로나이트", "몬모릴로나이트")
@@ -39,10 +39,12 @@ def push_post_to_queue(title: str, body: str, links: dict = None, tags: list = N
     queue = load_queue()
     post_item = {
         "id": str(uuid.uuid4())[:8],
+        "target_brand": target_brand,  # "KOREA_AGRO" (법인/수의) 또는 "100BAGGER_LABS" (개인/퀀트)
+        "product_id": product_id,      # "ROTAGAL_VACCINE" | "PARVOGEL_MONSMECTA" | "100BAGGER_APP"
         "title": title,
         "body": body,
         "links": links or {},
-        "tags": tags or ["파보겔", "몬스멕타", "강아지설사", "파보장염", "몬모릴로나이트"],
+        "tags": tags or (["로타갈", "한우백신", "송아지설사"] if product_id == "ROTAGAL_VACCINE" else ["파보겔", "몬스멕타", "강아지설사", "파보장염", "몬모릴로나이트"]),
         "status": "PENDING",
         "createdAt": datetime.now().isoformat()
     }

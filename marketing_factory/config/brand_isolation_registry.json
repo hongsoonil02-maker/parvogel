@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "policy": {
+    "brand_isolation_strict": true,
+    "description": "한국아그로(법인/수의약품)와 홍순일 개인(100Bagger 퀀트)의 브랜드 및 배포 채널을 100% 엄격 분리 관리"
+  },
+  "brands": {
+    "KOREA_AGRO": {
+      "name_kr": "한국아그로",
+      "entity_type": "CORPORATE_BIO_VET",
+      "persona": "정통 동물용의약품 및 바이오 보조사료 전문 수의학 기업",
+      "target_audiences": ["전국 한우/낙농 농가", "동물병원 수의사", "반려견/반려묘/반려조 보호자", "축산 대의원"],
+      "products": [
+        {
+          "id": "ROTAGAL_VACCINE",
+          "name": "로타갈 백신",
+          "type": "동물용의약품 (백신)",
+          "target": "한우/송아지/낙농",
+          "core_value": "송아지 로타·코로나·대장균 복합 장염 방어 및 300만원 폐사 방지",
+          "key_mechanisms": "로타·코로나 바이러스 특이 항체 형성 및 모체 이행항체 극대화",
+          "clinical_reference": "동진동물병원 정성대 원장 임상 자문 및 한우 농가 피드백",
+          "distribution_channels": {
+            "lms": "전국 한우협회 대의원 470개소 전용 알리고 MMS",
+            "naver_blog_category": "한국아그로 축산/백신 연구실",
+            "youtube_playlist": "한국아그로 가축방역TV",
+            "kakao_channel": "한국아그로 축산사업부"
+          }
+        },
+        {
+          "id": "PARVOGEL_MONSMECTA",
+          "name": "파보겔 (몬스멕타)",
+          "type": "정식등록 보조사료",
+          "target": "반려견/반려묘/반려조/자돈",
+          "core_value": "1초 원터치 펌프 급여 및 장 점막 물리적 코팅 응급 상비약",
+          "key_mechanisms": "1-DNJ + 특허균주 Bacillus subtilis MORI + 고순도 나노 몬모릴로나이트",
+          "spelling_rule": "반드시 '몬모릴로나이트' 표기 ('몽모릴로나이트' 엄격 금지)",
+          "clinical_reference": "하남 사랑동물병원 김동준 원장 55일령 0.6kg 토이푸들 7일 완치 실화",
+          "distribution_channels": {
+            "naver_blog_category": "파보겔 반려동물 건강연구소",
+            "youtube_playlist": "파보겔 임상실화TV",
+            "smartstore": "https://smartstore.naver.com/petschury/products/13718496355",
+            "coupang": "https://www.coupang.com/vp/products/9690739565"
+          }
+        }
+      ]
+    },
+    "100BAGGER_LABS": {
+      "name_kr": "100Bagger Labs (홍순일 개인)",
+      "entity_type": "PERSONAL_QUANT_FINTECH",
+      "persona": "1인 인디 해커 / 퀀트 시스템 트레이더 홍순일의 AI 알고리즘 연구소",
+      "target_audiences": ["개인 투자자", "서학개미", "시스템 트레이더", "퀀트 개발자"],
+      "products": [
+        {
+          "id": "100BAGGER_APP",
+          "name": "100Bagger.app",
+          "type": "AI 퀀트 알고리즘 SaaS",
+          "target": "한국/미국 주식 투자자",
+          "core_value": "감정 없는 원칙 매매, James 스코어링 & Cameron 돌파 레이더",
+          "key_mechanisms": "수익률 백테스팅 검증, 10-Bagger 성장주 발굴 알고리즘",
+          "distribution_channels": {
+            "naver_blog_category": "홍순일의 AI 퀀트 연구소 (개인 계정)",
+            "youtube_playlist": "100Bagger 퀀트 TV (별도 채널)",
+            "telegram": "100Bagger 실시간 돌파 알림 룸",
+            "landing_url": "https://100baggersaas.vercel.app"
+          }
+        }
+      ]
+    }
+  }
+}
