@@ -64,14 +64,20 @@ class ParvogelVideoMaker:
         t_args = ["-t", str(target_t)] if duration and duration > target_t else []
 
         # 9:16 (1080x1920) 캔버스 + 헤더/푸터 박스 + 타이틀 텍스트 (top_title/bottom_sub 실사용)
-        # 폰트: 리눅스 러너 DejaVu, 윈도우 맑은고딕 폴백, 없으면 drawtext 스킵해도 박스는 유지
+        # 몬모릴로나이트 표기 원칙 강제
+        top_title = top_title.replace("몽모릴로나이트", "몬모릴로나이트")
+        bottom_sub = bottom_sub.replace("몽모릴로나이트", "몬모릴로나이트")
+
         safe_top = top_title.replace(":", " ").replace("'", "").replace('"', "")[:28]
         safe_bottom = bottom_sub.replace(":", " ").replace("'", "").replace('"', "")[:32]
-        # 색상·위치: 상단 빨간 배지 + 흰 타이틀, 하단 흰 서브
+        badge_text = "🚨 하남 사랑동물병원 7일 완치 실화"
+
+        # 폰트: 윈도우 맑은고딕 또는 리눅스 Noto/DejaVu
         font_path_candidates = [
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-            "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+            "C:/Windows/Fonts/malgunbd.ttf",
             "C:/Windows/Fonts/malgun.ttf",
+            "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         ]
         font_file = next((p for p in font_path_candidates if os.path.exists(p)), None)
         if font_file:
@@ -79,19 +85,26 @@ class ParvogelVideoMaker:
             filter_complex = (
                 "scale=1080:1920:force_original_aspect_ratio=increase,"
                 "crop=1080:1920,"
-                "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
-                "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
-                f"drawtext=fontfile='{safe_font}':text='{safe_top}':fontcolor=white:fontsize=38:x=(w-text_w)/2:y=100,"
-                "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill,"
-                f"drawtext=fontfile='{safe_font}':text='{safe_bottom}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=1720"
+                # 상단 헤더 영역 (다크 글래스모피즘 + 빨간 긴급 임상 배지)
+                "drawbox=y=0:w=1080:h=320:color=black@0.92:t=fill,"
+                "drawbox=x=80:y=40:w=920:h=56:color=red@0.95:t=fill,"
+                f"drawtext=fontfile='{safe_font}':text='{badge_text}':fontcolor=white:fontsize=30:x=(w-text_w)/2:y=52,"
+                f"drawtext=fontfile='{safe_font}':text='{safe_top}':fontcolor=white:fontsize=44:x=(w-text_w)/2:y=130,"
+                f"drawtext=fontfile='{safe_font}':text='특허균주 x 고순도 나노 몬모릴로나이트':fontcolor=0x03C75A:fontsize=26:x=(w-text_w)/2:y=210,"
+                # 하단 푸터 영역 (1초 원터치 펌프 안내 + 구매 전환 배너)
+                "drawbox=y=1600:w=1080:h=320:color=black@0.92:t=fill,"
+                "drawbox=x=80:y=1640:w=920:h=70:color=0x03C75A@0.95:t=fill,"
+                f"drawtext=fontfile='{safe_font}':text='바늘·주사기 스트레스 ZERO! 1초 펌프 급여':fontcolor=white:fontsize=32:x=(w-text_w)/2:y=1658,"
+                f"drawtext=fontfile='{safe_font}':text='{safe_bottom}':fontcolor=0x94A3B8:fontsize=26:x=(w-text_w)/2:y=1740,"
+                f"drawtext=fontfile='{safe_font}':text='쿠팡 로켓배송 & 네이버 스마트스토어 공식공급':fontcolor=white:fontsize=24:x=(w-text_w)/2:y=1800"
             )
         else:
             filter_complex = (
                 "scale=1080:1920:force_original_aspect_ratio=increase,"
                 "crop=1080:1920,"
-                "drawbox=y=0:w=1080:h=260:color=black@0.90:t=fill,"
-                "drawbox=x=60:y=35:w=360:h=50:color=red@0.95:t=fill,"
-                "drawbox=y=1640:w=1080:h=280:color=black@0.90:t=fill"
+                "drawbox=y=0:w=1080:h=320:color=black@0.90:t=fill,"
+                "drawbox=x=80:y=40:w=920:h=56:color=red@0.95:t=fill,"
+                "drawbox=y=1600:w=1080:h=320:color=black@0.90:t=fill"
             )
 
         cmd = [
