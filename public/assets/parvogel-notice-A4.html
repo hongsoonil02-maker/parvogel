@@ -220,8 +220,9 @@
   .hero-strong {
     color: #e11d48;
     display: block;
-    margin-top: 4px;
-    font-size: 31px;
+    margin-top: 5px;
+    font-size: 25px;
+    letter-spacing: -0.8px;
   }
 
   /* 3. 증상 5구 카드 */
@@ -833,13 +834,13 @@
   <!-- 3. 히어로 타이틀 영역 -->
   <div class="hero-wrap">
     <div class="hero-badge" id="heroBadge">
-      <span>🐾</span>
-      <span id="heroBadgeText">설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약</span>
+      <span>🚨</span>
+      <span id="heroBadgeText">강아지·고양이·모든 반려동물 전용 프리미엄 가정 상비약</span>
     </div>
-    <div class="hero-sub" id="heroSubText">토하고 설사하는 우리 아이 & 어린 가축</div>
+    <div class="hero-sub" id="heroSubText">밤늦게 갑자기 토하고 물설사할 때, 당황하지 마세요</div>
     <div class="hero-main" id="heroMainText">
       <span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>
-      <span class="hero-strong">한 병이면 든든합니다</span>
+      <span class="hero-strong">야간 응급실 50만 원 가기 전, 골든타임을 지키는 한 병</span>
     </div>
   </div>
 
@@ -1201,21 +1202,21 @@ function switchTheme(mode) {
     // 🐶🐱 반려동물 중심 카피
     var customWrap = document.getElementById('custom_copy_wrap');
     if (customWrap) customWrap.style.display = 'none';
-    if (bText) bText.textContent = '파보·급성장염·혈변 시 가장 먼저 손이 가는 1초 펌프 상비약';
-    if (sText) sText.textContent = '토하고 설사하며 곡기 끊긴 우리 아이 (강아지·고양이)';
+    if (bText) bText.textContent = '강아지·고양이·모든 반려동물 전용 프리미엄 가정 상비약';
+    if (sText) sText.textContent = '밤늦게 갑자기 토하고 물설사할 때, 당황하지 마세요';
     if (mText) {
       mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
-                        '<span class="hero-strong">장 점막 즉각 코팅 & 독소 흡착</span>';
+                        '<span class="hero-strong">야간 응급실 50만 원 가기 전, 골든타임을 지키는 한 병</span>';
     }
   } else {
-    // 🐾 통합형 (개·고양이·송아지 전축종)
+    // 🐾 통합형 (개·고양이·모든 반려동물 기본 상비약)
     var customWrap = document.getElementById('custom_copy_wrap');
     if (customWrap) customWrap.style.display = 'none';
-    if (bText) bText.textContent = '설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약';
-    if (sText) sText.textContent = '토하고 설사하는 우리 아이 & 어린 가축';
+    if (bText) bText.textContent = '강아지·고양이·모든 반려동물 전용 프리미엄 가정 상비약';
+    if (sText) sText.textContent = '밤늦게 갑자기 토하고 물설사할 때, 당황하지 마세요';
     if (mText) {
       mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
-                        '<span class="hero-strong">한 병이면 든든합니다</span>';
+                        '<span class="hero-strong">야간 응급실 50만 원 가기 전, 골든타임을 지키는 한 병</span>';
     }
   }
 
