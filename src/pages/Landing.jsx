@@ -775,26 +775,17 @@ const Landing = () => {
                                 <span>카톡 1:1 상담</span>
                             </a>
 
-                            {/* 주문 및 상담 신청 (정품 1병 무료체험 포함) 메인 버튼 */}
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requestType: 'sample_petshop',
-                                        product: 'parvogel-200ml',
-                                        quantity: 1,
-                                        message: '[헤더 원클릭] 펫샵/브리더 정품 1병 무료 샘플 및 주문 신청'
-                                    }));
-                                    setIsOrderModalOpen(true);
-                                    setIsOrderComplete(false);
-                                }}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-500/40"
+                            {/* 상비약 즉시구매 메인 버튼 (쿠팡/네이버 연동) */}
+                            <a
+                                href={getStoreUrl('coupang')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-gradient-to-r from-rose-600 via-primary-800 to-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-rose-400/40"
                             >
-                                <span className="text-base">🎁</span>
-                                <span>주문 및 상담 신청</span>
-                                <span className="text-xs bg-amber-400 text-primary-950 px-2 py-0.5 rounded-full font-black">1병 무료체험</span>
-                            </button>
+                                <span className="text-base">🛒</span>
+                                <span>상비약 즉시구매</span>
+                                <span className="text-xs bg-amber-400 text-primary-950 px-2 py-0.5 rounded-full font-black">쿠팡·네이버</span>
+                            </a>
                         </div>
 
                         {/* Mobile Header Right: Kakao + Order & Sample Button + Menu Hamburger */}
@@ -810,24 +801,15 @@ const Landing = () => {
                                 <span>카톡</span>
                             </a>
 
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requestType: 'sample_petshop',
-                                        product: 'parvogel-200ml',
-                                        quantity: 1,
-                                        message: '[모바일 헤더] 주문 및 1병 무료 샘플 신청'
-                                    }));
-                                    setIsOrderModalOpen(true);
-                                    setIsOrderComplete(false);
-                                }}
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white shadow-md active:scale-95 transition-all border border-primary-500/40 shrink-0 whitespace-nowrap"
+                            <a
+                                href={getStoreUrl('coupang')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-rose-600 via-primary-800 to-primary-950 text-white shadow-md active:scale-95 transition-all border border-rose-400/40 shrink-0 whitespace-nowrap"
                             >
-                                <span>🎁</span>
-                                <span>주문·신청</span>
-                            </button>
+                                <span>🛒</span>
+                                <span>즉시구매</span>
+                            </a>
 
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -952,118 +934,115 @@ const Landing = () => {
                 </div>
 
                 <div className="section-container relative z-10 py-3 sm:py-4">
-                    <div className="max-w-5xl mx-auto text-center">
-                        {/* Persona Toggle Tabs */}
-                        <div className="inline-flex p-1.5 bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-md mb-4 animate-fade-in-up">
-                            <button
-                                type="button"
-                                onClick={() => setPersona('pet')}
-                                className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center gap-2 ${
-                                    persona === 'pet'
-                                        ? `${primaryBg} text-white shadow`
-                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                                }`}
-                            >
-                                <span className="text-base">🐶🐱🦜</span>
-                                <span>{t('heroPersona.pet', '반려동물 (강아지·고양이·앵무새)')}</span>
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setPersona('livestock')}
-                                className={`px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center gap-2 ${
-                                    persona === 'livestock'
-                                        ? 'bg-amber-600 text-white shadow'
-                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                                }`}
-                            >
-                                <span className="text-base">🐮🐷</span>
-                                <span>{t('heroPersona.livestock', '산업동물 (송아지·자돈/축산농가)')}</span>
-                            </button>
+                    <div className="max-w-4xl mx-auto text-center">
+                        {/* 🚨 상단 신뢰 뱃지 */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm font-extrabold mb-4 shadow-sm animate-fade-in-up">
+                            <span className="text-sm">🚨</span>
+                            <span>강아지·고양이·모든 반려동물 전용 프리미엄 가정 상비약</span>
                         </div>
 
-                        {/* Main Title - Dynamic according to persona (h1은 pet일 때만, livestock는 p로 H1 중복 방지) */}
-                        {persona === 'pet' ? (
-                            <div
-                                className={`transition-all duration-300 ${isCopyFading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
-                                onMouseEnter={() => setIsAutoRotatePaused(true)}
-                                onMouseLeave={() => setIsAutoRotatePaused(false)}
-                                onFocus={() => setIsAutoRotatePaused(true)}
-                                onBlur={() => setIsAutoRotatePaused(false)}
+                        {/* 메인 헤드라인 (상비약 1안 반영) */}
+                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-center mb-4 break-keep text-slate-900 animate-fade-in-up">
+                            <span className="block text-slate-700 text-base sm:text-2xl lg:text-3xl font-bold mb-1">
+                                밤늦게 갑자기 토하고 물설사할 때, 당황하지 마세요
+                            </span>
+                            <span className="block text-primary-900">
+                                동물용 활<span className="text-[0.65em] opacity-60 text-slate-500 -mx-0.5 align-middle">기</span>명수 & 스멕타 <span className="text-rose-600">‘파보겔’</span>
+                            </span>
+                            <span className="block mt-2 text-xl sm:text-3xl lg:text-4xl text-rose-600 font-black tracking-tight">
+                                야간 응급실 50만 원 가기 전, 골든타임을 지키는 한 병
+                            </span>
+                        </h1>
+
+                        <p className="text-xs sm:text-base lg:text-lg text-slate-600 mb-6 max-w-2xl mx-auto text-center leading-relaxed break-keep">
+                            초미세 나노 몬모릴로나이트 장 점막 즉각 코팅 & 독소·바이러스 흡착 배출<br className="hidden sm:inline" />
+                            <span className="font-semibold text-slate-800">주사기 씨름 없이 1초 펌프 제형</span>으로 기운 없이 쓰러진 아이도 부드럽게 쏙!
+                        </p>
+
+                        {/* 🚨 24시 응급실 비용 vs 서랍 속 파보겔 가치 비교 인포그래픽 카드 */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-6 text-left">
+                            <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-100/90 border border-slate-200/80 shadow-inner">
+                                <div className="flex items-center gap-1.5 text-xs font-black text-slate-500 uppercase tracking-wider mb-1">
+                                    <span>🚨 24시 야간 동물병원 방문 시</span>
+                                </div>
+                                <div className="text-sm sm:text-base font-bold text-slate-800">
+                                    기본 진료·혈액검사·수액 처치 <span className="text-rose-600 font-black">30~50만 원</span>
+                                </div>
+                                <div className="text-[11px] sm:text-xs text-slate-500 mt-1">
+                                    새벽 이동 스트레스 + 낯선 환경 공포 + 긴 야간 대기시간
+                                </div>
+                            </div>
+                            <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-primary-50 via-white to-blue-50 border-2 border-primary-500/60 shadow-md">
+                                <div className="flex items-center gap-1.5 text-xs font-black text-primary-700 uppercase tracking-wider mb-1">
+                                    <span>🛡️ 서랍 속 파보겔 비상 구비 시</span>
+                                </div>
+                                <div className="text-sm sm:text-base font-bold text-primary-950">
+                                    서랍에서 꺼내 1초 즉각 급여 <span className="text-primary-700 font-black">2만 원대</span>
+                                </div>
+                                <div className="text-[11px] sm:text-xs text-primary-800 mt-1 font-semibold">
+                                    상온 18개월 안심 보관 + 응급 골든타임 즉각 사수!
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ⚡ 메인 구매 CTA - 쿠팡 로켓배송 & 네이버 스마트스토어 전면 배치 */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-4 w-full max-w-2xl mx-auto">
+                            <a
+                                href={getStoreUrl('coupang')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full sm:flex-1 h-16 bg-[#E31A1A] hover:bg-[#c91515] text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-red-500/30 transition-all transform hover:-translate-y-0.5 border border-red-400/40"
                             >
-                                {/* Rotation Category Badge */}
-                                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary-100/90 border border-primary-200 text-primary-900 text-xs sm:text-sm font-bold mb-4 shadow-sm">
-                                    <span>{currentPetCopy.badge}</span>
-                                    <span className="text-[10px] text-primary-700 font-mono">({currentCopyIdx + 1}/{petHeroCopies.length})</span>
+                                <span className="text-2xl">🚀</span>
+                                <div className="text-left leading-tight">
+                                    <div className="text-[10px] text-red-100 font-extrabold uppercase tracking-wider">긴급 내일 아침 문 앞 도착</div>
+                                    <div className="text-base sm:text-lg font-black">쿠팡 로켓배송 즉시구매</div>
                                 </div>
+                            </a>
 
-                                <h1 className={`text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-snug sm:leading-tight text-center mb-5 break-keep text-slate-900`}>
-                                    <span className="block text-slate-700">{currentPetCopy.headlineLine1}</span>
-                                    <span className="block mt-1 sm:mt-1.5 text-slate-900">{currentPetCopy.headlineLine2}</span>
-                                    <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary-800 via-primary-600 to-amber-600">
-                                        {currentPetCopy.headlineLine3}
-                                    </span>
-                                </h1>
-
-                                <p className="text-xs sm:text-base lg:text-lg text-slate-600 mb-5 max-w-3xl mx-auto text-center leading-relaxed break-keep flex flex-col items-center">
-                                    <span className="block font-semibold text-slate-700">{currentPetCopy.sub1}</span>
-                                    <span className="block mt-1 text-xs sm:text-sm text-slate-500 font-normal">{currentPetCopy.sub2}</span>
-                                </p>
-
-                                {/* Rotation Indicators (보호자가 직접 눌러서 다른 카피도 확인 가능) */}
-                                <div className="flex items-center justify-center gap-2 mb-6" aria-label="메인 카피 넘기기">
-                                    {petHeroCopies.map((copy, idx) => (
-                                        <button
-                                            key={copy.id}
-                                            type="button"
-                                            onClick={() => {
-                                                setIsCopyFading(true);
-                                                setTimeout(() => {
-                                                    setCurrentCopyIdx(idx);
-                                                    setIsCopyFading(false);
-                                                }, 200);
-                                            }}
-                                            aria-label={`메인 카피 ${idx + 1}번 보기`}
-                                            className={`transition-all duration-300 rounded-full ${
-                                                currentCopyIdx === idx 
-                                                    ? 'w-8 h-2 bg-primary-600 shadow-sm' 
-                                                    : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                                            }`}
-                                        />
-                                    ))}
+                            <a
+                                href={getStoreUrl('naver')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full sm:flex-1 h-16 bg-[#03C75A] hover:bg-[#02b150] text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-green-500/30 transition-all transform hover:-translate-y-0.5 border border-green-400/40"
+                            >
+                                <span className="text-2xl">🟢</span>
+                                <div className="text-left leading-tight">
+                                    <div className="text-[10px] text-green-100 font-extrabold uppercase tracking-wider">네이버페이 포인트 최대 적립</div>
+                                    <div className="text-base sm:text-lg font-black">네이버 스마트스토어 구매</div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div>
-                                <p className={`text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-snug text-center mb-6 animate-fade-in-up break-keep ${gradientText}`} role="heading" aria-level="2">
-                                    <span className="block">{t('heroLivestock.title1', '신생 송아지·자돈 수양성 설사')}</span>
-                                    <span className="block text-amber-700">{t('heroLivestock.title2', '24시간 내 분변 경도 정상화 솔루션')}</span>
-                                </p>
-                                <p className="text-sm sm:text-lg lg:text-xl text-gray-600 mb-8 max-w-4xl mx-auto text-center leading-relaxed animate-fade-in-up break-keep flex flex-col items-center" style={{ animationDelay: '100ms' }}>
-                                    <span className="block font-medium">{t('heroLivestock.sub1', '로타·코로나·대장균 복합 설사 방어 및 이유 전 폐사율 방어')}</span>
-                                    <span className="block mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base">{t('heroLivestock.sub2', '상온 18개월 보관 · 경상국립대 수의대 시험 데이터 입증 (독소 흡착에 도움을 줄 수 있음*)')}</span>
-                                </p>
-                            </div>
-                        )}
+                            </a>
+                        </div>
 
-                        {/* 🎁 펫샵 & 브리더 전용 본품 1병 무료체험 하이라이트 배너 */}
-                        <div className="mb-6 max-w-3xl mx-auto p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary-950 via-primary-900 to-slate-900 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 border-2 border-primary-500/40 animate-pulse-slow">
-                            <div className="flex items-center gap-3 text-left">
-                                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-2xl shadow-inner shrink-0">
-                                    🎁
+                        {/* 신뢰도 지표 바 (Trust Indicators) */}
+                        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-bold text-slate-600 mb-5">
+                            <span className="flex items-center gap-1.5">
+                                <span className="text-amber-500">★★★★★</span>
+                                <span>보호자 만족도 4.9/5.0</span>
+                            </span>
+                            <span className="text-slate-300 hidden sm:inline">•</span>
+                            <span className="flex items-center gap-1.5">
+                                <span>📦</span>
+                                <span>상온 18개월 안심 보관</span>
+                            </span>
+                            <span className="text-slate-300 hidden sm:inline">•</span>
+                            <span className="flex items-center gap-1.5">
+                                <span>🔬</span>
+                                <span>경상국립대 수의대 시험 데이터</span>
+                            </span>
+                        </div>
+
+                        {/* 🏥 B2B (동물병원·펫샵·브리더) 및 엠오바이오(산업동물 총판) 안내 서브 박스 */}
+                        <div className="max-w-2xl mx-auto p-3.5 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-left mb-4">
+                            <div className="text-xs text-slate-700">
+                                <div className="font-extrabold text-slate-900 flex items-center gap-1.5">
+                                    <span>🏥</span>
+                                    <span>동물병원 · 펫샵 · 브리더 전용 도매 지원</span>
                                 </div>
-                                <div>
-                                    <div className="flex items-center gap-2">
-                                        <span className="bg-primary-800/80 border border-primary-400/40 text-primary-100 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                                            전국 펫샵 · 브리더 전용
-                                        </span>
-                                        <span className="text-xs text-amber-300 font-bold">선착순 무료 지원</span>
-                                    </div>
-                                    <h3 className="text-base sm:text-lg font-black tracking-tight mt-0.5 text-white">
-                                        파보겔 정품 1병 무료 체험 & 도매 특가 신청
-                                    </h3>
-                                    <p className="text-xs text-blue-200 mt-0.5">
-                                        배송비 전액 본사 부담 · 주소만 남겨주시면 당일 우체국 택배 발송
-                                    </p>
+                                <div className="text-[11px] text-slate-500 mt-0.5">
+                                    사업자 전용 도매 단가 및 본품 1병 무료체험 샘플 신청 지원
                                 </div>
                             </div>
                             <button
@@ -1074,83 +1053,29 @@ const Landing = () => {
                                         requestType: 'sample_petshop',
                                         product: 'parvogel-200ml',
                                         quantity: 1,
-                                        message: '[히어로 배너 클릭] 펫샵/브리더 본품 1병 무료 샘플 신청'
+                                        message: '[히어로 서브] 사업자 전용 도매 특가 및 무료 샘플 신청'
                                     }));
                                     setIsOrderModalOpen(true);
                                     setIsOrderComplete(false);
                                 }}
-                                className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-primary-50 text-primary-900 hover:text-primary-950 rounded-xl font-black text-sm sm:text-base shadow-lg transition-all transform hover:scale-105 shrink-0 flex items-center justify-center gap-1.5"
+                                className="w-full sm:w-auto shrink-0 px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition-all shadow-sm"
                             >
-                                <span>지금 무료 1병 받기</span>
-                                <span aria-hidden="true">➔</span>
+                                사업자 도매·샘플 신청 ➔
                             </button>
                         </div>
 
-                        {/* CTA Buttons - Primary 2 CTA (Hick's Law 해소: 쿠팡 vs 무료체험) */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-5 animate-fade-in-up w-full max-w-3xl mx-auto" style={{ animationDelay: '200ms' }}>
-                            <a
-                                href={getStoreUrl('coupang')}
-                                target="_blank"
-                                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-slate-700/50"
-                            >
-                                <span className="text-xl">🚀</span>
-                                <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-rose-300 font-bold uppercase tracking-wider">{t('heroCta.coupangBadge', '긴급 내일 아침 도착')}</div>
-                                    <div className="text-sm sm:text-base font-extrabold">{t('heroCta.coupangText', '쿠팡 로켓배송 즉시구매')}</div>
-                                </div>
-                            </a>
-
-                            <button
-                                onClick={() => {
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requestType: 'sample_petshop',
-                                        product: 'parvogel-200ml',
-                                        quantity: 1,
-                                        message: '[히어로 CTA] 무료체험 1병 신청'
-                                    }));
-                                    setIsOrderModalOpen(true);
-                                    setIsOrderComplete(false);
-                                    }}
-                                className="w-full sm:flex-1 h-14 sm:h-16 bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 hover:from-primary-900 hover:to-primary-850 text-white rounded-2xl font-black text-sm sm:text-base px-4 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-primary-600/40"
-                            >
-                                <span className="text-xl">🎁</span>
-                                <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">선착순 무료 지원</div>
-                                    <div className="text-sm sm:text-base font-extrabold">정품 1병 무료체험 신청</div>
-                                </div>
-                            </button>
-                        </div>
-                        {/* Secondary CTAs - 네이버 스마트스토어 & 도매 공급가 버튼 */}
-                        <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
-                            <a
-                                href={getStoreUrl('naver')}
-                                target="_blank"
-                                rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary-900 hover:bg-primary-950 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-primary-950/30 transition-all border border-primary-700/50"
-                            >
-                                <span>🛍️</span>
-                                <span>네이버 스마트스토어 즉시구매</span>
-                                <span aria-hidden="true">➔</span>
-                            </a>
-                            <button
-                                onClick={() => { setFormData(prev => ({ ...prev, requestType: persona === 'livestock' ? 'wholesale' : 'hospital' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-primary-50 text-primary-950 text-xs sm:text-sm font-bold shadow-sm border border-primary-200 transition-all"
-                            >
-                                <span>🏥</span>
-                                <span>도매 공급가 견적 신청</span>
-                                <span aria-hidden="true">➔</span>
-                            </button>
-                        </div>
+                        {/* 🐮 엠오바이오(산업동물 총판대리점) 공식 바턴 안내 */}
+                        <p className="text-[11px] text-slate-400 max-w-xl mx-auto text-center break-keep">
+                            ※ 송아지·자돈 등 대동물(축산·산업동물) 농가 대량 공급 및 기술 지원은 공식 총판대리점 <strong>(주)엠오바이오</strong>를 통해 운영됩니다.
+                        </p>
 
                         {/* Quick link to clinical & dosage */}
-                        <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 font-semibold">
+                        <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 font-semibold mt-4">
                             <button
                                 onClick={() => scrollToSection('animal-guide')}
                                 className="hover:text-primary-600 underline flex items-center gap-1"
                             >
-                                <span>🐾 {t('heroCta.quickDosage', '우리 아이 맞춤 급여량 확인')}</span>
+                                <span>🐾 우리 아이 맞춤 급여량 확인</span>
                                 <span aria-hidden="true">➔</span>
                             </button>
                             <span className="text-slate-300">|</span>
@@ -1158,7 +1083,7 @@ const Landing = () => {
                                 onClick={() => scrollToSection('clinical')}
                                 className="hover:text-primary-600 underline flex items-center gap-1"
                             >
-                                <span>📊 {t('heroCta.quickClinical', '학술 임상 증거 데이터')}</span>
+                                <span>📊 학술 임상 증거 데이터</span>
                                 <span aria-hidden="true">➔</span>
                             </button>
                         </div>
