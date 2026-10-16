@@ -21,8 +21,16 @@ if hasattr(sys.stderr, 'reconfigure'):
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(CURRENT_DIR)
 
-CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
-CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", "")
+# .env 파일 로드 (marketing_factory/.env 및 루트 .env)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(CURRENT_DIR, ".env"))
+    load_dotenv(os.path.join(PROJECT_DIR, ".env"))
+except ImportError:
+    pass
+
+CLIENT_ID = os.environ.get("YOUTUBE_CLIENT_ID") or os.environ.get("GOOGLE_CLIENT_ID") or ""
+CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET") or os.environ.get("GOOGLE_CLIENT_SECRET") or ""
 REDIRECT_URI = "http://localhost:8080/"
 SCOPE = "https://www.googleapis.com/auth/youtube.upload"
 
@@ -80,6 +88,12 @@ def run_auth_and_upload():
     print("=" * 65)
     print("🎬 [YOUTUBE SHORTS AUTO-AUTH & PUBLISHER]")
     print("=" * 65)
+
+    if not CLIENT_ID or not CLIENT_SECRET:
+        print("❌ [오류] YOUTUBE_CLIENT_ID 또는 CLIENT_SECRET이 설정되지 않았습니다.")
+        print(f"   확인된 CLIENT_ID: '{CLIENT_ID[:15]}...'")
+        print("   marketing_factory/.env 파일의 설정을 확인해 주세요.")
+        return
 
     params = {
         "client_id": CLIENT_ID,
