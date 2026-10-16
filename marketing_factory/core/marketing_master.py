@@ -43,6 +43,7 @@ from adapters.tiktok_adapter import TikTokAdapter
 from adapters.bluesky_adapter import BlueskyAdapter
 from adapters.naver_blog_adapter import NaverBlogBrowserAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
+from adapters.threads_adapter import ThreadsAdapter
 
 
 class ParvogelMarketingMaster:
@@ -66,7 +67,8 @@ class ParvogelMarketingMaster:
             InstagramAdapter(),
             FacebookAdapter(),
             TikTokAdapter(),
-            NaverBlogBrowserAdapter()
+            NaverBlogBrowserAdapter(),
+            ThreadsAdapter()
         ]
         self.ledger_path = os.path.join(DATA_DIR, "published_ledger.json")
 
