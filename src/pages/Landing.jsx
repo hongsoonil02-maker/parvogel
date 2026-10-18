@@ -938,25 +938,25 @@ const Landing = () => {
                         {/* 🛡️ 상단 신뢰 뱃지 (파보겔 시그니처 딥블루 정돈) */}
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-100/80 border border-primary-200 text-primary-900 text-xs sm:text-sm font-black mb-4 shadow-sm animate-fade-in-up">
                             <span className="text-primary-700">🐾</span>
-                            <span>강아지·고양이·모든 반려동물 전용 필수 가정 상비약</span>
+                            <span>약 먹이기 전쟁 해방 · 주사기 거품 토해냄 없이 1초 쏙!</span>
                         </div>
 
                         {/* 메인 헤드라인 (파보겔 딥 네이비 & 앰버 톤앤매너) */}
                         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-center mb-4 break-keep text-slate-900 animate-fade-in-up">
                             <span className="block text-slate-600 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
-                                밤늦게 갑자기 토하고 물설사할 때, 당황하지 마세요
+                                약 먹이기 전쟁은 이제 끝내세요
                             </span>
                             <span className="block text-slate-900">
-                                동물용 활<span className="text-[0.65em] opacity-55 text-slate-400 -mx-0.5 align-middle">기</span>명수 & 스멕타 <span className="text-primary-900">‘파보겔’</span>
+                                동물용 활명수 <span className="text-primary-900">‘파보겔’ (100ml 액상)</span>
                             </span>
                             <span className="block mt-2.5 text-xl sm:text-3xl lg:text-4xl text-primary-900 font-black tracking-tight">
-                                야간 응급실 50만 원 가기 전, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-900 via-primary-700 to-amber-600">골든타임을 지키는 한 병</span>
+                                흔들어서 입에 대고 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-900 via-primary-700 to-amber-600">오일펌프로 1초 쏙 직접 펌핑!</span>
                             </span>
                         </h1>
 
                         <p className="text-xs sm:text-base lg:text-lg text-slate-600 mb-6 max-w-2xl mx-auto text-center leading-relaxed break-keep">
-                            초미세 나노 몬모릴로나이트 장 점막 즉각 코팅 & 독소·바이러스 흡착 배출<br className="hidden sm:inline" />
-                            <span className="font-semibold text-slate-800">주사기 씨름 없이 1초 펌프 제형</span>으로 기운 없이 쓰러진 아이도 부드럽게 쏙!
+                            가루약 거품 토해냄, 피딩 주사기 물림 상처 없이 — 입안에 1~2회 쏙 직접 펌핑하면 끝!<br className="hidden sm:inline" />
+                            <span className="font-semibold text-slate-800">하남 사랑동물병원 김동준 원장 55일령 파보 아기 푸들 7일 완치 진료실 직캠 검증</span>
                         </p>
 
                         {/* 🛡️ 24시 응급실 비용 vs 서랍 속 파보겔 가치 비교 카드 (블루&슬레이트 통일감) */}
@@ -1094,6 +1094,11 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
+
+            {/* 📹 하남 사랑동물병원 김동준 원장 55일령 파보 아기 푸들 7일 완치 직캠 다큐멘터리 (상세페이지 최상단 전면 배치) */}
+            <Suspense fallback={<div className="py-12 text-center text-slate-400">직캠 다큐멘터리 로딩 중...</div>}>
+                <ParvogelClinicalDocumentary />
+            </Suspense>
 
             {/* 축종별 맞춤 효능 탭 (Hero 직하단 황금 배치: 모든 반려동물/소동물/가축 보호자 즉각 확인) */}
             <div id="animal-guide" className="section-container pt-2 pb-1">
@@ -1307,11 +1312,6 @@ const Landing = () => {
             {/* Clinical Evidence Section — lazy */}
             <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>
                 <ClinicalEvidence />
-            </Suspense>
-
-            {/* 리얼 6단계 임상 다큐멘터리 — lazy */}
-            <Suspense fallback={<div className="py-16 text-center text-slate-400">다큐멘터리 로딩 중...</div>}>
-                <ParvogelClinicalDocumentary />
             </Suspense>
 
             {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 조류(새/앵무새) 임상 실화 판별 가이드 */}
