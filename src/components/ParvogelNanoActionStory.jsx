@@ -88,8 +88,8 @@ export default function ParvogelNanoActionStory() {
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight text-center leading-snug break-keep max-w-2xl mx-auto">
-            <span className="block text-balance">"갑자기 시작된 노란 위산 구토와 피비린내 나는 혈변 설사…</span>
-            <span className="block mt-1 sm:mt-1.5 text-rose-600">당황하셨나요?"</span>
+            <span className="block text-balance">&quot;갑자기 시작된 노란 위산 구토와 피비린내 나는 혈변 설사…</span>
+            <span className="block mt-1 sm:mt-1.5 text-rose-600">당황하셨나요?&quot;</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
             바이러스성 장염이나 급성 장염은 초기 대처가 아이의 생명을 좌우합니다.<br />
