@@ -37,4 +37,8 @@ export default [
     files: ['vite.config.js'],
     languageOptions: { globals: globals.node },
   },
+  {
+    files: ['marketing_factory/**/*.{js,jsx}'],
+    languageOptions: { globals: { ...globals.browser, chrome: 'readonly' } },
+  },
 ]

@@ -247,7 +247,7 @@ export default function MonsmectaGateway() {
                 </div>
               </div>
               <blockquote className="text-xs text-emerald-100/90 italic border-l-2 border-emerald-500 pl-3 pt-1">
-                "몬스멕타는 단순 지사제를 넘어, 장내 바이러스(파보·코로나)를 물리적으로 흡착·배출하는 강력한 장 점막 보호 차별점을 지니고 있습니다."
+                &quot;몬스멕타는 단순 지사제를 넘어, 장내 바이러스(파보·코로나)를 물리적으로 흡착·배출하는 강력한 장 점막 보호 차별점을 지니고 있습니다.&quot;
               </blockquote>
             </div>
 
@@ -260,7 +260,7 @@ export default function MonsmectaGateway() {
                 </div>
               </div>
               <blockquote className="text-xs text-emerald-100/90 italic border-l-2 border-teal-500 pl-3 pt-1">
-                "비표면적 800m²/g 이상의 나노 입자도와 수분 흡수율 등 현장 수의사들이 진료 시 신뢰할 수 있는 완벽한 임상 데이터를 갖췄습니다."
+                &quot;비표면적 800m²/g 이상의 나노 입자도와 수분 흡수율 등 현장 수의사들이 진료 시 신뢰할 수 있는 완벽한 임상 데이터를 갖췄습니다.&quot;
               </blockquote>
             </div>
           </div>
