@@ -6,8 +6,8 @@ const SUPPORTED_HREFLANGS = ['ko','en','ja','zh','es','fr','de','th','vi','ru','
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData, breadcrumbs }) {
   const siteUrl = SITE_URL;
-  const defaultTitle = '파보겔(Parvogel) 공식몰 — 몬스멕타 동물병원 처방 급성설사·파보장염 1초 펌프 보조사료 | 한국아그로';
-  const defaultDescription = '동물병원 몬스멕타 파보겔 단독 처방 케이스 공개. 강아지·고양이·앵무새(반려조) 급성 설사·구토·혈변·파보장염·소낭정체 시 1초 펌프/1방울로 장 점막 코팅 및 독소 흡착 배출을 돕는 보조사료. 쿠팡 로켓배송 & 네이버 스마트스토어 공식 배송.';
+  const defaultTitle = '파보겔(Parvogel) 공식몰 — 강아지·고양이 급성설사·파보장염 1초 펌프 보조사료 | 한국아그로';
+  const defaultDescription = '55일령 아기강아지 파보장염 7일 완치 실화 공개. 강아지·고양이·앵무새(반려조) 급성 설사·구토·혈변·파보장염·소낭정체 시 1초 펌프/1방울로 장 점막 코팅 및 독소 흡착 배출을 돕는 보조사료. 쿠팡 로켓배송 & 네이버 스마트스토어 공식 배송.';
 
   const seo = {
     title: title ? `${title} | 파보겔(Parvogel)` : defaultTitle,
@@ -30,7 +30,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
           "url": seo.url,
           "priceCurrency": "KRW",
           "lowPrice": "18000",
-          "highPrice": "75000",
+          "highPrice": "60000",
           "availability": "https://schema.org/InStock"
         },
         "additionalProperty": [
@@ -102,7 +102,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
       {/* Standard Meta Tags */}
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="keywords" content="파보겔, parvogel, 몬스멕타, 강아지설사, 고양이설사, 앵무새설사, 새설사, 반려조물설사, 조류낙조예방, 소낭정체, 파보장염, 1초펌프, 한국아그로" />
+      <meta name="keywords" content="파보겔, parvogel, 강아지설사, 강아지지사제, 고양이설사, 앵무새설사, 새설사, 반려조물설사, 조류낙조예방, 소낭정체, 파보장염, 1초펌프, 한국아그로" />
       <link rel="canonical" href={seo.url} />
       {hreflangLinks.map((l) => (
         <link key={l.hreflang} rel={l.rel} hrefLang={l.hreflang} href={l.href} />

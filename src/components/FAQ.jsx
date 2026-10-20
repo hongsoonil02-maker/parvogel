@@ -27,8 +27,8 @@ export default function FAQ() {
       badge: '보관 방법'
     },
     {
-      q: t('faq.q5', '동물병원, 농가 대량 주문 시 세금계산서 발행 및 도매 공급이 가능한가요?'),
-      a: t('faq.a5', '네, 전액 전자세금계산서 발행 및 채널별 도매가 공급이 가능합니다. 동물병원 수의사 선생님 및 축산 농가, 대량 유통 채널의 경우 신청 폼 또는 고객센터(010-5407-5708)로 문의해 주시면 사업자등록증 확인 후 수량별 공식 도매 공급가 견적서를 즉시 발송해 드립니다.'),
+      q: t('faq.q5', '펫샵, 브리더(켄넬) 대량 주문 시 세금계산서 발행 및 도매 공급이 가능한가요?'),
+      a: t('faq.a5', '네, 전액 전자세금계산서 발행 및 사업자 전용 도매가 공급이 가능합니다. 전국 펫샵·분양샵, 전문 브리더(켄넬/번식농장) 대표님의 경우 하단 B2B 신청 탭 또는 고객센터(010-5407-5708)로 신청해 주시면 동물판매업·생산업 허가증 또는 사업자등록증 확인 후 수량별 도매 단가표를 즉시 안내해 드립니다.'),
       badge: '도매/세금'
     },
     {
@@ -49,7 +49,7 @@ export default function FAQ() {
             {t('faq.title', '자주 묻는 질문')}
           </h2>
           <p className="text-slate-600 text-sm sm:text-base mt-2 break-keep">
-            {t('faq.subtitle', '파보겔 급여 방법 및 안전성에 대해 보호자님과 수의사·농가에서 가장 많이 물으시는 내용입니다.')}
+            {t('faq.subtitle', '파보겔 급여 방법 및 안전성에 대해 반려동물 보호자님과 펫샵·브리더 대표님께서 가장 많이 물으시는 내용입니다.')}
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function FAQ() {
         <div className="mt-10 p-5 rounded-2xl bg-primary-50 border border-primary-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
             <p className="font-bold text-slate-900 text-sm">더 궁금한 점이 있으신가요?</p>
-            <p className="text-xs text-slate-600 mt-0.5">급여 용량 또는 환축 상태에 대해 수의사/전문 상담사가 친절히 답변해 드립니다.</p>
+            <p className="text-xs text-slate-600 mt-0.5">급여 용량, 온라인 구매, 펫샵·브리더 도매 발주에 대해 전담 상담팀이 친절히 안내해 드립니다.</p>
           </div>
           <a
             href="tel:010-5407-5708"

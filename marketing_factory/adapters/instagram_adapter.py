@@ -18,14 +18,23 @@ class InstagramAdapter(BaseMarketingAdapter):
     name = "Instagram_Reels"
 
     def validate_config(self) -> bool:
+        ig_id = os.getenv("META_IG_ACCOUNT_ID")
+        # 100-Bagger Instagram 계정(17841400565015107) 오발송 원천 차단
+        if not ig_id or str(ig_id).strip() == "17841400565015107":
+            return False
         return bool(
             os.getenv("META_ACCESS_TOKEN")
-            and os.getenv("META_IG_ACCOUNT_ID")
+            and ig_id
         )
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
         ig_account_id = os.getenv("META_IG_ACCOUNT_ID")
         access_token = os.getenv("META_ACCESS_TOKEN")
+
+        # Strict Brand Guard: 100Bagger Instagram 계정(17841400565015107 / 100baggerquantlab) 오배포 원천 차단
+        if str(ig_account_id).strip() == "17841400565015107":
+            print(f"[Strict Brand Guard] 🚨 차단됨: 100-Bagger Instagram 계정({ig_account_id})으로 파보겔 영상이 배포되는 것을 원천 차단했습니다.")
+            return False
 
         video_path = content_data.get("video_path") or ""
         caption = content_data.get("caption", content_data.get("description", ""))

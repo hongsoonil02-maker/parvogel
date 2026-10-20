@@ -17,7 +17,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
 
     // 신규 파트너 등록 폼
     const [bizForm, setBizForm] = useState({
-        bizType: 'vet', // 'vet' (동물병원/약국) | 'wholesale' (도매/유통) | 'petshop' (펫샵/용품점)
+        bizType: 'petshop', // 'petshop' (펫샵/분양샵) | 'breeder' (브리더/켄넬) | 'wholesale' (도매/유통)
         storeName: '',
         managerName: '',
         phone: '',
@@ -199,7 +199,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                             <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
                                 B2B Partner Portal
                             </span>
-                            <span className="text-xs text-primary-200 font-medium">도매점·동물약품·펫샵 전용</span>
+                            <span className="text-xs text-primary-200 font-medium">펫샵·브리더(켄넬)·도매점 전용</span>
                         </div>
                         <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                             파보겔 파트너스 웰컴 패키지 지원센터
@@ -229,7 +229,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                 <span className="text-2xl mt-0.5">🛡️</span>
                                 <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                                     <p className="font-bold text-primary-950 mb-0.5">일반 소비자와 분리된 사업자 전용 페이지입니다.</p>
-                                    기존 거래처 코드를 보유 중이시거나, 파보겔을 취급 중인 동물약품 대리점·동물병원·펫샵 대표님께만 매장 인쇄물 제작기 및 보드판 지원 서비스를 무료로 제공합니다.
+                                    기존 거래처 코드를 보유 중이시거나, 파보겔을 취급 중인 전국 펫샵·브리더(켄넬)·반려동물 도매점 대표님께만 매장 인쇄물 제작기 및 보드판 지원 서비스를 무료로 제공합니다.
                                 </div>
                             </div>
 
@@ -298,9 +298,9 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                 <form onSubmit={handleRegister} className="space-y-3 pt-1">
                                     <div className="grid grid-cols-3 gap-2">
                                         {[
-                                            { id: 'vet', label: '동물병원/약국' },
-                                            { id: 'wholesale', label: '도매/대리점' },
-                                            { id: 'petshop', label: '펫샵/용품점' },
+                                            { id: 'petshop', label: '펫샵/분양샵' },
+                                            { id: 'breeder', label: '브리더/켄넬' },
+                                            { id: 'wholesale', label: '도매/유통점' },
                                         ].map((t) => (
                                             <button
                                                 key={t.id}
@@ -320,12 +320,12 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         <div>
                                             <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                                                상호명 (매장명/병원명) *
+                                                상호명 (펫샵/켄넬/매장명) *
                                             </label>
                                             <input
                                                 type="text"
                                                 required
-                                                placeholder="예: 한강 동물약품"
+                                                placeholder="예: 사랑퍼피, OO켄넬"
                                                 value={bizForm.storeName}
                                                 onChange={(e) => setBizForm(prev => ({ ...prev, storeName: e.target.value }))}
                                                 className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-xs font-bold text-slate-800 focus:bg-white focus:border-blue-600 focus:outline-none"

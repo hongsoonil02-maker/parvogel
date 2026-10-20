@@ -10,7 +10,7 @@ on:
 jobs:
   run-marketing-factory:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -18,23 +18,29 @@ jobs:
         with:
           lfs: true
 
-      - name: Set up Python 3.14
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: "3.14"
+          python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests python-dotenv requests-oauthlib
+          pip install openai requests python-dotenv requests-oauthlib
 
-      - name: Install ffmpeg
+      - name: Install FFmpeg & Korean CJK Fonts (for 9:16 Shorts drawtext)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
 
       - name: Create .env from GitHub Secrets
         run: |
+          mkdir -p marketing_factory/output marketing_factory/drafts scripts/marketing/output scripts/marketing/logs
           cat << 'EOF' > marketing_factory/.env
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
@@ -54,25 +60,29 @@ jobs:
           META_ACCESS_TOKEN=${{ secrets.META_ACCESS_TOKEN }}
           META_IG_ACCOUNT_ID=${{ secrets.META_IG_ACCOUNT_ID }}
           EOF
+          cp marketing_factory/.env .env
 
-      - name: Run Marketing Factory
-        working-directory: marketing_factory
+      - name: Run Marketing Factory (Core 8-Channel Orchestrator + D2C Manifests)
         run: |
-          python core/marketing_master.py
+          python marketing_factory/core/marketing_master.py
+          node scripts/marketing/parvogel_content_generator.cjs
+          python scripts/marketing/parvogel_marketing_master.py
 
       - name: Cleanup secrets
         if: always()
-        run: rm -f marketing_factory/.env marketing_factory/data/daily_cost.json
+        run: rm -f .env marketing_factory/.env marketing_factory/data/daily_cost.json
 
-      - name: Upload output artifacts
+      - name: Upload Shorts video & manifest artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: marketing-output-${{ github.run_number }}
-          path: marketing_factory/output/Shorts_*.mp4
+          path: |
+            marketing_factory/output/Shorts_*.mp4
+            scripts/marketing/output/
           retention-days: 7
 
-      - name: Upload draft artifacts
+      - name: Upload channel draft artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:

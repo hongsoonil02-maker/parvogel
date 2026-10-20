@@ -1,10 +1,28 @@
-import verifiedData from '../data/verifiedBusinesses.json'
-import sampleRecipients from '../data/sampleRecipients.json'
-import findSampleRecipient from './sampleCheck.js'
+import findSampleRecipient, { ensureSampleRecipientsLoaded } from './sampleCheck.js'
+
+let verifiedData = { phones: {}, registeredShops: [] }
+let loadPromise = null
+
+/**
+ * B2B 샘플/도매 탭 선택 시에만 1,400 사업자 검증 데이터를 지연 로드합니다.
+ */
+export function ensureVerificationDataLoaded() {
+    if (!loadPromise) {
+        loadPromise = Promise.all([
+            import('../data/verifiedBusinesses.json')
+                .then(m => {
+                    verifiedData = m.default || m || { phones: {}, registeredShops: [] }
+                })
+                .catch(() => {}),
+            ensureSampleRecipientsLoaded()
+        ])
+    }
+    return loadPromise
+}
 
 export const VERIFICATION_STATUS = {
-    ALREADY_RECEIVED: 'ALREADY_RECEIVED', // 기존 116곳 수령 완료 -> 도매 발주 모달 유도
-    VERIFIED_TARGET: 'VERIFIED_TARGET',   // 1,400여 타깃 인허가 사업자 인증 완료 -> 샘플 발송 접수
+    ALREADY_RECEIVED: 'ALREADY_RECEIVED', // 기존 수령 완료 -> 도매 발주 모달 유도
+    VERIFIED_TARGET: 'VERIFIED_TARGET',   // 타깃 인허가 사업자 인증 완료 -> 샘플 발송 접수
     UNVERIFIED_PUBLIC: 'UNVERIFIED_PUBLIC' // 일반인/미등록 -> 친절 차단 모달 노출
 }
 
@@ -30,7 +48,7 @@ export function normalizePhone(phone) {
 export function verifyBusinessApplicant(phone, shopName = '', bizNumber = '') {
     const cleanPhone = normalizePhone(phone)
 
-    // 1단계: 기존 116건 무료 샘플 수령자 여부 확인 (최우선)
+    // 1단계: 기존 무료 샘플 수령자 여부 확인 (최우선)
     const alreadyReceived = findSampleRecipient(cleanPhone, shopName)
     if (alreadyReceived) {
         return {
@@ -40,8 +58,8 @@ export function verifyBusinessApplicant(phone, shopName = '', bizNumber = '') {
         }
     }
 
-    // 2단계: 1,400여 알리고 발송 타깃 및 B2B 마스터 010 전화번호 대조
-    if (cleanPhone && cleanPhone.length >= 10) {
+    // 2단계: 알리고 발송 타깃 및 B2B 마스터 010 전화번호 대조
+    if (cleanPhone && cleanPhone.length >= 10 && verifiedData.phones) {
         const phoneMatch = verifiedData.phones[cleanPhone]
         if (phoneMatch) {
             return {
@@ -58,7 +76,7 @@ export function verifyBusinessApplicant(phone, shopName = '', bizNumber = '') {
     }
 
     // 3단계: 지자체 인허가 정상영업 펫샵 상호명 대조
-    if (shopName) {
+    if (shopName && Array.isArray(verifiedData.registeredShops)) {
         const cleanShop = String(shopName).replace(/\s+/g, '').toLowerCase()
         if (cleanShop.length >= 3 && verifiedData.registeredShops.includes(cleanShop)) {
             return {

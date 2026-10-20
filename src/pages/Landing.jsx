@@ -10,14 +10,13 @@ import { getStoreUrl } from '../config/storeLinks'
 import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
-import PartnerNoticeModal from '../components/PartnerNoticeModal'
 import FeedDisclaimer from '../components/FeedDisclaimer'
 import findSampleRecipient from '../utils/sampleCheck'
-import DuplicateSampleModal from '../components/DuplicateSampleModal'
-import { verifyBusinessApplicant, VERIFICATION_STATUS } from '../utils/businessVerification'
-import CertifiedBusinessNoticeModal from '../components/CertifiedBusinessNoticeModal'
-import MonsmectaNoticeModal from '../components/MonsmectaNoticeModal'
+import { verifyBusinessApplicant, VERIFICATION_STATUS, ensureVerificationDataLoaded } from '../utils/businessVerification'
 
+const PartnerNoticeModal = lazy(() => import('../components/PartnerNoticeModal'))
+const DuplicateSampleModal = lazy(() => import('../components/DuplicateSampleModal'))
+const CertifiedBusinessNoticeModal = lazy(() => import('../components/CertifiedBusinessNoticeModal'))
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
 const ParvogelNanoActionStory = lazy(() => import('../components/ParvogelNanoActionStory'))
@@ -35,7 +34,6 @@ const Landing = () => {
     const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
     const [isCertifiedNoticeOpen, setIsCertifiedNoticeOpen] = useState(false)
-    const [isMonsmectaModalOpen, setIsMonsmectaModalOpen] = useState(false)
     const [isPartnerMode, setIsPartnerMode] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
@@ -64,8 +62,7 @@ const Landing = () => {
             ? crypto.randomUUID()
             : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2)
 
-    const [persona, setPersona] = useState('pet') // 'pet' | 'livestock'
-    const [scrollY, setScrollY] = useState(0)
+    const [isScrolled, setIsScrolled] = useState(false)
     const [activeSection, setActiveSection] = useState('hero')
     const [activeMedia, setActiveMedia] = useState('video')
     const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
@@ -90,82 +87,14 @@ const Landing = () => {
         { code: 'tr', label: 'Türkçe', flag: '🇹🇷' }
     ], []);
 
-    // 보호자 공감 4대 메인 카피 로테이션 (다국어 연동, 12초 주기 자동 전환)
-    const petHeroCopies = useMemo(() => {
-        void i18n.language;
-        return [
-        {
-            id: 'copy-a',
-            badge: t('heroCopies.copyA.badge', '✨ 7일간의 기적 임상 실화'),
-            headlineLine1: t('heroCopies.copyA.headlineLine1', '설사·혈변으로 곡기 끊겨 쓰러졌던 아이'),
-            headlineLine2: t('heroCopies.copyA.headlineLine2', '단 3일 만에 밥그릇 싹싹 비워내고'),
-            headlineLine3: t('heroCopies.copyA.headlineLine3', '다시 생생하게 기운 차려 품으로 안깁니다'),
-            sub1: t('heroCopies.copyA.sub1', '강아지·고양이는 물론 앵무새·소동물·송아지까지 — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임'),
-            sub2: t('heroCopies.copyA.sub2', '하남 사랑동물병원 김동준 원장 단독 처방 케이스 · 장 점막 즉각 코팅 & 독소 흡착 배출')
-        },
-        {
-            id: 'copy-b',
-            badge: t('heroCopies.copyB.badge', '🚨 24시간 안심 응급 상비약'),
-            headlineLine1: t('heroCopies.copyB.headlineLine1', '병원 문 닫은 새벽 갑작스런 구토와 물설사'),
-            headlineLine2: t('heroCopies.copyB.headlineLine2', '바들바들 떨며 아이 숨이 잦아들 때'),
-            headlineLine3: t('heroCopies.copyB.headlineLine3', '엄마가 건넬 수 있는 가장 빠른 1초'),
-            sub1: t('heroCopies.copyB.sub1', '주사기 거부감 제로! 쓰러진 아이도 부드럽게 핥아먹는 고순도 몬모릴로나이트 겔'),
-            sub2: t('heroCopies.copyB.sub2', '아픈 아이 붙잡고 씨름할 필요 없이 입가에 대고 1초 펌핑 즉시 위장관 안정')
-        },
-        {
-            id: 'copy-c',
-            badge: t('heroCopies.copyC.badge', '🩺 수의사 진료실 고백 실화'),
-            headlineLine1: t('heroCopies.copyC.headlineLine1', '안락사 위기의 55일령 아기 푸들'),
-            headlineLine2: t('heroCopies.copyC.headlineLine2', '수액도 독한 약도 일체 없이'),
-            headlineLine3: t('heroCopies.copyC.headlineLine3', '오직 파보겔 하나로 기적처럼 일어섰습니다'),
-            sub1: t('heroCopies.copyC.sub1', '첫 48시간 기타 약물·수액 배제 후 단독 투약만으로 이끌어낸 드라마틱한 활력 회복'),
-            sub2: t('heroCopies.copyC.sub2', '하남 사랑동물병원 김동준 원장의 7일간 리얼 차트 기록 및 무편집 직캠 검증')
-        },
-        {
-            id: 'copy-d',
-            badge: t('heroCopies.copyD.badge', '🌿 스트레스 0% 간편 급여'),
-            headlineLine1: t('heroCopies.copyD.headlineLine1', '약 먹이기 전쟁은 이제 끝내세요'),
-            headlineLine2: t('heroCopies.copyD.headlineLine2', '주사기 거품 토해냄 없이 1초 만에 쏙'),
-            headlineLine3: t('heroCopies.copyD.headlineLine3', '아이가 스스로 맛있게 핥아먹고 살아납니다'),
-            sub1: t('heroCopies.copyD.sub1', '가루약 거품 토해냄, 주사기 물림 상처 없이 — 여린 장을 부드럽게 감싸주는 특허 복합 겔'),
-            sub2: t('heroCopies.copyD.sub2', '초미세 나노 공정으로 흡수와 흡착은 빠르게, 약 먹이는 엄마의 마음은 편안하게')
-        }
-        ];
-    }, [t, i18n.language]);
-
-    // 일자 기반 시작 인덱스 (매일 다른 기본 카피)
-    const initialCopyIndex = useMemo(() => {
-        const day = new Date().getDate();
-        return day % petHeroCopies.length;
-    }, [petHeroCopies.length]);
-
-    const [currentCopyIdx, setCurrentCopyIdx] = useState(initialCopyIndex);
-    const [isCopyFading, setIsCopyFading] = useState(false);
-    const [isAutoRotatePaused, setIsAutoRotatePaused] = useState(false);
-
-    useEffect(() => {
-        if (persona !== 'pet' || isAutoRotatePaused) return;
-        // 접근성: prefers-reduced-motion이면 자동 로테이션 비활성화
-        if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        const timer = setInterval(() => {
-            setIsCopyFading(true);
-            setTimeout(() => {
-                setCurrentCopyIdx(prev => (prev + 1) % petHeroCopies.length);
-                setIsCopyFading(false);
-            }, 300);
-        }, 12000);
-        return () => clearInterval(timer);
-    }, [persona, petHeroCopies.length, isAutoRotatePaused]);
-
-    const currentPetCopy = petHeroCopies[currentCopyIdx];
-
-    // Scroll effect for header (scrollY) + IntersectionObserver for activeSection
+    // Scroll effect for header (boolean isScrolled) + IntersectionObserver for activeSection
     useEffect(() => {
         let ticking = false;
         const handleScroll = () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    setScrollY(window.scrollY);
+                    const scrolled = window.scrollY > 20;
+                    setIsScrolled(prev => (prev !== scrolled ? scrolled : prev));
                     ticking = false;
                 });
                 ticking = true;
@@ -350,8 +279,6 @@ const Landing = () => {
                 }))
                 setIsOrderModalOpen(true)
                 setIsOrderComplete(false)
-            } else if (sampleType === 'monsmecta' || params.get('q') === 'monsmecta' || params.get('product') === 'monsmecta') {
-                setIsMonsmectaModalOpen(true)
             }
         }
 
@@ -412,8 +339,9 @@ const Landing = () => {
         // 무료 샘플 신청 시 1,400 사업자 인증 및 중복 신청/일반인 검증
         const isSample = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
         if (isSample) {
+            await ensureVerificationDataLoaded()
             const vResult = verifyBusinessApplicant(rawPhone, formData.hospitalName, formData.bizNumber)
-            // 1. 기존 116건 수령 완료 거래처 -> 기분 좋은 VIP 정식 도매 발주 모달 유도
+            // 1. 기존 수령 완료 거래처 -> 기분 좋은 VIP 정식 도매 발주 모달 유도
             if (vResult.status === VERIFICATION_STATUS.ALREADY_RECEIVED) {
                 triggerDuplicateSampleGuide(vResult.data)
                 return
@@ -423,7 +351,7 @@ const Landing = () => {
                 setIsCertifiedNoticeOpen(true)
                 return
             }
-            // 3. 1,400 타깃 인허가 사업자(VERIFIED_TARGET) -> 계속 진행하여 본품 1병 무료 발송 접수!
+            // 3. 타깃 인허가 사업자(VERIFIED_TARGET) -> 계속 진행하여 본품 1병 무료 발송 접수!
         }
         // 사업자번호 패턴 (도매)
         if (formData.requestType === 'wholesale' && formData.bizNumber) {
@@ -439,7 +367,7 @@ const Landing = () => {
             return
         }
         // 수량 정수 검증 (일반 구매 시)
-        if (formData.requestType === 'consumer' || formData.requestType === 'hospital') {
+        if (formData.requestType === 'consumer') {
             const q = parseInt(formData.quantity, 10)
             if (!Number.isInteger(q) || q < 1 || q > 100) {
                 alert('수량은 1~100 사이의 정수로 입력해 주세요.')
@@ -622,11 +550,9 @@ const Landing = () => {
         { icon: '🐶', name: t('target.puppy', '강아지 (자견/반려견)'), age: t('target.puppyAge', '전 연령 (생후 30일령~)'), diseases: t('target.puppyDisease', '파보바이러스/코로나장염/급성 설사·혈변') },
         { icon: '🐱', name: t('target.cat', '고양이 (자묘/반려묘)'), age: t('target.catAge', '전 연령 (생후 30일령~)'), diseases: t('target.catDisease', '범백(FPLV)/급성 세균성 장염/수분 손실') },
         { icon: '🦜', name: t('target.bird', '앵무새·조류 (반려조)'), age: t('target.birdAge', '이유조 및 성조 전 연령'), diseases: t('target.birdDisease', '급성 수양성 설사/소낭 정체/사료 곰팡이 독소') },
-        { icon: '🐄', name: t('target.calf'), age: t('target.calfAge'), diseases: t('target.calfDisease') },
-        { icon: '🐷', name: t('target.piglet'), age: t('target.pigletAge'), diseases: t('target.pigletDisease') },
-        { icon: '🐐', name: t('target.kid'), age: t('target.kidAge'), diseases: t('target.kidDisease') },
-        { icon: '🐑', name: t('target.lamb'), age: t('target.lambAge'), diseases: t('target.lambDisease') },
-        { icon: '🐎', name: t('target.foal'), age: t('target.foalAge'), diseases: t('target.foalDisease') },
+        { icon: '🐹', name: '햄스터·소동물 (기니피그/친칠라)', age: '이유기 및 전 연령', diseases: '웻테일(급성 설사) / 식이성 소화장애 / 장 점막 보호' },
+        { icon: '🦎', name: '도롱뇽·특수동물 (파충·양서류)', age: '유체 및 성체 전 연령', diseases: '수질·식이성 장염 / 유해 독소 흡착 배출' },
+        { icon: '🐮', name: '송아지·자돈·염소 등 산업동물', age: '신생축 (생후 1~60일)', diseases: '로타·코로나·PED·대장균 설사 (※ (주)엠오바이오 독점 총판 운영)' },
     ]
 
     const testimonials = [
@@ -637,6 +563,7 @@ const Landing = () => {
             role: t('testimonials.t1Role'),
             content: t('testimonials.t1Content'),
             rating: 5,
+            badge: '🐶 푸들 집사님',
         },
         {
             id: 't2',
@@ -645,6 +572,16 @@ const Landing = () => {
             role: t('testimonials.t2Role'),
             content: t('testimonials.t2Content'),
             rating: 5,
+            badge: '🐱 다묘 집사님',
+        },
+        {
+            id: 't5',
+            name: t('testimonials.t5Name', '홍효선 대표'),
+            clinic: t('testimonials.t5Clinic', '반려조 가정 (앵무새 꼬미)'),
+            role: t('testimonials.t5Role', '앵무새 보호자 24시간 완치 실화'),
+            content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
+            rating: 5,
+            badge: '🦜 24시간 완치 쇼츠',
         },
         {
             id: 't3',
@@ -653,6 +590,7 @@ const Landing = () => {
             role: t('testimonials.t3Role'),
             content: t('testimonials.t3Content'),
             rating: 5,
+            badge: '🏡 전문 브리더',
         },
         {
             id: 't4',
@@ -661,15 +599,16 @@ const Landing = () => {
             role: t('testimonials.t4Role'),
             content: t('testimonials.t4Content'),
             rating: 5,
+            badge: '🏪 펫샵 파트너',
         },
         {
-            id: 't5',
-            name: t('testimonials.t5Name', '홍효선 대표'),
-            clinic: t('testimonials.t5Clinic', '반려조 가정 (앵무새 꼬미)'),
-            role: t('testimonials.t5Role', '앵무새 보호자 실화'),
-            content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
+            id: 't6',
+            name: '김동준 원장',
+            clinic: '하남 사랑동물병원',
+            role: '55일령 파보 장염 푸들 7일 완치 임상 관찰',
+            content: '단순 설사 케어를 넘어 구토와 복통으로 힘들어하는 어린 강아지·고양이도 거부감 없이 스스로 잘 받아먹는 뛰어난 기호성이 가장 큰 장점입니다. 가정과 브리더 현장의 1차 응급 상비 보조사료로 적극 권장합니다.',
             rating: 5,
-            badge: '🦜 24시간 완치 쇼츠',
+            badge: '🩺 수의사 임상 총평',
         },
     ]
 
@@ -699,7 +638,7 @@ const Landing = () => {
             </a>
 
             {/* Header */}
-            <header className={`sticky top-0 z-40 transition-all duration-300 ${scrollY > 20
+            <header className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
                 : 'bg-transparent'
                 }`}>
@@ -930,175 +869,201 @@ const Landing = () => {
                 </nav>
             </header>
 
-            {/* Hero Section */}
+            {/* Hero Section — 2040 D2C Pet Healthcare Modern Renewal */}
             <main id="main-content" tabIndex={-1}>
-            <section id="hero" className="relative py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] flex items-center justify-center overflow-hidden">
-                {/* Background */}
-                <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50" />
-                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-200/30 rounded-full blur-3xl animate-pulse delay-1000" />
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
+            <section id="hero" className="relative py-6 sm:py-10 lg:py-14 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FAF9F6] via-white to-sky-50/50">
+                {/* Soft Pastel Ambient Background */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute -top-24 left-1/4 w-[28rem] h-[28rem] bg-sky-200/30 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 right-1/4 w-[26rem] h-[26rem] bg-emerald-100/40 rounded-full blur-3xl" />
                 </div>
 
-                <div className="section-container relative z-10 py-3 sm:py-4">
-                    <div className="max-w-4xl mx-auto text-center">
-                        {/* 🛡️ 상단 신뢰 뱃지 (파보겔 시그니처 딥블루 정돈) */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-100/80 border border-primary-200 text-primary-900 text-xs sm:text-sm font-black mb-4 shadow-sm animate-fade-in-up">
-                            <span className="text-primary-700">🐾</span>
-                            <span>약 먹이기 전쟁 해방 · 주사기 거품 토해냄 없이 1초 쏙!</span>
-                        </div>
+                <div className="section-container relative z-10">
+                    <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center max-w-6xl mx-auto">
+                        {/* Left Column: 2040 Pet Parent Empathetic Copy & Direct Store CTAs */}
+                        <div className="lg:col-span-7 text-center lg:text-left">
+                            {/* 상단 트렌디 피드 배지 */}
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-900 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
+                                <span>✨</span>
+                                <span>우리 집 상비약 키트 No.1 · 주사기 실랑이 없는 1초 펌프 겔</span>
+                            </div>
 
-                        {/* 메인 헤드라인 (파보겔 딥 네이비 & 앰버 톤앤매너) */}
-                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-center mb-4 break-keep text-slate-900 animate-fade-in-up">
-                            <span className="block text-slate-600 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
-                                약 먹이기 전쟁은 이제 끝내세요
-                            </span>
-                            <span className="block text-slate-900">
-                                동물용 활명수 <span className="text-primary-900">‘파보겔’ (100ml 액상)</span>
-                            </span>
-                            <span className="block mt-2.5 text-xl sm:text-3xl lg:text-4xl text-primary-900 font-black tracking-tight">
-                                흔들어서 입에 대고 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-900 via-primary-700 to-amber-600">오일펌프로 1초 쏙 직접 펌핑!</span>
-                            </span>
-                        </h1>
+                            {/* 메인 감성 & 직관 헤드라인 */}
+                            <h1 className="text-2xl sm:text-4xl lg:text-[2.65rem] font-black tracking-tight leading-[1.22] mb-4 break-keep text-slate-900 animate-fade-in-up">
+                                <span className="block text-slate-600 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
+                                    새벽에 갑자기 토하고 설사할 때, 당황하지 말고
+                                </span>
+                                <span className="block text-slate-900">
+                                    입에 대고 1초 톡! <span className="text-primary-700">‘파보겔’</span>
+                                </span>
+                                <span className="block mt-2 text-lg sm:text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-primary-700 via-sky-600 to-emerald-600 font-black">
+                                    가루약 거품 무는 아이도 간식처럼 냠냠 핥아먹어요 🐾
+                                </span>
+                            </h1>
 
-                        <p className="text-xs sm:text-base lg:text-lg text-slate-600 mb-6 max-w-2xl mx-auto text-center leading-relaxed break-keep">
-                            가루약 거품 토해냄, 피딩 주사기 물림 상처 없이 — 입안에 1~2회 쏙 직접 펌핑하면 끝!<br className="hidden sm:inline" />
-                            <span className="font-semibold text-slate-800">하남 사랑동물병원 김동준 원장 55일령 파보 아기 푸들 7일 완치 진료실 직캠 검증</span>
-                        </p>
+                            <p className="text-xs sm:text-base text-slate-600 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
+                                피딩 주사기로 억지로 먹이다 물리고 토하는 전쟁은 이제 끝!<br className="hidden sm:inline" />
+                                체내에 흡수되지 않는 <strong>100% 천연 나노 미네랄 스펀지</strong>가 장 점막을 부드럽게 코팅하고 유해 독소만 자석처럼 끌어안고 배출합니다.
+                            </p>
 
-                        {/* 🛡️ 24시 응급실 비용 vs 서랍 속 파보겔 가치 비교 카드 (블루&슬레이트 통일감) */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-6 text-left">
-                            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                                <div className="flex items-center gap-1.5 text-xs font-black text-slate-500 uppercase tracking-wider mb-1">
-                                    <span>🚨 24시 야간 동물병원 방문 시</span>
+                            {/* 3단계 회복 타임라인 미니 캡슐 바 */}
+                            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto lg:mx-0 mb-6 p-2.5 sm:p-3 rounded-2xl bg-white/90 border border-slate-200/80 shadow-sm">
+                                <div className="text-center p-2 rounded-xl bg-rose-50/70 border border-rose-100">
+                                    <div className="text-[10px] sm:text-xs font-black text-rose-600">Day 1 · 응급</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">1초 펌프 진정</div>
                                 </div>
-                                <div className="text-sm sm:text-base font-bold text-slate-800">
-                                    기본 진료·혈액검사·수액 처치 <span className="text-slate-900 font-black">30~50만 원</span>
+                                <div className="text-center p-2 rounded-xl bg-sky-50/80 border border-sky-100">
+                                    <div className="text-[10px] sm:text-xs font-black text-sky-700">Day 3 · 회복</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">맘마 폭풍 완식!</div>
                                 </div>
-                                <div className="text-[11px] sm:text-xs text-slate-500 mt-1">
-                                    새벽 이동 스트레스 + 낯선 환경 공포 + 긴 야간 대기시간
+                                <div className="text-center p-2 rounded-xl bg-emerald-50/80 border border-emerald-100">
+                                    <div className="text-[10px] sm:text-xs font-black text-emerald-700">Day 7 · 기적</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">우다다 퇴원 🐾</div>
                                 </div>
                             </div>
-                            <div className="p-4 rounded-2xl bg-primary-50/80 border-2 border-primary-200 shadow-sm">
-                                <div className="flex items-center gap-1.5 text-xs font-black text-primary-800 uppercase tracking-wider mb-1">
-                                    <span>🛡️ 서랍 속 파보겔 비상 구비 시</span>
-                                </div>
-                                <div className="text-sm sm:text-base font-bold text-primary-950">
-                                    서랍에서 꺼내 1초 즉각 급여 <span className="text-primary-800 font-black">2만 원대</span>
-                                </div>
-                                <div className="text-[11px] sm:text-xs text-primary-700 mt-1 font-semibold">
-                                    상온 18개월 안심 보관 + 응급 골든타임 즉각 사수!
-                                </div>
+
+                            {/* 메인 구매 CTA 버튼 (쿠팡 로켓배송 & 네이버 스마트스토어) */}
+                            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-4 w-full max-w-xl mx-auto lg:mx-0">
+                                <a
+                                    href={getStoreUrl('coupang')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    className="w-full sm:flex-1 h-15 sm:h-16 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5"
+                                >
+                                    <span className="text-2xl">🚀</span>
+                                    <div className="text-left leading-tight">
+                                        <div className="text-[10px] text-amber-300 font-extrabold uppercase tracking-wider">내일 아침 문 앞 도착</div>
+                                        <div className="text-base sm:text-lg font-black">쿠팡 로켓배송 구매</div>
+                                    </div>
+                                </a>
+
+                                <a
+                                    href={getStoreUrl('naver')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    className="w-full sm:flex-1 h-15 sm:h-16 bg-[#03C75A] hover:bg-[#02b350] text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5"
+                                >
+                                    <span className="text-2xl">🛍️</span>
+                                    <div className="text-left leading-tight">
+                                        <div className="text-[10px] text-emerald-50 font-extrabold uppercase tracking-wider">네이버페이 간편결제·적립</div>
+                                        <div className="text-base sm:text-lg font-black">네이버 스마트스토어</div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            {/* 신뢰도 요약 지표 */}
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs font-bold text-slate-600 mb-5">
+                                <span className="flex items-center gap-1">
+                                    <span className="text-amber-400">★★★★★</span>
+                                    <span>집사님 만족도 4.9/5.0</span>
+                                </span>
+                                <span className="text-slate-300 hidden sm:inline">|</span>
+                                <span className="flex items-center gap-1">
+                                    <span>🏠</span>
+                                    <span>실온 18개월 서랍 속 보관</span>
+                                </span>
+                                <span className="text-slate-300 hidden sm:inline">|</span>
+                                <button
+                                    type="button"
+                                    onClick={() => scrollToSection('animal-guide')}
+                                    className="text-primary-700 hover:underline flex items-center gap-1 font-extrabold"
+                                >
+                                    <span>🐾 우리 아이 급여량 계산기</span>
+                                    <span aria-hidden="true">➔</span>
+                                </button>
                             </div>
                         </div>
 
-                        {/* ⚡ 메인 구매 CTA - 파보겔 시그니처 딥 톤으로 통일감 구축 */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-5 w-full max-w-2xl mx-auto">
-                            <a
-                                href={getStoreUrl('coupang')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                className="w-full sm:flex-1 h-16 bg-slate-900 hover:bg-slate-950 text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-slate-900/30 transition-all transform hover:-translate-y-0.5 border border-slate-700"
-                            >
-                                <span className="text-2xl">🚀</span>
-                                <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-rose-300 font-extrabold uppercase tracking-wider">긴급 내일 아침 문 앞 도착</div>
-                                    <div className="text-base sm:text-lg font-black">쿠팡 로켓배송 즉시구매</div>
-                                </div>
-                            </a>
+                        {/* Right Column: Hero Product Visual Card + 3-Second Floating Trust Pills */}
+                        <div className="lg:col-span-5">
+                            <div className="relative max-w-md mx-auto">
+                                {/* Main Product Card */}
+                                <div className="relative rounded-3xl bg-gradient-to-b from-white via-sky-50/40 to-white p-5 sm:p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-200/90 overflow-hidden">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-extrabold">
+                                            🌿 체내 흡수 0% 천연 미네랄
+                                        </span>
+                                        <span className="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-extrabold">
+                                            100ml · 200ml · 500ml
+                                        </span>
+                                    </div>
 
-                            <a
-                                href={getStoreUrl('naver')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                className="w-full sm:flex-1 h-16 bg-primary-900 hover:bg-primary-950 text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-primary-900/30 transition-all transform hover:-translate-y-0.5 border border-primary-700"
-                            >
-                                <span className="text-2xl">🟢</span>
-                                <div className="text-left leading-tight">
-                                    <div className="text-[10px] text-amber-300 font-extrabold uppercase tracking-wider">네이버페이 포인트 최대 적립</div>
-                                    <div className="text-base sm:text-lg font-black">네이버 스마트스토어 구매</div>
-                                </div>
-                            </a>
-                        </div>
+                                    <div className="relative aspect-[4/4] max-h-72 sm:max-h-80 mx-auto flex items-center justify-center">
+                                        <img
+                                            src={`${import.meta.env.BASE_URL}images/bottle_front.png`}
+                                            alt="파보겔 (ParvoGel) 반려동물 1초 펌프 장 케어 보조사료"
+                                            width="600"
+                                            height="600"
+                                            fetchPriority="high"
+                                            decoding="async"
+                                            className="w-auto h-full max-h-72 sm:max-h-80 object-contain drop-shadow-xl"
+                                        />
 
-                        {/* 신뢰도 지표 바 (Trust Indicators) */}
-                        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm font-bold text-slate-600 mb-5">
-                            <span className="flex items-center gap-1.5">
-                                <span className="text-amber-500">★★★★★</span>
-                                <span>보호자 만족도 4.9/5.0</span>
-                            </span>
-                            <span className="text-slate-300 hidden sm:inline">•</span>
-                            <span className="flex items-center gap-1.5">
-                                <span>📦</span>
-                                <span>상온 18개월 안심 보관</span>
-                            </span>
-                            <span className="text-slate-300 hidden sm:inline">•</span>
-                            <span className="flex items-center gap-1.5">
-                                <span>🔬</span>
-                                <span>경상국립대 수의대 시험 데이터</span>
-                            </span>
-                        </div>
+                                        {/* Floating Pill 1 */}
+                                        <div className="absolute top-2 left-0 sm:-left-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-sky-100 flex items-center gap-1.5 text-[11px] font-extrabold text-slate-800">
+                                            <span>💧</span>
+                                            <span>주사기 스트레스 ZERO</span>
+                                        </div>
 
-                        {/* 🏥 B2B (동물병원·펫샵·브리더) 및 엠오바이오(산업동물 총판) 안내 서브 박스 */}
-                        <div className="max-w-2xl mx-auto p-3.5 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-left mb-4">
-                            <div className="text-xs text-slate-700">
-                                <div className="font-extrabold text-slate-900 flex items-center gap-1.5">
-                                    <span>🏥</span>
-                                    <span>동물병원 · 펫샵 · 브리더 전용 도매 지원</span>
-                                </div>
-                                <div className="text-[11px] text-slate-500 mt-0.5">
-                                    사업자 전용 도매 단가 및 본품 1병 무료체험 샘플 신청 지원
+                                        {/* Floating Pill 2 */}
+                                        <div className="absolute bottom-3 right-0 sm:-right-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-emerald-100 flex items-center gap-1.5 text-[11px] font-extrabold text-slate-800">
+                                            <span>🛡️</span>
+                                            <span>생후 30일 아기 동물 안심</span>
+                                        </div>
+                                    </div>
+
+                                    {/* 응급실 vs 파보겔 상비약 가성비 비교 캡슐 */}
+                                    <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-2 text-left">
+                                        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                                            <div className="text-[10px] font-bold text-slate-500">🚨 24시 야간 응급실</div>
+                                            <div className="text-xs sm:text-sm font-black text-slate-700 mt-0.5">평균 30~50만 원</div>
+                                        </div>
+                                        <div className="p-2.5 rounded-xl bg-sky-50/90 border border-sky-200">
+                                            <div className="text-[10px] font-extrabold text-sky-800">🏠 서랍 속 파보겔 상비</div>
+                                            <div className="text-xs sm:text-sm font-black text-primary-800 mt-0.5">18,000원 <span className="text-[10px] font-bold text-sky-700">(1초 급여)</span></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requestType: 'sample_petshop',
-                                        product: 'parvogel-200ml',
-                                        quantity: 1,
-                                        message: '[히어로 서브] 사업자 전용 도매 특가 및 무료 샘플 신청'
-                                    }));
-                                    setIsOrderModalOpen(true);
-                                    setIsOrderComplete(false);
-                                }}
-                                className="w-full sm:w-auto shrink-0 px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition-all shadow-sm"
-                            >
-                                사업자 도매·샘플 신청 ➔
-                            </button>
                         </div>
+                    </div>
 
-                        {/* 🐮 엠오바이오(산업동물 총판대리점) 공식 바턴 안내 */}
-                        <p className="text-[11px] text-slate-400 max-w-xl mx-auto text-center break-keep">
-                            ※ 송아지·자돈 등 대동물(축산·산업동물) 농가 대량 공급 및 기술 지원은 공식 총판대리점 <strong>(주)엠오바이오</strong>를 통해 운영됩니다.
-                        </p>
-
-                        {/* Quick link to clinical & dosage */}
-                        <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-slate-500 font-semibold mt-4">
-                            <button
-                                onClick={() => scrollToSection('animal-guide')}
-                                className="hover:text-primary-600 underline flex items-center gap-1"
-                            >
-                                <span>🐾 우리 아이 맞춤 급여량 확인</span>
-                                <span aria-hidden="true">➔</span>
-                            </button>
-                            <span className="text-slate-300">|</span>
-                            <button
-                                onClick={() => scrollToSection('clinical')}
-                                className="hover:text-primary-600 underline flex items-center gap-1"
-                            >
-                                <span>📊 학술 임상 증거 데이터</span>
-                                <span aria-hidden="true">➔</span>
-                            </button>
+                    {/* 🏢 B2B 파트너 라운지 (펫샵 · 브리더 전용) & 산업동물 총판 안내 바 */}
+                    <div className="max-w-6xl mx-auto mt-6 pt-4 border-t border-slate-200/70 flex flex-col md:flex-row items-center justify-between gap-3 bg-white/80 backdrop-blur-xs rounded-2xl p-3.5 sm:px-5 border shadow-xs">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-center sm:text-left">
+                            <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 text-white text-[11px] font-extrabold shrink-0">
+                                🏢 Partner Lounge
+                            </span>
+                            <div className="text-xs text-slate-700 break-keep">
+                                <strong className="text-slate-900">전국 펫샵 · 브리더(번식농장) 사장님:</strong> 인허가 사업자 전용 도매 공급가 및 <strong>본품 1병 무료 샘플</strong>을 지원해 드립니다.
+                                <span className="text-slate-400 text-[11px] block sm:inline sm:ml-2">
+                                    (※ 송아지·자돈 등 산업동물은 독점 총판 <strong>(주)엠오바이오</strong> 운영)
+                                </span>
+                            </div>
                         </div>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setFormData(prev => ({
+                                    ...prev,
+                                    requestType: 'sample_petshop',
+                                    product: 'parvogel-200ml',
+                                    quantity: 1,
+                                    message: '[파트너 라운지] 펫샵·브리더 전용 도매 특가 및 무료 샘플 신청'
+                                }));
+                                setIsOrderModalOpen(true);
+                                setIsOrderComplete(false);
+                            }}
+                            className="w-full md:w-auto shrink-0 px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-900 border border-primary-200 text-xs font-extrabold rounded-xl transition-all"
+                        >
+                            펫샵·브리더 1병 무료샘플 &amp; 도매 신청 ➔
+                        </button>
+                    </div>
 
-                        <div className="max-w-3xl mx-auto mt-4">
-                            <FeedDisclaimer />
-                        </div>
+                    <div className="max-w-4xl mx-auto mt-3">
+                        <FeedDisclaimer />
                     </div>
                 </div>
             </section>
@@ -1376,7 +1341,7 @@ const Landing = () => {
                     </div>
 
                     <div className="text-center mt-6 sm:mt-8">
-                        <p className="text-gray-600 mb-3 break-keep">{t('target.other')}</p>
+                        <p className="text-gray-600 mb-3 text-sm break-keep">{t('target.other')}</p>
                         <button
                             onClick={() => scrollToSection('order')}
                             className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
@@ -1532,22 +1497,14 @@ const Landing = () => {
                     </div>
 
                     <div className="text-center mt-6 sm:mt-8">
-                        <p className="text-gray-600 mb-3 break-keep">{t('products.bulk')}</p>
-                        <p className="text-sm text-gray-500 mb-3 break-keep">{t('products.channelNote')}</p>
+                        <p className="text-gray-600 mb-2 break-keep">{t('products.bulk')}</p>
+                        <p className="text-sm text-gray-500 mb-4 break-keep">{t('products.channelNote')}</p>
                         <button
                             onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
                             className="btn-primary inline-flex"
                         >
                             {t('products.bulkCta')}
                         </button>
-                        <div className="mt-3">
-                            <button
-                                onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                                className="btn-secondary inline-flex"
-                            >
-                                {t('products.channelCta')}
-                            </button>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -1603,29 +1560,28 @@ const Landing = () => {
                             </div>
                         </div>
 
-                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 */}
-                        <div className="mt-8 sm:mt-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-primary-900 text-white shadow-2xl border border-primary-500/40 relative overflow-hidden text-start">
-                            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-60 h-60 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 (Partner Lounge) */}
+                        <div className="mt-8 sm:mt-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-sky-50 via-white to-emerald-50/60 text-slate-900 shadow-lg border border-sky-200/80 relative overflow-hidden text-start">
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-primary-800 text-primary-100 border border-primary-600/40 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
-                                            B2B Partners Only
+                                        <span className="bg-slate-900 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                                            🏢 Partner Lounge
                                         </span>
-                                        <span className="text-xs text-primary-200 font-bold">도매점·가축약품·펫샵·동물병원 대표님께</span>
+                                        <span className="text-xs text-primary-800 font-extrabold">전국 펫샵·브리더(켄넬)·반려동물 용품점 사장님 전용</span>
                                     </div>
-                                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                                        매장 홍보용 <span className="text-primary-300">맞춤 A4 알림판</span> &amp; <span className="text-amber-300">실물 POP 보드판</span> 무상 지원
+                                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                                        매장 홍보용 <span className="text-primary-700">맞춤 A4 안내판</span> &amp; <span className="text-emerald-700">실물 POP 보드판</span> 100% 무상 지원
                                     </h3>
-                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
-                                        파보겔을 취급하시는 원장님과 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
-                                        <strong> A4 안내판 즉시 출력 엔진</strong>과 <strong>하드 폼보드 쇼카드(POP) 실물</strong>을 본사에서 100% 무상으로 지원해 드립니다.
+                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed break-keep">
+                                        파보겔을 취급하시는 전국 펫샵·브리더 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
+                                        <strong> A4 안내판 즉시 출력 엔진</strong>과 <strong>하드 폼보드 쇼카드(POP) 실물</strong>을 본사에서 무상으로 보내드립니다.
                                     </p>
                                 </div>
                                 <button
                                     type="button"
                                     onClick={() => setIsPartnerModalOpen(true)}
-                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-primary-800 to-primary-900 hover:from-primary-700 hover:to-primary-800 text-white font-black text-sm shadow-xl hover:shadow-primary-950/40 transition-all flex items-center justify-center gap-2 border border-primary-500/40"
+                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-black text-sm shadow-lg transition-all flex items-center justify-center gap-2"
                                 >
                                     <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
                                     <span>➔</span>
@@ -1868,36 +1824,36 @@ const Landing = () => {
 
             {/* 도매점·취급점 전용 B2B 파트너 포털 모달 (A4 알림판 & POP 보드판) */}
             {isPartnerModalOpen && (
-                <PartnerNoticeModal
-                    isOpen={isPartnerModalOpen}
-                    onClose={() => setIsPartnerModalOpen(false)}
-                />
+                <Suspense fallback={null}>
+                    <PartnerNoticeModal
+                        isOpen={isPartnerModalOpen}
+                        onClose={() => setIsPartnerModalOpen(false)}
+                    />
+                </Suspense>
             )}
-
-            {/* 몬스멕타 검색 유입 안내 및 동물병원/파보겔 전환 모달 */}
-            <MonsmectaNoticeModal
-                isOpen={isMonsmectaModalOpen}
-                onClose={() => setIsMonsmectaModalOpen(false)}
-            />
 
             {/* 무료 샘플 중복 신청자 친절 안내 및 B2B 정식 발주 전환 모달 */}
             {isDuplicateModalOpen && (
-                <DuplicateSampleModal
-                    isOpen={isDuplicateModalOpen}
-                    onClose={() => setIsDuplicateModalOpen(false)}
-                    matchedRecipient={duplicateSampleRecipient}
-                    onConvertToOrder={handleConvertToOrder}
-                />
+                <Suspense fallback={null}>
+                    <DuplicateSampleModal
+                        isOpen={isDuplicateModalOpen}
+                        onClose={() => setIsDuplicateModalOpen(false)}
+                        matchedRecipient={duplicateSampleRecipient}
+                        onConvertToOrder={handleConvertToOrder}
+                    />
+                </Suspense>
             )}
 
             {/* 일반인/미등록 사업자 대상 정중한 무료 샘플 지원 정책 안내 및 쿠팡/네이버 전환 모달 */}
             {isCertifiedNoticeOpen && (
-                <CertifiedBusinessNoticeModal
-                    isOpen={isCertifiedNoticeOpen}
-                    onClose={() => setIsCertifiedNoticeOpen(false)}
-                    applicantPhone={formData.phone}
-                    applicantShop={formData.hospitalName}
-                />
+                <Suspense fallback={null}>
+                    <CertifiedBusinessNoticeModal
+                        isOpen={isCertifiedNoticeOpen}
+                        onClose={() => setIsCertifiedNoticeOpen(false)}
+                        applicantPhone={formData.phone}
+                        applicantShop={formData.hospitalName}
+                    />
+                </Suspense>
             )}
 
 

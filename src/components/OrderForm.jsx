@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getStoreUrl } from '../config/storeLinks'
 import findSampleRecipient from '../utils/sampleCheck'
-import { verifyBusinessApplicant, VERIFICATION_STATUS, normalizePhone } from '../utils/businessVerification'
+import { verifyBusinessApplicant, VERIFICATION_STATUS, normalizePhone, ensureVerificationDataLoaded } from '../utils/businessVerification'
 
 // 채널별 할인율 (소비자 정가 대비). 실제 공급 정책에 맞게 조정하세요.
 const PRICING = {
-    hospitalDiscount: 45,
     wholesaleTiers: [
         { min: 10, max: 49, discount: 45 },
         { min: 50, max: 199, discount: 50 },
@@ -31,9 +30,17 @@ const OrderForm = ({
     isVerifiedPartner = false
 }) => {
     const { t } = useTranslation()
+    const [, setVerificationReady] = useState(false)
     const idPrefix = variant === 'modal' ? 'modal-' : ''
     const gapClass = variant === 'modal' ? 'gap-4' : 'gap-6'
     const labelMb = variant === 'modal' ? 'mb-1' : 'mb-2'
+
+    // B2B 탭 진입 시점에만 검증 데이터 지연 로드
+    useEffect(() => {
+        if (formData.requestType !== 'consumer') {
+            ensureVerificationDataLoaded().then(() => setVerificationReady(true))
+        }
+    }, [formData.requestType])
 
     const isSampleType = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
     const verification = isSampleType ? verifyBusinessApplicant(formData.phone, formData.hospitalName, formData.bizNumber) : null
@@ -45,25 +52,24 @@ const OrderForm = ({
 
     return (
         <form onSubmit={onSubmit} className={variant === 'modal' ? 'space-y-4' : 'space-y-6'}>
-            {/* 신청 구분 — 2그룹 계층화 (개인 vs B2B) */}
+            {/* 신청 구분 — 2그룹 계층화 (일반 보호자 vs 펫샵·브리더 B2B) */}
             <div>
                 <p className="block text-sm font-semibold text-gray-700 mb-2">{t('order.requestType')}</p>
-                <p className="text-[11px] text-slate-500 mb-2">개인 구매는 쿠팡/네이버 바로구매를 권장합니다. 펫샵·브리더·병원·도매는 아래 B2B 탭에서 신청해 주세요.</p>
+                <p className="text-[11px] text-slate-500 mb-2">개인 보호자 구매는 쿠팡/네이버 바로구매를 권장합니다. 펫샵·브리더(번식농장)·도매는 아래 B2B 탭에서 신청해 주세요.</p>
                 {/* 그룹 1: 개인 */}
-                <p className="text-[11px] font-bold text-slate-600 mt-1 mb-1">개인 · 보호자</p>
-                <div className="grid gap-2 grid-cols-1 sm:grid-cols-1 mb-3">
+                <p className="text-[11px] font-bold text-slate-600 mt-1 mb-1">일반 반려인 · 보호자</p>
+                <div className="grid gap-2 grid-cols-1 mb-3">
                     <button type="button" onClick={() => setFormData(prev => ({ ...prev, requestType: 'consumer' }))} className={`py-3 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${formData.requestType === 'consumer' ? 'border-primary-800 bg-primary-50 text-primary-950 shadow-md ring-2 ring-primary-700/20' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'}`}>
                         <span>🛒</span><span className="break-keep text-center leading-tight">{t('order.requestConsumer')} — 쿠팡/네이버 빠른 배송</span>
                     </button>
                 </div>
-                {/* 그룹 2: B2B */}
-                <p className="text-[11px] font-bold text-slate-600 mb-1">병원 · 펫샵 · 브리더 · 도매 (B2B)</p>
-                <div className={`grid gap-2 ${variant === 'modal' ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-4'}`}>
+                {/* 그룹 2: B2B (펫샵·브리더·도매 전용) */}
+                <p className="text-[11px] font-bold text-slate-600 mb-1">펫샵 · 브리더(번식농장) · 도매 전용 (B2B)</p>
+                <div className="grid gap-2 grid-cols-1 sm:grid-cols-3">
                     {[
-                        { value: 'sample_petshop', icon: '🎁', label: '펫샵 1병 무료' },
-                        { value: 'sample_breeder', icon: '🐾', label: '브리더 1병 무료' },
-                        { value: 'hospital', icon: '🏥', label: t('order.requestHospital') },
-                        { value: 'wholesale', icon: '📦', label: t('order.requestWholesale') },
+                        { value: 'sample_petshop', icon: '🎁', label: '펫샵 1병 무료체험' },
+                        { value: 'sample_breeder', icon: '🐾', label: '브리더 1병 무료체험' },
+                        { value: 'wholesale', icon: '📦', label: '펫샵·브리더 도매 발주' },
                     ].map(opt => (
                         <button
                             key={opt.value}
@@ -263,33 +269,24 @@ const OrderForm = ({
                 </div>
             )}
 
-            {formData.requestType === 'hospital' && (
-                <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
-                    💡 {isPartnerVerified
-                        ? t('order.hospitalDiscountNote', '동물병원·수의사 공급가는 소비자 정가 대비 {{discount}}% 할인된 병원 공급가로, 견적서를 통해 안내드립니다.', { discount: PRICING.hospitalDiscount })
-                        : '동물병원·수의사 정식 공급은 면허 및 사업자 확인 후 병원 전용 비공개 견적서(단가표)를 통해 별도 안내드립니다.'}
-                </div>
-            )}
             {formData.requestType === 'wholesale' && (
                 <div className="bg-accent-50 border border-accent-200 rounded-xl px-4 py-3 text-sm font-medium text-accent-900 break-keep">
                     💡 {isPartnerVerified
                         ? t('order.wholesaleDiscountNote', '도매가는 소비자 정가 대비 수량별 할인(10병 이상 {{d1}}%, 50병 이상 {{d2}}%, 200병 이상 별도 협의)입니다. 견적서를 통해 안내드립니다.', { d1: PRICING.wholesaleTiers[0].discount, d2: PRICING.wholesaleTiers[1].discount })
-                        : '도매 공급가는 사업자등록증 확인 후 수량별 특별 파트너 견적서 및 비공개 단가표를 통해 안내드립니다.'}
+                        : '펫샵·브리더 도매 공급가는 사업자등록증(또는 동물판매업·생산업 허가증) 확인 후 수량별 특별 파트너 견적서를 통해 안내드립니다.'}
                 </div>
             )}
 
             <div className={`grid sm:grid-cols-2 ${gapClass}`}>
                 <div>
                     <label htmlFor={`${idPrefix}hospitalName`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
-                        {formData.requestType === 'hospital'
-                            ? t('order.hospitalNameOnly')
-                            : formData.requestType === 'sample_petshop'
-                                ? '펫샵/매장명'
-                                : formData.requestType === 'sample_breeder'
-                                    ? '켄넬/견사명 (농장명)'
-                                    : formData.requestType === 'wholesale'
-                                        ? t('order.companyName')
-                                        : t('order.hospitalName')} <span className="text-accent-500">*</span>
+                        {formData.requestType === 'sample_petshop'
+                            ? '펫샵/매장명'
+                            : formData.requestType === 'sample_breeder'
+                                ? '켄넬/견사명 (번식농장명)'
+                                : formData.requestType === 'wholesale'
+                                    ? '펫샵 / 켄넬 / 업체명'
+                                    : '주문자 성함 (또는 상호명)'} <span className="text-accent-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -297,18 +294,16 @@ const OrderForm = ({
                         name="hospitalName"
                         value={formData.hospitalName}
                         onChange={onChange}
-                        placeholder={t('order.hospitalNamePh')}
+                        placeholder={formData.requestType === 'consumer' ? '예: 김민수 (보호자 성함)' : '예: 사랑퍼피, OO켄넬'}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         required
                     />
                 </div>
                 <div>
                     <label htmlFor={`${idPrefix}contactName`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
-                        {formData.requestType === 'hospital'
-                            ? t('order.vetName')
-                            : (formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder' || formData.requestType === 'wholesale')
-                                ? '대표자명'
-                                : t('order.contactName')} <span className="text-accent-500">*</span>
+                        {(formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder' || formData.requestType === 'wholesale')
+                            ? '대표자명'
+                            : '수령인 성함'} <span className="text-accent-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -316,7 +311,7 @@ const OrderForm = ({
                         name="contactName"
                         value={formData.contactName}
                         onChange={onChange}
-                        placeholder={formData.requestType === 'hospital' ? t('order.vetNamePh') : '예: 홍길동 (대표자)'}
+                        placeholder={formData.requestType === 'consumer' ? '예: 김민수' : '예: 홍길동 (대표자)'}
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                         required
                     />
@@ -375,7 +370,7 @@ const OrderForm = ({
                         name="email"
                         value={formData.email}
                         onChange={onChange}
-                        placeholder={t('order.emailPh')}
+                        placeholder="order@example.com"
                         autoComplete="email"
                         pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                         title="올바른 이메일 형식으로 입력해 주세요"
@@ -452,7 +447,7 @@ const OrderForm = ({
                     </div>
                     <div>
                         <label htmlFor={`${idPrefix}quantity`} className={`block text-sm font-semibold text-gray-700 ${labelMb}`}>
-                            {formData.requestType === 'hospital' ? t('order.quantityMonthly') : t('order.quantity')}
+                            {t('order.quantity')}
                         </label>
                         <input
                             type="number"

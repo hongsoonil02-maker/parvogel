@@ -1,4 +1,20 @@
-import sampleRecipients from '../data/sampleRecipients.json'
+let sampleRecipients = []
+let loadPromise = null
+
+/**
+ * B2B 샘플/도매 탭 진입 시점에만 수령자 데이터를 지연 로드합니다.
+ */
+export function ensureSampleRecipientsLoaded() {
+    if (!loadPromise) {
+        loadPromise = import('../data/sampleRecipients.json')
+            .then(m => {
+                sampleRecipients = m.default || m || []
+                return sampleRecipients
+            })
+            .catch(() => [])
+    }
+    return loadPromise
+}
 
 /**
  * 전화번호 또는 상호명으로 기존 무료 샘플 발송 완료 거래처 여부를 확인합니다.
@@ -7,7 +23,7 @@ import sampleRecipients from '../data/sampleRecipients.json'
  * @returns {object|null} 일치하는 신청자 정보 또는 null
  */
 export function findSampleRecipient(phone, shopName) {
-    if (!phone && !shopName) return null
+    if ((!phone && !shopName) || sampleRecipients.length === 0) return null
 
     // 1. 전화번호 정제 (숫자만 추출)
     let cleanPhone = String(phone || '').replace(/[^0-9]/g, '').trim()
@@ -26,7 +42,7 @@ export function findSampleRecipient(phone, shopName) {
     // 2. 상호명 엄격 일치 확인 (공백 제거 후 3글자 이상 완전 일치)
     if (shopName) {
         const cleanShop = String(shopName).replace(/\s+/g, '').toLowerCase()
-        if (cleanShop.length >= 3 && !['애견샵', '펫샵', '동물병원'].includes(cleanShop)) {
+        if (cleanShop.length >= 3 && !['애견샵', '펫샵'].includes(cleanShop)) {
             const found = sampleRecipients.find(r => {
                 const rShop = String(r.shopName || '').replace(/\s+/g, '').toLowerCase()
                 return rShop === cleanShop

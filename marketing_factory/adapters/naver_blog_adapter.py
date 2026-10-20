@@ -97,7 +97,7 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
 
             # 5. 고품질 스튜디오 정품 사진 배치 (테스트용 샘플 사진 제거, 스튜디오 3종 라인업/단품/성분표/정품인증 배치)
             if "[사진/영상 배치 지점 1" in p:
-                html_parts.append('<div style="text-align: center; margin: 30px 0;"><img src="https://parvogel.kr/images/bottle_group.png" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" alt="몬스멕타 파보겔 정품 공식 3종 라인업 (100ml / 200ml / 500ml)"><p style="font-size: 13.5px; color: #64748b; margin-top: 10px; font-weight: 600;">▲ [정품 공식 라인업] 동물병원 단독 처방 몬스멕타 파보겔 (100ml / 200ml / 500ml)</p></div>')
+                html_parts.append('<div style="text-align: center; margin: 30px 0;"><img src="https://parvogel.kr/images/bottle_group.png" style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" alt="파보겔 정품 공식 3종 라인업 (100ml / 200ml / 500ml)"><p style="font-size: 13.5px; color: #64748b; margin-top: 10px; font-weight: 600;">▲ [정품 공식 라인업] 반려동물 1초 펌프 장 케어 보조사료 파보겔 (100ml / 200ml / 500ml)</p></div>')
                 continue
             elif "[사진/영상 배치 지점 2" in p:
                 html_parts.append('<div style="text-align: center; margin: 30px 0;"><img src="https://parvogel.kr/images/bottle_front.png" style="max-width: 320px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);" alt="1초 원터치 펌프형 동물용 보조사료 파보겔 200ml 정품"><p style="font-size: 13.5px; color: #64748b; margin-top: 10px; font-weight: 600;">▲ 바늘·주사기 스트레스 ZERO! 1초 원터치 펌프형 동물용 보조사료 파보겔 200ml</p></div>')
@@ -161,7 +161,7 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
 
         <div style="margin-top: 30px; padding: 16px 20px; background-color: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 13.5px; color: #64748b; line-height: 1.8;">
           <strong style="color: #03C75A;">🔍 주요 검색 키워드</strong><br>
-          강아지 설사 응급처치 · 파보 장염 초기증상 · 새끼 강아지 피똥 · 강아지 혈변 탈진 · 강아지 발작 경련 원인 · 몬스멕타 파보겔 · 동물병원 파보장염
+          강아지 설사 응급처치 · 파보 장염 초기증상 · 새끼 강아지 피똥 · 강아지 혈변 탈진 · 강아지 발작 경련 원인 · 파보겔 · 강아지 파보장염
         </div>
         """
         html_parts.append(cta_box)
@@ -342,7 +342,7 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
                     tag_input = frame.locator("input[placeholder*='태그'], [class*='tag_input__'] input, .tag_input__").first
                     if tag_input.is_visible(timeout=2000):
                         tag_input.click()
-                        tags = content_data.get("tags") or ["파보겔", "몬스멕타", "몬스멕타파보겔", "강아지파보겔", "파보장염", "강아지설사", "강아지혈변", "동물병원몬스멕타"]
+                        tags = content_data.get("tags") or ["파보겔", "강아지파보겔", "고양이설사", "파보장염", "강아지설사", "강아지혈변", "강아지장영양제", "펫츄리"]
                         for tag in tags:
                             tag_input.fill(tag)
                             page.keyboard.press("Enter")

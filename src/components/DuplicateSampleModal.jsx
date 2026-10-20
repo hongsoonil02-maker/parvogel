@@ -42,7 +42,7 @@ const DuplicateSampleModal = ({
                         파보겔 무료 샘플이 이미 정상 발송되었습니다!
                     </h3>
                     <p className="text-xs sm:text-sm text-amber-100 mt-2 font-medium leading-relaxed break-keep">
-                        전국 펫샵·켄넬·동물병원 대표님들께 고른 무료 체험 기회를 드리기 위해 <strong>사업자당 최초 1회 무료 지원</strong>되고 있습니다.
+                        전국 펫샵·브리더(켄넬) 대표님들께 고른 무료 체험 기회를 드리기 위해 <strong>사업자당 최초 1회 무료 지원</strong>되고 있습니다.
                     </p>
                 </div>
 

@@ -33,11 +33,16 @@ coverage/
 *.tgz
 .cache/
 
-# Local inspection and scratch directories
+# Local inspection, PII dispatch logs, and scratch directories
 inspect_*
 all_frames/
 raw_source_videos/
-scripts/
+data/
+/*.png
+scripts/*
+!scripts/marketing/
+scripts/marketing/output/
+scripts/marketing/logs/
 
 # Python cache
 __pycache__/
@@ -46,6 +51,7 @@ __pycache__/
 # Marketing Factory generated outputs
 marketing_factory/output/*.mp4
 marketing_factory/output/*.jpg
+marketing_factory/output/outsource_orders/
 marketing_factory/drafts/*
 !marketing_factory/drafts/.gitkeep
 marketing_factory/data/published_ledger.json

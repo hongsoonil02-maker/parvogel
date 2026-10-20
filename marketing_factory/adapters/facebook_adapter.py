@@ -16,14 +16,23 @@ class FacebookAdapter(BaseMarketingAdapter):
     name = "Facebook_Page"
 
     def validate_config(self) -> bool:
+        page_id = os.getenv("META_FB_PAGE_ID")
+        # 100-Bagger Facebook 페이지(1122720527593728) 오발송 원천 차단
+        if not page_id or str(page_id).strip() == "1122720527593728":
+            return False
         return bool(
             os.getenv("META_FB_PAGE_TOKEN")
-            and os.getenv("META_FB_PAGE_ID")
+            and page_id
         )
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
         page_id = os.getenv("META_FB_PAGE_ID")
         page_token = os.getenv("META_FB_PAGE_TOKEN")
+
+        # Strict Brand Guard: 100-Bagger Facebook 페이지 오배포 원천 차단
+        if str(page_id).strip() == "1122720527593728":
+            print(f"[Strict Brand Guard] 🚨 차단됨: 100-Bagger Facebook 페이지({page_id})로 파보겔 콘텐츠가 배포되는 것을 원천 차단했습니다.")
+            return False
 
         video_path = content_data.get("video_path") or ""
         caption = content_data.get("caption") or content_data.get("text") or content_data.get("description", "")

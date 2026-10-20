@@ -8,8 +8,8 @@
     "soonilhong": {
       "channel_name": "파보겔 공식 블로그",
       "target_brand": "PARVOGEL_D2C",
-      "focus": "반려동물(강아지/고양이/조류) 1초 펌프 장점막 코팅 보조사료 (파보겔, 몬스멕타)",
-      "products": ["PARVOGEL_MONSMECTA"]
+      "focus": "반려동물(강아지/고양이/조류) 1초 펌프 장점막 코팅 보조사료 (파보겔)",
+      "products": ["PARVOGEL_D2C"]
     },
     "tnt111": {
       "channel_name": "한국아그로 축산방역·동물의약품 연구소",
@@ -48,17 +48,17 @@
       "clinical_reference": "한국아그로 축산 현장 임상 증례 데이터",
       "keywords": ["베타콜", "가축간기능개선제", "송아지대사촉진", "한우식욕부진", "축산보조사료", "한국아그로"]
     },
-    "PARVOGEL_MONSMECTA": {
-      "name_kr": "파보겔 (몬스멕타)",
+    "PARVOGEL_D2C": {
+      "name_kr": "파보겔 (ParvoGel)",
       "brand": "PARVOGEL_D2C",
       "assigned_account": "soonilhong",
       "type": "정식등록 보조사료",
-      "target": "반려견/반려묘/반려조/자돈",
+      "target": "반려견/반려묘/반려조/소동물",
       "core_value": "주사기 거부감 제로 1초 원터치 펌프 급여 및 장 점막 물리적 코팅",
       "key_mechanisms": "1-DNJ + 특허균주 Bacillus subtilis MORI + 고순도 나노 몬모릴로나이트",
       "spelling_rule": "반드시 '몬모릴로나이트' 표기 ('몽모릴로나이트' 엄격 금지)",
       "clinical_reference": "하남 사랑동물병원 김동준 원장 55일령 0.6kg 토이푸들 7일 완치 실화",
-      "keywords": ["파보겔", "몬스멕타", "강아지설사", "파보장염", "몬모릴로나이트", "새설사응급처치"]
+      "keywords": ["파보겔", "강아지파보겔", "강아지설사", "파보장염", "몬모릴로나이트", "새설사응급처치"]
     },
     "100BAGGER_APP": {
       "name_kr": "100Bagger.app",

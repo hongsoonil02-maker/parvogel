@@ -34,16 +34,16 @@
       "description": "유튜브 쇼츠 9:16 비디오 및 메타데이터"
     },
     "Instagram_Reels": {
-      "enabled": true,
-      "publish_mode": "auto",
+      "enabled": false,
+      "publish_mode": "off",
       "type": "video_shortform",
-      "description": "인스타그램 릴스 숏폼 비디오"
+      "description": "인스타그램 릴스 (100베거 계정 오발송 차단 - 파보겔 전용 계정 연동 시까지 배포 중단)"
     },
     "Facebook_Page": {
-      "enabled": true,
-      "publish_mode": "auto",
+      "enabled": false,
+      "publish_mode": "off",
       "type": "video_shortform",
-      "description": "페이스북 페이지 피드 및 릴스 비디오"
+      "description": "페이스북 페이지 (100베거 페이스북 페이지 오발송 차단 - 배포 중단)"
     },
     "TikTok": {
       "enabled": true,
