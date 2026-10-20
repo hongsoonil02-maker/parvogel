@@ -11,7 +11,7 @@ import sys
 import json
 import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 # UTF-8 보장
 if hasattr(sys.stdout, 'reconfigure'):
