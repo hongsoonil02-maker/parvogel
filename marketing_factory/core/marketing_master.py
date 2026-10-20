@@ -152,8 +152,13 @@ class ParvogelMarketingMaster:
             for adapter in self.adapters:
                 ch_key = "Twitter_X" if adapter.name == "Twitter_X" else adapter.name
                 ch_cfg = self.formatter.config.get("channels", {}).get(ch_key, {})
+                enabled = ch_cfg.get("enabled", True)
                 publish_mode = ch_cfg.get("publish_mode", "auto")
                 
+                if not enabled or publish_mode == "off":
+                    results[adapter.name] = "DISABLED"
+                    continue
+
                 if publish_mode != "auto":
                     results[adapter.name] = "SKIPPED_DRAFT_ONLY"
                     continue

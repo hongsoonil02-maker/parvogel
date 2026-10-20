@@ -4,10 +4,10 @@
   "coupang_url": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
   "channels": {
     "Telegram": {
-      "enabled": true,
-      "publish_mode": "auto",
+      "enabled": false,
+      "publish_mode": "off",
       "type": "social_instant",
-      "description": "텔레그램 채널 및 실시간 브로드캐스트"
+      "description": "텔레그램 (내부 모니터링용 - 마케팅 배포 제외)"
     },
     "Discord": {
       "enabled": true,
