@@ -238,6 +238,63 @@ class ParvogelContentEnricher:
             }
             return self._sanitize_narrative(out)
 
+        if theme_id == "cat_stress_free_2040":
+            out = {
+                "date": date_str,
+                "theme_id": theme_id,
+                "badge": badge,
+                "line1": l1,
+                "line2": l2,
+                "line3": l3,
+                "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
+                "subheadline": f"{badge} — 가루약 거품 물고 숨는 고양이도 입가에 1초 톡 짜주면 스스로 핥아먹어요!",
+                "pain_point": "예민한 고양이가 사료 교체나 스트레스로 무른 변·설사를 하거나 헤어볼 구토를 반복할 때, 피딩 주사기로 억지로 약을 먹이려다 할퀴고 침 흘리며 온 집안이 전쟁터가 된 경험 있으신가요?",
+                "clinical_solution": "체내 흡수 0% 고순도 나노 몬모릴로나이트(표면적 800m²/g 이상)가 쓰라린 위산(pH 2.0)을 pH 4.5~5.5로 부드럽게 완충해 구토 후 속쓰림을 달래주고, 장내 독소만 자석처럼 포획해 변으로 안전하게 배출합니다. 간과 신장에 부담이 전혀 없습니다. *보조사료는 질병 치료를 대체하지 않습니다.",
+                "video_highlight": "주사기나 바늘 없이 오일펌프 노즐을 입가에 살짝 대고 1초 톡 짜주면 고양이와 소형견이 간식처럼 냠냠 핥아먹는 스트레스 제로 급여 직캠.",
+                "cta_text": "다묘 가정·초보 집사 필수 상비약 파보겔! 쿠팡 로켓배송 및 네이버 스마트스토어에서 오늘 바로 준비하세요.",
+                "video_file": video_file,
+                "source": "Cat-2040-D2C-Template"
+            }
+            return self._sanitize_narrative(out)
+
+        if theme_id == "petshop_breeder_b2b":
+            out = {
+                "date": date_str,
+                "theme_id": theme_id,
+                "badge": badge,
+                "line1": l1,
+                "line2": l2,
+                "line3": l3,
+                "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
+                "subheadline": f"{badge} — 전국 인허가 펫샵·전문 브리더(켄넬) 사장님께 파보겔 본품 1병 무료 샘플을 보내드립니다!",
+                "pain_point": "생후 30~60일령 자견·자묘는 이유식 전환이나 분양 직후 낯선 환경 스트레스만으로도 급성 물설사와 장염이 쉽게 발생해 분양샵과 브리더 현장의 가장 큰 고민거리가 됩니다.",
+                "clinical_solution": "파보겔은 1-deoxinojirimycin(DNJ)과 특허균주(Patent No. 2011B0042620.8), 초미세 나노 몬모릴로나이트 복합 포뮬러로 어린 동물의 여린 장 점막을 즉시 코팅하고 변 상태를 빠르게 안정화합니다. 인허가 펫샵·브리더 사업자님께는 전용 도매 특가와 매장용 POP 보드판을 100% 무상 지원합니다. *보조사료는 질병 치료를 대체하지 않습니다.",
+                "video_highlight": "하남 사랑동물병원 김동준 원장님의 55일령 0.6kg 아기 푸들 7일 회복 다큐멘터리 & 원터치 1초 펌프 급여 시연.",
+                "cta_text": "전국 펫샵·브리더 사장님! 지금 공식 홈페이지 파트너 라운지(parvogel.kr/?sample=petshop)에서 본품 1병 무료 샘플과 도매 단가표를 신청하세요.",
+                "video_file": video_file,
+                "source": "Petshop-Breeder-B2B-Template"
+            }
+            return self._sanitize_narrative(out)
+
+        if theme_id == "home_first_aid_kit":
+            out = {
+                "date": date_str,
+                "theme_id": theme_id,
+                "badge": badge,
+                "line1": l1,
+                "line2": l2,
+                "line3": l3,
+                "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
+                "subheadline": f"{badge} — 새벽 응급실 달려가기 전, 서랍에서 꺼내 1초 만에 급여하는 우리 집 첫 상비약!",
+                "pain_point": "동물병원이 모두 문을 닫은 일요일 밤이나 새벽 2시, 아이가 갑자기 노란 위산 토를 하고 물설사를 쏟아낼 때 24시 야간 응급실 기본 처치비 30~50만 원과 이동 스트레스 앞에서 보호자는 발만 동동 구르게 됩니다.",
+                "clinical_solution": "냉장 보관 필요 없이 거실 서랍 속에 실온 18개월 보관 가능한 파보겔(100ml 18,000원)을 상비해 두세요. 경상국립대 수의대 연구진 데이터로 검증된 98.5% 독소 흡착력과 pH 4.5~5.5 위산 완충 보호막이 병원 진료 전후 응급 골든타임을 든든하게 지켜줍니다. *보조사료는 질병 치료를 대체하지 않습니다.",
+                "video_highlight": f"하남 사랑동물병원 김동준 원장님의 7일 회복 직캠 ({scene}): 급성 장 트러블로 쓰러졌던 아기 강아지가 파보겔 급여 후 활력을 되찾고 네 발로 퇴원하는 과정.",
+                "cta_text": "아프기 전에 미리 구비하는 우리 집 상비약 1순위! 쿠팡 로켓배송·네이버 스마트스토어에서 바로 만나보세요.",
+                "video_file": video_file,
+                "source": "Home-FirstAid-2040-Template"
+            }
+            return self._sanitize_narrative(out)
+
         out = {
             "date": date_str,
             "theme_id": theme_id,
@@ -246,13 +303,13 @@ class ParvogelContentEnricher:
             "line2": l2,
             "line3": l3,
             "headline": theme.get("headline_core", f"{l1}, {l2} {l3}"),
-            "subheadline": f"{badge} — 주사기 스트레스 없이 1초 펌프로 지켜낸 골든타임!",
-            "pain_point": "급성 장염과 심한 설사로 탈진해 쓰러진 아기 강아지, 억지로 가루약이나 주사기를 들이대다 거품을 물고 거부할 때 보호자의 가슴은 무너져 내립니다.",
-            "clinical_solution": "하남 사랑동물병원 김동준 원장 단독 처방 케이스: 1-deoxinojirimycin 및 특허균주(Patent No. 2011B0042620.8) 기반, 첫 48시간 기타 약물과 수액을 일체 배제하고 오직 파보겔 단독 투약만으로 장 점막 물리적 코팅 및 독소 흡착 배출을 이끌어냈습니다. *보조사료는 질병 치료를 대체하지 않습니다.",
-            "video_highlight": f"하남 사랑동물병원 김동준 원장님의 실제 진료실 직캠 ({scene}): 주사기 없이 한 손으로 펌핑하여 입가에 대주자 스트레스 없이 핥아먹고 스스로 일어선 감동의 순간.",
-            "cta_text": "골든타임을 놓치지 마세요! 네이버 스마트스토어(펫츄리) 및 쿠팡 로켓배송으로 내일 아침 즉시 받아보실 수 있습니다.",
+            "subheadline": f"{badge} — 주사기 스트레스 없이 입에 대고 1초 톡! 간식처럼 냠냠 핥아먹어요",
+            "pain_point": "갑작스러운 구토와 설사로 기력이 빠진 아이에게 쓴 가루약을 물에 타서 주사기로 억지로 먹이다 거품을 물고 토해낼 때 집사님의 마음은 무너져 내립니다.",
+            "clinical_solution": "하남 사랑동물병원 김동준 원장 관찰 케이스: 1-deoxinojirimycin 및 특허균주(Patent No. 2011B0042620.8), 체내 흡수 0% 고순도 나노 몬모릴로나이트가 여린 장 점막을 물리적으로 코팅하고 유해 독소만 자석처럼 흡착 배출합니다. *보조사료는 질병 치료를 대체하지 않습니다.",
+            "video_highlight": f"하남 사랑동물병원 김동준 원장님의 실제 진료실 직캠 ({scene}): 주사기 없이 한 손으로 펌핑하여 입가에 대주자 스트레스 없이 핥아먹고 3일 만에 밥그릇을 비운 감동의 순간.",
+            "cta_text": "우리 아이 장 케어 골든타임! 네이버 스마트스토어(펫츄리) 및 쿠팡 로켓배송으로 내일 아침 즉시 받아보실 수 있습니다.",
             "video_file": video_file,
-            "source": "Clinical-Verified-Template"
+            "source": "Clinical-Verified-2040-Template"
         }
         return self._sanitize_narrative(out)
 

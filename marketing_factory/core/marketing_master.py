@@ -33,6 +33,7 @@ from core.video_maker import ParvogelVideoMaker
 from core.viral_shortform_engine import ViralShortformEngine
 from core.outsource_dispatcher import OutsourceDispatcher
 from core.dashboard_service import DashboardService
+from core.queue_server import push_post_to_queue
 from adapters.telegram_adapter import TelegramAdapter
 from adapters.discord_adapter import DiscordAdapter
 from adapters.twitter_adapter import TwitterAdapter
@@ -44,6 +45,7 @@ from adapters.bluesky_adapter import BlueskyAdapter
 from adapters.naver_blog_adapter import NaverBlogBrowserAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
 from adapters.threads_adapter import ThreadsAdapter
+from adapters.aligo_b2b_adapter import AligoB2BAdapter
 
 
 class ParvogelMarketingMaster:
@@ -168,12 +170,26 @@ class ParvogelMarketingMaster:
                     results[adapter.name] = "SUCCESS (PREVIOUS)"
                     continue
                     
-                if adapter.validate_config():
+                if adapter.validate_config() and not (adapter.name == "Naver_Blog" and os.getenv("GITHUB_ACTIONS") == "true"):
                     data = formatted_channels.get(ch_key, {}).copy()
                     if rendered_video:
                         data["video_path"] = rendered_video
                     future = executor.submit(adapter.publish, data)
                     future_to_adapter[future] = adapter.name
+                elif adapter.name == "Naver_Blog":
+                    # 클라우드(GitHub Actions) 또는 로컬 미로그인 환경에서는 하이브리드 로컬 큐에 적재하여 에러 알림 방지
+                    nb_data = formatted_channels.get("Naver_Blog", {})
+                    if nb_data:
+                        queued = push_post_to_queue(
+                            title=nb_data.get("title", narrative.get("headline", "파보겔 임상 스토리")),
+                            body=nb_data.get("body", ""),
+                            links=nb_data.get("links", {}),
+                            target_brand="KOREA_AGRO",
+                            product_id="PARVOGEL_D2C"
+                        )
+                        results[adapter.name] = f"QUEUED_HYBRID ({queued['id']})"
+                    else:
+                        results[adapter.name] = "QUEUED_HYBRID"
                 else:
                     results[adapter.name] = "SKIPPED_NO_KEY"
 
