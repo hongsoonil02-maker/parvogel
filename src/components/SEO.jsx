@@ -6,8 +6,8 @@ const SUPPORTED_HREFLANGS = ['ko','en','ja','zh','es','fr','de','th','vi','ru','
 
 export default function SEO({ title, description, url, type = 'website', image, structuredData, breadcrumbs }) {
   const siteUrl = SITE_URL;
-  const defaultTitle = '파보겔(Parvogel) 공식몰 — 강아지·고양이 급성설사·파보장염 1초 펌프 보조사료 | 한국아그로';
-  const defaultDescription = '55일령 아기강아지 파보장염 7일 완치 실화 공개. 강아지·고양이·앵무새(반려조) 급성 설사·구토·혈변·파보장염·소낭정체 시 1초 펌프/1방울로 장 점막 코팅 및 독소 흡착 배출을 돕는 보조사료. 쿠팡 로켓배송 & 네이버 스마트스토어 공식 배송.';
+  const defaultTitle = '파보겔(Parvogel) 공식몰 — 강아지·고양이 급성 묽은 변·파보장염 케어 1초 펌프 보조사료 | 한국아그로';
+  const defaultDescription = '55일령 아기 강아지 7일간의 드라마틱한 회복 관찰 기록. 강아지·고양이·앵무새(반려조) 급성 묽은 변·구토·혈변·소낭정체 시 1초 펌프/1방울로 장 점막 코팅 및 독소 흡착 배출을 돕는 보조사료. 쿠팡 로켓배송 & 네이버 스마트스토어 공식 배송.';
 
   const seo = {
     title: title ? `${title} | 파보겔(Parvogel)` : defaultTitle,
@@ -57,11 +57,11 @@ export default function SEO({ title, description, url, type = 'website', image, 
       {
         "@type": "VideoObject",
         "name": "55일령 강아지 임상 관찰 7일 기록 — 파보겔 다큐멘터리",
-        "description": "급성 장염·발작 증상의 55일령 환축 임상 관찰 영상. 보조사료 파보겔 급여 후 경과 관찰 기록.",
+        "description": "급성 소화기 증상의 55일령 환축 하남 사랑동물병원 김동준 원장 집중 관찰 기록. 보조사료 파보겔 급여 후 경과 관찰 기록.",
         "thumbnailUrl": seo.image,
         "uploadDate": "2026-08-28",
         "embedUrl": absoluteUrl('/#video'),
-        "contentUrl": absoluteUrl('/og-image.png')
+        "contentUrl": absoluteUrl('/assets/parvogel_clinical_documentary_v2.mp4')
       },
       {
         "@type": "VideoObject",

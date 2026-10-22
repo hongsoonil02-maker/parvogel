@@ -1,3 +1,4 @@
+/* global chrome */
 // 100Bagger & Parvogel SmartEditor ONE DOM Injection Content Script
 // 네이버 스마트에디터 ONE의 본문 및 제목을 직접 제어하여 안전하게 자동 발행
 

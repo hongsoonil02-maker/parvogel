@@ -1,3 +1,4 @@
+/* global chrome */
 // 100Bagger & Parvogel Auto Publisher - Background Service Worker
 // 백엔드 API Queue를 일정 주기로 폴링하여 대기 중인 글을 네이버 블로그에 순차 발행
 

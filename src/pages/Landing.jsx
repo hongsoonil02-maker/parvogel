@@ -11,6 +11,7 @@ import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import FeedDisclaimer from '../components/FeedDisclaimer'
+import PetGallerySection from '../components/PetGallerySection'
 import findSampleRecipient from '../utils/sampleCheck'
 import { verifyBusinessApplicant, VERIFICATION_STATUS, ensureVerificationDataLoaded } from '../utils/businessVerification'
 
@@ -604,11 +605,11 @@ const Landing = () => {
         {
             id: 't6',
             name: '김동준 원장',
-            clinic: '하남 사랑동물병원',
-            role: '55일령 파보 장염 푸들 7일 완치 임상 관찰',
-            content: '단순 설사 케어를 넘어 구토와 복통으로 힘들어하는 어린 강아지·고양이도 거부감 없이 스스로 잘 받아먹는 뛰어난 기호성이 가장 큰 장점입니다. 가정과 브리더 현장의 1차 응급 상비 보조사료로 적극 권장합니다.',
+            clinic: '하남 사랑동물병원 원장 / 파보겔 학술자문위원',
+            role: '55일령 파보 장염 푸들 7일 집중 케어 회복 관찰',
+            content: '단순 장 트러블 케어를 넘어 구토와 기력 저하로 힘들어하는 어린 강아지·고양이도 거부감 없이 스스로 잘 받아먹는 뛰어난 기호성이 가장 큰 장점입니다. 가정 내 1차 안심 상비 보조사료로 적극 추천합니다.',
             rating: 5,
-            badge: '🩺 수의사 임상 총평',
+            badge: '🩺 수의사 학술자문 총평',
         },
     ]
 
@@ -885,7 +886,7 @@ const Landing = () => {
                             {/* 상단 트렌디 피드 배지 */}
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-900 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
                                 <span>✨</span>
-                                <span>우리 집 상비약 키트 No.1 · 주사기 실랑이 없는 1초 펌프 겔</span>
+                                <span>우리 집 펫 구급함 필수템 · 주사기 실랑이 없는 1초 펌프 겔</span>
                             </div>
 
                             {/* 메인 감성 & 직관 헤드라인 */}
@@ -913,12 +914,12 @@ const Landing = () => {
                                     <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">1초 펌프 진정</div>
                                 </div>
                                 <div className="text-center p-2 rounded-xl bg-sky-50/80 border border-sky-100">
-                                    <div className="text-[10px] sm:text-xs font-black text-sky-700">Day 3 · 회복</div>
+                                    <div className="text-[10px] sm:text-xs font-black text-sky-700">Day 3 · 호전</div>
                                     <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">맘마 폭풍 완식!</div>
                                 </div>
                                 <div className="text-center p-2 rounded-xl bg-emerald-50/80 border border-emerald-100">
-                                    <div className="text-[10px] sm:text-xs font-black text-emerald-700">Day 7 · 기적</div>
-                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">우다다 퇴원 🐾</div>
+                                    <div className="text-[10px] sm:text-xs font-black text-emerald-700">Day 7 · 회복</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">우다다 활력 회복 🐾</div>
                                 </div>
                             </div>
 
@@ -957,7 +958,7 @@ const Landing = () => {
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs font-bold text-slate-600 mb-5">
                                 <span className="flex items-center gap-1">
                                     <span className="text-amber-400">★★★★★</span>
-                                    <span>집사님 만족도 4.9/5.0</span>
+                                    <span>공식 스토어 평점 4.9/5.0</span>
                                 </span>
                                 <span className="text-slate-300 hidden sm:inline">|</span>
                                 <span className="flex items-center gap-1">
@@ -1254,13 +1255,13 @@ const Landing = () => {
                         </p>
                     </div>
 
-                    {/* Product Images (Front & Back) — lazy + async decode + width/height CLS 방지 */}
+                    {/* Product Images (Front & Back) — lazy + async decode + width/height CLS 방지 (Issue #5 크기 통일) */}
                     <div className="max-w-4xl mx-auto mt-4 mb-6 sm:mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} width="600" height="800" className="w-full h-auto object-cover aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white flex items-center justify-center p-2 sm:p-4">
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_front_detail.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} width="600" height="800" className="w-full h-auto object-contain aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
-                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} width="600" height="800" className="w-full h-auto object-cover aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white flex items-center justify-center p-2 sm:p-4">
+                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} width="600" height="800" className="w-full h-auto object-contain aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
                         </div>
                     </div>
 
@@ -1281,6 +1282,9 @@ const Landing = () => {
                     </div>
                 </div>
             </section>
+
+            {/* 우리 아이들과 함께하는 파보겔 반려견 포토 갤러리 (Issue #7: 대박이·쿠키 사진) */}
+            <PetGallerySection />
 
             {/* Clinical Evidence Section — lazy */}
             <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>

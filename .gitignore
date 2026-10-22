@@ -72,3 +72,10 @@ marketing_factory/data/daily_cost.json
 marketing_factory/data/naver_*
 marketing_factory/*.png
 search_result.txt
+
+# Sensitive customer / sample recipient data (Never commit)
+src/data/sampleRecipients.json
+src/data/verifiedBusinesses.json
+public/assets/parvogel-notice-*.html
+*개선시안.html
+

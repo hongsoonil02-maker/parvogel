@@ -11,17 +11,17 @@ export default function BlogList() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20 pb-24">
       <SEO 
-        title="전문가 칼럼 및 성공 사례" 
-        description="파보겔(Parvogel)의 송아지 설사 치료 성공 사례와 수의사 전문가 칼럼을 확인하세요." 
+        title="수의학 칼럼 & 회복 사례" 
+        description="파보겔(Parvogel) 학술자문단 수의사 칼럼과 강아지·고양이·반려조 장 건강 안심 케어 사례를 확인하세요." 
       />
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            수의학 칼럼 & 성공 사례
+            수의학 칼럼 &amp; 회복 사례
           </h1>
           <p className="text-lg text-gray-600">
-            건강한 축산 환경을 위한 파보겔의 유용한 정보와 소식을 전해드립니다.
+            소중한 우리 아이들의 건강한 장 컨디션을 위한 파보겔의 유용한 정보와 수의학 가이드를 전해드립니다.
           </p>
         </div>
 

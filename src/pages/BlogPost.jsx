@@ -167,12 +167,12 @@ export default function BlogPost() {
         </div>
 
         {/* CTA Banner inside post */}
-        <div className="mt-16 p-8 bg-primary-50 rounded-2xl border border-primary-100 text-center">
-          <h4 className="text-2xl font-bold text-gray-900 mb-2">우리 농장의 송아지를 안전하게 지키는 방법</h4>
-          <p className="text-gray-600 mb-6">설사 초기 대응, 파보겔이 가장 빠르고 확실한 선택입니다.</p>
-          <Link to="/" className="inline-block px-8 py-4 bg-primary-600 text-white font-bold rounded-xl shadow-lg hover:bg-primary-700 transition-colors">
-            파보겔 자세히 알아보기
-          </Link>
+        <div className="mt-16 p-8 bg-sky-50 rounded-2xl border border-sky-100 text-center">
+          <h4 className="text-2xl font-bold text-gray-900 mb-2">새벽 2시에도 당황하지 않는 1초 펌프 안심 케어</h4>
+          <p className="text-gray-600 mb-6">주사기 실랑이 없이 간식처럼 냠냠 핥아먹는 천연 나노 몬모릴로나이트 겔, 파보겔</p>
+          <a href="https://smartstore.naver.com/petschury/products/13718496355" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 bg-primary-700 text-white font-bold rounded-xl shadow-lg hover:bg-primary-800 transition-colors">
+            파보겔 공식 스토어 바로가기 ➔
+          </a>
         </div>
 
         {/* Back link */}

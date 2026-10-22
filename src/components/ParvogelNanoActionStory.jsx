@@ -88,8 +88,8 @@ export default function ParvogelNanoActionStory() {
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight text-center leading-snug break-keep max-w-2xl mx-auto">
-            <span className="block text-balance">"새벽에 갑자기 시작된 노란 위산 토와 물설사…</span>
-            <span className="block mt-1 sm:mt-1.5 text-primary-700">얼마나 놀라셨나요?"</span>
+            <span className="block text-balance">&quot;새벽에 갑자기 시작된 노란 위산 토와 물설사…</span>
+            <span className="block mt-1 sm:mt-1.5 text-primary-700">얼마나 놀라셨나요?&quot;</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
             급성 장 트러블은 초기 골든타임 케어가 가장 중요합니다.<br />
