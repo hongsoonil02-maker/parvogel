@@ -4,18 +4,11 @@ let verifiedData = { phones: {}, registeredShops: [] }
 let loadPromise = null
 
 /**
- * B2B 샘플/도매 탭 선택 시에만 1,400 사업자 검증 데이터를 지연 로드합니다.
+ * B2B 사업자 검증 데이터 (온라인 D2C 전면 전환으로 개인정보 파일 제거 완료)
  */
 export function ensureVerificationDataLoaded() {
     if (!loadPromise) {
-        loadPromise = Promise.all([
-            import('../data/verifiedBusinesses.json')
-                .then(m => {
-                    verifiedData = m.default || m || { phones: {}, registeredShops: [] }
-                })
-                .catch(() => {}),
-            ensureSampleRecipientsLoaded()
-        ])
+        loadPromise = Promise.resolve()
     }
     return loadPromise
 }

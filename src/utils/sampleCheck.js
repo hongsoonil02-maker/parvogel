@@ -2,16 +2,11 @@ let sampleRecipients = []
 let loadPromise = null
 
 /**
- * B2B 샘플/도매 탭 진입 시점에만 수령자 데이터를 지연 로드합니다.
+ * B2B 무료 샘플 수령자 검증 (온라인 D2C 전환으로 개인정보 파일 제거 완료)
  */
 export function ensureSampleRecipientsLoaded() {
     if (!loadPromise) {
-        loadPromise = import('../data/sampleRecipients.json')
-            .then(m => {
-                sampleRecipients = m.default || m || []
-                return sampleRecipients
-            })
-            .catch(() => [])
+        loadPromise = Promise.resolve([])
     }
     return loadPromise
 }
