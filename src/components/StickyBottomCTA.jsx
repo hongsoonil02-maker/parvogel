@@ -43,16 +43,19 @@ export default function StickyBottomCTA({ onOpenOrder }) {
             aria-label={t('stickyCta.buyBtn', '쿠팡 로켓배송 구매')}
             className="relative flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400"
           >
-            <span>{t('stickyCta.buyBtn', '🚀 쿠팡 구매')}</span>
+            <span>🚀 쿠팡 구매</span>
           </a>
           
-          <button
-            onClick={onOpenOrder}
-            aria-label={t('stickyCta.consultBtn', '주문·샘플 신청')}
-            className="flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-primary-700 hover:bg-primary-800 text-white font-black text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-primary-400"
+          <a
+            href={getStoreUrl('naver')}
+            target="_blank"
+            rel="noopener noreferrer"
+            referrerPolicy="no-referrer-when-downgrade"
+            aria-label="네이버 스마트스토어 구매"
+            className="flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-[#03C75A] hover:bg-[#02b350] text-white font-black text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-400"
           >
-            <span>{t('stickyCta.consultBtn', '🎁 주문·샘플')}</span>
-          </button>
+            <span>🛍️ 네이버 구매</span>
+          </a>
         </div>
       </div>
     </nav>

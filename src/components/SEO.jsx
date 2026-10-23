@@ -87,7 +87,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
     ]
   };
 
-  const schema = structuredData || defaultStructuredData;
+  const schema = structuredData;
 
   // hreflang: generate ?lng= alternates + x-default (ko)
   const hreflangLinks = SUPPORTED_HREFLANGS.map((lng) => ({
@@ -102,7 +102,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
       {/* Standard Meta Tags */}
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="keywords" content="파보겔, parvogel, 강아지설사, 강아지지사제, 고양이설사, 앵무새설사, 새설사, 반려조물설사, 조류낙조예방, 소낭정체, 파보장염, 1초펌프, 한국아그로" />
+      <meta name="keywords" content="파보겔, parvogel, 강아지설사, 강아지장케어, 강아지묽은변, 고양이설사, 앵무새설사, 새설사, 반려조물설사, 조류낙조예방, 소낭정체, 파보장염, 1초펌프, 한국아그로" />
       <link rel="canonical" href={seo.url} />
       {hreflangLinks.map((l) => (
         <link key={l.hreflang} rel={l.rel} hrefLang={l.hreflang} href={l.href} />

@@ -780,31 +780,22 @@ const Landing = () => {
                     {isMobileMenuOpen && (
                         <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
-                                {/* 모바일 드롭다운 메뉴 최상단 주문 및 상담 신청 CTA */}
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setFormData(prev => ({
-                                            ...prev,
-                                            requestType: 'sample_petshop',
-                                            product: 'parvogel-200ml',
-                                            quantity: 1,
-                                            message: '[모바일 메뉴] 주문 및 1병 무료 샘플 신청'
-                                        }));
-                                        setIsOrderModalOpen(true);
-                                        setIsOrderComplete(false);
-                                    }}
-                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-primary-900 via-primary-800 to-primary-950 text-white flex items-center justify-between shadow-md active:scale-98 transition-all border border-primary-500/40"
+                                {/* 모바일 드롭다운 메뉴 최상단 공식 스토어 구매 직결 CTA */}
+                                <a
+                                    href={getStoreUrl('naver')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 text-white flex items-center justify-between shadow-md active:scale-98 transition-all border border-emerald-400/40"
                                 >
                                     <span className="flex items-center gap-2">
-                                        <span className="text-base">🎁</span>
-                                        <span>주문 및 상담 신청</span>
+                                        <span className="text-base">🛍️</span>
+                                        <span>네이버 스마트스토어 공식 구매</span>
                                     </span>
-                                    <span className="text-[11px] text-amber-300 bg-white/10 px-2.5 py-0.5 rounded-full font-bold border border-white/20">
-                                        1병 무료체험 · 도매
+                                    <span className="text-[11px] text-emerald-100 bg-white/20 px-2.5 py-0.5 rounded-full font-bold">
+                                        NPay 적립
                                     </span>
-                                </button>
+                                </a>
 
                                 {/* 카카오톡 1:1 상담 모바일 메뉴 버튼 */}
                                 <a

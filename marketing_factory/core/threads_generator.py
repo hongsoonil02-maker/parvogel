@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Threads Content Generator Engine for Parvogel (파보겔)
-- 페르소나: 30년 차 서울대 수의대 출신 김동준 수의사 (하남 사랑동물병원 원장 / 파보겔 학술자문위원)
+- 페르소나: 한국아그로 수의학 학술팀 & 김동준 원장(파보겔 학술자문위원) 임상 팩트 기반 안심 케어 노트
 - 스레드 알고리즘 최적화:
   1) 첫 줄 0.5초 스크롤 스토퍼 후킹
   2) 본문 3~5줄 담백한 임상 팩트 (외부 링크 0개, 마지막 문장은 첫 댓글 확인 유도)
@@ -36,21 +36,21 @@ except ImportError:
 # 스토어 링크 환경변수 또는 기본 스마트스토어/쿠팡 링크
 DEFAULT_STORE_URL = os.environ.get(
     "PARVOGEL_STORE_URL",
-    os.environ.get("PHARMAGEL_STORE_URL", "https://smartstore.naver.com/petschury/products/13718496355")
+    "https://smartstore.naver.com/petschury/products/13718496355"
 )
 
 # 큐레이션된 수의학 임상 팩트베이스 (김동준 원장 감수 기반 템플릿 풀)
 EXPERT_TEMPLATES = {
     "Type A": [
         {
-            "hook_title": "나 30년 차 수의사 김동준인데, 솔직히 강아지 묽은 변 볼 때 사람 약 먹이는 집사들 보면 진짜 가슴 찢어짐.",
-            "main_post": """나 하남에서 30년째 진료 보는 김동준 수의사인데, 강아지 설사한다고 사람 먹는 화학 지사제 먹이는 집사들 보면 진짜 가슴 찢어진다.
+            "hook_title": "동물병원 진료실에서 강아지 묽은 변 볼 때 사람 약 먹이는 집사님들 보면 진짜 안타깝습니다.",
+            "main_post": """진료실에서 강아지 설사한다고 사람 먹는 화학 지사제 임의로 먹이는 보호자님들 보면 정말 가슴이 철렁합니다.
 
-설사는 몸이 장내 유해 물질이랑 독소를 밖으로 비워내려고 버티는 방어 기전인데, 장 운동을 억지로 멈춰버리면 그 독소가 장 안에 갇혀서 장벽을 더 무너뜨린다. 
+설사는 몸이 장내 유해 물질과 독소를 밖으로 비워내려고 버티는 자연스러운 생체 방어 기전인데, 장 운동을 억지로 멈춰버리면 그 독소가 장 안에 갇혀서 장벽을 더 무너뜨릴 수 있습니다.
 
-설사를 무작정 막는 게 아니라 '장 점막을 감싸주고 독소만 물리적으로 흡착해서 빼주는 것'과 '탈수 방지' 딱 두 가지만 기억해.
+설사를 억지로 틀어막는 게 아니라 '손상된 장 점막을 감싸주고 독소만 물리적으로 흡착해서 빼주는 것'과 '탈수 방지' 딱 두 가지만 기억해 주세요.
 
-아이들 변 상태별 안심 대처법이랑 상비 겔 정보는 아래 첫 댓글에 남겨둘게.""",
+아이들 변 상태별 안심 대처법과 비상 겔 정보는 아래 첫 댓글에 남겨둘게요.""",
             "media_recommendation": "진료실 책상 위 강아지 차트 또는 텍스트 온리",
             "first_comment": """쪽지로 어떤 보조제를 챙겨둬야 하냐고 물어보시는 분들이 많아 남겨둡니다.
 
@@ -105,7 +105,7 @@ EXPERT_TEMPLATES = {
 
 구토 잦아들게 돕는 수의학적 프로토콜은 아래 첫 댓글 확인해 줘.""",
             "media_recommendation": "지쳐 누워있는 강아지 옆 파보겔 펌핑 10초 영상",
-            "first_comment": """물도 못 삼키는 위급 상황에서 쓰이는 수의사 처방 기전 공유합니다.
+            "first_comment": """물도 못 삼키는 위급 상황에서 쓰이는 수의학 기반 안심 포뮬러 공유합니다.
 
 주사기 거부감 없이 혀 뒤편에 1초 펌프로 급여하는 고기호성 파보겔(나노 몬모릴로나이트 겔)입니다. 위산 완충과 유해 물질 흡착을 돕습니다.
 
@@ -278,7 +278,7 @@ class ThreadsContentGenerator:
 if __name__ == "__main__":
     generator = ThreadsContentGenerator()
     print("=" * 65)
-    print("🐾 [PHARMAGEL] 스레드 바이럴 콘텐츠 생성 테스트 (Type A, B, C)")
+    print("🐾 [PARVOGEL] 스레드 바이럴 콘텐츠 생성 테스트 (Type A, B, C)")
     print("=" * 65)
     sample_batch = generator.generate_batch(3)
     for idx, item in enumerate(sample_batch, 1):
