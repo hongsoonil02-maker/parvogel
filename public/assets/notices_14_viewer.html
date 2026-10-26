@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파보겔 3차 신규 접수 14개처 A4 맞춤 알림판 대시보드</title>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 30px 20px;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .header-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .title-group h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .title-group p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .badge-sheet {
+    background: #059669;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+  }
+  .btn-print-all {
+    background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(225, 29, 72, 0.4);
+    transition: transform 0.2s;
+  }
+  .btn-print-all:hover {
+    transform: translateY(-2px);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-color: #38bdf8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+  }
+  .card-top {
+    margin-bottom: 16px;
+  }
+  .card-num {
+    font-size: 12px;
+    font-weight: 800;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 6px;
+  }
+  .card-contact {
+    font-size: 13px;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .card-addr {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-top: 8px;
+    background: #0f172a;
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+  .card-qty {
+    display: inline-block;
+    background: #fbbf24;
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+  .btn-open {
+    background: #0284c7;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+    margin-top: 14px;
+    transition: background 0.2s;
+  }
+  .btn-open:hover {
+    background: #0369a1;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header-card">
+    <div class="title-group">
+      <h1><span>📋</span> 3차 문자 신청 14개처 맞춤 A4 알림판 모음</h1>
+      <p>구글 시트 '파보겔_주문접수_DB'에 14건 등록 완료 (Row 228~241) | 각 매장별 개별 알림판 & 일괄 인쇄 지원</p>
+      <div class="badge-sheet">
+        <span>✓</span> 구글 시트 14건 반영 완료
+      </div>
+    </div>
+    <div class="actions">
+      <a href="batch-print-14.html" target="_blank" class="btn-print-all">
+        <span>🖨️</span> 14개 알림판 한번에 일괄 인쇄하기
+      </a>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#01</span>
+        <div class="card-title">스타켄넬</div>
+        <div class="card-contact">👤 박겨레 · 📞 010-9785-5555</div>
+        <div class="card-addr">📍 경기도 양평군 지평면 수곡리 75-6</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-스타켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#02</span>
+        <div class="card-title">웨스트펫</div>
+        <div class="card-contact">👤 박현성 · 📞 010-4979-8283</div>
+        <div class="card-addr">📍 서울특별시 강서구 강서로 439 벨리오 109호</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-웨스트펫.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#03</span>
+        <div class="card-title">화이트모던</div>
+        <div class="card-contact">👤 화이트 · 📞 010-4139-4377</div>
+        <div class="card-addr">📍 강원도 속초시 중앙시장로 4길 23</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-화이트모던.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#04</span>
+        <div class="card-title">멍가네</div>
+        <div class="card-contact">👤 멍가요 · 📞 010-4419-3326</div>
+        <div class="card-addr">📍 서울특별시 강북구 오패산로 30길 74 경남빌라 B동 202호</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-멍가네.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#05</span>
+        <div class="card-title">상수캔낼</div>
+        <div class="card-contact">👤 한상헌 · 📞 010-5462-2929</div>
+        <div class="card-addr">📍 충청북도 괴산군 청안면 칠보로 626-37</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-상수캔낼.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#06</span>
+        <div class="card-title">행복켄넬</div>
+        <div class="card-contact">👤 행복네 · 📞 010-6422-8659</div>
+        <div class="card-addr">📍 충청남도 논산시 벌곡면 대둔로 1243번길 19~53</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-행복켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#07</span>
+        <div class="card-title">퍼피멜로우</div>
+        <div class="card-contact">👤 김현우 · 📞 010-7675-9594</div>
+        <div class="card-addr">📍 경기도 화성시 여울로 127-4</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-퍼피멜로우.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#08</span>
+        <div class="card-title">솔미켄넬</div>
+        <div class="card-contact">👤 박정광 · 📞 010-2478-5305</div>
+        <div class="card-addr">📍 충청북도 증평군 증평읍 초정약수로 1393-1</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-솔미켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#09</span>
+        <div class="card-title">PERRODOG</div>
+        <div class="card-contact">👤 빼로독 · 📞 010-9478-6234</div>
+        <div class="card-addr">📍 경기도 의정부시 평화로 508, 102호</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-PERRODOG.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#10</span>
+        <div class="card-title">프리미엄펫</div>
+        <div class="card-contact">👤 펫존 · 📞 010-4440-9977</div>
+        <div class="card-addr">📍 서울특별시 강동구 천호동 461-30</div>
+        <span class="card-qty">주문수량: 3병 (3병)</span>
+      </div>
+      <a href="parvogel-notice-프리미엄펫.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#11</span>
+        <div class="card-title">꼬똥켄넬</div>
+        <div class="card-contact">👤 최원석 · 📞 010-4775-6290</div>
+        <div class="card-addr">📍 서울특별시 강동구 구천면로 29길 23</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-꼬똥켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#12</span>
+        <div class="card-title">모델독켄넬</div>
+        <div class="card-contact">👤 모델독 · 📞 010-5628-9008</div>
+        <div class="card-addr">📍 경기도 포천시 선단동 599번지</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-모델독켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#13</span>
+        <div class="card-title">개츠비 켄넬</div>
+        <div class="card-contact">👤 성태모 · 📞 010-8874-3079</div>
+        <div class="card-addr">📍 경상남도 창원시 마산합포구 진전면 동산2길 8-12</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-개츠비켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-num">#14</span>
+        <div class="card-title">스탠푸켄넬</div>
+        <div class="card-contact">👤 우혜란 · 📞 010-6547-4483</div>
+        <div class="card-addr">📍 강원도 강릉시 구정면 칠성로 33-12</div>
+        <span class="card-qty">주문수량: 1병 </span>
+      </div>
+      <a href="parvogel-notice-스탠푸켄넬.html" target="_blank" class="btn-open">📄 알림판 열기 / A4 인쇄</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
