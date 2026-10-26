@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>파보겔 어제·오늘 18개처 전체 일괄 인쇄 센터 (포스터 / 주소라벨 / 배송명세서)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background: #0f172a;
+    color: #0f172a;
+  }
+
+  /* 상단 내비게이션 & 컨트롤 바 */
+  .top-control-bar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #090d16;
+    border-bottom: 2px solid #0284c7;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    padding: 14px 24px;
+    color: #ffffff;
+  }
+  .top-bar-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .top-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .top-badge {
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+  .top-main-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #f8fafc;
+    letter-spacing: -0.5px;
+  }
+  .top-sub-title {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  /* 모드 전환 탭 버튼 */
+  .mode-tabs {
+    display: flex;
+    background: #1e293b;
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+    border: 1px solid #334155;
+  }
+  .mode-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mode-btn:hover {
+    color: #ffffff;
+    background: rgba(255,255,255,0.05);
+  }
+  .mode-btn.active {
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  }
+
+  /* 액션 버튼 그룹 */
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-print-primary {
+    background: linear-gradient(135deg, #e11d48, #be123c);
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.1s, box-shadow 0.2s;
+  }
+  .btn-print-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(225, 29, 72, 0.6);
+  }
+  .btn-viewer-link {
+    background: #334155;
+    color: #cbd5e1;
+    border: 1px solid #475569;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .btn-viewer-link:hover {
+    background: #475569;
+    color: #ffffff;
+  }
+
+  /* 프리뷰 컨테이너 */
+  .preview-wrapper {
+    background: #1e293b;
+    min-height: calc(100vh - 80px);
+    padding: 30px 20px 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mode-guide {
+    max-width: 1000px;
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: #e2e8f0;
+    font-size: 13px;
+  }
+  .mode-guide b {
+    color: #38bdf8;
+  }
+
+  /* ======================================================== */
+  /* [모드 1] A4 알림판 포스터 18장 스타일                    */
+  /* ======================================================== */
+  .posters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .a4-page {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    background: #ffffff;
+    padding: 10mm 13mm 10mm 13mm;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    page-break-after: always;
+    page-break-inside: avoid;
+    border-radius: 4px;
+  }
+
+  .top-store-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border-left: 5px solid #0284c7;
+    margin-bottom: 4px;
+  }
+  .store-tag {
+    font-size: 11px;
+    color: #38bdf8;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .store-main-name {
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+  }
+  .store-order-badge {
+    font-size: 11px;
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+
+  .header-wrap {
+    text-align: center;
+    margin-top: 2px;
+  }
+  .vet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35);
+  }
+  .main-heading {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -1.2px;
+    color: #0f172a;
+    margin-top: 6px;
+  }
+  .highlight-red {
+    color: #dc2626;
+  }
+  .sub-heading {
+    font-size: 12.5px;
+    color: #475569;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .sub-heading b {
+    color: #0284c7;
+    font-weight: 800;
+  }
+
+  .symptom-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 2px;
+  }
+  .symptom-card {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    border-radius: 8px;
+    padding: 5px 3px;
+    text-align: center;
+  }
+  .symptom-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .symptom-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #be123c;
+    margin-top: 2px;
+  }
+
+  .banner-wrap {
+    margin-top: 2px;
+  }
+  .banner-badge {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #0284c7;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .banner-box {
+    background: linear-gradient(135deg, #002b90 0%, #004bbf 60%, #0284c7 100%);
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 43, 144, 0.25);
+  }
+  .banner-desc {
+    font-size: 10.5px;
+    color: #bae6fd;
+    font-weight: 600;
+  }
+  .banner-product-title {
+    font-size: 17px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.3px;
+  }
+  .banner-price-label {
+    font-size: 9.5px;
+    background: rgba(255,255,255,0.2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .banner-price-val {
+    font-size: 24px;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    color: #fbbf24;
+    letter-spacing: -0.5px;
+  }
+  .banner-price-won {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fef3c7;
+    margin-left: 2px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 195px 1fr;
+    gap: 12px;
+    margin-top: 3px;
+    align-items: stretch;
+  }
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .bottle-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 6px 4px 5px 4px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 165px;
+  }
+  .bottle-img-wrap {
+    width: 100%;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bottle-img {
+    max-width: 135px;
+    max-height: 135px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .bottle-caption {
+    font-size: 9.5px;
+    font-weight: 800;
+    color: #0369a1;
+    margin-top: 2px;
+  }
+
+  .safe-care-card {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 8px 10px;
+  }
+  .safe-header {
+    font-size: 9.5px;
+    font-weight: 900;
+    color: #15803d;
+    margin-bottom: 5px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .safe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .safe-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: #166534;
+    line-height: 1.25;
+  }
+  .safe-item-icon {
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ingredients-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+  .card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 3px;
+  }
+  .card-header-title {
+    font-size: 11px;
+    font-weight: 900;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-header-badge {
+    font-size: 9px;
+    font-weight: 800;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 8px;
+  }
+  .ingredient-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .num-circle {
+    width: 15px;
+    height: 15px;
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .ing-title {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+  .ing-desc {
+    font-size: 9px;
+    color: #64748b;
+    line-height: 1.2;
+    margin-top: 1px;
+  }
+
+  .clinical-card {
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-radius: 10px;
+    padding: 7px 12px;
+  }
+  .clinical-badge {
+    font-size: 8.5px;
+    font-weight: 800;
+    background: #0d9488;
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .clinical-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 8px;
+    margin-top: 4px;
+  }
+  .clinical-item {
+    font-size: 9.5px;
+    color: #115e59;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    line-height: 1.25;
+  }
+  .clinical-check {
+    color: #0d9488;
+    font-weight: 900;
+  }
+
+  .dosage-card {
+    background: #fffbeb;
+    border: 1.5px solid #fde68a;
+    border-radius: 10px;
+    padding: 7px 12px;
+  }
+  .dosage-badge {
+    font-size: 8.5px;
+    font-weight: 800;
+    background: #d97706;
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .dosage-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .info-line {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 10.5px;
+  }
+  .info-pill {
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .info-val {
+    color: #78350f;
+    font-weight: 700;
+  }
+  .shake-tip {
+    font-size: 9px;
+    color: #b45309;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 1px;
+  }
+
+  .desk-banner {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+  .desk-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .desk-sub {
+    font-size: 9.5px;
+    color: #64748b;
+    margin-top: 1px;
+  }
+  .desk-btn {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .footer-wrap {
+    border-top: 1.5px solid #e2e8f0;
+    padding-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+  .footer-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 440px;
+  }
+  .footer-check {
+    color: #0284c7;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .footer-text {
+    font-size: 11px;
+    color: #334155;
+    line-height: 1.4;
+  }
+  .footer-store {
+    font-weight: 900;
+    color: #0f172a;
+    font-size: 12px;
+  }
+  .footer-tel {
+    font-weight: 800;
+    color: #0284c7;
+    font-size: 11.5px;
+  }
+
+  .qr-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #38bdf8;
+    border-radius: 8px;
+    padding: 3px 8px 3px 4px;
+    flex-shrink: 0;
+  }
+  .qr-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  .qr-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .qr-badge {
+    background: #03c75a;
+    color: #ffffff;
+    font-size: 7.5px;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+  .qr-label-main {
+    font-size: 10px;
+    font-weight: 900;
+    color: #002b90;
+  }
+  .qr-label-sub {
+    font-size: 8px;
+    font-weight: 700;
+    color: #0284c7;
+  }
+
+  .color-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #002b90 0%, #0284c7 50%, #38bdf8 100%);
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+
+  /* ======================================================== */
+  /* [모드 2] 택배 주소 라벨 스티커 스타일 (A4 규격 인쇄)     */
+  /* ======================================================== */
+  .labels-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .labels-a4-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    padding: 12mm 10mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    page-break-after: always;
+    page-break-inside: avoid;
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 44mm;
+    gap: 4mm 5mm;
+  }
+  .shipping-label-card {
+    border: 1.5px solid #0f172a;
+    border-radius: 6px;
+    padding: 7px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  .label-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid #0f172a;
+    padding-bottom: 4px;
+  }
+  .label-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .label-post-badge {
+    background: #e11d48;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 1.5px 5px;
+    border-radius: 3px;
+  }
+  .label-sample-badge {
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 1.5px 5px;
+    border-radius: 3px;
+  }
+  .label-order-num {
+    font-size: 10px;
+    font-weight: 900;
+    color: #475569;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .label-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 4px 0;
+  }
+  .label-receiver-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .label-receiver-name {
+    font-size: 14.5px;
+    font-weight: 900;
+    color: #0f172a;
+  }
+  .label-store-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #0369a1;
+  }
+  .label-phone {
+    font-size: 12px;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+  }
+  .label-address {
+    font-size: 11px;
+    color: #1e293b;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  .label-footer {
+    border-top: 1px dashed #94a3b8;
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 8.5px;
+    color: #64748b;
+  }
+  .label-sender {
+    font-weight: 700;
+    color: #475569;
+  }
+  .label-qty-tag {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 900;
+  }
+
+  /* ======================================================== */
+  /* [모드 3] 배송 관리 명단표 스타일 (A4 1장 컴팩트)          */
+  /* ======================================================== */
+  .table-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .table-a4-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    padding: 14mm 12mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    page-break-after: always;
+    page-break-inside: avoid;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  .table-header-block {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 2.5px solid #0f172a;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .table-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #0f172a;
+  }
+  .table-sub {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 3px;
+  }
+  .table-meta {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0284c7;
+    text-align: right;
+  }
+
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .orders-table th {
+    background: #f1f5f9;
+    color: #1e293b;
+    font-weight: 800;
+    padding: 6px 6px;
+    border-top: 1px solid #0f172a;
+    border-bottom: 1.5px solid #94a3b8;
+    text-align: center;
+    font-size: 10.5px;
+  }
+  .orders-table td {
+    padding: 6px 6px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+  }
+  .orders-table tr:hover {
+    background: #f8fafc;
+  }
+  .col-no { text-align: center; width: 32px; font-weight: 800; color: #64748b; }
+  .col-store { font-weight: 900; color: #0284c7; width: 85px; }
+  .col-receiver { text-align: center; width: 55px; font-weight: 700; }
+  .col-phone { text-align: center; width: 105px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; }
+  .col-address { font-size: 10.5px; }
+  .col-qty { text-align: center; width: 40px; font-weight: 800; }
+  .col-check { text-align: center; width: 50px; color: #94a3b8; }
+
+  /* ======================================================== */
+  /* 인쇄 전용 CSS (@media print)                            */
+  /* ======================================================== */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      background: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 210mm !important;
+      height: auto !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .no-print, .top-control-bar, .mode-guide {
+      display: none !important;
+    }
+    .preview-wrapper {
+      background: #ffffff !important;
+      padding: 0 !important;
+      min-height: auto !important;
+      display: block !important;
+    }
+    .a4-page, .labels-a4-sheet, .table-a4-sheet {
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      max-height: 297mm !important;
+      page-break-after: always !important;
+      page-break-inside: avoid !important;
+    }
+    .table-a4-sheet {
+      height: auto !important;
+      min-height: 297mm !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- 상단 고정 컨트롤 바 (화면 전용) -->
+<header class="top-control-bar no-print">
+  <div class="top-bar-inner">
+    <div class="top-title-group">
+      <span class="top-badge">어제·오늘 18개처</span>
+      <div>
+        <h1 class="top-main-title">파보겔(PARVOGEL) 3차 통합 인쇄 센터</h1>
+        <p class="top-sub-title">18개 전 매장 A4 포스터 · 우체국 택배 주소 라벨 스티커 · 배송 명세서 원클릭 출력</p>
+      </div>
+    </div>
+
+    <!-- 모드 선택 탭 -->
+    <div class="mode-tabs">
+      <button id="tab-posters" class="mode-btn active" onclick="switchMode('posters')">
+        <span>🏪</span>
+        <span>A4 맞춤 포스터 18장</span>
+      </button>
+      <button id="tab-labels" class="mode-btn" onclick="switchMode('labels')">
+        <span>📦</span>
+        <span>택배 주소 라벨 18개</span>
+      </button>
+      <button id="tab-table" class="mode-btn" onclick="switchMode('table')">
+        <span>📋</span>
+        <span>배송 관리 명단표</span>
+      </button>
+    </div>
+
+    <!-- 인쇄 액션 버튼 -->
+    <div class="action-buttons">
+      <button class="btn-print-primary" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        <span>지금 전체 인쇄하기 (Ctrl+P)</span>
+      </button>
+      <a href="notices_14_viewer.html" target="_blank" class="btn-viewer-link">
+        <span>👀 낱장 뷰어 열기</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- 메인 프리뷰 영역 -->
+<main class="preview-wrapper">
+  <!-- 모드 안내문구 -->
+  <div class="mode-guide no-print">
+    <div id="guide-text">
+      💡 <b>현재 선택: [🏪 A4 맞춤 포스터 18장 모드]</b> — 인쇄 버튼(Ctrl+P)을 누르면 1번 스타켄넬부터 18번 루미퍼피까지 <b>18장의 맞춤 알림판이 1장씩 순서대로 일괄 연속 출력</b>됩니다.
+    </div>
+    <div style="font-size:12px; color:#94a3b8; flex-shrink:0;">
+      인쇄 설정: <b>용지: A4 / 배율: 맞춤(100%) / 여백: 없음(또는 기본) / 배경 그래픽: 체크</b>
+    </div>
+  </div>
+
+  <!-- 1. 포스터 18장 영역 -->
+  <section id="view-posters" class="posters-container">
+    <!-- JS 자동 렌더링 -->
+  </section>
+
+  <!-- 2. 주소 라벨 18개 영역 -->
+  <section id="view-labels" class="labels-container">
+    <!-- JS 자동 렌더링 -->
+  </section>
+
+  <!-- 3. 관리 명단표 영역 -->
+  <section id="view-table" class="table-container">
+    <!-- JS 자동 렌더링 -->
+  </section>
+</main>
+
+<script>
+var ordersData = [
+  {
+    "no": 1,
+    "store": "스타켄넬",
+    "receiver": "박겨레",
+    "phone": "010-9785-5555",
+    "address": "경기도 양평군 지평면 수곡리 75-6",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 2,
+    "store": "웨스트펫",
+    "receiver": "박현성",
+    "phone": "010-4979-8283",
+    "address": "서울특별시 강서구 강서로 439 벨리오 109호",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 3,
+    "store": "화이트모던",
+    "receiver": "화이트",
+    "phone": "010-4139-4377",
+    "address": "강원도 속초시 중앙시장로 4길 23",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 4,
+    "store": "멍가네",
+    "receiver": "멍가요",
+    "phone": "010-4419-3326",
+    "address": "서울특별시 강북구 오패산로 30길 74 경남빌라 B동 202호",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 5,
+    "store": "상수캔낼",
+    "receiver": "한상헌",
+    "phone": "010-5462-2929",
+    "address": "충청북도 괴산군 청안면 칠보로 626-37",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 6,
+    "store": "행복켄넬",
+    "receiver": "행복네",
+    "phone": "010-6422-8659",
+    "address": "충청남도 논산시 벌곡면 대둔로 1243번길 19~53",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 7,
+    "store": "퍼피멜로우",
+    "receiver": "김현우",
+    "phone": "010-7675-9594",
+    "address": "경기도 화성시 여울로 127-4",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 8,
+    "store": "솔미켄넬",
+    "receiver": "박정광",
+    "phone": "010-2478-5305",
+    "address": "충청북도 증평군 증평읍 초정약수로 1393-1",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 9,
+    "store": "PERRODOG",
+    "receiver": "빼로독",
+    "phone": "010-9478-6234",
+    "address": "경기도 의정부시 평화로 508, 102호",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 10,
+    "store": "프리미엄펫",
+    "receiver": "펫존",
+    "phone": "010-4440-9977",
+    "address": "서울특별시 강동구 천호동 461-30",
+    "qty": 3,
+    "note": "[3차 MMS] 본품 무료 샘플 신청 3병"
+  },
+  {
+    "no": 11,
+    "store": "꼬똥켄넬",
+    "receiver": "최원석",
+    "phone": "010-4775-6290",
+    "address": "서울특별시 강동구 구천면로 29길 23",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 12,
+    "store": "모델독켄넬",
+    "receiver": "모델독",
+    "phone": "010-5628-9008",
+    "address": "경기도 포천시 선단동 599번지",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 13,
+    "store": "개츠비 켄넬",
+    "receiver": "성태모",
+    "phone": "010-8874-3079",
+    "address": "경상남도 창원시 마산합포구 진전면 동산2길 8-12",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 14,
+    "store": "스탠푸켄넬",
+    "receiver": "우혜란",
+    "phone": "010-6547-4483",
+    "address": "강원도 강릉시 구정면 칠성로 33-12",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 15,
+    "store": "경기화성",
+    "receiver": "김수만",
+    "phone": "010-3321-7835",
+    "address": "경기도 화성시 우정읍 평밭길 50-11",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 16,
+    "store": "대명애견",
+    "receiver": "이향숙",
+    "phone": "010-3639-5263",
+    "address": "경기도 양평군 개군면 해랭이골길 145, 10동",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 17,
+    "store": "보배농장",
+    "receiver": "전수선",
+    "phone": "010-3930-5158",
+    "address": "경기도 김포시 월곶면 고양로 117번길 94~38 나동",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  },
+  {
+    "no": 18,
+    "store": "루미퍼피",
+    "receiver": "틈틈짱짱",
+    "phone": "010-6510-6911",
+    "address": "경기도 양주시 옥정동로7나길 18, 103호 (퍼피루미)",
+    "qty": 1,
+    "note": "[3차 MMS] 본품 무료 샘플 신청"
+  }
+];
+
+// 포스터 1장 HTML 생성 함수
+function renderPosterCard(item) {
+  var no = item.no;
+  var storeName = item.store || item.receiver;
+  var receiver = item.receiver;
+  var phone = item.phone || '';
+  var address = item.address || '';
+  
+  return `
+  <article class="a4-page" id="poster-page-${no}">
+    <!-- 상단 매장 전용 맞춤 바 -->
+    <div class="top-store-bar">
+      <div>
+        <div class="store-tag">
+          <span>★</span>
+          <span>공식 지정 파트너십 인증 매장</span>
+        </div>
+        <div class="store-main-name">${storeName}</div>
+      </div>
+      <div style="text-align:right;">
+        <span class="store-order-badge">신규 접수 #${no}</span>
+        <div style="font-size:9.5px; color:#94a3b8; margin-top:2px;">파보겔 처방 공식 취급처</div>
+      </div>
+    </div>
+
+    <!-- 헤더 타이틀 -->
+    <div class="header-wrap">
+      <div class="vet-badge">
+        <span>🏥</span>
+        <span>전국 동물병원 및 전문 브리더 공식 사용</span>
+      </div>
+      <h1 class="main-heading">
+        설사로 고생하는 <span class="highlight-red">어린 자견·반려동물</span>을 위한<br>
+        비상 상비약 <span style="color:#0284c7;">파보겔</span> 구비 매장
+      </h1>
+      <p class="sub-heading">
+        원인 모를 급성 설사·구토 발생 시 <b>골든타임을 지키는 1차 긴급 대처 정장 지사제</b>
+      </p>
+    </div>
+
+    <!-- 증상 5종 칩 -->
+    <div class="symptom-strip">
+      <div class="symptom-card">
+        <div class="symptom-icon">🤢</div>
+        <div class="symptom-name">구토</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">💧</div>
+        <div class="symptom-name">설사</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">😖</div>
+        <div class="symptom-name">복통</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">🍽️</div>
+        <div class="symptom-name">식욕부진</div>
+      </div>
+      <div class="symptom-card">
+        <div class="symptom-icon">😿</div>
+        <div class="symptom-name">기력저하</div>
+      </div>
+    </div>
+
+    <!-- 메인 배너 -->
+    <div class="banner-wrap">
+      <div class="banner-badge">★ 공식 지정 처방 · 어린 강아지·고양이 전용 안심 케어</div>
+      <div class="banner-box">
+        <div>
+          <div class="banner-desc">수의사 임상 검증 프리미엄 정장 지사제</div>
+          <div class="banner-product-title">
+            <span>파보겔 (100ml 액상)</span>
+            <span class="banner-price-label">정상 판매가</span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:baseline;">
+          <span class="banner-price-val">18,000</span>
+          <span class="banner-price-won">원</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메인 본문 2컬럼 -->
+    <div class="body-grid">
+      <!-- 좌측 병 사진 & 안심 케어 -->
+      <div class="left-column">
+        <div class="bottle-card">
+          <div class="bottle-img-wrap">
+            <img class="bottle-img" src="parvogel-bottle-crop.png" alt="파보겔 정품" onerror="this.src='parvogel-authentic.png';">
+          </div>
+          <div class="bottle-caption">파보겔 100ml 액상 정품</div>
+        </div>
+
+        <div class="safe-care-card">
+          <div class="safe-header">PET SHOP EXCLUSIVE CARE</div>
+          <div class="safe-list">
+            <div class="safe-item">
+              <span class="safe-item-icon">🛡️</span>
+              <span><b>100% 정품</b> 공식 지정 매장</span>
+            </div>
+            <div class="safe-item">
+              <span class="safe-item-icon">🔬</span>
+              <span><b>특허균주 MORI</b> 배합 포뮬러</span>
+            </div>
+            <div class="safe-item">
+              <span class="safe-item-icon">⚡</span>
+              <span><b>급속 전해질</b> 탈수 수분 보충</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측 성분 / 임상 / 용법 -->
+      <div class="right-column">
+        <!-- 핵심 성분 -->
+        <div class="ingredients-card">
+          <div class="card-header-row">
+            <span class="card-header-title">💊 핵심 성분 5가지 복합체</span>
+            <span class="card-header-badge">빠른 장내 안정</span>
+          </div>
+          <div class="ingredient-grid">
+            <div class="ingredient-item">
+              <div class="num-circle">1</div>
+              <div>
+                <div class="ing-title">항균·항바이러스 작용</div>
+                <div class="ing-desc">특허균주 Bacillus Subtilis MORI</div>
+              </div>
+            </div>
+            <div class="ingredient-item">
+              <div class="num-circle">2</div>
+              <div>
+                <div class="ing-title">즉각 에너지 공급</div>
+                <div class="ing-desc">포도당 (탈수 및 기력 회복)</div>
+              </div>
+            </div>
+            <div class="ingredient-item">
+              <div class="num-circle">3</div>
+              <div>
+                <div class="ing-title">전해질 밸런스 균형</div>
+                <div class="ing-desc">염화나트륨 · 염화칼륨 배합</div>
+              </div>
+            </div>
+            <div class="ingredient-item">
+              <div class="num-circle">4</div>
+              <div>
+                <div class="ing-title">장내 유해물질 흡착</div>
+                <div class="ing-desc">천연 벤토나이트 미네랄 점토</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 임상 검증 효과 -->
+        <div class="clinical-card">
+          <div class="card-header-row">
+            <span class="card-header-title">🔬 수의학 임상 검증 효능</span>
+            <span class="clinical-badge">임상 완료</span>
+          </div>
+          <div class="clinical-list">
+            <div class="clinical-item"><span class="clinical-check">✔</span> 급성 설사·연변 24시간 내 유의미 개선</div>
+            <div class="clinical-item"><span class="clinical-check">✔</span> 파보·코로나 장염 시 1차 보호막 형성</div>
+            <div class="clinical-item"><span class="clinical-check">✔</span> 분양 초기 스트레스성 무른변 신속 예방</div>
+            <div class="clinical-item"><span class="clinical-check">✔</span> 장 점막 신속 코팅 및 병원균 배출</div>
+          </div>
+        </div>
+
+        <!-- 권장 용법 용량 -->
+        <div class="dosage-card">
+          <div class="card-header-row">
+            <span class="card-header-title">📋 권장 급여법 (간편 투여)</span>
+            <span class="dosage-badge">어린 자견 안심</span>
+          </div>
+          <div class="dosage-content">
+            <div class="info-line">
+              <span class="info-pill">대상</span>
+              <span class="info-val">어린 강아지·고양이 및 모든 반려동물</span>
+            </div>
+            <div class="info-line">
+              <span class="info-pill">용법</span>
+              <span class="info-val">1일 두당 2~4ml, 5~7일간 경구 직접 급여</span>
+            </div>
+            <div class="shake-tip">
+              <span>💡</span>
+              <span>가라앉는 천연 점토 성분이 있어 가볍게 흔들어서 급여하세요</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 데스크 문의 배너 -->
+    <div class="desk-banner">
+      <div>
+        <div class="desk-title">
+          <span>💡</span>
+          <span>투약 용량 및 구매 안내는 매장 카운터에 문의하세요!</span>
+        </div>
+        <div class="desk-sub">
+          우리 아이 체중(kg)에 따른 1일 2~4ml 맞춤 급여법을 <b>전문 매니저가 직접</b> 친절히 안내해 드립니다.
+        </div>
+      </div>
+      <button class="desk-btn">
+        <span>매장 카운터 문의</span>
+        <span>➔</span>
+      </button>
+    </div>
+
+    <!-- 하단 취급처 & QR 코드 -->
+    <div class="footer-wrap">
+      <div class="footer-left">
+        <span class="footer-check">✔</span>
+        <div class="footer-text">
+          <span>공식 지정 취급처: </span>
+          <span class="footer-store">${storeName}</span>
+          <span style="color:#64748b; font-size:10.5px;"> (${address})</span>
+          <span style="color:#94a3b8;"> | </span>
+          <span class="footer-tel">☎ ${phone}</span>
+        </div>
+      </div>
+
+      <div class="qr-box">
+        <img class="qr-img" src="dm-qr-naver.png" alt="스토어 QR" onerror="this.parentElement.style.display='none'">
+        <div class="qr-label-group">
+          <span class="qr-badge">네이버페이</span>
+          <div class="qr-label-main">스마트스토어</div>
+          <div class="qr-label-sub">정품 공식인증</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 최하단 시그니처 바 -->
+    <div class="color-bar"></div>
+  </article>
+  `;
+}
+
+// 라벨 스티커 1개 카드 HTML 생성 함수
+function renderLabelCard(item) {
+  var no = item.no;
+  var storeName = item.store || item.receiver;
+  var receiver = item.receiver;
+  var phone = item.phone || '';
+  var address = item.address || '';
+  var qty = item.qty || 1;
+  var note = item.note || '';
+
+  return `
+  <div class="shipping-label-card">
+    <div class="label-card-header">
+      <div class="label-badge-box">
+        <span class="label-post-badge">우체국/택배</span>
+        <span class="label-sample-badge">파보겔 무료체험</span>
+      </div>
+      <span class="label-order-num">NO. ${String(no).padStart(2, '0')} / 18</span>
+    </div>
+
+    <div class="label-body">
+      <div class="label-receiver-row">
+        <div>
+          <span class="label-receiver-name">${receiver}</span>
+          <span style="font-size:10.5px; color:#64748b;"> 님 귀하</span>
+        </div>
+        <span class="label-store-name">[${storeName}]</span>
+      </div>
+
+      <div class="label-phone">☎ ${phone}</div>
+      <div class="label-address">🏠 ${address}</div>
+    </div>
+
+    <div class="label-footer">
+      <div class="label-sender">
+        보내는분: (주)한국아그로 파보겔 사업부 (031-297-6200)
+      </div>
+      <div class="label-qty-tag">
+        수량: ${qty}병 (동봉안내서 포함)
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// 초기 렌더링
+function initRender() {
+  // 1. 포스터 18장 렌더링
+  var postersContainer = document.getElementById('view-posters');
+  var postersHtml = '';
+  for (var i = 0; i < ordersData.length; i++) {
+    postersHtml += renderPosterCard(ordersData[i]);
+  }
+  postersContainer.innerHTML = postersHtml;
+
+  // 2. 라벨 18개 렌더링 (A4 1장에 8장씩 -> 총 3장 시트)
+  var labelsContainer = document.getElementById('view-labels');
+  var labelsHtml = '';
+  var pageSize = 8; // 한 페이지당 8장 (2열 4행)
+  for (var p = 0; p < ordersData.length; p += pageSize) {
+    var chunk = ordersData.slice(p, p + pageSize);
+    labelsHtml += '<div class="labels-a4-sheet">';
+    for (var j = 0; j < chunk.length; j++) {
+      labelsHtml += renderLabelCard(chunk[j]);
+    }
+    // 빈 칸 채우기 (정렬 유지)
+    for (var k = chunk.length; k < pageSize; k++) {
+      labelsHtml += '<div class="shipping-label-card" style="border:1px dashed #cbd5e1; opacity:0.3; justify-content:center; align-items:center; color:#94a3b8; font-size:11px;">여백 라벨</div>';
+    }
+    labelsHtml += '</div>';
+  }
+  labelsContainer.innerHTML = labelsHtml;
+
+  // 3. 관리 명단표 렌더링 (A4 1장 컴팩트)
+  var tableContainer = document.getElementById('view-table');
+  var rowsHtml = '';
+  for (var t = 0; t < ordersData.length; t++) {
+    var it = ordersData[t];
+    rowsHtml += `
+    <tr>
+      <td class="col-no">${it.no}</td>
+      <td class="col-store">${it.store}</td>
+      <td class="col-receiver">${it.receiver}</td>
+      <td class="col-phone">${it.phone}</td>
+      <td class="col-address">${it.address}</td>
+      <td class="col-qty">${it.qty}병</td>
+      <td class="col-check">□ 완료</td>
+    </tr>
+    `;
+  }
+  var tableHtml = `
+  <div class="table-a4-sheet">
+    <div class="table-header-block">
+      <div>
+        <h2 class="table-title">파보겔 어제·오늘 3차 접수 18개처 배송 & 포스터 출고 관리대장</h2>
+        <p class="table-sub">(주)한국아그로 마케팅본부 · 펫샵/브리더 무료체험 본품 및 맞춤 안내판 발송</p>
+      </div>
+      <div class="table-meta">
+        <div>총 발송처: <b>18개소</b></div>
+        <div>총 수량: <b>20병</b> (프리미엄펫 3병 외 각 1병)</div>
+        <div>출력일자: 2026-10-27</div>
+      </div>
+    </div>
+
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>상호명</th>
+          <th>수령인</th>
+          <th>연락처</th>
+          <th>배송지 주소</th>
+          <th>수량</th>
+          <th>확인</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsHtml}
+      </tbody>
+    </table>
+
+    <div style="margin-top:auto; padding-top:12px; border-top:1px solid #cbd5e1; display:flex; justify-content:space-between; font-size:10px; color:#64748b;">
+      <span>※ 발송 박스마다 [매장 맞춤 A4 알림판 포스터 1부] + [파보겔 본품] 동봉 필수</span>
+      <span>출고 담당자: __________________ (인)</span>
+    </div>
+  </div>
+  `;
+  tableContainer.innerHTML = tableHtml;
+}
+
+// 모드 전환 함수
+function switchMode(mode) {
+  var viewPosters = document.getElementById('view-posters');
+  var viewLabels = document.getElementById('view-labels');
+  var viewTable = document.getElementById('view-table');
+
+  var tabPosters = document.getElementById('tab-posters');
+  var tabLabels = document.getElementById('tab-labels');
+  var tabTable = document.getElementById('tab-table');
+
+  var guideText = document.getElementById('guide-text');
+
+  // 리셋
+  viewPosters.style.display = 'none';
+  viewLabels.style.display = 'none';
+  viewTable.style.display = 'none';
+
+  tabPosters.classList.remove('active');
+  tabLabels.classList.remove('active');
+  tabTable.classList.remove('active');
+
+  if (mode === 'posters') {
+    viewPosters.style.display = 'flex';
+    tabPosters.classList.add('active');
+    guideText.innerHTML = '💡 <b>현재 선택: [🏪 A4 맞춤 포스터 18장 모드]</b> — 인쇄 버튼(Ctrl+P)을 누르면 1번 스타켄넬부터 18번 루미퍼피까지 <b>18장의 맞춤 알림판이 1장씩 순서대로 일괄 연속 출력</b>됩니다.';
+  } else if (mode === 'labels') {
+    viewLabels.style.display = 'flex';
+    tabLabels.classList.add('active');
+    guideText.innerHTML = '💡 <b>현재 선택: [📦 택배 주소 라벨 스티커 모드]</b> — A4 1장에 8칸씩(총 3장), 18개 매장의 <b>우체국/택배 발송용 주소 라벨 스티커</b>가 인쇄됩니다.';
+  } else if (mode === 'table') {
+    viewTable.style.display = 'flex';
+    tabTable.classList.add('active');
+    guideText.innerHTML = '💡 <b>현재 선택: [📋 배송 관리 명단표 모드]</b> — 어제·오늘 접수된 18곳의 <b>배송 주소 및 출고 체크리스트가 A4 단 1장</b>으로 컴팩트하게 인쇄됩니다.';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', initRender);
+</script>
+
+</body>
+</html>
