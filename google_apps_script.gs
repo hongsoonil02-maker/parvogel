@@ -104,10 +104,12 @@ function doPost(e) {
       return createJsonResponse({ status: "error", message: "Invalid phone format" }, e);
     }
     phone = normPhone;
-    // 이메일 선택 입력 시 형식 검증 (sanitize 전 원본 검증)
+    // 이메일 선택 입력 처리 (비어있거나 형식이 유효하지 않은 경우 전화번호 기반 안전 이메일 생성)
     var rawEmail = (p.email || "").trim();
-    if (rawEmail !== "" && rawEmail !== "-" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
-      return createJsonResponse({ status: "error", message: "Invalid email format" }, e);
+    if (rawEmail === "" || rawEmail === "-" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawEmail)) {
+      email = "a" + normPhone + "@parvogel.kr";
+    } else {
+      email = sanitizeForSheet(rawEmail);
     }
     // 사업자번호 10자리 (도매 시)
     if (rawRequestType === "wholesale" && bizNumber !== "-" && bizNumber !== "") {

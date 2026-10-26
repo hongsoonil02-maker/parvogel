@@ -115,7 +115,20 @@ export function verifyBusinessApplicant(phone, shopName = '', bizNumber = '') {
         }
     }
 
-    // 5단계: 미등록 일반인 또는 일반 개인
+    // 5단계: 상호명 또는 유효한 휴대폰번호가 있는 사업자 신청 (SMS 타깃 유입 포함)
+    if (cleanPhone && cleanPhone.length >= 10 && shopName) {
+        return {
+            status: VERIFICATION_STATUS.VERIFIED_TARGET,
+            data: {
+                phone: cleanPhone,
+                shopName,
+                type: 'direct_applicant_business'
+            },
+            message: '반려동물 전문 펫샵·켄넬·브리더 사업자 전용 무료 샘플 지원 대상입니다.'
+        }
+    }
+
+    // 6단계: 미등록 일반인 또는 식별 불가
     return {
         status: VERIFICATION_STATUS.UNVERIFIED_PUBLIC,
         message: '파보겔 무료 샘플은 정부 인허가 동물판매업·생산업 정식 사업자 전용 프로그램입니다.'

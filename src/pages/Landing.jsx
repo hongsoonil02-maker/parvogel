@@ -337,7 +337,7 @@ const Landing = () => {
             return
         }
 
-        // 무료 샘플 신청 시 1,400 사업자 인증 및 중복 신청/일반인 검증
+        // 무료 샘플 신청 시 중복 신청 확인
         const isSample = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
         if (isSample) {
             await ensureVerificationDataLoaded()
@@ -347,12 +347,7 @@ const Landing = () => {
                 triggerDuplicateSampleGuide(vResult.data)
                 return
             }
-            // 2. 미등록 일반인 또는 일반 개인 -> 거부감 없는 정중한 사업자 전용 안내 및 쿠팡/네이버 구매 안내 모달 노출
-            if (vResult.status === VERIFICATION_STATUS.UNVERIFIED_PUBLIC) {
-                setIsCertifiedNoticeOpen(true)
-                return
-            }
-            // 3. 타깃 인허가 사업자(VERIFIED_TARGET) -> 계속 진행하여 본품 1병 무료 발송 접수!
+            // 펫샵/브리더 무료체험은 상호명과 배송주소를 입력하면 정상 접수 진행
         }
         // 사업자번호 패턴 (도매)
         if (formData.requestType === 'wholesale' && formData.bizNumber) {
@@ -401,20 +396,26 @@ const Landing = () => {
                 || import.meta.env.VITE_APPS_SCRIPT_URL
                 || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec';
 
+            // Google Apps Script 백엔드는 유효한 이메일 형식을 필수로 요구하므로
+            // 사용자가 이메일을 입력하지 않은 경우 전화번호 기반 유효 이메일을 생성하여 전송
+            const finalEmail = (formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+                ? formData.email
+                : `a${normPhone}@parvogel.kr`;
+
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')
             params.append('requestId', requestIdRef.current)
             params.append('requestType', formData.requestType)
             params.append('hospitalName', formData.hospitalName)
             params.append('contactName', formData.contactName)
-            params.append('bizNumber', formData.bizNumber)
+            params.append('bizNumber', formData.bizNumber || '-')
             params.append('phone', normPhone)
-            params.append('email', formData.email)
+            params.append('email', finalEmail)
             params.append('address', formData.address)
-            params.append('product', formData.product)
-            params.append('quantity', formData.quantity)
-            params.append('orderVolume', formData.orderVolume)
-            params.append('message', formData.message)
+            params.append('product', formData.product || 'parvogel-200ml')
+            params.append('quantity', formData.quantity || '1')
+            params.append('orderVolume', formData.orderVolume || '-')
+            params.append('message', formData.message || '-')
             params.append('timestamp', new Date().toISOString())
 
             // Apps Script 웹앱은 Access-Control-Allow-Origin: * 로 CORS를 정상 지원하므로
