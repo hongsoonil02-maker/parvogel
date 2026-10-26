@@ -57,7 +57,11 @@
       "headline_line3": "가루약 거부하는 아이도 간식처럼 냠냠 먹어요",
       "headline_core": "새벽에 강아지가 갑자기 노란 토와 물설사를 할 때, 당황하지 말고 1초 톡! 파보겔",
       "focus_scene": "Day 1 (새벽 구토·설사 응급 골든타임 1초 펌프 케어)",
-      "video_file": "parvogel_case_01_seizure.mp4"
+      "video_file": "parvogel_case_01_seizure.mp4",
+      "geo_keyword": "강아지 급성 설사 응급처치",
+      "geo_topic": "새벽에 시작된 수양성 물설사(Bristol Type 7)와 탈수 방지 1초 점막 코팅 케어",
+      "sub_keywords": ["강아지 물설사", "강아지 탈수 증상", "새벽 강아지 응급처치", "강아지 잇몸 CRT", "파보겔"],
+      "search_intent": "새벽 응급 물설사 탈수 방지 및 골든타임 대처"
     },
     "Tuesday": {
       "theme_id": "cat_stress_free_2040",
@@ -69,7 +73,11 @@
       "headline_line3": "고양이 무른 변·구토 후 위장 진정 겔",
       "headline_core": "가루약 거품 무는 고양이도 주사기 없이 1초 톡! 무른 변·헤어볼 구토 위장 진정 케어",
       "focus_scene": "Day 2 (주사기 스트레스 ZERO 원터치 1초 펌핑)",
-      "video_file": "parvogel_case_02_lethargy.mp4"
+      "video_file": "parvogel_case_02_lethargy.mp4",
+      "geo_keyword": "새끼 강아지 설사 금식 위험",
+      "geo_topic": "2~3개월령 소형견 장시간 절식 시 저혈당 쇼크 방지 및 장 점막 코팅 가이드",
+      "sub_keywords": ["아기 강아지 설사 굶기면", "새끼 강아지 저혈당", "자견 설사 금식", "장 융모 보호", "초미세 몬모릴로나이트"],
+      "search_intent": "어린 자견 설사 시 무리한 절식 위험성과 안전한 장벽 보호"
     },
     "Wednesday": {
       "theme_id": "bird_parrot_special",
@@ -81,7 +89,11 @@
       "headline_line3": "단 24시간 만에 예쁜 정상 변 부활",
       "headline_core": "앵무새 물설사 낙조 위기, 파보겔 부리 끝 1방울로 24시간 만에 정상 변 회복한 실화",
       "focus_scene": "반려조 꼬미 24시간 배변 회복 실화 직캠 쇼츠",
-      "video_file": "parvogel_case_02_lethargy.mp4"
+      "video_file": "parvogel_case_02_lethargy.mp4",
+      "geo_keyword": "강아지 파보 장염 초기증상",
+      "geo_topic": "파보바이러스 장 융모(Villi) 파괴 기전과 독소 물리적 흡착 배출 3일 회복 임상",
+      "sub_keywords": ["파보 장염 초기증상", "강아지 파보 혈변", "1-DNJ", "특허균주 MORI", "파보겔 김동준 원장"],
+      "search_intent": "파보바이러스 의심 시 융모 파괴 기전 및 비흡수성 독소 배출"
     },
     "Thursday": {
       "theme_id": "poodle_7day_miracle",
@@ -93,7 +105,11 @@
       "headline_line3": "7일 만에 네 발로 우뚝 서서 퇴원했습니다",
       "headline_core": "쓰러진 55일령 아기 푸들이 3일 만에 밥그릇을 비우고 7일 만에 걸어서 퇴원한 진료실 실화",
       "focus_scene": "Day 2~3 (자가 기립 및 신경계 안정 다큐 하이라이트)",
-      "video_file": "parvogel_case_03_standing.mp4"
+      "video_file": "parvogel_case_03_standing.mp4",
+      "geo_keyword": "강아지 설사 약 거품 토할때",
+      "geo_topic": "가루약 주사기 강제 피딩 스트레스 ZERO! 입가에 대고 1초 펌프로 스스로 핥아먹는 기적",
+      "sub_keywords": ["강아지 약 먹이기 거품", "강아지 주사기 약 먹이기", "고양이 설사약 먹이기", "강아지 가루약 거부", "파보겔 1초 펌프"],
+      "search_intent": "투약 스트레스 및 흡인성 폐렴 위험 없는 1초 펌프 급여"
     },
     "Friday": {
       "theme_id": "petshop_breeder_b2b",
@@ -105,7 +121,11 @@
       "headline_line3": "인허가 사업자 본품 1병 무료 샘플 지원",
       "headline_core": "[펫샵·브리더 전용] 이유기·분양 초기 자견 설사 방어 솔루션 파보겔 본품 1병 무료 샘플 신청",
       "focus_scene": "펫샵·켄넬 다두 급여 & 본품 1병 무료 체험 캠페인",
-      "video_file": "parvogel_case_05_eating.mp4"
+      "video_file": "parvogel_case_05_eating.mp4",
+      "geo_keyword": "분양견 설사 장염 상비약",
+      "geo_topic": "전국 펫샵·켄넬 입소문 검증, 분양 초기 환경 스트레스성 장염 방어 및 무료 샘플",
+      "sub_keywords": ["펫샵 강아지 설사", "분양 초기 강아지 설사", "이유기 장염", "브리더 켄넬 상비약", "파보겔 무료샘플"],
+      "search_intent": "분양 직후 환경 변화 스트레스 설사 방어 및 사업자 무료 샘플"
     },
     "Saturday": {
       "theme_id": "mukbang_recovery",
@@ -117,7 +137,11 @@
       "headline_line3": "다시 생생하게 꼬리 치며 우다다 달립니다",
       "headline_core": "밥 한 입 못 먹던 아기 강아지가 3일 만에 그릇까지 핥아먹은 기적의 폭풍 먹방",
       "focus_scene": "Day 4 (다큐 캔사료 폭풍 먹방 완식 하이라이트)",
-      "video_file": "parvogel_case_05_eating.mp4"
+      "video_file": "parvogel_case_05_eating.mp4",
+      "geo_keyword": "강아지 피똥 혈변 주말 응급실",
+      "geo_topic": "주말·야간 24시 동물병원 내원 전 골든타임 3대 레드플래그 자가진단 및 응급 장 코팅",
+      "sub_keywords": ["강아지 혈변 주말", "강아지 피똥 응급실", "24시 동물병원 비용", "강아지 응급실 가야할때", "파보겔 상비"],
+      "search_intent": "주말 병원 휴무 시 혈변/피똥 응급 판별과 1차 보호 조치"
     },
     "Sunday": {
       "theme_id": "home_first_aid_kit",
@@ -129,7 +153,11 @@
       "headline_line3": "실온 18개월 보관 우리 집 1차 응급 상비약",
       "headline_core": "24시 야간 응급실 30~50만 원 vs 우리 집 서랍 속 파보겔 18,000원! 댕냥집사 필수 상비약 키트",
       "focus_scene": "Day 6~7 (진료대 보행 완치 퇴원 & 가정 상비 가이드)",
-      "video_file": "김동준원장_동영상 6-1.mp4"
+      "video_file": "김동준원장_동영상 6-1.mp4",
+      "geo_keyword": "강아지 묽은변 연변 잡는법",
+      "geo_topic": "브리스톨 대변 척도 Type 7 수양변에서 Type 3~4 황금변까지 7일 완치 관찰일지",
+      "sub_keywords": ["강아지 묽은변 이유", "강아지 연변 잡기", "브리스톨 대변 척도", "강아지 황금변", "파보겔 7일 완치"],
+      "search_intent": "만성 연변 및 묽은변 개선과 정상변(Type 3~4) 전환 관리"
     },
     "biweekly_bird": {
       "theme_id": "bird_parrot_special",
@@ -141,7 +169,11 @@
       "headline_line3": "단 24시간 만에 예쁜 정상 변 부활",
       "headline_core": "앵무새 물설사 낙조 위기, 파보겔 1방울로 24시간 정상 변 회복 실화",
       "focus_scene": "반려조 꼬미 24시간 배변 회복 실화 직캠 쇼츠",
-      "video_file": "parvogel_case_02_lethargy.mp4"
+      "video_file": "parvogel_case_02_lethargy.mp4",
+      "geo_keyword": "앵무새 물설사 낙조 예방",
+      "geo_topic": "신진대사 빠른 반려조 급성 물설사 24시간 배변 정상화와 부리 끝 1방울 케어",
+      "sub_keywords": ["앵무새 설사", "조류 낙조 예방", "앵무새 변 상태", "반려조 물설사", "파보겔 꼬미"],
+      "search_intent": "신진대사가 빠른 조류의 급성 탈수 및 낙조 방지 1방울 급여"
     }
   }
 }

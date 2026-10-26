@@ -190,5 +190,41 @@
         }
       }
     }
+  },
+  {
+    "timestamp": "2026-10-24 08:10:53",
+    "campaign": "PARVOGEL_VIRAL_SHORTS_AB_TEST",
+    "results": {
+      "VERSION_A_DOG_EMPATHY": {
+        "hypothesis": "감성공감형 (0.6kg 아기 강아지 실화)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_A_DOG_EMPATHY_20261007_093201.mp4",
+        "trigger_keyword": "파보",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "ARCHIVED_READY_FOR_PUBLISH: Instagram_Reels_VERSION_A_DOG_EMPATHY_20261024.json",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_B_DOG_MECHANISM": {
+        "hypothesis": "수의학기전형 (단순 지사제 위험 vs 몬모릴로나이트)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_B_DOG_MECHANISM_20261007_093216.mp4",
+        "trigger_keyword": "골든타임",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "ARCHIVED_READY_FOR_PUBLISH: Instagram_Reels_VERSION_B_DOG_MECHANISM_20261024.json",
+          "TikTok": "SUCCESS"
+        }
+      },
+      "VERSION_C_CALF_FARM": {
+        "hypothesis": "농가실화형 (송아지 300만원 폐사 방지)",
+        "video_file": "c:\\Users\\master\\parvogel_landing\\marketing_factory\\output\\rendered_shorts\\Viral_VERSION_C_CALF_FARM_20261007_093231.mp4",
+        "trigger_keyword": "송아지",
+        "platform_statuses": {
+          "YouTube_Shorts": "SUCCESS",
+          "Instagram_Reels": "ARCHIVED_READY_FOR_PUBLISH: Instagram_Reels_VERSION_C_CALF_FARM_20261024.json",
+          "TikTok": "SUCCESS"
+        }
+      }
+    }
   }
 ]

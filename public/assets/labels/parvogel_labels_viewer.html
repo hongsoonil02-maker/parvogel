@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파보겔(ParvoGel) 3종 규격 라벨 스티커 통합 뷰어 (블루 & 화이트 비교 시스템)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background: #070b14; color: #f8fafc; }
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header Controls -->
+    <header class="bg-[#0b1329] border-b border-amber-500/30 sticky top-0 z-50 px-6 py-4 shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">🐕</span>
+                <div>
+                    <h1 class="text-xl font-black text-white flex items-center gap-2">
+                        파보겔(PARVO GEL) 라벨 스티커 3종 규격
+                        <span class="text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2.5 py-0.5 rounded-full">인쇄용 고해상도</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">100ml (110×70mm) · 200ml (140×90mm) · 500ml (180×120mm) 전 규격 블루 / 화이트 비교</p>
+                </div>
+            </div>
+
+            <!-- Tab Buttons (Volume & Theme Combined) -->
+            <div class="flex flex-wrap items-center bg-slate-900/90 p-1.5 rounded-xl border border-slate-700 gap-1.5 shadow-inner">
+                <!-- 100ml -->
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
+                    <span class="text-[11px] font-black text-slate-400 px-2">100ml</span>
+                    <button onclick="switchLabel('100ml-blue')" id="btn-100ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all bg-amber-500 text-slate-950 font-black shadow">
+                        블루
+                    </button>
+                    <button onclick="switchLabel('100ml-white')" id="btn-100ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        화이트
+                    </button>
+                </div>
+
+                <!-- 200ml -->
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
+                    <span class="text-[11px] font-black text-slate-400 px-2">200ml</span>
+                    <button onclick="switchLabel('200ml-blue')" id="btn-200ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        블루
+                    </button>
+                    <button onclick="switchLabel('200ml-white')" id="btn-200ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        화이트
+                    </button>
+                </div>
+
+                <!-- 500ml -->
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
+                    <span class="text-[11px] font-black text-slate-400 px-2">500ml</span>
+                    <button onclick="switchLabel('500ml-blue')" id="btn-500ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        블루
+                    </button>
+                    <button onclick="switchLabel('500ml-white')" id="btn-500ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        화이트
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="printCurrent()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center gap-1.5 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span>인쇄하기 (Ctrl+P)</span>
+                </button>
+                <a id="btn-open-single" href="parvogel_100ml_110x70.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-slate-600 flex items-center gap-1.5 transition-all">
+                    <span>단독창</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Preview Area -->
+    <main class="flex-1 p-6 flex flex-col items-center justify-center">
+        <!-- Specs Info Card -->
+        <div class="max-w-5xl w-full mb-5 bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-3 shadow-lg">
+            <div class="flex items-center gap-2">
+                <span class="text-amber-400 font-bold">● 현재 선택 :</span>
+                <span id="spec-info" class="font-bold text-white text-sm">100ml 규격 (110mm × 70mm) - [로열 블루 오리지널]</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 text-slate-400 text-xs">
+                <span class="text-emerald-400">✓ <strong>모든 반려동물 우선 순서</strong> 전체 라벨 완벽 적용</span>
+                <span class="text-sky-300">✓ <strong>(주)한국아그로 딥블랙 로고</strong> 화이트 뒷면 가독성 극대화</span>
+                <span class="text-amber-300">✓ <strong>200ml/500ml</strong> 용법·용량 최신 문구 반영 완료</span>
+            </div>
+        </div>
+
+        <!-- iframe Wrapper -->
+        <div class="w-full flex justify-center overflow-auto py-2">
+            <iframe id="label-frame" src="parvogel_100ml_110x70.html" class="border border-slate-700 rounded-2xl shadow-2xl bg-black transition-all" style="width: 100%; max-width: 1240px; height: 750px;"></iframe>
+        </div>
+    </main>
+
+    <script>
+        const LABELS = {
+            '100ml-blue': {
+                file: 'parvogel_100ml_110x70.html',
+                text: '100ml 규격 (110mm × 70mm) - [로열 블루 오리지널 테마]',
+                height: '750px',
+                theme: 'blue'
+            },
+            '100ml-white': {
+                file: 'parvogel_100ml_110x70_white.html',
+                text: '100ml 규격 (110mm × 70mm) - [뒷면 화이트 클린 배경 비교용]',
+                height: '750px',
+                theme: 'white'
+            },
+            '200ml-blue': {
+                file: 'parvogel_200ml_140x90.html',
+                text: '200ml 규격 (140mm × 90mm) - [로열 블루 오리지널 테마]',
+                height: '850px',
+                theme: 'blue'
+            },
+            '200ml-white': {
+                file: 'parvogel_200ml_140x90_white.html',
+                text: '200ml 규격 (140mm × 90mm) - [뒷면 화이트 클린 배경 비교용]',
+                height: '850px',
+                theme: 'white'
+            },
+            '500ml-blue': {
+                file: 'parvogel_500ml_180x120.html',
+                text: '500ml 규격 (180mm × 120mm) - [로열 블루 오리지널 테마]',
+                height: '980px',
+                theme: 'blue'
+            },
+            '500ml-white': {
+                file: 'parvogel_500ml_180x120_white.html',
+                text: '500ml 규격 (180mm × 120mm) - [뒷면 화이트 클린 배경 비교용]',
+                height: '980px',
+                theme: 'white'
+            }
+        };
+
+        let currentKey = '100ml-blue';
+
+        function switchLabel(key) {
+            currentKey = key;
+            const data = LABELS[key];
+            
+            // Update button styles
+            document.querySelectorAll('.label-btn').forEach(btn => {
+                btn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white';
+            });
+            const activeBtn = document.getElementById('btn-' + key);
+            if (activeBtn) {
+                if (data.theme === 'white') {
+                    activeBtn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-black transition-all bg-emerald-400 text-slate-950 shadow-md';
+                } else {
+                    activeBtn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-black transition-all bg-amber-500 text-slate-950 shadow-md';
+                }
+            }
+
+            // Update iframe
+            const frame = document.getElementById('label-frame');
+            frame.src = data.file;
+            frame.style.height = data.height;
+
+            // Update info and open button
+            document.getElementById('spec-info').innerText = data.text;
+            document.getElementById('btn-open-single').href = data.file;
+        }
+
+        function printCurrent() {
+            const frame = document.getElementById('label-frame');
+            if (frame && frame.contentWindow) {
+                frame.contentWindow.focus();
+                frame.contentWindow.print();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -121,6 +121,7 @@ class ParvogelContentEnricher:
         today_date = datetime.datetime.now().strftime("%Y-%m-%d")
         
         # 1. OpenAI (비용 가드 통과 시)
+        narrative_out = None
         if self.openai_client and self._check_cost_guard():
             try:
                 ai_result = self._generate_with_openai(theme)
@@ -128,23 +129,32 @@ class ParvogelContentEnricher:
                     ai_result["date"] = today_date
                     ai_result["source"] = "OpenAI-GPT4o"
                     self._add_cost(0.02)
-                    return self._sanitize_narrative(ai_result)
+                    narrative_out = ai_result
             except Exception as e:
                 print(f"[INFO] OpenAI failed, trying Gemini: {e}")
 
         # 1b. Gemini 2차 폴백
-        if GEMINI_API_KEY:
+        if not narrative_out and GEMINI_API_KEY:
             try:
                 g_result = self._generate_with_gemini(theme)
                 if g_result:
                     g_result["date"] = today_date
                     g_result["source"] = "Gemini-1.5"
-                    return self._sanitize_narrative(g_result)
+                    narrative_out = g_result
             except Exception as e:
                 print(f"[INFO] Gemini failed, falling back to template: {e}")
 
         # 2. 고품질 룰베이스 수의학 템플릿 엔진 (100% 무오류 보장)
-        return self._generate_template_narrative(theme, today_date)
+        if not narrative_out:
+            narrative_out = self._generate_template_narrative(theme, today_date)
+
+        # 요일별 GEO 검색 키워드 및 토픽 자동 바인딩 보장
+        narrative_out["geo_keyword"] = theme.get("geo_keyword", "강아지 파보 장염 초기증상")
+        narrative_out["geo_topic"] = theme.get("geo_topic", "3개월령 강아지 급성 설사 대처 및 파보겔을 활용한 장 점막 보호 관리")
+        narrative_out["sub_keywords"] = theme.get("sub_keywords", ["강아지 설사", "파보겔", "몬모릴로나이트"])
+        narrative_out["search_intent"] = theme.get("search_intent", "급성 설사 대처 및 장 점막 보호")
+
+        return self._sanitize_narrative(narrative_out)
 
     def _generate_with_openai(self, theme: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         prompt = f"""

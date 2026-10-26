@@ -16,10 +16,10 @@
       "description": "디스코드 커뮤니티 및 긴급 알림 웹훅"
     },
     "Twitter_X": {
-      "enabled": true,
-      "publish_mode": "auto",
+      "enabled": false,
+      "publish_mode": "off",
       "type": "social_feed",
-      "description": "X(트위터) 스레드 및 바이럴 꿀팁"
+      "description": "X(트위터) - 100베거 주식 계정 분리 및 크레딧 과금 차단으로 비활성화"
     },
     "Naver_Blog": {
       "enabled": true,
@@ -34,16 +34,16 @@
       "description": "유튜브 쇼츠 9:16 비디오 및 메타데이터"
     },
     "Instagram_Reels": {
-      "enabled": false,
-      "publish_mode": "off",
+      "enabled": true,
+      "publish_mode": "auto",
       "type": "video_shortform",
-      "description": "인스타그램 릴스 (100베거 계정 오발송 차단 - 파보겔 전용 계정 연동 시까지 배포 중단)"
+      "description": "인스타그램 릴스 (파보겔 공식 parvogel.official 연동 완료)"
     },
     "Facebook_Page": {
-      "enabled": false,
-      "publish_mode": "off",
+      "enabled": true,
+      "publish_mode": "auto",
       "type": "video_shortform",
-      "description": "페이스북 페이지 (100베거 페이스북 페이지 오발송 차단 - 배포 중단)"
+      "description": "페이스북 페이지 (Agrokorea 공식 페이지 연동 완료)"
     },
     "TikTok": {
       "enabled": true,
@@ -56,6 +56,12 @@
       "publish_mode": "draft_only",
       "type": "b2b_professional",
       "description": "반려동물 헬스케어 파트너 및 글로벌 B2B 브리프"
+    },
+    "Threads": {
+      "enabled": true,
+      "publish_mode": "auto",
+      "type": "social_thread",
+      "description": "메타 스레드(Threads) 바이럴 임상 팩트 및 90초 지연 첫댓글 전환 타래"
     },
     "Clinic_Cold_DM": {
       "enabled": true,
