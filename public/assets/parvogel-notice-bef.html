@@ -788,7 +788,7 @@
         <input type="radio" name="theme_opt" value="copy-d" onchange="switchTheme('copy-d')"> 🌿 간편 급여 (1초 쏙)
       </label>
       <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
-        <input type="radio" name="theme_opt" value="all" checked onchange="switchTheme('all')"> 🐾 통합형 (전축종 상비약)
+        <input type="radio" name="theme_opt" value="all" checked onchange="switchTheme('all')"> 🐾 통합형 (반려동물 상비약)
       </label>
       <label style="font-size:11.5px; font-weight:700; color:#1e293b; display:flex; align-items:center; gap:4px; cursor:pointer;">
         <input type="radio" name="theme_opt" value="livestock" onchange="switchTheme('livestock')"> 🐮 가축·농가형 (송아지 설사)
@@ -834,9 +834,9 @@
   <div class="hero-wrap">
     <div class="hero-badge" id="heroBadge">
       <span>🐾</span>
-      <span id="heroBadgeText">설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약</span>
+      <span id="heroBadgeText">설사로 고생하는 어린 자견·반려동물을 위한 비상 상비약</span>
     </div>
-    <div class="hero-sub" id="heroSubText">토하고 설사하는 우리 아이 & 어린 가축</div>
+    <div class="hero-sub" id="heroSubText">토하고 설사하는 우리 아이 (어린 강아지·고양이)</div>
     <div class="hero-main" id="heroMainText">
       <span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>
       <span class="hero-strong">한 병이면 든든합니다</span>
@@ -1191,7 +1191,7 @@ function switchTheme(mode) {
     // 🐮 가축·농가 중심 카피
     var customWrap = document.getElementById('custom_copy_wrap');
     if (customWrap) customWrap.style.display = 'none';
-    if (bText) bText.textContent = '설사로 고생하는 송아지·어린 가축을 위한 비상 상비약';
+    if (bText) bText.textContent = '설사로 고생하는 송아지·자돈을 위한 비상 상비약';
     if (sText) sText.textContent = '신생 송아지·자돈 수양성 설사 & 분변 이상 시';
     if (mText) {
       mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
@@ -1208,11 +1208,11 @@ function switchTheme(mode) {
                         '<span class="hero-strong">장 점막 즉각 코팅 & 독소 흡착</span>';
     }
   } else {
-    // 🐾 통합형 (개·고양이·송아지 전축종)
+    // 🐾 통합형 (개·고양이·반려동물)
     var customWrap = document.getElementById('custom_copy_wrap');
     if (customWrap) customWrap.style.display = 'none';
-    if (bText) bText.textContent = '설사로 고생하는 어린 가축·반려동물을 위한 비상 상비약';
-    if (sText) sText.textContent = '토하고 설사하는 우리 아이 & 어린 가축';
+    if (bText) bText.textContent = '설사로 고생하는 어린 자견·반려동물을 위한 비상 상비약';
+    if (sText) sText.textContent = '토하고 설사하는 우리 아이 (어린 강아지·고양이)';
     if (mText) {
       mText.innerHTML = '<span class="hero-product-name">동물용 활<span class="ghost-gi">기</span>명수 ‘파보겔’</span>' +
                         '<span class="hero-strong">한 병이면 든든합니다</span>';
