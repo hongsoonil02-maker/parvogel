@@ -42,6 +42,8 @@ data/
 scripts/*
 !scripts/prerender_blogs.js
 !scripts/marketing/
+!scripts/marketing_pipeline/
+scripts/marketing_pipeline/output/
 scripts/marketing/output/
 scripts/marketing/logs/
 

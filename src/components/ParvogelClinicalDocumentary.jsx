@@ -627,6 +627,62 @@ export default function ParvogelClinicalDocumentary() {
           </div>
         </div>
 
+        {/* 🏥 김동준 원장 온라인동물병원(네이버 카페) 공식 추천 & 실제 후기 카드 (조회수 1,734회 실화) */}
+        <div className="max-w-5xl mx-auto mt-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-emerald-950 via-slate-900 to-primary-950 border border-emerald-500/30 shadow-2xl text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+          
+          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-3 max-w-2xl text-start">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 text-xs font-black rounded-full bg-emerald-500 text-slate-950 shadow-md flex items-center gap-1.5">
+                  <span>🩺</span>
+                  <span>온라인동물병원 공식 상비약 추천</span>
+                </span>
+                <span className="text-xs font-bold text-emerald-300">
+                  하남 사랑동물병원 김동준 원장 처방 연계
+                </span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-black text-white leading-snug break-keep">
+                "배에서 꾸르륵거리거나 변이 무를 때 — 단 한 번이면 충분합니다"
+              </h3>
+
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                <div className="flex items-center gap-2 text-amber-300 text-xs font-bold">
+                  <span>💬</span>
+                  <span>네이버 카페 화제의 보호자 실제 후기 (조회수 1,734회)</span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed break-keep italic">
+                  "스멕타를 며칠간 먹여도 잡히지 않던 물설사였는데... 김동준 원장님 추천으로 몬스멕타 급여 단 1번 만에 설사가 완전히 멈추고 변이 단단해졌습니다. 지금은 가정 상비약으로 무조건 쟁여둡니다."
+                </p>
+              </div>
+
+              <p className="text-xs text-slate-400 leading-relaxed break-keep">
+                ※ 일반 벤토나이트/스멕타 대비 특허 초미세 나노 몬모릴로나이트의 압도적 비표면적이 장 점막 융모를 실크처럼 덮어주고, 장내 병원성 세균과 바이러스 독소만 자석처럼 선택 흡착 배출합니다.
+              </p>
+            </div>
+
+            <div className="w-full lg:w-auto shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3">
+              <a
+                href="https://cafe.naver.com/onlinevet/46187"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-emerald-500/20 hover:scale-105 active:scale-95 transition-all text-center flex items-center justify-center gap-2"
+              >
+                <span>온라인동물병원 원문 보기 ➔</span>
+              </a>
+              <a
+                href="https://smartstore.naver.com/petschury/products/13718496355"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 transition-all text-center flex items-center justify-center gap-2"
+              >
+                <span>가정용 상비약 파보겔 주문하기</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* 전편 전체화면 모달 (모바일 최적화 & 장애인 전체 자막/대본 포함) */}

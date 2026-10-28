@@ -1,0 +1,71 @@
+# ==============================================================================
+# Parvogel / Monsmecta Multi-Channel Marketing Pipeline Configuration
+# ==============================================================================
+
+pipeline:
+  name: "Parvogel-Viral-Veterinary-Marketing"
+  version: "1.0.0"
+  dry_run_default: true
+  output_dir: "scripts/marketing_pipeline/output"
+
+# 1. Authority Clinical Evidence & Core Testimonials (소셜 프루프)
+clinical_knowledge_base:
+  hospital: "하남 사랑동물병원 (김동준 원장)"
+  online_platform: "네이버 카페 '온라인동물병원' (cafe.naver.com/onlinevet)"
+  key_case_study:
+    title: "배에서 꾸르륵거리거나 식욕이 없거나 변이 무를 때 가정의 상비약 (하남사랑동물병원 원장 김동준)"
+    cafe_url: "https://cafe.naver.com/onlinevet/46187"
+    article_no: 46187
+    banner_slogan: "동물용 딸기향수 '몬스멕타' 단 한 번이면 충분합니다"
+    patient: "배에서 소리나고 식욕 부진 및 지속성 물설사 반려견"
+    fact: "약국 스멕타이트를 먹여도 잡히지 않던 설사가, 김동준 원장의 몬스멕타(초미세 나노 몬모릴로나이트) 단 1회 급여 후 완전히 멎음. 병원 공식 처방전 연계 및 온라인동물병원 상비약 추천."
+    mechanism: "울트라파인 나노 공정의 고순도 몬모릴로나이트. 장 점막 융모를 실크처럼 코팅하고 장내 바이러스 독소만 자석처럼 끌어당겨 배출."
+  doctor_quote: "단순 지사제로 장 운동을 억지로 멈추면 독소가 배출되지 못해 치명적입니다. 몬스멕타/파보겔은 점막을 물리적으로 감싸고 독소만 자석처럼 끌어당겨 배출합니다."
+
+# 2. Content Generation Queue (주제 큐)
+topics:
+  - id: "case_smecta_vs_monsmecta"
+    title: "스멕타 먹여도 안 멈추던 설사가 몬스멕타 1번에 멈춘 수의학적 이유"
+    category: "임상사례_비교"
+    hook_angle: "기존 약 실패 후 최종 해결책"
+    keywords: ["강아지스멕타", "강아지설사약", "몬스멕타", "파보겔", "온라인동물병원", "김동준수의사"]
+  
+  - id: "acute_diarrhea_contraindication"
+    title: "강아지 설사한다고 사람 지사제 먹이면 장이 마비되는 충격적인 이유"
+    category: "응급상식"
+    hook_angle: "보호자의 위험한 실수 경고"
+    keywords: ["강아지급성설사", "강아지지사제주의사항", "장독소증", "파보겔"]
+
+  - id: "parvo_mucosa_goldentime"
+    title: "수액 바늘도 안 들어가는 55일령 아기 푸들... 7일 만에 기적의 퇴원 실화"
+    category: "다큐멘터리"
+    hook_angle: "감동적인 완치 실화"
+    keywords: ["파보장염완치", "55일령푸들", "김동준원장", "파보겔직캠"]
+
+# 3. Channel Settings
+channels:
+  instagram:
+    enabled: true
+    slides_count: 5
+    default_scheduled_time: "18:30"
+    cta_link: "https://parvogel.kr"
+
+  youtube_shorts:
+    enabled: true
+    duration_sec: 50
+    default_scheduled_time: "20:00"
+    cta_keyword: "골든타임"
+
+  naver_blog:
+    enabled: true
+    format: "markdown"
+    default_scheduled_time: "10:00"
+
+# 4. Social Publisher Credentials (Postiz / Buffer)
+publisher:
+  engine: "postiz" # options: 'postiz', 'buffer', 'mock'
+  postiz:
+    api_url: "https://api.postiz.com/api/v1"
+    api_key: "ENV_POSTIZ_API_KEY" # Replace with real token or env var
+  buffer:
+    access_token: "ENV_BUFFER_ACCESS_TOKEN"
