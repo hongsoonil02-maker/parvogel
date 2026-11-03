@@ -8,10 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;800;900&family=Orbitron:wght@700;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        @page {
-            size: 180mm 120mm;
-            margin: 0mm;
-        }
+        
 
         * {
             box-sizing: border-box;
@@ -61,28 +58,7 @@
             }
         }
 
-        /* 인쇄 전용 (1:1 출력) */
-        @media print {
-            html, body {
-                width: 180mm !important;
-                height: 120mm !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                background: transparent !important;
-                overflow: hidden !important;
-            }
-            .label-sheet {
-                border: none !important;
-                width: 180mm !important;
-                height: 120mm !important;
-                transform: none !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
+        
 
         /* 라벨 메인 시트 규격 (파보겔 시그니처 로열 코발트 블루) */
         .label-sheet {
@@ -480,7 +456,7 @@
             border-radius: 1.0mm;
             padding: 1.1mm 2.2mm;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; align-items: flex-start;
             gap: 0.2mm;
             line-height: 1.18;
             box-shadow: 0 0.5mm 1.5mm rgba(0, 0, 0, 0.04);
@@ -489,6 +465,13 @@
             display: flex;
             align-items: baseline;
             gap: 0.6mm;
+        }
+        
+        .dose-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.2mm;
         }
         .dose-title {
             font-size: 2.35mm;
@@ -506,7 +489,7 @@
             font-size: 2.15mm;
             color: #475569;
             font-weight: 700;
-            padding-left: 0.2mm;
+            padding-left:  0;
         }
 
         /* 주의사항 박스 (흰색 배경용 소프트 로즈 카드) */
@@ -696,19 +679,610 @@
             font-weight: 800;
         }
     </style>
+
+    <style id="page-style">
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+    </style>
+
+    <style id="custom-wing-style">
+        /* ============================================================== */
+        /* [WING MARGIN FORMAT: 좌측 7mm + 중간 7mm + 우측 3mm (총 181mm × 126mm)] */
+        /* ============================================================== */
+        body {
+            background: #030712;
+            color: #f8fafc;
+        }
+
+        /* 화면 뷰어 모드 */
+        @media screen {
+            body {
+                padding: 70px 20px 40px 20px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                min-height: 100vh !important;
+            }
+            .a4-guide-wrapper {
+                background: #ffffff;
+                color: #0f172a;
+                padding: 10mm 15mm 15mm 15mm;
+                border-radius: 4px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 30px;
+                box-sizing: border-box;
+            }
+            body.paper-roll .a4-guide-wrapper {
+                background: transparent !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+            }
+            body.paper-roll .a4-header-guide,
+            body.paper-roll .a4-cut-instructions,
+            body.paper-roll .crop-line {
+                display: none !important;
+            }
+        }
+
+        /* A4 헤더 안내 및 50mm 실측 확인 자 */
+        .a4-header-guide {
+            text-align: center;
+            margin-bottom: 6mm;
+            font-family: 'Noto Sans KR', sans-serif;
+            width: 100%;
+        }
+        .a4-header-guide h2 {
+            font-size: 13.5pt;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            margin-bottom: 2mm;
+            text-align: center;
+        }
+        .a4-header-guide p {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 3mm;
+            text-align: center;
+        }
+        .ruler-50mm {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3mm;
+            font-size: 8.5pt;
+            color: #334155;
+            font-weight: 700;
+        }
+        .ruler-bar {
+            width: 50mm;
+            height: 5.5mm;
+            border: 0.35mm solid #0f172a;
+            border-top: none;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .ruler-tick {
+            position: absolute;
+            bottom: 0;
+            width: 0.30mm;
+            background: #0f172a;
+        }
+        .tick-0 { left: 0; height: 5.5mm; }
+        .tick-1 { left: 10mm; height: 3.0mm; }
+        .tick-2 { left: 20mm; height: 3.0mm; }
+        .tick-3 { left: 30mm; height: 3.0mm; }
+        .tick-4 { left: 40mm; height: 3.0mm; }
+        .tick-50 { right: 0; height: 5.5mm; }
+        .ruler-bar .tick-0::after {
+            content: '0';
+            position: absolute;
+            top: -3.5mm;
+            left: 1.0mm;
+            font-size: 7pt;
+            font-weight: 700;
+        }
+        .ruler-bar .tick-50::after {
+            content: '50mm';
+            position: absolute;
+            top: -3.5mm;
+            right: 1.0mm;
+            font-size: 7pt;
+            font-weight: 700;
+        }
+        .ruler-note {
+            font-size: 8pt;
+            color: #64748b;
+        }
+
+        /* 자르기 가이드 (Crop Marks Box) */
+        .crop-marks-box {
+            position: relative;
+            width: 181mm !important;
+            height: 126mm !important;
+            margin: 0 auto !important;
+            flex-shrink: 0 !important;
+        }
+        .crop-line {
+            position: absolute;
+            background: #0f172a;
+            z-index: 100;
+            pointer-events: none;
+        }
+        .crop-tl-h { top: 0; left: -6mm; width: 4.5mm; height: 0.3mm; }
+        .crop-tl-v { top: -6mm; left: 0; width: 0.3mm; height: 4.5mm; }
+        .crop-tr-h { top: 0; right: -6mm; width: 4.5mm; height: 0.3mm; }
+        .crop-tr-v { top: -6mm; right: 0; width: 0.3mm; height: 4.5mm; }
+        .crop-bl-h { bottom: 0; left: -6mm; width: 4.5mm; height: 0.3mm; }
+        .crop-bl-v { bottom: -6mm; left: 0; width: 0.3mm; height: 4.5mm; }
+        .crop-br-h { bottom: 0; right: -6mm; width: 4.5mm; height: 0.3mm; }
+        .crop-br-v { bottom: -6mm; right: 0; width: 0.3mm; height: 4.5mm; }
+
+        /* 스티커 날개 컨테이너 (총 181mm × 126mm) */
+        .sticker-wing-container {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: stretch !important;
+            width: 181mm !important;
+            height: 126mm !important;
+            background: #ffffff !important;
+            border: 0.20mm solid #cbd5e1 !important;
+            box-sizing: border-box !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            overflow: hidden !important;
+        }
+
+        /* 좌측 7mm 접착 날개 */
+        .adhesive-wing-left {
+            width: 7.0mm !important;
+            height: 100% !important;
+            background: #ffffff !important;
+            flex-shrink: 0 !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            z-index: 15 !important;
+            border-right: 0.20mm dashed #94a3b8 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        .wing-text-left {
+            writing-mode: vertical-rl !important;
+            text-orientation: mixed !important;
+            font-size: 3.2mm !important;
+            color: #94a3b8 !important;
+            font-weight: 800 !important;
+            letter-spacing: 1.0mm !important;
+            opacity: 0.8 !important;
+            user-select: none !important;
+            white-space: nowrap !important;
+        }
+
+        /* 본체 라벨 시트: 171mm */
+        .sticker-wing-container .label-sheet {
+            width: 171mm !important;
+            max-width: 171mm !important;
+            min-width: 171mm !important;
+            height: 126mm !important;
+            min-height: 126mm !important;
+            max-height: 126mm !important;
+            margin: 0 !important;
+            border: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            position: relative !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* 상단 & 하단 골드 액센트 바 (상단선과 하단선 100% 동일한 선 및 완전 대칭 노출) */
+        .top-accent-bar,
+        .bottom-accent-bar {
+            height: 0.95mm !important;
+            min-height: 0.95mm !important;
+            max-height: 0.95mm !important;
+            background: linear-gradient(90deg, #d97706, #fbbf24, #fef08a, #fbbf24, #d97706) !important;
+            box-shadow: 0 0 1.2mm rgba(251, 191, 36, 0.8) !important;
+            z-index: 25 !important;
+            flex-shrink: 0 !important;
+            width: 100% !important;
+            display: block !important;
+        }
+
+        .bottom-accent-bar {
+            margin-top: auto !important;
+        }
+
+        /* 본체 콘텐츠 영역: 상단과 하단에 넉넉한 대칭 여백을 두어 상하단 황금선이 100% 똑같이 보이도록 함 */
+        .sticker-wing-container .content-wrap {
+            width: 171mm !important;
+            height: calc(126mm - 2 * 0.95mm - 2.4mm) !important;
+            min-height: calc(126mm - 2 * 0.95mm - 2.4mm) !important;
+            max-height: calc(126mm - 2 * 0.95mm - 2.4mm) !important;
+            padding: 1.0mm 1.0mm 1.0mm 1.0mm !important;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            flex: 1 1 auto !important;
+        }
+
+        /* 좌측 전면 메인 노출부: 우측 점선과 2.2mm 안전 여백 확보 (내용물 좌측 2mm 이동 효과) */
+        .col-left {
+            width: 82.0mm !important;
+            height: 100% !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            padding-right: 2.2mm !important; /* 우측 점선과의 충돌 및 잘림 완전 방지 */
+            padding-left: 0.6mm !important;
+        }
+
+        /* 중앙 7mm 분리 접착 공간 */
+        .center-gap-7mm {
+            width: 7.0mm !important;
+            height: 100% !important;
+            background: #ffffff !important;
+            border-left: 0.20mm dashed #94a3b8 !important;
+            border-right: 0.20mm dashed #94a3b8 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+            position: relative !important;
+            z-index: 15 !important;
+            box-sizing: border-box !important;
+        }
+        .center-gap-text {
+            writing-mode: vertical-rl !important;
+            text-orientation: mixed !important;
+            font-size: 3.2mm !important;
+            color: #94a3b8 !important;
+            font-weight: 800 !important;
+            letter-spacing: 1.0mm !important;
+            opacity: 0.8 !important;
+            user-select: none !important;
+            white-space: nowrap !important;
+        }
+
+        /* 우측 법정 고시 패널: 몬스멕타와 똑같이 전체가 검은색 라인으로 'ㅁ' 둘러진 사각 카드 */
+        .col-right {
+            width: 82.0mm !important;
+            height: 100% !important;
+            box-sizing: border-box !important;
+            position: relative !important;
+            flex-shrink: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            padding: 0.2mm 0.4mm !important;
+        }
+
+        /* [핵심 수정] 우측 뒷면: 몬스멕타와 완전히 똑같은 검은색 0.25mm 실선 'ㅁ' 사각 박스 테두리 */
+        .col-right .legal-panel {
+            background: #ffffff !important;
+            border: 0.25mm solid #0f172a !important; /* 몬스멕타와 똑같은 또렷한 검은색 라인 */
+            border-radius: 0.6mm !important;
+            box-sizing: border-box !important;
+            height: 100% !important;
+            padding: 0.8mm 1.2mm !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            box-shadow: 0 0 1.0mm rgba(0, 0, 0, 0.10) !important;
+        }
+
+        /* [성분(5가지 복합체)] 핵심효능 부분과 100% 똑같은 파보겔 로열 블루 글래스모피즘 & 골드/화이트 텍스트 매칭 */
+        .tech-box-ing {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.32) 0%, rgba(37, 99, 235, 0.38) 100%) !important;
+            border: 0.25mm solid rgba(125, 211, 252, 0.75) !important;
+            border-radius: 1.0mm !important;
+            padding: 1.05mm 1.45mm !important;
+            box-shadow: 0 0 2mm rgba(56, 189, 248, 0.22), inset 0 0 2mm rgba(125, 211, 252, 0.18) !important;
+            box-sizing: border-box !important;
+            margin: 0.35mm 0 !important;
+        }
+        .tech-box-ing .ing-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            border-bottom: 0.18mm solid rgba(147, 197, 253, 0.6) !important;
+            padding-bottom: 0.25mm !important;
+            margin-bottom: 0.25mm !important;
+        }
+        .tech-box-ing .ing-header .title {
+            font-size: 1.82mm !important;
+            font-weight: 900 !important;
+            color: #ffffff !important;
+            letter-spacing: -0.01em !important;
+            line-height: 1.1 !important;
+        }
+        .tech-box-ing .ing-header .ref {
+            font-size: 1.74mm !important;
+            color: #bae6fd !important;
+            font-weight: 800 !important;
+            line-height: 1.1 !important;
+        }
+        .complex-5-list {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.36mm !important;
+        }
+        .c5-item {
+            display: flex !important;
+            flex-direction: column !important;
+            line-height: 1.2 !important;
+        }
+        .c5-main {
+            font-size: 1.82mm !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+        }
+        .c5-inline {
+            font-size: 1.74mm !important;
+            font-weight: 800 !important;
+            color: #fde047 !important; /* 핵심효능 글머리 골드와 일치 */
+            margin-left: 0.3mm !important;
+        }
+        .c5-sub {
+            font-size: 1.60mm !important;
+            font-weight: 600 !important;
+            color: #e0f2fe !important; /* 소프트 아이스 블루 */
+            padding-left: 1.5mm !important;
+            white-space: nowrap !important;
+        }
+        .c5-pat {
+            color: #fbbf24 !important; /* 골드 */
+            font-weight: 800 !important;
+            font-size: 1.50mm !important;
+        }
+        .c5-note {
+            color: #94a3b8 !important; /* 슬레이트 그레이 */
+            font-size: 1.46mm !important;
+            padding-left: 1.5mm !important;
+        }
+
+        /* 하단 자르기 안내 문구 */
+        .a4-cut-instructions {
+            margin-top: 6mm;
+            font-size: 8.5pt;
+            color: #475569;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 인쇄 출력 전용 @media print 설정 */
+        @media print {
+            body.paper-a4,
+            html.paper-a4 {
+                width: 210mm !important;
+                min-height: 297mm !important;
+                height: 297mm !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+            }
+            body.paper-a4 .a4-guide-wrapper {
+                padding: 14mm 0 0 0 !important;
+                box-shadow: none !important;
+                margin: 0 auto !important;
+                width: 210mm !important;
+                background: #ffffff !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            body.paper-a4 .no-print {
+                display: none !important;
+            }
+            body.paper-roll,
+            html.paper-roll {
+                width: 181mm !important;
+                height: 126mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+                overflow: hidden !important;
+            }
+            body.paper-roll .a4-header-guide,
+            body.paper-roll .a4-cut-instructions,
+            body.paper-roll .crop-line,
+            body.paper-roll .no-print {
+                display: none !important;
+            }
+            body.paper-roll .a4-guide-wrapper {
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 181mm !important;
+                height: 126mm !important;
+            }
+            body.paper-roll .crop-marks-box {
+                margin: 0 !important;
+                width: 181mm !important;
+                height: 126mm !important;
+            }
+            body.paper-roll .sticker-wing-container {
+                border: none !important;
+                width: 181mm !important;
+                height: 126mm !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
+    
+<style id="polish-style">
+        /* ====================================================================== */
+        /* [POLISH 500ml] 헤더/푸터 대칭 여백 · 박스 간격 균등 · 중간여백 전체높이 · 우측 검은 테두리 */
+        /* ====================================================================== */
+
+        /* (5) 컨테이너 테두리 제거 -> 시트(76mm)가 안 잘려 하단 골드선이 끝까지 보임 */
+        .sticker-wing-container {
+            border: none !important;
+            box-shadow: 0 0 0 0.2mm #cbd5e1 !important;
+        }
+        .sticker-wing-container .label-sheet {
+            height: 100% !important;
+            min-height: 0 !important;
+            max-height: none !important;
+        }
+        .adhesive-wing-right {
+            width: 3mm !important;
+            height: 100% !important;
+            background: #ffffff !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* 상/하단 골드선: 중앙 접착여백 뒤쪽으로 (중간 여백이 전체 높이로 보이게) */
+        .top-accent-bar, .bottom-accent-bar {
+            z-index: 1 !important;
+            height: 0.95mm !important;
+            min-height: 0.95mm !important;
+            max-height: 0.95mm !important;
+        }
+        .bottom-accent-bar { margin-top: 0 !important; }
+
+        /* 콘텐츠 영역: 골드선 사이 전체를 사용, 위/아래 동일 여백 */
+        .sticker-wing-container .content-wrap {
+            width: 171mm !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            flex: 1 1 auto !important;
+            padding: 3.57mm 1.62mm 3.57mm 1.62mm !important;
+            overflow: visible !important;
+            z-index: 3 !important;
+            align-items: stretch !important;
+        }
+
+        /* (3) 중간 접착여백: 좌/우 접착여백과 동일하게 상단선~하단선 전체 높이 */
+        .center-gap-7mm {
+            height: auto !important;
+            align-self: stretch !important;
+            margin-top: -4.52mm !important;
+            margin-bottom: -4.52mm !important;
+        }
+
+        /* (1)(2) 좌측면: 박스 사이 간격 균등 (남는 공간을 동일하게 분배) */
+        .col-left {
+            width: 80.38mm !important;
+            padding: 0 0.97mm !important;
+            justify-content: space-between !important;
+        }
+        .col-left > * { margin-top: 0 !important; margin-bottom: 0 !important; }
+        .col-left > .effects-box-wrapper { margin-top: 2.44mm !important; } /* '핵심 효능' 탭 돌출분 보정 */
+
+        .brand-badge { padding: 0.89mm 3.09mm !important; gap: 1.46mm !important; }
+        .brand-badge .emoji, .brand-badge .text { font-size: 2.92mm !important; }
+
+        .sub-desc { font-size: 3.17mm !important; margin-bottom: 1.14mm !important; }
+        .main-title { font-size: 17.15mm !important; margin-bottom: 0.97mm !important; }
+        .en-title { font-size: 6.63mm !important; }
+
+        .effects-badge-top { font-size: 2.68mm !important; top: -2.76mm !important; }
+        .effects-card { padding: 2.92mm 3.09mm !important; gap: 1.56mm !important; }
+        .effect-item { font-size: 3.25mm !important; gap: 1.62mm !important; }
+        .effect-bullet { width: 1.95mm !important; height: 1.95mm !important; margin-top: 0.89mm !important; }
+
+        .tech-box-ing { padding: 1.85mm 1.87mm !important; margin: 0 !important; }
+        .tech-box-ing .ing-header { padding-bottom: 0.57mm !important; margin-bottom: 0.65mm !important; }
+        .tech-box-ing .ing-header .title { font-size: 2.79mm !important; }
+        .tech-box-ing .ing-header .ref { font-size: 2.52mm !important; }
+        .complex-5-list { gap: 0.66mm !important; }
+        .c5-main { font-size: 2.63mm !important; }
+        .c5-inline { font-size: 2.53mm !important; }
+        .c5-sub { font-size: 2.19mm !important; padding-left: 2.60mm !important; }
+        .c5-pat { font-size: 2.06mm !important; }
+        .c5-note { font-size: 2.08mm !important; padding-left: 2.60mm !important; }
+
+        .pack-tag { font-size: 3.33mm !important; padding: 1.06mm 4.22mm !important; margin: 0 auto !important; }
+
+        /* (4) 우측 법정고시 패널: 라벨 안에 완전히 들어오고, 검은색 굵은 테두리 */
+        .col-right {
+            width: 80.38mm !important;
+            padding: 0 !important;
+        }
+        .col-right .legal-panel {
+            border: 1.22mm solid transparent !important;
+            border-radius: 1.30mm !important;
+            background:
+                linear-gradient(#ffffff, #ffffff) padding-box,
+                linear-gradient(135deg, #fff7c2 0%, #fbbf24 18%, #d97706 34%, #f1f5f9 50%, #9ca3af 62%, #fde68a 80%, #d97706 100%) border-box !important;
+            box-shadow: 0 0 1.95mm rgba(251, 191, 36, 0.55) !important;
+        }
+
+        @media print {
+            .sticker-wing-container { box-shadow: none !important; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="no-print" style="position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:99999; background:rgba(15,23,42,0.95); border:1px solid #38bdf8; padding:10px 24px; border-radius:12px; display:flex; align-items:center; gap:16px; box-shadow:0 10px 30px rgba(0,0,0,0.8); font-family:sans-serif;">
-    <div style="color:#fff; font-size:13px; font-weight:700;">
-        <span style="color:#38bdf8;">★ 파보겔 (500ml 규격: 180mm × 120mm - [뒷면 화이트 클린 배경 버전])</span> | 고해상도 인쇄용 프리미엄 라벨
+<div class="no-print" style="position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:99999; background:rgba(15,23,42,0.95); border:1px solid #38bdf8; padding:8px 20px; border-radius:14px; display:flex; align-items:center; gap:14px; box-shadow:0 10px 30px rgba(0,0,0,0.85); font-family:sans-serif;">
+    <div style="color:#fff; font-size:12.5px; font-weight:700;">
+        <span style="color:#38bdf8;">★ 파보겔 (500ml 실측: 181mm × 126mm)</span> | [화이트 후면] (좌7mm + 중7mm + 우3mm)
     </div>
-    <button onclick="window.print()" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#fff; font-weight:800; font-size:13px; padding:6px 16px; border:none; border-radius:8px; cursor:pointer;">
-        라벨 즉시 인쇄 (Ctrl+P)
+    <div style="display:flex; gap:6px;">
+        <button onclick="setPaperMode('a4')" style="background:#0284c7; color:#fff; font-weight:700; font-size:11.5px; padding:5px 12px; border:none; border-radius:6px; cursor:pointer;">
+            📄 A4 실측 (자르기 가이드)
+        </button>
+        <button onclick="setPaperMode('roll')" style="background:#334155; color:#cbd5e1; font-weight:700; font-size:11.5px; padding:5px 12px; border:none; border-radius:6px; cursor:pointer;">
+            🏷️ 롤 라벨 (181×126mm)
+        </button>
+    </div>
+    <button onclick="window.print()" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff; font-weight:800; font-size:12px; padding:6px 16px; border:none; border-radius:8px; cursor:pointer;">
+        라벨 인쇄 (Ctrl+P)
     </button>
 </div>
 
-<div class="label-sheet-container">
+<div class="a4-guide-wrapper">
+    <div class="a4-header-guide">
+        <h2>[파보겔 500ml 정품 규격] 용기 라벨 [실물 테스트형] (좌측 7mm + 중간 7mm + 우측 3mm 접착 = 총 181×126mm)</h2>
+        <p>※ 인쇄 설정 시 반드시 <strong>[배율: 맞춤(100%)]</strong> 또는 <strong>[실제 크기(Actual Size)]</strong>로 지정하십시오.</p>
+        <div class="ruler-50mm">
+            <span>실측 확인용 눈금자:</span>
+            <div class="ruler-bar">
+                <div class="ruler-tick tick-0"></div>
+                <div class="ruler-tick tick-1"></div>
+                <div class="ruler-tick tick-2"></div>
+                <div class="ruler-tick tick-3"></div>
+                <div class="ruler-tick tick-4"></div>
+                <div class="ruler-tick tick-50"></div>
+            </div>
+            <span class="ruler-note">(자로 쟀을 때 정확히 5cm)</span>
+        </div>
+    </div>
+
+    <div class="crop-marks-box">
+        <div class="crop-line crop-tl-h"></div>
+        <div class="crop-line crop-tl-v"></div>
+        <div class="crop-line crop-tr-h"></div>
+        <div class="crop-line crop-tr-v"></div>
+        <div class="crop-line crop-bl-h"></div>
+        <div class="crop-line crop-bl-v"></div>
+        <div class="crop-line crop-br-h"></div>
+        <div class="crop-line crop-br-v"></div>
+
+        <div class="sticker-wing-container">
+            <div class="adhesive-wing-left">
+                <div class="wing-text-left">접착 7mm</div>
+            </div>
     <div class="label-sheet">
         <div class="grid-overlay"></div>
         <div class="top-accent-bar"></div>
@@ -750,31 +1324,31 @@
                 </div>
 
                 <!-- 주요 성분 (5가지 복합체) Table -->
+                <!-- 성분(5가지 복합체) 핵심효능 디자인 매칭 -->
                 <div class="tech-box-ing">
                     <div class="ing-header">
-                        <span class="title">주요 성분 (5가지 복합체)</span>
-                        <span class="ref">나노 바이오 포뮬러</span>
+                        <span class="title">성분(5가지 복합체)</span>
+                        <span class="ref">500ml 정품 규격</span>
                     </div>
-                    
-                    <div class="ing-row">
-                        <div class="ing-name">Bacillus subtilis (고초균)</div>
-                        <div class="ing-val">항균·항바이러스 작용</div>
-                    </div>
-                    <div class="ing-row">
-                        <div class="ing-name">Glucose (포도당)</div>
-                        <div class="ing-val">장 기능 개선 &amp; 정장</div>
-                    </div>
-                    <div class="ing-row">
-                        <div class="ing-name">Vitamin A (비타민 A)</div>
-                        <div class="ing-val">상피세포 회복 촉진</div>
-                    </div>
-                    <div class="ing-row">
-                        <div class="ing-name">전해질염 (아세트산·프로피온산)</div>
-                        <div class="ing-val">전해질 및 수분 보충</div>
-                    </div>
-                    <div class="ing-row">
-                        <div class="ing-name">나노 몬모릴로나이트</div>
-                        <div class="ing-val">설사 개선 &amp; 독소 제거</div>
+                    <div class="complex-5-list">
+                        <div class="c5-item">
+                            <div class="c5-main">1) 항균 · 항바이러스 작용</div>
+                            <div class="c5-sub">- 1-deoxynojirimycin (DNJ) 천연성분 함유</div>
+                            <div class="c5-sub">· 특허균주 Bacillus subtilis MORI 균주 <span class="c5-pat">(Patent No. 201180042602.8)</span></div>
+                        </div>
+                        <div class="c5-item">
+                            <div class="c5-main">2) 장 기능 개선 및 정장 작용 <span class="c5-inline">- 포도당</span></div>
+                        </div>
+                        <div class="c5-item">
+                            <div class="c5-main">3) 상피세포의 회복 <span class="c5-inline">- 비타민 A</span></div>
+                        </div>
+                        <div class="c5-item">
+                            <div class="c5-main">4) 전해질제 <span class="c5-inline">- Sodium acetate, Sodium propionate</span></div>
+                        </div>
+                        <div class="c5-item">
+                            <div class="c5-main">5) 연변 및 설사 개선, 독소 제거 <span class="c5-inline">- 몬모릴로나이트</span></div>
+                            <div class="c5-sub c5-note">(곰팡이 독소 제거, 면역 증강 및 장 환경 개선에 도움)</div>
+                        </div>
                     </div>
                 </div>
 
@@ -786,10 +1360,10 @@
             </div>
 
             <!-- CENTER DIVIDER (충분한 분리 여백) -->
-            <div class="divider-col">
-                <div class="divider-line"></div>
-                <div class="divider-diamond"></div>
-            </div>
+            <!-- CENTER 7.0mm ADHESIVE GAP -->
+                    <div class="center-gap-7mm">
+                        <div class="center-gap-text">접착여백 7mm</div>
+                    </div>
 
             <!-- RIGHT COLUMN (뒷면: 법정 고시사항) -->
             <div class="col-right">
@@ -851,11 +1425,11 @@
 
                     <!-- 용법 및 용량 -->
                     <div class="dose-box">
-                        <div class="dose-row">
-                            <span class="dose-title">용법 및 용량 :</span>
-                            <span class="dose-desc">1일 1~2ml / 체중 5kg &nbsp;&nbsp;&nbsp;&nbsp; ( 1 펌프 = 약 2ml )</span>
+                        <span class="dose-title">용법 및 용량 :</span>
+                        <div class="dose-body">
+                            <span class="dose-desc">1일 2~3회, 1회 2ml ( 1 펌프 = 약 2ml ) / 5kg 기준</span>
+                            <span class="dose-sub">- 증상에 따라 조절 가능</span>
                         </div>
-                        <div class="dose-sub">- 증상에 따라 조절 가능</div>
                     </div>
 
                     <!-- 주의사항 박스 (위탁제조판매원 반영) -->
@@ -936,8 +1510,36 @@
                 </div>
             </div>
         </div>
+        <!-- 하단 골드 액센트 바 (상단선과 100% 동일한 선 및 완전 대칭) -->
+        <div class="bottom-accent-bar"></div>
+    </div>
+    <!-- 우측 3mm 접착 날개 -->
+    <div class="adhesive-wing-right"></div>
+</div>
+</div>
+    <div class="a4-cut-instructions">
+        ✂️ 검정색 테두리 코너 재단선(Crop Marks)을 따라 칼이나 가위로 자르면 좌측 7mm, 중간 7mm, 우측 3mm 접착 여백이 포함된 <strong>총 181mm × 126mm 실측 스티커</strong>가 완성됩니다.
     </div>
 </div>
 
+
+<script>
+    function setPaperMode(mode) {
+        document.body.classList.remove('paper-a4', 'paper-roll');
+        document.documentElement.classList.remove('paper-a4', 'paper-roll');
+        const pageStyle = document.getElementById('page-style');
+        if (mode === 'a4') {
+            document.body.classList.add('paper-a4');
+            document.documentElement.classList.add('paper-a4');
+            if (pageStyle) pageStyle.innerHTML = '@page { size: A4 portrait; margin: 0; }';
+        } else {
+            document.body.classList.add('paper-roll');
+            document.documentElement.classList.add('paper-roll');
+            if (pageStyle) pageStyle.innerHTML = '@page { size: 181mm 126mm; margin: 0; }';
+        }
+    }
+    // Default to A4 mode for 1:1 scale verification
+    setPaperMode('a4');
+</script>
 </body>
 </html>

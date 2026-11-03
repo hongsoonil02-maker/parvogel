@@ -755,7 +755,7 @@
     <!-- 1줄: 상호명, 주소, 스토어 QR -->
     <div style="display:grid; grid-template-columns: 1.1fr 2fr auto; gap:8px; align-items:center;">
       <input id="in_name" class="ctrl-input" type="text" value="탑퍼피" placeholder="상호명" oninput="sync()">
-      <input id="in_addr" class="ctrl-input" type="text" value="경기도 화성시 꽃내음1길 19-26 101호 TOPPUPPY" placeholder="매장 주소 (비워두면 자동 숨김)" oninput="sync()">
+      <input id="in_addr" class="ctrl-input" type="text" value="경기도 화성시 새솔동 꽃내음1길 19-26 채울프라자 1층 101호 (TOPPUPPY)" placeholder="매장 주소 (비워두면 자동 숨김)" oninput="sync()">
       <label style="font-size:12px; font-weight:700; color:#002b90; display:flex; align-items:center; gap:5px; cursor:pointer; padding:0 4px; white-space:nowrap;">
         <input id="toggle_qr" type="checkbox" checked onchange="toggleQR(this.checked)"> 스토어 QR
       </label>
@@ -1055,7 +1055,7 @@
       <div class="footer-text">
         <span>구매처: </span>
         <span class="footer-store" id="bottomStoreName">탑퍼피</span>
-        <span style="color:#475569;" id="bottomStoreAddrWrap"> (<span id="bottomStoreAddr">경기도 화성시 꽃내음1길 19-26 101호 TOPPUPPY</span>)</span>
+        <span style="color:#475569;" id="bottomStoreAddrWrap"> (<span id="bottomStoreAddr">경기도 화성시 새솔동 꽃내음1길 19-26 채울프라자 1층 101호 (TOPPUPPY)</span>)</span>
         <span style="color:#94a3b8;"> | </span>
         <span class="footer-tel" id="bottomTel">TEL: 010-2445-4445</span>
       </div>
@@ -1081,7 +1081,7 @@
 <script>
 function sync() {
   var n = document.getElementById('in_name').value || '탑퍼피';
-  var a = document.getElementById('in_addr').value || '경기도 화성시 꽃내음1길 19-26 101호 TOPPUPPY';
+  var a = document.getElementById('in_addr').value || '경기도 화성시 새솔동 꽃내음1길 19-26 채울프라자 1층 101호 (TOPPUPPY)';
   var topT = document.getElementById('in_top_tel').value || 'TEL: 010-2445-4445';
   var botT = document.getElementById('in_bot_tel').value || 'TEL: 010-2445-4445';
   

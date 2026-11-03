@@ -22,41 +22,57 @@
                         파보겔(PARVO GEL) 라벨 스티커 3종 규격
                         <span class="text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2.5 py-0.5 rounded-full">인쇄용 고해상도</span>
                     </h1>
-                    <p class="text-xs text-slate-400">100ml (110×70mm) · 200ml (140×90mm) · 500ml (180×120mm) 전 규격 블루 / 화이트 비교</p>
+                    <p class="text-xs text-slate-400">30ml (101×42mm 유스) · 100ml · 200ml · 500ml 전 규격 모던 / 유스 / 오리지널 / 화이트 비교</p>
                 </div>
             </div>
 
             <!-- Tab Buttons (Volume & Theme Combined) -->
             <div class="flex flex-wrap items-center bg-slate-900/90 p-1.5 rounded-xl border border-slate-700 gap-1.5 shadow-inner">
-                <!-- 100ml -->
-                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
-                    <span class="text-[11px] font-black text-slate-400 px-2">100ml</span>
-                    <button onclick="switchLabel('100ml-blue')" id="btn-100ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all bg-amber-500 text-slate-950 font-black shadow">
-                        블루
+                <!-- 30ml (NEW Youth Edition) -->
+                <div class="flex items-center bg-blue-950/90 p-0.5 rounded-lg border border-sky-500/50 gap-1">
+                    <span class="text-[11px] font-black text-sky-300 px-1.5">30ml</span>
+                    <button onclick="switchLabel('30ml-youth')" id="btn-30ml-youth" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all bg-sky-500 text-slate-950 font-black shadow">
+                        🌱 유스
                     </button>
-                    <button onclick="switchLabel('100ml-white')" id="btn-100ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                </div>
+                <!-- 100ml -->
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80 gap-1">
+                    <span class="text-[11px] font-black text-slate-400 px-1.5">100ml</span>
+                    <button onclick="switchLabel('100ml-modern')" id="btn-100ml-modern" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all bg-sky-500 text-slate-950 font-black shadow">
+                        ✨모던
+                    </button>
+                    <button onclick="switchLabel('100ml-blue')" id="btn-100ml-blue" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        오리지널
+                    </button>
+                    <button onclick="switchLabel('100ml-white')" id="btn-100ml-white" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
                         화이트
                     </button>
                 </div>
 
                 <!-- 200ml -->
-                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
-                    <span class="text-[11px] font-black text-slate-400 px-2">200ml</span>
-                    <button onclick="switchLabel('200ml-blue')" id="btn-200ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
-                        블루
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80 gap-1">
+                    <span class="text-[11px] font-black text-slate-400 px-1.5">200ml</span>
+                    <button onclick="switchLabel('200ml-modern')" id="btn-200ml-modern" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        ✨모던
                     </button>
-                    <button onclick="switchLabel('200ml-white')" id="btn-200ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                    <button onclick="switchLabel('200ml-blue')" id="btn-200ml-blue" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        오리지널
+                    </button>
+                    <button onclick="switchLabel('200ml-white')" id="btn-200ml-white" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
                         화이트
                     </button>
                 </div>
 
                 <!-- 500ml -->
-                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80">
-                    <span class="text-[11px] font-black text-slate-400 px-2">500ml</span>
-                    <button onclick="switchLabel('500ml-blue')" id="btn-500ml-blue" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
-                        블루
+                <div class="flex items-center bg-slate-800/80 p-0.5 rounded-lg border border-slate-700/80 gap-1">
+                    <span class="text-[11px] font-black text-slate-400 px-1.5">500ml</span>
+                    <button onclick="switchLabel('500ml-modern')" id="btn-500ml-modern" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        ✨모던
                     </button>
-                    <button onclick="switchLabel('500ml-white')" id="btn-500ml-white" class="label-btn px-2.5 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                    <button onclick="switchLabel('500ml-blue')" id="btn-500ml-blue" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        오리지널
+                    </button>
+                    <button onclick="switchLabel('500ml-white')" id="btn-500ml-white" class="label-btn px-2 py-1.5 rounded-md text-xs font-bold transition-all text-slate-300 hover:text-white">
                         화이트
                     </button>
                 </div>
@@ -64,11 +80,14 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-2.5">
+                <a href="monsmecta_labels_viewer.html" class="bg-slate-800 hover:bg-slate-700 text-sky-300 font-bold px-3 py-2 rounded-xl text-xs sm:text-sm border border-sky-500/40 flex items-center gap-1.5 transition-all">
+                    <span>🐾 몬스멕타 뷰어</span>
+                </a>
                 <button onclick="printCurrent()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-4 py-2 rounded-xl text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center gap-1.5 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                     <span>인쇄하기 (Ctrl+P)</span>
                 </button>
-                <a id="btn-open-single" href="parvogel_100ml_110x70.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-slate-600 flex items-center gap-1.5 transition-all">
+                <a id="btn-open-single" href="parvogel_100ml_modern.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm border border-slate-600 flex items-center gap-1.5 transition-all">
                     <span>단독창</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
@@ -82,62 +101,86 @@
         <div class="max-w-5xl w-full mb-5 bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-3 shadow-lg">
             <div class="flex items-center gap-2">
                 <span class="text-amber-400 font-bold">● 현재 선택 :</span>
-                <span id="spec-info" class="font-bold text-white text-sm">100ml 규격 (110mm × 70mm) - [로열 블루 오리지널]</span>
+                <span id="spec-info" class="font-bold text-white text-sm">100ml 규격 (118mm × 76mm 실측) - [✨ 모던 딥블루 (젊은 보호자 감성)]</span>
             </div>
             <div class="flex flex-wrap items-center gap-4 text-slate-400 text-xs">
                 <span class="text-emerald-400">✓ <strong>모든 반려동물 우선 순서</strong> 전체 라벨 완벽 적용</span>
                 <span class="text-sky-300">✓ <strong>(주)한국아그로 딥블랙 로고</strong> 화이트 뒷면 가독성 극대화</span>
-                <span class="text-amber-300">✓ <strong>200ml/500ml</strong> 용법·용량 최신 문구 반영 완료</span>
+                <span class="text-amber-300">✓ <strong>전 용량 (30ml/100ml/200ml/500ml)</strong> 용법·용량 최신 문구 반영 완료</span>
             </div>
         </div>
 
         <!-- iframe Wrapper -->
         <div class="w-full flex justify-center overflow-auto py-2">
-            <iframe id="label-frame" src="parvogel_100ml_110x70.html" class="border border-slate-700 rounded-2xl shadow-2xl bg-black transition-all" style="width: 100%; max-width: 1240px; height: 750px;"></iframe>
+            <iframe id="label-frame" src="parvogel_100ml_modern.html" class="border border-slate-700 rounded-2xl shadow-2xl bg-black transition-all" style="width: 100%; max-width: 1240px; height: 750px;"></iframe>
         </div>
     </main>
 
     <script>
         const LABELS = {
+            '30ml-youth': {
+                file: 'parvogel_30ml_youth.html',
+                text: '30ml 소용량 규격 (101mm × 42mm 실측) - [🌱 유스 에디션 (파보겔 블루 & 감성 케어)]',
+                height: '720px',
+                theme: 'youth'
+            },
+            '100ml-modern': {
+                file: 'parvogel_100ml_modern.html',
+                text: '100ml 규격 (118mm × 76mm 실측) - [✨ 모던 딥블루 (젊은 보호자 감성 / 세련된 펫케어)]',
+                height: '750px',
+                theme: 'modern'
+            },
             '100ml-blue': {
                 file: 'parvogel_100ml_110x70.html',
-                text: '100ml 규격 (110mm × 70mm) - [로열 블루 오리지널 테마]',
+                text: '100ml 규격 (118mm × 76mm 실측) - [로열 블루 오리지널 테마]',
                 height: '750px',
                 theme: 'blue'
             },
             '100ml-white': {
                 file: 'parvogel_100ml_110x70_white.html',
-                text: '100ml 규격 (110mm × 70mm) - [뒷면 화이트 클린 배경 비교용]',
+                text: '100ml 규격 (118mm × 76mm 실측) - [뒷면 화이트 클린 배경 비교용]',
                 height: '750px',
                 theme: 'white'
             },
+            '200ml-modern': {
+                file: 'parvogel_200ml_modern.html',
+                text: '200ml 규격 (145mm × 96mm 실측) - [✨ 모던 딥블루 (젊은 보호자 감성 / 세련된 펫케어)]',
+                height: '850px',
+                theme: 'modern'
+            },
             '200ml-blue': {
                 file: 'parvogel_200ml_140x90.html',
-                text: '200ml 규격 (140mm × 90mm) - [로열 블루 오리지널 테마]',
+                text: '200ml 규격 (145mm × 96mm 실측) - [로열 블루 오리지널 테마]',
                 height: '850px',
                 theme: 'blue'
             },
             '200ml-white': {
                 file: 'parvogel_200ml_140x90_white.html',
-                text: '200ml 규격 (140mm × 90mm) - [뒷면 화이트 클린 배경 비교용]',
+                text: '200ml 규격 (145mm × 96mm 실측) - [뒷면 화이트 클린 배경 비교용]',
                 height: '850px',
                 theme: 'white'
             },
+            '500ml-modern': {
+                file: 'parvogel_500ml_modern.html',
+                text: '500ml 규격 (181mm × 126mm 실측) - [✨ 모던 딥블루 (젊은 보호자 감성 / 세련된 펫케어)]',
+                height: '980px',
+                theme: 'modern'
+            },
             '500ml-blue': {
                 file: 'parvogel_500ml_180x120.html',
-                text: '500ml 규격 (180mm × 120mm) - [로열 블루 오리지널 테마]',
+                text: '500ml 규격 (181mm × 126mm 실측) - [로열 블루 오리지널 테마]',
                 height: '980px',
                 theme: 'blue'
             },
             '500ml-white': {
                 file: 'parvogel_500ml_180x120_white.html',
-                text: '500ml 규격 (180mm × 120mm) - [뒷면 화이트 클린 배경 비교용]',
+                text: '500ml 규격 (181mm × 126mm 실측) - [뒷면 화이트 클린 배경 비교용]',
                 height: '980px',
                 theme: 'white'
             }
         };
 
-        let currentKey = '100ml-blue';
+        let currentKey = '100ml-modern';
 
         function switchLabel(key) {
             currentKey = key;
@@ -149,10 +192,14 @@
             });
             const activeBtn = document.getElementById('btn-' + key);
             if (activeBtn) {
-                if (data.theme === 'white') {
-                    activeBtn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-black transition-all bg-emerald-400 text-slate-950 shadow-md';
+                if (data.theme === 'youth') {
+                    activeBtn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-black transition-all bg-sky-400 text-slate-950 shadow-md ring-2 ring-sky-300';
+                } else if (data.theme === 'modern') {
+                    activeBtn.className = 'label-btn px-2 py-1.5 rounded-md text-xs font-black transition-all bg-sky-400 text-slate-950 shadow-md ring-2 ring-sky-300';
+                } else if (data.theme === 'white') {
+                    activeBtn.className = 'label-btn px-2 py-1.5 rounded-md text-xs font-black transition-all bg-emerald-400 text-slate-950 shadow-md';
                 } else {
-                    activeBtn.className = 'label-btn px-2.5 py-1.5 rounded-md text-xs font-black transition-all bg-amber-500 text-slate-950 shadow-md';
+                    activeBtn.className = 'label-btn px-2 py-1.5 rounded-md text-xs font-black transition-all bg-amber-500 text-slate-950 shadow-md';
                 }
             }
 
