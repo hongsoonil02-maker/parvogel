@@ -1249,12 +1249,16 @@ const Landing = () => {
 
                     {/* Product Images (Front & Back) — lazy + async decode + width/height CLS 방지 (Issue #5 크기 통일) */}
                     <div className="max-w-4xl mx-auto mt-4 mb-6 sm:mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white flex items-center justify-center p-2 sm:p-4">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_front_detail.png`} alt={t('a11y.bottleFront', '파보겔 5가지 복합제 전면')} width="600" height="800" className="w-full h-auto object-contain aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
-                        </div>
-                        <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white flex items-center justify-center p-2 sm:p-4">
-                            <img src={`${import.meta.env.BASE_URL}images/bottle_back.png`} alt={t('a11y.bottleBack', '파보겔 후면 성분표')} width="600" height="800" className="w-full h-auto object-contain aspect-[3/4]" loading="lazy" decoding="async" onError={(e) => { e.target.style.display = 'none'; }} />
-                        </div>
+                        {[
+                            { file: 'bottle_front_detail.png', alt: t('a11y.bottleFront', '파보겔 5가지 복합제 전면') },
+                            { file: 'bottle_back.png', alt: t('a11y.bottleBack', '파보겔 후면 성분표') },
+                        ].map((image) => (
+                            <div key={image.file} className="min-w-0 rounded-3xl overflow-hidden shadow-xl border border-gray-100 bg-white p-2 sm:p-4">
+                                <div className="aspect-[3/4]">
+                                    <img src={`${import.meta.env.BASE_URL}images/${image.file}`} alt={image.alt} width="600" height="800" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
