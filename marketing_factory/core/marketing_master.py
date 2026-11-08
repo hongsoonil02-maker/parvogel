@@ -33,6 +33,7 @@ from core.video_maker import ParvogelVideoMaker
 from core.viral_shortform_engine import ViralShortformEngine
 from core.outsource_dispatcher import OutsourceDispatcher
 from core.dashboard_service import DashboardService
+from core.ranking_shorts_generator import ParvogelRankingShortsGenerator
 from core.queue_server import push_post_to_queue
 from adapters.telegram_adapter import TelegramAdapter
 from adapters.discord_adapter import DiscordAdapter
@@ -55,6 +56,7 @@ class ParvogelMarketingMaster:
         self.enricher = ParvogelContentEnricher()
         self.formatter = ParvogelContentFormatter()
         self.video_maker = ParvogelVideoMaker()
+        self.ranking_generator = ParvogelRankingShortsGenerator()
         self.viral_engine = ViralShortformEngine()
         self.outsource_dispatcher = OutsourceDispatcher()
         self.dashboard_service = DashboardService()
@@ -134,6 +136,15 @@ class ParvogelMarketingMaster:
             print(f"✓ Rendered video: {os.path.basename(rendered_video)}")
         else:
             print("! Video rendering skipped or fallback used.")
+
+        # 3-2. [노마드크리스형] 언베일링 HUD 랭킹 숏폼 자동 렌더링
+        rendered_ranking = None
+        try:
+            rendered_ranking = self.ranking_generator.generate_daily_ranking_shorts(date_tag=start_time.strftime("%Y%m%d"))
+            if rendered_ranking:
+                print(f"✓ Rendered ranking shorts: {os.path.basename(rendered_ranking)}")
+        except Exception as e:
+            print(f"! Ranking shorts generation notice: {e}")
 
         # 4. 멀티스레드 병렬 배포 및 아카이브 저장
         print("\n[STEP 4/4] Publishing and archiving content...")
