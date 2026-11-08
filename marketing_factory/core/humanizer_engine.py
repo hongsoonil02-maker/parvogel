@@ -83,8 +83,10 @@ class BlogHumanizer:
                 citations_html += f"> 🔬 **{cite}**\n\n"
             citations_html += "*주의: 본 제품은 동물용 정식등록 보조사료이며, 질병의 직접적인 치료를 목적으로 하는 동물용 의약품을 대체하지 않습니다.*\n"
 
-            # 4번 섹션 전 또는 구매 안내 전 자연스럽게 인용 섹션 병합
-            if "## 5. 파보겔 공식 구매 안내" in body:
+            # 5번 공식 안내 섹션 전 자연스럽게 학술 인용 섹션 병합
+            if "### 🏥 파보겔 공식 정보 및 상비 안내" in body:
+                body = body.replace("### 🏥 파보겔 공식 정보 및 상비 안내", citations_html + "\n### 🏥 파보겔 공식 정보 및 상비 안내")
+            elif "## 5. 파보겔 공식 구매 안내" in body:
                 body = body.replace("## 5. 파보겔 공식 구매 안내", citations_html + "\n## 5. 파보겔 공식 구매 안내")
             elif "## 4." in body:
                 body = body + citations_html

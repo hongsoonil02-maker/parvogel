@@ -16,14 +16,21 @@ except ImportError:
 
 class TwitterAdapter(BaseMarketingAdapter):
     name = "Twitter_X"
+    # 100-Bagger 계정 오염 원천 차단 가드 (Brand Isolation Guard)
+    BLOCKED_SCREEN_NAMES = {"100bagger", "100baggerquant", "100baggerempire", "hundredbagger"}
 
     def validate_config(self) -> bool:
-        return HAS_OAUTH and bool(
+        if not (HAS_OAUTH and bool(
             os.getenv("TWITTER_API_KEY") and 
             os.getenv("TWITTER_API_SECRET") and 
             os.getenv("TWITTER_ACCESS_TOKEN") and 
             os.getenv("TWITTER_ACCESS_SECRET")
-        )
+        )):
+            return False
+        # 만약 PARVOGEL_TWITTER_VERIFIED 플래그가 없으면 100배거 키 오용 방지를 위해 차단
+        if os.getenv("PARVOGEL_TWITTER_ACCOUNT_VERIFIED", "").lower() != "true":
+            return False
+        return True
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
         import time

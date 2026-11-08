@@ -120,33 +120,48 @@ class ParvogelContentEnricher:
         theme = self.get_daily_theme(day_name)
         today_date = datetime.datetime.now().strftime("%Y-%m-%d")
         
-        # 1. OpenAI (비용 가드 통과 시)
+        # 1. OpenAI (비용 가드 통과 시) — 원본 theme 필드(video_file, theme_id, badge, target 등) 완벽 보존 병합
         narrative_out = None
         if self.openai_client and self._check_cost_guard():
             try:
                 ai_result = self._generate_with_openai(theme)
                 if ai_result:
-                    ai_result["date"] = today_date
-                    ai_result["source"] = "OpenAI-GPT4o"
+                    narrative_out = {
+                        **theme,
+                        "line1": theme.get("headline_line1", ""),
+                        "line2": theme.get("headline_line2", ""),
+                        "line3": theme.get("headline_line3", ""),
+                        **ai_result,
+                        "date": today_date,
+                        "source": "OpenAI-GPT4o"
+                    }
                     self._add_cost(0.02)
-                    narrative_out = ai_result
             except Exception as e:
                 print(f"[INFO] OpenAI failed, trying Gemini: {e}")
 
-        # 1b. Gemini 2차 폴백
+        # 1b. Gemini 2차 폴백 — 원본 theme 필드 완벽 보존 병합
         if not narrative_out and GEMINI_API_KEY:
             try:
                 g_result = self._generate_with_gemini(theme)
                 if g_result:
-                    g_result["date"] = today_date
-                    g_result["source"] = "Gemini-1.5"
-                    narrative_out = g_result
+                    narrative_out = {
+                        **theme,
+                        "line1": theme.get("headline_line1", ""),
+                        "line2": theme.get("headline_line2", ""),
+                        "line3": theme.get("headline_line3", ""),
+                        **g_result,
+                        "date": today_date,
+                        "source": "Gemini-2.0-Flash"
+                    }
             except Exception as e:
                 print(f"[INFO] Gemini failed, falling back to template: {e}")
 
         # 2. 고품질 룰베이스 수의학 템플릿 엔진 (100% 무오류 보장)
         if not narrative_out:
-            narrative_out = self._generate_template_narrative(theme, today_date)
+            narrative_out = {
+                **theme,
+                **self._generate_template_narrative(theme, today_date)
+            }
 
         # 요일별 GEO 검색 키워드 및 토픽 자동 바인딩 보장
         narrative_out["geo_keyword"] = theme.get("geo_keyword", "강아지 파보 장염 초기증상")
@@ -208,7 +223,7 @@ class ParvogelContentEnricher:
     def _generate_with_gemini(self, theme: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         import requests
         prompt = f"""당신은 수의학 카피라이터. 파보겔(정식등록 보조사료) 오늘 테마 {theme.get('headline_core')}에 대해 JSON headline/subheadline/pain_point/clinical_solution/video_highlight/cta_text 6키를 작성. 보조사료는 치료 대체 불가."""
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
         body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseMimeType": "application/json"}}
         r = requests.post(url, json=body, timeout=12)
         if r.status_code == 200:

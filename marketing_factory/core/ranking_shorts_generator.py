@@ -30,7 +30,19 @@ OUTPUT_DIR = os.path.join(FACTORY_DIR, "output", "ranking_shorts")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-FONT_PATH = "C:/Windows/Fonts/malgunbd.ttf" if os.path.exists("C:/Windows/Fonts/malgunbd.ttf") else "C:/Windows/Fonts/malgun.ttf"
+def _resolve_font_path() -> str:
+    candidates = [
+        "C:/Windows/Fonts/malgunbd.ttf",
+        "C:/Windows/Fonts/malgun.ttf",
+        "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    return "C:/Windows/Fonts/malgunbd.ttf"
+
+FONT_PATH = _resolve_font_path()
 SAFE_FONT = FONT_PATH.replace("\\", "/").replace(":", r"\:")
 
 
@@ -133,6 +145,130 @@ class ParvogelRankingShortsGenerator:
                      "subtitles": [
                          {"text": "대망의 1위! 1초 펌프 누르기", "rel_start": 0.5, "rel_end": 5.0},
                          {"text": "기호성 폭발로 알아서 핥아먹음!", "rel_start": 5.1, "rel_end": 10.0}
+                     ]}
+                ]
+            },
+            # 3: 목요일 (고양이 구토·설사 대처 TOP 5)
+            {
+                "board_title": "고양이 설사·구토 집사 실수 TOP 5",
+                "items": [
+                    {"rank": 5, "title": "헤어볼이겠지 하고 노란토 방치", "start": 0.0, "end": 9.0,
+                     "subtitles": [
+                         {"text": "5위! 단순 헤어볼인 줄 알고 방치", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "위산 역류로 식도염·급성 장염 진행", "rel_start": 4.6, "rel_end": 8.5}
+                     ]},
+                    {"rank": 4, "title": "주사기로 억지 투약하다 침 흘림", "start": 9.5, "end": 19.0,
+                     "subtitles": [
+                         {"text": "4위! 주사기로 억지 물약 먹이기", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "극심한 스트레스로 거품 토 악화", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 3, "title": "사료 갑자기 100% 교체하기", "start": 20.0, "end": 29.5,
+                     "subtitles": [
+                         {"text": "3위! 사료 한 번에 확 바꾸기", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "장내 미생물 쇼크로 무른 변 폭발", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 2, "title": "고양이 24시간 이상 굶기기", "start": 30.0, "end": 40.0,
+                     "subtitles": [
+                         {"text": "2위! 설사한다고 하루 종일 굶기기", "rel_start": 0.5, "rel_end": 4.8},
+                         {"text": "고양이는 급성 지방간 위험 직행!", "rel_start": 4.9, "rel_end": 9.5}
+                     ]},
+                    {"rank": 1, "title": "앞발·입가에 1초 톡 위산 완충 코팅", "start": 41.0, "end": 52.0,
+                     "subtitles": [
+                         {"text": "1위! 입가·앞발에 1초 톡 발라주기", "rel_start": 0.5, "rel_end": 5.0},
+                         {"text": "스스로 핥아먹으며 위장 점막 코팅!", "rel_start": 5.1, "rel_end": 10.5}
+                     ]}
+                ]
+            },
+            # 4: 금요일 (앵무새·반려조 물변 낙조 방어 TOP 5)
+            {
+                "board_title": "앵무새 물변·낙조 응급 대처 TOP 5",
+                "items": [
+                    {"rank": 5, "title": "물변 싸는데 과일·채소 계속 주기", "start": 0.0, "end": 9.0,
+                     "subtitles": [
+                         {"text": "5위! 수분 많은 과일 계속 주기", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "장내 삼투압 붕괴로 탈수 가속화", "rel_start": 4.6, "rel_end": 8.5}
+                     ]},
+                    {"rank": 4, "title": "새장 온도 25도 이하로 방치", "start": 9.5, "end": 19.0,
+                     "subtitles": [
+                         {"text": "4위! 털 부풀리는데 보온 안 하기", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "28~30도 집중 보온이 생명줄입니다", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 3, "title": "부리에 주사기로 물 강제 주입", "start": 20.0, "end": 29.5,
+                     "subtitles": [
+                         {"text": "3위! 부리에 주사기 억지 주입", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "기도로 넘어가면 즉각 질식 위험!", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 2, "title": "소낭염·곰팡이 독소 방치", "start": 30.0, "end": 40.0,
+                     "subtitles": [
+                         {"text": "2위! 장내 독소 흡착 없이 대기", "rel_start": 0.5, "rel_end": 4.8},
+                         {"text": "새는 대사가 빨라 24시간이 골든타임", "rel_start": 4.9, "rel_end": 9.5}
+                     ]},
+                    {"rank": 1, "title": "부리 끝 1방울 나노 점막 코팅", "start": 41.0, "end": 52.0,
+                     "subtitles": [
+                         {"text": "1위! 부리 끝 1방울 안심 도포", "rel_start": 0.5, "rel_end": 5.0},
+                         {"text": "체내 흡수 0%로 독소만 쏙 배출!", "rel_start": 5.1, "rel_end": 10.5}
+                     ]}
+                ]
+            },
+            # 5: 토요일 (축산·브리더 신생 자견/송아지 설사 방어 TOP 5)
+            {
+                "board_title": "신생 자견·송아지 설사 방어 TOP 5",
+                "items": [
+                    {"rank": 5, "title": "분만 전 어미 백신 접종 누락", "start": 0.0, "end": 9.0,
+                     "subtitles": [
+                         {"text": "5위! 분만 전 모체 백신 누락", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "로타갈 원샷으로 초유 항체 극대화!", "rel_start": 4.6, "rel_end": 8.5}
+                     ]},
+                    {"rank": 4, "title": "출생 후 6시간 초유 골든타임 놓침", "start": 9.5, "end": 19.0,
+                     "subtitles": [
+                         {"text": "4위! 출생 직후 6시간 초유 부족", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "베타콜 15ml 시린지로 면역 직공급", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 3, "title": "이유기 사료 급격한 전환", "start": 20.0, "end": 29.5,
+                     "subtitles": [
+                         {"text": "3위! 이유식·환경 동시 급변", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "장 융모 손상으로 수양성 설사 폭발", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 2, "title": "초기부터 독한 항생제만 남용", "start": 30.0, "end": 40.0,
+                     "subtitles": [
+                         {"text": "2위! 유익균까지 죽이는 항생제 남용", "rel_start": 0.5, "rel_end": 4.8},
+                         {"text": "내독소(LPS) 방출로 패혈증 위험", "rel_start": 4.9, "rel_end": 9.5}
+                     ]},
+                    {"rank": 1, "title": "나노 몬모릴로나이트 1초 점막 코팅", "start": 41.0, "end": 52.0,
+                     "subtitles": [
+                         {"text": "1위! 파보겔·몬스멕타 즉시 코팅", "rel_start": 0.5, "rel_end": 5.0},
+                         {"text": "유익균은 지키고 독소만 자석 배출!", "rel_start": 5.1, "rel_end": 10.5}
+                     ]}
+                ]
+            },
+            # 6: 일요일 (반려동물 응급 상비약 키트 TOP 5)
+            {
+                "board_title": "댕냥집사 필수 응급 상비템 TOP 5",
+                "items": [
+                    {"rank": 5, "title": "자가 탈수 체크 (등덜미 피부 텐팅)", "start": 0.0, "end": 9.0,
+                     "subtitles": [
+                         {"text": "5위! 등덜미 피부 탄력 체크법", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "1초 내 안 돌아오면 응급 탈수 신호", "rel_start": 4.6, "rel_end": 8.5}
+                     ]},
+                    {"rank": 4, "title": "잇몸 모세혈관 재충만(CRT) 확인", "start": 9.5, "end": 19.0,
+                     "subtitles": [
+                         {"text": "4위! 잇몸 눌렀다 떼기 (CRT)", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "선홍빛 복귀 2초 넘으면 쇼크 주의", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 3, "title": "전자체온계 & 보온 담요 상비", "start": 20.0, "end": 29.5,
+                     "subtitles": [
+                         {"text": "3위! 체온 38~39도 보온 유지", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "저체온증 오면 장 기능이 멈춥니다", "rel_start": 4.6, "rel_end": 9.0}
+                     ]},
+                    {"rank": 2, "title": "24시 야간 응급병원 번호 저장", "start": 30.0, "end": 40.0,
+                     "subtitles": [
+                         {"text": "2위! 문 연 24시 병원 미리 저장", "rel_start": 0.5, "rel_end": 4.8},
+                         {"text": "사전 문진표로 골든타임 확보!", "rel_start": 4.9, "rel_end": 9.5}
+                     ]},
+                    {"rank": 1, "title": "실온 18개월 보관 1초 펌프 파보겔", "start": 41.0, "end": 52.0,
+                     "subtitles": [
+                         {"text": "1위! 서랍 속 상비약 파보겔 1병", "rel_start": 0.5, "rel_end": 5.0},
+                         {"text": "새벽 2시 급성 설사 1초 만에 방어!", "rel_start": 5.1, "rel_end": 10.5}
                      ]}
                 ]
             }

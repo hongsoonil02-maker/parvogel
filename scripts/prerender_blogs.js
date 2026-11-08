@@ -18,21 +18,116 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+function formatInlineMarkdown(escapedStr) {
+  return escapedStr
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code style="background:#f1f5f9; padding:0.15rem 0.4rem; border-radius:0.25rem; font-size:0.9em;">$1</code>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:#0284c7; text-decoration:underline; font-weight:600;">$1</a>');
+}
+
 function markdownToSimpleHtml(md) {
   if (!md) return '';
-  const lines = md.split('\n');
+  // Strip any accidental embedded Schema.org JSON-LD blocks from body markdown
+  const cleanedMd = md.replace(/<!--\s*Schema\.org\s*JSON-LD\s*-->[\s\S]*?```json[\s\S]*?```/gi, '');
+  const lines = cleanedMd.split('\n');
   let html = '';
+  let inTable = false;
+  let tableHeaderDone = false;
+  let inList = false;
+  let inCodeBlock = false;
+
+  const closeOpenBlocks = () => {
+    if (inTable) {
+      html += '\n</tbody></table></div>';
+      inTable = false;
+      tableHeaderDone = false;
+    }
+    if (inList) {
+      html += '\n</ul>';
+      inList = false;
+    }
+  };
+
   for (const line of lines) {
     const trimmed = line.trim();
-    if (!trimmed) continue;
+
+    if (trimmed.startsWith('```')) {
+      closeOpenBlocks();
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock) continue;
+
+    if (!trimmed) {
+      closeOpenBlocks();
+      continue;
+    }
+
+    // Markdown Table support
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      if (inList) {
+        html += '\n</ul>';
+        inList = false;
+      }
+      const cells = trimmed
+        .slice(1, -1)
+        .split('|')
+        .map(c => c.trim());
+
+      // Check if separator row (e.g. | :--- | :--- |)
+      if (cells.every(c => /^:?-{2,}:?$/.test(c))) {
+        continue;
+      }
+
+      if (!inTable) {
+        inTable = true;
+        tableHeaderDone = false;
+        html += '\n<div style="overflow-x:auto; margin:1.5rem 0;"><table style="width:100%; border-collapse:collapse; font-size:0.95rem; border:1px solid #e2e8f0;">';
+      }
+
+      if (!tableHeaderDone) {
+        html += '<thead><tr style="background:#f8fafc; border-bottom:2px solid #cbd5e1;">';
+        for (const cell of cells) {
+          html += `<th style="padding:0.75rem 1rem; text-align:left; font-weight:800; color:#0f172a; border:1px solid #e2e8f0;">${formatInlineMarkdown(escapeHtml(cell))}</th>`;
+        }
+        html += '</tr></thead><tbody>';
+        tableHeaderDone = true;
+      } else {
+        html += '<tr style="border-bottom:1px solid #e2e8f0;">';
+        for (const cell of cells) {
+          html += `<td style="padding:0.75rem 1rem; color:#334155; border:1px solid #e2e8f0;">${formatInlineMarkdown(escapeHtml(cell))}</td>`;
+        }
+        html += '</tr>';
+      }
+      continue;
+    }
+
+    // Bullet List support
+    if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+      if (inTable) {
+        html += '\n</tbody></table></div>';
+        inTable = false;
+        tableHeaderDone = false;
+      }
+      if (!inList) {
+        inList = true;
+        html += '\n<ul style="margin:1rem 0 1.25rem 1.25rem; padding-left:0.5rem; color:#334155; line-height:1.75;">';
+      }
+      const itemText = trimmed.slice(2).trim();
+      html += `\n<li style="margin-bottom:0.4rem;">${formatInlineMarkdown(escapeHtml(itemText))}</li>`;
+      continue;
+    }
+
+    closeOpenBlocks();
+
     if (trimmed.startsWith('### ')) {
-      html += `\n<h3 style="font-size:1.4rem; font-weight:800; margin:1.5rem 0 0.5rem; color:#0f172a;">${escapeHtml(trimmed.slice(4))}</h3>`;
+      html += `\n<h3 style="font-size:1.4rem; font-weight:800; margin:1.5rem 0 0.5rem; color:#0f172a;">${formatInlineMarkdown(escapeHtml(trimmed.slice(4)))}</h3>`;
     } else if (trimmed.startsWith('## ')) {
-      html += `\n<h2 style="font-size:1.7rem; font-weight:800; margin:2rem 0 0.8rem; color:#0f172a;">${escapeHtml(trimmed.slice(3))}</h2>`;
+      html += `\n<h2 style="font-size:1.7rem; font-weight:800; margin:2rem 0 0.8rem; color:#0f172a;">${formatInlineMarkdown(escapeHtml(trimmed.slice(3)))}</h2>`;
     } else if (trimmed.startsWith('# ')) {
-      html += `\n<h1 style="font-size:2rem; font-weight:900; margin:2.2rem 0 1rem; color:#0f172a;">${escapeHtml(trimmed.slice(2))}</h1>`;
+      html += `\n<h1 style="font-size:2rem; font-weight:900; margin:2.2rem 0 1rem; color:#0f172a;">${formatInlineMarkdown(escapeHtml(trimmed.slice(2)))}</h1>`;
     } else if (trimmed.startsWith('> ')) {
-      html += `\n<blockquote style="padding:0.75rem 1rem; border-left:4px solid #f59e0b; background:#fffbeb; color:#1e293b; margin:1rem 0; font-style:italic;">${escapeHtml(trimmed.slice(2))}</blockquote>`;
+      html += `\n<blockquote style="padding:0.85rem 1.1rem; border-left:4px solid #f59e0b; background:#fffbeb; color:#1e293b; margin:1rem 0; border-radius:0 0.5rem 0.5rem 0;">${formatInlineMarkdown(escapeHtml(trimmed.slice(2)))}</blockquote>`;
     } else if (trimmed.startsWith('---')) {
       html += `\n<hr style="margin:2rem 0; border:0; border-top:1px solid #e2e8f0;" />`;
     } else if (trimmed.startsWith('@[youtube]')) {
@@ -41,11 +136,12 @@ function markdownToSimpleHtml(md) {
         html += `\n<div style="margin:1.5rem 0; text-align:center;"><iframe src="https://www.youtube-nocookie.com/embed/${match[1]}" width="320" height="568" frameborder="0" allowfullscreen title="YouTube Video"></iframe></div>`;
       }
     } else {
-      // Bold 처리
-      const formatted = escapeHtml(trimmed).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      const formatted = formatInlineMarkdown(escapeHtml(trimmed));
       html += `\n<p style="font-size:1.05rem; line-height:1.75; margin-bottom:1rem; color:#334155;">${formatted}</p>`;
     }
   }
+
+  closeOpenBlocks();
   return html;
 }
 
@@ -118,31 +214,48 @@ export function prerender() {
     const postUrl = `https://parvogel.kr/blog/${post.id}`;
     const postImage = post.image ? (post.image.startsWith('http') ? post.image : `https://parvogel.kr${post.image}`) : 'https://parvogel.kr/og-image.png';
 
+    const graphNodes = [
+      {
+        "@type": ["Article", "MedicalWebPage"],
+        "@id": `${postUrl}#article`,
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": [postImage],
+        "datePublished": post.date,
+        "dateModified": post.dateModified || post.date,
+        "author": [{
+          "@type": "Person",
+          "name": post.author || "김동준 수의사 (하남 사랑동물병원 원장 / 파보겔 학술자문위원)"
+        }],
+        "reviewedBy": {
+          "@type": "VeterinaryCare",
+          "@id": "https://snj-vet.com/#hospital",
+          "name": "에스앤제이 동물병원"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.agrokorea.net/#organization",
+          "name": "(주)한국아그로",
+          "url": "https://parvogel.kr/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://parvogel.kr/og-image.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": postUrl
+        }
+      }
+    ];
+
+    if (post.schema_json_ld) {
+      graphNodes.push(post.schema_json_ld);
+    }
+
     const articleJsonLd = {
       "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": post.title,
-      "description": post.excerpt,
-      "image": [postImage],
-      "datePublished": post.date,
-      "dateModified": post.date,
-      "author": [{
-        "@type": "Person",
-        "name": post.author || "김동준 수의사 (하남 사랑동물병원 원장 / 파보겔 학술자문위원)"
-      }],
-      "publisher": {
-        "@type": "Organization",
-        "name": "(주)한국아그로",
-        "url": "https://parvogel.kr/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://parvogel.kr/og-image.png"
-        }
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": postUrl
-      }
+      "@graph": graphNodes
     };
 
     const articleBodyHtml = markdownToSimpleHtml(post.content);
@@ -156,15 +269,13 @@ export function prerender() {
       .replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${postUrl}" />`)
       .replace(/<meta property="og:image" content=".*?" \/>/i, `<meta property="og:image" content="${escapeHtml(postImage)}" />`)
       .replace(/<meta property="og:type" content=".*?" \/>/i, `<meta property="og:type" content="article" />`)
-      .replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${escapeHtml(postMetaTitle)}" />`)
+      .replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${escapeHtml(blogListMetaTitle)}" />`)
       .replace(/<meta name="twitter:description" content=".*?" \/>/i, `<meta name="twitter:description" content="${escapeHtml(postMetaDesc)}" />`)
       .replace(/<meta name="twitter:image" content=".*?" \/>/i, `<meta name="twitter:image" content="${escapeHtml(postImage)}" />`);
 
-    // Schema.org Article 스크립트 추가
-    const scriptInsert = `\n    <script type="application/ld+json">\n    ${JSON.stringify(articleJsonLd, null, 2)}\n    </script>\n</head>`;
+    const scriptInsert = `\n    <script id="geo-dynamic-schema" type="application/ld+json">\n    ${JSON.stringify(articleJsonLd, null, 2)}\n    </script>\n</head>`;
     postHtml = postHtml.replace('</head>', scriptInsert);
 
-    // root 내부에 완벽한 본문 주입 (봇 크롤링 최적화)
     const injectedBody = `
       <div id="root">
         <main style="max-width:820px; margin:2rem auto; padding:1.5rem; font-family:-apple-system,BlinkMacSystemFont,'Pretendard',sans-serif;">

@@ -34,6 +34,7 @@ from core.viral_shortform_engine import ViralShortformEngine
 from core.outsource_dispatcher import OutsourceDispatcher
 from core.dashboard_service import DashboardService
 from core.ranking_shorts_generator import ParvogelRankingShortsGenerator
+from core.pump_shorts_generator import PumpShortsGenerator
 from core.queue_server import push_post_to_queue
 from adapters.telegram_adapter import TelegramAdapter
 from adapters.discord_adapter import DiscordAdapter
@@ -57,6 +58,7 @@ class ParvogelMarketingMaster:
         self.formatter = ParvogelContentFormatter()
         self.video_maker = ParvogelVideoMaker()
         self.ranking_generator = ParvogelRankingShortsGenerator()
+        self.pump_generator = PumpShortsGenerator()
         self.viral_engine = ViralShortformEngine()
         self.outsource_dispatcher = OutsourceDispatcher()
         self.dashboard_service = DashboardService()
@@ -94,11 +96,13 @@ class ParvogelMarketingMaster:
         entry = next((e for e in reversed(ledger) if e.get("date") == date_str), None)
         if not entry:
             return False
-        # 네이버 블로그가 성공하지 못했다면 재실행 허용
-        naver_status = entry.get("publish_results", {}).get("Naver_Blog")
-        if naver_status != "SUCCESS":
-            return False
-        return True
+        pub = entry.get("publish_results", {})
+        # 주요 소셜/영상 채널 중 3개 이상이 이미 당일 성공했고, 네이버 블로그가 SUCCESS 또는 QUEUED_HYBRID로 처리되었다면 중복 차단
+        core_success = sum(1 for k in ("YouTube_Shorts", "Instagram_Reels", "TikTok", "Bluesky", "Discord") if str(pub.get(k, "")).startswith("SUCCESS"))
+        naver_st = str(pub.get("Naver_Blog", ""))
+        if core_success >= 3 and (naver_st.startswith("SUCCESS") or naver_st.startswith("QUEUED") or naver_st.startswith("ARCHIVED")):
+            return True
+        return False
 
     def run_daily_pipeline(self, target_day: str = None, force: bool = False) -> Dict[str, Any]:
         start_time = datetime.datetime.now()
@@ -146,6 +150,15 @@ class ParvogelMarketingMaster:
         except Exception as e:
             print(f"! Ranking shorts generation notice: {e}")
 
+        # 3-3. [실사 1초 펌프 급여 가이드] 5대 임상 실사 숏폼 자동 렌더링
+        rendered_pump = None
+        try:
+            rendered_pump = self.pump_generator.generate_daily_pump_shorts(date_tag=start_time.strftime("%Y%m%d"))
+            if rendered_pump:
+                print(f"✓ Rendered clinical pump shorts: {os.path.basename(rendered_pump)}")
+        except Exception as e:
+            print(f"! Clinical pump shorts generation notice: {e}")
+
         # 4. 멀티스레드 병렬 배포 및 아카이브 저장
         print("\n[STEP 4/4] Publishing and archiving content...")
         results = {}
@@ -183,18 +196,25 @@ class ParvogelMarketingMaster:
                     
                 if adapter.validate_config() and not (adapter.name == "Naver_Blog" and os.getenv("GITHUB_ACTIONS") == "true"):
                     data = formatted_channels.get(ch_key, {}).copy()
-                    if rendered_video:
+                    # 3종 숏폼(다큐/랭킹/펌프가이드) 채널별 최적 라우팅 (렌더링된 영상 100% 활용)
+                    if adapter.name == "YouTube_Shorts" and rendered_ranking:
+                        data["video_path"] = rendered_ranking
+                    elif adapter.name == "Instagram_Reels" and rendered_pump:
+                        data["video_path"] = rendered_pump
+                    elif adapter.name == "TikTok" and rendered_ranking:
+                        data["video_path"] = rendered_ranking
+                    elif rendered_video:
                         data["video_path"] = rendered_video
                     future = executor.submit(adapter.publish, data)
                     future_to_adapter[future] = adapter.name
-                elif adapter.name == "Naver_Blog":
-                    # 클라우드(GitHub Actions) 또는 로컬 미로그인 환경에서는 하이브리드 로컬 큐에 적재하여 에러 알림 방지
-                    nb_data = formatted_channels.get("Naver_Blog", {})
-                    if nb_data:
+                elif adapter.name in ("Naver_Blog", "Threads"):
+                    # 클라우드/미로그인/키 미설정 시 하이브리드 로컬 큐에 즉시 적재하여 유실 원천 방지
+                    ch_data = formatted_channels.get(ch_key, {})
+                    if ch_data:
                         queued = push_post_to_queue(
-                            title=nb_data.get("title", narrative.get("headline", "파보겔 임상 스토리")),
-                            body=nb_data.get("body", ""),
-                            links=nb_data.get("links", {}),
+                            title=ch_data.get("title", narrative.get("headline", "파보겔 임상 스토리")),
+                            body=ch_data.get("body", ch_data.get("main_post", "")),
+                            links=ch_data.get("links", {}),
                             target_brand="KOREA_AGRO",
                             product_id="PARVOGEL_D2C"
                         )
@@ -208,7 +228,21 @@ class ParvogelMarketingMaster:
                 ad_name = future_to_adapter[future]
                 try:
                     success = future.result()
-                    results[ad_name] = "SUCCESS" if success else "FAILED"
+                    if success:
+                        results[ad_name] = "SUCCESS"
+                    elif ad_name in ("Naver_Blog", "Threads"):
+                        # 런타임 세션 만료 등 실패 시 자동으로 하이브리드 큐에 폴백 적재
+                        ch_data = formatted_channels.get(ad_name, {})
+                        queued = push_post_to_queue(
+                            title=ch_data.get("title", narrative.get("headline", "파보겔 임상 스토리")),
+                            body=ch_data.get("body", ch_data.get("main_post", "")),
+                            links=ch_data.get("links", {}),
+                            target_brand="KOREA_AGRO",
+                            product_id="PARVOGEL_D2C"
+                        )
+                        results[ad_name] = f"QUEUED_HYBRID_FALLBACK ({queued['id']})"
+                    else:
+                        results[ad_name] = "FAILED"
                 except Exception as e:
                     results[ad_name] = f"ERROR: {e}"
 
@@ -236,6 +270,8 @@ class ParvogelMarketingMaster:
             "video_file": target_video,
             "rendered_video": rel_rendered or rendered_video,
             "rendered_video_abs": rendered_video,
+            "rendered_ranking_video": os.path.basename(rendered_ranking) if rendered_ranking else None,
+            "rendered_pump_video": os.path.basename(rendered_pump) if rendered_pump else None,
             "publish_results": results
         }
         ledger.append(ledger_entry)

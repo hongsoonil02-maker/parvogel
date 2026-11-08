@@ -259,6 +259,26 @@ class ParvogelContentFormatter:
         pain_point = n.get('pain_point', f'{geo_keyword} 상황에서 갑작스러운 수양성 설사와 기력 저하로 보호자의 불안감이 극에 달하는 순간입니다.')
         clinical_solution = n.get('clinical_solution', '초미세 나노 몬모릴로나이트와 특허균주 복합체가 장 점막을 즉시 물리적으로 실크 코팅합니다.')
 
+        theme_id = n.get("theme_id", "dog_emergency_2040")
+        if theme_id == "bird_parrot_special":
+            species_label = "앵무새·반려조"
+            case_journal_block = """> 📅 **[실제 반려조 앵무새 '꼬미' 24시간 배변 회복 관찰 일지]:**
+> - **급여 직전:** 급성 수양성 물변으로 바닥 휴지가 흥건히 젖고 깃털을 부풀린 채 횃대에서 기력 저하 (낙조 위기)
+> - **부리 끝 1방울 급여:** 기도 질식 위험이 있는 강제 주사기 대신 부리 끝에 파보겔 1방울(약 0.1~0.2ml) 도포 및 음수 희석
+> - **24시간 경과:** 수양성 물변이 멈추고 초록빛 단단한 변 알맹이와 하얀 정상 요산이 선명하게 분리되며 모이 섭취 완전 회복"""
+        elif theme_id == "cat_stress_free_2040":
+            species_label = "예민한 고양이·다묘 가정"
+            case_journal_block = """> 📅 **[실제 사료 교체기 무른 변 & 헤어볼 구토 반려묘 회복 관찰 일지]:**
+> - **1일 차:** 헤어볼 구토 후 공복 노란 위산 토와 무른 변 반복, 가루약 급여 시 극심한 거품 침 흘림 거부
+> - **1초 펌프 급여:** 주사기 없이 파보겔 1펌프를 입가와 앞발에 살짝 묻혀주자 그루밍하며 스트레스 없이 자가 완식
+> - **3일 차:** 위산(pH 2.0 → pH 4.5~5.5) 완충으로 구토 반사 진정 및 맛동산(정상 변 Type 3~4) 회복"""
+        else:
+            species_label = "어린 강아지·소형견"
+            case_journal_block = """> 📅 **[실제 55일령 토이푸들(0.6kg) 회복 관찰 일지]:**
+> - **1일 차:** 기립 불능, 수양성 설사 -> 파보겔 1초 펌프 급여 후 탈수 방지 안정화
+> - **3일 차:** 복통 경감, 구토 반사 멈춤, 캔사료 밥그릇 싹싹 비워내며 기력 회복
+> - **7일 차:** 단단한 정상 황금변 형성, 네 발로 활발히 보행하며 퇴원 판정"""
+
         post_content = f"""# {title}
 
 {n.get('subheadline', f'동물병원 응급 내원 전 보호자가 반드시 확인해야 할 {geo_keyword} 골든타임 응급처치 수칙')}
@@ -266,27 +286,27 @@ class ParvogelContentFormatter:
 ---
 
 ## 1. {geo_keyword} 발생 시 즉시 체크해야 할 3대 위험 신호
-**{geo_keyword} 상황에서 가장 먼저 무엇을 확인해야 할까요?** 단순 식이성 설사와 응급 바이러스 장염을 구분하는 기준은 '탈수 속도와 활력'이며, 보호자는 즉시 3대 생체 징후를 체크해야 합니다.
+**{geo_keyword} 상황에서 가장 먼저 무엇을 확인해야 할까요?** 단순 식이성 트러블과 응급 장염을 구분하는 기준은 '탈수 속도와 활력'이며, 보호자는 즉시 생체 징후를 체크해야 합니다.
 
 {pain_point}
-어린 강아지나 소형견은 체내 수분량이 적어 단 몇 시간의 수양성 설사(Bristol Stool Scale Type 7)만으로도 치명적인 순환 혈액량 감소를 겪을 수 있습니다.
+{species_label}의 경우 체내 수분 보유량이 적어 단 몇 시간의 수양성 설사(Bristol Stool Scale Type 7)만으로도 치명적인 순환 혈액량 감소를 겪을 수 있습니다.
 
 > 🩺 **[가정 내 1분 자가진단 3대 체크포인트]:**
-> 1. **피부 텐팅(Skin Turgor) 탈수 검사:** 등덜미 피부를 살짝 잡아당겼다 놓았을 때 1초 이내로 즉시 원복되지 않고 서서히 내려간다면 중등도 이상의 탈수 상태입니다.
-> 2. **잇몸 점막 색 & 모세혈관 재충만 시간(CRT):** 잇몸을 손가락으로 눌렀다 뗄 때 창백한 흰색에서 선홍색으로 돌아오는 시간이 2초 이상 걸린다면 말초 순환 저하를 의미합니다.
-> 3. **직장 체온 확인:** 체온이 39.5℃ 이상 고열이거나 37.5℃ 이하 저체온으로 떨어진다면 즉각적인 응급 처치가 필요합니다.
+> 1. **탈수 및 탄력도 검사:** 피부 텐팅(등덜미 피부 원복 속도) 또는 배변 주변 수분 소실량이 급격히 늘어났다면 중등도 이상의 탈수 상태입니다.
+> 2. **점막 색 & 순환 확인:** 잇몸이나 부리·발바닥 색이 창백해지고 말초 순환이 느려진다면 즉각적인 보온과 점막 보호가 필요합니다.
+> 3. **체온 유지 확인:** 귀나 발끝이 차가워지는 저체온 징후가 나타나면 담요와 보온등으로 체온을 먼저 확보해야 합니다.
 
-[사진/영상 배치 지점 1: 탈수 피부 텐팅 검사 및 잇몸 CRT 진료실 실사]
+[사진/영상 배치 지점 1: {n.get('focus_scene', '진료실 및 가정 내 응급 케어 실사')}]
 
 ---
 
-## 2. 수의학적 병태생리: 융모(Villi) 파괴와 단순 금식의 치명적 위험
-**설사한다고 무작정 하루 종일 굶기는 것이 과연 안전할까요?** 성견의 일시적 소화기 휴식과 달리, 2~3개월령 자견이나 소형견은 장기간 금식 시 장 융모 위축과 치명적인 저혈당 쇼크를 유발할 수 있습니다.
+## 2. 수의학적 병태생리: 융모(Villi) 손상과 단순 금식·강제 투약의 위험
+**설사한다고 무작정 굶기거나 쓴 가루약을 억지로 밀어 넣는 것이 안전할까요?** 체구가 작은 {species_label}는 장기간 금식 시 장 융모 위축과 치명적인 저혈당 쇼크를 유발할 수 있습니다.
 
-파보바이러스나 병원성 세균은 장 상피세포의 기저부(Crypt)를 공격하여 영양분을 흡수하는 융모(Villi)를 깎아내고 점막 장벽을 무너뜨립니다. 이로 인해 장관 내 삼투압이 무너지며 체액과 혈액이 장강으로 쏟아져 나오는 수양성 설사(Bristol Type 7)가 발생합니다.
+병원성 세균 독소나 바이러스는 장 상피세포의 융모(Villi)를 공격하여 점막 장벽을 무너뜨립니다. 이로 인해 장관 내 삼투압이 깨지며 수양성 설사가 발생합니다.
 
-- **단순 맹물 급여의 위험:** 장 상피세포가 파괴된 상태에서 맹물만 강제로 급여하면 장내 삼투압 불균형이 심화되어 오히려 설사가 더 뿜어져 나오는 '삼투성 설사 악화'가 일어납니다.
-- **가루약 투약 스트레스:** 구토 반사가 올라온 아이에게 가루약이나 강제 주사기 피딩을 시도하면 기도로 넘어가는 흡인성 폐렴이나 극심한 거품 토해냄 쇼크가 발생할 수 있습니다.
+- **단순 맹물 급여의 위험:** 장 상피세포가 손상된 상태에서 맹물만 과도하게 급여하면 삼투성 설사가 악화될 수 있습니다.
+- **강제 주사기 투약 스트레스:** 구토 반사가 올라오거나 예민한 아이에게 쓴 가루약을 주사기로 강제 주입하면 기도 흡인 위험과 극심한 거품 구토 쇼크가 발생할 수 있습니다.
 
 ---
 
@@ -294,50 +314,48 @@ class ParvogelContentFormatter:
 **파보겔은 화학 지사제와 무엇이 다르며 장을 어떻게 보호할까요?** 화학적으로 장 운동을 억지로 마비시키는 것이 아니라, 체내 흡수율 0%의 초미세 나노 몬모릴로나이트가 짓무른 장 점막에 물리적 실크 코팅막을 형성하여 독소와 바이러스 부산물만 자석처럼 흡착 배출합니다.
 
 {clinical_solution}
-- **체내 흡수 0%의 안전성:** 혈액이나 간·신장으로 대사되지 않고 장관 내에서만 물리적으로 작용한 뒤 대변과 함께 100% 안전하게 배출됩니다.
+- **체내 흡수 0%의 안전성:** 혈액이나 간·신장으로 대사되지 않고 장관 내에서만 물리적으로 작용한 뒤 변과 함께 100% 안전하게 배출됩니다.
 - **1-deoxinojirimycin (DNJ) & Patent No. 2011B0042620.8 특허균주:** 장내 유해 세균 증식을 억제하고 장내 미생물총 정상화를 지원합니다.
-- **1초 에어리스 오일펌프:** 쓴맛 없는 고기호성 겔 제형으로, 주사기 없이 입가에 대고 가볍게 1초만 펌핑해주면 스스로 핥아먹습니다.
+- **1초 에어리스 오일펌프:** 쓴맛 없는 고기호성 겔 제형으로, 주사기 없이 입가나 부리 끝에 가볍게 도포해주면 스스로 핥아먹습니다.
 
-### 📋 [파보겔 체중별 1일 권장 급여량 기준표]
+### 📋 [파보겔 체중·축종별 1일 권장 급여량 기준표]
 (1펌핑 = 약 2ml 기준)
 
-| 반려동물 구분 / 체중 | 1일 권장 급여량 | 1회 권장 펌핑 횟수 | 급여 팁 및 관리 요령 |
+| 반려동물 구분 / 체중 | 1일 권장 급여량 | 1회 권장 급여 방식 | 급여 팁 및 관리 요령 |
 | :--- | :---: | :---: | :--- |
 | **초소형견 (1kg 미만 ~ 3kg)** | 1 ~ 2 ml | 1회 (0.5 ~ 1펌프) | 입가에 톡 발라주거나 주둥이에 도포 |
 | **소형견 (3kg ~ 5kg)** | 2 ~ 4 ml | 1 ~ 2회 펌핑 | 아침·저녁 1펌프씩 2회 분할 급여 |
 | **중·대형견 (5kg ~ 15kg 이상)** | 4 ~ 8 ml | 2 ~ 4회 펌핑 | 체중 5kg당 2~4ml 비례 급여 |
 | **고양이 (전 연령)** | 1 ~ 2 ml | 1회 펌핑 | 잇몸 또는 앞발에 살짝 묻혀주면 자가 완식 |
+| **앵무새 · 반려조 (소형~중대형)** | 0.1 ~ 0.3 ml | 부리 끝 1~2방울 | 부리 끝에 톡 묻혀주거나 이유식·음수에 혼합 |
 
-[사진/영상 배치 지점 2: 파보겔 실물 펌핑 장면 및 체중별 급여 사진]
+[사진/영상 배치 지점 2: 파보겔 실물 1초 펌핑 장면 및 축종별 급여 사진]
 
 ---
 
 ## 4. 임상 케이스 관찰 흐름 & 동물병원 응급 내원 골든타임
-**파보겔 급여 후 분변 상태는 어떻게 회복되며, 언제 즉시 병원으로 달려가야 할까요?** 실제 임상 현장에서는 급여 24~48시간 내에 수양성 설사(Type 7)가 연변(Type 6)을 거쳐 3일 차에 식욕을 회복하고 단단한 유구형 정상변(Type 3~4)으로 전환되는 케이스가 다수 확인됩니다.
+**파보겔 급여 후 분변 상태는 어떻게 회복되며, 언제 즉시 병원으로 달려가야 할까요?** 실제 관찰 케이스에서는 급여 24~48시간 내에 수양성 설사(Type 7)가 연변(Type 6)을 거쳐 빠르게 식욕을 회복하고 단단한 정상변(Type 3~4)으로 전환되는 흐름이 확인됩니다.
 
-> 📅 **[실제 55일령 토이푸들(0.6kg) 회복 관찰 일지]:**
-> - **1일 차:** 기립 불능, 수양성 설사 -> 파보겔 1초 펌프 급여 후 탈수 방지 안정화
-> - **3일 차:** 복통 경감, 구토 반사 멈춤, 캔사료 밥그릇 싹싹 비워내며 기력 회복
-> - **7일 차:** 단단한 정상 황금변 형성, 네 발로 활발히 보행하며 퇴원 판정
+{case_journal_block}
 
 🚨 **[즉시 24시 동물병원 응급실로 가야 하는 3대 레드 플래그]:**
-1. **출혈성 구토 동반:** 설사뿐 아니라 커피색 또는 붉은 피를 토하는 경우
-2. **저체온증:** 체온계 측정 시 37.5℃ 미만으로 체온이 떨어지고 사지가 차가운 경우
-3. **완전 기립 불능:** 이름을 불러도 반응이 없고 고개를 들지 못하는 혼수 상태
+1. **출혈성 구토 동반:** 설사뿐 아니라 커피색 또는 붉은 피를 연속으로 토하는 경우
+2. **급격한 저체온증:** 사지나 발끝이 차갑게 식고 담요 보온에도 체온이 회복되지 않는 경우
+3. **완전 기립 불능:** 불러도 반응이 없고 고개를 들지 못하는 탈진 상태
 
 ---
 
 ## 5. 💡 핵심 3줄 요약 (네이버 AI 브리핑 스니펫)
 > 1. {geo_keyword} 대처 시 무작정 굶기면 저혈당 쇼크 위험이 있으므로, 탈수 징후를 체크하고 장 점막을 보호하는 응급 상비 대처가 필수적입니다.
 > 2. 파보겔(ParvoGel)은 체내 흡수 0%의 초미세 나노 몬모릴로나이트 복합체로 장벽을 실크 코팅하고 유해 독소를 물리적으로 흡착 배출하는 1초 펌프 상비약입니다.
-> 3. 출혈성 구토, 체온 37.5℃ 미만 저체온, 기립 불능 등 3대 위험 신호가 동반될 경우 지체 없이 24시 동물병원 응급 진료를 병행해야 합니다.
+> 3. 출혈성 구토, 저체온, 기립 불능 등 3대 위험 신호가 동반될 경우 지체 없이 동물병원 응급 진료를 병행해야 합니다.
 
 ---
 
 ### 🏥 파보겔 공식 정보 및 상비 안내
 - 🟢 **네이버 스마트스토어 공식몰**: {links['smartstore']}
 - 🚀 **쿠팡 로켓배송 즉시 구매**: {links['coupang']}
-- 📹 **하남 사랑동물병원 김동준 원장 7일 회복 직캠 확인**: {links['landing']}
+- 📹 **실제 회복 직캠 & 학술 데이터 확인**: {links['landing']}
 - 🏢 **전국 인허가 펫샵·브리더 본품 1병 무료 샘플 신청**: {links['b2b_sample']}
 
 *연관 검색어 키워드: {keywords_str}*
@@ -379,20 +397,22 @@ class ParvogelContentFormatter:
             "links": links
         }
 
-    # 6. 인스타그램 릴스
+    # 6. 인스타그램 릴스 (요일별 테마 동적 반영)
     def _format_instagram_reels(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("instagram_reels", n.get("theme_id", "daily"))
         tags = " ".join(self.keywords.get("hashtags", {}).get("b2c_general", []) + self.keywords.get("hashtags", {}).get("b2c_story", []))
-        caption = f"""옆으로 쓰러져 발작하던 55일령 아기 강아지.. 
-김동준 원장님의 7일간의 진료실 직캠 기록 📹
+        headline = n.get("headline", "쓰러진 55일령 아기 강아지의 7일 회복 실화")
+        subheadline = n.get("subheadline", "주사기 없이 입가에 대고 1초 펌프 누르면 꿀꺽!")
+        pain_point = n.get("pain_point", "갑작스러운 구토와 물설사로 기력이 빠진 아이, 억지 주사기 투약 대신 1초 펌프로 안전하게 케어하세요.")
+        video_hl = n.get("video_highlight", "투약 3일 차에 밥그릇까지 싹싹 핥아먹고 건강을 되찾은 리얼 직캠 기록")
+        caption = f"""🐾 {headline}
+{subheadline}
 
-주사기 들이대면 거품 물고 거부하는데, 
-파보겔은 입가에 대고 1초 펌프 누르니까 꿀꺽 삼키네요!
+{pain_point}
 
-투약 3일 차에 캔사료를 그릇까지 싹싹 핥아먹더니 
-7일 만에 네 발로 씩씩하게 걸어서 완치 퇴원했습니다 🐾
+✨ {video_hl}
 
-프로필 링크에서 7일간 무편집 원본 직캠을 확인하세요! 
+프로필 링크에서 무편집 원본 직캠 및 무료 샘플 정보를 확인하세요! 
 👉 @parvogel_official
 
 구매처 안내:
@@ -405,25 +425,22 @@ class ParvogelContentFormatter:
 """
         return {"caption": caption.strip(), "links": links}
 
-    # 7. 링크드인 (수의학 B2B)
+    # 7. 링크드인 (수의학 & B2B 동적 반영)
     def _format_linkedin(self, n: Dict[str, Any]) -> Dict[str, Any]:
-        links = self._build_utm_links("linkedin_b2b")
-        text = f"""[Clinical Case Study: Canine Acute Enteritis & Seizure Recovery]
+        links = self._build_utm_links("linkedin_b2b", n.get("theme_id", "daily"))
+        headline = n.get("headline", "Canine Acute Enteritis & Mucosal Protection Protocol")
+        solution = n.get("clinical_solution", "1-deoxinojirimycin (DNJ), Bacillus subtilis MORI (Patent No. 2011B0042620.8), and ultra-fine nano-Montmorillonite mucosal protectant.")
+        highlight = n.get("video_highlight", "Rapid stabilization of stool consistency and appetite recovery within 48-72 hours via zero-stress 1-second airless pump administration.")
+        text = f"""[Veterinary Clinical & B2B Case Brief: {headline}]
 
-Subject: 55-day-old male Toy Poodle (0.6 kg)
-Presenting Condition: Severe hemorrhagic enteritis, endotoxin shock, and generalized seizures.
-Clinical Observation by Dr. Dong-jun Kim (Hanam Sarang Animal Hospital).
+Clinical Focus:
+{n.get('subheadline', 'Non-absorbed physical mucosal coating and toxin adsorption protocol for companion animals.')}
 
-Therapeutic Protocol:
-- Oral administration of Parvo Gel (Parvogel) via one-touch pump.
-- Key Actives: 1-deoxinojirimycin (DNJ), Bacillus subtilis MORI (Patent No. 2011B0042620.8), and ultra-fine Montmorillonite mucosal protectant.
+Therapeutic Mechanism & Formulation:
+- {solution}
+- Field Observation: {highlight}
 
-Key Outcomes:
-1. Cessation of generalized seizures and neurological stabilization within 48h.
-2. Complete restoration of appetite (full meal consumption) on Day 3 post-administration.
-3. Full quadrupedal weight-bearing ambulation and discharge clearance on Day 7.
-
-Learn more about Parvo Gel veterinary formulation & clinical data:
+Learn more about Parvo Gel veterinary formulation, clinical data & B2B partner samples:
 {links['landing']}
 
 #VeterinaryMedicine #CanineEnteritis #Parvovirus #ClinicalCase #AnimalHealth #ParvoGel"""
