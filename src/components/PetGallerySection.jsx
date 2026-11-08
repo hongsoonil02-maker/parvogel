@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export default function PetGallerySection() {
-  const { t } = useTranslation();
   const [activeModalIdx, setActiveModalIdx] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const scrollContainerRef = useRef(null);
+  const modalRef = useRef(null);
+  const isModalOpen = activeModalIdx !== null;
 
   const galleryItems = [
     {
@@ -32,24 +32,37 @@ export default function PetGallerySection() {
       id: 'cookie-1',
       name: '쿠키',
       breed: '반려견 일상',
-      badge: '편안한 하루',
-      desc: '소중한 우리 아이의 편안한 속을 위한 든든한 상비 보조제',
+      badge: '라벨 편집 이미지',
+      desc: '몬스멕타 제품 라벨을 파보겔로 변경한 편집 이미지이며, 실제 파보겔 사용 후기가 아닙니다.',
       webp: `${import.meta.env.BASE_URL}images/gallery/gallery_cookie_1.webp`,
       jpg: `${import.meta.env.BASE_URL}images/gallery/gallery_cookie_1.jpg`,
-      alt: '파보겔 제품과 함께 편안하게 휴식하는 반려견 쿠키의 일상 포토'
+      alt: '반려견 쿠키와 제품 사진 (몬스멕타 라벨을 파보겔로 변경한 편집 이미지)'
     }
   ];
 
   // 모달 키보드 조작 (ESC로 닫기, 좌우 화살표로 이전/다음 사진)
   useEffect(() => {
-    if (activeModalIdx === null) return;
+    if (!isModalOpen) return;
+    const modal = modalRef.current;
+    modal.showModal();
 
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setActiveModalIdx(null);
+      if (e.key === 'Tab') {
+        const buttons = modal.querySelectorAll('button');
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
         setActiveModalIdx((prev) => (prev > 0 ? prev - 1 : galleryItems.length - 1));
       } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
         setActiveModalIdx((prev) => (prev < galleryItems.length - 1 ? prev + 1 : 0));
       }
     };
@@ -61,24 +74,29 @@ export default function PetGallerySection() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
+      modal.close();
     };
-  }, [activeModalIdx, galleryItems.length]);
+  }, [isModalOpen, galleryItems.length]);
+
+  const getSlidePosition = (container, idx) => {
+    const card = container.children[idx];
+    const center = card.offsetLeft + card.offsetWidth / 2 - container.clientWidth / 2;
+    return Math.max(0, Math.min(center, container.scrollWidth - container.clientWidth));
+  };
 
   // 모바일 스크롤 인덱스 추적
   const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const { scrollLeft, clientWidth } = scrollContainerRef.current;
-    if (clientWidth > 0) {
-      const idx = Math.round(scrollLeft / clientWidth);
-      setActiveSlide(idx);
-    }
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const distances = galleryItems.map((_, idx) => Math.abs(container.scrollLeft - getSlidePosition(container, idx)));
+    setActiveSlide(distances.indexOf(Math.min(...distances)));
   };
 
   const scrollToSlide = (idx) => {
-    if (!scrollContainerRef.current) return;
-    const clientWidth = scrollContainerRef.current.clientWidth;
-    scrollContainerRef.current.scrollTo({
-      left: idx * clientWidth,
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    container.scrollTo({
+      left: getSlidePosition(container, idx),
       behavior: 'smooth'
     });
     setActiveSlide(idx);
@@ -99,7 +117,7 @@ export default function PetGallerySection() {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-primary-50 text-primary-900 border border-primary-200 shadow-xs mb-3">
             <span className="text-base" role="img" aria-label="dog">🐶</span>
-            <span>REAL PET LIFE</span>
+            <span>PET PHOTO GALLERY</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-snug break-keep">
             우리 아이들과 함께하는 파보겔
@@ -114,7 +132,7 @@ export default function PetGallerySection() {
           <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="flex md:grid md:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none"
+            className="relative flex md:grid md:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
             {galleryItems.map((item, idx) => (
@@ -132,14 +150,14 @@ export default function PetGallerySection() {
                 >
                   {/* 이미지 영역 */}
                   <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
-                    <picture>
+                    <picture className="block w-full h-full">
                       <source srcSet={item.webp} type="image/webp" />
                       <img
                         src={item.jpg}
                         alt={item.alt}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain object-center"
                       />
                     </picture>
 
@@ -194,6 +212,7 @@ export default function PetGallerySection() {
                 key={idx}
                 onClick={() => scrollToSlide(idx)}
                 aria-label={`${idx + 1}번째 사진으로 이동`}
+                aria-pressed={activeSlide === idx}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   activeSlide === idx ? 'w-6 bg-primary-600' : 'w-2 bg-slate-300'
                 }`}
@@ -204,22 +223,23 @@ export default function PetGallerySection() {
       </div>
 
       {/* 라이트박스 확대 모달 (Lightbox Modal) */}
-      {activeModalIdx !== null && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md transition-opacity duration-300"
-          onClick={() => setActiveModalIdx(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label="사진 확대 보기"
-        >
+      <dialog
+        ref={modalRef}
+        className={`fixed inset-0 m-0 w-full max-w-none h-[100dvh] max-h-none ${isModalOpen ? 'flex' : 'hidden'} items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-md`}
+        onClick={() => setActiveModalIdx(null)}
+        onCancel={(e) => { e.preventDefault(); setActiveModalIdx(null); }}
+        aria-modal="true"
+        aria-label="사진 확대 보기"
+      >
+        {isModalOpen && (
           <div
-            className="relative max-w-4xl w-full max-h-[92vh] flex flex-col items-center bg-transparent"
+            className="relative max-w-4xl w-full max-h-full overflow-y-auto flex flex-col items-center bg-transparent"
             onClick={(e) => e.stopPropagation()}
           >
             {/* 닫기 버튼 */}
             <button
               onClick={() => setActiveModalIdx(null)}
-              className="absolute -top-11 right-0 sm:right-2 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all z-20 flex items-center gap-1.5 text-xs sm:text-sm font-semibold"
+              className="self-end mb-3 shrink-0 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all z-20 flex items-center gap-1.5 text-xs sm:text-sm font-semibold"
               aria-label="닫기 (ESC)"
             >
               <span>닫기</span>
@@ -231,7 +251,7 @@ export default function PetGallerySection() {
             {/* 좌우 이동 버튼 */}
             <button
               onClick={() => setActiveModalIdx((prev) => (prev > 0 ? prev - 1 : galleryItems.length - 1))}
-              className="absolute left-1 sm:-left-12 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white shadow-xl backdrop-blur-xs transition-all z-20"
+              className="absolute left-1 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white shadow-xl backdrop-blur-xs transition-all z-20"
               aria-label="이전 사진"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -241,7 +261,7 @@ export default function PetGallerySection() {
 
             <button
               onClick={() => setActiveModalIdx((prev) => (prev < galleryItems.length - 1 ? prev + 1 : 0))}
-              className="absolute right-1 sm:-right-12 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white shadow-xl backdrop-blur-xs transition-all z-20"
+              className="absolute right-1 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white shadow-xl backdrop-blur-xs transition-all z-20"
               aria-label="다음 사진"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -250,19 +270,19 @@ export default function PetGallerySection() {
             </button>
 
             {/* 모달 이미지 프레임 */}
-            <div className="w-full flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl bg-black/40 border border-white/10 max-h-[75vh]">
+            <div className="w-full shrink-0 flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl bg-black/40 border border-white/10">
               <picture>
                 <source srcSet={galleryItems[activeModalIdx].webp} type="image/webp" />
                 <img
                   src={galleryItems[activeModalIdx].jpg}
                   alt={galleryItems[activeModalIdx].alt}
-                  className="max-h-[75vh] w-auto max-w-full object-contain"
+                  className="block max-h-[60dvh] w-auto max-w-full object-contain"
                 />
               </picture>
             </div>
 
             {/* 모달 하단 캡션 */}
-            <div className="w-full mt-3 sm:mt-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md text-slate-900 shadow-xl border border-white/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div className="w-full shrink-0 mt-3 sm:mt-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-md text-slate-900 shadow-xl border border-white/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-black text-base sm:text-lg">{galleryItems[activeModalIdx].name}</span>
@@ -279,8 +299,8 @@ export default function PetGallerySection() {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </dialog>
     </section>
   );
 }
