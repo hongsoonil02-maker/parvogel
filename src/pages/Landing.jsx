@@ -276,7 +276,7 @@ const Landing = () => {
                     ...prev,
                     requestType: 'wholesale',
                     quantity: 10,
-                    message: '[B2B VIP 문자 유입] 1·2차 VIP 거래처 추가 도매 발주 신청'
+                    message: '[B2B VIP 문자 유입] VIP 거래처 추가 도매 발주 신청'
                 }))
                 setIsOrderModalOpen(true)
                 setIsOrderComplete(false)
