@@ -50,7 +50,7 @@ html, body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -ap
 .sticker { display: flex; background: #fff; box-shadow: 0 0 0 .2mm #cbd5e1; position: relative; overflow: hidden; }
 .wing { background: #fff; flex-shrink: 0; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; z-index: 20; }
 .wing-l { width: 7mm; border-right: .2mm dashed #94a3b8; }
-.wing-r { width: 3mm; }
+.wing-r { width: 2mm; }
 .wing-txt { writing-mode: vertical-rl; color: #94a3b8; font-weight: 800; opacity: .8; white-space: nowrap; user-select: none; }
 
 /* ★ 유스 에디션 시트: 밝은 크림→민트 그라디언트 (가독성 핵심) */
@@ -256,7 +256,7 @@ body.size-100 .rc .x { font-size: 0.850mm; padding-top: 0.400mm; }
 body.size-100 .rc .o { font-size: 1.150mm; }
 
 /* ==========================================================================
-   SIZE 30ML (101mm × 42mm)
+   SIZE 30ML (100mm × 42mm)
    ========================================================================== */
 body.size-30 .crop-marks-box { width: 101mm; height: 42mm; }
 body.size-30 .sticker { width: 101mm; height: 42mm; }
@@ -389,7 +389,7 @@ body.size-30 .rc .o { font-size: 0.700mm; }
 <div class="a4-guide-wrapper">
 
   <div class="a4-header-guide">
-    <h2>[파보겔 유스 에디션 · 파보겔 고유 정체성] 용기 라벨 [실물 테스트형] <span id="guide-dims">(좌 7 + 중 7 + 우 3 = 총 101×42mm)</span></h2>
+    <h2>[파보겔 유스 에디션 · 파보겔 고유 정체성] 용기 라벨 [실물 테스트형] <span id="guide-dims">(좌 7 + 중 7 + 우 3 = 총 100×42mm)</span></h2>
     <p>※ 인쇄 설정 시 반드시 [배율: 맞춤(100%)] 또는 [실제 크기(Actual Size)]로 지정하십시오.</p>
     <div class="ruler-50mm">
       <span>실측 확인용 눈금자:</span>
@@ -668,13 +668,13 @@ body.size-30 .rc .o { font-size: 0.700mm; }
         </div>
       </div>
 
-      <!-- 우측 3mm 접착 여백 -->
-      <div class="wing wing-r"><span class="wing-txt">접착 3mm</span></div>
+      <!-- 우측 2mm 접착 여백 -->
+      <div class="wing wing-r"><span class="wing-txt">접착 2mm</span></div>
     </div>
   </div>
 
   <div class="a4-cut-instructions">
-    ✂ 검정색 테두리 코너 재단선(Crop Marks)을 따라 칼이나 가위로 자르면 좌측 7mm, 중간 7mm, 우측 3mm 접착 여백이 포함된 <span id="cut-dims">총 101mm × 42mm 실측 스티커</span>가 완성됩니다.
+    ✂ 검정색 테두리 코너 재단선(Crop Marks)을 따라 칼이나 가위로 자르면 좌측 7mm, 중간 7mm, 우측 2mm 접착 여백이 포함된 <span id="cut-dims">총 100mm × 42mm 실측 스티커</span>가 완성됩니다.
   </div>
 </div>
 
@@ -693,9 +693,9 @@ function setSize(size) {
 
   const is100 = size === '100';
   const gDims = document.getElementById('guide-dims');
-  if (gDims) gDims.textContent = is100 ? '(좌 7 + 중 7 + 우 3 = 총 101×42mm)' : '(좌 7 + 중 7 + 우 3 = 총 101×42mm)';
+  if (gDims) gDims.textContent = is100 ? '(좌 7 + 중 7 + 우 3 = 총 100×42mm)' : '(좌 7 + 중 7 + 우 3 = 총 100×42mm)';
   const cDims = document.getElementById('cut-dims');
-  if (cDims) cDims.textContent = is100 ? '총 101mm × 42mm 실측 스티커' : '총 101mm × 42mm 실측 스티커';
+  if (cDims) cDims.textContent = is100 ? '총 100mm × 42mm 실측 스티커' : '총 100mm × 42mm 실측 스티커';
   const ivTag = document.getElementById('ing-vol-tag');
   if (ivTag) ivTag.textContent = '본제 1L 기준';
   const pVol = document.getElementById('pack-vol');

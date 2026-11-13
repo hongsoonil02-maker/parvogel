@@ -171,23 +171,35 @@ html, body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -ap
   body.paper-roll .a4-guide-wrapper, body.paper-roll .crop-marks-box { padding: 0 ; margin: 0 ; width: 145mm ; height: 96mm ; }
   .sticker { box-shadow: none ; }
 }
-</style>
+
+        .wing-text-right {
+            writing-mode: vertical-rl !important;
+            text-orientation: mixed !important;
+            font-size: 1.5mm !important;
+            color: #94a3b8 !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.3mm !important;
+            opacity: 0.8 !important;
+            user-select: none !important;
+            white-space: nowrap !important;
+        }
+    </style>
 <style id="page-style">@page { size: A4 portrait; margin: 0; }</style>
 </head>
 <body>
 
 <div class="no-print toolbar">
-  <div><span style="color:#38bdf8;">★ 파보겔 (200ml 실측: 145mm × 96mm)</span> | [모던 · 딥블루] (좌7mm + 중7mm + 우3mm)</div>
+  <div><span style="color:#38bdf8;">★ 파보겔 (200ml 실측: 144mm × 96mm)</span> | [모던 · 딥블루] (좌7mm + 중7mm + 우2mm)</div>
   <div style="display:flex;gap:6px;">
     <button onclick="setPaperMode('a4')" style="background:#0284c7;">📄 A4 실측 (자르기 가이드)</button>
-    <button onclick="setPaperMode('roll')" style="background:#334155;color:#cbd5e1;">🏷️ 롤 라벨 (145×96mm)</button>
+    <button onclick="setPaperMode('roll')" style="background:#334155;color:#cbd5e1;">🏷️ 롤 라벨 (144×96mm)</button>
   </div>
   <button onclick="window.print()" style="background:linear-gradient(135deg,#10b981,#059669);font-weight:800;font-size:12px;padding:6px 16px;border-radius:8px;">라벨 인쇄 (Ctrl+P)</button>
 </div>
 
 <div class="a4-guide-wrapper">
   <div class="a4-header-guide">
-    <h2>[파보겔 200ml 정품 규격] 용기 라벨 · 모던 딥블루 (좌측 7mm + 중간 7mm + 우측 3mm 접착 = 총 145×96mm)</h2>
+    <h2>[파보겔 200ml 정품 규격] 용기 라벨 · 모던 딥블루 (좌측 7mm + 중간 7mm + 우측 2mm 접착 = 총 144×96mm)</h2>
     <p>※ 인쇄 설정 시 반드시 <strong>[배율: 맞춤(100%)]</strong> 또는 <strong>[실제 크기(Actual Size)]</strong>로 지정하십시오.</p>
     <div class="ruler-50mm"><span>실측 확인용 눈금자:</span>
       <div class="ruler-bar"><div class="ruler-tick tick-0"></div><div class="ruler-tick tick-1"></div><div class="ruler-tick tick-2"></div><div class="ruler-tick tick-3"></div><div class="ruler-tick tick-4"></div><div class="ruler-tick tick-50"></div></div>
@@ -289,7 +301,7 @@ html, body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -ap
             </ul>
           </div>
 
-          <div class="mfg"><div><span class="l">중량 :</span><span class="v">200ml</span></div><div><span class="l">제조일자 :</span><span class="v">별도표기</span></div><div><span class="l">유통기한 :</span><span class="v">제조일로부터 18개월</span></div></div>
+          <div class="mfg"><div><span class="l">중량 :</span><span class="v">200ml</span></div><div><span class="l">제조일자 :</span><span class="v">2026. 12. 15.</span></div><div><span class="l">유통기한 :</span><span class="v">제조일로부터 18개월</span></div></div>
 
           <div class="lg-foot">
             <div>
@@ -314,7 +326,7 @@ html, body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -ap
     </div>
   </div>
 
-  <div class="a4-cut-instructions">✂️ 검정색 테두리 코너 재단선(Crop Marks)을 따라 칼이나 가위로 자르면 좌측 7mm, 중간 7mm, 우측 3mm 접착 여백이 포함된 <strong>총 145mm × 96mm 실측 스티커</strong>가 완성됩니다.</div>
+  <div class="a4-cut-instructions">✂️ 검정색 테두리 코너 재단선(Crop Marks)을 따라 칼이나 가위로 자르면 좌측 7mm, 중간 7mm, 우측 2mm 접착 여백이 포함된 <strong>총 144mm × 96mm 실측 스티커</strong>가 완성됩니다.</div>
 </div>
 
 <script>
@@ -327,7 +339,7 @@ html, body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -ap
       ps.innerHTML = '@page { size: A4 portrait; margin: 0; }';
     } else {
       document.body.classList.add('paper-roll'); document.documentElement.classList.add('paper-roll');
-      ps.innerHTML = '@page { size: 145mm 96mm; margin: 0; }';
+      ps.innerHTML = '@page { size: 144mm 96mm; margin: 0; }';
     }
   }
   setPaperMode('a4');
