@@ -81,6 +81,10 @@ class FacebookAdapter(BaseMarketingAdapter):
                 
             if resp.status_code in [200, 201]:
                 video_id = resp.json().get("id", "unknown")
+                self.last_result = {
+                    "id": video_id,
+                    "url": f"https://www.facebook.com/{page_id}/videos/{video_id}",
+                }
                 print(f"[SUCCESS] Facebook Video/Reels uploaded (ID: {video_id})")
                 return True
             else:

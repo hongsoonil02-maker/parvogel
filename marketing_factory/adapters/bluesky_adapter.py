@@ -39,11 +39,12 @@ class BlueskyAdapter(BaseMarketingAdapter):
             return False
 
         # 2. 포스트 본문 생성
-        text = content_data.get("first_tweet") or content_data.get("caption") or content_data.get("title", "")
         links = content_data.get("links", {})
         smartstore = links.get("smartstore", "https://smartstore.naver.com/petschury/products/13718496355")
-        
-        post_text = f"""🐾 [파보겔 임상 실화] 55일령 아기 강아지 급성 장염 7일 완치
+        if content_data.get("bluesky_text"):
+            post_text = content_data["bluesky_text"][:300]
+        else:
+            post_text = f"""🐾 [파보겔 임상 실화] 55일령 아기 강아지 급성 장염 7일 완치
 
 - 주사기 없이 1초 펌프로 스트레스 제로 급여
 - 1-deoxinojirimycin 특허 성분 & 장 점막 코팅
@@ -72,6 +73,7 @@ class BlueskyAdapter(BaseMarketingAdapter):
             resp = requests.post(create_url, json=payload, headers=headers, timeout=10)
             if resp.status_code in [200, 201]:
                 uri = resp.json().get("uri", "")
+                self.last_result = {"uri": uri}
                 print(f"[SUCCESS] Bluesky Post published (URI: {uri})")
                 return True
             else:

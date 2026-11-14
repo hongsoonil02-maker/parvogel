@@ -37,22 +37,84 @@ class InstagramAdapter(BaseMarketingAdapter):
             return False
 
         video_path = content_data.get("video_path") or ""
+        video_url = content_data.get("video_url") or ""
         caption = content_data.get("caption", content_data.get("description", ""))
         title = content_data.get("title", "파보겔 임상 케이스")
 
-        if not video_path or not os.path.exists(video_path):
-            print(f"[FAIL] Instagram video file not found: {video_path}")
-            return False
+        # Auto-resolve canonical HTTPS URL on parvogel.kr if already hosted in public/assets
+        if not video_url and video_path:
+            candidate = f"https://parvogel.kr/assets/{os.path.basename(video_path)}"
+            try:
+                head_resp = requests.head(candidate, timeout=6, allow_redirects=True)
+                if head_resp.status_code == 200 and "video" in head_resp.headers.get("Content-Type", "").lower():
+                    video_url = candidate
+            except Exception:
+                pass
 
-        container_id = self._upload_local_reel_container(ig_account_id, access_token, video_path, caption)
+        container_id = ""
+        if video_url:
+            container_id = self._create_remote_reel_container(ig_account_id, access_token, video_url, caption)
+
+        if not container_id and video_path and os.path.exists(video_path):
+            container_id = self._upload_local_reel_container(ig_account_id, access_token, video_path, caption)
+
         if not container_id:
+            if not video_url and (not video_path or not os.path.exists(video_path)):
+                print(f"[FAIL] Instagram video source missing (video_url={video_url}, video_path={video_path})")
             return False
 
         return self._publish_reel(ig_account_id, access_token, container_id)
 
+    def _create_remote_reel_container(self, ig_account_id: str, access_token: str, video_url: str, caption: str) -> str:
+        """Meta가 공개 HTTPS URL에서 MP4를 직접 다운로드하여 릴스 컨테이너 생성 (rupload 오류 우회)"""
+        init_url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media"
+        payload = {
+            "media_type": "REELS",
+            "video_url": video_url,
+            "caption": caption[:2200],
+            "share_to_feed": True,
+            "access_token": access_token,
+        }
+        try:
+            print(f"[INFO] Creating Instagram Reel via remote HTTPS fetch: {video_url}")
+            resp = requests.post(init_url, data=payload, timeout=20)
+            if resp.status_code in [200, 201]:
+                cid = resp.json().get("id", "")
+                if cid:
+                    print(f"[INFO] Instagram remote Reel container created: {cid}")
+                    return cid
+            print(f"[WARN] Instagram remote URL init failed: {resp.status_code} - {resp.text[:200]}")
+        except Exception as e:
+            print(f"[WARN] Instagram remote URL exception: {e}")
+        return ""
+
+    def _ensure_faststart(self, video_path: str):
+        """Meta rupload 서버가 moov 아톰 후방 배치 MP4를 거부하는 문제 방지용 faststart 리먹스"""
+        try:
+            with open(video_path, "rb") as f:
+                head = f.read(4096)
+            if b"moov" in head:
+                return video_path, None
+            import subprocess, tempfile
+            fd, tmp_path = tempfile.mkstemp(suffix=".mp4", prefix="ig_faststart_")
+            os.close(fd)
+            res = subprocess.run(
+                ["ffmpeg", "-y", "-i", video_path, "-c", "copy", "-movflags", "+faststart", tmp_path],
+                capture_output=True, text=True
+            )
+            if res.returncode == 0 and os.path.exists(tmp_path) and os.path.getsize(tmp_path) > 0:
+                print("[INFO] Applied +faststart MP4 optimization for Instagram Reels")
+                return tmp_path, tmp_path
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+        except Exception as e:
+            print(f"[WARN] Faststart helper skipped: {e}")
+        return video_path, None
+
     def _upload_local_reel_container(self, ig_account_id: str, access_token: str, video_path: str, caption: str) -> str:
         """Meta Resumable Upload 프로토콜을 사용해 로컬 비디오 직접 업로드"""
-        file_size = os.path.getsize(video_path)
+        upload_src_path, tmp_faststart = self._ensure_faststart(video_path)
+        file_size = os.path.getsize(upload_src_path)
         
         # 1. 컨테이너 초기화 (upload_type=resumable) — v20.0 + 토큰 만료 핸들링
         init_url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media"
@@ -87,7 +149,7 @@ class InstagramAdapter(BaseMarketingAdapter):
                 return ""
                 
             # 2. 로컬 비디오 바이너리 업로드 (rupload.facebook.com)
-            with open(video_path, "rb") as vf:
+            with open(upload_src_path, "rb") as vf:
                 video_bytes = vf.read()
                 
             upload_headers = {
@@ -107,6 +169,12 @@ class InstagramAdapter(BaseMarketingAdapter):
         except Exception as e:
             print(f"[EXCEPTION] Instagram upload local reel: {e}")
             return ""
+        finally:
+            if tmp_faststart and os.path.exists(tmp_faststart):
+                try:
+                    os.remove(tmp_faststart)
+                except Exception:
+                    pass
 
     def _publish_reel(self, ig_account_id: str, access_token: str, container_id: str) -> bool:
         url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media_publish"
@@ -114,7 +182,7 @@ class InstagramAdapter(BaseMarketingAdapter):
             "creation_id": container_id,
             "access_token": access_token
         }
-        max_retries = 15
+        max_retries = 25
         print("[INFO] Waiting for Instagram Reel processing...")
         for attempt in range(max_retries):
             time.sleep(6)
@@ -122,6 +190,7 @@ class InstagramAdapter(BaseMarketingAdapter):
                 resp = requests.post(url, data=payload, timeout=15)
                 if resp.status_code in [200, 201]:
                     media_id = resp.json().get("id", "unknown")
+                    self.last_result = {"id": media_id}
                     print(f"[SUCCESS] Instagram Reel published (ID: {media_id})")
                     return True
                 

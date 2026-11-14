@@ -88,6 +88,11 @@ class YouTubeAdapter(BaseMarketingAdapter):
 
         if upload_resp.status_code in [200, 201]:
             video_id = upload_resp.json().get("id", "unknown")
+            self.last_result = {
+                "id": video_id,
+                "url": f"https://youtube.com/shorts/{video_id}",
+                "watch_url": f"https://www.youtube.com/watch?v={video_id}",
+            }
             print(f"[SUCCESS] YouTube Shorts uploaded (ID: {video_id})")
             return True
         else:

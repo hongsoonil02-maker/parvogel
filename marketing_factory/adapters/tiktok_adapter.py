@@ -106,6 +106,7 @@ class TikTokAdapter(BaseMarketingAdapter):
             upload_resp = requests.put(upload_url, data=video_bytes, headers=upload_headers, timeout=120)
 
             if upload_resp.status_code in [200, 201]:
+                self.last_result = {"id": publish_id}
                 print(f"[SUCCESS] TikTok Video uploaded successfully (Publish ID: {publish_id})")
                 return True
             else:
