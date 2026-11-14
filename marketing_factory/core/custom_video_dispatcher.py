@@ -331,6 +331,8 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
                             live_urls["facebook"] = meta["url"]
                         elif name == "Instagram_Reels" and meta.get("id"):
                             live_urls["instagram_media_id"] = meta["id"]
+                            if meta.get("url"):
+                                live_urls["instagram"] = meta["url"]
                         elif name == "TikTok" and meta.get("id"):
                             live_urls["tiktok_publish_id"] = meta["id"]
                         results[name] = f"SUCCESS ({meta.get('id', 'ok')})"

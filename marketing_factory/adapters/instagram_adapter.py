@@ -177,32 +177,67 @@ class InstagramAdapter(BaseMarketingAdapter):
                     pass
 
     def _publish_reel(self, ig_account_id: str, access_token: str, container_id: str) -> bool:
+        status_url = f"https://graph.facebook.com/v20.0/{container_id}"
         url = f"https://graph.facebook.com/v20.0/{ig_account_id}/media_publish"
         payload = {
             "creation_id": container_id,
             "access_token": access_token
         }
-        max_retries = 25
+        max_retries = 30
         print("[INFO] Waiting for Instagram Reel processing...")
         for attempt in range(max_retries):
-            time.sleep(6)
+            time.sleep(5)
             try:
+                st_resp = requests.get(
+                    status_url,
+                    params={"fields": "status_code,status", "access_token": access_token},
+                    timeout=10,
+                )
+                if st_resp.status_code == 200:
+                    st_data = st_resp.json()
+                    sc = st_data.get("status_code", "")
+                    if sc == "ERROR":
+                        print(f"[FAIL] Instagram container processing error: {st_data}")
+                        return False
+                    if sc == "IN_PROGRESS":
+                        continue
+
                 resp = requests.post(url, data=payload, timeout=15)
                 if resp.status_code in [200, 201]:
                     media_id = resp.json().get("id", "unknown")
-                    self.last_result = {"id": media_id}
-                    print(f"[SUCCESS] Instagram Reel published (ID: {media_id})")
+                    permalink = ""
+                    try:
+                        p_resp = requests.get(
+                            f"https://graph.facebook.com/v20.0/{media_id}",
+                            params={"fields": "permalink", "access_token": access_token},
+                            timeout=10,
+                        )
+                        if p_resp.status_code == 200:
+                            permalink = p_resp.json().get("permalink", "")
+                    except Exception:
+                        pass
+                    self.last_result = {"id": media_id, "url": permalink}
+                    print(f"[SUCCESS] Instagram Reel published (ID: {media_id}{f' | {permalink}' if permalink else ''})")
                     return True
-                
+
                 resp_data = resp.json()
-                error_msg = resp_data.get("error", {}).get("message", "")
-                if "processing" in error_msg.lower() or "not ready" in error_msg.lower():
+                err_obj = resp_data.get("error", {})
+                error_msg = err_obj.get("message", "")
+                err_code = err_obj.get("code")
+                err_sub = err_obj.get("error_subcode")
+                if (
+                    err_code == 9007
+                    or err_sub == 2207027
+                    or "processing" in error_msg.lower()
+                    or "not ready" in error_msg.lower()
+                    or "not available" in error_msg.lower()
+                ):
                     continue
                 else:
                     print(f"[FAIL] Instagram publish error: {resp.status_code} - {resp.text[:200]}")
                     return False
             except Exception as e:
                 print(f"[EXCEPTION] Instagram publish attempt {attempt+1}: {e}")
-                
+
         print("[FAIL] Instagram Reel publishing timed out")
         return False
