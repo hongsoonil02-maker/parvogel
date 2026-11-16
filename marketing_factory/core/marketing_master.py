@@ -196,8 +196,16 @@ class ParvogelMarketingMaster:
                     
                 if adapter.validate_config() and not (adapter.name == "Naver_Blog" and os.getenv("GITHUB_ACTIONS") == "true"):
                     data = formatted_channels.get(ch_key, {}).copy()
+                    # 골든타임 35초 마스터 캠페인 지정 시 9:16 쇼츠 및 16:9 와이드를 각 플랫폼에 최우선 라우팅
+                    is_golden_master = "parvogel_golden_time_35s" in str(target_video)
+                    golden_169_path = os.path.join(os.path.dirname(FACTORY_DIR), "public", "assets", "parvogel_golden_time_35s_16x9.mp4")
+                    if is_golden_master and rendered_video:
+                        if adapter.name == "Facebook_Page" and os.path.exists(golden_169_path):
+                            data["video_path"] = golden_169_path
+                        else:
+                            data["video_path"] = rendered_video
                     # 3종 숏폼(다큐/랭킹/펌프가이드) 채널별 최적 라우팅 (렌더링된 영상 100% 활용)
-                    if adapter.name == "YouTube_Shorts" and rendered_ranking:
+                    elif adapter.name == "YouTube_Shorts" and rendered_ranking:
                         data["video_path"] = rendered_ranking
                     elif adapter.name == "Instagram_Reels" and rendered_pump:
                         data["video_path"] = rendered_pump

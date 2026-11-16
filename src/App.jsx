@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Landing from './pages/Landing';
+import { installGlobalKakaoLinkTracker } from './utils/kakaoPixel';
 
 // Lazy loading for Blog components
 const BlogList = lazy(() => import('./pages/BlogList'));
@@ -28,6 +29,10 @@ function SpaRedirectHandler() {
 }
 
 function App() {
+  useEffect(() => {
+    return installGlobalKakaoLinkTracker();
+  }, []);
+
   return (
     <HelmetProvider>
       <Router>

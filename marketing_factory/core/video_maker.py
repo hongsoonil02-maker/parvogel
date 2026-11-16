@@ -55,6 +55,16 @@ class ParvogelVideoMaker:
         out_filename = f"Shorts_{clean_name}_{date_tag}.mp4"
         out_path = os.path.join(self.output_dir, out_filename)
 
+        # 이미 완성된 골든타임 35초 마스터 쇼츠는 헤더/푸터 중복 합성 없이 원본 고화질 그대로 배포
+        if "parvogel_golden_time_35s" in clean_name:
+            import shutil
+            shutil.copy2(src_path, out_path)
+            file_size_mb = os.path.getsize(out_path) / (1024 * 1024)
+            print(f"[VIDEO_MASTER] Using pre-rendered Golden Time 35s Master directly: {out_path} ({file_size_mb:.2f} MB)")
+            thumb_path = os.path.join(self.output_dir, f"Shorts_{clean_name}_{date_tag}_thumb.jpg")
+            self._extract_thumb(out_path, thumb_path)
+            return out_path
+
         print(f"[VIDEO] Rendering Clinical Documentary Shorts: '{os.path.basename(src_path)}' -> '{out_filename}'")
 
         # 원본 duration 조회 — 45초 강제 컷 대신 실제 길이의 min(45, duration) 적용 (9초 이하 루프 방지)

@@ -24,8 +24,15 @@ REM [2/4] 멀티채널 마케팅 콘텐츠 패키징
 echo [2/4] Packaging Multi-channel Content... >> "%LOG_FILE%" 2>&1
 "%PYTHON_EXE%" scripts\marketing\parvogel_marketing_master.py >> "%LOG_FILE%" 2>&1
 
-REM [3/4] 파보겔 마케팅 공장 가동 (다큐 숏폼 + 노마드크리스 랭킹 숏폼 + 배포)
-echo [3/4] Executing Marketing Master (Documentary + Nomad Ranking Shorts + Distribution)... >> "%LOG_FILE%" 2>&1
+REM [2.5/4] 메이커 셀링 외부 숏폼 인입 동기화
+echo [2.5/4] Ingesting Maker Selling External Shorts... >> "%LOG_FILE%" 2>&1
+"%PYTHON_EXE%" marketing_factory\core\external_shorts_watcher.py >> "%LOG_FILE%" 2>&1
+
+REM [3/4] 파보겔 마케팅 공장 가동 (골든타임 35초 쇼츠(9x16) & 와이드(16x9) 마스터 배포 + 데일리 팩토리)
+echo [3/4] Executing Golden Time 35s Flagship Video Dispatcher (9:16 + 16:9)... >> "%LOG_FILE%" 2>&1
+"%PYTHON_EXE%" marketing_factory\core\custom_video_dispatcher.py --live >> "%LOG_FILE%" 2>&1
+
+echo [3.5/4] Executing Marketing Master (Documentary + Nomad Ranking Shorts + Distribution)... >> "%LOG_FILE%" 2>&1
 "%PYTHON_EXE%" marketing_factory\core\marketing_master.py >> "%LOG_FILE%" 2>&1
 
 REM [4/4] 숏폼 전환 퍼널 관제 대시보드 업데이트

@@ -54,6 +54,10 @@ OFFICIAL_LINKS = {
     "landing": "https://parvogel.kr",
     "smartstore": "https://smartstore.naver.com/petschury/products/13718496355",
     "coupang": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
+    "gmarket": "https://item.gmarket.co.kr/Item?goodscode=4876751217",
+    "elevenst": "https://m.11st.co.kr/products/ma/9715355848",
+    "kakao_store": "https://store.kakao.com/agrowellness/products/800840808",
+    "toss": "https://toss.shopping/t/2713390059",
 }
 
 FORBIDDEN_BRAND_TOKENS = [
@@ -124,20 +128,25 @@ def default_golden_time_campaign() -> Dict[str, Any]:
     v_916 = os.path.join(video_dir, "파보겔_기적의골든타임_애니메이션다큐_35초_쇼츠(9x16).mp4")
     v_169 = os.path.join(video_dir, "파보겔_기적의골든타임_애니메이션다큐_35초(16x9).mp4")
     return {
-        "campaign_id": "PARVOGEL_GOLDEN_TIME_ANIM_DOCU_35S",
+        "campaign_id": "PARVOGEL_GOLDEN_TIME_STUDIO_DOCU_35S_V3",
         "title": "한밤중 피설사·구토 골든타임 35초 다큐 | 우리 아이 비상 상비약 파보겔",
         "video_916": v_916,
         "video_916_url": "https://parvogel.kr/assets/parvogel_golden_time_35s_9x16.mp4",
         "video_169": v_169,
-        "youtube_title": "🚨 한밤중 피설사·구토 골든타임! 15분 만에 찾아온 기적 🐾 파보겔 #shorts",
+        "youtube_title": "🚨 한밤중 피설사·구토 골든타임! 30분 만에 찾아온 기적 🐾 파보겔 #shorts",
         "youtube_description": (
             "병원 문이 닫힌 깊은 밤, 갑작스러운 구토와 피설사로 당황하셨던 적 있으신가요?\n"
             "응급실 가기 전 1분 1초가 소중한 골든타임을 지켜주는 가정 내 필수 1차 비상 상비약 '파보겔'의 35초 다큐멘터리입니다.\n\n"
             "🧲 체내 흡수 0%! 초미세 나노 몬모릴로나이트 장 점막 코팅 & 독소 선택 흡착\n"
-            "🐾 달콤한 기호성 + 주사기 없는 1초 원터치 펌프로 스트레스 없는 급여\n\n"
+            "🐾 달콤한 기호성 + 주사기 없는 1초 원터치 펌프로 스트레스 없는 급여\n"
+            "✨ 30분 만에 복통·구토 완화 & 다음 날 아침 기적 같은 정상변·식욕 회복!\n\n"
             f"▶ 공식 안내/신청 (주)한국아그로: {OFFICIAL_LINKS['landing']}\n"
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
+            f"▶ G마켓/옥션 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"▶ 11번가 슈팅배송: {OFFICIAL_LINKS['elevenst']}\n"
+            f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
+            f"▶ 토스쇼핑 특가: {OFFICIAL_LINKS['toss']}\n"
             "☎ 고객센터: 02-6949-5708 ((주)한국아그로)\n\n"
             "#파보겔 #강아지설사 #강아지혈변 #강아지구토 #파보장염 #반려견상비약 #강아지응급처치 #shorts"
         ),
@@ -146,19 +155,23 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             "🚨 한밤중 갑자기 시작된 피설사와 구토… 응급실 문은 닫혔고, 아이는 점점 차가워질 때.\n\n"
             "서랍 속 비상 상비약 '파보겔'을 먹였습니다.\n"
             "🧲 체내 흡수 0% 고순도 나노 몬모릴로나이트 장 점막 물리 코팅\n"
-            "✨ 15분 만에 복통 완화 & 다음 날 아침 기적처럼 꼬리를 흔드는 아이!\n\n"
+            "✨ 30분 만에 복통 완화 & 다음 날 아침 기적처럼 꼬리를 흔드는 아이!\n\n"
             f"🏠 말 못 하는 우리 아이의 골든타임 지킴이: {OFFICIAL_LINKS['landing']}\n"
-            "💬 지금 프로필 링크 또는 포털에서 '파보겔'을 검색해 비상 상비약을 준비하세요.\n"
+            "🛒 공식 입점 6대 쇼핑몰: 네이버 스마트스토어 · 쿠팡 · G마켓 · 11번가 · 카카오 쇼핑하기 · 토스쇼핑에서 '파보겔'을 검색하세요!\n"
             "문의: 02-6949-5708 │ (주)한국아그로\n\n"
             "#파보겔 #강아지설사 #강아지혈변 #파보장염 #강아지응급상비약 #반려견건강 #댕댕이 #펫케어"
         ),
-        "tiktok_title": "🚨 한밤중 강아지 피설사·구토 골든타임 35초 다큐 🐾 비상 상비약 파보겔 #파보겔 #강아지설사 #반려견상비약",
+        "tiktok_title": "🚨 한밤중 강아지 피설사·구토 골든타임 35초 다큐 🐾 30분 만의 기적 비상 상비약 파보겔 #파보겔 #강아지설사 #반려견상비약",
         "facebook_caption": (
             "🎬 [35초 다큐] 〈기적의 골든타임〉 — 한밤중 피설사·구토, 말 못 하는 우리 아이를 지킨 서랍 속 1초 비상 상비약\n\n"
-            "병원 문이 닫힌 야간, 1분 1초가 급박한 순간에 체내 흡수 0% 장 점막 나노 코팅과 독소 흡착 기전으로 골든타임을 지켜주는 파보겔 이야기를 확인하세요.\n\n"
+            "병원 문이 닫힌 야간, 1분 1초가 급박한 순간에 체내 흡수 0% 장 점막 나노 코팅과 독소 흡착 기전으로 30분 만에 복통·구토를 완화하고 골든타임을 지켜주는 파보겔 이야기를 확인하세요.\n\n"
             f"▶ 파보겔 공식 홈페이지 ((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
-            f"▶ 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
+            f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 공식: {OFFICIAL_LINKS['coupang']}\n"
+            f"▶ G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"▶ 11번가 공식: {OFFICIAL_LINKS['elevenst']}\n"
+            f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
+            f"▶ 토스쇼핑 공식: {OFFICIAL_LINKS['toss']}\n"
             "☎ 고객센터: 02-6949-5708"
         ),
         "naver_blog_title": "[35초 다큐 공개] 한밤중 우리 아이 피설사·구토 골든타임을 지킨 가정 내 필수 상비약 '파보겔'",
@@ -167,12 +180,16 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             "병원 문이 닫힌 깊은 새벽, 갑자기 시작된 물설사·혈변·구토 앞에 발을 동동 굴러보신 적 있으신가요?\n\n"
             "## 01. 왜 단순 지사제가 아니라 '장 점막 코팅 + 독소 흡착'인가?\n\n"
             "장 운동을 억지로 멈추는 방식이 아니라, 체내 흡수 0%의 고순도 초미세 나노 **몬모릴로나이트**가 손상된 장 점막 융모를 감싸 보호하고 바이러스·세균 독소만 선택적으로 흡착해 몸 밖으로 배출합니다.\n\n"
-            "## 02. 주사기 실랑이 없는 1초 펌핑\n\n"
+            "## 02. 주사기 실랑이 없는 1초 펌핑 & 30분 만의 빠른 안정\n\n"
             "아파서 예민해진 아이에게 강제로 주사기를 들이댈 필요 없이, 기호성 좋은 부드러운 겔 제형을 입가에 1초 톡 짜주면 아이 스스로 꿀꺽 삼킵니다.\n\n"
-            "## 03. (주)한국아그로 파보겔 공식 안내\n\n"
+            "## 03. (주)한국아그로 파보겔 공식 홈페이지 및 6대 쇼핑몰 안내\n\n"
             f"- 공식 홈페이지: {OFFICIAL_LINKS['landing']}\n"
             f"- 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"- 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
+            f"- G마켓 공식스토어: {OFFICIAL_LINKS['gmarket']}\n"
+            f"- 11번가 공식스토어: {OFFICIAL_LINKS['elevenst']}\n"
+            f"- 카카오 쇼핑하기 (톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
+            f"- 토스쇼핑 공식스토어: {OFFICIAL_LINKS['toss']}\n"
             "- 고객센터 문의: 02-6949-5708 ((주)한국아그로)"
         ),
     }
@@ -287,7 +304,7 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
             "title": campaign["title"],
             "caption": campaign["reels_caption"],
         }
-        if campaign.get("video_916_url"):
+        if campaign.get("video_916_url") and os.getenv("USE_REMOTE_IG_URL") == "1":
             ig_payload["video_url"] = campaign["video_916_url"]
         video_tasks["Instagram_Reels"] = (ig, ig_payload)
     else:
@@ -374,7 +391,11 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
             f"• **TikTok Publish ID**: {live_urls.get('tiktok_publish_id', results.get('TikTok'))}\n"
             f"• **공식 홈페이지**: {OFFICIAL_LINKS['landing']}\n"
             f"• **스마트스토어**: {OFFICIAL_LINKS['smartstore']}\n"
-            f"• **쿠팡 로켓배송**: {OFFICIAL_LINKS['coupang']}"
+            f"• **쿠팡 로켓배송**: {OFFICIAL_LINKS['coupang']}\n"
+            f"• **G마켓 공식**: {OFFICIAL_LINKS['gmarket']}\n"
+            f"• **11번가 공식**: {OFFICIAL_LINKS['elevenst']}\n"
+            f"• **카카오 쇼핑하기**: {OFFICIAL_LINKS['kakao_store']}\n"
+            f"• **토스쇼핑**: {OFFICIAL_LINKS['toss']}"
         )
         assert_brand_isolation(dc_desc, "Discord webhook")
         ok = dc.publish({
@@ -398,8 +419,12 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
         )
         th_reply = (
             f"🐾 파보겔 공식 안내((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
-            f"🛒 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
+            f"🟢 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"🚀 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
+            f"🟡 G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"🔴 11번가 공식: {OFFICIAL_LINKS['elevenst']}\n"
+            f"💬 카카오 쇼핑하기: {OFFICIAL_LINKS['kakao_store']}\n"
+            f"🔵 토스쇼핑: {OFFICIAL_LINKS['toss']}\n"
             "☎ 문의: 02-6949-5708"
         )
         assert_brand_isolation(th_main + "\n" + th_reply, "Threads payload")

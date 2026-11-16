@@ -14,6 +14,7 @@ import FeedDisclaimer from '../components/FeedDisclaimer'
 import PetGallerySection from '../components/PetGallerySection'
 import findSampleRecipient from '../utils/sampleCheck'
 import { verifyBusinessApplicant, VERIFICATION_STATUS, ensureVerificationDataLoaded } from '../utils/businessVerification'
+import { trackKakaoFormSubmit, trackKakaoViewContent } from '../utils/kakaoPixel'
 
 const PartnerNoticeModal = lazy(() => import('../components/PartnerNoticeModal'))
 const DuplicateSampleModal = lazy(() => import('../components/DuplicateSampleModal'))
@@ -30,6 +31,11 @@ const Landing = () => {
     const [isLangOpen, setIsLangOpen] = useState(false)
     const langMenuRef = useRef(null)
     const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
+    useEffect(() => {
+        if (isOrderModalOpen) {
+            trackKakaoViewContent('parvogel_order_modal')
+        }
+    }, [isOrderModalOpen])
     const [isOrderComplete, setIsOrderComplete] = useState(false)
     const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
     const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
@@ -461,6 +467,7 @@ const Landing = () => {
                 localStorage.setItem(SUBMISSION_LAST_KEY, JSON.stringify({ phone: normPhone, ts: Date.now() }))
             } catch (err) { /* ignore */ }
 
+            trackKakaoFormSubmit(formData.requestType, formData.quantity)
             setIsOrderComplete(true)
             setFormData({
                 requestType: 'consumer',
@@ -1537,14 +1544,27 @@ const Landing = () => {
                         {/* Online Store Links */}
                         <div className="mt-6 sm:mt-8 text-center">
                             <p className="text-gray-600 mb-3">{t('order.online')}</p>
-                            <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
-                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors">
+                            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors shadow-sm">
                                     <span className="text-xl">🚀</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
                                 </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-6 py-3 bg-primary-900 hover:bg-primary-950 text-white rounded-xl border border-primary-700/50 shadow-md transition-colors">
+                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-primary-900 hover:bg-primary-950 text-white rounded-xl border border-primary-700/50 shadow-md transition-colors">
                                     <span className="text-xl">🛍️</span>
                                     <span className="font-extrabold text-sm tracking-tight">{t('order.naver')}</span>
+                                </a>
+                                <a href={getStoreUrl('kakaoStore')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] rounded-xl border border-amber-300 shadow-sm transition-colors">
+                                    <span className="text-xl">💬</span>
+                                    <span className="font-extrabold text-sm tracking-tight">카카오 쇼핑하기 (톡딜)</span>
+                                </a>
+                                <a href={getStoreUrl('gmarket')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm transition-colors">
+                                    <span className="font-extrabold text-sm tracking-tight">G마켓</span>
+                                </a>
+                                <a href={getStoreUrl('elevenst')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl shadow-sm transition-colors">
+                                    <span className="font-extrabold text-sm tracking-tight">11번가</span>
+                                </a>
+                                <a href={getStoreUrl('toss')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm transition-colors">
+                                    <span className="font-extrabold text-sm tracking-tight">토스쇼핑</span>
                                 </a>
                             </div>
                             <div className="flex flex-wrap items-center justify-center gap-8">

@@ -101,14 +101,14 @@ const OrderForm = ({
                     <p className="text-xs text-slate-600 mb-3 leading-relaxed break-keep">
                         {t('order.fastTrackDesc', '무통장 입금 주문 외에, 쿠팡 로켓배송 및 네이버 스마트스토어(네이버페이)에서 즉시 간편 구매가 가능합니다.')}
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <a
                             href={getStoreUrl('coupang')}
                             target="_blank"
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                             className="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
                         >
-                            <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송 (내일 아침 도착)')}</span>
+                            <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송')}</span>
                             <span aria-hidden="true">➔</span>
                         </a>
                         <a
@@ -117,7 +117,16 @@ const OrderForm = ({
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
                             className="py-2.5 px-3 rounded-xl bg-primary-900 hover:bg-primary-950 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-primary-700/50"
                         >
-                            <span>🛍️ {t('order.smartstoreBtn', '네이버 펫츄리 (네이버페이 구매)')}</span>
+                            <span>🛍️ {t('order.smartstoreBtn', '네이버 펫츄리')}</span>
+                            <span aria-hidden="true">➔</span>
+                        </a>
+                        <a
+                            href={getStoreUrl('kakaoStore')}
+                            target="_blank"
+                            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
+                            className="py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-amber-300"
+                        >
+                            <span>💬 카카오 쇼핑하기 (톡딜)</span>
                             <span aria-hidden="true">➔</span>
                         </a>
                     </div>

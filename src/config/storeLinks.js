@@ -9,6 +9,22 @@ export const STORE_LINKS = {
         productUrl: 'https://smartstore.naver.com/petschury/products/13718496355',
         fallbackUrl: 'https://shopping.naver.com',
     },
+    gmarket: {
+        productUrl: 'https://item.gmarket.co.kr/Item?goodscode=4876751217',
+        fallbackUrl: 'https://www.gmarket.co.kr',
+    },
+    elevenst: {
+        productUrl: 'https://m.11st.co.kr/products/ma/9715355848',
+        fallbackUrl: 'https://www.11st.co.kr',
+    },
+    kakaoStore: {
+        productUrl: 'https://store.kakao.com/agrowellness/products/800840808',
+        storeHomeUrl: 'https://store.kakao.com/agrowellness',
+    },
+    toss: {
+        productUrl: 'https://toss.shopping/t/2713390059',
+        fallbackUrl: 'https://toss.shopping/i/2724270331',
+    },
     kakao: {
         channelChatUrl: 'https://pf.kakao.com/_rqxnJX/chat',
         channelHomeUrl: 'https://pf.kakao.com/_rqxnJX',

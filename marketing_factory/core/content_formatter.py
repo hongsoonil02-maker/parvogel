@@ -47,6 +47,10 @@ class ParvogelContentFormatter:
         self.landing_base = self.config.get("site_landing_url", "https://parvogel.kr/")
         self.smartstore_base = self.config.get("smartstore_url", "https://smartstore.naver.com/petschury/products/13718496355")
         self.coupang_base = self.config.get("coupang_url", "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090")
+        self.gmarket_base = self.config.get("gmarket_url", "https://item.gmarket.co.kr/Item?goodscode=4876751217")
+        self.elevenst_base = self.config.get("elevenst_url", "https://m.11st.co.kr/products/ma/9715355848")
+        self.kakao_store_base = self.config.get("kakao_store_url", "https://store.kakao.com/agrowellness/products/800840808")
+        self.toss_base = self.config.get("toss_url", "https://toss.shopping/t/2713390059")
 
     def _load_json(self, path: str) -> Dict[str, Any]:
         if os.path.exists(path):
@@ -75,6 +79,10 @@ class ParvogelContentFormatter:
             "landing": _append(self.landing_base),
             "smartstore": _append(self.smartstore_base),
             "coupang": _append(self.coupang_base),
+            "gmarket": self.gmarket_base,
+            "elevenst": self.elevenst_base,
+            "kakao_store": self.kakao_store_base,
+            "toss": self.toss_base,
             "b2b_sample": _append(self.landing_base, {"sample": "petshop"}),
             "b2b_breeder": _append(self.landing_base, {"sample": "breeder"}),
             "b2b_wholesale": _append(self.landing_base, {"sample": "b2b"})
@@ -109,8 +117,12 @@ class ParvogelContentFormatter:
 ✅ 급여 3일 만에 그릇까지 싹싹 핥아먹는 기적의 식욕 회복!
 
 📹 7일간의 무편집 회복 영상 & 무료 샘플 안내: {links['landing']}
-🚀 쿠팡 로켓배송 즉시 구매: {links['coupang']}
-🟢 네이버 스마트스토어 구매: {links['smartstore']}
+🟢 네이버 스마트스토어: {links['smartstore']}
+🚀 쿠팡 로켓배송: {links['coupang']}
+🟡 G마켓 공식스토어: {links['gmarket']}
+🔴 11번가 공식스토어: {links['elevenst']}
+💬 카카오 쇼핑하기(톡딜): {links['kakao_store']}
+🔵 토스쇼핑 공식: {links['toss']}
 
 {tags}"""
         return {
@@ -352,9 +364,13 @@ class ParvogelContentFormatter:
 
 ---
 
-### 🏥 파보겔 공식 정보 및 상비 안내
+### 🏥 파보겔 공식 정보 및 6대 쇼핑몰 상비 안내
 - 🟢 **네이버 스마트스토어 공식몰**: {links['smartstore']}
 - 🚀 **쿠팡 로켓배송 즉시 구매**: {links['coupang']}
+- 🟡 **G마켓 공식스토어**: {links['gmarket']}
+- 🔴 **11번가 공식스토어**: {links['elevenst']}
+- 💬 **카카오 쇼핑하기 (톡딜)**: {links['kakao_store']}
+- 🔵 **토스쇼핑 공식스토어**: {links['toss']}
 - 📹 **실제 회복 직캠 & 학술 데이터 확인**: {links['landing']}
 - 🏢 **전국 인허가 펫샵·브리더 본품 1병 무료 샘플 신청**: {links['b2b_sample']}
 
@@ -385,14 +401,18 @@ class ParvogelContentFormatter:
 주사기 없이 1초 펌프로 입안에 꿀꺽!
 
 📹 풀영상 & 펫샵/브리더 무료샘플 확인: {links['landing']}
-🚀 쿠팡 로켓배송: {links['coupang']}
 🟢 네이버 스마트스토어: {links['smartstore']}
+🚀 쿠팡 로켓배송: {links['coupang']}
+🟡 G마켓: {links['gmarket']}
+🔴 11번가: {links['elevenst']}
+💬 카카오 쇼핑하기: {links['kakao_store']}
+🔵 토스쇼핑: {links['toss']}
 
 #파보겔 #강아지설사 #고양이설사 #토이푸들 #새끼강아지 #shorts #반려동물상비약"""
         return {
             "title": title,
             "description": description[:5000],
-            "pinned_comment": f"우리 아이 급성 물설사 골든타임 파보겔 1초 케어! 쿠팡 로켓배송으로 내일 아침 도착: {links['coupang']} | 펫샵·브리더 1병 무료샘플: {links['b2b_sample']}",
+            "pinned_comment": f"우리 아이 급성 물설사 골든타임 파보겔 1초 케어! 6대 공식 쇼핑몰(스마트스토어·쿠팡·G마켓·11번가·카카오쇼핑·토스쇼핑) 즉시 구매: {links['landing']} | 펫샵·브리더 1병 무료샘플: {links['b2b_sample']}",
             "tags": ["파보겔", "강아지설사", "고양이설사", "토이푸들", "새끼강아지", "shorts", "반려동물상비약"],
             "links": links
         }
@@ -415,8 +435,8 @@ class ParvogelContentFormatter:
 프로필 링크에서 무편집 원본 직캠 및 무료 샘플 정보를 확인하세요! 
 👉 @parvogel_official
 
-구매처 안내:
-🚀 쿠팡 로켓배송 / 🟢 네이버 스마트스토어 (펫츄리)
+구매처 안내 (공식 6대 쇼핑몰 입점):
+🟢 네이버 스마트스토어 / 🚀 쿠팡 로켓배송 / 🟡 G마켓 / 🔴 11번가 / 💬 카카오 쇼핑하기 / 🔵 토스쇼핑에서 '파보겔' 검색!
 
 .
 .

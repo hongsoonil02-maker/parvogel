@@ -41,8 +41,8 @@ class InstagramAdapter(BaseMarketingAdapter):
         caption = content_data.get("caption", content_data.get("description", ""))
         title = content_data.get("title", "파보겔 임상 케이스")
 
-        # Auto-resolve canonical HTTPS URL on parvogel.kr if already hosted in public/assets
-        if not video_url and video_path:
+        # Auto-resolve canonical HTTPS URL on parvogel.kr ONLY if explicitly requested
+        if not video_url and video_path and os.getenv("USE_REMOTE_IG_URL") == "1":
             candidate = f"https://parvogel.kr/assets/{os.path.basename(video_path)}"
             try:
                 head_resp = requests.head(candidate, timeout=6, allow_redirects=True)
