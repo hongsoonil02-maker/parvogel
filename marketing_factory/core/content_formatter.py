@@ -116,7 +116,7 @@ class ParvogelContentFormatter:
 ✅ 1-deoxinojirimycin 특허성분 + 천연 몬모릴로나이트 장 점막 실크 코팅
 ✅ 급여 3일 만에 그릇까지 싹싹 핥아먹는 기적의 식욕 회복!
 
-📹 7일간의 무편집 회복 영상 & 무료 샘플 안내: {links['landing']}
+📹 7일간의 무편집 회복 영상 & 상세 안내: {links['landing']}
 🟢 네이버 스마트스토어: {links['smartstore']}
 🚀 쿠팡 로켓배송: {links['coupang']}
 🟡 G마켓 공식스토어: {links['gmarket']}
@@ -400,7 +400,7 @@ class ParvogelContentFormatter:
         description = f"""{n.get('subheadline', '쓰러진 55일령 강아지의 기적의 7일 회복 실화 직캠!')}
 주사기 없이 1초 펌프로 입안에 꿀꺽!
 
-📹 풀영상 & 펫샵/브리더 무료샘플 확인: {links['landing']}
+📹 풀영상 & 공식 상세 안내: {links['landing']}
 🟢 네이버 스마트스토어: {links['smartstore']}
 🚀 쿠팡 로켓배송: {links['coupang']}
 🟡 G마켓: {links['gmarket']}
@@ -432,7 +432,7 @@ class ParvogelContentFormatter:
 
 ✨ {video_hl}
 
-프로필 링크에서 무편집 원본 직캠 및 무료 샘플 정보를 확인하세요! 
+프로필 링크에서 무편집 원본 직캠 및 공식 안내를 확인하세요! 
 👉 @parvogel_official
 
 구매처 안내 (공식 6대 쇼핑몰 입점):

@@ -725,7 +725,7 @@ const Landing = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] shadow-sm hover:scale-105 active:scale-95 transition-all border border-amber-300"
-                                aria-label="카카오톡 1:1 상담 및 샘플 신청"
+                                aria-label="카카오톡 1:1 상담"
                             >
                                 <span className="text-sm">💬</span>
                                 <span>카톡 1:1 상담</span>
@@ -815,7 +815,7 @@ const Landing = () => {
                                 >
                                     <span className="flex items-center gap-2">
                                         <span className="text-base">💬</span>
-                                        <span>카카오톡 1:1 상담 / 샘플 문의</span>
+                                        <span>카카오톡 1:1 상담 / 구매 문의</span>
                                     </span>
                                     <span className="text-xs font-bold text-amber-900">
                                         실시간 연결 ➔

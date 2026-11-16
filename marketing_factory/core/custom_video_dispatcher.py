@@ -140,7 +140,7 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             "🧲 체내 흡수 0%! 초미세 나노 몬모릴로나이트 장 점막 코팅 & 독소 선택 흡착\n"
             "🐾 달콤한 기호성 + 주사기 없는 1초 원터치 펌프로 스트레스 없는 급여\n"
             "✨ 30분 만에 복통·구토 완화 & 다음 날 아침 기적 같은 정상변·식욕 회복!\n\n"
-            f"▶ 공식 안내/신청 (주)한국아그로: {OFFICIAL_LINKS['landing']}\n"
+            f"▶ 공식 홈페이지/안내 (주)한국아그로: {OFFICIAL_LINKS['landing']}\n"
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
             f"▶ G마켓/옥션 공식: {OFFICIAL_LINKS['gmarket']}\n"
