@@ -644,7 +644,7 @@ export default function ParvogelClinicalDocumentary() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-black text-white leading-snug break-keep">
-                "배에서 꾸르륵거리거나 변이 무를 때 — 단 한 번이면 충분합니다"
+                &quot;배에서 꾸르륵거리거나 변이 무를 때 — 단 한 번이면 충분합니다&quot;
               </h3>
 
               <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
@@ -653,7 +653,7 @@ export default function ParvogelClinicalDocumentary() {
                   <span>네이버 카페 화제의 보호자 실제 후기 (조회수 1,734회)</span>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed break-keep italic">
-                  "스멕타를 며칠간 먹여도 잡히지 않던 물설사였는데... 김동준 원장님 추천으로 몬스멕타 급여 단 1번 만에 설사가 완전히 멈추고 변이 단단해졌습니다. 지금은 가정 상비약으로 무조건 쟁여둡니다."
+                  &quot;스멕타를 며칠간 먹여도 잡히지 않던 물설사였는데... 김동준 원장님 추천으로 몬스멕타 급여 단 1번 만에 설사가 완전히 멈추고 변이 단단해졌습니다. 지금은 가정 상비약으로 무조건 쟁여둡니다.&quot;
                 </p>
               </div>
 
