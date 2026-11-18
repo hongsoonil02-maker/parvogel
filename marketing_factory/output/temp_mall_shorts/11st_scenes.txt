@@ -1,0 +1,5 @@
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_mall_shorts/11st_01_intro_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_mall_shorts/11st_02_adsorption_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_mall_shorts/11st_03_pump_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_mall_shorts/11st_04_eating_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_mall_shorts/11st_05_cta_render.mp4'

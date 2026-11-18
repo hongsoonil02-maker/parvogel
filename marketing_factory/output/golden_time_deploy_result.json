@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-11-17T08:49:14.723463",
+  "date": "2026-11-17",
+  "campaign_id": "PARVOGEL_GOLDEN_TIME_STUDIO_DOCU_35S_V3",
+  "theme": "한밤중 피설사·구토 골든타임 35초 다큐 | 우리 아이 비상 상비약 파보겔",
+  "video_file": "파보겔_기적의골든타임_애니메이션다큐_35초_쇼츠(9x16).mp4",
+  "rendered_video": "output/파보겔_기적의골든타임_애니메이션다큐_35초_쇼츠(9x16).mp4",
+  "rendered_video_169": "output/파보겔_기적의골든타임_애니메이션다큐_35초(16x9).mp4",
+  "live_urls": {
+    "youtube_shorts": "https://youtube.com/shorts/_oDmS3jv0I8",
+    "youtube_id": "_oDmS3jv0I8",
+    "tiktok_publish_id": "v_inbox_file~v2.7708919659885725714",
+    "facebook": "https://www.facebook.com/1191045321053882/videos/1003639092172971",
+    "instagram_media_id": "18016778789987668",
+    "instagram": "https://www.instagram.com/reel/Df0koN1DLvy/",
+    "bluesky_uri": "at://did:plc:bhamd7qzbqxa7ysbz2owzaa5/app.bsky.feed.post/3n2hpqg5dof2q"
+  },
+  "publish_results": {
+    "YouTube_Shorts": "SUCCESS (https://youtube.com/shorts/_oDmS3jv0I8)",
+    "TikTok": "SUCCESS (v_inbox_file~v2.7708919659885725714)",
+    "Facebook_Page": "SUCCESS (1003639092172971)",
+    "Instagram_Reels": "SUCCESS (18016778789987668)",
+    "Bluesky": "SUCCESS",
+    "Discord": "SUCCESS",
+    "Threads": "ARCHIVED_DRAFT_NO_TOKEN",
+    "Naver_Blog_Queue": "QUEUED_HYBRID (2c8e4c63)"
+  }
+}

@@ -1,0 +1,5 @@
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_coupang_shorts/scene_01_coupang_intro_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_coupang_shorts/scene_02_adsorption_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_coupang_shorts/scene_03_pump_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_coupang_shorts/scene_04_eating_render.mp4'
+file 'c:/Users/master/parvogel_landing/marketing_factory/output/temp_coupang_shorts/scene_05_cta_render.mp4'

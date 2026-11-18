@@ -1,0 +1,5 @@
+file 'C:/Users/master/parvogel_landing/marketing_factory/output/temp_guide_shorts/scene_01_render.mp4'
+file 'C:/Users/master/parvogel_landing/marketing_factory/output/temp_guide_shorts/scene_02_render.mp4'
+file 'C:/Users/master/parvogel_landing/marketing_factory/output/temp_guide_shorts/scene_03_render.mp4'
+file 'C:/Users/master/parvogel_landing/marketing_factory/output/temp_guide_shorts/scene_04_render.mp4'
+file 'C:/Users/master/parvogel_landing/marketing_factory/output/temp_guide_shorts/scene_05_render.mp4'
