@@ -942,8 +942,23 @@ const Landing = () => {
                                 </div>
                             </div>
 
-                            {/* 메인 구매 CTA 버튼 (쿠팡 로켓배송 · 네이버 스마트스토어 · 카카오 쇼핑하기) */}
+                            {/* 메인 구매 CTA 버튼 (카카오 쇼핑하기 최우선 · 쿠팡 로켓배송 · 네이버 스마트스토어) */}
                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-4 w-full max-w-2xl mx-auto lg:mx-0">
+                                <a
+                                    href={getStoreUrl('kakaoStore')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                    className="w-full min-h-[56px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                                >
+                                    <span className="text-xl shrink-0" aria-hidden="true">💬</span>
+                                    <div className="text-start leading-tight">
+                                        <div className="text-[10px] text-amber-950 font-extrabold tracking-tight">{t('stores.kakaoSub', '카카오페이 간편결제·톡딜')}</div>
+                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.kakaoCta', '카카오 쇼핑하기')}</div>
+                                    </div>
+                                </a>
+
                                 <a
                                     href={getStoreUrl('coupang')}
                                     target="_blank"
@@ -971,21 +986,6 @@ const Landing = () => {
                                     <div className="text-start leading-tight">
                                         <div className="text-[10px] text-emerald-100 font-extrabold tracking-tight">{t('stores.naverSub', '네이버페이 간편결제·적립')}</div>
                                         <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.naverCta', '네이버 스마트스토어')}</div>
-                                    </div>
-                                </a>
-
-                                <a
-                                    href={getStoreUrl('kakaoStore')}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                    className="w-full min-h-[56px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                                >
-                                    <span className="text-xl shrink-0" aria-hidden="true">💬</span>
-                                    <div className="text-start leading-tight">
-                                        <div className="text-[10px] text-amber-950 font-extrabold tracking-tight">{t('stores.kakaoSub', '카카오페이 간편결제·톡딜')}</div>
-                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.kakaoCta', '카카오 쇼핑하기')}</div>
                                     </div>
                                 </a>
                             </div>
@@ -1591,8 +1591,22 @@ const Landing = () => {
                                     {t('stores.sectionSub', '자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.')}
                                 </p>
 
-                                {/* 1단: 대표 공식몰 3곳 (네이버 · 쿠팡 · 카카오 쇼핑) */}
+                                {/* 1단: 대표 공식몰 3곳 (카카오 쇼핑 최우선 · 네이버 · 쿠팡) */}
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto mb-3">
+                                    <a
+                                        href={getStoreUrl('kakaoStore')}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-[#191919] shrink-0" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
+                                        </span>
+                                        <span className="text-xs font-bold shrink-0" aria-hidden="true">{t('stores.kakaoTag', '톡딜')} ➔</span>
+                                    </a>
                                     <a
                                         href={getStoreUrl('naver')}
                                         target="_blank"
@@ -1620,20 +1634,6 @@ const Landing = () => {
                                             <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.coupangCta', '쿠팡 로켓배송')}</span>
                                         </span>
                                         <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.fastTag', '빠른배송')} ➔</span>
-                                    </a>
-                                    <a
-                                        href={getStoreUrl('kakaoStore')}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-[#191919] shrink-0" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
-                                        </span>
-                                        <span className="text-xs font-bold shrink-0" aria-hidden="true">{t('stores.kakaoTag', '톡딜')} ➔</span>
                                     </a>
                                 </div>
 

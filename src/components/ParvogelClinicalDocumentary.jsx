@@ -157,6 +157,16 @@ export default function ParvogelClinicalDocumentary() {
             <div className="pt-1 space-y-2.5">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 <a
+                  href={getStoreUrl('kakaoStore')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                  className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                >
+                  {t('stores.kakaoCta', '카카오 쇼핑하기')}
+                </a>
+                <a
                   href={getStoreUrl('naver')}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -175,16 +185,6 @@ export default function ParvogelClinicalDocumentary() {
                   className="min-h-[48px] px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                 >
                   {t('stores.coupangCta', '쿠팡 로켓배송')}
-                </a>
-                <a
-                  href={getStoreUrl('kakaoStore')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                  className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                >
-                  {t('stores.kakaoCta', '카카오 쇼핑하기')}
                 </a>
               </div>
               <div className="text-center md:text-start">
