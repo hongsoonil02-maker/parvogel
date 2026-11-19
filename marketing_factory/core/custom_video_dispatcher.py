@@ -125,43 +125,53 @@ def save_ledger(ledger: List[Dict[str, Any]]):
 
 def default_golden_time_campaign() -> Dict[str, Any]:
     video_dir = r"C:\Users\master\OneDrive\동영상"
-    v_916 = os.path.join(video_dir, "파보겔_기적의골든타임_애니메이션다큐_35초_쇼츠(9x16).mp4")
+    # Channel-split strategy (2026-11-19):
+    # - YouTube Shorts: 100% Real Clinical Documentary (Prototype 1, zero AI puppy, zero product bottle ad frame)
+    # - Instagram Reels & TikTok: 100% Real Clinical Main + Top-Right Circular Puppy Avatar PiP (Prototype 2)
+    v_916_docu = os.path.join(video_dir, "리얼임상_시안1_순수진료실다큐_28초(9x16).mp4")
+    v_916_pip = os.path.join(video_dir, "리얼임상_시안2_진료실실사+아바타PiP_28초(9x16).mp4")
     v_169 = os.path.join(video_dir, "파보겔_기적의골든타임_애니메이션다큐_35초(16x9).mp4")
     return {
-        "campaign_id": "PARVOGEL_GOLDEN_TIME_STUDIO_DOCU_35S_V3",
-        "title": "한밤중 피설사·구토 골든타임 35초 다큐 | 우리 아이 비상 상비약 파보겔",
-        "video_916": v_916,
+        "campaign_id": "PARVOGEL_REAL_CLINICAL_SPLIT_28S_V4",
+        "title": "생후 55일 쓰러져 실려온 아기 푸들의 3일 뒤 기적",
+        "video_916": v_916_docu,
+        "video_916_youtube": v_916_docu,
+        "video_916_reels": v_916_pip,
+        "video_916_tiktok": v_916_pip,
         "video_916_url": "https://parvogel.kr/assets/parvogel_golden_time_35s_9x16.mp4",
         "video_169": v_169,
-        "youtube_title": "🚨 한밤중 피설사·구토 골든타임! 30분 만에 찾아온 기적 🐾 파보겔 #shorts",
+        "youtube_title": "생후 55일, 갑자기 쓰러져 실려온 아기 푸들의 3일 뒤 기적 🐾 #shorts #강아지 #동물병원",
         "youtube_description": (
-            "병원 문이 닫힌 깊은 밤, 갑작스러운 구토와 피설사로 당황하셨던 적 있으신가요?\n"
-            "응급실 가기 전 1분 1초가 소중한 골든타임을 지켜주는 가정 내 필수 1차 비상 상비약 '파보겔'의 35초 다큐멘터리입니다.\n\n"
-            "🧲 체내 흡수 0%! 초미세 나노 몬모릴로나이트 장 점막 코팅 & 독소 선택 흡착\n"
-            "🐾 달콤한 기호성 + 주사기 없는 1초 원터치 펌프로 스트레스 없는 급여\n"
-            "✨ 30분 만에 복통·구토 완화 & 다음 날 아침 기적 같은 정상변·식욕 회복!\n\n"
-            f"▶ 공식 홈페이지/안내 (주)한국아그로: {OFFICIAL_LINKS['landing']}\n"
+            "생후 55일, 심한 구토와 탈수로 갑자기 쓰러져 응급으로 실려온 아기 푸들의 실제 진료실 회복 기록입니다.\n"
+            "주사기 강제 급여 없이 입가에 부드럽게 장 점막 보호 겔을 급여하자, 하루 만에 구토가 진정되고 3일 뒤 사료 그릇을 싹 비웠습니다.\n\n"
+            "💡 새벽 강아지 구토·설사 1차 응급 대처법\n"
+            "1) 체온 유지 및 수분 탈수 여부 즉시 확인\n"
+            "2) 사람 지사제 임의 투여 금지 (장 운동 억제 위험)\n"
+            "3) 체내 흡수 없는 장 점막 보호·독소 흡착 1차 케어 후 수의사 진료 병행\n\n"
+            "📌 영상 속 장 점막 보호 솔루션 상세 안내 (파보겔 공식)\n"
+            f"▶ 공식 홈페이지 ((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
             f"▶ G마켓/옥션 공식: {OFFICIAL_LINKS['gmarket']}\n"
             f"▶ 11번가 슈팅배송: {OFFICIAL_LINKS['elevenst']}\n"
-            f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
-            f"▶ 토스쇼핑 특가: {OFFICIAL_LINKS['toss']}\n"
-            "☎ 고객센터: 02-6949-5708 ((주)한국아그로)\n\n"
-            "#파보겔 #강아지설사 #강아지혈변 #강아지구토 #파보장염 #반려견상비약 #강아지응급처치 #shorts"
+            f"▶ 카카오 쇼핑하기: {OFFICIAL_LINKS['kakao_store']}\n"
+            f"▶ 토스쇼핑: {OFFICIAL_LINKS['toss']}\n"
+            "☎ 문의: 02-6949-5708 ((주)한국아그로)\n\n"
+            "#강아지 #아기푸들 #동물병원 #강아지설사 #강아지구토 #강아지응급처치 #반려견건강 #shorts"
         ),
-        "youtube_tags": ["파보겔", "강아지설사", "강아지혈변", "파보장염", "반려견상비약", "몬모릴로나이트", "한국아그로", "shorts"],
+        "youtube_tags": ["강아지", "아기푸들", "동물병원", "강아지설사", "강아지구토", "강아지응급처치", "반려견건강", "파보겔", "shorts"],
         "reels_caption": (
-            "🚨 한밤중 갑자기 시작된 피설사와 구토… 응급실 문은 닫혔고, 아이는 점점 차가워질 때.\n\n"
-            "서랍 속 비상 상비약 '파보겔'을 먹였습니다.\n"
-            "🧲 체내 흡수 0% 고순도 나노 몬모릴로나이트 장 점막 물리 코팅\n"
-            "✨ 30분 만에 복통 완화 & 다음 날 아침 기적처럼 꼬리를 흔드는 아이!\n\n"
-            f"🏠 말 못 하는 우리 아이의 골든타임 지킴이: {OFFICIAL_LINKS['landing']}\n"
-            "🛒 공식 입점 6대 쇼핑몰: 네이버 스마트스토어 · 쿠팡 · G마켓 · 11번가 · 카카오 쇼핑하기 · 토스쇼핑에서 '파보겔'을 검색하세요!\n"
-            "문의: 02-6949-5708 │ (주)한국아그로\n\n"
-            "#파보겔 #강아지설사 #강아지혈변 #파보장염 #강아지응급상비약 #반려견건강 #댕댕이 #펫케어"
+            "생후 55일, 갑자기 쓰러져 병원에 실려온 아기 푸들의 실제 3일 회복 기록 🐾\n\n"
+            "무서운 주사기 대신 입가에 부드럽게 톡 짜주자 스스로 혀로 핥아먹기 시작했고,\n"
+            "하루 만에 네 발로 일어서더니 3일 뒤엔 밥그릇에 얼굴을 파묻고 싹 비웠습니다.\n\n"
+            "새벽에 갑자기 아이가 토하거나 물설사를 할 때 가장 중요한 건\n"
+            "장 운동을 억지로 멈추지 않고 장 점막을 안전하게 보호하는 1차 골든타임 대처입니다.\n\n"
+            f"📌 응급 대처 가이드 & 장 점막 케어 상세 안내: {OFFICIAL_LINKS['landing']}\n"
+            "🛒 스마트스토어 · 쿠팡 · G마켓 · 11번가 · 카카오 · 토스쇼핑에서 '파보겔' 검색\n"
+            "문의: 02-6949-5708 | (주)한국아그로\n\n"
+            "#강아지 #푸들 #강아지설사 #강아지구토 #강아지응급처치 #반려견일상 #댕댕이 #펫케어"
         ),
-        "tiktok_title": "🚨 한밤중 강아지 피설사·구토 골든타임 35초 다큐 🐾 30분 만의 기적 비상 상비약 파보겔 #파보겔 #강아지설사 #반려견상비약",
+        "tiktok_title": "생후 55일 쓰러져 실려온 아기 푸들의 3일 뒤 기적 🐾 실제 동물병원 기록 #강아지 #아기푸들 #동물병원 #강아지응급처치",
         "facebook_caption": (
             "🎬 [35초 다큐] 〈기적의 골든타임〉 — 한밤중 피설사·구토, 말 못 하는 우리 아이를 지킨 서랍 속 1초 비상 상비약\n\n"
             "병원 문이 닫힌 야간, 1분 1초가 급박한 순간에 체내 흡수 0% 장 점막 나노 코팅과 독소 흡착 기전으로 30분 만에 복통·구토를 완화하고 골든타임을 지켜주는 파보겔 이야기를 확인하세요.\n\n"
@@ -203,18 +213,26 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
     all_text = json.dumps(campaign, ensure_ascii=False)
     assert_brand_isolation(all_text, context=f"campaign:{campaign_id}")
 
-    # 2. Verify video assets via ffprobe
-    info_916 = probe_media(campaign["video_916"])
+    # 2. Verify video assets via ffprobe (channel-split 9:16 support)
+    yt_src = campaign.get("video_916_youtube") or campaign["video_916"]
+    reels_src = campaign.get("video_916_reels") or campaign["video_916"]
+    tiktok_src = campaign.get("video_916_tiktok") or reels_src
+
+    info_916 = probe_media(yt_src)
+    info_916_reels = probe_media(reels_src)
     info_169 = probe_media(campaign["video_169"])
     if info_916["width"] != 1080 or info_916["height"] != 1920 or not info_916["has_audio"]:
-        raise ValueError(f"9:16 video validation failed: {info_916}")
+        raise ValueError(f"YouTube 9:16 video validation failed: {info_916}")
+    if info_916_reels["width"] != 1080 or info_916_reels["height"] != 1920 or not info_916_reels["has_audio"]:
+        raise ValueError(f"Reels/TikTok 9:16 video validation failed: {info_916_reels}")
     if info_169["width"] != 1920 or info_169["height"] != 1080 or not info_169["has_audio"]:
         raise ValueError(f"16:9 video validation failed: {info_169}")
 
     print("=" * 68)
     print(f"🚀 [CUSTOM VIDEO AUTO-DISPATCHER] Campaign: {campaign_id}")
     print(f"   Mode: {'🔴 LIVE EXECUTION' if live else '🟡 DRY-RUN VALIDATION'}")
-    print(f"   9:16 Shorts : {os.path.basename(campaign['video_916'])} ({info_916['duration']:.2f}s, {info_916['size_mb']}MB, {info_916['sample_rate']}Hz ch={info_916['channels']})")
+    print(f"   YouTube 9:16: {os.path.basename(yt_src)} ({info_916['duration']:.2f}s, {info_916['size_mb']}MB, {info_916['sample_rate']}Hz ch={info_916['channels']})")
+    print(f"   IG/TT   9:16: {os.path.basename(reels_src)} ({info_916_reels['duration']:.2f}s, {info_916_reels['size_mb']}MB, {info_916_reels['sample_rate']}Hz ch={info_916_reels['channels']})")
     print(f"   16:9 Master : {os.path.basename(campaign['video_169'])} ({info_169['duration']:.2f}s, {info_169['size_mb']}MB, {info_169['sample_rate']}Hz ch={info_169['channels']})")
     print("=" * 68)
 
@@ -233,9 +251,15 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
 
     # Copy assets into marketing_factory/output so factory archive/dashboard tracks them
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    staged_916 = os.path.join(OUTPUT_DIR, os.path.basename(campaign["video_916"]))
+    staged_916 = os.path.join(OUTPUT_DIR, os.path.basename(yt_src))
+    staged_reels = os.path.join(OUTPUT_DIR, os.path.basename(reels_src))
+    staged_tiktok = os.path.join(OUTPUT_DIR, os.path.basename(tiktok_src))
     staged_169 = os.path.join(OUTPUT_DIR, os.path.basename(campaign["video_169"]))
-    shutil.copyfile(campaign["video_916"], staged_916)
+    shutil.copyfile(yt_src, staged_916)
+    if os.path.abspath(reels_src) != os.path.abspath(yt_src):
+        shutil.copyfile(reels_src, staged_reels)
+    if os.path.abspath(tiktok_src) not in (os.path.abspath(yt_src), os.path.abspath(reels_src)):
+        shutil.copyfile(tiktok_src, staged_tiktok)
     shutil.copyfile(campaign["video_169"], staged_169)
 
     yt = YouTubeAdapter()
@@ -300,7 +324,7 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
         results["Instagram_Reels"] = "SKIPPED_BY_FLAG"
     elif configs["Instagram_Reels"]:
         ig_payload = {
-            "video_path": staged_916,
+            "video_path": staged_reels,
             "title": campaign["title"],
             "caption": campaign["reels_caption"],
         }
@@ -314,7 +338,7 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
         results["TikTok"] = "SUCCESS (PREVIOUS)"
     elif configs["TikTok"]:
         video_tasks["TikTok"] = (tk, {
-            "video_path": staged_916,
+            "video_path": staged_tiktok,
             "title": campaign["tiktok_title"],
         })
     else:
