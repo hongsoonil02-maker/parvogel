@@ -648,7 +648,7 @@ const Landing = () => {
     ]
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-24 overflow-x-hidden w-full max-w-full">
+        <div className="min-h-screen bg-gray-50 pb-24 overflow-x-clip w-full max-w-full">
             <SEO />
             {/* 스크린리더용 본문 바로가기 (접근성) — HashRouter 환경이라 href 대신 스크롤+포커스 처리 */}
             <a
@@ -671,15 +671,16 @@ const Landing = () => {
                 ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
                 : 'bg-transparent'
                 }`}>
-                <nav className="section-container" aria-label="메인 네비게이션">
-                    <div className="flex items-center justify-between h-16 md:h-20">
-                        {/* Logo */}
-                        <div className="flex items-center gap-2 sm:gap-3 cursor-pointer" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToSection('hero'); } }} onClick={() => scrollToSection('hero')}>
-                            <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${primaryBg} shadow-lg`}>
-                                <span className="text-white font-extrabold text-2xl">P</span>
+                <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8" aria-label="메인 네비게이션">
+                    <div className="flex items-center justify-between gap-2 h-14 sm:h-16 md:h-20">
+                        {/* Logo (320px~360px 실기기 및 큰 글꼴 환경에서도 우측 버튼 밀림 원천 차단) */}
+                        <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer min-w-0 shrink" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToSection('hero'); } }} onClick={() => scrollToSection('hero')}>
+                            <div className={`w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${primaryBg} shadow-md sm:shadow-lg`}>
+                                <span className="text-white font-extrabold text-lg sm:text-2xl">P</span>
                             </div>
-                            <span className="font-extrabold text-2xl sm:text-3xl text-gray-900 tracking-tight">
-                                {t('nav.brandName')} <span className={`${primaryText} font-black`}>ParvoGel</span>
+                            <span className="font-extrabold text-[15px] sm:text-2xl lg:text-3xl text-gray-900 tracking-tight leading-tight min-w-0">
+                                <span className="block sm:inline whitespace-nowrap">{t('nav.brandName')}</span>{' '}
+                                <span className={`${primaryText} font-black block sm:inline text-[11px] sm:text-2xl lg:text-3xl leading-none sm:leading-tight`}>ParvoGel</span>
                             </span>
                         </div>
 
@@ -766,15 +767,15 @@ const Landing = () => {
                             </a>
                         </div>
 
-                        {/* Mobile Header Right: Kakao Shopping + Chat + Menu Hamburger */}
-                        <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+                        {/* Mobile Header Right: Kakao Shopping + Chat + Menu Hamburger (320px~360px 안전 배치) */}
+                        <div className="flex md:hidden items-center gap-1 sm:gap-1.5 shrink-0">
                             <a
                                 href={getStoreUrl('kakaoStore')}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-[#FEE500] text-[#191919] shadow-sm active:scale-95 transition-all border border-amber-300 shrink-0 whitespace-nowrap"
+                                className="inline-flex items-center justify-center gap-1 min-h-[36px] px-2 sm:px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-black bg-[#FEE500] text-[#191919] shadow-sm active:scale-95 transition-all border border-amber-300 shrink-0 whitespace-nowrap"
                             >
                                 <span aria-hidden="true">🛒</span>
                                 <span>{t('stickyCta.kakaoShort', '카카오쇼핑')}</span>
@@ -784,7 +785,7 @@ const Landing = () => {
                                 href="https://pf.kakao.com/_rqxnJX/chat"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-primary-900 text-white shadow-md active:scale-95 transition-all border border-primary-700 shrink-0 whitespace-nowrap"
+                                className="inline-flex items-center justify-center gap-1 min-h-[36px] px-2 sm:px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-black bg-primary-900 text-white shadow-sm active:scale-95 transition-all border border-primary-700 shrink-0 whitespace-nowrap"
                                 aria-label={t('stickyCta.chatAria', '카카오톡 1:1 맞춤 상담 (새 창)')}
                             >
                                 <span aria-hidden="true">💬</span>
@@ -793,11 +794,11 @@ const Landing = () => {
 
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 shrink-0"
+                                className="min-w-[36px] min-h-[36px] p-1.5 rounded-lg text-gray-700 hover:bg-gray-100 flex items-center justify-center shrink-0"
                                 aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
                                 aria-expanded={isMobileMenuOpen}
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     {isMobileMenuOpen ? (
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                     ) : (
@@ -1273,9 +1274,9 @@ const Landing = () => {
                                     </button>
                                 ))}
                             </div>
-                            {/* Floating badges */}
+                            {/* Floating badges (모바일 화면 밖으로 삐져나가지 않도록 안전 여백 확보) */}
                             {/* Coupang Floating Badge */}
-                            <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute -top-3 -end-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] hover:scale-105 transition-transform animate-cute-float">
+                            <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute top-2 end-2 sm:-top-3 sm:-end-3 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-orange-200 shadow-[0_8px_24px_rgba(249,115,22,0.15)] hover:scale-105 transition-transform animate-cute-float">
                                 <span className="text-xl" aria-hidden="true">🚀</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-orange-500 uppercase tracking-wider">{t('about.coupang')}</span>
@@ -1283,7 +1284,7 @@ const Landing = () => {
                                 </div>
                             </a>
                             {/* Naver Floating Badge */}
-                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute bottom-16 -start-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] hover:scale-105 transition-transform animate-cute-float-alt">
+                            <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="absolute bottom-24 start-2 sm:bottom-16 sm:-start-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2 bg-white/90 backdrop-blur-md rounded-full border border-emerald-200 shadow-[0_8px_24px_rgba(16,185,129,0.15)] hover:scale-105 transition-transform animate-cute-float-alt">
                                 <span className="text-xl" aria-hidden="true">🛍️</span>
                                 <div className="flex flex-col items-start leading-none">
                                     <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">{t('about.naver')}</span>
