@@ -389,7 +389,13 @@
     "title": "パルボゲル (Parvogel) 新生児下痢ケア補助剤",
     "sub": "高純度超微粒子ナノモンモリロナイト配合",
     "buyBtn": "🚀 Coupang ロケット配送で購入",
-    "consultBtn": "📦 大量 / 直販注文のお問い合わせ"
+    "consultBtn": "📦 大量 / 直販注文のお問い合わせ",
+    "navAria": "クイック購入・相談バー",
+    "kakaoShort": "カカオ",
+    "coupangShort": "クーパン",
+    "naverShort": "ネイバー",
+    "chatShort": "相談",
+    "chatAria": "カカオトーク1:1相談（新しいタブ）"
   },
   "animalSelector": {
     "tag": "🐾 全畜種新生児向けカスタムソリューション",
@@ -587,5 +593,42 @@
     "docuCopied": "✅ 動画リンクをコピーしました！",
     "docuCopyBtnMobile": "🔗 動画リンクを共有",
     "docuDownload": "動画をダウンロード"
+  },
+  "stores": {
+    "sectionEyebrow": "Official Online Stores",
+    "sectionSub": "よくご利用になる公式オンラインストアから正規品パルボゲルをスピーディーにお届けします。",
+    "coupangSub": "翌朝ロケット配送",
+    "coupangCta": "クーパン配送",
+    "coupangAria": "クーパン購入ページへ移動（新しいタブ）",
+    "naverSub": "Naver Pay 簡単決済",
+    "naverCta": "ネイバー公式ストア",
+    "naverAria": "ネイバー公式ストアへ移動（新しいタブ）",
+    "kakaoSub": "Kakao Pay 簡単決済",
+    "kakaoCta": "カカオショッピング",
+    "kakaoAria": "カカオショッピングへ移動（新しいタブ）",
+    "officialTag": "公式",
+    "fastTag": "迅速配送",
+    "kakaoTag": "トークディール",
+    "toss": "Tossショッピング",
+    "gmarket": "Gmarket",
+    "auction": "Auction",
+    "elevenst": "11番街",
+    "openNewWindow": "購入ページへ移動（新しいタブ）",
+    "moreMallsLink": "Toss・Gmarket・Auction・11番街 公式ストア一覧を見る"
+  },
+  "videoSection": {
+    "badge": "35秒で見るパルボゲル ゴールデンタイム",
+    "titleLine1": "真夜中の急な下痢・嘔吐も、",
+    "titleLine2": "1秒ポンプでしっかりサポート",
+    "subtitle": "動物病院が閉まっている深夜でも慌てない、ペットの腸内環境を守る手軽なホームケア補助飼料です。",
+    "point1": "シリンジ不要・ワンタッチ1秒ポンプでストレスを軽減",
+    "point2": "高純度モンモリロナイトゲルが腸粘膜を保護・吸着サポート",
+    "point3": "犬・猫の全年齢に対応した常備アイテム、公式オンラインストアで迅速配送",
+    "videoAria": "パルボゲル 35秒紹介動画",
+    "playAria": "35秒動画を再生",
+    "playBtn": "35秒動画を再生 ▶",
+    "transcriptToggle": "📝 動画のテキスト字幕を見る（アクセシビリティ対応）",
+    "transcriptTitle": "[35秒動画 要約テキスト]",
+    "transcriptBody": "真夜中に突然始まる下痢や嘔吐。動物病院が閉まっている緊急時でも、シリンジ不要の1秒ワンプッシュで手軽に与えられるパルボゲル。高純度モンモリロナイトゲルが腸粘膜をやさしく包み、腸内環境の安定をサポートします。"
   }
 }

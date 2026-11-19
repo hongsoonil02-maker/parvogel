@@ -942,19 +942,20 @@ const Landing = () => {
                                 </div>
                             </div>
 
-                            {/* 메인 구매 CTA 버튼 (쿠팡 로켓배송 & 네이버 스마트스토어) */}
-                            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-4 w-full max-w-xl mx-auto lg:mx-0">
+                            {/* 메인 구매 CTA 버튼 (쿠팡 로켓배송 · 네이버 스마트스토어 · 카카오 쇼핑하기) */}
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-4 w-full max-w-2xl mx-auto lg:mx-0">
                                 <a
                                     href={getStoreUrl('coupang')}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    className="w-full sm:flex-1 h-15 sm:h-16 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5"
+                                    aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                                    className="w-full min-h-[56px] bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                                 >
-                                    <span className="text-2xl">🚀</span>
-                                    <div className="text-left leading-tight">
-                                        <div className="text-[10px] text-amber-300 font-extrabold uppercase tracking-wider">내일 아침 문 앞 도착</div>
-                                        <div className="text-base sm:text-lg font-black">쿠팡 로켓배송 구매</div>
+                                    <span className="text-xl shrink-0" aria-hidden="true">🚀</span>
+                                    <div className="text-start leading-tight">
+                                        <div className="text-[10px] text-amber-300 font-extrabold tracking-tight">{t('stores.coupangSub', '내일 아침 문 앞 도착')}</div>
+                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.coupangCta', '쿠팡 로켓배송')}</div>
                                     </div>
                                 </a>
 
@@ -963,12 +964,28 @@ const Landing = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    className="w-full sm:flex-1 h-15 sm:h-16 bg-[#03C75A] hover:bg-[#02b350] text-white rounded-2xl font-black px-5 flex items-center justify-center gap-3 shadow-lg hover:shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5"
+                                    aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                                    className="w-full min-h-[56px] bg-[#028A3D] hover:bg-[#027734] text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-emerald-700/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                                 >
-                                    <span className="text-2xl">🛍️</span>
-                                    <div className="text-left leading-tight">
-                                        <div className="text-[10px] text-emerald-50 font-extrabold uppercase tracking-wider">네이버페이 간편결제·적립</div>
-                                        <div className="text-base sm:text-lg font-black">네이버 스마트스토어</div>
+                                    <span className="text-xl shrink-0" aria-hidden="true">🛍️</span>
+                                    <div className="text-start leading-tight">
+                                        <div className="text-[10px] text-emerald-100 font-extrabold tracking-tight">{t('stores.naverSub', '네이버페이 간편결제·적립')}</div>
+                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.naverCta', '네이버 스마트스토어')}</div>
+                                    </div>
+                                </a>
+
+                                <a
+                                    href={getStoreUrl('kakaoStore')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                    className="w-full min-h-[56px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                                >
+                                    <span className="text-xl shrink-0" aria-hidden="true">💬</span>
+                                    <div className="text-start leading-tight">
+                                        <div className="text-[10px] text-amber-950 font-extrabold tracking-tight">{t('stores.kakaoSub', '카카오페이 간편결제·톡딜')}</div>
+                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.kakaoCta', '카카오 쇼핑하기')}</div>
                                     </div>
                                 </a>
                             </div>
@@ -1565,53 +1582,68 @@ const Landing = () => {
                         <div id="official-stores" className="mt-8 sm:mt-10 scroll-mt-24">
                             <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-5 sm:p-7 text-center">
                                 <p className="text-xs font-extrabold text-primary-700 uppercase tracking-wider mb-1">
-                                    Official Online Stores
+                                    {t('stores.sectionEyebrow', 'Official Online Stores')}
                                 </p>
                                 <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-1.5 break-keep">
                                     {t('order.online', '공식 입점 온라인 쇼핑몰에서 바로 구매하세요')}
                                 </h3>
-                                <p className="text-xs sm:text-sm text-slate-500 mb-5 break-keep">
-                                    자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.
+                                <p className="text-xs sm:text-sm text-slate-600 mb-5 break-keep">
+                                    {t('stores.sectionSub', '자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.')}
                                 </p>
 
-                                {/* 1단: 대표 공식몰 2곳 (네이버 · 쿠팡) */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-3">
+                                {/* 1단: 대표 공식몰 3곳 (네이버 · 쿠팡 · 카카오 쇼핑) */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto mb-3">
                                     <a
                                         href={getStoreUrl('naver')}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         referrerPolicy="no-referrer-when-downgrade"
-                                        className="flex items-center justify-between px-5 py-3.5 rounded-2xl bg-[#03C75A] hover:bg-[#02b351] text-white transition-all shadow-sm"
+                                        aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#028A3D] hover:bg-[#027734] text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                                     >
-                                        <span className="flex items-center gap-2.5">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-white" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-base">{t('order.naver', '네이버 스마트스토어')}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-white shrink-0" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.naverCta', '네이버 스마트스토어')}</span>
                                         </span>
-                                        <span className="text-xs font-bold opacity-90">공식몰 ➔</span>
+                                        <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.officialTag', '공식몰')} ➔</span>
                                     </a>
                                     <a
                                         href={getStoreUrl('coupang')}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         referrerPolicy="no-referrer-when-downgrade"
-                                        className="flex items-center justify-between px-5 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm"
+                                        aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                                     >
-                                        <span className="flex items-center gap-2.5">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-orange-400" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-base">{t('order.coupang', '쿠팡 로켓배송')}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-orange-400 shrink-0" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.coupangCta', '쿠팡 로켓배송')}</span>
                                         </span>
-                                        <span className="text-xs font-bold opacity-90">빠른배송 ➔</span>
+                                        <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.fastTag', '빠른배송')} ➔</span>
+                                    </a>
+                                    <a
+                                        href={getStoreUrl('kakaoStore')}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-[#191919] shrink-0" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
+                                        </span>
+                                        <span className="text-xs font-bold shrink-0" aria-hidden="true">{t('stores.kakaoTag', '톡딜')} ➔</span>
                                     </a>
                                 </div>
 
-                                {/* 2단: 입점 오픈마켓 5곳 (통일된 심플 화이트 카드) */}
-                                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 max-w-3xl mx-auto mb-6">
+                                {/* 2단: 입점 오픈마켓 4곳 (모바일 2×2 / PC 4×1 대칭 그리드) */}
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-3xl mx-auto mb-6">
                                     {[
-                                        { key: 'kakaoStore', name: '카카오 쇼핑', dot: 'bg-[#FEE500] ring-1 ring-amber-400' },
-                                        { key: 'toss', name: '토스쇼핑', dot: 'bg-blue-500' },
-                                        { key: 'gmarket', name: 'G마켓', dot: 'bg-emerald-500' },
-                                        { key: 'auction', name: '옥션', dot: 'bg-red-500' },
-                                        { key: 'elevenst', name: '11번가', dot: 'bg-rose-500' },
+                                        { key: 'toss', name: t('stores.toss', '토스쇼핑'), dot: 'bg-blue-600' },
+                                        { key: 'gmarket', name: t('stores.gmarket', 'G마켓'), dot: 'bg-emerald-600' },
+                                        { key: 'auction', name: t('stores.auction', '옥션'), dot: 'bg-red-600' },
+                                        { key: 'elevenst', name: t('stores.elevenst', '11번가'), dot: 'bg-rose-600' },
                                     ].map((mall) => (
                                         <a
                                             key={mall.key}
@@ -1619,7 +1651,8 @@ const Landing = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             referrerPolicy="no-referrer-when-downgrade"
-                                            className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-primary-50 border border-slate-200/90 hover:border-primary-300 text-slate-800 hover:text-primary-900 transition-all"
+                                            aria-label={`${mall.name} ${t('stores.openNewWindow', '구매 페이지로 이동 (새 창)')}`}
+                                            className="min-h-[44px] flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-primary-50 border border-slate-200/90 hover:border-primary-300 text-slate-800 hover:text-primary-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
                                         >
                                             <span className={`w-2 h-2 rounded-full shrink-0 ${mall.dot}`} aria-hidden="true" />
                                             <span className="font-bold text-xs sm:text-sm tracking-tight">{mall.name}</span>
@@ -1628,7 +1661,7 @@ const Landing = () => {
                                 </div>
 
                                 <div className="flex flex-wrap items-center justify-center gap-8 pt-4 border-t border-slate-100">
-                                    <Suspense fallback={<div className="w-[140px] h-[140px]" />}>
+                                    <Suspense fallback={<div className="w-[130px] h-[130px]" />}>
                                         <QrCode value={getStoreUrl('coupang')} size={130} label={t('order.coupangQr')} />
                                         <QrCode value={getStoreUrl('naver')} size={130} label={t('order.naverQr')} />
                                     </Suspense>

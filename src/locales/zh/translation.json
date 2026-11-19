@@ -389,7 +389,13 @@
     "title": "帕博格尔 (PARVOGEL) 新生幼崽腹泻管理辅剂",
     "sub": "高纯度超细纳米蒙脱石配方",
     "buyBtn": "🚀 Coupang 火箭配送购买",
-    "consultBtn": "📦 大宗 / 直销订购咨询"
+    "consultBtn": "📦 大宗 / 直销订购咨询",
+    "navAria": "快速购买与咨询栏",
+    "kakaoShort": "Kakao",
+    "coupangShort": "Coupang",
+    "naverShort": "Naver",
+    "chatShort": "咨询",
+    "chatAria": "KakaoTalk 1对1咨询（新窗口）"
   },
   "animalSelector": {
     "tag": "🐾 全畜种新生幼崽定制解决方案",
@@ -587,5 +593,42 @@
     "docuCopied": "✅ 视频链接已复制！",
     "docuCopyBtnMobile": "🔗 复制分享链接",
     "docuDownload": "下载视频"
+  },
+  "stores": {
+    "sectionEyebrow": "Official Online Stores",
+    "sectionSub": "选择您常用的官方线上商城，快速购买正品 ParvoGel。",
+    "coupangSub": "次日达火箭配送",
+    "coupangCta": "Coupang 火箭配送",
+    "coupangAria": "前往 Coupang 购买页面（新窗口）",
+    "naverSub": "Naver Pay 便捷支付",
+    "naverCta": "Naver 官方旗舰店",
+    "naverAria": "前往 Naver 官方旗舰店（新窗口）",
+    "kakaoSub": "Kakao Pay 便捷支付",
+    "kakaoCta": "Kakao 购物",
+    "kakaoAria": "前往 Kakao 购物页面（新窗口）",
+    "officialTag": "官方",
+    "fastTag": "极速达",
+    "kakaoTag": "特惠",
+    "toss": "Toss 购物",
+    "gmarket": "Gmarket",
+    "auction": "Auction",
+    "elevenst": "11街",
+    "openNewWindow": "购买页面（新窗口）",
+    "moreMallsLink": "查看全部官方商城（Toss · Gmarket · Auction · 11街）"
+  },
+  "videoSection": {
+    "badge": "35秒了解 ParvoGel 黄金时间",
+    "titleLine1": "深夜突发腹泻、呕吐，",
+    "titleLine2": "1秒按压轻松守护爱宠",
+    "subtitle": "即使深夜宠物医院关门也能从容应对，守护爱宠肠道健康的居家常备凝胶辅助饲料。",
+    "point1": "无需针筒，一键1秒按压喂食，减少爱宠应激",
+    "point2": "高纯度蒙脱石凝胶温和保护肠黏膜并吸附有害物",
+    "point3": "犬猫全年龄居家常备，官方线上商城快速发货",
+    "videoAria": "ParvoGel 35秒黄金时间介绍视频",
+    "playAria": "播放35秒视频",
+    "playBtn": "播放35秒视频 ▶",
+    "transcriptToggle": "📝 查看视频文字字幕（无障碍支持）",
+    "transcriptTitle": "[35秒视频文字摘要]",
+    "transcriptBody": "深夜突发腹泻和呕吐、医院关门时，无需注射器，1秒按压即可轻松喂食的 ParvoGel。高纯度蒙脱石凝胶温和覆盖肠黏膜，助力稳定肠道环境，守护黄金护理时间。"
   }
 }

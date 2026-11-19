@@ -389,7 +389,13 @@
     "title": "PARVOGEL Neonatales Durchfallpflege-Ergänzungsmittel",
     "sub": "Hochreine Feinst-Nano-Montmorillonit-Formel",
     "buyBtn": "🚀 Kaufen auf Coupang Rocket",
-    "consultBtn": "📦 Großhandel / Direktbestellung Anfrage"
+    "consultBtn": "📦 Großhandel / Direktbestellung Anfrage",
+    "navAria": "Quick purchase and consultation bar",
+    "kakaoShort": "Kakao",
+    "coupangShort": "Coupang",
+    "naverShort": "Naver",
+    "chatShort": "Chat",
+    "chatAria": "1:1 KakaoTalk consultation (opens in new tab)"
   },
   "animalSelector": {
     "tag": "🐾 Maßgeschneiderte Lösung für alle Neugeborenen",
@@ -587,5 +593,42 @@
     "docuCopied": "✅ Video link copied!",
     "docuCopyBtnMobile": "🔗 Share Video Link",
     "docuDownload": "Download Video"
+  },
+  "stores": {
+    "sectionEyebrow": "Official Online Stores",
+    "sectionSub": "Choose your preferred official online store for fast delivery of authentic ParvoGel.",
+    "coupangSub": "Next-morning Rocket Delivery",
+    "coupangCta": "Coupang Rocket",
+    "coupangAria": "Buy on Coupang Rocket Delivery (opens in new tab)",
+    "naverSub": "Naver Pay & Rewards",
+    "naverCta": "Naver SmartStore",
+    "naverAria": "Buy on Naver SmartStore (opens in new tab)",
+    "kakaoSub": "Kakao Pay & Talk Deal",
+    "kakaoCta": "Kakao Shopping",
+    "kakaoAria": "Buy on Kakao Shopping (opens in new tab)",
+    "officialTag": "Official",
+    "fastTag": "Fast",
+    "kakaoTag": "Talk Deal",
+    "toss": "Toss Shopping",
+    "gmarket": "Gmarket",
+    "auction": "Auction",
+    "elevenst": "11st",
+    "openNewWindow": "store page (opens in new tab)",
+    "moreMallsLink": "View all official stores (Toss, Gmarket, Auction, 11st)"
+  },
+  "videoSection": {
+    "badge": "35-Second Golden Time Story",
+    "titleLine1": "Sudden midnight diarrhea or vomiting?",
+    "titleLine2": "Protect them with a 1-second pump",
+    "subtitle": "An easy home-care complementary gel feed to support your pet’s gut comfort even when clinics are closed.",
+    "point1": "No syringe needed — 1-second one-touch pump minimizes stress",
+    "point2": "High-purity montmorillonite gel coats intestinal mucosa and binds irritants",
+    "point3": "Home essential for dogs & cats of all ages with fast official online shipping",
+    "videoAria": "ParvoGel 35-second Golden Time introduction video",
+    "playAria": "Play 35-second video",
+    "playBtn": "Play 35s Video ▶",
+    "transcriptToggle": "📝 View Video Transcript (Accessibility)",
+    "transcriptTitle": "[35-Second Video Summary Transcript]",
+    "transcriptBody": "When sudden diarrhea or vomiting strikes late at night and veterinary clinics are closed, ParvoGel offers a stress-free 1-second one-touch pump gel. High-purity montmorillonite gel gently coats the intestinal lining to help stabilize gut health during the golden time."
   }
 }

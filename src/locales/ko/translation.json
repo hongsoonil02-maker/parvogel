@@ -450,7 +450,13 @@
     "title": "파보겔 (ParvoGel) — 우리 아이 1초 펌프 응급 장 케어",
     "sub": "체내 흡수 0% 고순도 나노 몬모릴로나이트 · 간식처럼 냠냠 먹는 겔",
     "buyBtn": "🚀 쿠팡 로켓배송 구매",
-    "consultBtn": "🎁 주문 · 펫샵/브리더 샘플"
+    "consultBtn": "🎁 주문 · 펫샵/브리더 샘플",
+    "navAria": "빠른 구매 및 상담 하단 메뉴",
+    "kakaoShort": "카카오쇼핑",
+    "coupangShort": "쿠팡",
+    "naverShort": "네이버",
+    "chatShort": "상담",
+    "chatAria": "카카오톡 1:1 맞춤 상담 (새 창)"
   },
   "store": {
     "comingSoon": "입점 예정"
@@ -685,5 +691,42 @@
     "quickClinical": "학술 임상 증거 데이터",
     "partnerCenter": "취급점·도매 파트너스 지원센터",
     "partnerBadge": "A4·보드판 무료"
+  },
+  "stores": {
+    "sectionEyebrow": "Official Online Stores",
+    "sectionSub": "자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.",
+    "coupangSub": "내일 아침 문 앞 도착",
+    "coupangCta": "쿠팡 로켓배송",
+    "coupangAria": "쿠팡 로켓배송 구매 페이지로 이동 (새 창)",
+    "naverSub": "네이버페이 간편결제·적립",
+    "naverCta": "네이버 스마트스토어",
+    "naverAria": "네이버 스마트스토어 구매 페이지로 이동 (새 창)",
+    "kakaoSub": "카카오페이 간편결제·톡딜",
+    "kakaoCta": "카카오 쇼핑하기",
+    "kakaoAria": "카카오 쇼핑하기 구매 페이지로 이동 (새 창)",
+    "officialTag": "공식몰",
+    "fastTag": "빠른배송",
+    "kakaoTag": "톡딜",
+    "toss": "토스쇼핑",
+    "gmarket": "G마켓",
+    "auction": "옥션",
+    "elevenst": "11번가",
+    "openNewWindow": "구매 페이지로 이동 (새 창)",
+    "moreMallsLink": "토스 · G마켓 · 옥션 · 11번가 공식몰 전체보기"
+  },
+  "videoSection": {
+    "badge": "35초로 보는 파보겔 기적의 골든타임",
+    "titleLine1": "한밤중 갑작스러운 설사·구토,",
+    "titleLine2": "기적의 1초 펌프로 지켜주세요",
+    "subtitle": "병원 문이 닫힌 새벽에도 당황하지 않도록, 우리 아이 장 건강을 지키는 가장 간편한 홈케어 상비 보조사료입니다.",
+    "point1": "주사기 없이 원터치 1초 펌프 급여로 스트레스 최소화",
+    "point2": "고순도 몬모릴로나이트 겔이 장 점막 코팅 및 유해물질 흡착",
+    "point3": "강아지·고양이 전 연령 가정 상비 필수템, 온라인 공식몰 빠른 배송",
+    "videoAria": "파보겔 기적의 골든타임 35초 소개 영상",
+    "playAria": "35초 영상 재생하기",
+    "playBtn": "35초 영상 재생 ▶",
+    "transcriptToggle": "📝 영상 내용 텍스트 자막 보기 (접근성 지원)",
+    "transcriptTitle": "[35초 영상 요약 대본]",
+    "transcriptBody": "한밤중 갑자기 시작된 설사와 구토, 동물병원 문이 닫힌 급박한 상황에서 주사기 없이 1초 원터치 펌프로 간편하게 급여하는 파보겔. 고순도 몬모릴로나이트 겔이 장 점막을 부드럽게 감싸고 장내 환경 안정을 도와 골든타임을 지켜줍니다."
   }
 }

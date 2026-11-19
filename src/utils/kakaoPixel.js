@@ -22,7 +22,16 @@ export function trackKakaoViewContent(contentId = 'parvogel_golden_time') {
     const px = getPixel();
     if (!px) return;
     try {
-        px.viewContent({ id: contentId });
+        px.viewContent({
+            products: [
+                {
+                    id: contentId,
+                    name: '파보겔 (ParvoGel)',
+                    quantity: '1',
+                    price: '18000',
+                },
+            ],
+        });
     } catch {
         /* ignore */
     }
@@ -32,9 +41,15 @@ export function trackKakaoMallClick(mallKey) {
     const px = getPixel();
     if (!px) return;
     const tag = `mall_${mallKey}`;
+    const product = { id: tag, name: `파보겔 (${mallKey})`, quantity: '1', price: '18000' };
     try {
         if (typeof px.addToCart === 'function') {
-            px.addToCart({ id: tag });
+            px.addToCart({
+                total_quantity: '1',
+                total_price: '18000',
+                currency: 'KRW',
+                products: [product],
+            });
         }
         if (typeof px.participation === 'function') {
             px.participation(tag);
@@ -44,7 +59,7 @@ export function trackKakaoMallClick(mallKey) {
                 total_quantity: '1',
                 total_price: '18000',
                 currency: 'KRW',
-                products: [{ id: tag, name: `파보겔 (${mallKey})`, quantity: '1', price: '18000' }],
+                products: [product],
             });
         }
     } catch {
