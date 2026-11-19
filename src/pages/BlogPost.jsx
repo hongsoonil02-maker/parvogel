@@ -70,7 +70,9 @@ export default function BlogPost() {
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
               title="YouTube Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
               allowFullScreen
               className="w-full h-full border-0"
             />

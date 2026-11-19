@@ -82,7 +82,9 @@ export default function GomiPoopStory() {
               <iframe
                 src="https://www.youtube-nocookie.com/embed/2vGdq9EbDwA?rel=0"
                 title="홍대표 제작 - 앵무새 꼬미 파보겔 24시간 임상실화 유튜브 숏츠"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; compute-pressure"
                 allowFullScreen
                 className="w-full h-full border-0"
               />
