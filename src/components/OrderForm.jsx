@@ -99,14 +99,25 @@ const OrderForm = ({
                         </span>
                     </div>
                     <p className="text-xs text-slate-600 mb-3 leading-relaxed break-keep">
-                        {t('order.fastTrackDesc', '무통장 입금 주문 외에, 쿠팡 로켓배송 및 네이버 스마트스토어(네이버페이)에서 즉시 간편 구매가 가능합니다.')}
+                        {t('order.fastTrackDesc', '무통장 입금 주문 외에, 카카오 쇼핑하기(카카오페이), 쿠팡 로켓배송, 네이버 스마트스토어에서 즉시 간편 구매가 가능합니다.')}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <a
+                            href={getStoreUrl('kakaoStore')}
+                            target="_blank"
+                            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
+                            aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                            className="min-h-[44px] py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1"
+                        >
+                            <span>💬 {t('order.kakaoBtn', '카카오 쇼핑하기 (톡딜)')}</span>
+                            <span aria-hidden="true">➔</span>
+                        </a>
                         <a
                             href={getStoreUrl('coupang')}
                             target="_blank"
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                            className="py-2.5 px-3 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5"
+                            aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                            className="min-h-[44px] py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
                         >
                             <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송')}</span>
                             <span aria-hidden="true">➔</span>
@@ -115,18 +126,10 @@ const OrderForm = ({
                             href={getStoreUrl('naver')}
                             target="_blank"
                             rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                            className="py-2.5 px-3 rounded-xl bg-primary-900 hover:bg-primary-950 text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-primary-700/50"
+                            aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                            className="min-h-[44px] py-2.5 px-3 rounded-xl bg-[#028A3D] hover:bg-[#027734] text-white font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
                         >
                             <span>🛍️ {t('order.smartstoreBtn', '네이버 펫츄리')}</span>
-                            <span aria-hidden="true">➔</span>
-                        </a>
-                        <a
-                            href={getStoreUrl('kakaoStore')}
-                            target="_blank"
-                            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
-                            className="py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs text-center transition-all shadow flex items-center justify-center gap-1.5 border border-amber-300"
-                        >
-                            <span>💬 카카오 쇼핑하기 (톡딜)</span>
                             <span aria-hidden="true">➔</span>
                         </a>
                     </div>

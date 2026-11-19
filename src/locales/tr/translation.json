@@ -348,9 +348,11 @@
     "requiredFieldsAlert": "Hastane adı, yetkili adı ve telefon numarası zorunlu alanlardır.",
     "fastTrackTitle": "Fast Next-Day Delivery & Easy Card Payment",
     "fastTrackBadge": "Official Direct Mall Dispatch",
-    "fastTrackDesc": "In addition to wire transfer order, you can purchase immediately via Coupang Rocket Delivery and Naver SmartStore.",
+    "fastTrackDesc": "Besides bank transfer, you can order immediately via Kakao Shopping, Coupang Rocket Delivery, or Naver SmartStore.",
     "coupangBtn": "Coupang Rocket Delivery",
-    "smartstoreBtn": "Naver SmartStore (Naver Pay)"
+    "smartstoreBtn": "Naver SmartStore (Naver Pay)",
+    "kakaoBtn": "Kakao Shopping (Talk Deal)",
+    "kakaoQr": "Order on Kakao Shopping"
   },
   "footer": {
     "desc": "Tüm hayvanların neonatal ishal bakımında yeni standart. Ultra ince montmorillonit ile hayatta kalmayı koruyun.",
@@ -373,7 +375,8 @@
     "terms": "Hizmet şartları",
     "business": "Şirket bilgisi",
     "coupang": "Coupang",
-    "naver": "Naver Shopping"
+    "naver": "Naver Shopping",
+    "kakao": "Kakao Shopping"
   },
   "chat": {
     "title": "AI Veteriner Danışmanlığı",
@@ -614,7 +617,9 @@
     "auction": "Auction",
     "elevenst": "11st",
     "openNewWindow": "store page (opens in new tab)",
-    "moreMallsLink": "View all official stores (Toss, Gmarket, Auction, 11st)"
+    "moreMallsLink": "View all official stores (Toss, Gmarket, Auction, 11st)",
+    "headerBuyCta": "Buy Official",
+    "headerBuyBadge": "Kakao·Coupang·Naver"
   },
   "videoSection": {
     "badge": "35-Second Golden Time Story",

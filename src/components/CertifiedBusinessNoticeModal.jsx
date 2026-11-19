@@ -51,31 +51,38 @@ const CertifiedBusinessNoticeModal = ({
                                     소중한 반려견의 급성 장염·설사 빠른 회복이 필요하신가요?
                                 </p>
                                 <p className="text-slate-700">
-                                    1~2병 단위의 즉시 수유 및 가정용 상비 구매는 <strong>쿠팡 로켓배송</strong> 및 <strong>네이버 스마트스토어 공식몰</strong>을 통해 가장 빠르고 안전하게 당일 출고로 받아보실 수 있습니다.
+                                    1~2병 단위의 즉시 가정용 상비 구매는 <strong>카카오 쇼핑하기</strong>, <strong>쿠팡 로켓배송</strong> 및 <strong>네이버 스마트스토어 공식몰</strong>을 통해 가장 빠르고 안전하게 당일 출고로 받아보실 수 있습니다.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 mt-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
+                            <a
+                                href={getStoreUrl('kakaoStore')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="min-h-[44px] py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1"
+                            >
+                                <span>💬 카카오 쇼핑</span>
+                            </a>
                             <a
                                 href={getStoreUrl('coupang')}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                className="py-3 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1.5"
+                                className="min-h-[44px] py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1"
                             >
-                                <span>🚀 쿠팡 로켓배송</span>
-                                <span className="text-[10px] opacity-80">(내일 도착)</span>
+                                <span>🚀 쿠팡 로켓</span>
                             </a>
                             <a
                                 href={getStoreUrl('naver')}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                className="py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1.5"
+                                className="min-h-[44px] py-2.5 px-3 rounded-xl bg-[#028A3D] hover:bg-[#027734] text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1"
                             >
-                                <span>🟢 네이버 공식몰</span>
-                                <span className="text-[10px] opacity-80">(포인트 적립)</span>
+                                <span>🛍️ 네이버 공식몰</span>
                             </a>
                         </div>
                     </div>

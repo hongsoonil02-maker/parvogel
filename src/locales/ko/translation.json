@@ -371,9 +371,11 @@
     "timeoutError": "주문 처리 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.",
     "fastTrackTitle": "빠른 익일 수령 & 간편 카드결제를 원하시는 보호자님",
     "fastTrackBadge": "공식 직영몰 당일 출고",
-    "fastTrackDesc": "무통장 입금 주문 외에, 쿠팡 로켓배송 및 네이버 스마트스토어(네이버페이)에서 즉시 간편 구매가 가능합니다.",
+    "fastTrackDesc": "무통장 입금 주문 외에, 카카오 쇼핑하기(카카오페이), 쿠팡 로켓배송, 네이버 스마트스토어에서 즉시 간편 구매가 가능합니다.",
     "coupangBtn": "쿠팡 로켓배송 (내일 아침 도착)",
-    "smartstoreBtn": "네이버 펫츄리 (네이버페이 구매)"
+    "smartstoreBtn": "네이버 펫츄리 (네이버페이 구매)",
+    "kakaoBtn": "카카오 쇼핑하기 (톡딜)",
+    "kakaoQr": "카카오 쇼핑하기 주문"
   },
   "footer": {
     "desc": "우리 아이 갑작스런 구토·설사 골든타임을 지키는 1초 펌프 장 케어 상비약, 파보겔(ParvoGel). 체내 흡수 0% 고순도 나노 몬모릴로나이트로 여린 장을 안전하게 보호합니다.",
@@ -397,7 +399,8 @@
     "business": "사업자정보확인",
     "coupang": "쿠팡",
     "naver": "네이버쇼핑",
-    "qrOrderGuide": "스마트폰 카메라로 즉시 주문"
+    "qrOrderGuide": "스마트폰 카메라로 즉시 주문",
+    "kakao": "카카오 쇼핑"
   },
   "chat": {
     "openButton": "AI 맞춤 상담 챗봇 열기",
@@ -712,7 +715,9 @@
     "auction": "옥션",
     "elevenst": "11번가",
     "openNewWindow": "구매 페이지로 이동 (새 창)",
-    "moreMallsLink": "토스 · G마켓 · 옥션 · 11번가 공식몰 전체보기"
+    "moreMallsLink": "토스 · G마켓 · 옥션 · 11번가 공식몰 전체보기",
+    "headerBuyCta": "공식몰 즉시구매",
+    "headerBuyBadge": "카카오·쿠팡·네이버"
   },
   "videoSection": {
     "badge": "35초로 보는 파보겔 기적의 골든타임",

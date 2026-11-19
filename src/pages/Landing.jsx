@@ -751,40 +751,44 @@ const Landing = () => {
                                 <span>카톡 1:1 상담</span>
                             </a>
 
-                            {/* 상비약 즉시구매 메인 버튼 (파보겔 딥 네이비 시그니처) */}
+                            {/* 공식몰 즉시구매 메인 버튼 (카카오 쇼핑하기 최우선 연계) */}
                             <a
-                                href={getStoreUrl('coupang')}
+                                href={getStoreUrl('kakaoStore')}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-primary-900 hover:bg-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-700"
                             >
-                                <span className="text-base">🛒</span>
-                                <span>상비약 즉시구매</span>
-                                <span className="text-xs bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full font-black">쿠팡·네이버</span>
+                                <span className="text-base" aria-hidden="true">🛒</span>
+                                <span>{t('stores.headerBuyCta', '공식몰 즉시구매')}</span>
+                                <span className="text-xs bg-[#FEE500] text-[#191919] px-2 py-0.5 rounded-full font-black">{t('stores.headerBuyBadge', '카카오·쿠팡·네이버')}</span>
                             </a>
                         </div>
 
-                        {/* Mobile Header Right: Kakao + Order & Sample Button + Menu Hamburger */}
+                        {/* Mobile Header Right: Kakao Shopping + Chat + Menu Hamburger */}
                         <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
+                            <a
+                                href={getStoreUrl('kakaoStore')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-[#FEE500] text-[#191919] shadow-sm active:scale-95 transition-all border border-amber-300 shrink-0 whitespace-nowrap"
+                            >
+                                <span aria-hidden="true">🛒</span>
+                                <span>{t('stickyCta.kakaoShort', '카카오쇼핑')}</span>
+                            </a>
+
                             <a
                                 href="https://pf.kakao.com/_rqxnJX/chat"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-[#FEE500] text-[#191919] shadow-sm active:scale-95 transition-all border border-amber-300 shrink-0"
-                                aria-label="카톡 상담"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-black bg-primary-900 text-white shadow-md active:scale-95 transition-all border border-primary-700 shrink-0 whitespace-nowrap"
+                                aria-label={t('stickyCta.chatAria', '카카오톡 1:1 맞춤 상담 (새 창)')}
                             >
-                                <span>💬</span>
-                                <span>카톡</span>
-                            </a>
-
-                            <a
-                                href={getStoreUrl('coupang')}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-primary-900 text-white shadow-md active:scale-95 transition-all border border-primary-700 shrink-0 whitespace-nowrap"
-                            >
-                                <span>🛒</span>
-                                <span>즉시구매</span>
+                                <span aria-hidden="true">💬</span>
+                                <span>{t('stickyCta.chatShort', '상담')}</span>
                             </a>
 
                             <button
@@ -808,20 +812,38 @@ const Landing = () => {
                     {isMobileMenuOpen && (
                         <div className="md:hidden py-4 border-t border-gray-100 animate-slide-down bg-white/95 backdrop-blur-md rounded-b-2xl px-2 shadow-xl">
                             <div className="flex flex-col gap-2">
-                                {/* 모바일 드롭다운 메뉴 최상단 공식 스토어 구매 직결 CTA */}
+                                {/* 모바일 드롭다운 메뉴 최상단: 카카오 쇼핑하기 최우선 */}
+                                <a
+                                    href={getStoreUrl('kakaoStore')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="w-full min-h-[44px] text-start px-4 py-3 rounded-xl text-sm font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] flex items-center justify-between shadow-md active:scale-98 transition-all border border-amber-300"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="text-base" aria-hidden="true">💬</span>
+                                        <span>{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
+                                    </span>
+                                    <span className="text-[11px] text-[#191919] bg-white/70 px-2.5 py-0.5 rounded-full font-black">
+                                        {t('stores.kakaoTag', '톡딜')}
+                                    </span>
+                                </a>
+
                                 <a
                                     href={getStoreUrl('naver')}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-black bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 text-white flex items-center justify-between shadow-md active:scale-98 transition-all border border-emerald-400/40"
+                                    className="w-full min-h-[44px] text-start px-4 py-3 rounded-xl text-sm font-black bg-[#028A3D] hover:bg-[#027734] text-white flex items-center justify-between shadow-md active:scale-98 transition-all"
                                 >
                                     <span className="flex items-center gap-2">
-                                        <span className="text-base">🛍️</span>
-                                        <span>네이버 스마트스토어 공식 구매</span>
+                                        <span className="text-base" aria-hidden="true">🛍️</span>
+                                        <span>{t('stores.naverCta', '네이버 스마트스토어')}</span>
                                     </span>
                                     <span className="text-[11px] text-emerald-100 bg-white/20 px-2.5 py-0.5 rounded-full font-bold">
-                                        NPay 적립
+                                        NPay
                                     </span>
                                 </a>
 
@@ -1660,8 +1682,9 @@ const Landing = () => {
                                     ))}
                                 </div>
 
-                                <div className="flex flex-wrap items-center justify-center gap-8 pt-4 border-t border-slate-100">
+                                <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-4 border-t border-slate-100">
                                     <Suspense fallback={<div className="w-[130px] h-[130px]" />}>
+                                        <QrCode value={getStoreUrl('kakaoStore')} size={130} label={t('order.kakaoQr', '카카오 쇼핑하기 주문')} />
                                         <QrCode value={getStoreUrl('coupang')} size={130} label={t('order.coupangQr')} />
                                         <QrCode value={getStoreUrl('naver')} size={130} label={t('order.naverQr')} />
                                     </Suspense>
@@ -1747,8 +1770,9 @@ const Landing = () => {
                                 <span className="text-xs font-bold text-slate-500 mb-3 text-center md:text-left block w-full">
                                     {t('footer.qrOrderGuide', '스마트폰 카메라로 즉시 주문')}
                                 </span>
-                                <div className="flex justify-center md:justify-start gap-6 items-center w-full">
+                                <div className="flex flex-wrap justify-center md:justify-start gap-5 items-center w-full">
                                     <Suspense fallback={<div className="w-[100px] h-[100px]" />}>
+                                        <QrCode value={getStoreUrl('kakaoStore')} size={100} label={t('footer.kakao', '카카오 쇼핑')} />
                                         <QrCode value={getStoreUrl('coupang')} size={100} label={t('footer.coupang')} />
                                         <QrCode value={getStoreUrl('naver')} size={100} label={t('footer.naver')} />
                                     </Suspense>
