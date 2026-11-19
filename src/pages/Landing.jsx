@@ -1560,6 +1560,9 @@ const Landing = () => {
                                 <a href={getStoreUrl('gmarket')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm transition-colors">
                                     <span className="font-extrabold text-sm tracking-tight">G마켓</span>
                                 </a>
+                                <a href={getStoreUrl('auction')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl shadow-sm transition-colors">
+                                    <span className="font-extrabold text-sm tracking-tight">옥션</span>
+                                </a>
                                 <a href={getStoreUrl('elevenst')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl shadow-sm transition-colors">
                                     <span className="font-extrabold text-sm tracking-tight">11번가</span>
                                 </a>

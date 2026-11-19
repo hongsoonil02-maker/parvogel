@@ -93,6 +93,7 @@ const MALL_MATCHERS = [
     { match: 'smartstore.naver.com', key: 'smartstore' },
     { match: 'store.kakao.com', key: 'kakao_store' },
     { match: 'gmarket.co.kr', key: 'gmarket' },
+    { match: 'auction.co.kr', key: 'auction' },
     { match: '11st.co.kr', key: '11st' },
     { match: 'toss.shopping', key: 'toss' },
 ];

@@ -55,6 +55,7 @@ OFFICIAL_LINKS = {
     "smartstore": "https://smartstore.naver.com/petschury/products/13718496355",
     "coupang": "https://www.coupang.com/vp/products/9690739565?itemId=28983118193&vendorItemId=95912261090",
     "gmarket": "https://item.gmarket.co.kr/Item?goodscode=4876751217",
+    "auction": "https://itempage3.auction.co.kr/DetailView.aspx?itemno=F684977056",
     "elevenst": "https://m.11st.co.kr/products/ma/9715355848",
     "kakao_store": "https://store.kakao.com/agrowellness/products/800840808",
     "toss": "https://toss.shopping/t/2713390059",
@@ -152,7 +153,8 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             f"▶ 공식 홈페이지 ((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
-            f"▶ G마켓/옥션 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"▶ G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"▶ 옥션 공식: {OFFICIAL_LINKS['auction']}\n"
             f"▶ 11번가 슈팅배송: {OFFICIAL_LINKS['elevenst']}\n"
             f"▶ 카카오 쇼핑하기: {OFFICIAL_LINKS['kakao_store']}\n"
             f"▶ 토스쇼핑: {OFFICIAL_LINKS['toss']}\n"
@@ -167,7 +169,7 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             "새벽에 갑자기 아이가 토하거나 물설사를 할 때 가장 중요한 건\n"
             "장 운동을 억지로 멈추지 않고 장 점막을 안전하게 보호하는 1차 골든타임 대처입니다.\n\n"
             f"📌 응급 대처 가이드 & 장 점막 케어 상세 안내: {OFFICIAL_LINKS['landing']}\n"
-            "🛒 스마트스토어 · 쿠팡 · G마켓 · 11번가 · 카카오 · 토스쇼핑에서 '파보겔' 검색\n"
+            "🛒 스마트스토어 · 쿠팡 · G마켓 · 옥션 · 11번가 · 카카오 · 토스쇼핑에서 '파보겔' 검색\n"
             "문의: 02-6949-5708 | (주)한국아그로\n\n"
             "#강아지 #푸들 #강아지설사 #강아지구토 #강아지응급처치 #반려견일상 #댕댕이 #펫케어"
         ),
@@ -179,6 +181,7 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 공식: {OFFICIAL_LINKS['coupang']}\n"
             f"▶ G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"▶ 옥션 공식: {OFFICIAL_LINKS['auction']}\n"
             f"▶ 11번가 공식: {OFFICIAL_LINKS['elevenst']}\n"
             f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"▶ 토스쇼핑 공식: {OFFICIAL_LINKS['toss']}\n"
@@ -192,11 +195,12 @@ def default_golden_time_campaign() -> Dict[str, Any]:
             "장 운동을 억지로 멈추는 방식이 아니라, 체내 흡수 0%의 고순도 초미세 나노 **몬모릴로나이트**가 손상된 장 점막 융모를 감싸 보호하고 바이러스·세균 독소만 선택적으로 흡착해 몸 밖으로 배출합니다.\n\n"
             "## 02. 주사기 실랑이 없는 1초 펌핑 & 30분 만의 빠른 안정\n\n"
             "아파서 예민해진 아이에게 강제로 주사기를 들이댈 필요 없이, 기호성 좋은 부드러운 겔 제형을 입가에 1초 톡 짜주면 아이 스스로 꿀꺽 삼킵니다.\n\n"
-            "## 03. (주)한국아그로 파보겔 공식 홈페이지 및 6대 쇼핑몰 안내\n\n"
+            "## 03. (주)한국아그로 파보겔 공식 홈페이지 및 8개 공식 온라인 쇼핑몰 안내\n\n"
             f"- 공식 홈페이지: {OFFICIAL_LINKS['landing']}\n"
             f"- 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"- 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
             f"- G마켓 공식스토어: {OFFICIAL_LINKS['gmarket']}\n"
+            f"- 옥션 공식스토어: {OFFICIAL_LINKS['auction']}\n"
             f"- 11번가 공식스토어: {OFFICIAL_LINKS['elevenst']}\n"
             f"- 카카오 쇼핑하기 (톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"- 토스쇼핑 공식스토어: {OFFICIAL_LINKS['toss']}\n"
@@ -417,6 +421,7 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
             f"• **스마트스토어**: {OFFICIAL_LINKS['smartstore']}\n"
             f"• **쿠팡 로켓배송**: {OFFICIAL_LINKS['coupang']}\n"
             f"• **G마켓 공식**: {OFFICIAL_LINKS['gmarket']}\n"
+            f"• **옥션 공식**: {OFFICIAL_LINKS['auction']}\n"
             f"• **11번가 공식**: {OFFICIAL_LINKS['elevenst']}\n"
             f"• **카카오 쇼핑하기**: {OFFICIAL_LINKS['kakao_store']}\n"
             f"• **토스쇼핑**: {OFFICIAL_LINKS['toss']}"
@@ -446,6 +451,7 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
             f"🟢 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"🚀 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
             f"🟡 G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
+            f"🟠 옥션 공식: {OFFICIAL_LINKS['auction']}\n"
             f"🔴 11번가 공식: {OFFICIAL_LINKS['elevenst']}\n"
             f"💬 카카오 쇼핑하기: {OFFICIAL_LINKS['kakao_store']}\n"
             f"🔵 토스쇼핑: {OFFICIAL_LINKS['toss']}\n"

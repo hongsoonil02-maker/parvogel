@@ -13,6 +13,10 @@ export const STORE_LINKS = {
         productUrl: 'https://item.gmarket.co.kr/Item?goodscode=4876751217',
         fallbackUrl: 'https://www.gmarket.co.kr',
     },
+    auction: {
+        productUrl: 'https://itempage3.auction.co.kr/DetailView.aspx?itemno=F684977056',
+        fallbackUrl: 'https://www.auction.co.kr',
+    },
     elevenst: {
         productUrl: 'https://m.11st.co.kr/products/ma/9715355848',
         fallbackUrl: 'https://www.11st.co.kr',
