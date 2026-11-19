@@ -1068,8 +1068,8 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* 📹 하남 사랑동물병원 김동준 원장 55일령 파보 아기 푸들 7일 완치 직캠 다큐멘터리 (상세페이지 최상단 전면 배치) */}
-            <Suspense fallback={<div className="py-12 text-center text-slate-400">직캠 다큐멘터리 로딩 중...</div>}>
+            {/* 🎬 파보겔 기적의 골든타임 35초 핵심 스토리 영상 */}
+            <Suspense fallback={<div className="py-12 text-center text-slate-400">영상 로딩 중...</div>}>
                 <ParvogelClinicalDocumentary />
             </Suspense>
 
