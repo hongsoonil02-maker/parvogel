@@ -25,36 +25,48 @@ export default function StickyBottomCTA({ onOpenOrder }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 w-full md:w-auto">
+        <div className="grid grid-cols-4 md:flex items-center gap-1.5 sm:gap-2 w-full md:w-auto">
           <a
-            href="https://pf.kakao.com/_rqxnJX/chat"
+            href={getStoreUrl('kakaoStore')}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="카카오톡 1:1 맞춤 상담"
-            className="flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs sm:text-sm rounded-xl shadow-xs border border-amber-300 transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            referrerPolicy="no-referrer-when-downgrade"
+            aria-label="카카오 쇼핑하기 구매"
+            className="md:flex-initial px-2 sm:px-4 py-2.5 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs sm:text-sm rounded-xl shadow-xs border border-amber-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-amber-400"
           >
-            <span>💬 카톡 상담</span>
+            <span>🟡 카카오쇼핑</span>
           </a>
 
           <a
             href={getStoreUrl('coupang')}
             target="_blank"
-            rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade"
+            rel="noopener noreferrer"
+            referrerPolicy="no-referrer-when-downgrade"
             aria-label={t('stickyCta.buyBtn', '쿠팡 로켓배송 구매')}
-            className="relative flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400"
+            className="relative md:flex-initial px-2 sm:px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-slate-400"
           >
-            <span>🚀 쿠팡 구매</span>
+            <span>🚀 쿠팡</span>
           </a>
-          
+
           <a
             href={getStoreUrl('naver')}
             target="_blank"
             rel="noopener noreferrer"
             referrerPolicy="no-referrer-when-downgrade"
             aria-label="네이버 스마트스토어 구매"
-            className="flex-1 md:flex-initial px-3 sm:px-4 py-2.5 bg-[#03C75A] hover:bg-[#02b350] text-white font-black text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            className="md:flex-initial px-2 sm:px-4 py-2.5 bg-[#03C75A] hover:bg-[#02b350] text-white font-black text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-emerald-400"
           >
-            <span>🛍️ 네이버 구매</span>
+            <span>🛍️ 네이버</span>
+          </a>
+
+          <a
+            href="https://pf.kakao.com/_rqxnJX/chat"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="카카오톡 1:1 맞춤 상담"
+            className="md:flex-initial px-2 sm:px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm rounded-xl border border-slate-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-slate-400"
+          >
+            <span>💬 상담</span>
           </a>
         </div>
       </div>

@@ -36,6 +36,26 @@ const Landing = () => {
             trackKakaoViewContent('parvogel_order_modal')
         }
     }, [isOrderModalOpen])
+    // Fire Kakao Pixel viewContent once for engaged visitors (>=5s stay or >=300px scroll)
+    useEffect(() => {
+        let fired = false
+        const fireOnce = (reason) => {
+            if (fired) return
+            fired = true
+            trackKakaoViewContent(reason)
+            window.removeEventListener('scroll', onScroll)
+            clearTimeout(timer)
+        }
+        const onScroll = () => {
+            if (window.scrollY >= 300) fireOnce('parvogel_scroll_view')
+        }
+        const timer = setTimeout(() => fireOnce('parvogel_5s_view'), 5000)
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => {
+            window.removeEventListener('scroll', onScroll)
+            clearTimeout(timer)
+        }
+    }, [])
     const [isOrderComplete, setIsOrderComplete] = useState(false)
     const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
     const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
