@@ -121,23 +121,34 @@ export default function ParvogelClinicalDocumentary() {
               </li>
             </ul>
 
-            <div className="pt-1 flex flex-col sm:flex-row gap-2.5 justify-center md:justify-start">
-              <a
-                href={getStoreUrl('naver')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 rounded-2xl bg-[#03C75A] hover:bg-[#02b351] text-white font-extrabold text-sm shadow-md transition-all text-center"
-              >
-                네이버 스마트스토어 구매하기
-              </a>
-              <a
-                href={getStoreUrl('coupang')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md transition-all text-center"
-              >
-                쿠팡 로켓배송으로 보기
-              </a>
+            <div className="pt-1 space-y-2.5">
+              <div className="flex flex-col sm:flex-row gap-2.5 justify-center md:justify-start">
+                <a
+                  href={getStoreUrl('naver')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-2xl bg-[#03C75A] hover:bg-[#02b351] text-white font-extrabold text-sm shadow-md transition-all text-center"
+                >
+                  네이버 스마트스토어 구매하기
+                </a>
+                <a
+                  href={getStoreUrl('coupang')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md transition-all text-center"
+                >
+                  쿠팡 로켓배송으로 보기
+                </a>
+              </div>
+              <div className="text-center md:text-left">
+                <a
+                  href="#official-stores"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-primary-700 transition-colors"
+                >
+                  <span>카카오 · 토스 · G마켓 · 옥션 · 11번가 공식몰 전체보기</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

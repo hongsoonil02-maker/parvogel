@@ -1541,41 +1541,78 @@ const Landing = () => {
                             />
                         </div>
 
-                        {/* Online Store Links */}
-                        <div className="mt-6 sm:mt-8 text-center">
-                            <p className="text-gray-600 mb-3">{t('order.online')}</p>
-                            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-                                <a href={getStoreUrl('coupang')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors shadow-sm">
-                                    <span className="text-xl">🚀</span>
-                                    <span className="font-extrabold text-sm tracking-tight">{t('order.coupang')}</span>
-                                </a>
-                                <a href={getStoreUrl('naver')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-primary-900 hover:bg-primary-950 text-white rounded-xl border border-primary-700/50 shadow-md transition-colors">
-                                    <span className="text-xl">🛍️</span>
-                                    <span className="font-extrabold text-sm tracking-tight">{t('order.naver')}</span>
-                                </a>
-                                <a href={getStoreUrl('kakaoStore')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-5 py-3 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] rounded-xl border border-amber-300 shadow-sm transition-colors">
-                                    <span className="text-xl">💬</span>
-                                    <span className="font-extrabold text-sm tracking-tight">카카오 쇼핑하기 (톡딜)</span>
-                                </a>
-                                <a href={getStoreUrl('gmarket')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm transition-colors">
-                                    <span className="font-extrabold text-sm tracking-tight">G마켓</span>
-                                </a>
-                                <a href={getStoreUrl('auction')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl shadow-sm transition-colors">
-                                    <span className="font-extrabold text-sm tracking-tight">옥션</span>
-                                </a>
-                                <a href={getStoreUrl('elevenst')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl shadow-sm transition-colors">
-                                    <span className="font-extrabold text-sm tracking-tight">11번가</span>
-                                </a>
-                                <a href={getStoreUrl('toss')} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer-when-downgrade" className="relative flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm transition-colors">
-                                    <span className="font-extrabold text-sm tracking-tight">토스쇼핑</span>
-                                </a>
-                            </div>
-                            <div className="flex flex-wrap items-center justify-center gap-8">
-                                <Suspense fallback={<div className="w-[140px] h-[140px]" />}>
-                                    {/* 입점 후 STORE_LINKS.productUrl을 등록하면 해당 URL QR로 자동 전환됩니다. */}
-                                    <QrCode value={getStoreUrl('coupang')} size={140} label={t('order.coupangQr')} />
-                                    <QrCode value={getStoreUrl('naver')} size={140} label={t('order.naverQr')} />
-                                </Suspense>
+                        {/* Online Store Links — 공식 입점 쇼핑몰 통합 안내 */}
+                        <div id="official-stores" className="mt-8 sm:mt-10 scroll-mt-24">
+                            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-5 sm:p-7 text-center">
+                                <p className="text-xs font-extrabold text-primary-700 uppercase tracking-wider mb-1">
+                                    Official Online Stores
+                                </p>
+                                <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-1.5 break-keep">
+                                    {t('order.online', '공식 입점 온라인 쇼핑몰에서 바로 구매하세요')}
+                                </h3>
+                                <p className="text-xs sm:text-sm text-slate-500 mb-5 break-keep">
+                                    자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.
+                                </p>
+
+                                {/* 1단: 대표 공식몰 2곳 (네이버 · 쿠팡) */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto mb-3">
+                                    <a
+                                        href={getStoreUrl('naver')}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        className="flex items-center justify-between px-5 py-3.5 rounded-2xl bg-[#03C75A] hover:bg-[#02b351] text-white transition-all shadow-sm"
+                                    >
+                                        <span className="flex items-center gap-2.5">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-white" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-base">{t('order.naver', '네이버 스마트스토어')}</span>
+                                        </span>
+                                        <span className="text-xs font-bold opacity-90">공식몰 ➔</span>
+                                    </a>
+                                    <a
+                                        href={getStoreUrl('coupang')}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        className="flex items-center justify-between px-5 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm"
+                                    >
+                                        <span className="flex items-center gap-2.5">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-orange-400" aria-hidden="true" />
+                                            <span className="font-extrabold text-sm sm:text-base">{t('order.coupang', '쿠팡 로켓배송')}</span>
+                                        </span>
+                                        <span className="text-xs font-bold opacity-90">빠른배송 ➔</span>
+                                    </a>
+                                </div>
+
+                                {/* 2단: 입점 오픈마켓 5곳 (통일된 심플 화이트 카드) */}
+                                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 max-w-3xl mx-auto mb-6">
+                                    {[
+                                        { key: 'kakaoStore', name: '카카오 쇼핑', dot: 'bg-[#FEE500] ring-1 ring-amber-400' },
+                                        { key: 'toss', name: '토스쇼핑', dot: 'bg-blue-500' },
+                                        { key: 'gmarket', name: 'G마켓', dot: 'bg-emerald-500' },
+                                        { key: 'auction', name: '옥션', dot: 'bg-red-500' },
+                                        { key: 'elevenst', name: '11번가', dot: 'bg-rose-500' },
+                                    ].map((mall) => (
+                                        <a
+                                            key={mall.key}
+                                            href={getStoreUrl(mall.key)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-primary-50 border border-slate-200/90 hover:border-primary-300 text-slate-800 hover:text-primary-900 transition-all"
+                                        >
+                                            <span className={`w-2 h-2 rounded-full shrink-0 ${mall.dot}`} aria-hidden="true" />
+                                            <span className="font-bold text-xs sm:text-sm tracking-tight">{mall.name}</span>
+                                        </a>
+                                    ))}
+                                </div>
+
+                                <div className="flex flex-wrap items-center justify-center gap-8 pt-4 border-t border-slate-100">
+                                    <Suspense fallback={<div className="w-[140px] h-[140px]" />}>
+                                        <QrCode value={getStoreUrl('coupang')} size={130} label={t('order.coupangQr')} />
+                                        <QrCode value={getStoreUrl('naver')} size={130} label={t('order.naverQr')} />
+                                    </Suspense>
+                                </div>
                             </div>
                         </div>
 
