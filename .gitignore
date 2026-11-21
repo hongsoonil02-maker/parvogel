@@ -37,7 +37,7 @@ coverage/
 inspect_*
 all_frames/
 raw_source_videos/
-data/
+/data/
 /*.png
 scripts/*
 !scripts/prerender_blogs.js
@@ -81,4 +81,16 @@ src/data/sampleRecipients.json
 src/data/verifiedBusinesses.json
 public/assets/parvogel-notice-*.html
 *개선시안.html
+
+# Firebase service account secrets & debug logs (Never commit)
+marketing_factory/config/secrets/
+*firebase-sa*.json
+firebase-debug.log
+.firebase/
+apps/**/.env
+apps/**/.env.local
+apps/**/dist/
+apps/**/node_modules/
+apps/android_releases/
+
 

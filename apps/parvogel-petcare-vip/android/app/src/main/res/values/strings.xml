@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">파보겔 펫케어 VIP</string>
+    <string name="title_activity_main">파보겔 펫케어 VIP</string>
+    <string name="package_name">kr.parvogel.vip</string>
+    <string name="custom_url_scheme">kr.parvogel.vip</string>
+</resources>

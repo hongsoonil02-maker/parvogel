@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "417386225420",
+    "project_id": "parvogel-petcare-vip",
+    "storage_bucket": "parvogel-petcare-vip.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417386225420:android:f74581aa8f8ae2d7363329",
+        "android_client_info": {
+          "package_name": "kr.parvogel.vip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGnBQ8u3cwS9Q1zPX10MwijbQcU2X22Vs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

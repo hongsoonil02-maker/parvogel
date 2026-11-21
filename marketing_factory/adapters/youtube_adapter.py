@@ -94,6 +94,23 @@ class YouTubeAdapter(BaseMarketingAdapter):
                 "watch_url": f"https://www.youtube.com/watch?v={video_id}",
             }
             print(f"[SUCCESS] YouTube Shorts uploaded (ID: {video_id})")
+            # Auto-sync live ParvoGel Short to ParvoGel PetCare VIP Firestore `shorts_feed`
+            try:
+                from core.firebase_shorts_sync import sync_short_to_firestore
+                product_tag = content_data.get("product_tag", "parvogel")
+                reward_points = int(content_data.get("reward_points", 50))
+                campaign_id = content_data.get("campaign_id")
+                synced = sync_short_to_firestore(
+                    video_id=video_id,
+                    title=title,
+                    product_tag=product_tag,
+                    reward_points=reward_points,
+                    campaign_id=campaign_id,
+                )
+                self.last_result["firestore_synced"] = synced
+            except Exception as sync_err:
+                print(f"[WARN] Firestore shorts_feed auto-sync skipped: {sync_err}")
+                self.last_result["firestore_synced"] = False
             return True
         else:
             print(f"[FAIL] YouTube upload error: {upload_resp.status_code} - {upload_resp.text[:200]}")

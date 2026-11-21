@@ -1,0 +1,355 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model — ParvoGel PetCare VIP (B2C)
+// ===============================================================
+//
+// Collection: users
+// Document ID: {userId} (matches Firebase Auth uid)
+// Fields:
+//   - uid: string (required, immutable, == userId)
+//   - displayName: string (required, 1..60 chars)
+//   - email: string (optional, valid email, max 120 chars) — PII: owner read only
+//   - photoURL: string (optional, valid http/https URL, max 500 chars)
+//   - role: string (required, 'member' on create; immutable by non-admin)
+//   - stamps: int (required, 0..10) — incremented by +1 per check-in/purchase/conversion, -10 on coupon redeem
+//   - totalStampsEarned: int (required, >= 0, <= 100000)
+//   - points: int (required, 0..1000000) — incremented by shorts watch/share (+50), decremented (-100) on stamp conversion
+//   - coupons: int (required, 0..1000) — incremented by +1 when 10 stamps redeemed
+//   - lastCheckinDate: string (optional, YYYY-MM-DD, 10 chars)
+//   - lastShortsRewardDate: string (optional, YYYY-MM-DD, 10 chars)
+//   - petProfile: map (optional, keys: name, species, weightKg, ageMonths, condition)
+//   - createdAt: timestamp (required, immutable)
+//   - updatedAt: timestamp (required)
+//
+// Collection: users/{userId}/stamp_logs
+// Document ID: {logId}
+// Fields:
+//   - uid: string (required, immutable, == userId)
+//   - type: string (required, in ['daily_checkin', 'purchase_verify', 'point_convert', 'coupon_redeem'])
+//   - deltaStamps: int (required, -10..1)
+//   - note: string (required, 1..200 chars)
+//   - market: string (optional, in ['coupang', 'naver', 'gmarket', 'auction', 'elevenst', 'kakaoStore', 'toss', 'app'])
+//   - orderRef: string (optional, max 64 chars)
+//   - dateKey: string (required, 10 chars YYYY-MM-DD)
+//   - createdAt: timestamp (required, immutable)
+//
+// Collection: users/{userId}/shorts_rewards
+// Document ID: {dateKey} (YYYY-MM-DD, enforces 1-per-day reward per user)
+// Fields:
+//   - uid: string (required, immutable, == userId)
+//   - videoId: string (required, 5..32 chars)
+//   - action: string (required, in ['watch', 'share'])
+//   - pointsAwarded: int (required, 10..100)
+//   - dateKey: string (required, 10 chars, == docId)
+//   - createdAt: timestamp (required, immutable)
+//
+// Collection: users/{userId}/coupons
+// Document ID: {couponId}
+// Fields:
+//   - uid: string (required, immutable, == userId)
+//   - code: string (required, 6..32 chars)
+//   - discountLabel: string (required, 1..80 chars)
+//   - status: string (required, in ['active', 'used'])
+//   - createdAt: timestamp (required, immutable)
+//   - usedAt: timestamp (optional)
+//
+// Collection: users/{userId}/care_consults
+// Document ID: {consultId}
+// Fields:
+//   - uid: string (required, immutable, == userId)
+//   - petSpecies: string (required, in ['dog', 'cat', 'bird', 'small'])
+//   - weightKg: number (required, > 0, <= 120)
+//   - ageText: string (required, 1..40 chars)
+//   - condition: string (required, 1..500 chars)
+//   - aiAdvice: string (required, 1..4000 chars)
+//   - recommendedPumps: string (required, 1..80 chars)
+//   - createdAt: timestamp (required, immutable)
+//
+// Collection: shorts_feed
+// Document ID: {videoId} (written exclusively by trusted Admin SDK pipeline or verified admin)
+// Fields:
+//   - video_id: string (required, 5..32 chars)
+//   - title: string (required, 1..160 chars)
+//   - product_tag: string (required, 'parvogel' — brand isolation enforced)
+//   - reward_points: int (required, 10..100)
+//   - youtube_url: string (required, valid https URL, max 200 chars)
+//   - thumbnail_url: string (optional, valid https URL, max 300 chars)
+//   - campaign_id: string (optional, max 100 chars)
+//   - created_at: timestamp (required, immutable)
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------------------------------
+    // Helper Functions
+    // ---------------------------------------------------------------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        (request.auth.token.email == 'hongsoonil02@gmail.com' &&
+         request.auth.token.email_verified == true)
+      );
+    }
+
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == request.auth.uid;
+    }
+
+    function uidNotModified() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == resource.data.uid;
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() <= 120 &&
+        email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+    }
+
+    function isValidUrl(url) {
+      return url is string &&
+        url.size() <= 500 &&
+        (url.matches('^https://.*') || url.matches('^http://.*'));
+    }
+
+    function isValidDateKey(val) {
+      return val is string && val.size() == 10 && val.matches('^\\d{4}-\\d{2}-\\d{2}$');
+    }
+
+    function isValidPetProfile(profile) {
+      return profile is map &&
+        profile.keys().hasOnly(['name', 'species', 'weightKg', 'ageText', 'condition']) &&
+        (!('name' in profile) || (profile.name is string && profile.name.size() <= 40)) &&
+        (!('species' in profile) || (profile.species in ['dog', 'cat', 'bird', 'small'])) &&
+        (!('weightKg' in profile) || (profile.weightKg is number && profile.weightKg > 0 && profile.weightKg <= 120)) &&
+        (!('ageText' in profile) || (profile.ageText is string && profile.ageText.size() <= 40)) &&
+        (!('condition' in profile) || (profile.condition is string && profile.condition.size() <= 300));
+    }
+
+    // ---------------------------------------------------------------
+    // Domain Validators (Called in BOTH create and update)
+    // ---------------------------------------------------------------
+    function isValidUser(data, userId) {
+      return hasOnlyAllowedFields([
+          'uid', 'displayName', 'email', 'photoURL', 'role',
+          'stamps', 'totalStampsEarned', 'points', 'coupons',
+          'lastCheckinDate', 'lastShortsRewardDate', 'petProfile',
+          'createdAt', 'updatedAt'
+        ]) &&
+        hasRequiredFields([
+          'uid', 'displayName', 'role', 'stamps', 'totalStampsEarned',
+          'points', 'coupons', 'createdAt', 'updatedAt'
+        ]) &&
+        data.uid is string && data.uid == userId &&
+        data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 60 &&
+        (!('email' in data) || data.email == '' || isValidEmail(data.email)) &&
+        (!('photoURL' in data) || data.photoURL == '' || isValidUrl(data.photoURL)) &&
+        data.role in ['member', 'admin'] &&
+        data.stamps is int && data.stamps >= 0 && data.stamps <= 10 &&
+        data.totalStampsEarned is int && data.totalStampsEarned >= 0 && data.totalStampsEarned <= 100000 &&
+        data.points is int && data.points >= 0 && data.points <= 1000000 &&
+        data.coupons is int && data.coupons >= 0 && data.coupons <= 1000 &&
+        (!('lastCheckinDate' in data) || data.lastCheckinDate == '' || isValidDateKey(data.lastCheckinDate)) &&
+        (!('lastShortsRewardDate' in data) || data.lastShortsRewardDate == '' || isValidDateKey(data.lastShortsRewardDate)) &&
+        (!('petProfile' in data) || isValidPetProfile(data.petProfile)) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidUserUpdateDelta() {
+      let prev = resource.data;
+      let next = request.resource.data;
+      let stampDiff = next.stamps - prev.stamps;
+      let pointDiff = next.points - prev.points;
+      let couponDiff = next.coupons - prev.coupons;
+      let totalDiff = next.totalStampsEarned - prev.totalStampsEarned;
+      return (stampDiff >= -10 && stampDiff <= 1) &&
+             (pointDiff >= -100 && pointDiff <= 50) &&
+             (couponDiff >= 0 && couponDiff <= 1) &&
+             (totalDiff >= 0 && totalDiff <= 1) &&
+             (couponDiff == 0 || (prev.stamps == 10 && next.stamps == 0));
+    }
+
+    function isValidStampLog(data, userId) {
+      return hasOnlyAllowedFields([
+          'uid', 'type', 'deltaStamps', 'note', 'market', 'orderRef', 'dateKey', 'createdAt'
+        ]) &&
+        hasRequiredFields(['uid', 'type', 'deltaStamps', 'note', 'dateKey', 'createdAt']) &&
+        data.uid is string && data.uid == userId &&
+        data.type in ['daily_checkin', 'purchase_verify', 'point_convert', 'coupon_redeem'] &&
+        data.deltaStamps is int && data.deltaStamps >= -10 && data.deltaStamps <= 1 &&
+        data.note is string && data.note.size() >= 1 && data.note.size() <= 200 &&
+        (!('market' in data) || data.market in ['coupang', 'naver', 'gmarket', 'auction', 'elevenst', 'kakaoStore', 'toss', 'app']) &&
+        (!('orderRef' in data) || (data.orderRef is string && data.orderRef.size() <= 64)) &&
+        isValidDateKey(data.dateKey) &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidShortsReward(data, userId, rewardId) {
+      return hasOnlyAllowedFields(['uid', 'videoId', 'action', 'pointsAwarded', 'dateKey', 'createdAt']) &&
+        hasRequiredFields(['uid', 'videoId', 'action', 'pointsAwarded', 'dateKey', 'createdAt']) &&
+        data.uid is string && data.uid == userId &&
+        data.videoId is string && data.videoId.size() >= 5 && data.videoId.size() <= 32 &&
+        data.action in ['watch', 'share'] &&
+        data.pointsAwarded is int && data.pointsAwarded >= 10 && data.pointsAwarded <= 50 &&
+        isValidDateKey(data.dateKey) &&
+        data.dateKey == rewardId &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidCoupon(data, userId) {
+      return hasOnlyAllowedFields(['uid', 'code', 'discountLabel', 'status', 'createdAt', 'usedAt']) &&
+        hasRequiredFields(['uid', 'code', 'discountLabel', 'status', 'createdAt']) &&
+        data.uid is string && data.uid == userId &&
+        data.code is string && data.code.size() >= 6 && data.code.size() <= 32 &&
+        data.discountLabel is string && data.discountLabel.size() >= 1 && data.discountLabel.size() <= 80 &&
+        data.status in ['active', 'used'] &&
+        data.createdAt is timestamp &&
+        (!('usedAt' in data) || data.usedAt is timestamp);
+    }
+
+    function isValidCareConsult(data, userId) {
+      return hasOnlyAllowedFields([
+          'uid', 'petSpecies', 'weightKg', 'ageText', 'condition',
+          'aiAdvice', 'recommendedPumps', 'createdAt'
+        ]) &&
+        hasRequiredFields([
+          'uid', 'petSpecies', 'weightKg', 'ageText', 'condition',
+          'aiAdvice', 'recommendedPumps', 'createdAt'
+        ]) &&
+        data.uid is string && data.uid == userId &&
+        data.petSpecies in ['dog', 'cat', 'bird', 'small'] &&
+        data.weightKg is number && data.weightKg > 0 && data.weightKg <= 120 &&
+        data.ageText is string && data.ageText.size() >= 1 && data.ageText.size() <= 40 &&
+        data.condition is string && data.condition.size() >= 1 && data.condition.size() <= 500 &&
+        data.aiAdvice is string && data.aiAdvice.size() >= 1 && data.aiAdvice.size() <= 4000 &&
+        data.recommendedPumps is string && data.recommendedPumps.size() >= 1 && data.recommendedPumps.size() <= 80 &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidShortsFeedDoc(data) {
+      return hasOnlyAllowedFields([
+          'video_id', 'title', 'product_tag', 'reward_points',
+          'youtube_url', 'thumbnail_url', 'campaign_id', 'created_at'
+        ]) &&
+        hasRequiredFields(['video_id', 'title', 'product_tag', 'reward_points', 'youtube_url', 'created_at']) &&
+        data.video_id is string && data.video_id.size() >= 5 && data.video_id.size() <= 32 &&
+        data.title is string && data.title.size() >= 1 && data.title.size() <= 160 &&
+        data.product_tag == 'parvogel' &&
+        data.reward_points is int && data.reward_points >= 10 && data.reward_points <= 100 &&
+        isValidUrl(data.youtube_url) &&
+        (!('thumbnail_url' in data) || isValidUrl(data.thumbnail_url)) &&
+        (!('campaign_id' in data) || (data.campaign_id is string && data.campaign_id.size() <= 100)) &&
+        data.created_at is timestamp;
+    }
+
+    // ---------------------------------------------------------------
+    // Collection Rules
+    // ---------------------------------------------------------------
+
+    // Users collection (PII protected: owner or admin only)
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) &&
+        uidUnchanged() &&
+        isValidUser(request.resource.data, userId) &&
+        request.resource.data.role == 'member' &&
+        request.resource.data.stamps == 0 &&
+        request.resource.data.totalStampsEarned == 0 &&
+        request.resource.data.points == 0 &&
+        request.resource.data.coupons == 0;
+      allow update: if isValidUser(request.resource.data, userId) &&
+        uidNotModified() &&
+        areImmutableFieldsUnchanged(['uid', 'createdAt', 'role']) &&
+        (
+          (isOwner(userId) && isValidUserUpdateDelta()) ||
+          isAdmin()
+        );
+      allow delete: if isAdmin();
+
+      // Stamp ledger subcollection
+      match /stamp_logs/{logId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) &&
+          exists(/databases/$(database)/documents/users/$(userId)) &&
+          isValidStampLog(request.resource.data, userId);
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      // Daily shorts reward tracking (Document ID == YYYY-MM-DD prevents duplicate claims)
+      match /shorts_rewards/{rewardId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) &&
+          exists(/databases/$(database)/documents/users/$(userId)) &&
+          isValidShortsReward(request.resource.data, userId, rewardId);
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      // Redeemed coupons
+      match /coupons/{couponId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) &&
+          exists(/databases/$(database)/documents/users/$(userId)) &&
+          isValidCoupon(request.resource.data, userId) &&
+          request.resource.data.status == 'active';
+        allow update: if isOwner(userId) &&
+          isValidCoupon(request.resource.data, userId) &&
+          areImmutableFieldsUnchanged(['uid', 'code', 'discountLabel', 'createdAt']) &&
+          resource.data.status == 'active' &&
+          request.resource.data.status == 'used';
+        allow delete: if isAdmin();
+      }
+
+      // AI Care Consult History
+      match /care_consults/{consultId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) &&
+          exists(/databases/$(database)/documents/users/$(userId)) &&
+          isValidCareConsult(request.resource.data, userId);
+        allow update: if false;
+        allow delete: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // ParvoGel Shorts Feed (Read by authenticated VIP members, written by Admin SDK / verified admin)
+    match /shorts_feed/{videoId} {
+      allow read: if isAuthenticated();
+      allow create: if isAdmin() && isValidShortsFeedDoc(request.resource.data);
+      allow update: if isAdmin() &&
+        isValidShortsFeedDoc(request.resource.data) &&
+        areImmutableFieldsUnchanged(['video_id', 'created_at']);
+      allow delete: if isAdmin();
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

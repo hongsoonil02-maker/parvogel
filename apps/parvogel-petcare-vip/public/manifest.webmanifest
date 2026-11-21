@@ -1,0 +1,16 @@
+{
+  "name": "파보겔 펫케어 VIP",
+  "short_name": "파보겔 VIP",
+  "description": "강아지·고양이 보호자를 위한 ParvoGel 공식 VIP 멤버십, 스탬프 적립, AI 케어 도우미 & 펫TV 쇼츠",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2FBF8",
+  "theme_color": "#0F766E",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
