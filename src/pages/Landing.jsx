@@ -783,13 +783,13 @@ const Landing = () => {
                             {/* 상단 수의학 신뢰 배지 */}
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-950 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
                                 <span>🩺</span>
-                                <span>수의학 자문 · 임상 관찰 · 가정 필수 응급 장 케어 상비약</span>
+                                <span>수의학 자문 · 임상 관찰 · 가정 필수 응급 장 케어 상비제</span>
                             </div>
 
                             {/* 메인 직관 & 신뢰 헤드라인 */}
                             <h1 className="text-[1.7rem] sm:text-4xl lg:text-[2.65rem] font-black tracking-tight leading-[1.24] mb-4 break-keep text-slate-900 animate-fade-in-up">
                                 <span className="block text-slate-700 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
-                                    새벽에 갑자기 토하고 설사할 때, 당황하지 마세요
+                                    새벽에 갑자기 토하고 설사할 때 당황하지 마세요
                                 </span>
                                 <span className="block text-slate-900">
                                     입에 대고 1초 톡! <span className="text-primary-700">‘파보겔’</span>
@@ -800,7 +800,7 @@ const Landing = () => {
                             </h1>
 
                             <p className="text-sm sm:text-base text-slate-700 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
-                                주사기로 억지로 먹이다 물리고 토하는 스트레스 없이, 입가에 1초 펌프!<br className="hidden sm:inline" />
+                                주사기로 억지로 먹이다 물리고 토하는 스트레스 없이 입가에 1초 펌프!<br className="hidden sm:inline" />
                                 몸속에 흡수되지 않는 <strong>100% 천연 고순도 나노 몬모릴로나이트</strong>가 쓰린 장 점막을 부드럽게 감싸고 유해 독소·바이러스만 자석처럼 흡착해 변으로 안전하게 배출합니다.
                             </p>
 
@@ -918,7 +918,7 @@ const Landing = () => {
                                             🌿 체내 흡수 0% 천연 미네랄
                                         </span>
                                         <span className="px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-900 text-xs font-extrabold">
-                                            ★ 100ml 표준 상비약
+                                            ★ 100ml 표준 상비제
                                         </span>
                                     </div>
 
@@ -946,7 +946,7 @@ const Landing = () => {
                                         </div>
                                     </div>
 
-                                    {/* 응급실 vs 파보겔 상비약 가성비 비교 캡슐 */}
+                                    {/* 응급실 vs 파보겔 상비제 가성비 비교 캡슐 */}
                                     <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-2.5 text-left">
                                         <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
                                             <div className="text-xs font-bold text-slate-600">🚨 24시 야간 응급실</div>
@@ -985,11 +985,11 @@ const Landing = () => {
                         <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-extrabold bg-indigo-100 text-indigo-900 border border-indigo-200 mb-2.5">
                             🩺 현직 동물병원 원장님 실제 임상 육성
                         </span>
-                        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
-                            수의사가 직접 써보고 확인한 기호성과 장 회복 속도
+                        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep leading-snug text-balance">
+                            수의사가 직접 써보고 확인한<br />기호성과 장 회복 속도
                         </h2>
                         <p className="text-sm sm:text-base text-slate-700 mt-2 break-keep">
-                            광고 문구가 아닌, 하남 사랑동물병원 김동준 원장님의 실제 통화 육성을 직접 들어보세요.
+                            광고 문구가 아닌 하남 사랑동물병원 김동준 원장님의 실제 통화 육성을 직접 들어보세요.
                         </p>
                     </div>
                     <AudioTestimonial
@@ -1012,7 +1012,7 @@ const Landing = () => {
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-4`}>
                                 {t('about.badge')}
                             </span>
-                            <h2 className="section-title">{t('about.title')}</h2>
+                            <h2 className="section-title whitespace-pre-line">{t('about.title')}</h2>
                             <p className="section-subtitle whitespace-pre-line">
                                 {t('about.desc1')}
                             </p>
@@ -1215,7 +1215,7 @@ const Landing = () => {
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('testimonials.badge')}
                         </span>
-                        <h2 className="section-title">{t('testimonials.title')}</h2>
+                        <h2 className="section-title whitespace-pre-line">{t('testimonials.title')}</h2>
                         <p className="section-subtitle">
                             {t('testimonials.subtitle')}
                         </p>
@@ -1297,7 +1297,7 @@ const Landing = () => {
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
                             {t('products.badge')}
                         </span>
-                        <h2 className="section-title">{t('products.title')}</h2>
+                        <h2 className="section-title whitespace-pre-line">{t('products.title')}</h2>
                         <p className="section-subtitle">
                             {t('products.subtitle')}
                         </p>

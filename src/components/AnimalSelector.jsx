@@ -23,7 +23,7 @@ export default function AnimalSelector() {
   const selectedAnimalHighlight =
     selectedId === 'puppy' ? '55일령 0.6kg 푸들 7일 회복 관찰! 파보·급성 설사 1초 펌프 응급 케어' :
     selectedId === 'cat' ? '범백·급성 설사 고양이 주사기 스트레스 ZERO 1초 안심 케어' :
-    selectedId === 'bird' ? '[실제 사례] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비약' :
+    selectedId === 'bird' ? '[실제 사례] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비제' :
     selectedId === 'hamster' ? '웻테일(급성 설사) 긴급 케어! 천연 미네랄로 장 점막 즉각 코팅 & 독소 배출' :
     '수질성·식이성 소화 장애 시 점막 안정화! 천연 성분으로 양서·파충류 안심 케어';
 
@@ -65,8 +65,8 @@ export default function AnimalSelector() {
         <span className="px-3.5 py-1.5 bg-primary-100 text-primary-900 text-xs font-black rounded-full uppercase tracking-wider border border-primary-200">
           🐾 반려동물 · 특수동물 1초 맞춤 케어 가이드
         </span>
-        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-3 break-keep leading-snug">
-          강아지·고양이·앵무새·소동물까지, 파보겔(Parvogel) 하나로
+        <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-3 break-keep leading-snug text-balance">
+          강아지·고양이·앵무새·소동물까지<br />파보겔(Parvogel) 하나로
         </h3>
         <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
           우리 아이 종류를 선택하시면 맞춤 권장 급여량과 장 점막 보호 포인트를 확인하실 수 있습니다.

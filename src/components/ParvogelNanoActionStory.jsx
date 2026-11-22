@@ -24,7 +24,7 @@ export default function ParvogelNanoActionStory() {
       step: 'STEP 01',
       time: '15분 초스피드',
       title: '위산 완충막 형성 (pH 4.5~5.5)',
-      desc: '초미세 나노 보호막이 위장을 부드럽게 감싸주어, 쓰린 위산 구토와 헛구역질을 15분 만에 진정시킵니다.',
+      desc: '초미세 나노 보호막이 위장을 부드럽게 감싸주어 쓰린 위산 구토와 헛구역질을 15분 만에 진정시킵니다.',
       badge: '위산 구토 차단',
       icon: '🛡️',
       color: 'border-primary-200 bg-primary-50/60 text-primary-950'
@@ -33,7 +33,7 @@ export default function ParvogelNanoActionStory() {
       step: 'STEP 02',
       time: '20분 내 99.9%',
       title: '정전기 자석 스펀지 흡착 포획',
-      desc: '몸에 좋은 유익균은 그대로 남기고, 파보·코로나 바이러스와 유해균 독소만 자석처럼 강력하게 끌어당겨 묶습니다.',
+      desc: '몸에 좋은 유익균은 그대로 남기고 파보·코로나 바이러스와 유해균 독소만 자석처럼 강력하게 끌어당겨 묶습니다.',
       badge: '바이러스 99.9% 포획',
       icon: '🧲',
       color: 'border-primary-200 bg-primary-50/60 text-primary-950'
@@ -42,7 +42,7 @@ export default function ParvogelNanoActionStory() {
       step: 'STEP 03',
       time: '안전한 대변 배출',
       title: '체내 흡수 0%! Flush 안전 배출',
-      desc: '체내로 흡수되지 않고 장관만 깨끗이 청소하고 내려가, 연약한 아이의 간과 신장에 부담 없이 변으로 쏙 배출됩니다.',
+      desc: '체내로 흡수되지 않고 장관만 깨끗이 청소하고 내려가 연약한 아이의 간과 신장에 부담 없이 변으로 쏙 배출됩니다.',
       badge: '간·신장 부담 0%',
       icon: '🌊',
       color: 'border-primary-200 bg-primary-50/60 text-primary-950'
@@ -54,19 +54,19 @@ export default function ParvogelNanoActionStory() {
       icon: '🧲',
       title: '자석처럼 유해균과 바이러스만 쏙!',
       point: 'CEC ≥ 130 mmol/100g 나노 정전기 흡착',
-      desc: '몸에 좋은 유익균은 보존하고, 파보·코로나 바이러스와 유해 독소만 자석처럼 끌어당겨 변으로 안전하게 비워냅니다.'
+      desc: '몸에 좋은 유익균은 보존하고 파보·코로나 바이러스와 유해 독소만 자석처럼 끌어당겨 변으로 안전하게 비워냅니다.'
     },
     {
       icon: '🛡️',
       title: '15분 만에 속쓰림과 위산 구토를 싹!',
       point: 'pH 4.5~5.5 위산 완충막 형성',
-      desc: '강한 위산으로 쓰린 위장을 초미세 보호막으로 완충해 주어, 괴로운 구토와 복통을 신속하게 잠재웁니다.'
+      desc: '강한 위산으로 쓰린 위장을 초미세 보호막으로 완충해 주어 괴로운 구토와 복통을 신속하게 잠재웁니다.'
     },
     {
       icon: '🌿',
       title: '체내 흡수 0%! 간과 신장에 전혀 무리가 없습니다',
       point: '100% 천연 점토 규산염',
-      desc: '몸속으로 흡수되지 않고 장관만 쓸고 내려가므로, 아픈 아이의 간과 신장에 부담을 주지 않는 100% 천연 나노 스펀지입니다.'
+      desc: '몸속으로 흡수되지 않고 장관만 쓸고 내려가므로 아픈 아이의 간과 신장에 부담을 주지 않는 100% 천연 나노 스펀지입니다.'
     },
     {
       icon: '⚡',
@@ -89,7 +89,7 @@ export default function ParvogelNanoActionStory() {
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight text-center leading-snug break-keep max-w-2xl mx-auto">
             <span className="block text-balance">&quot;새벽에 갑자기 시작된 노란 위산 토와 물설사…</span>
-            <span className="block mt-1 sm:mt-1.5 text-primary-700">병원 문 닫힌 시간, 얼마나 막막하셨나요?&quot;</span>
+            <span className="block mt-1 sm:mt-1.5 text-primary-700">병원 문 닫힌 시간 얼마나 막막하셨나요?&quot;</span>
           </h2>
           <p className="text-slate-700 text-sm sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
             급성 장 트러블은 초기 골든타임 대처가 가장 중요합니다.<br />
@@ -114,7 +114,7 @@ export default function ParvogelNanoActionStory() {
               🩺 수의학 자문 · 체내 흡수 0% 안전 겔
             </span>
             <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug break-keep text-slate-900">
-              입가에 1초 톡 짜주면 스스로 핥아먹는 장 보호막,<br />
+              입가에 1초 톡 짜주면 스스로 핥아먹는 장 보호막<br />
               <span className="text-primary-700">파보겔 (ParvoGel)</span>
             </h3>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed break-keep">
@@ -131,8 +131,8 @@ export default function ParvogelNanoActionStory() {
         <div className="space-y-6 max-w-4xl mx-auto">
           <div className="text-center space-y-1.5">
             <span className="text-xs sm:text-sm font-extrabold text-primary-700 tracking-wider uppercase">왜 일반 지사제와 다른가요?</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
-              파보겔이 아이 장 속에서 일하는 3단계 과학 원리
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep leading-snug text-balance">
+              파보겔이 아이 장 속에서<br />일하는 3단계 과학 원리
             </h3>
           </div>
 
@@ -165,8 +165,8 @@ export default function ParvogelNanoActionStory() {
         <div className="max-w-4xl mx-auto space-y-6 pt-2">
           <div className="text-center space-y-1.5">
             <span className="text-xs sm:text-sm font-extrabold text-primary-700 tracking-wider uppercase">Why ParvoGel?</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
-              보호자님들이 파보겔을 상비약 1순위로 꼽는 4가지 이유
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep leading-snug text-balance">
+              보호자님들이 파보겔을<br />상비제 1순위로 꼽는 4가지 이유
             </h3>
           </div>
 

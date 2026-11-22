@@ -36,7 +36,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
             price: '18,000',
             includeQr: true,
             theme: saved ? 'custom' : 'all',
-            customCopy: saved || '✨ 우리 동네 1등 상비약 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활명수 파보겔로 빠르게 활력을 되찾아주세요',
+            customCopy: saved || '✨ 우리 동네 1등 상비제 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활기명수 파보겔로 빠르게 활력을 되찾아주세요',
         }
     })
 
@@ -517,8 +517,8 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                             { 
                                                 id: 'copy-b', 
                                                 icon: '🚨', 
-                                                tag: '응급 상비약',
-                                                title: '24시간 안심 응급 상비약', 
+                                                tag: '응급 상비제',
+                                                title: '24시간 안심 응급 상비제', 
                                                 desc: '병원 문 닫은 새벽 갑작스런 구토·물설사, 엄마가 건넬 수 있는 가장 빠른 1초' 
                                             },
                                             { 
@@ -603,7 +603,7 @@ const PartnerNoticeModal = ({ isOpen, onClose }) => {
                                                 rows={3}
                                                 value={noticeData.customCopy}
                                                 onChange={(e) => setNoticeData(prev => ({ ...prev, customCopy: e.target.value }))}
-                                                placeholder="예: ✨ 우리 동네 1등 상비약 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활명수 파보겔로 빠르게 활력을 되찾아주세요"
+                                                placeholder="예: ✨ 우리 동네 1등 상비제 | 갑작스런 구토·설사로 지친 우리 아이 | 동물용 활기명수 파보겔로 빠르게 활력을 되찾아주세요"
                                                 className="w-full px-3 py-2 bg-white border border-amber-300 rounded-lg text-xs font-bold text-slate-800 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-500 placeholder:font-normal placeholder:text-slate-400"
                                             />
                                             <div className="flex flex-wrap items-center justify-between text-[10px] text-amber-800/90 pt-0.5">

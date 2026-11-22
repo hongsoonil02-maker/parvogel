@@ -114,7 +114,7 @@ export default function ParvogelClinicalDocumentary() {
               id="parvogel-video-heading"
               className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-snug break-keep"
             >
-              {t('videoSection.titleLine1', '생후 55일, 쓰러져 실려온 아기 푸들')}
+              {t('videoSection.titleLine1', '생후 55일 쓰러져 실려온 아기 푸들')}
               <span className="block text-primary-700 mt-1">
                 {t('videoSection.titleLine2', '1초 펌프 급여 후 3일 만의 회복 기록')}
               </span>
@@ -123,7 +123,7 @@ export default function ParvogelClinicalDocumentary() {
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed break-keep">
               {t(
                 'videoSection.subtitle',
-                '연출이나 CG가 아닌 실제 동물병원 진료실 기록입니다. 주사기 없이 입가에 1초 톡 짜주자 스스로 핥아먹고, 하루 만에 자력 기립·3일 만에 밥그릇을 비웠습니다.'
+                '연출이나 CG가 아닌 실제 동물병원 진료실 기록입니다. 주사기 없이 입가에 1초 톡 짜주자 스스로 핥아먹고 하루 만에 자력 기립·3일 만에 밥그릇을 비웠습니다.'
               )}
             </p>
 
