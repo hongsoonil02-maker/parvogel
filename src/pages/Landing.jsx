@@ -531,11 +531,10 @@ const Landing = () => {
     const primaryShadow = 'shadow-primary-900/25'
 
     const navItems = [
-        { id: 'why-parvogel', label: '왜 파보겔인가' },
-        { id: 'vet-voice', label: '수의사 검증' },
+        { id: 'why-parvogel', label: '원리·검증' },
         { id: 'products', label: '용량·가격' },
         { id: 'testimonials', label: '실제후기' },
-        { id: 'faq', label: '자주묻는질문' },
+        { id: 'faq', label: 'FAQ' },
     ]
 
     const features = [
@@ -675,26 +674,26 @@ const Landing = () => {
                 }`}>
                 <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8" aria-label="메인 네비게이션">
                     <div className="flex items-center justify-between gap-2 h-14 sm:h-16 md:h-20">
-                        {/* Logo (320px~360px 실기기 및 큰 글꼴 환경에서도 우측 버튼 밀림 원천 차단) */}
-                        <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer min-w-0 shrink" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToSection('hero'); } }} onClick={() => scrollToSection('hero')}>
-                            <div className={`w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${primaryBg} shadow-md sm:shadow-lg`}>
-                                <span className="text-white font-extrabold text-lg sm:text-2xl">P</span>
+                        {/* Logo (320px~360px 실기기 및 데스크톱 1줄 고정) */}
+                        <div className="flex items-center gap-1.5 sm:gap-2.5 cursor-pointer shrink-0" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToSection('hero'); } }} onClick={() => scrollToSection('hero')}>
+                            <div className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${primaryBg} shadow-md sm:shadow-lg`}>
+                                <span className="text-white font-extrabold text-lg sm:text-xl">P</span>
                             </div>
-                            <span className="font-extrabold text-[15px] sm:text-2xl lg:text-3xl text-gray-900 tracking-tight leading-tight min-w-0">
+                            <span className="font-extrabold text-[15px] sm:text-xl lg:text-2xl text-gray-900 tracking-tight leading-tight whitespace-nowrap">
                                 <span className="block sm:inline whitespace-nowrap">{t('nav.brandName')}</span>{' '}
-                                <span className={`${primaryText} font-black block sm:inline text-[11px] sm:text-2xl lg:text-3xl leading-none sm:leading-tight`}>ParvoGel</span>
+                                <span className={`${primaryText} font-black block sm:inline text-[11px] sm:text-xl lg:text-2xl leading-none sm:leading-tight whitespace-nowrap`}>ParvoGel</span>
                             </span>
                         </div>
 
-                        {/* Desktop Nav - Clean & Focused */}
-                        <div className="hidden md:flex items-center gap-4 lg:gap-6">
+                        {/* Desktop Nav - Single-Line Zero-Wrap */}
+                        <div className="hidden md:flex items-center gap-3 lg:gap-5 shrink-0">
                             {navItems.map(item => (
                                 <button
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
-                                    className={`relative text-sm font-semibold transition-colors px-1 ${activeSection === item.id
+                                    className={`relative text-sm font-semibold transition-colors px-1 whitespace-nowrap shrink-0 ${activeSection === item.id
                                         ? primaryText
-                                        : 'text-gray-600 hover:text-gray-900'
+                                        : 'text-gray-700 hover:text-gray-900'
                                         }`}
                                 >
                                     {item.label}
@@ -703,18 +702,18 @@ const Landing = () => {
                                     )}
                                 </button>
                             ))}
-                            <Link to="/blog" className="relative text-sm font-semibold transition-colors px-1 text-gray-600 hover:text-gray-900">
+                            <Link to="/blog" className="relative text-sm font-semibold transition-colors px-1 text-gray-700 hover:text-gray-900 whitespace-nowrap shrink-0">
                                 칼럼
                             </Link>
 
                             {/* Language Toggle - Desktop Compact */}
-                            <div className="relative" ref={langMenuRef}>
+                            <div className="relative shrink-0" ref={langMenuRef}>
                                 <button
                                     onClick={() => setIsLangOpen(!isLangOpen)}
                                     aria-label="Select Language"
                                     aria-haspopup="listbox"
                                     aria-expanded={isLangOpen}
-                                    className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                                    className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors whitespace-nowrap"
                                 >
                                     <span>{languageOptions.find(o => o.code === i18n.language)?.flag || '🌐'}</span>
                                     <span>{(languageOptions.find(o => o.code === i18n.language)?.code || 'KO').toUpperCase()}</span>
@@ -747,7 +746,7 @@ const Landing = () => {
                                 href="https://pf.kakao.com/_rqxnJX/chat"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] shadow-sm hover:scale-105 active:scale-95 transition-all border border-amber-300"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] shadow-sm hover:scale-105 active:scale-95 transition-all border border-amber-300 whitespace-nowrap shrink-0"
                                 aria-label="카카오톡 1:1 상담"
                             >
                                 <span className="text-sm">💬</span>
@@ -760,12 +759,13 @@ const Landing = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 referrerPolicy="no-referrer-when-downgrade"
+                                data-product-id="parvogel-100ml"
                                 aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-extrabold bg-primary-900 hover:bg-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-700"
+                                className="inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-full text-sm font-extrabold bg-primary-900 hover:bg-primary-950 text-white shadow-md hover:shadow-primary-900/30 hover:scale-105 active:scale-95 transition-all border border-primary-700 whitespace-nowrap shrink-0"
                             >
                                 <span className="text-base" aria-hidden="true">🛒</span>
                                 <span>{t('stores.headerBuyCta', '공식몰 즉시구매')}</span>
-                                <span className="text-xs bg-[#FEE500] text-[#191919] px-2 py-0.5 rounded-full font-black">{t('stores.headerBuyBadge', '카카오·쿠팡·네이버')}</span>
+                                <span className="hidden xl:inline-block text-xs bg-[#FEE500] text-[#191919] px-2 py-0.5 rounded-full font-black">{t('stores.headerBuyBadge', '카카오·쿠팡·네이버')}</span>
                             </a>
                         </div>
 
