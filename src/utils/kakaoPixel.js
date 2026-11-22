@@ -1,8 +1,8 @@
 /**
  * Kakao Pixel Conversion Tracking Utility for parvogel.kr
  * Tracks outbound marketplace purchase-intent clicks (Coupang, Naver SmartStore,
- * Kakao Shopping, Gmarket, 11st, Toss Shopping), Kakao Channel consultations,
- * and B2B sample/wholesale form submissions.
+ * Kakao Shopping, Gmarket, Auction, 11st, Toss Shopping), Kakao Channel consultations,
+ * and direct consumer order form submissions.
  */
 
 export const KAKAO_PIXEL_ID = '9019188145294848683';

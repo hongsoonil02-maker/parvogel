@@ -12,13 +12,8 @@ import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import FeedDisclaimer from '../components/FeedDisclaimer'
 import PetGallerySection from '../components/PetGallerySection'
-import findSampleRecipient from '../utils/sampleCheck'
-import { verifyBusinessApplicant, VERIFICATION_STATUS, ensureVerificationDataLoaded } from '../utils/businessVerification'
 import { trackKakaoFormSubmit, trackKakaoViewContent } from '../utils/kakaoPixel'
 
-const PartnerNoticeModal = lazy(() => import('../components/PartnerNoticeModal'))
-const DuplicateSampleModal = lazy(() => import('../components/DuplicateSampleModal'))
-const CertifiedBusinessNoticeModal = lazy(() => import('../components/CertifiedBusinessNoticeModal'))
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
 const ParvogelNanoActionStory = lazy(() => import('../components/ParvogelNanoActionStory'))
@@ -57,23 +52,16 @@ const Landing = () => {
         }
     }, [])
     const [isOrderComplete, setIsOrderComplete] = useState(false)
-    const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
-    const [duplicateSampleRecipient, setDuplicateSampleRecipient] = useState(null)
-    const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false)
-    const [isCertifiedNoticeOpen, setIsCertifiedNoticeOpen] = useState(false)
-    const [isPartnerMode, setIsPartnerMode] = useState(false)
     const [legalType, setLegalType] = useState(null) // 'privacy' | 'terms' | 'business' | null
     const [formData, setFormData] = useState({
         requestType: 'consumer',
         hospitalName: '',
         contactName: '',
-        bizNumber: '',
         phone: '',
         email: '',
         address: '',
         product: 'parvogel-100ml',
         quantity: 1,
-        orderVolume: '',
         message: '',
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -207,7 +195,7 @@ const Landing = () => {
     // 모달 열림 시 ESC 닫기 + 배경 스크롤 잠금 + 포커스 트랩 + 포커스 복귀 (접근성)
     const lastFocusRef = useRef(null)
     useEffect(() => {
-        const modalOpen = isOrderModalOpen || Boolean(legalType) || isPartnerModalOpen
+        const modalOpen = isOrderModalOpen || Boolean(legalType)
         if (!modalOpen) return
         lastFocusRef.current = document.activeElement
         const handleKey = (e) => {
@@ -215,7 +203,6 @@ const Landing = () => {
                 setIsOrderModalOpen(false)
                 setIsOrderComplete(false)
                 setLegalType(null)
-                setIsPartnerModalOpen(false)
             }
             // 포커스 트랩: Tab이 모달 밖으로 나가지 않도록
             if (e.key === 'Tab') {
@@ -246,7 +233,7 @@ const Landing = () => {
                 lastFocusRef.current.focus()
             }
         }
-    }, [isOrderModalOpen, legalType, isPartnerModalOpen])
+    }, [isOrderModalOpen, legalType])
 
     // Smooth scroll to section
     const scrollToSection = (sectionId) => {
@@ -260,61 +247,6 @@ const Landing = () => {
         }
     }
 
-    // URL 쿼리 파라미터 감지 (MMS 문자 링크: ?sample=petshop 또는 ?ref=petshop 또는 #/?sample=petshop 등 모든 HashRouter 경로 지원)
-    useEffect(() => {
-        const checkAndOpenSampleModal = () => {
-            // 1) 일반 window.location.search 확인
-            let params = new URLSearchParams(window.location.search)
-            let sampleType = params.get('sample') || params.get('ref')
-
-            // 2) HashRouter 구조 (예: /#/?sample=petshop 또는 /#/?ref=petshop)인 경우 해시 내부 쿼리스트링 추출
-            if (!sampleType && window.location.hash.includes('?')) {
-                const hashSearch = window.location.hash.substring(window.location.hash.indexOf('?'))
-                params = new URLSearchParams(hashSearch)
-                sampleType = params.get('sample') || params.get('ref')
-            }
-
-            if (sampleType === 'petshop' || sampleType === 'pet') {
-                setIsPartnerMode(true)
-                setFormData(prev => ({
-                    ...prev,
-                    requestType: 'sample_petshop',
-                    product: 'parvogel-200ml',
-                    quantity: 1,
-                    message: '[MMS 문자 유입] 펫샵 본품 1병 무료 샘플 신청'
-                }))
-                setIsOrderModalOpen(true)
-                setIsOrderComplete(false)
-            } else if (sampleType === 'breeder' || sampleType === 'kennel') {
-                setIsPartnerMode(true)
-                setFormData(prev => ({
-                    ...prev,
-                    requestType: 'sample_breeder',
-                    product: 'parvogel-200ml',
-                    quantity: 1,
-                    message: '[MMS 문자 유입] 브리더/켄넬 본품 1병 무료 샘플 신청'
-                }))
-                setIsOrderModalOpen(true)
-                setIsOrderComplete(false)
-            } else if (sampleType === 'b2b' || sampleType === 'partner') {
-                setIsPartnerMode(true)
-                setFormData(prev => ({
-                    ...prev,
-                    requestType: 'wholesale',
-                    quantity: 10,
-                    message: '[B2B VIP 문자 유입] VIP 거래처 추가 도매 발주 신청'
-                }))
-                setIsOrderModalOpen(true)
-                setIsOrderComplete(false)
-            }
-        }
-
-        // 마운트 즉시 실행 및 비동기 라우터 초기화 대비 200ms 후 재확인
-        checkAndOpenSampleModal()
-        const timer = setTimeout(checkAndOpenSampleModal, 200)
-        return () => clearTimeout(timer)
-    }, [])
-
     const handleInputChange = (e) => {
         let { name, value } = e.target
         if (name === 'quantity') {
@@ -327,33 +259,10 @@ const Landing = () => {
         setFormData(prev => ({ ...prev, [name]: value }))
     }
 
-    const handleConvertToOrder = (targetType = 'wholesale') => {
-        setIsDuplicateModalOpen(false)
-        const recipient = duplicateSampleRecipient
-        setFormData(prev => ({
-            ...prev,
-            requestType: targetType,
-            hospitalName: prev.hospitalName || recipient?.shopName || '',
-            contactName: prev.contactName || recipient?.name || '',
-            phone: prev.phone || recipient?.phoneDisplay || recipient?.phone || '',
-            address: prev.address || recipient?.address || '',
-            quantity: prev.quantity && parseInt(prev.quantity, 10) > 1 ? prev.quantity : (targetType === 'wholesale' ? 10 : 1),
-            message: '[B2B 정식 발주] 1차 무료 샘플(1병) 수령 완료 거래처 추가 도매 발주 신청'
-        }))
-        setIsOrderModalOpen(true)
-        setIsOrderComplete(false)
-    }
-
-    const triggerDuplicateSampleGuide = (matched) => {
-        setDuplicateSampleRecipient(matched)
-        setIsDuplicateModalOpen(true)
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!formData.hospitalName || !formData.contactName || !formData.phone
-            || ((formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder') && !formData.address)) {
-            alert('상호명, 담당자 성함, 연락처, 그리고 배송 받으실 주소는 필수 입력 항목입니다.')
+        if (!formData.hospitalName || !formData.contactName || !formData.phone) {
+            alert('주문자 성함, 수령인 성함, 연락처는 필수 입력 항목입니다.')
             return
         }
         // 전화번호 엄격 검증: 10~11자리 숫자, 01로 시작
@@ -362,39 +271,16 @@ const Landing = () => {
             alert('연락처는 010-1234-5678 형식의 10~11자리 숫자(01로 시작)로 입력해 주세요.')
             return
         }
-
-        // 무료 샘플 신청 시 중복 신청 확인
-        const isSample = formData.requestType === 'sample_petshop' || formData.requestType === 'sample_breeder'
-        if (isSample) {
-            await ensureVerificationDataLoaded()
-            const vResult = verifyBusinessApplicant(rawPhone, formData.hospitalName, formData.bizNumber)
-            // 1. 기존 수령 완료 거래처 -> 기분 좋은 VIP 정식 도매 발주 모달 유도
-            if (vResult.status === VERIFICATION_STATUS.ALREADY_RECEIVED) {
-                triggerDuplicateSampleGuide(vResult.data)
-                return
-            }
-            // 펫샵/브리더 무료체험은 상호명과 배송주소를 입력하면 정상 접수 진행
-        }
-        // 사업자번호 패턴 (도매)
-        if (formData.requestType === 'wholesale' && formData.bizNumber) {
-            const biz = formData.bizNumber.replace(/[^0-9]/g, '')
-            if (biz.length !== 10) {
-                alert('사업자등록번호는 10자리 숫자로 입력해 주세요. (예: 123-45-67890)')
-                return
-            }
-        }
         // 이메일 선택 입력 시 형식 검증
         if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             alert('이메일 형식이 올바르지 않습니다.')
             return
         }
-        // 수량 정수 검증 (일반 구매 시)
-        if (formData.requestType === 'consumer') {
-            const q = parseInt(formData.quantity, 10)
-            if (!Number.isInteger(q) || q < 1 || q > 100) {
-                alert('수량은 1~100 사이의 정수로 입력해 주세요.')
-                return
-            }
+        // 수량 정수 검증
+        const q = parseInt(formData.quantity, 10)
+        if (!Number.isInteger(q) || q < 1 || q > 100) {
+            alert('수량은 1~100 사이의 정수로 입력해 주세요.')
+            return
         }
         if (submittingRef.current || isSubmitting) return
         submittingRef.current = true
@@ -422,8 +308,6 @@ const Landing = () => {
                 || import.meta.env.VITE_APPS_SCRIPT_URL
                 || 'https://script.google.com/macros/s/AKfycbzlKnHOihU_r_trfYKQ35P2NKoZFU2loVtTk9C30aiBAvY9Odw4nkSfW3cYKnTZGS90NQ/exec';
 
-            // Google Apps Script 백엔드는 유효한 이메일 형식을 필수로 요구하므로
-            // 사용자가 이메일을 입력하지 않은 경우 전화번호 기반 유효 이메일을 생성하여 전송
             const finalEmail = (formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
                 ? formData.email
                 : `a${normPhone}@parvogel.kr`;
@@ -431,22 +315,19 @@ const Landing = () => {
             const params = new URLSearchParams()
             params.append('type', 'parvogel_order')
             params.append('requestId', requestIdRef.current)
-            params.append('requestType', formData.requestType)
+            params.append('requestType', 'consumer')
             params.append('hospitalName', formData.hospitalName)
             params.append('contactName', formData.contactName)
-            params.append('bizNumber', formData.bizNumber || '-')
+            params.append('bizNumber', '-')
             params.append('phone', normPhone)
             params.append('email', finalEmail)
             params.append('address', formData.address)
-            params.append('product', formData.product || 'parvogel-200ml')
+            params.append('product', formData.product || 'parvogel-100ml')
             params.append('quantity', formData.quantity || '1')
-            params.append('orderVolume', formData.orderVolume || '-')
+            params.append('orderVolume', '-')
             params.append('message', formData.message || '-')
             params.append('timestamp', new Date().toISOString())
 
-            // Apps Script 웹앱은 Access-Control-Allow-Origin: * 로 CORS를 정상 지원하므로
-            // 일반 CORS 요청만 사용하고 서버가 반환하는 status 값만 신뢰한다.
-            // (no-cors 폴백은 opaque 응답이라 실제 저장 실패도 성공으로 오인되므로 사용하지 않는다.)
             const response = await fetch(scriptURL, {
                 method: 'POST',
                 body: params,
@@ -462,20 +343,13 @@ const Landing = () => {
             try {
                 json = await response.json()
             } catch (err) {
-                // 응답을 파싱하지 못하면 저장 여부를 확신할 수 없으므로 실패로 처리한다.
                 console.error('Order response parse error:', err)
                 alert(t('order.errorServer', '주문 접수 중 서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.'))
                 return
             }
 
             if (json.status === 'duplicate') {
-                const matched = findSampleRecipient(normPhone, formData.hospitalName) || {
-                    shopName: formData.hospitalName,
-                    name: formData.contactName,
-                    phoneDisplay: formData.phone,
-                    address: formData.address
-                }
-                triggerDuplicateSampleGuide(matched)
+                alert(t('order.duplicateError', '이미 접수된 주문입니다. 담당자가 곧 연락드리겠습니다.'))
                 return
             }
             if (json.status !== 'success') {
@@ -487,19 +361,17 @@ const Landing = () => {
                 localStorage.setItem(SUBMISSION_LAST_KEY, JSON.stringify({ phone: normPhone, ts: Date.now() }))
             } catch (err) { /* ignore */ }
 
-            trackKakaoFormSubmit(formData.requestType, formData.quantity, formData.product)
+            trackKakaoFormSubmit('consumer', formData.quantity, formData.product)
             setIsOrderComplete(true)
             setFormData({
                 requestType: 'consumer',
                 hospitalName: '',
                 contactName: '',
-                bizNumber: '',
                 phone: '',
                 email: '',
                 address: '',
                 product: 'parvogel-100ml',
                 quantity: 1,
-                orderVolume: '',
                 message: '',
             })
         } catch (error) {
@@ -557,7 +429,7 @@ const Landing = () => {
             color: 'primary',
         },
         {
-            icon: '🐄',
+            icon: '🐾',
             title: t('features.f4Title'),
             desc: t('features.f4Desc'),
             color: 'accent',
@@ -577,12 +449,11 @@ const Landing = () => {
     ]
 
     const targetAnimals = [
-        { icon: '🐶', name: t('target.puppy', '강아지 (자견/반려견)'), age: t('target.puppyAge', '전 연령 (생후 30일령~)'), diseases: t('target.puppyDisease', '파보바이러스/코로나장염/급성 설사·혈변') },
-        { icon: '🐱', name: t('target.cat', '고양이 (자묘/반려묘)'), age: t('target.catAge', '전 연령 (생후 30일령~)'), diseases: t('target.catDisease', '범백(FPLV)/급성 세균성 장염/수분 손실') },
+        { icon: '🐶', name: t('target.puppy', '강아지 (아기 강아지/반려견)'), age: t('target.puppyAge', '전 연령 (생후 30일령~)'), diseases: t('target.puppyDisease', '파보바이러스/코로나장염/급성 설사·혈변') },
+        { icon: '🐱', name: t('target.cat', '고양이 (아기 고양이/반려묘)'), age: t('target.catAge', '전 연령 (생후 30일령~)'), diseases: t('target.catDisease', '범백(FPLV)/급성 세균성 장염/무른 변') },
         { icon: '🦜', name: t('target.bird', '앵무새·조류 (반려조)'), age: t('target.birdAge', '이유조 및 성조 전 연령'), diseases: t('target.birdDisease', '급성 수양성 설사/소낭 정체/사료 곰팡이 독소') },
         { icon: '🐹', name: '햄스터·소동물 (기니피그/친칠라)', age: '이유기 및 전 연령', diseases: '웻테일(급성 설사) / 식이성 소화장애 / 장 점막 보호' },
         { icon: '🦎', name: '도롱뇽·특수동물 (파충·양서류)', age: '유체 및 성체 전 연령', diseases: '수질·식이성 장염 / 유해 독소 흡착 배출' },
-        { icon: '🐮', name: '송아지·자돈·염소 등 산업동물', age: '신생축 (생후 1~60일)', diseases: '로타·코로나·PED·대장균 설사 (※ (주)엠오바이오 독점 총판 운영)' },
     ]
 
     const testimonials = [
@@ -593,7 +464,7 @@ const Landing = () => {
             role: t('testimonials.t1Role'),
             content: t('testimonials.t1Content'),
             rating: 5,
-            badge: '🐶 푸들 집사님',
+            badge: '🐶 푸들 보호자님',
         },
         {
             id: 't2',
@@ -602,40 +473,22 @@ const Landing = () => {
             role: t('testimonials.t2Role'),
             content: t('testimonials.t2Content'),
             rating: 5,
-            badge: '🐱 다묘 집사님',
+            badge: '🐱 다묘 보호자님',
         },
         {
             id: 't5',
             name: t('testimonials.t5Name', '홍효선 대표'),
             clinic: t('testimonials.t5Clinic', '반려조 가정 (앵무새 꼬미)'),
-            role: t('testimonials.t5Role', '앵무새 보호자 24시간 완치 실화'),
-            content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 대박입니다."'),
+            role: t('testimonials.t5Role', '앵무새 보호자 24시간 회복 실화'),
+            content: t('testimonials.t5Content', '"앵무새(꼬미)가 갑작스런 설사로 낙조 위기였는데, 파보겔 한 방울 급여 후 다음 날 아침 거짓말처럼 설사가 뚝 멈추고 활력을 되찾았습니다. 조류에게도 정말 안심입니다."'),
             rating: 5,
-            badge: '🦜 24시간 완치 쇼츠',
-        },
-        {
-            id: 't3',
-            name: t('testimonials.t3Name'),
-            clinic: t('testimonials.t3Clinic'),
-            role: t('testimonials.t3Role'),
-            content: t('testimonials.t3Content'),
-            rating: 5,
-            badge: '🏡 전문 브리더',
-        },
-        {
-            id: 't4',
-            name: t('testimonials.t4Name'),
-            clinic: t('testimonials.t4Clinic'),
-            role: t('testimonials.t4Role'),
-            content: t('testimonials.t4Content'),
-            rating: 5,
-            badge: '🏪 펫샵 파트너',
+            badge: '🦜 24시간 회복 실화',
         },
         {
             id: 't6',
             name: '김동준 원장',
             clinic: '하남 사랑동물병원 원장 / 파보겔 학술자문위원',
-            role: '55일령 파보 장염 푸들 7일 집중 케어 회복 관찰',
+            role: '55일령 파보 장염 푸들 집중 케어 회복 관찰',
             content: '단순 장 트러블 케어를 넘어 구토와 기력 저하로 힘들어하는 어린 강아지·고양이도 거부감 없이 스스로 잘 받아먹는 뛰어난 기호성이 가장 큰 장점입니다. 가정 내 1차 안심 상비 보조사료로 적극 추천합니다.',
             rating: 5,
             badge: '🩺 수의사 학술자문 총평',
@@ -1368,7 +1221,7 @@ const Landing = () => {
                         </p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
                         {testimonials.map((testimonial, i) => (
                             <div
                                 key={testimonial.id || i}
@@ -1710,30 +1563,20 @@ const Landing = () => {
                             </div>
                         ))}
                     </div>
-
-                    <div className="text-center mt-6 sm:mt-8">
-                        <p className="text-gray-600 mb-3 text-sm break-keep">{t('target.other')}</p>
-                        <button
-                            onClick={() => scrollToSection('order')}
-                            className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
-                        >
-                            {t('target.cta')}
-                        </button>
-                    </div>
                 </div>
             </section>
 
-            {/* Order & B2B Partner Lounge Section (직영 주문 및 펫샵·브리더·산업동물 전용 하단 배치) */}
+            {/* Order Section (일반 보호자 직영 무통장 주문 및 상담) */}
             <section id="order" className="py-10 sm:py-14 bg-white">
                 <div className="section-container">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-6 sm:mb-8">
                             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
-                                {t('order.badge')}
+                                {t('order.badge', '주문 및 상담 안내')}
                             </span>
-                            <h2 className="section-title">{t('order.title')}</h2>
+                            <h2 className="section-title">{t('order.title', '지금 바로 주문하세요')}</h2>
                             <p className="section-subtitle">
-                                {t('order.subtitle')}
+                                {t('order.subtitle', '카카오 쇼핑하기·쿠팡 로켓배송·네이버 스마트스토어 간편결제 및 무통장 직영 주문을 지원합니다.')}
                             </p>
                         </div>
 
@@ -1741,83 +1584,10 @@ const Landing = () => {
                             <OrderForm
                                 formData={formData}
                                 onChange={handleInputChange}
-                                setFormData={setFormData}
                                 onSubmit={handleSubmit}
                                 isSubmitting={isSubmitting}
                                 products={products}
                                 variant="section"
-                                onTriggerDuplicateModal={triggerDuplicateSampleGuide}
-                                onTriggerCertNotice={() => setIsCertifiedNoticeOpen(true)}
-                                isVerifiedPartner={isPartnerMode}
-                            />
-                        </div>
-
-                        {/* 🏢 B2B 파트너 라운지 (펫샵 · 브리더 전용) & 산업동물 총판 안내 바 */}
-                        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-3 bg-slate-50 rounded-2xl p-4 sm:px-5 border border-slate-200 shadow-xs">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-center sm:text-left">
-                                <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-extrabold shrink-0">
-                                    🏢 Partner Lounge
-                                </span>
-                                <div className="text-xs sm:text-sm text-slate-700 break-keep">
-                                    <strong className="text-slate-900">전국 펫샵 · 브리더(번식농장) 사장님:</strong> 인허가 사업자 전용 도매 공급가 및 <strong>본품 1병 무료 샘플</strong>을 지원해 드립니다.
-                                    <span className="text-slate-500 text-xs block sm:inline sm:ml-2">
-                                        (※ 송아지·자돈 등 산업동물은 독점 총판 <strong>(주)엠오바이오</strong> 운영)
-                                    </span>
-                                </div>
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        requestType: 'sample_petshop',
-                                        product: 'parvogel-100ml',
-                                        quantity: 1,
-                                        message: '[파트너 라운지] 펫샵·브리더 전용 도매 특가 및 무료 샘플 신청'
-                                    }));
-                                    setIsOrderModalOpen(true);
-                                    setIsOrderComplete(false);
-                                }}
-                                className="w-full md:w-auto shrink-0 px-4 py-2.5 bg-primary-50 hover:bg-primary-100 text-primary-900 border border-primary-200 text-xs sm:text-sm font-extrabold rounded-xl transition-all"
-                            >
-                                펫샵·브리더 1병 무료샘플 &amp; 도매 신청 ➔
-                            </button>
-                        </div>
-
-                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 (Partner Lounge POP) */}
-                        <div className="mt-6 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-sky-50 via-white to-emerald-50/60 text-slate-900 shadow-lg border border-sky-200/80 relative overflow-hidden text-start">
-                            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                                <div className="space-y-2 max-w-2xl">
-                                    <div className="flex items-center gap-2">
-                                        <span className="bg-slate-900 text-white text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
-                                            🏢 Partner Lounge
-                                        </span>
-                                        <span className="text-xs text-primary-800 font-extrabold">전국 펫샵·브리더(켄넬)·반려동물 용품점 사장님 전용</span>
-                                    </div>
-                                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                                        매장 홍보용 <span className="text-primary-700">맞춤 A4 안내판</span> &amp; <span className="text-emerald-700">실물 POP 보드판</span> 100% 무상 지원
-                                    </h3>
-                                    <p className="text-sm text-slate-700 leading-relaxed break-keep">
-                                        파보겔을 취급하시는 전국 펫샵·브리더 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된
-                                        <strong> A4 안내판 즉시 출력 엔진</strong>과 <strong>하드 폼보드 쇼카드(POP) 실물</strong>을 본사에서 무상으로 보내드립니다.
-                                    </p>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={() => setIsPartnerModalOpen(true)}
-                                    className="shrink-0 w-full lg:w-auto px-6 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-black text-sm shadow-lg transition-all flex items-center justify-center gap-2"
-                                >
-                                    <span>🏢 취급점 전용 알림판 만들기 &amp; 보드판 신청</span>
-                                    <span>➔</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* 참고: 대동물·축산 임상 검증 인터뷰 */}
-                        <div className="mt-8">
-                            <AudioTestimonial
-                                tKey="audioTestimonialDongjin"
-                                audioUrl={`${import.meta.env.BASE_URL}assets/jeongseongdae-call.m4a`}
                             />
                         </div>
                     </div>
@@ -1892,15 +1662,6 @@ const Landing = () => {
                                 <li><a href="tel:02-6949-5708" className="hover:text-blue-600 transition-colors">{t('footer.support2')}</a></li>
                                 <li><a href="mailto:name_hyosun@naver.com" className="hover:text-blue-600 transition-colors">{t('footer.support3')}</a></li>
                                 <li><button type="button" onClick={() => scrollToSection('faq')} className="hover:text-blue-600 transition-colors">{t('footer.support4', '자주 묻는 질문 (FAQ)')}</button></li>
-                                <li>
-                                    <button
-                                        type="button"
-                                        onClick={() => setIsPartnerModalOpen(true)}
-                                        className="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"
-                                    >
-                                        <span>🏢 취급점·도매 파트너 지원 (A4·보드판)</span>
-                                    </button>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -1974,14 +1735,10 @@ const Landing = () => {
                                     <OrderForm
                                         formData={formData}
                                         onChange={handleInputChange}
-                                        setFormData={setFormData}
                                         onSubmit={handleSubmit}
                                         isSubmitting={isSubmitting}
                                         products={products}
                                         variant="modal"
-                                        onTriggerDuplicateModal={triggerDuplicateSampleGuide}
-                                        onTriggerCertNotice={() => setIsCertifiedNoticeOpen(true)}
-                                        isVerifiedPartner={isPartnerMode}
                                     />
                                 </div>
                             )}
@@ -2039,42 +1796,6 @@ const Landing = () => {
             <Suspense fallback={null}>
                 <Chatbot />
             </Suspense>
-
-            {/* 도매점·취급점 전용 B2B 파트너 포털 모달 (A4 알림판 & POP 보드판) */}
-            {isPartnerModalOpen && (
-                <Suspense fallback={null}>
-                    <PartnerNoticeModal
-                        isOpen={isPartnerModalOpen}
-                        onClose={() => setIsPartnerModalOpen(false)}
-                    />
-                </Suspense>
-            )}
-
-            {/* 무료 샘플 중복 신청자 친절 안내 및 B2B 정식 발주 전환 모달 */}
-            {isDuplicateModalOpen && (
-                <Suspense fallback={null}>
-                    <DuplicateSampleModal
-                        isOpen={isDuplicateModalOpen}
-                        onClose={() => setIsDuplicateModalOpen(false)}
-                        matchedRecipient={duplicateSampleRecipient}
-                        onConvertToOrder={handleConvertToOrder}
-                    />
-                </Suspense>
-            )}
-
-            {/* 일반인/미등록 사업자 대상 정중한 무료 샘플 지원 정책 안내 및 쿠팡/네이버 전환 모달 */}
-            {isCertifiedNoticeOpen && (
-                <Suspense fallback={null}>
-                    <CertifiedBusinessNoticeModal
-                        isOpen={isCertifiedNoticeOpen}
-                        onClose={() => setIsCertifiedNoticeOpen(false)}
-                        applicantPhone={formData.phone}
-                        applicantShop={formData.hospitalName}
-                    />
-                </Suspense>
-            )}
-
-
 
             {/* Custom Styles */}
             <style>{`

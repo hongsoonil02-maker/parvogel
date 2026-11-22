@@ -56,12 +56,12 @@ export default function SEO({ title, description, url, type = 'website', image, 
       },
       {
         "@type": "VideoObject",
-        "name": "55일령 강아지 임상 관찰 7일 기록 — 파보겔 다큐멘터리",
-        "description": "급성 소화기 증상의 55일령 환축 하남 사랑동물병원 김동준 원장 집중 관찰 기록. 보조사료 파보겔 급여 후 경과 관찰 기록.",
-        "thumbnailUrl": seo.image,
-        "uploadDate": "2026-08-28",
-        "embedUrl": absoluteUrl('/#video'),
-        "contentUrl": absoluteUrl('/assets/parvogel_clinical_documentary_v2.mp4')
+        "name": "생후 55일 아기 푸들 실제 진료실 28초 회복 기록 — 파보겔",
+        "description": "급성 소화기 증상으로 내원한 생후 55일 아기 푸들의 하남 사랑동물병원 김동준 원장 실제 진료실 관찰 기록. 파보겔 1초 펌프 급여 후 3일 만에 자력 기립 및 사료 완식 회복 관찰.",
+        "thumbnailUrl": absoluteUrl('/assets/parvogel_real_clinical_poster.jpg'),
+        "uploadDate": "2026-11-22",
+        "embedUrl": absoluteUrl('/#parvogel-clinical-doc'),
+        "contentUrl": absoluteUrl('/assets/parvogel_real_clinical_28s_landing.mp4')
       },
       {
         "@type": "VideoObject",

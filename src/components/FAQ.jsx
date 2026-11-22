@@ -12,8 +12,8 @@ export default function FAQ() {
       badge: '병용 요령'
     },
     {
-      q: t('faq.q2', '태어난 지 얼마 안 된 어린 새끼나 임신한 모체에게도 안전한가요?'),
-      a: t('faq.a2', '안전합니다. 파보겔의 주성분인 천연 나노 몬모릴로나이트는 체내로 화학 흡수되지 않고 장관(소화기) 내벽을 물리적으로 코팅하며 유해 독소를 흡착한 뒤 대변으로 전량 배출됩니다. 따라서 생후 30일령 전후의 자견·자묘, 갓 태어난 신생 송아지 및 임신 동물에게도 체내 부담 없이 안전하게 상비 급여할 수 있습니다.'),
+      q: t('faq.q2', '태어난 지 얼마 안 된 어린 새끼나 노령견·임신 모체에도 안전한가요?'),
+      a: t('faq.a2', '안전합니다. 파보겔의 주성분인 천연 나노 몬모릴로나이트는 체내로 화학 흡수되지 않고 장관(소화기) 내벽을 물리적으로 코팅하며 유해 독소를 흡착한 뒤 대변으로 전량 배출됩니다. 따라서 생후 30일령 전후의 어린 강아지·고양이, 간·신장이 약한 노령 반려동물 및 임신 모체에도 부담 없이 안전하게 상비 급여할 수 있습니다.'),
       badge: '안전성'
     },
     {
@@ -23,13 +23,8 @@ export default function FAQ() {
     },
     {
       q: t('faq.q4', '개봉 후 보관 방법과 유효기간은 어떻게 되나요?'),
-      a: t('faq.a4', '직사광선을 피하여 상온(1~30℃)의 건랭한 곳에 보관하시면 제조일로부터 18개월간 안정적으로 보관 가능합니다. 번거로운 냉장 보관이 필요 없어 농가 축사나 가정 상비약 보관함, 진료실 등에 두고 급여하시기 최적화되어 있습니다. (단, 사용 후 펌프 캡을 닫아 이물질 혼입을 방지해 주세요.)'),
+      a: t('faq.a4', '직사광선을 피하여 상온(1~30℃)의 건랭한 곳에 보관하시면 제조일로부터 18개월간 안정적으로 보관 가능합니다. 번거로운 냉장 보관이 필요 없어 가정 상비약 보관함이나 거실 서랍, 산책 가방 등에 두고 급여하시기 최적화되어 있습니다. (단, 사용 후 펌프 캡을 닫아 이물질 혼입을 방지해 주세요.)'),
       badge: '보관 방법'
-    },
-    {
-      q: t('faq.q5', '펫샵, 브리더(켄넬) 대량 주문 시 세금계산서 발행 및 도매 공급이 가능한가요?'),
-      a: t('faq.a5', '네, 전액 전자세금계산서 발행 및 사업자 전용 도매가 공급이 가능합니다. 전국 펫샵·분양샵, 전문 브리더(켄넬/번식농장) 대표님의 경우 하단 B2B 신청 탭 또는 고객센터(010-5407-5708)로 신청해 주시면 동물판매업·생산업 허가증 또는 사업자등록증 확인 후 수량별 도매 단가표를 즉시 안내해 드립니다.'),
-      badge: '도매/세금'
     },
     {
       q: t('faq.q6', '앵무새나 조류(반려조), 소형 동물에게도 급여해도 되나요?'),
@@ -48,8 +43,8 @@ export default function FAQ() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 break-keep">
             {t('faq.title', '자주 묻는 질문')}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2 break-keep">
-            {t('faq.subtitle', '파보겔 급여 방법 및 안전성에 대해 반려동물 보호자님과 펫샵·브리더 대표님께서 가장 많이 물으시는 내용입니다.')}
+          <p className="text-slate-700 text-sm sm:text-base mt-2 break-keep">
+            {t('faq.subtitle', '파보겔 급여 방법 및 안전성에 대해 반려동물 보호자님께서 가장 많이 물으시는 내용입니다.')}
           </p>
         </div>
 
@@ -116,8 +111,8 @@ export default function FAQ() {
 
         <div className="mt-10 p-5 rounded-2xl bg-primary-50 border border-primary-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <p className="font-bold text-slate-900 text-sm">더 궁금한 점이 있으신가요?</p>
-            <p className="text-xs text-slate-600 mt-0.5">급여 용량, 온라인 구매, 펫샵·브리더 도매 발주에 대해 전담 상담팀이 친절히 안내해 드립니다.</p>
+            <p className="font-bold text-slate-900 text-sm sm:text-base">더 궁금한 점이 있으신가요?</p>
+            <p className="text-xs sm:text-sm text-slate-700 mt-0.5">우리 아이 체중별 급여 용량과 온라인 구매에 대해 친절히 안내해 드립니다.</p>
           </div>
           <a
             href="tel:010-5407-5708"

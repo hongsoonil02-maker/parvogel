@@ -3,19 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const ClinicalEvidence = () => {
   const { t } = useTranslation();
-  const [selectedVirus, setSelectedVirus] = React.useState(null);
   const [showRawTables, setShowRawTables] = React.useState(false);
-
-  // ESC 키로 모달 닫기
-  React.useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && selectedVirus) {
-        setSelectedVirus(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedVirus]);
 
   return (
     <section id="clinical" className="py-8 sm:py-10 lg:py-12 bg-[#FAF9F6] border-y border-slate-200/80 overflow-hidden w-full max-w-full">
@@ -117,22 +105,22 @@ const ClinicalEvidence = () => {
                   <p className="text-[11px] font-bold text-amber-900">— {t('clinical.card4_quote3_author', '김동준 원장 (하남 사랑동물병원 원장)')}</p>
                 </div>
                 <div className="bg-sky-50/70 p-3.5 rounded-2xl border-l-4 border-primary-600">
-                  <p className="text-slate-800 font-medium text-xs leading-relaxed mb-1">{t('clinical.card4_quote1', '"1-Deoxynojirimycin(DNJ)의 여러 바이러스 억제 효과와 차별화된 유해물질 흡착력은 확실한 차별점입니다."')}</p>
-                  <p className="text-[11px] font-bold text-primary-900">— {t('clinical.card4_quote1_author', '박봉균 교수 (전 농림축산검역본부장, 서울대 수의대 명예교수)')}</p>
+                  <p className="text-slate-800 font-medium text-xs sm:text-sm leading-relaxed mb-1">{t('clinical.card4_quote1', '"1-Deoxynojirimycin(DNJ)의 여러 바이러스 억제 효과와 차별화된 유해물질 흡착력은 확실한 차별점입니다."')}</p>
+                  <p className="text-xs font-bold text-primary-900">— {t('clinical.card4_quote1_author', '박봉균 교수 (서울대 수의대 명예교수 · 바이러스학 권위자)')}</p>
                 </div>
                 <div className="bg-emerald-50/70 p-3.5 rounded-2xl border-l-4 border-emerald-600">
-                  <p className="text-slate-800 font-medium text-xs leading-relaxed mb-1">{t('clinical.card4_quote4', '"인체에도 좋을 거 같은데..."')}</p>
-                  <p className="text-[11px] font-bold text-emerald-900">— {t('clinical.card4_quote4_author', '윤화영 교수 (전 서울대학교 수의과대학 내과학 교수 · 전 서울대 동물병원 내과과장)')}</p>
+                  <p className="text-slate-800 font-medium text-xs sm:text-sm leading-relaxed mb-1">{t('clinical.card4_quote4', '"인체에도 좋을 거 같은데..."')}</p>
+                  <p className="text-xs font-bold text-emerald-900">— {t('clinical.card4_quote4_author', '윤화영 교수 (전 서울대학교 수의과대학 내과학 교수 · 전 서울대 동물병원 내과과장)')}</p>
                 </div>
               </div>
             </div>
             <div className="mt-4 bg-slate-50 border border-slate-200/80 rounded-2xl p-3">
-              <p className="text-[11px] font-medium text-slate-600 leading-relaxed">📌 {t('clinical.card4_note', '파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 급여 기준을 철저히 검증하고 있습니다.')}</p>
+              <p className="text-xs font-medium text-slate-700 leading-relaxed">📌 {t('clinical.card4_note', '파보겔의 학술·자문단은 (전)서울대학교 수의과대학 출신 등 수의학 전문가들로 구성되어 임상 데이터와 급여 기준을 철저히 검증하고 있습니다.')}</p>
             </div>
           </div>
         </div>
 
-        {/* 아코디언 토글 버튼: 상세 원료 스펙 비교표 & 5대 바이러스 학술 데이터 */}
+        {/* 아코디언 토글 버튼: 상세 원료 스펙 비교표 & 5가지 복합 포뮬러 학술 근거 */}
         <div className="text-center">
           <button
             type="button"
@@ -143,8 +131,8 @@ const ClinicalEvidence = () => {
             <span>🔬</span>
             <span>
               {showRawTables
-                ? '학술 상세 비교표 (비표면적·입자도·바이러스 억제 데이터) 접기 ▲'
-                : '수의학·브리더용 상세 학술 비교표 (입자도·바이러스 억제 데이터) 펼쳐보기 ▼'}
+                ? '상세 학술 비교표 (비표면적·입자도·복합 작용 기전) 접기 ▲'
+                : '상세 학술 비교표 (입자도·비표면적·복합 작용 기전) 펼쳐보기 ▼'}
             </span>
           </button>
         </div>
@@ -238,128 +226,27 @@ const ClinicalEvidence = () => {
             </div>
           </div>
 
-          {/* Card 3: Antiviral Effects Table */}
+          {/* Card 3: 5-in-1 Synergy Mechanism (Pure Companion Animal Scientific Basis) */}
           <div className="bg-white min-w-0 p-4 sm:p-6 md:p-9 rounded-3xl border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden">
             <div>
               <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-4 flex items-center gap-3 break-keep">
-                <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">3</span>
-                <span>{t('clinical.card3_title', '항바이러스 효과 (바실러스 서브틸리스)')}</span>
+                <span className="w-9 h-9 rounded-full shrink-0 bg-primary-600 text-white flex items-center justify-center text-sm font-bold shadow-md">2</span>
+                <span>5가지 복합 포뮬러 핵심 작용 기전</span>
               </h3>
-              <p className="text-slate-600 mb-6 leading-relaxed text-sm md:text-base font-normal">
-                {t('clinical.card3_desc', 'DNG-1000의 핵심 균주인 Bacillus subtilis MORI가 생산하는 DNJ 성분의 바이러스 계통별 억제 효과입니다.')}
+              <p className="text-slate-600 mb-6 leading-relaxed text-sm md:text-base font-normal break-keep">
+                특허 균주(Bacillus subtilis MORI)가 생성하는 1-Deoxynojirimycin(DNJ)과 초미세 나노 몬모릴로나이트, 전해질·비타민 A가 복합 작용하여 여린 반려동물의 장 건강을 입체적으로 돕습니다.
               </p>
-              <div className="w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm mb-6">
-                <table className="w-full text-sm border-collapse table-fixed">
-                  <colgroup>
-                    <col style={{width: '32%'}} />
-                    <col style={{width: '46%'}} />
-                    <col style={{width: '22%'}} />
-                  </colgroup>
-                  <thead>
-                    <tr className="bg-primary-700 text-white">
-                      <th className="px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_col1', '바이러스 계통')}</th>
-                      <th className="px-3 py-3 text-left font-bold text-xs">{t('clinical.table3_header', '대상 바이러스')}</th>
-                      <th className="px-1 py-3 text-center font-bold text-xs">{t('clinical.table3_col3', '효과')}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Arteriviruses</td>
-                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)')}</td>
-                      <td className="px-1 py-2.5 text-center">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedVirus({
-                            group: 'Arteriviruses',
-                            target: t('clinical.table3_row1', 'PRRSV (돼지생식기호흡기증후군)'),
-                            efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: t('clinical.virusDescArteri', 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분의 동맥바이러스 복제 억제 기전 입증')
-                          })}
-                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
-                          aria-label={`${t('clinical.table3_row1', 'PRRSV')} 효과 확인 모달 열기`}
-                        >
-                          {t('clinical.table3_effect', '효과 확인')}
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Orthomyxoviridae</td>
-                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row2', '조류독감 A (AIV)')}</td>
-                      <td className="px-1 py-2.5 text-center">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedVirus({
-                            group: 'Orthomyxoviridae',
-                            target: t('clinical.table3_row2', '조류독감 A (AIV)'),
-                            efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: t('clinical.virusDescOrtho', '오르토믹소바이러스과 인플루엔자 바이러스 외피 단백질 합성 억제 및 증식 저해 효과 확인')
-                          })}
-                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
-                          aria-label={`${t('clinical.table3_row2', '조류독감 A')} 효과 확인 모달 열기`}
-                        >
-                          {t('clinical.table3_effect', '효과 확인')}
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Pestiviruses</td>
-                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)')}</td>
-                      <td className="px-1 py-2.5 text-center">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedVirus({
-                            group: 'Pestiviruses',
-                            target: t('clinical.table3_row3', '소 바이러스성 설사병 (BVDV)'),
-                            efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: t('clinical.virusDescPesti', '소화기 감염 페스티바이러스 복제 억제 및 장점막 손상 완화 보조 작용 입증')
-                          })}
-                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
-                          aria-label={`${t('clinical.table3_row3', '소 바이러스성 설사병')} 효과 확인 모달 열기`}
-                        >
-                          {t('clinical.table3_effect', '효과 확인')}
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="border-b border-slate-100 hover:bg-primary-50/50 transition-colors">
-                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Bunyaviridae</td>
-                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row4', '아카바네, 아이노 바이러스')}</td>
-                      <td className="px-1 py-2.5 text-center">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedVirus({
-                            group: 'Bunyaviridae',
-                            target: t('clinical.table3_row4', '아카바네, 아이노 바이러스'),
-                            efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: t('clinical.virusDescBunya', '부냐바이러스과 아카바네 및 아이노 바이러스에 대한 항바이러스 활성 및 증식 저해 확인')
-                          })}
-                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
-                          aria-label={`${t('clinical.table3_row4', '아카바네, 아이노 바이러스')} 효과 확인 모달 열기`}
-                        >
-                          {t('clinical.table3_effect', '효과 확인')}
-                        </button>
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-primary-50/50 transition-colors">
-                      <td className="px-3 py-2.5 text-xs text-slate-500 break-words font-medium">Rhabdoviridae</td>
-                      <td className="px-3 py-2.5 text-xs font-medium text-slate-700 break-keep">{t('clinical.table3_row5', '소유행열 바이러스 (BEF)')}</td>
-                      <td className="px-1 py-2.5 text-center">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedVirus({
-                            group: 'Rhabdoviridae',
-                            target: t('clinical.table3_row5', '소유행열 바이러스 (BEF)'),
-                            efficacy: t('clinical.table3_effect', '효과 확인'),
-                            desc: t('clinical.virusDescRhabdo', '랍도바이러스과 소유행열 바이러스에 대한 유의미한 증식 억제 효과 검증')
-                          })}
-                          className="inline-flex items-center justify-center bg-primary-100 hover:bg-primary-600 hover:text-white text-primary-800 text-[11px] font-bold px-1.5 py-0.5 rounded-full transition-all cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
-                          aria-label={`${t('clinical.table3_row5', '소유행열 바이러스')} 효과 확인 모달 열기`}
-                        >
-                          {t('clinical.table3_effect', '효과 확인')}
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="space-y-3 mb-6">
+                {[
+                  { title: '① 항균·항바이러스 보조 (DNJ & 특허 균주)', desc: 'Bacillus subtilis MORI 특허 균주(Patent No. 2011B0042620.8)와 천연 DNJ 성분이 장내 유해 바이러스 증식 억제와 유익균 균형에 도움을 줍니다.' },
+                  { title: '② 독소 흡착·연변 개선 (고순도 몬모릴로나이트)', desc: '체내에 흡수되지 않는 나노 미네랄이 장 점막을 물리적으로 감싸고 유해 독소·가스를 흡착해 대변으로 안전하게 배출합니다.' },
+                  { title: '③ 손상 점막 회복·전해질 보충 (비타민 A & 유기산 전해질)', desc: '설사·구토로 쓰린 장 상피세포 회복과 탈수 예방에 필요한 필수 전해질·에너지를 신속히 보충합니다.' },
+                ].map((item, idx) => (
+                  <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <div className="text-sm font-extrabold text-slate-900 mb-1 break-keep">{item.title}</div>
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed break-keep">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -368,10 +255,10 @@ const ClinicalEvidence = () => {
               <div>
                 <span className="font-bold text-sm mb-1 flex items-start gap-1">
                   <span className="shrink-0">🔬</span>
-                  <span className="break-keep">{t('clinical.antiviralSummaryTitle', '항바이러스 학술 검증')}</span>
+                  <span className="break-keep">{t('clinical.antiviralSummaryTitle', '특허 균주·DNJ 학술 검증')}</span>
                 </span>
                 <div className="break-keep">
-                  {t('clinical.antiviralSummaryBody', 'DNG-1000 핵심 균주(Bacillus subtilis MORI)가 생산하는 DNJ 성분이 소, 돼지, 조류 등 주요 5대 바이러스 계통의 증식을 유의미하게 억제함을 입증하였습니다.')}
+                  경상국립대 수의과대학 연구진의 학술 근거를 바탕으로, 특허 균주(Bacillus subtilis MORI)와 DNJ 성분의 장내 유해 인자 억제 시너지를 검증했습니다.
                 </div>
               </div>
               <div className="pt-2.5 border-t border-primary-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -401,91 +288,13 @@ const ClinicalEvidence = () => {
                 </a>
                 </div>
               </div>
-              <p className="text-[11px] text-slate-500 mt-2 break-keep">* DNJ 항바이러스 효과는 체외(in vitro) 및 기초 연구 기반이며, 보조사료는 질병 치료를 대체하지 않습니다.</p>
+              <p className="text-[11px] text-slate-500 mt-2 break-keep">* DNJ 학술 연구는 기초 연구 기반이며, 보조사료는 수의사의 질병 진료를 대체하지 않습니다.</p>
             </div>
           </div>
 
         </div>
         )}
       </div>
-
-      {/* 효과 확인 상세 검증 모달 (z-[85]) */}
-      {selectedVirus && (
-        <div
-          className="fixed inset-0 z-[85] flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in"
-          onClick={() => setSelectedVirus(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={t('clinical.modalTitle', '항바이러스 임상 효과 상세 검증')}
-        >
-          <div
-            className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* 닫기 버튼 */}
-            <button
-              onClick={() => setSelectedVirus(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer"
-              aria-label={t('common.close', '닫기')}
-            >
-              ✕
-            </button>
-
-            {/* 헤더 */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-11 h-11 rounded-2xl bg-primary-100 text-primary-700 flex items-center justify-center text-xl font-bold shadow-xs">
-                🔬
-              </span>
-              <div>
-                <span className="text-xs font-black text-primary-600 uppercase tracking-wider">
-                  {selectedVirus.group}
-                </span>
-                <h4 className="text-base sm:text-lg font-extrabold text-slate-900 break-keep">
-                  {selectedVirus.target}
-                </h4>
-              </div>
-            </div>
-
-            {/* 데이터 요약 카드 */}
-            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 mb-4 space-y-3 text-xs text-slate-700">
-              <div className="flex items-center justify-between pb-2.5 border-b border-slate-200">
-                <span className="text-slate-500 font-bold">{t('clinical.table3_col3', '임상 효과')}</span>
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800">
-                  <span>✓</span>
-                  <span>{selectedVirus.efficacy}</span>
-                </span>
-              </div>
-              <div>
-                <span className="text-slate-500 font-bold block mb-1">{t('clinical.mechanismLabel', '검증 연구 및 작용 기전')}</span>
-                <p className="font-medium text-slate-800 leading-relaxed break-keep">
-                  {selectedVirus.desc}
-                </p>
-              </div>
-              <div className="pt-2 border-t border-slate-200 text-slate-500 text-[11px] leading-normal break-keep">
-                📌 {t('clinical.researchBasis', '경상국립대학교 수의과대학 이후장 교수 연구진 학술 연구 데이터 기반')}
-              </div>
-            </div>
-
-            {/* 하단 액션 버튼 */}
-            <div className="flex gap-2">
-              <a
-                href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent('1-deoxynojirimycin ' + selectedVirus.group + ' antiviral')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs rounded-xl shadow-md transition-all text-center cursor-pointer"
-              >
-                <span>🔬 PubMed 검색</span>
-              </a>
-              <button
-                onClick={() => setSelectedVirus(null)}
-                className="py-2.5 px-4 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl transition-all cursor-pointer"
-              >
-                {t('common.close', '닫기')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

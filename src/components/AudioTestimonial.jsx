@@ -66,7 +66,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
 
   return (
     <section
-      aria-label={T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
+      aria-label={T('title', '"구토·복통으로 쓰러진 아기 강아지도 스스로 핥아먹고 빠르게 안정됩니다"')}
       className="bg-white text-slate-800 rounded-3xl p-5 sm:p-6 my-3 sm:my-4 border border-slate-200 shadow-lg hover:shadow-xl transition-all"
     >
       <audio ref={audioRef} src={audioUrl} preload="metadata" />
@@ -76,10 +76,10 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
             {T('tag', '🎙️ 현장 수의사 임상 녹음 인터뷰')}
           </span>
           <h4 className="text-xl sm:text-2xl font-black text-slate-900 mt-2 break-keep">
-            {T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
+            {T('title', '"구토·복통으로 쓰러진 아기 강아지도 스스로 핥아먹고 빠르게 안정됩니다"')}
           </h4>
           <p className="text-sm sm:text-base text-slate-700 font-medium break-keep">
-            {T('sub', '사랑동물병원 김동준 원장님 현장 반응 통화 녹음')}
+            {T('sub', '하남 사랑동물병원 김동준 원장님 실제 임상 관찰 통화 녹음')}
           </p>
         </div>
 
@@ -97,10 +97,10 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
             </button>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-extrabold text-slate-900 truncate">
-                {T('docName', '김동준 원장 (사랑동물병원)')}
+                {T('docName', '김동준 원장 (하남 사랑동물병원)')}
               </div>
               <div className="text-xs text-primary-700 font-bold">
-                {T('docSub', '파보겔(로타겔) 임상 오디오 리포트')}
+                {T('docSub', '파보겔 반려견 임상 오디오 리포트')}
               </div>
               <div
                 role="slider"
@@ -131,7 +131,7 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
             </div>
           </div>
           <p className="text-xs sm:text-sm text-slate-700 italic font-medium leading-relaxed break-keep">
-            {T('quote', '"파보겔 투여 후 설사 송아지의 장 점막 보호 및 기력 회복 속도가 매우 뛰어납니다."')}
+            {T('quote', '"주사기 투약 스트레스 없이 입에 톡 짜주면 잘 받아먹고, 장 점막 코팅과 기력 회복 속도가 매우 뛰어납니다."')}
           </p>
         </div>
       </div>
