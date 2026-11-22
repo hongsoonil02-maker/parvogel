@@ -17,10 +17,10 @@ export default function StickyBottomCTA() {
           </div>
           <div>
             <div className="font-extrabold text-slate-900 text-sm">
-              {t('stickyCta.title', '파보겔 (ParvoGel) — 우리 아이 1초 펌프 응급 장 케어')}
+              {t('stickyCta.title', '파보겔 100ml (18,000원) — 우리 아이 1초 펌프 응급 장 케어')}
             </div>
             <div className="text-xs text-primary-700 font-semibold">
-              {t('stickyCta.sub', '체내 흡수 0% 고순도 나노 몬모릴로나이트 · 간식처럼 냠냠 먹는 겔')}
+              {t('stickyCta.sub', '수의사 자문 · 체내 흡수 0% 고순도 나노 몬모릴로나이트 · 실온 18개월 보관')}
             </div>
           </div>
         </div>
@@ -31,8 +31,9 @@ export default function StickyBottomCTA() {
             target="_blank"
             rel="noopener noreferrer"
             referrerPolicy="no-referrer-when-downgrade"
+            data-product-id="parvogel-100ml"
             aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-            className="min-h-[44px] md:flex-initial px-1.5 sm:px-4 py-2 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-[11px] sm:text-sm rounded-xl shadow-xs border border-amber-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1"
+            className="min-h-[46px] md:flex-initial px-1.5 sm:px-4 py-2 bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs sm:text-sm rounded-xl shadow-xs border border-amber-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1"
           >
             <span aria-hidden="true">🟡</span>
             <span>{t('stickyCta.kakaoShort', '카카오쇼핑')}</span>
@@ -43,8 +44,9 @@ export default function StickyBottomCTA() {
             target="_blank"
             rel="noopener noreferrer"
             referrerPolicy="no-referrer-when-downgrade"
+            data-product-id="parvogel-100ml"
             aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
-            className="min-h-[44px] relative md:flex-initial px-1.5 sm:px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-[11px] sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
+            className="min-h-[46px] relative md:flex-initial px-1.5 sm:px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
           >
             <span aria-hidden="true">🚀</span>
             <span>{t('stickyCta.coupangShort', '쿠팡')}</span>
@@ -55,8 +57,9 @@ export default function StickyBottomCTA() {
             target="_blank"
             rel="noopener noreferrer"
             referrerPolicy="no-referrer-when-downgrade"
+            data-product-id="parvogel-100ml"
             aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
-            className="min-h-[44px] md:flex-initial px-1.5 sm:px-4 py-2 bg-[#028A3D] hover:bg-[#027734] text-white font-black text-[11px] sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
+            className="min-h-[46px] md:flex-initial px-1.5 sm:px-4 py-2 bg-[#028A3D] hover:bg-[#027734] text-white font-black text-xs sm:text-sm rounded-xl shadow-sm transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
           >
             <span aria-hidden="true">🛍️</span>
             <span>{t('stickyCta.naverShort', '네이버')}</span>
@@ -67,7 +70,7 @@ export default function StickyBottomCTA() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t('stickyCta.chatAria', '카카오톡 1:1 맞춤 상담 (새 창)')}
-            className="min-h-[44px] md:flex-initial px-1.5 sm:px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] sm:text-sm rounded-xl border border-slate-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-1"
+            className="min-h-[46px] md:flex-initial px-1.5 sm:px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs sm:text-sm rounded-xl border border-slate-300 transition-all flex items-center justify-center gap-1 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-1"
           >
             <span aria-hidden="true">💬</span>
             <span>{t('stickyCta.chatShort', '상담')}</span>

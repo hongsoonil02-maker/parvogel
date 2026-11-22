@@ -71,7 +71,7 @@ const Landing = () => {
         phone: '',
         email: '',
         address: '',
-        product: 'parvogel-200ml',
+        product: 'parvogel-100ml',
         quantity: 1,
         orderVolume: '',
         message: '',
@@ -133,7 +133,7 @@ const Landing = () => {
     }, []);
 
     useEffect(() => {
-        const sections = ['hero', 'animal-guide', 'about', 'features', 'clinical', 'target', 'testimonials', 'products', 'faq', 'order'];
+        const sections = ['hero', 'parvogel-clinical-doc', 'why-parvogel', 'vet-voice', 'clinical', 'about', 'animal-guide', 'features', 'testimonials', 'products', 'target', 'faq', 'order'];
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -487,7 +487,7 @@ const Landing = () => {
                 localStorage.setItem(SUBMISSION_LAST_KEY, JSON.stringify({ phone: normPhone, ts: Date.now() }))
             } catch (err) { /* ignore */ }
 
-            trackKakaoFormSubmit(formData.requestType, formData.quantity)
+            trackKakaoFormSubmit(formData.requestType, formData.quantity, formData.product)
             setIsOrderComplete(true)
             setFormData({
                 requestType: 'consumer',
@@ -497,7 +497,7 @@ const Landing = () => {
                 phone: '',
                 email: '',
                 address: '',
-                product: 'parvogel-200ml',
+                product: 'parvogel-100ml',
                 quantity: 1,
                 orderVolume: '',
                 message: '',
@@ -531,7 +531,9 @@ const Landing = () => {
     const primaryShadow = 'shadow-primary-900/25'
 
     const navItems = [
-        { id: 'features', label: '특징·임상' },
+        { id: 'why-parvogel', label: '왜 파보겔인가' },
+        { id: 'vet-voice', label: '수의사 검증' },
+        { id: 'products', label: '용량·가격' },
         { id: 'testimonials', label: '실제후기' },
         { id: 'faq', label: '자주묻는질문' },
     ]
@@ -912,7 +914,7 @@ const Landing = () => {
                 </nav>
             </header>
 
-            {/* Hero Section — 2040 D2C Pet Healthcare Modern Renewal */}
+            {/* Hero Section — 45~59 실구매 보호자 신뢰·설득 최적화 */}
             <main id="main-content" tabIndex={-1}>
             <section id="hero" className="relative py-6 sm:py-10 lg:py-14 flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FAF9F6] via-white to-sky-50/50">
                 {/* Soft Pastel Ambient Background */}
@@ -923,62 +925,63 @@ const Landing = () => {
 
                 <div className="section-container relative z-10">
                     <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center max-w-6xl mx-auto">
-                        {/* Left Column: 2040 Pet Parent Empathetic Copy & Direct Store CTAs */}
+                        {/* Left Column: High-Trust Empathetic Copy & Direct Store CTAs */}
                         <div className="lg:col-span-7 text-center lg:text-left">
-                            {/* 상단 트렌디 피드 배지 */}
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-900 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
-                                <span>✨</span>
-                                <span>우리 집 펫 구급함 필수템 · 주사기 실랑이 없는 1초 펌프 겔</span>
+                            {/* 상단 수의학 신뢰 배지 */}
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-950 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
+                                <span>🩺</span>
+                                <span>수의학 자문 · 임상 관찰 · 가정 필수 응급 장 케어 상비약</span>
                             </div>
 
-                            {/* 메인 감성 & 직관 헤드라인 */}
-                            <h1 className="text-2xl sm:text-4xl lg:text-[2.65rem] font-black tracking-tight leading-[1.22] mb-4 break-keep text-slate-900 animate-fade-in-up">
-                                <span className="block text-slate-600 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
-                                    새벽에 갑자기 토하고 설사할 때, 당황하지 말고
+                            {/* 메인 직관 & 신뢰 헤드라인 */}
+                            <h1 className="text-[1.7rem] sm:text-4xl lg:text-[2.65rem] font-black tracking-tight leading-[1.24] mb-4 break-keep text-slate-900 animate-fade-in-up">
+                                <span className="block text-slate-700 text-base sm:text-xl lg:text-2xl font-bold mb-1.5">
+                                    새벽에 갑자기 토하고 설사할 때, 당황하지 마세요
                                 </span>
                                 <span className="block text-slate-900">
                                     입에 대고 1초 톡! <span className="text-primary-700">‘파보겔’</span>
                                 </span>
-                                <span className="block mt-2 text-lg sm:text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-primary-700 via-sky-600 to-emerald-600 font-black">
-                                    가루약 거품 무는 아이도 간식처럼 냠냠 핥아먹어요 🐾
+                                <span className="block mt-2 text-lg sm:text-2xl lg:text-[1.7rem] text-transparent bg-clip-text bg-gradient-to-r from-primary-800 via-sky-700 to-emerald-700 font-black">
+                                    체내 흡수 0% 나노 보호막 · 스스로 핥아먹는 겔
                                 </span>
                             </h1>
 
-                            <p className="text-xs sm:text-base text-slate-600 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
-                                피딩 주사기로 억지로 먹이다 물리고 토하는 전쟁은 이제 끝!<br className="hidden sm:inline" />
-                                체내에 흡수되지 않는 <strong>100% 천연 나노 미네랄 스펀지</strong>가 장 점막을 부드럽게 코팅하고 유해 독소만 자석처럼 끌어안고 배출합니다.
+                            <p className="text-sm sm:text-base text-slate-700 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
+                                주사기로 억지로 먹이다 물리고 토하는 스트레스 없이, 입가에 1초 펌프!<br className="hidden sm:inline" />
+                                몸속에 흡수되지 않는 <strong>100% 천연 고순도 나노 몬모릴로나이트</strong>가 쓰린 장 점막을 부드럽게 감싸고 유해 독소·바이러스만 자석처럼 흡착해 변으로 안전하게 배출합니다.
                             </p>
 
                             {/* 3단계 회복 타임라인 미니 캡슐 바 */}
-                            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto lg:mx-0 mb-6 p-2.5 sm:p-3 rounded-2xl bg-white/90 border border-slate-200/80 shadow-sm">
-                                <div className="text-center p-2 rounded-xl bg-rose-50/70 border border-rose-100">
-                                    <div className="text-[10px] sm:text-xs font-black text-rose-600">Day 1 · 응급</div>
-                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">1초 펌프 진정</div>
+                            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto lg:mx-0 mb-5 p-2.5 sm:p-3 rounded-2xl bg-white/95 border border-slate-200 shadow-sm">
+                                <div className="text-center p-2.5 rounded-xl bg-rose-50/80 border border-rose-100">
+                                    <div className="text-xs font-black text-rose-700">Day 1 · 응급</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 break-keep">1초 점막 보호</div>
                                 </div>
-                                <div className="text-center p-2 rounded-xl bg-sky-50/80 border border-sky-100">
-                                    <div className="text-[10px] sm:text-xs font-black text-sky-700">Day 3 · 호전</div>
-                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">맘마 폭풍 완식!</div>
+                                <div className="text-center p-2.5 rounded-xl bg-sky-50/80 border border-sky-100">
+                                    <div className="text-xs font-black text-sky-800">Day 3 · 호전</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 break-keep">스스로 식욕 회복</div>
                                 </div>
-                                <div className="text-center p-2 rounded-xl bg-emerald-50/80 border border-emerald-100">
-                                    <div className="text-[10px] sm:text-xs font-black text-emerald-700">Day 7 · 회복</div>
-                                    <div className="text-xs sm:text-sm font-extrabold text-slate-800 mt-0.5 break-keep">우다다 활력 회복 🐾</div>
+                                <div className="text-center p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-100">
+                                    <div className="text-xs font-black text-emerald-800">Day 7 · 회복</div>
+                                    <div className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 break-keep">건강한 변·활력</div>
                                 </div>
                             </div>
 
                             {/* 메인 구매 CTA 버튼 (카카오 쇼핑하기 최우선 · 쿠팡 로켓배송 · 네이버 스마트스토어) */}
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-4 w-full max-w-2xl mx-auto lg:mx-0">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-3.5 w-full max-w-2xl mx-auto lg:mx-0">
                                 <a
                                     href={getStoreUrl('kakaoStore')}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
                                     aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                    className="w-full min-h-[56px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                                    className="w-full min-h-[58px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">💬</span>
                                     <div className="text-start leading-tight">
-                                        <div className="text-[10px] text-amber-950 font-extrabold tracking-tight">{t('stores.kakaoSub', '카카오페이 간편결제·톡딜')}</div>
-                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.kakaoCta', '카카오 쇼핑하기')}</div>
+                                        <div className="text-[11px] text-amber-950 font-extrabold tracking-tight">{t('stores.kakaoSub', '카카오페이 간편결제·톡딜')}</div>
+                                        <div className="text-sm sm:text-base font-black whitespace-nowrap">{t('stores.kakaoCta', '카카오 쇼핑하기')}</div>
                                     </div>
                                 </a>
 
@@ -987,13 +990,14 @@ const Landing = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
                                     aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
-                                    className="w-full min-h-[56px] bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
+                                    className="w-full min-h-[58px] bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">🚀</span>
                                     <div className="text-start leading-tight">
-                                        <div className="text-[10px] text-amber-300 font-extrabold tracking-tight">{t('stores.coupangSub', '내일 아침 문 앞 도착')}</div>
-                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.coupangCta', '쿠팡 로켓배송')}</div>
+                                        <div className="text-[11px] text-amber-300 font-extrabold tracking-tight">{t('stores.coupangSub', '내일 아침 문 앞 도착')}</div>
+                                        <div className="text-sm sm:text-base font-black whitespace-nowrap">{t('stores.coupangCta', '쿠팡 로켓배송')}</div>
                                     </div>
                                 </a>
 
@@ -1002,58 +1006,73 @@ const Landing = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
                                     aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
-                                    className="w-full min-h-[56px] bg-[#028A3D] hover:bg-[#027734] text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-emerald-700/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                                    className="w-full min-h-[58px] bg-[#028A3D] hover:bg-[#027734] text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-emerald-700/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">🛍️</span>
                                     <div className="text-start leading-tight">
-                                        <div className="text-[10px] text-emerald-100 font-extrabold tracking-tight">{t('stores.naverSub', '네이버페이 간편결제·적립')}</div>
-                                        <div className="text-sm sm:text-[15px] font-black whitespace-nowrap">{t('stores.naverCta', '네이버 스마트스토어')}</div>
+                                        <div className="text-[11px] text-emerald-100 font-extrabold tracking-tight">{t('stores.naverSub', '네이버페이 간편결제·적립')}</div>
+                                        <div className="text-sm sm:text-base font-black whitespace-nowrap">{t('stores.naverCta', '네이버 스마트스토어')}</div>
                                     </div>
                                 </a>
                             </div>
 
+                            {/* 설득 스토리 바로가기 보조 버튼 (신중한 보호자용) */}
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-4">
+                                <button
+                                    type="button"
+                                    onClick={() => scrollToSection('why-parvogel')}
+                                    className="px-4 py-2 rounded-xl bg-white hover:bg-primary-50 border border-primary-200 text-primary-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
+                                >
+                                    🔬 왜 파보겔인가? 작용 원리 보기 ↓
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => scrollToSection('vet-voice')}
+                                    className="px-4 py-2 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
+                                >
+                                    🎙️ 수의사 실제 육성·임상 근거 듣기 ↓
+                                </button>
+                            </div>
+
                             {/* 신뢰도 요약 지표 */}
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-5 text-xs font-bold text-slate-600 mb-5">
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs sm:text-sm font-bold text-slate-700 mb-3">
                                 <span className="flex items-center gap-1">
-                                    <span className="text-amber-400">★★★★★</span>
-                                    <span>공식 스토어 평점 4.9/5.0</span>
+                                    <span>🩺</span>
+                                    <span>수의학 전문가 자문 검증</span>
+                                </span>
+                                <span className="text-slate-300 hidden sm:inline">|</span>
+                                <span className="flex items-center gap-1">
+                                    <span>🌿</span>
+                                    <span>간·신장 부담 0%</span>
                                 </span>
                                 <span className="text-slate-300 hidden sm:inline">|</span>
                                 <span className="flex items-center gap-1">
                                     <span>🏠</span>
-                                    <span>실온 18개월 서랍 속 보관</span>
+                                    <span>실온 18개월 보관</span>
                                 </span>
-                                <span className="text-slate-300 hidden sm:inline">|</span>
-                                <button
-                                    type="button"
-                                    onClick={() => scrollToSection('animal-guide')}
-                                    className="text-primary-700 hover:underline flex items-center gap-1 font-extrabold"
-                                >
-                                    <span>🐾 우리 아이 급여량 계산기</span>
-                                    <span aria-hidden="true">➔</span>
-                                </button>
                             </div>
                         </div>
 
-                        {/* Right Column: Hero Product Visual Card + 3-Second Floating Trust Pills */}
+                        {/* Right Column: Hero Product Visual Card + 100ml Flagship Trust Info */}
                         <div className="lg:col-span-5">
                             <div className="relative max-w-md mx-auto">
                                 {/* Main Product Card */}
                                 <div className="relative rounded-3xl bg-gradient-to-b from-white via-sky-50/40 to-white p-5 sm:p-6 shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-200/90 overflow-hidden">
-                                    <div className="flex items-center justify-between mb-3">
-                                        <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-extrabold">
+                                    <div className="flex items-center justify-between gap-2 mb-3">
+                                        <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-extrabold">
                                             🌿 체내 흡수 0% 천연 미네랄
                                         </span>
-                                        <span className="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-extrabold">
-                                            100ml · 200ml · 500ml
+                                        <span className="px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-900 text-xs font-extrabold">
+                                            ★ 100ml 표준 상비약
                                         </span>
                                     </div>
 
                                     <div className="relative aspect-[4/4] max-h-72 sm:max-h-80 mx-auto flex items-center justify-center">
                                         <img
                                             src={`${import.meta.env.BASE_URL}images/bottle_front.png`}
-                                            alt="파보겔 (ParvoGel) 반려동물 1초 펌프 장 케어 보조사료"
+                                            alt="파보겔 100ml (ParvoGel) 반려동물 1초 펌프 응급 장 케어 보조사료"
                                             width="600"
                                             height="600"
                                             fetchPriority="high"
@@ -1062,27 +1081,27 @@ const Landing = () => {
                                         />
 
                                         {/* Floating Pill 1 */}
-                                        <div className="absolute top-2 left-0 sm:-left-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-sky-100 flex items-center gap-1.5 text-[11px] font-extrabold text-slate-800">
+                                        <div className="absolute top-2 left-0 sm:-left-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-sky-100 flex items-center gap-1.5 text-xs font-extrabold text-slate-900">
                                             <span>💧</span>
                                             <span>주사기 스트레스 ZERO</span>
                                         </div>
 
                                         {/* Floating Pill 2 */}
-                                        <div className="absolute bottom-3 right-0 sm:-right-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-emerald-100 flex items-center gap-1.5 text-[11px] font-extrabold text-slate-800">
+                                        <div className="absolute bottom-3 right-0 sm:-right-2 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-md border border-emerald-100 flex items-center gap-1.5 text-xs font-extrabold text-slate-900">
                                             <span>🛡️</span>
-                                            <span>생후 30일 아기 동물 안심</span>
+                                            <span>노령견·아기동물 안심</span>
                                         </div>
                                     </div>
 
                                     {/* 응급실 vs 파보겔 상비약 가성비 비교 캡슐 */}
-                                    <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-2 text-left">
-                                        <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                                            <div className="text-[10px] font-bold text-slate-500">🚨 24시 야간 응급실</div>
-                                            <div className="text-xs sm:text-sm font-black text-slate-700 mt-0.5">평균 30~50만 원</div>
+                                    <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-2.5 text-left">
+                                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                                            <div className="text-xs font-bold text-slate-600">🚨 24시 야간 응급실</div>
+                                            <div className="text-sm sm:text-base font-black text-slate-800 mt-0.5">평균 30~50만 원</div>
                                         </div>
-                                        <div className="p-2.5 rounded-xl bg-sky-50/90 border border-sky-200">
-                                            <div className="text-[10px] font-extrabold text-sky-800">🏠 서랍 속 파보겔 상비</div>
-                                            <div className="text-xs sm:text-sm font-black text-primary-800 mt-0.5">18,000원 <span className="text-[10px] font-bold text-sky-700">(1초 급여)</span></div>
+                                        <div className="p-3 rounded-xl bg-sky-50/90 border border-sky-200">
+                                            <div className="text-xs font-extrabold text-sky-900">🏠 서랍 속 파보겔 100ml</div>
+                                            <div className="text-sm sm:text-base font-black text-primary-900 mt-0.5">18,000원 <span className="text-xs font-bold text-sky-800">(약 100회)</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1090,55 +1109,49 @@ const Landing = () => {
                         </div>
                     </div>
 
-                    {/* 🏢 B2B 파트너 라운지 (펫샵 · 브리더 전용) & 산업동물 총판 안내 바 */}
-                    <div className="max-w-6xl mx-auto mt-6 pt-4 border-t border-slate-200/70 flex flex-col md:flex-row items-center justify-between gap-3 bg-white/80 backdrop-blur-xs rounded-2xl p-3.5 sm:px-5 border shadow-xs">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-center sm:text-left">
-                            <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 text-white text-[11px] font-extrabold shrink-0">
-                                🏢 Partner Lounge
-                            </span>
-                            <div className="text-xs text-slate-700 break-keep">
-                                <strong className="text-slate-900">전국 펫샵 · 브리더(번식농장) 사장님:</strong> 인허가 사업자 전용 도매 공급가 및 <strong>본품 1병 무료 샘플</strong>을 지원해 드립니다.
-                                <span className="text-slate-400 text-[11px] block sm:inline sm:ml-2">
-                                    (※ 송아지·자돈 등 산업동물은 독점 총판 <strong>(주)엠오바이오</strong> 운영)
-                                </span>
-                            </div>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setFormData(prev => ({
-                                    ...prev,
-                                    requestType: 'sample_petshop',
-                                    product: 'parvogel-200ml',
-                                    quantity: 1,
-                                    message: '[파트너 라운지] 펫샵·브리더 전용 도매 특가 및 무료 샘플 신청'
-                                }));
-                                setIsOrderModalOpen(true);
-                                setIsOrderComplete(false);
-                            }}
-                            className="w-full md:w-auto shrink-0 px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-900 border border-primary-200 text-xs font-extrabold rounded-xl transition-all"
-                        >
-                            펫샵·브리더 1병 무료샘플 &amp; 도매 신청 ➔
-                        </button>
-                    </div>
-
-                    <div className="max-w-4xl mx-auto mt-3">
+                    <div className="max-w-4xl mx-auto mt-5">
                         <FeedDisclaimer />
                     </div>
                 </div>
             </section>
 
-            {/* 🎬 파보겔 기적의 골든타임 35초 핵심 스토리 영상 */}
+            {/* 🎬 1단계 설득: 파보겔 기적의 골든타임 35초 핵심 스토리 영상 */}
             <Suspense fallback={<div className="py-12 text-center text-slate-400">영상 로딩 중...</div>}>
                 <ParvogelClinicalDocumentary />
             </Suspense>
 
-            {/* 축종별 맞춤 효능 탭 (Hero 직하단 황금 배치: 모든 반려동물/소동물/가축 보호자 즉각 확인) */}
-            <div id="animal-guide" className="section-container pt-2 pb-1">
-                <AnimalSelector />
-            </div>
+            {/* 🔬 2단계 설득: 왜 파보겔인가 — 체내 흡수 0% 나노 스펀지 3단계 원리 */}
+            <Suspense fallback={<div className="py-12 text-center text-slate-400">스토리라인 로딩 중...</div>}>
+                <ParvogelNanoActionStory />
+            </Suspense>
 
-            {/* About Section */}
+            {/* 🎙️ 3단계 설득: 현장 수의사 실제 육성 리포트 (반려견 임상 관찰 — 최하단에서 핵심 설득 구간으로 상향 배치) */}
+            <section id="vet-voice" className="py-8 sm:py-10 bg-gradient-to-b from-sky-50/40 to-white">
+                <div className="section-container max-w-5xl mx-auto">
+                    <div className="text-center max-w-3xl mx-auto mb-5">
+                        <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-extrabold bg-indigo-100 text-indigo-900 border border-indigo-200 mb-2.5">
+                            🩺 현직 동물병원 원장님 실제 임상 육성
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
+                            수의사가 직접 써보고 확인한 기호성과 장 회복 속도
+                        </h2>
+                        <p className="text-sm sm:text-base text-slate-700 mt-2 break-keep">
+                            광고 문구가 아닌, 하남 사랑동물병원 김동준 원장님의 실제 통화 육성을 직접 들어보세요.
+                        </p>
+                    </div>
+                    <AudioTestimonial
+                        tKey="audioTestimonial"
+                        audioUrl={`${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`}
+                    />
+                </div>
+            </section>
+
+            {/* 📊 4단계 설득: 경상국립대 수의대 시험 데이터 & 수의학 전문가 자문단 리뷰 */}
+            <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>
+                <ClinicalEvidence />
+            </Suspense>
+
+            {/* About Section — 핵심 성분표 & 1초 펌프 급여 가이드 */}
             <section id="about" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
                 <div className="section-container">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -1296,10 +1309,10 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* 🌟 B2C 나노 스펀지 3단계 작용 & 4대 핵심 셀링포인트 스토리라인 (신규 개편안 반영) */}
-            <Suspense fallback={<div className="py-12 text-center text-slate-400">스토리라인 로딩 중...</div>}>
-                <ParvogelNanoActionStory />
-            </Suspense>
+            {/* 축종별 맞춤 급여량 가이드 (성분·급여법 바로 아래 배치) */}
+            <div id="animal-guide" className="section-container pt-4 pb-2">
+                <AnimalSelector />
+            </div>
 
             {/* Features Section */}
             <section id="features" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
@@ -1335,87 +1348,14 @@ const Landing = () => {
                                     {feature.icon}
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2 break-keep">{feature.title}</h3>
-                                <p className="text-gray-600 leading-relaxed break-keep">{feature.desc}</p>
+                                <p className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep">{feature.desc}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* 우리 아이들과 함께하는 파보겔 반려견 포토 갤러리 (Issue #7: 대박이·쿠키 사진) */}
-            <PetGallerySection />
-
-            {/* Clinical Evidence Section — lazy */}
-            <Suspense fallback={<div className="py-16 text-center text-slate-400">임상 데이터 로딩 중...</div>}>
-                <ClinicalEvidence />
-            </Suspense>
-
-            {/* 대표 반려조 '꼬미'의 실제 배변 회복기 및 조류(새/앵무새) 임상 실화 판별 가이드 */}
-            <div className="section-container py-0">
-                <GomiPoopStory />
-            </div>
-
-            <div className="section-container">
-                <FeedDisclaimer />
-            </div>
-
-
-            {/* Target Animals Section */}
-            <section id="target" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
-                <div className="section-container">
-                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
-                            {t('target.badge')}
-                        </span>
-                        <h2 className="section-title">{t('target.title')}</h2>
-                        <p className="section-subtitle">
-                            {t('target.subtitle')}
-                        </p>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        {targetAnimals.map((animal, i) => (
-                            <div
-                                key={animal.name}
-                                className="card relative overflow-hidden group"
-                                style={{ animationDelay: `${i * 100}ms` }}
-                            >
-                                <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-3xl ${primaryBgLight} opacity-10 group-hover:opacity-20 transition-opacity`} />
-                                <div className="relative z-10">
-                                    <div className="text-5xl mb-4">{animal.icon}</div>
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2 break-keep">{animal.name}</h3>
-                                    <div className="space-y-3">
-                                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                                            <svg className={`w-4 h-4 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" /></svg>
-                                            <span className="break-keep">{t('target.recommendedAge')}: <strong className="text-gray-900">{animal.age}</strong></span>
-                                        </div>
-                                        <div className="flex items-start gap-2 text-sm text-gray-600">
-                                            <svg className={`w-4 h-4 ${primaryText} mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a1 1 0 10-2 0 1 1 0 002 0zm0 8a1 1 0 10-2 0 1 1 0 002 0zm0-11a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" /></svg>
-                                            <div>
-                                                <p className="font-semibold text-gray-900 break-keep">{t('target.mainPathogens')}</p>
-                                                <p className="text-gray-600 break-keep">{animal.diseases}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="text-center mt-6 sm:mt-8">
-                        <p className="text-gray-600 mb-3 text-sm break-keep">{t('target.other')}</p>
-                        <button
-                            onClick={() => scrollToSection('order')}
-                            className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
-                        >
-                            {t('target.cta')}
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials Section */}
+            {/* Testimonials Section (실제 보호자·수의사 회복 후기) */}
             <section id="testimonials" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white" aria-label={t('testimonials.title')}>
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
@@ -1432,11 +1372,11 @@ const Landing = () => {
                         {testimonials.map((testimonial, i) => (
                             <div
                                 key={testimonial.id || i}
-                                className={`card relative flex flex-col justify-between ${testimonial.id === 't7' ? 'ring-2 ring-amber-400 bg-gradient-to-b from-amber-50/40 via-white to-white' : ''}`}
+                                className={`card relative flex flex-col justify-between ${testimonial.id === 't6' ? 'ring-2 ring-primary-400 bg-gradient-to-b from-sky-50/40 via-white to-white' : ''}`}
                                 style={{ animationDelay: `${i * 150}ms` }}
                             >
                                 {testimonial.badge && (
-                                    <span className="absolute top-4 right-4 px-2.5 py-0.5 text-[10px] font-black rounded-full bg-amber-100 text-amber-800 border border-amber-300 shadow-xs">
+                                    <span className="absolute top-4 right-4 px-2.5 py-0.5 text-xs font-black rounded-full bg-amber-100 text-amber-900 border border-amber-300 shadow-xs">
                                         {testimonial.badge}
                                     </span>
                                 )}
@@ -1448,12 +1388,12 @@ const Landing = () => {
                                             </svg>
                                         ))}
                                     </div>
-                                    <p className="text-gray-700 leading-relaxed mb-6 break-keep">&quot;{testimonial.content}&quot;</p>
+                                    <p className="text-sm sm:text-base text-gray-800 leading-relaxed mb-6 break-keep">&quot;{testimonial.content}&quot;</p>
                                 </div>
                                 <div className="border-t border-gray-100 pt-4">
                                     <p className="font-bold text-gray-900 break-keep">{testimonial.name}</p>
-                                    <p className="text-sm text-gray-500 break-keep">{testimonial.clinic}</p>
-                                    <p className="text-xs text-gray-400 mt-1 break-keep">{testimonial.role}</p>
+                                    <p className="text-sm text-gray-600 break-keep">{testimonial.clinic}</p>
+                                    <p className="text-xs text-gray-500 mt-1 break-keep">{testimonial.role}</p>
 
                                     {/* 꼬미 숏츠 영상 링크 */}
                                     {testimonial.id === 't5' && (
@@ -1479,8 +1419,6 @@ const Landing = () => {
                                             </button>
                                         </div>
                                     )}
-
-
                                 </div>
                             </div>
                         ))}
@@ -1488,8 +1426,19 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Products Section */}
-            <section id="products" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
+            {/* 우리 아이들과 함께하는 파보겔 반려견 포토 갤러리 & 꼬미 배변 회복기 */}
+            <PetGallerySection />
+
+            <div className="section-container py-0">
+                <GomiPoopStory />
+            </div>
+
+            <div className="section-container">
+                <FeedDisclaimer />
+            </div>
+
+            {/* Products Section — 100ml 표준 주력 강조 + 200ml/500ml 재고 소진 시 단종 안내 + 간편결제 바로연결 */}
+            <section id="products" className="py-10 sm:py-14 bg-gray-50">
                 <div className="section-container">
                     <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
                         <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
@@ -1508,72 +1457,274 @@ const Landing = () => {
                             alt={t('a11y.bottleGroup', '파보겔 100ml, 200ml, 500ml 용량별 라인업')}
                             width="1086"
                             height="1448"
-                            className="w-auto h-auto max-h-[560px] sm:max-h-[640px] max-w-full object-contain mx-auto"
+                            className="w-auto h-auto max-h-[520px] sm:max-h-[600px] max-w-full object-contain mx-auto"
                             loading="lazy"
                             decoding="async"
                             onError={(e) => { e.target.style.display = 'none'; }}
                         />
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        {products.map((product, i) => (
-                            <div
-                                key={product.id}
-                                className={`card relative ${i === 1 ? 'ring-2 ring-primary-500 scale-105 z-10 shadow-2xl' : ''}`}
-                                style={{ animationDelay: `${i * 150}ms` }}
-                            >
-                                {i === 1 && (
-                                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${primaryBg}`}>
-                                            {t('products.recommended')}
-                                        </span>
-                                    </div>
-                                )}
-                                <div className="text-center mb-6">
-                                    <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl flex items-center justify-center ${primaryBgLight}`}>
-                                        <div className={`w-12 h-20 rounded-lg ${primaryBg} flex items-center justify-center shadow-lg`}>
-                                            <span className="text-white font-extrabold text-xl">P</span>
+                    <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
+                        {products.map((product, i) => {
+                            const isFlagship = i === 0;
+                            const isLimitedStock = i > 0;
+                            return (
+                                <div
+                                    key={product.id}
+                                    className={`card relative flex flex-col justify-between ${isFlagship ? 'ring-2 ring-primary-600 md:scale-[1.03] z-10 shadow-2xl bg-white' : 'bg-white/95 border-slate-200'}`}
+                                    style={{ animationDelay: `${i * 150}ms` }}
+                                >
+                                    {isFlagship ? (
+                                        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                                            <span className={`px-4 py-1 rounded-full text-xs font-black text-white shadow-md ${primaryBg}`}>
+                                                ★ {t('products.recommended', '표준 추천 · 주력')}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                                            <span className="px-3.5 py-1 rounded-full text-xs font-black bg-amber-100 text-amber-950 border border-amber-300 shadow-xs">
+                                                ⏳ 한정 재고 · 소진 시 단종 예정
+                                            </span>
+                                        </div>
+                                    )}
+
+                                    <div>
+                                        <div className="text-center mb-5 pt-2">
+                                            <div className={`w-16 h-16 mx-auto mb-3 rounded-2xl flex items-center justify-center ${isFlagship ? primaryBgLight : 'bg-slate-100'}`}>
+                                                <div className={`w-10 h-16 rounded-lg ${isFlagship ? primaryBg : 'bg-slate-700'} flex items-center justify-center shadow-md`}>
+                                                    <span className="text-white font-extrabold text-lg">P</span>
+                                                </div>
+                                            </div>
+                                            <h3 className="text-xl font-black text-gray-900 break-keep">{product.name}</h3>
+                                            <p className="text-gray-700 text-sm mt-1.5 leading-relaxed break-keep">{product.desc}</p>
+                                            {isLimitedStock && (
+                                                <p className="text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1 mt-2.5 inline-block break-keep">
+                                                    ※ 보유 재고 소진 후 재생산 예정 없음
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div className={`p-4 rounded-xl ${isFlagship ? primaryBgLight : 'bg-slate-50'} mb-5`}>
+                                            <div className="flex items-baseline justify-center gap-1 mb-1">
+                                                <span className="text-3xl font-black text-gray-900">{product.price}</span>
+                                                <span className="text-gray-600 font-semibold">/{product.unit}</span>
+                                            </div>
+                                            <p className="text-xs text-gray-600 font-medium text-center">{t('products.vatShippingIncluded')}</p>
                                         </div>
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-900">{product.name}</h3>
-                                    <p className="text-gray-600 text-sm mt-1">{product.desc}</p>
-                                </div>
-                                <div className={`p-4 rounded-xl ${primaryBgLight} mb-6`}>
-                                    <div className="flex items-baseline justify-center gap-1 mb-1">
-                                        <span className="text-3xl font-extrabold text-gray-900">{product.price}</span>
-                                        <span className="text-gray-500">/{product.unit}</span>
+
+                                    {/* 일반 보호자 1클릭 공식몰 즉시구매 버튼 (이탈 방지) */}
+                                    <div className="space-y-2">
+                                        <a
+                                            href={getStoreUrl('kakaoStore')}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            referrerPolicy="no-referrer-when-downgrade"
+                                            data-product-id={product.id}
+                                            className="w-full min-h-[46px] px-3 py-2.5 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-sm border border-amber-300 shadow-xs flex items-center justify-center gap-1.5 transition-all"
+                                        >
+                                            <span aria-hidden="true">💬</span>
+                                            <span>카카오 쇼핑하기 구매</span>
+                                        </a>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <a
+                                                href={getStoreUrl('coupang')}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                data-product-id={product.id}
+                                                className="min-h-[44px] px-2.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1 transition-all"
+                                            >
+                                                <span aria-hidden="true">🚀</span>
+                                                <span>쿠팡</span>
+                                            </a>
+                                            <a
+                                                href={getStoreUrl('naver')}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                data-product-id={product.id}
+                                                className="min-h-[44px] px-2.5 py-2 rounded-xl bg-[#028A3D] hover:bg-[#027734] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-1 transition-all"
+                                            >
+                                                <span aria-hidden="true">🛍️</span>
+                                                <span>네이버</span>
+                                            </a>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setFormData(prev => ({ ...prev, requestType: 'consumer', product: product.id }));
+                                                setIsOrderModalOpen(true);
+                                                setIsOrderComplete(false);
+                                            }}
+                                            className="w-full py-2 text-xs font-bold text-slate-600 hover:text-primary-800 hover:underline transition-colors"
+                                        >
+                                            무통장 직영 주문 / 전화 상담 신청 ➔
+                                        </button>
                                     </div>
-                                    <p className="text-xs text-gray-500 text-center">{t('products.vatShippingIncluded')}</p>
                                 </div>
-                                <button
-                                    onClick={() => {
-                                        setFormData(prev => ({ ...prev, product: product.id }));
-                                        setIsOrderModalOpen(true);
-                                        setIsOrderComplete(false);
-                                    }}
-                                    className={`w-full ${i === 1 ? 'btn-primary' : 'btn-secondary'}`}
+                            );
+                        })}
+                    </div>
+
+                    {/* Online Store Links — 공식 입점 쇼핑몰 7곳 통합 안내 (용량 선택 바로 아래 배치) */}
+                    <div id="official-stores" className="max-w-4xl mx-auto mt-10 scroll-mt-24">
+                        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-5 sm:p-7 text-center">
+                            <p className="text-xs font-extrabold text-primary-700 uppercase tracking-wider mb-1">
+                                {t('stores.sectionEyebrow', 'Official Online Stores')}
+                            </p>
+                            <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-1.5 break-keep">
+                                {t('order.online', '공식 입점 온라인 쇼핑몰에서 바로 구매하세요')}
+                            </h3>
+                            <p className="text-sm text-slate-700 mb-5 break-keep">
+                                {t('stores.sectionSub', '자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.')}
+                            </p>
+
+                            {/* 1단: 대표 공식몰 3곳 (카카오 쇼핑 최우선 · 네이버 · 쿠팡) */}
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto mb-3">
+                                <a
+                                    href={getStoreUrl('kakaoStore')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
+                                    aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                    className="min-h-[54px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
                                 >
-                                    {i === 1 ? t('products.order') : t('products.inquiry')}
-                                </button>
+                                    <span className="flex items-center gap-2">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-[#191919] shrink-0" aria-hidden="true" />
+                                        <span className="font-extrabold text-sm sm:text-base">{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
+                                    </span>
+                                    <span className="text-xs font-bold shrink-0" aria-hidden="true">{t('stores.kakaoTag', '톡딜')} ➔</span>
+                                </a>
+                                <a
+                                    href={getStoreUrl('naver')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
+                                    aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                                    className="min-h-[54px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#028A3D] hover:bg-[#027734] text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-white shrink-0" aria-hidden="true" />
+                                        <span className="font-extrabold text-sm sm:text-base">{t('stores.naverCta', '네이버 스마트스토어')}</span>
+                                    </span>
+                                    <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.officialTag', '공식몰')} ➔</span>
+                                </a>
+                                <a
+                                    href={getStoreUrl('coupang')}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    data-product-id="parvogel-100ml"
+                                    aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                                    className="min-h-[54px] flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-orange-400 shrink-0" aria-hidden="true" />
+                                        <span className="font-extrabold text-sm sm:text-base">{t('stores.coupangCta', '쿠팡 로켓배송')}</span>
+                                    </span>
+                                    <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.fastTag', '빠른배송')} ➔</span>
+                                </a>
+                            </div>
+
+                            {/* 2단: 입점 오픈마켓 4곳 (모바일 2×2 / PC 4×1 대칭 그리드) */}
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-3xl mx-auto mb-6">
+                                {[
+                                    { key: 'toss', name: t('stores.toss', '토스쇼핑'), dot: 'bg-blue-600' },
+                                    { key: 'gmarket', name: t('stores.gmarket', 'G마켓'), dot: 'bg-emerald-600' },
+                                    { key: 'auction', name: t('stores.auction', '옥션'), dot: 'bg-red-600' },
+                                    { key: 'elevenst', name: t('stores.elevenst', '11번가'), dot: 'bg-rose-600' },
+                                ].map((mall) => (
+                                    <a
+                                        key={mall.key}
+                                        href={getStoreUrl(mall.key)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        data-product-id="parvogel-100ml"
+                                        aria-label={`${mall.name} ${t('stores.openNewWindow', '구매 페이지로 이동 (새 창)')}`}
+                                        className="min-h-[46px] flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-primary-50 border border-slate-200/90 hover:border-primary-300 text-slate-900 hover:text-primary-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+                                    >
+                                        <span className={`w-2 h-2 rounded-full shrink-0 ${mall.dot}`} aria-hidden="true" />
+                                        <span className="font-bold text-sm tracking-tight">{mall.name}</span>
+                                    </a>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-4 border-t border-slate-100">
+                                <Suspense fallback={<div className="w-[130px] h-[130px]" />}>
+                                    <QrCode value={getStoreUrl('kakaoStore')} size={130} label={t('order.kakaoQr', '카카오 쇼핑하기 주문')} />
+                                    <QrCode value={getStoreUrl('coupang')} size={130} label={t('order.coupangQr')} />
+                                    <QrCode value={getStoreUrl('naver')} size={130} label={t('order.naverQr')} />
+                                </Suspense>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 자주 묻는 질문 (FAQ) */}
+            <FAQ />
+
+            {/* Target Animals Section (적용 가능 전체 동물 안내) */}
+            <section id="target" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-gray-50">
+                <div className="section-container">
+                    <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+                        <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${badgePrimary} mb-3`}>
+                            {t('target.badge')}
+                        </span>
+                        <h2 className="section-title">{t('target.title')}</h2>
+                        <p className="section-subtitle">
+                            {t('target.subtitle')}
+                        </p>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                        {targetAnimals.map((animal, i) => (
+                            <div
+                                key={animal.name}
+                                className="card relative overflow-hidden group"
+                                style={{ animationDelay: `${i * 100}ms` }}
+                            >
+                                <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-3xl ${primaryBgLight} opacity-10 group-hover:opacity-20 transition-opacity`} />
+                                <div className="relative z-10">
+                                    <div className="text-5xl mb-4">{animal.icon}</div>
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 break-keep">{animal.name}</h3>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-2 text-sm text-gray-700">
+                                            <svg className={`w-4 h-4 ${primaryText}`} fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" /></svg>
+                                            <span className="break-keep">{t('target.recommendedAge')}: <strong className="text-gray-900">{animal.age}</strong></span>
+                                        </div>
+                                        <div className="flex items-start gap-2 text-sm text-gray-700">
+                                            <svg className={`w-4 h-4 ${primaryText} mt-0.5 flex-shrink-0`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a1 1 0 10-2 0 1 1 0 002 0zm0 8a1 1 0 10-2 0 1 1 0 002 0zm0-11a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" /></svg>
+                                            <div>
+                                                <p className="font-semibold text-gray-900 break-keep">{t('target.mainPathogens')}</p>
+                                                <p className="text-gray-700 break-keep">{animal.diseases}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
                             </div>
                         ))}
                     </div>
 
                     <div className="text-center mt-6 sm:mt-8">
-                        <p className="text-gray-600 mb-2 break-keep">{t('products.bulk')}</p>
-                        <p className="text-sm text-gray-500 mb-4 break-keep">{t('products.channelNote')}</p>
+                        <p className="text-gray-600 mb-3 text-sm break-keep">{t('target.other')}</p>
                         <button
-                            onClick={() => { setFormData(prev => ({ ...prev, requestType: 'wholesale' })); setIsOrderModalOpen(true); setIsOrderComplete(false); }}
-                            className="btn-primary inline-flex"
+                            onClick={() => scrollToSection('order')}
+                            className={`btn-secondary ${primaryText} ${primaryBgLight} ${primaryBorder} ${primaryHoverBg} ${primaryHoverBorder}`}
                         >
-                            {t('products.bulkCta')}
+                            {t('target.cta')}
                         </button>
                     </div>
                 </div>
             </section>
 
-            {/* Order Section */}
-            <section id="order" className="py-[0.98rem] sm:py-[1.47rem] lg:py-[1.96rem] bg-white">
+            {/* Order & B2B Partner Lounge Section (직영 주문 및 펫샵·브리더·산업동물 전용 하단 배치) */}
+            <section id="order" className="py-10 sm:py-14 bg-white">
                 <div className="section-container">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-6 sm:mb-8">
@@ -1601,104 +1752,44 @@ const Landing = () => {
                             />
                         </div>
 
-                        {/* Online Store Links — 공식 입점 쇼핑몰 통합 안내 */}
-                        <div id="official-stores" className="mt-8 sm:mt-10 scroll-mt-24">
-                            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-5 sm:p-7 text-center">
-                                <p className="text-xs font-extrabold text-primary-700 uppercase tracking-wider mb-1">
-                                    {t('stores.sectionEyebrow', 'Official Online Stores')}
-                                </p>
-                                <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-1.5 break-keep">
-                                    {t('order.online', '공식 입점 온라인 쇼핑몰에서 바로 구매하세요')}
-                                </h3>
-                                <p className="text-xs sm:text-sm text-slate-600 mb-5 break-keep">
-                                    {t('stores.sectionSub', '자주 이용하시는 쇼핑몰을 선택해 정품 파보겔을 빠르게 받아보실 수 있습니다.')}
-                                </p>
-
-                                {/* 1단: 대표 공식몰 3곳 (카카오 쇼핑 최우선 · 네이버 · 쿠팡) */}
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto mb-3">
-                                    <a
-                                        href={getStoreUrl('kakaoStore')}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
-                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-[#191919] shrink-0" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.kakaoCta', '카카오 쇼핑하기')}</span>
-                                        </span>
-                                        <span className="text-xs font-bold shrink-0" aria-hidden="true">{t('stores.kakaoTag', '톡딜')} ➔</span>
-                                    </a>
-                                    <a
-                                        href={getStoreUrl('naver')}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
-                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-[#028A3D] hover:bg-[#027734] text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-white shrink-0" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.naverCta', '네이버 스마트스토어')}</span>
-                                        </span>
-                                        <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.officialTag', '공식몰')} ➔</span>
-                                    </a>
-                                    <a
-                                        href={getStoreUrl('coupang')}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
-                                        className="min-h-[52px] flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <span className="w-2.5 h-2.5 rounded-full bg-orange-400 shrink-0" aria-hidden="true" />
-                                            <span className="font-extrabold text-sm sm:text-[15px]">{t('stores.coupangCta', '쿠팡 로켓배송')}</span>
-                                        </span>
-                                        <span className="text-xs font-bold opacity-95 shrink-0" aria-hidden="true">{t('stores.fastTag', '빠른배송')} ➔</span>
-                                    </a>
-                                </div>
-
-                                {/* 2단: 입점 오픈마켓 4곳 (모바일 2×2 / PC 4×1 대칭 그리드) */}
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-3xl mx-auto mb-6">
-                                    {[
-                                        { key: 'toss', name: t('stores.toss', '토스쇼핑'), dot: 'bg-blue-600' },
-                                        { key: 'gmarket', name: t('stores.gmarket', 'G마켓'), dot: 'bg-emerald-600' },
-                                        { key: 'auction', name: t('stores.auction', '옥션'), dot: 'bg-red-600' },
-                                        { key: 'elevenst', name: t('stores.elevenst', '11번가'), dot: 'bg-rose-600' },
-                                    ].map((mall) => (
-                                        <a
-                                            key={mall.key}
-                                            href={getStoreUrl(mall.key)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            aria-label={`${mall.name} ${t('stores.openNewWindow', '구매 페이지로 이동 (새 창)')}`}
-                                            className="min-h-[44px] flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-primary-50 border border-slate-200/90 hover:border-primary-300 text-slate-800 hover:text-primary-900 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
-                                        >
-                                            <span className={`w-2 h-2 rounded-full shrink-0 ${mall.dot}`} aria-hidden="true" />
-                                            <span className="font-bold text-xs sm:text-sm tracking-tight">{mall.name}</span>
-                                        </a>
-                                    ))}
-                                </div>
-
-                                <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-4 border-t border-slate-100">
-                                    <Suspense fallback={<div className="w-[130px] h-[130px]" />}>
-                                        <QrCode value={getStoreUrl('kakaoStore')} size={130} label={t('order.kakaoQr', '카카오 쇼핑하기 주문')} />
-                                        <QrCode value={getStoreUrl('coupang')} size={130} label={t('order.coupangQr')} />
-                                        <QrCode value={getStoreUrl('naver')} size={130} label={t('order.naverQr')} />
-                                    </Suspense>
+                        {/* 🏢 B2B 파트너 라운지 (펫샵 · 브리더 전용) & 산업동물 총판 안내 바 */}
+                        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-3 bg-slate-50 rounded-2xl p-4 sm:px-5 border border-slate-200 shadow-xs">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 text-center sm:text-left">
+                                <span className="inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-extrabold shrink-0">
+                                    🏢 Partner Lounge
+                                </span>
+                                <div className="text-xs sm:text-sm text-slate-700 break-keep">
+                                    <strong className="text-slate-900">전국 펫샵 · 브리더(번식농장) 사장님:</strong> 인허가 사업자 전용 도매 공급가 및 <strong>본품 1병 무료 샘플</strong>을 지원해 드립니다.
+                                    <span className="text-slate-500 text-xs block sm:inline sm:ml-2">
+                                        (※ 송아지·자돈 등 산업동물은 독점 총판 <strong>(주)엠오바이오</strong> 운영)
+                                    </span>
                                 </div>
                             </div>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        requestType: 'sample_petshop',
+                                        product: 'parvogel-100ml',
+                                        quantity: 1,
+                                        message: '[파트너 라운지] 펫샵·브리더 전용 도매 특가 및 무료 샘플 신청'
+                                    }));
+                                    setIsOrderModalOpen(true);
+                                    setIsOrderComplete(false);
+                                }}
+                                className="w-full md:w-auto shrink-0 px-4 py-2.5 bg-primary-50 hover:bg-primary-100 text-primary-900 border border-primary-200 text-xs sm:text-sm font-extrabold rounded-xl transition-all"
+                            >
+                                펫샵·브리더 1병 무료샘플 &amp; 도매 신청 ➔
+                            </button>
                         </div>
 
-                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 (Partner Lounge) */}
-                        <div className="mt-8 sm:mt-10 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-sky-50 via-white to-emerald-50/60 text-slate-900 shadow-lg border border-sky-200/80 relative overflow-hidden text-start">
+                        {/* 도매점·취급점 사업자 전용 홍보 지원 배너 카드 (Partner Lounge POP) */}
+                        <div className="mt-6 p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-sky-50 via-white to-emerald-50/60 text-slate-900 shadow-lg border border-sky-200/80 relative overflow-hidden text-start">
                             <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                                 <div className="space-y-2 max-w-2xl">
                                     <div className="flex items-center gap-2">
-                                        <span className="bg-slate-900 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                                        <span className="bg-slate-900 text-white text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
                                             🏢 Partner Lounge
                                         </span>
                                         <span className="text-xs text-primary-800 font-extrabold">전국 펫샵·브리더(켄넬)·반려동물 용품점 사장님 전용</span>
@@ -1706,8 +1797,8 @@ const Landing = () => {
                                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                                         매장 홍보용 <span className="text-primary-700">맞춤 A4 안내판</span> &amp; <span className="text-emerald-700">실물 POP 보드판</span> 100% 무상 지원
                                     </h3>
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed break-keep">
-                                        파보겔을 취급하시는 전국 펫샵·브리더 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된 
+                                    <p className="text-sm text-slate-700 leading-relaxed break-keep">
+                                        파보겔을 취급하시는 전국 펫샵·브리더 대표님의 매장 판매 활성화를 위해, 상호명·전화번호·희망 판매가가 각인된
                                         <strong> A4 안내판 즉시 출력 엔진</strong>과 <strong>하드 폼보드 쇼카드(POP) 실물</strong>을 본사에서 무상으로 보내드립니다.
                                     </p>
                                 </div>
@@ -1721,24 +1812,17 @@ const Landing = () => {
                                 </button>
                             </div>
                         </div>
+
+                        {/* 참고: 대동물·축산 임상 검증 인터뷰 */}
+                        <div className="mt-8">
+                            <AudioTestimonial
+                                tKey="audioTestimonialDongjin"
+                                audioUrl={`${import.meta.env.BASE_URL}assets/jeongseongdae-call.m4a`}
+                            />
+                        </div>
                     </div>
                 </div>
             </section>
-
-            {/* 현장 수의사 임상 육성 리포트 */}
-            <div className="section-container my-4 sm:my-6">
-                <AudioTestimonial
-                    tKey="audioTestimonial"
-                    audioUrl={`${import.meta.env.BASE_URL}assets/kimdongjun-call.m4a`}
-                />
-                <AudioTestimonial
-                    tKey="audioTestimonialDongjin"
-                    audioUrl={`${import.meta.env.BASE_URL}assets/jeongseongdae-call.m4a`}
-                />
-            </div>
-
-            {/* 자주 묻는 질문 (FAQ) */}
-            <FAQ />
             </main>
 
             {/* Footer (전체 배경색과 일치하는 밝고 세련된 프리미엄 테마) */}

@@ -75,10 +75,10 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
           <span className="px-3.5 py-1.5 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-full border border-indigo-200 inline-block">
             {T('tag', '🎙️ 현장 수의사 임상 녹음 인터뷰')}
           </span>
-          <h4 className="text-xl sm:text-2xl font-black text-slate-900 mt-2">
+          <h4 className="text-xl sm:text-2xl font-black text-slate-900 mt-2 break-keep">
             {T('title', '"송아지 설사 발병 시 파보겔 즉시 투여 반응"')}
           </h4>
-          <p className="text-xs sm:text-sm text-slate-600 font-medium">
+          <p className="text-sm sm:text-base text-slate-700 font-medium break-keep">
             {T('sub', '사랑동물병원 김동준 원장님 현장 반응 통화 녹음')}
           </p>
         </div>
@@ -96,10 +96,10 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
               {isPlaying ? '⏸' : '▶'}
             </button>
             <div className="flex-1 min-w-0">
-              <div className="text-xs font-extrabold text-slate-900 truncate">
+              <div className="text-sm font-extrabold text-slate-900 truncate">
                 {T('docName', '김동준 원장 (사랑동물병원)')}
               </div>
-              <div className="text-[10px] text-primary-700 font-bold">
+              <div className="text-xs text-primary-700 font-bold">
                 {T('docSub', '파보겔(로타겔) 임상 오디오 리포트')}
               </div>
               <div
@@ -120,17 +120,17 @@ export default function AudioTestimonial({ tKey = 'audioTestimonial', audioUrl }
                   else if (e.key === 'End') { e.preventDefault(); audio.currentTime = audio.duration; }
                   else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); togglePlay(); }
                 }}
-                className="w-full bg-slate-200 h-1.5 rounded-full mt-1.5 overflow-hidden cursor-pointer"
+                className="w-full bg-slate-200 h-2 rounded-full mt-1.5 overflow-hidden cursor-pointer"
               >
                 <div className="h-full bg-primary-600" style={{ width: `${progress * 100}%` }} />
               </div>
-              <div className="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+              <div className="flex justify-between text-xs text-slate-600 mt-1 font-mono">
                 <span>{formatTime(currentTime)}</span>
                 <span>{formatTime(duration)}</span>
               </div>
             </div>
           </div>
-          <p className="text-[11px] text-slate-600 italic font-medium">
+          <p className="text-xs sm:text-sm text-slate-700 italic font-medium leading-relaxed break-keep">
             {T('quote', '"파보겔 투여 후 설사 송아지의 장 점막 보호 및 기력 회복 속도가 매우 뛰어납니다."')}
           </p>
         </div>

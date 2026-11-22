@@ -7,6 +7,16 @@
 
 export const KAKAO_PIXEL_ID = '9019188145294848683';
 
+export const PRODUCT_UNIT_PRICES = {
+    'parvogel-100ml': 18000,
+    'parvogel-200ml': 30000,
+    'parvogel-500ml': 60000,
+};
+
+function getUnitPrice(productId) {
+    return PRODUCT_UNIT_PRICES[productId] || 18000;
+}
+
 function getPixel() {
     try {
         if (typeof window !== 'undefined' && typeof window.kakaoPixel === 'function') {
@@ -26,7 +36,7 @@ export function trackKakaoViewContent(contentId = 'parvogel_golden_time') {
             products: [
                 {
                     id: contentId,
-                    name: '파보겔 (ParvoGel)',
+                    name: '파보겔 100ml (ParvoGel)',
                     quantity: '1',
                     price: '18000',
                 },
@@ -37,30 +47,29 @@ export function trackKakaoViewContent(contentId = 'parvogel_golden_time') {
     }
 }
 
-export function trackKakaoMallClick(mallKey) {
+/**
+ * Outbound marketplace link click (Coupang, SmartStore, Kakao Shopping, etc.).
+ * Intentionally fires addToCart + participation ONLY — never purchase —
+ * so outbound clicks do not inflate Kakao Moment Purchase/ROAS metrics.
+ * Actual Kakao TalkStore purchases are measured natively by the linked store pixel.
+ */
+export function trackKakaoMallClick(mallKey, productId = 'parvogel-100ml') {
     const px = getPixel();
     if (!px) return;
     const tag = `mall_${mallKey}`;
-    const product = { id: tag, name: `파보겔 (${mallKey})`, quantity: '1', price: '18000' };
+    const unitPrice = String(getUnitPrice(productId));
+    const product = { id: `${tag}_${productId}`, name: `파보겔 (${mallKey})`, quantity: '1', price: unitPrice };
     try {
         if (typeof px.addToCart === 'function') {
             px.addToCart({
                 total_quantity: '1',
-                total_price: '18000',
+                total_price: unitPrice,
                 currency: 'KRW',
                 products: [product],
             });
         }
         if (typeof px.participation === 'function') {
             px.participation(tag);
-        }
-        if (typeof px.purchase === 'function') {
-            px.purchase({
-                total_quantity: '1',
-                total_price: '18000',
-                currency: 'KRW',
-                products: [product],
-            });
         }
     } catch {
         /* ignore */
@@ -79,7 +88,7 @@ export function trackKakaoChannelChat() {
     }
 }
 
-export function trackKakaoFormSubmit(requestType = 'consumer', quantity = 1) {
+export function trackKakaoFormSubmit(requestType = 'consumer', quantity = 1, productId = 'parvogel-100ml') {
     const px = getPixel();
     if (!px) return;
     try {
@@ -91,11 +100,19 @@ export function trackKakaoFormSubmit(requestType = 'consumer', quantity = 1) {
         }
         if ((requestType === 'consumer' || requestType === 'wholesale') && typeof px.purchase === 'function') {
             const qty = Math.max(1, Number(quantity) || 1);
+            const unitPrice = getUnitPrice(productId);
             px.purchase({
                 total_quantity: String(qty),
-                total_price: String(qty * 30000),
+                total_price: String(qty * unitPrice),
                 currency: 'KRW',
-                products: [{ id: requestType, name: '파보겔 직영 주문', quantity: String(qty), price: '30000' }],
+                products: [
+                    {
+                        id: productId || requestType,
+                        name: `파보겔 직영 주문 (${productId || '100ml'})`,
+                        quantity: String(qty),
+                        price: String(unitPrice),
+                    },
+                ],
             });
         }
     } catch {
@@ -124,7 +141,8 @@ export function installGlobalKakaoLinkTracker() {
 
         for (const { match, key } of MALL_MATCHERS) {
             if (href.includes(match)) {
-                trackKakaoMallClick(key);
+                const productId = anchor.getAttribute('data-product-id') || 'parvogel-100ml';
+                trackKakaoMallClick(key, productId);
                 return;
             }
         }

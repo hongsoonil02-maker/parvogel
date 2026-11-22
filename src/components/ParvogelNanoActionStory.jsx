@@ -77,62 +77,62 @@ export default function ParvogelNanoActionStory() {
   ];
 
   return (
-    <section className="py-8 sm:py-10 lg:py-12 bg-gradient-to-b from-white via-[#FAF9F6] to-sky-50/40">
-      <div className="section-container space-y-8">
+    <section id="why-parvogel" className="py-10 sm:py-12 lg:py-14 bg-gradient-to-b from-white via-[#FAF9F6] to-sky-50/40">
+      <div className="section-container space-y-10">
         {/* 1. 상단 공감 (Pain Point) */}
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="flex justify-center">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm font-extrabold">
+            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-950 text-xs sm:text-sm font-extrabold">
               <span>🐾</span>
-              <span>우리 아이가 갑자기 아플 때</span>
+              <span>우리 아이가 갑자기 아플 때 — 골든타임이 중요합니다</span>
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight text-center leading-snug break-keep max-w-2xl mx-auto">
             <span className="block text-balance">&quot;새벽에 갑자기 시작된 노란 위산 토와 물설사…</span>
-            <span className="block mt-1 sm:mt-1.5 text-primary-700">얼마나 놀라셨나요?&quot;</span>
+            <span className="block mt-1 sm:mt-1.5 text-primary-700">병원 문 닫힌 시간, 얼마나 막막하셨나요?&quot;</span>
           </h2>
-          <p className="text-slate-600 text-xs sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
-            급성 장 트러블은 초기 골든타임 케어가 가장 중요합니다.<br />
+          <p className="text-slate-700 text-sm sm:text-base leading-relaxed break-keep text-center max-w-xl mx-auto">
+            급성 장 트러블은 초기 골든타임 대처가 가장 중요합니다.<br />
             아픈 아이를 붙잡고 쓴 가루약을 억지로 먹이느라 주사기 실랑이를 하지 마세요.
           </p>
 
-          <div className="grid sm:grid-cols-3 gap-3.5 pt-2 text-left">
+          <div className="grid sm:grid-cols-3 gap-4 pt-2 text-left">
             {painPoints.map((p, idx) => (
-              <div key={idx} className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-1.5">
+              <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs space-y-2">
                 <span className="text-2xl">{p.icon}</span>
-                <h4 className="text-sm font-extrabold text-slate-800">{p.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">{p.desc}</p>
+                <h4 className="text-base font-extrabold text-slate-900 break-keep">{p.title}</h4>
+                <p className="text-sm text-slate-700 leading-relaxed break-keep">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 2. 해결책 제시 (Hero Solution Banner — Bright Modern D2C Card) */}
+        {/* 2. 해결책 제시 (Hero Solution Banner — High-Trust Clinical Card) */}
         <div className="max-w-4xl mx-auto bg-gradient-to-r from-sky-50 via-white to-emerald-50/70 text-slate-900 rounded-3xl p-6 sm:p-8 shadow-md border border-sky-200/80 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <span className="inline-block px-3 py-1 rounded-full bg-primary-100 text-primary-800 text-[11px] font-extrabold">
-              ✨ Vet-Verified Gentle Gel Formula
+          <div className="space-y-2.5 text-center md:text-left">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-primary-100 text-primary-900 text-xs font-extrabold">
+              🩺 수의학 자문 · 체내 흡수 0% 안전 겔
             </span>
             <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug break-keep text-slate-900">
-              입가에 톡 짜주면 스스로 핥아먹는 장 보호막,<br />
+              입가에 1초 톡 짜주면 스스로 핥아먹는 장 보호막,<br />
               <span className="text-primary-700">파보겔 (ParvoGel)</span>
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed break-keep">
-              연약한 아이의 간·신장에 부담 0%! 자석처럼 유해 독소만 쏙 잡아 변으로 내보내는 100% 천연 나노 미네랄 스펀지
+            <p className="text-sm sm:text-base text-slate-700 leading-relaxed break-keep">
+              노령견·어린 강아지의 간·신장에 부담 0%! 자석처럼 유해 독소만 흡착해 변으로 안전하게 배출하는 100% 천연 나노 미네랄 보호막입니다.
             </p>
           </div>
-          <div className="shrink-0 flex flex-col items-center sm:items-end bg-white px-5 py-3.5 rounded-2xl border border-sky-100 shadow-xs">
+          <div className="shrink-0 flex flex-col items-center sm:items-end bg-white px-5 py-4 rounded-2xl border border-sky-200 shadow-xs">
             <span className="text-2xl sm:text-3xl font-black text-primary-700">1초 펌핑</span>
-            <span className="text-xs font-bold text-slate-500">주사기 스트레스 ZERO</span>
+            <span className="text-xs sm:text-sm font-bold text-slate-600 mt-0.5">주사기 스트레스 ZERO</span>
           </div>
         </div>
 
         {/* 3. 3단계 나노 스펀지 작용 (3-Step Action) */}
         <div className="space-y-6 max-w-4xl mx-auto">
-          <div className="text-center space-y-1">
-            <span className="text-xs font-bold text-primary-600 tracking-wider uppercase">3-Step Gentle Care</span>
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-              파보겔이 아이 몸속에서 일하는 3단계 원리
+          <div className="text-center space-y-1.5">
+            <span className="text-xs sm:text-sm font-extrabold text-primary-700 tracking-wider uppercase">왜 일반 지사제와 다른가요?</span>
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
+              파보겔이 아이 장 속에서 일하는 3단계 과학 원리
             </h3>
           </div>
 
@@ -142,17 +142,17 @@ export default function ParvogelNanoActionStory() {
                 key={idx}
                 className={`rounded-2xl border p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-xs hover:shadow-md transition-shadow ${s.color}`}
               >
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-black tracking-wider uppercase opacity-80">{s.step}</span>
-                    <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/80 shadow-xs">{s.time}</span>
+                    <span className="text-xs font-black tracking-wider uppercase opacity-80">{s.step}</span>
+                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/90 text-slate-800 shadow-xs">{s.time}</span>
                   </div>
                   <div className="text-2xl pt-1">{s.icon}</div>
-                  <h4 className="text-base font-black text-slate-900 break-keep">{s.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed break-keep">{s.desc}</p>
+                  <h4 className="text-base sm:text-lg font-black text-slate-900 break-keep">{s.title}</h4>
+                  <p className="text-sm text-slate-700 leading-relaxed break-keep">{s.desc}</p>
                 </div>
                 <div className="pt-2">
-                  <span className="inline-block text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/90 text-slate-800 shadow-xs">
+                  <span className="inline-block text-xs font-extrabold px-3 py-1 rounded-lg bg-white/95 text-slate-900 shadow-xs">
                     ✓ {s.badge}
                   </span>
                 </div>
@@ -163,21 +163,21 @@ export default function ParvogelNanoActionStory() {
 
         {/* 4. 소비자 언어 4대 핵심 셀링 포인트 */}
         <div className="max-w-4xl mx-auto space-y-6 pt-2">
-          <div className="text-center space-y-1">
-            <span className="text-xs font-bold text-primary-600 tracking-wider uppercase">Why ParvoGel?</span>
-            <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-              집사님들이 파보겔을 상비약 1순위로 꼽는 4가지 이유
+          <div className="text-center space-y-1.5">
+            <span className="text-xs sm:text-sm font-extrabold text-primary-700 tracking-wider uppercase">Why ParvoGel?</span>
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep">
+              보호자님들이 파보겔을 상비약 1순위로 꼽는 4가지 이유
             </h3>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
             {valueProps.map((vp, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-start gap-4">
-                <span className="text-3xl shrink-0 p-2 rounded-xl bg-sky-50/70">{vp.icon}</span>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-extrabold text-primary-700 uppercase tracking-wide">{vp.point}</span>
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 break-keep">{vp.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed break-keep">{vp.desc}</p>
+              <div key={idx} className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex items-start gap-4">
+                <span className="text-3xl shrink-0 p-2.5 rounded-xl bg-sky-50/80">{vp.icon}</span>
+                <div className="space-y-1.5">
+                  <span className="text-xs font-extrabold text-primary-700 uppercase tracking-wide">{vp.point}</span>
+                  <h4 className="text-base font-extrabold text-slate-900 break-keep">{vp.title}</h4>
+                  <p className="text-sm text-slate-700 leading-relaxed break-keep">{vp.desc}</p>
                 </div>
               </div>
             ))}
