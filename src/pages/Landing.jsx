@@ -783,7 +783,7 @@ const Landing = () => {
                             {/* 상단 수의학 신뢰 배지 */}
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-950 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
                                 <span>🩺</span>
-                                <span>수의학 자문 · 임상 관찰 · 가정 필수 응급 장 케어 상비제</span>
+                                <span>수의학 자문 · 임상 관찰 · 우리 집 펫 구급함 1순위 응급 상비겔</span>
                             </div>
 
                             {/* 메인 직관 & 신뢰 헤드라인 */}
@@ -918,7 +918,7 @@ const Landing = () => {
                                             🌿 체내 흡수 0% 천연 미네랄
                                         </span>
                                         <span className="px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-900 text-xs font-extrabold">
-                                            ★ 100ml 표준 상비제
+                                            ★ 100ml 표준 상비겔
                                         </span>
                                     </div>
 
@@ -946,7 +946,7 @@ const Landing = () => {
                                         </div>
                                     </div>
 
-                                    {/* 응급실 vs 파보겔 상비제 가성비 비교 캡슐 */}
+                                    {/* 응급실 vs 파보겔 상비겔 가성비 비교 캡슐 */}
                                     <div className="mt-4 pt-3.5 border-t border-slate-100 grid grid-cols-2 gap-2.5 text-left">
                                         <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
                                             <div className="text-xs font-bold text-slate-600">🚨 24시 야간 응급실</div>

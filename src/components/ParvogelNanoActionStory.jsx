@@ -166,7 +166,7 @@ export default function ParvogelNanoActionStory() {
           <div className="text-center space-y-1.5">
             <span className="text-xs sm:text-sm font-extrabold text-primary-700 tracking-wider uppercase">Why ParvoGel?</span>
             <h3 className="text-2xl sm:text-3xl font-black text-slate-900 break-keep leading-snug text-balance">
-              보호자님들이 파보겔을<br />상비제 1순위로 꼽는 4가지 이유
+              보호자님들이 파보겔을<br />응급 상비겔 1순위로 꼽는 4가지 이유
             </h3>
           </div>
 

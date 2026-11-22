@@ -23,7 +23,7 @@ export default function AnimalSelector() {
   const selectedAnimalHighlight =
     selectedId === 'puppy' ? '55일령 0.6kg 푸들 7일 회복 관찰! 파보·급성 설사 1초 펌프 응급 케어' :
     selectedId === 'cat' ? '범백·급성 설사 고양이 주사기 스트레스 ZERO 1초 안심 케어' :
-    selectedId === 'bird' ? '[실제 사례] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비제' :
+    selectedId === 'bird' ? '[실제 사례] 앵무새 \'꼬미\' 급성 설사 24시간 정상화! 조류 안심 상비겔' :
     selectedId === 'hamster' ? '웻테일(급성 설사) 긴급 케어! 천연 미네랄로 장 점막 즉각 코팅 & 독소 배출' :
     '수질성·식이성 소화 장애 시 점막 안정화! 천연 성분으로 양서·파충류 안심 케어';
 
