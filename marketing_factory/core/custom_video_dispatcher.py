@@ -175,34 +175,34 @@ def default_golden_time_campaign() -> Dict[str, Any]:
         ),
         "tiktok_title": "생후 55일 쓰러져 실려온 아기 푸들의 3일 뒤 기적 🐾 실제 동물병원 기록 #강아지 #아기푸들 #동물병원 #강아지응급처치",
         "facebook_caption": (
-            "🎬 [35초 다큐] 〈기적의 골든타임〉 — 한밤중 피설사·구토, 말 못 하는 우리 아이를 지킨 서랍 속 1초 비상 상비약\n\n"
-            "병원 문이 닫힌 야간, 1분 1초가 급박한 순간에 체내 흡수 0% 장 점막 나노 코팅과 독소 흡착 기전으로 30분 만에 복통·구토를 완화하고 골든타임을 지켜주는 파보겔 이야기를 확인하세요.\n\n"
+            "🎬 [28초 진료실 리얼 다큐] 생후 55일, 갑자기 쓰러져 실려온 아기 푸들의 3일 뒤 기적\n\n"
+            "병원 문이 닫힌 야간, 1분 1초가 급박한 순간에 체내 흡수 0% 장 점막 나노 코팅과 독소 흡착 기전으로 골든타임을 지켜주는 우리 집 펫 구급함 1순위 응급 상비겔 파보겔 실제 진료실 기록을 확인하세요.\n\n"
+            f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"▶ 파보겔 공식 홈페이지 ((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
             f"▶ 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"▶ 쿠팡 공식: {OFFICIAL_LINKS['coupang']}\n"
             f"▶ G마켓 공식: {OFFICIAL_LINKS['gmarket']}\n"
             f"▶ 옥션 공식: {OFFICIAL_LINKS['auction']}\n"
             f"▶ 11번가 공식: {OFFICIAL_LINKS['elevenst']}\n"
-            f"▶ 카카오 쇼핑하기(톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"▶ 토스쇼핑 공식: {OFFICIAL_LINKS['toss']}\n"
             "☎ 고객센터: 02-6949-5708"
         ),
-        "naver_blog_title": "[35초 다큐 공개] 한밤중 우리 아이 피설사·구토 골든타임을 지킨 가정 내 필수 상비약 '파보겔'",
+        "naver_blog_title": "[진료실 실사 공개] 생후 55일 쓰러져 실려온 아기 푸들의 3일 회복 기록 — 우리 집 펫 구급함 1순위 응급 상비겔 파보겔",
         "naver_blog_body": (
-            "# 한밤중 우리 아이 피설사·구토 골든타임을 지킨 35초의 기적\n\n"
+            "# 한밤중 우리 아이 구토·설사 골든타임을 지킨 실제 진료실 3일 회복 기록\n\n"
             "병원 문이 닫힌 깊은 새벽, 갑자기 시작된 물설사·혈변·구토 앞에 발을 동동 굴러보신 적 있으신가요?\n\n"
             "## 01. 왜 단순 지사제가 아니라 '장 점막 코팅 + 독소 흡착'인가?\n\n"
             "장 운동을 억지로 멈추는 방식이 아니라, 체내 흡수 0%의 고순도 초미세 나노 **몬모릴로나이트**가 손상된 장 점막 융모를 감싸 보호하고 바이러스·세균 독소만 선택적으로 흡착해 몸 밖으로 배출합니다.\n\n"
-            "## 02. 주사기 실랑이 없는 1초 펌핑 & 30분 만의 빠른 안정\n\n"
+            "## 02. 주사기 실랑이 없는 1초 펌핑 & 실온 18개월 보관 응급 상비겔\n\n"
             "아파서 예민해진 아이에게 강제로 주사기를 들이댈 필요 없이, 기호성 좋은 부드러운 겔 제형을 입가에 1초 톡 짜주면 아이 스스로 꿀꺽 삼킵니다.\n\n"
             "## 03. (주)한국아그로 파보겔 공식 홈페이지 및 8개 공식 온라인 쇼핑몰 안내\n\n"
+            f"- 카카오 쇼핑하기 (톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"- 공식 홈페이지: {OFFICIAL_LINKS['landing']}\n"
             f"- 네이버 스마트스토어: {OFFICIAL_LINKS['smartstore']}\n"
             f"- 쿠팡 로켓배송: {OFFICIAL_LINKS['coupang']}\n"
             f"- G마켓 공식스토어: {OFFICIAL_LINKS['gmarket']}\n"
             f"- 옥션 공식스토어: {OFFICIAL_LINKS['auction']}\n"
             f"- 11번가 공식스토어: {OFFICIAL_LINKS['elevenst']}\n"
-            f"- 카카오 쇼핑하기 (톡딜): {OFFICIAL_LINKS['kakao_store']}\n"
             f"- 토스쇼핑 공식스토어: {OFFICIAL_LINKS['toss']}\n"
             "- 고객센터 문의: 02-6949-5708 ((주)한국아그로)"
         ),
@@ -391,12 +391,12 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
         results["Bluesky"] = "SUCCESS (PREVIOUS)"
     elif configs["Bluesky"]:
         bs_text = (
-            "🚨 한밤중 피설사·구토 골든타임 35초 다큐 [파보겔]\n\n"
-            "체내 흡수 0% 장 점막 나노 코팅!\n"
-            "▶ 35초 영상 보기:\n"
+            "🚨 생후 55일 쓰러져 실려온 아기 푸들의 3일 뒤 기적 [파보겔]\n\n"
+            "체내 흡수 0% 장 점막 나노 코팅 응급 상비겔!\n"
+            "▶ 실제 진료실 다큐 보기:\n"
             f"{yt_url}\n\n"
             f"🏠 공식 안내((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
-            "#파보겔 #강아지설사 #반려견상비약"
+            "#파보겔 #응급상비겔 #강아지설사 #펫구급함"
         )
         assert_brand_isolation(bs_text, "Bluesky text")
         ok = bs.publish({"bluesky_text": bs_text, "links": OFFICIAL_LINKS})
@@ -440,11 +440,11 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
         results["Threads"] = "SUCCESS (PREVIOUS)"
     else:
         th_main = (
-            "🚨 한밤중 갑자기 강아지가 피설사와 구토를 시작했는데 병원 문은 이미 닫혀있을 때…\n\n"
+            "🚨 한밤중 갑자기 강아지가 물설사와 구토를 시작했는데 병원 문은 이미 닫혀있을 때…\n\n"
             "응급실 가기 전 1분 1초가 소중한 골든타임!\n"
-            "체내 흡수 0% 나노 몬모릴로나이트로 장 점막을 코팅하고 독소만 흡착해 배출하는 1초 펌프 상비약 '파보겔' 35초 다큐를 공개합니다.\n\n"
-            f"🎬 35초 다큐 바로보기: {yt_url}\n"
-            "#파보겔 #강아지설사 #강아지혈변 #반려견상비약 #파보장염"
+            "체내 흡수 0% 나노 몬모릴로나이트로 장 점막을 코팅하고 독소만 흡착해 배출하는 우리 집 펫 구급함 1순위 응급 상비겔 '파보겔' 실제 진료실 기록을 공개합니다.\n\n"
+            f"🎬 28초 진료실 다큐 바로보기: {yt_url}\n"
+            "#파보겔 #응급상비겔 #강아지설사 #강아지혈변 #펫구급함"
         )
         th_reply = (
             f"🐾 파보겔 공식 안내((주)한국아그로): {OFFICIAL_LINKS['landing']}\n"
@@ -471,14 +471,14 @@ def dispatch_campaign(campaign: Dict[str, Any], live: bool = False, force: bool 
             results["Threads"] = "ARCHIVED_DRAFT_NO_TOKEN" if th_ok else "FAILED"
 
     # STEP 4: Queue Naver Blog article in Hybrid Queue with YouTube URL + Save Campaign State
-    blog_body = campaign["naver_blog_body"] + f"\n\n### ▶ 35초 다큐멘터리 영상 바로보기\n{yt_url}\n"
+    blog_body = campaign["naver_blog_body"] + f"\n\n### ▶ 28초 진료실 리얼 다큐 영상 바로보기\n{yt_url}\n"
     assert_brand_isolation(blog_body, "Naver Blog body")
     if "Naver_Blog_Queue" not in prev_success:
         queued = push_post_to_queue(
             title=campaign["naver_blog_title"],
             body=blog_body,
             links=OFFICIAL_LINKS,
-            tags=["파보겔", "강아지설사", "강아지혈변", "파보장염", "몬모릴로나이트", "반려견상비약", "한국아그로"],
+            tags=["파보겔", "응급상비겔", "강아지설사", "강아지혈변", "몬모릴로나이트", "펫구급함", "한국아그로"],
             target_brand="KOREA_AGRO",
             product_id="PARVOGEL_D2C",
         )

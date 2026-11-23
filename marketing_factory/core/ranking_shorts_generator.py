@@ -34,13 +34,22 @@ def _resolve_font_path() -> str:
     candidates = [
         "C:/Windows/Fonts/malgunbd.ttf",
         "C:/Windows/Fonts/malgun.ttf",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
         "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
-        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     ]
     for c in candidates:
         if os.path.exists(c):
             return c
-    return "C:/Windows/Fonts/malgunbd.ttf"
+    try:
+        out = subprocess.check_output(["fc-match", "-f", "%{file}", "Noto Sans CJK KR:bold"], text=True, stderr=subprocess.DEVNULL).strip()
+        if out and os.path.exists(out):
+            return out
+    except Exception:
+        pass
+    return candidates[0]
 
 FONT_PATH = _resolve_font_path()
 SAFE_FONT = FONT_PATH.replace("\\", "/").replace(":", r"\:")
@@ -210,40 +219,40 @@ class ParvogelRankingShortsGenerator:
                      ]}
                 ]
             },
-            # 5: 토요일 (축산·브리더 신생 자견/송아지 설사 방어 TOP 5)
+            # 5: 토요일 (주말·야간 강아지 혈변·구토 응급 체크 TOP 5 — 순수 B2C 반려동물 전용)
             {
-                "board_title": "신생 자견·송아지 설사 방어 TOP 5",
+                "board_title": "주말 강아지 혈변·구토 응급 체크 TOP 5",
                 "items": [
-                    {"rank": 5, "title": "분만 전 어미 백신 접종 누락", "start": 0.0, "end": 9.0,
+                    {"rank": 5, "title": "붉은 점액변인지 선혈인지 사진 기록", "start": 0.0, "end": 8.5,
                      "subtitles": [
-                         {"text": "5위! 분만 전 모체 백신 누락", "rel_start": 0.5, "rel_end": 4.5},
-                         {"text": "로타갈 원샷으로 초유 항체 극대화!", "rel_start": 4.6, "rel_end": 8.5}
+                         {"text": "5위! 변 색깔 바로 사진 남기기", "rel_start": 0.5, "rel_end": 4.2},
+                         {"text": "진료 시 수의사 판단 시간을 반으로 단축", "rel_start": 4.3, "rel_end": 8.0}
                      ]},
-                    {"rank": 4, "title": "출생 후 6시간 초유 골든타임 놓침", "start": 9.5, "end": 19.0,
+                    {"rank": 4, "title": "귀·발끝 차가워지면 즉시 보온", "start": 9.5, "end": 18.0,
                      "subtitles": [
-                         {"text": "4위! 출생 직후 6시간 초유 부족", "rel_start": 0.5, "rel_end": 4.5},
-                         {"text": "베타콜 15ml 시린지로 면역 직공급", "rel_start": 4.6, "rel_end": 9.0}
+                         {"text": "4위! 귀·발끝 체온 먼저 확인", "rel_start": 0.5, "rel_end": 4.2},
+                         {"text": "저체온 오면 회복 속도가 급격히 저하", "rel_start": 4.3, "rel_end": 8.0}
                      ]},
-                    {"rank": 3, "title": "이유기 사료 급격한 전환", "start": 20.0, "end": 29.5,
+                    {"rank": 3, "title": "구토 직후 물·사료 억지 급여 금지", "start": 19.0, "end": 28.0,
                      "subtitles": [
-                         {"text": "3위! 이유식·환경 동시 급변", "rel_start": 0.5, "rel_end": 4.5},
-                         {"text": "장 융모 손상으로 수양성 설사 폭발", "rel_start": 4.6, "rel_end": 9.0}
+                         {"text": "3위! 토한 직후 물 억지 급여 금지", "rel_start": 0.5, "rel_end": 4.4},
+                         {"text": "위장 자극으로 연속 구토·탈수 악화", "rel_start": 4.5, "rel_end": 8.5}
                      ]},
-                    {"rank": 2, "title": "초기부터 독한 항생제만 남용", "start": 30.0, "end": 40.0,
+                    {"rank": 2, "title": "출혈성 구토·기립불능 시 즉시 응급실", "start": 29.0, "end": 38.5,
                      "subtitles": [
-                         {"text": "2위! 유익균까지 죽이는 항생제 남용", "rel_start": 0.5, "rel_end": 4.8},
-                         {"text": "내독소(LPS) 방출로 패혈증 위험", "rel_start": 4.9, "rel_end": 9.5}
+                         {"text": "2위! 커피색 토·무반응은 즉시 병원", "rel_start": 0.5, "rel_end": 4.5},
+                         {"text": "골든타임 놓치지 않게 24시 병원 출발", "rel_start": 4.6, "rel_end": 9.0}
                      ]},
-                    {"rank": 1, "title": "나노 몬모릴로나이트 1초 점막 코팅", "start": 41.0, "end": 52.0,
+                    {"rank": 1, "title": "이동 전 1초 펌프 장 점막 보호", "start": 39.5, "end": 49.5,
                      "subtitles": [
-                         {"text": "1위! 파보겔·몬스멕타 즉시 코팅", "rel_start": 0.5, "rel_end": 5.0},
-                         {"text": "유익균은 지키고 독소만 자석 배출!", "rel_start": 5.1, "rel_end": 10.5}
+                         {"text": "1위! 1초 펌프 응급 상비겔 파보겔", "rel_start": 0.5, "rel_end": 4.8},
+                         {"text": "체내 흡수 0% 장 점막 코팅·독소 흡착!", "rel_start": 4.9, "rel_end": 9.5}
                      ]}
                 ]
             },
-            # 6: 일요일 (반려동물 응급 상비약 키트 TOP 5)
+            # 6: 일요일 (반려동물 우리 집 펫 구급함 필수 상비템 TOP 5)
             {
-                "board_title": "댕냥집사 필수 응급 상비템 TOP 5",
+                "board_title": "우리 집 펫 구급함 필수 상비템 TOP 5",
                 "items": [
                     {"rank": 5, "title": "자가 탈수 체크 (등덜미 피부 텐팅)", "start": 0.0, "end": 9.0,
                      "subtitles": [
@@ -267,28 +276,43 @@ class ParvogelRankingShortsGenerator:
                      ]},
                     {"rank": 1, "title": "실온 18개월 보관 1초 펌프 파보겔", "start": 41.0, "end": 52.0,
                      "subtitles": [
-                         {"text": "1위! 서랍 속 상비약 파보겔 1병", "rel_start": 0.5, "rel_end": 5.0},
+                         {"text": "1위! 펫 구급함 1순위 응급 상비겔", "rel_start": 0.5, "rel_end": 5.0},
                          {"text": "새벽 2시 급성 설사 1초 만에 방어!", "rel_start": 5.1, "rel_end": 10.5}
                      ]}
                 ]
             }
         ]
 
-    def generate_daily_ranking_shorts(self, day_index: Optional[int] = None, date_tag: Optional[str] = None) -> Optional[str]:
-        """일일 마케팅 팩토리 연동용 랭킹 숏폼 자동 생성"""
+    def _probe_duration(self, path: str) -> float:
+        try:
+            res = subprocess.run(
+                ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", path],
+                capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=8
+            )
+            if res.returncode == 0 and res.stdout.strip():
+                return float(res.stdout.strip())
+        except Exception:
+            pass
+        return 60.0
+
+    def generate_daily_ranking_shorts(self, day_index: Optional[int] = None, date_tag: Optional[str] = None, iso_week: Optional[int] = None) -> Optional[str]:
+        """일일 마케팅 팩토리 연동용 랭킹 숏폼 자동 생성 (ISO 주차별 구간 시프트로 중복 방지)"""
+        now = datetime.now()
         if not date_tag:
-            date_tag = datetime.now().strftime("%Y%m%d")
+            date_tag = now.strftime("%Y%m%d")
+        if iso_week is None:
+            iso_week = now.isocalendar()[1]
 
         if day_index is None:
-            day_index = datetime.now().weekday() % len(self.scenarios)
+            day_index = now.weekday() % len(self.scenarios)
         else:
             day_index = day_index % len(self.scenarios)
 
         scenario = self.scenarios[day_index]
         board_title = scenario["board_title"]
-        items = scenario["items"]
+        items = [dict(it) for it in scenario["items"]]
 
-        # 원본 소스 선택 (다큐멘터리 우선)
+        # 원본 소스 선택 (175.8초 풀 다큐멘터리 우선)
         src_video = os.path.join(self.assets_dir, "parvogel_clinical_documentary_v2.mp4")
         if not os.path.exists(src_video):
             candidates = [
@@ -301,15 +325,27 @@ class ParvogelRankingShortsGenerator:
             print("[WARN] Ranking Shorts Generator: Source video asset not found.")
             return None
 
-        out_filename = f"Shorts_Ranking_{day_index+1}_{date_tag}.mp4"
+        # ISO 주차 + 요일별 동적 구간 시프트 (매주 다른 컷 구간 추출 -> 유튜브 중복 콘텐츠 판정 원천 차단)
+        src_dur = self._probe_duration(src_video)
+        max_item_end = max(it["end"] for it in items)
+        max_shift = max(0.0, src_dur - max_item_end - 2.0)
+        week_shift = float(((iso_week * 13) + (day_index * 7)) % int(max_shift)) if max_shift >= 10 else 0.0
+
+        out_filename = f"Shorts_Ranking_{day_index+1}_W{iso_week:02d}_{date_tag}.mp4"
         out_path = os.path.join(self.output_dir, out_filename)
 
-        print(f"🎬 [RANKING_SHORTS] Composing: '{board_title}' -> {out_filename}")
+        print(f"🎬 [RANKING_SHORTS] Composing: '{board_title}' (W{iso_week:02d}, offset=+{week_shift:.1f}s) -> {out_filename}")
 
         # 클립 타임라인 재계산
         current_timeline = 0.0
         for it in items:
-            dur = it["end"] - it["start"]
+            s_start = it["start"] + week_shift
+            s_end = min(src_dur - 0.5, it["end"] + week_shift)
+            if s_end <= s_start + 1.0:
+                s_start, s_end = it["start"], min(src_dur - 0.5, it["end"])
+            it["clip_start"] = round(s_start, 2)
+            it["clip_end"] = round(s_end, 2)
+            dur = it["clip_end"] - it["clip_start"]
             it["timeline_start"] = current_timeline
             it["timeline_end"] = current_timeline + dur
             current_timeline += dur
@@ -319,8 +355,8 @@ class ParvogelRankingShortsGenerator:
         concat_pairs = []
 
         for idx, it in enumerate(items):
-            v_trim = f"[0:v]trim=start={it['start']}:end={it['end']},setpts=PTS-STARTPTS[v{idx}];"
-            a_trim = f"[0:a]atrim=start={it['start']}:end={it['end']},asetpts=PTS-STARTPTS[a{idx}];"
+            v_trim = f"[0:v]trim=start={it['clip_start']}:end={it['clip_end']},setpts=PTS-STARTPTS[v{idx}];"
+            a_trim = f"[0:a]atrim=start={it['clip_start']}:end={it['clip_end']},asetpts=PTS-STARTPTS[a{idx}];"
             filter_parts.append(v_trim)
             filter_parts.append(a_trim)
             concat_pairs.append(f"[v{idx}][a{idx}]")
@@ -438,8 +474,10 @@ class ParvogelRankingShortsGenerator:
 "영상 끝까지 봐주셔서 감사합니다! 
 특히 1위 대처법은 새벽 응급 상황에서 아이 생명을 살리는 핵심 골든타임 수칙입니다.
 
-👉 1초 만에 장 점막 물리 코팅하는 상비 겔(파보겔/몬스멕타) 정보:
-   https://smartstore.naver.com/petschury/products/13718496355"
+👉 1초 만에 장 점막 물리 코팅하는 우리 집 펫 구급함 1순위 응급 상비겔(파보겔) 공식 안내:
+   https://parvogel.kr
+   카카오 쇼핑하기: https://store.kakao.com/agrowellness/products/800840808
+   네이버 스마트스토어: https://smartstore.naver.com/petschury/products/13718496355"
 ======================================================================
 """
         with open(meta_path, "w", encoding="utf-8") as f:

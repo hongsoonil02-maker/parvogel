@@ -16,15 +16,17 @@ class TikTokAdapter(BaseMarketingAdapter):
     name = "TikTok"
 
     def validate_config(self) -> bool:
+        client_key = os.getenv("TIKTOK_CLIENT_KEY") or os.getenv("TikTok_Client_key")
+        client_secret = os.getenv("TIKTOK_CLIENT_SECRET") or os.getenv("TikTok_Client_secret")
         return bool(
-            os.getenv("TikTok_Client_key")
-            and os.getenv("TikTok_Client_secret")
+            client_key
+            and client_secret
             and os.getenv("TIKTOK_REFRESH_TOKEN")
         )
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
-        client_key = os.getenv("TikTok_Client_key")
-        client_secret = os.getenv("TikTok_Client_secret")
+        client_key = os.getenv("TIKTOK_CLIENT_KEY") or os.getenv("TikTok_Client_key")
+        client_secret = os.getenv("TIKTOK_CLIENT_SECRET") or os.getenv("TikTok_Client_secret")
         refresh_token = os.getenv("TIKTOK_REFRESH_TOKEN")
 
         access_token = self._refresh_access_token(client_key, client_secret, refresh_token)

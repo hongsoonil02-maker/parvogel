@@ -2,15 +2,41 @@ name: Marketing Factory Daily Run
 
 on:
   schedule:
-    # 매일 아침 7시(UTC 22시)에 실행
+    # 매일 아침 7시 KST (UTC 22:00) 자동 실행 — 단일 소스(1A) 요일별 비중복 B2C 쇼츠 배포
     - cron: "0 22 * * *"
   workflow_dispatch:
-    # GitHub UI에서 수동 실행 가능
+    inputs:
+      target_day:
+        description: "강제 실행할 요일 (비우면 오늘 KST 요일 자동 선택)"
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
+          - Sunday
+      force:
+        description: "당일 중복 방지 가드 우회 (--force)"
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: "실제 SNS 업로드 없이 렌더링·브랜드가드·인증 점검만 수행 (--dry-run)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   run-marketing-factory:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      TZ: Asia/Seoul
 
     steps:
       - name: Checkout repository
@@ -31,16 +57,19 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install openai requests python-dotenv requests-oauthlib
+          pip install openai requests python-dotenv requests-oauthlib firebase-admin
 
       - name: Install FFmpeg & Korean CJK Fonts (for 9:16 Shorts drawtext)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fontconfig
+          fc-cache -f
 
-      - name: Create .env from GitHub Secrets
+      - name: Create .env & Firebase Service Account from GitHub Secrets
+        env:
+          PARVOGEL_FIREBASE_SA_BASE64: ${{ secrets.PARVOGEL_FIREBASE_SA_BASE64 }}
         run: |
-          mkdir -p marketing_factory/output marketing_factory/drafts scripts/marketing/output scripts/marketing/logs
+          mkdir -p marketing_factory/output marketing_factory/output/ranking_shorts marketing_factory/drafts marketing_factory/config/secrets scripts/marketing/output scripts/marketing/logs
           cat << 'EOF' > marketing_factory/.env
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
@@ -59,18 +88,44 @@ jobs:
           META_APP_SECRET=${{ secrets.META_APP_SECRET }}
           META_ACCESS_TOKEN=${{ secrets.META_ACCESS_TOKEN }}
           META_IG_ACCOUNT_ID=${{ secrets.META_IG_ACCOUNT_ID }}
+          META_FB_PAGE_ID=${{ secrets.META_FB_PAGE_ID }}
+          META_FB_PAGE_TOKEN=${{ secrets.META_FB_PAGE_TOKEN }}
+          TIKTOK_CLIENT_KEY=${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET=${{ secrets.TIKTOK_CLIENT_SECRET }}
+          TIKTOK_REFRESH_TOKEN=${{ secrets.TIKTOK_REFRESH_TOKEN }}
+          BLUESKY_HANDLE=${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD=${{ secrets.BLUESKY_PASSWORD }}
           EOF
           cp marketing_factory/.env .env
+          if [ -n "$PARVOGEL_FIREBASE_SA_BASE64" ]; then
+            echo "$PARVOGEL_FIREBASE_SA_BASE64" | base64 -d > marketing_factory/config/secrets/parvogel-firebase-sa.json
+          fi
 
-      - name: Run Marketing Factory (Core 8-Channel Orchestrator + D2C Manifests)
+      - name: Run Marketing Factory (B2C 7-Day Weekly Non-Duplicate Shorts & Multi-Channel Dispatch)
+        env:
+          INPUT_TARGET_DAY: ${{ inputs.target_day }}
+          INPUT_FORCE: ${{ inputs.force }}
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          python marketing_factory/core/marketing_master.py
+          ARGS="--strict-youtube"
+          if [ -n "$INPUT_TARGET_DAY" ]; then
+            ARGS="$ARGS $INPUT_TARGET_DAY"
+          fi
+          if [ "$INPUT_FORCE" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          echo "KST Date: $(date '+%Y-%m-%d %H:%M:%S %Z (%A)')"
+          python marketing_factory/core/marketing_master.py $ARGS
           node scripts/marketing/parvogel_content_generator.cjs
           python scripts/marketing/parvogel_marketing_master.py
 
       - name: Cleanup secrets
         if: always()
-        run: rm -f .env marketing_factory/.env marketing_factory/data/daily_cost.json
+        run: |
+          rm -f .env marketing_factory/.env marketing_factory/data/daily_cost.json marketing_factory/config/secrets/parvogel-firebase-sa.json
 
       - name: Upload Shorts video & manifest artifacts
         uses: actions/upload-artifact@v4
@@ -79,6 +134,7 @@ jobs:
           name: marketing-output-${{ github.run_number }}
           path: |
             marketing_factory/output/Shorts_*.mp4
+            marketing_factory/output/ranking_shorts/Shorts_*.mp4
             scripts/marketing/output/
           retention-days: 7
 

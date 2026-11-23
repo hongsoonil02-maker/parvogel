@@ -13,3 +13,5 @@ public/assets/parvogel_case_03_standing.mp4 -filter -diff -merge
 public/assets/parvogel_case_05_eating.mp4 -filter -diff -merge
 "public/assets/김동준원장_동영상 4-1.mp4" -filter -diff -merge
 "public/assets/김동준원장_동영상 6-1.mp4" -filter -diff -merge
+*.bat text eol=crlf
+

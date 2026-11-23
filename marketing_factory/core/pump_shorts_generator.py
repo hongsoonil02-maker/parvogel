@@ -28,8 +28,33 @@ TEMP_DIR = os.path.join(OUTPUT_DIR, "temp_guide_shorts")
 os.makedirs(TEMP_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-FONT_PATH = "C:/Windows/Fonts/malgunbd.ttf"
-FFMPEG_FONT = "C\\:/Windows/Fonts/malgunbd.ttf"
+def _resolve_font_path() -> str:
+    candidates = [
+        "C:/Windows/Fonts/malgunbd.ttf",
+        "C:/Windows/Fonts/malgun.ttf",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    try:
+        out = subprocess.check_output(
+            ["fc-match", "-f", "%{file}", "Noto Sans CJK KR:bold"],
+            text=True, stderr=subprocess.DEVNULL
+        ).strip()
+        if out and os.path.exists(out):
+            return out
+    except Exception:
+        pass
+    return candidates[0]
+
+
+FONT_PATH = _resolve_font_path()
+FFMPEG_FONT = FONT_PATH.replace("\\", "/").replace(":", "\\:")
 
 SCENES = [
     {
@@ -71,10 +96,10 @@ SCENES = [
     {
         "id": "scene_05",
         "clip": "public/assets/parvogel_case_03_standing.mp4",
-        "badge": "🏆 [수의사 추천] 반려동물 정장지사 파보겔",
-        "tts_text": "우리 아이 설사 골든타임! 장 점막 보호막까지 형성하는 흡착 겔 파보겔로 소중한 생명을 지켜주세요.",
-        "sub_line1": "설사 골든타임 파보겔",
-        "sub_line2": "포털 검색창에 [파보겔]을 검색하세요",
+        "badge": "🏆 [우리 집 펫 구급함 1순위] 응급 상비겔 파보겔",
+        "tts_text": "우리 아이 설사 골든타임! 장 점막 보호막까지 형성하는 응급 상비겔 파보겔로 소중한 생명을 지켜주세요.",
+        "sub_line1": "우리 집 펫 구급함 1순위 파보겔",
+        "sub_line2": "카카오쇼핑·쿠팡·스마트스토어에서 [파보겔] 검색",
         "is_wide": False
     }
 ]

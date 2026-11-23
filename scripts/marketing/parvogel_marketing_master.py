@@ -72,7 +72,7 @@ class ParvogelMarketingMaster:
                 self.log(f"[Discord Notification] skipped/error: {exc}")
 
     def run_channels(self):
-        self.log("=== [파보겔] 2040 D2C & B2B 멀티채널 마케팅 자동 배포 파이프라인 가동 ===")
+        self.log("=== [파보겔] 순수 B2C 반려동물 멀티채널 마케팅 패키징 가동 ===")
         day_index = datetime.now().timetuple().tm_yday
 
         # 0. 보호자 공감 로테이션 메인 카피 배포 패키징
@@ -96,15 +96,15 @@ class ParvogelMarketingMaster:
             manifest = []
             for s in scripts:
                 manifest.append({
-                    'platform': ['YouTube Shorts', 'Instagram Reels', 'Naver Clip'],
+                    'platform': ['YouTube Shorts', 'Instagram Reels', 'TikTok'],
                     'ep': s.get('ep'),
                     'title': s['title'],
                     'hook_copy': s.get('hookCopy', ''),
                     'video_asset': s['video'],
                     'cta_links': {
+                        'kakao_store': 'https://store.kakao.com/agrowellness/products/800840808',
                         'smartstore': append_utm('https://smartstore.naver.com/petschury/products/13718496355', f"shorts_ep{s.get('ep', 1)}"),
-                        'landing': append_utm('https://parvogel.kr', f"shorts_ep{s.get('ep', 1)}"),
-                        'b2b_sample': append_utm('https://parvogel.kr/?sample=petshop', f"shorts_b2b_ep{s.get('ep', 1)}")
+                        'landing': append_utm('https://parvogel.kr', f"shorts_ep{s.get('ep', 1)}")
                     }
                 })
             manifest_file = os.path.join(self.output_dir, 'parvogel_shorts_manifest.json')
@@ -114,21 +114,17 @@ class ParvogelMarketingMaster:
 
         blog_file = os.path.join(self.output_dir, 'blog_review_guide.json')
         if os.path.exists(blog_file):
-            self.log("[Naver Blog] 네이버 블로그 체험단 및 구매자 후기 유도 패키지 준비 완료")
-
-        mobio_file = os.path.join(self.output_dir, 'mobio_sales_brief.json')
-        if os.path.exists(mobio_file):
-            self.log("[MOBIO Offline] 엠오바이오 산업동물 독점 총판 대리점 영업 브리핑 패키지 준비 완료")
+            self.log("[Naver Blog] 네이버 블로그 보호자 후기 가이드 패키지 준비 완료")
 
         summary = (
             f"✅ [파보겔 마케팅 팩토리 일일 리포트]\n"
             f"- 일자: {datetime.now().strftime('%Y-%m-%d')}\n"
-            f"- 오늘의 D2C 히어로 카피: {today_copy['title'] if today_copy else 'N/A'}\n"
+            f"- 오늘의 B2C 히어로 카피: {today_copy['title'] if today_copy else 'N/A'}\n"
             f"- 오늘의 숏폼 캠페인: {today_short['title'] if today_short else 'N/A'}\n"
             f"- 랜딩 URL (UTM): {append_utm('https://parvogel.kr', 'daily_digest')}"
         )
         self.notify_channels(summary)
-        self.log("=== 모든 파보겔 마케팅 배포 데이터 패키징 성공 ===")
+        self.log("=== 모든 파보겔 B2C 마케팅 배포 데이터 패키징 성공 ===")
 
 
 if __name__ == '__main__':

@@ -71,8 +71,8 @@
     "Clinic_Cold_DM": {
       "enabled": true,
       "publish_mode": "draft_only",
-      "type": "b2b_outreach",
-      "description": "전국 인허가 펫샵 및 전문 브리더(켄넬) 본품 1병 무료 샘플 & VIP 도매 제안서"
+      "type": "clinical_brief",
+      "description": "파보겔 임상 관찰 요약 & 공식 안내 브리프 (드래프트 보관 전용)"
     }
   }
 }
