@@ -5,6 +5,9 @@
  * and direct consumer order form submissions.
  */
 
+import { captureInboundSource, decorateMallUrl, getPlacement } from './attribution';
+import { initClarity, clarityTag, clarityEvent } from './clarity';
+
 export const KAKAO_PIXEL_ID = '9019188145294848683';
 
 export const PRODUCT_UNIT_PRICES = {
@@ -89,6 +92,7 @@ export function trackKakaoChannelChat() {
 }
 
 export function trackKakaoFormSubmit(requestType = 'consumer', quantity = 1, productId = 'parvogel-100ml') {
+    clarityEvent(`order_submit_${requestType}`);
     const px = getPixel();
     if (!px) return;
     try {
@@ -130,27 +134,64 @@ const MALL_MATCHERS = [
     { match: 'toss.shopping', key: 'toss' },
 ];
 
+function matchMall(href) {
+    const lower = (href || '').toLowerCase();
+    for (const { match, key } of MALL_MATCHERS) {
+        if (lower.includes(match)) return key;
+    }
+    return null;
+}
+
+/**
+ * 외부몰 <a> 태그의 href에 UTM을 붙임. 클릭/가운데클릭/길게누르기/우클릭 직전에 실행되어
+ * 새 탭 열기, 링크 복사 등 모든 이동 경로에 파라미터가 포함됩니다.
+ */
+function decorateAnchor(anchor) {
+    const href = anchor.getAttribute('href') || '';
+    const mallKey = matchMall(href);
+    if (!mallKey) return null;
+    const decorated = decorateMallUrl(href, mallKey, getPlacement(anchor));
+    if (decorated !== href) anchor.setAttribute('href', decorated);
+    return mallKey;
+}
+
 export function installGlobalKakaoLinkTracker() {
     if (typeof document === 'undefined') return () => {};
+
+    const inbound = captureInboundSource();
+    initClarity();
+    clarityTag('traffic_source', inbound.source);
+    clarityTag('traffic_campaign', inbound.campaign);
+
+    const handlePreNavigate = (e) => {
+        const anchor = e.target?.closest?.('a[href]');
+        if (anchor) decorateAnchor(anchor);
+    };
 
     const handleClick = (e) => {
         const anchor = e.target?.closest?.('a[href]');
         if (!anchor) return;
-        const href = (anchor.getAttribute('href') || '').toLowerCase();
+        const href = anchor.getAttribute('href') || '';
         if (!href || href.startsWith('#')) return;
 
-        for (const { match, key } of MALL_MATCHERS) {
-            if (href.includes(match)) {
-                const productId = anchor.getAttribute('data-product-id') || 'parvogel-100ml';
-                trackKakaoMallClick(key, productId);
-                return;
-            }
+        const mallKey = decorateAnchor(anchor);
+        if (mallKey) {
+            const productId = anchor.getAttribute('data-product-id') || 'parvogel-100ml';
+            trackKakaoMallClick(mallKey, productId);
+            clarityEvent(`mall_click_${mallKey}`);
+            return;
         }
-        if (href.includes('pf.kakao.com')) {
+        if (href.toLowerCase().includes('pf.kakao.com')) {
             trackKakaoChannelChat();
+            clarityEvent('kakao_channel_chat');
         }
     };
 
+    const preEvents = ['pointerdown', 'touchstart', 'contextmenu', 'auxclick', 'focusin'];
+    preEvents.forEach((type) => document.addEventListener(type, handlePreNavigate, { capture: true, passive: true }));
     document.addEventListener('click', handleClick, { capture: true });
-    return () => document.removeEventListener('click', handleClick, { capture: true });
+    return () => {
+        preEvents.forEach((type) => document.removeEventListener(type, handlePreNavigate, { capture: true }));
+        document.removeEventListener('click', handleClick, { capture: true });
+    };
 }
