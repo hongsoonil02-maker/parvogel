@@ -241,7 +241,7 @@ class ParvogelContentEnricher:
 
 반드시 아래 JSON 6개 키를 갖추어 응답하세요:
 {{
-  "headline": "유튜브 쇼츠에 바로 쓸 35자~55자 자연스러운 한국어 훅 헤드라인 (매주 신선하게 변주)",
+  "headline": "유튜브 쇼츠에 바로 쓸 28자~48자 자연스러운 한국어 훅 제목 (어색한 의태어·번역투 절대 금지, 실제 보호자가 클릭할 자연스러운 문장, 매주 신선하게 변주)",
   "subheadline": "보호자의 공감을 이끄는 서브카피",
   "pain_point": "보호자가 겪는 위급한 상황과 고민 묘사",
   "clinical_solution": "1-deoxinojirimycin(DNJ), 특허 제 2011B0042620.8호, 초미세 몬모릴로나이트 장 점막 코팅 원리 (*보조사료는 질병 치료를 대체하지 않습니다.)",
@@ -251,7 +251,7 @@ class ParvogelContentEnricher:
 """
         response = self.openai_client.chat.completions.create(
             model="gpt-4o-mini",
-            temperature=0.8,
+            temperature=0.65,
             messages=[
                 {"role": "system", "content": "You are a Korean B2C companion-pet veterinary copywriter for ParvoGel. Respond in valid JSON only."},
                 {"role": "user", "content": prompt}
