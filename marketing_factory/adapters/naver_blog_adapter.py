@@ -44,6 +44,7 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
         """스마트에디터 ONE 친화적 고품질 리치 HTML 변환"""
         import re
 
+        kakao_url = links.get("kakao_store", "https://store.kakao.com/agrowellness/products/800840808")
         coupang_url = links.get("coupang", "https://www.coupang.com/vp/products/9690739565")
         smartstore_url = links.get("smartstore", "https://smartstore.naver.com/petschury/products/13718496355")
         landing_url = links.get("landing", "https://parvogel.kr/")
@@ -130,12 +131,19 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
             formatted_p = formatted_p.replace('*', '').replace('~', '').replace('\n', '<br>')
             html_parts.append(f'<p style="margin-bottom: 18px; color: #334155; line-height: 1.85;">{formatted_p}</p>')
 
-        # 하단 공식 구매처 고가독성 프리미엄 카드 박스
+        # 하단 공식 구매처 고가독성 프리미엄 카드 박스 (카카오 쇼핑하기 1순위)
         cta_box = f"""
         <div style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 24px; margin-top: 40px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-          <h4 style="color: #03C75A; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700;">🐾 파보겔 공식 공급처 안내 (최우선 신속 발송)</h4>
-          <p style="color: #475569; font-size: 14.5px; margin-bottom: 20px; line-height: 1.6;">우리 아이의 골든타임을 지키기 위해 공식 공급처를 통해 최대한 빠르게 발송해 드립니다. 원하시는 구매처를 선택해 주세요.</p>
-          
+          <h4 style="color: #0f766e; font-size: 20px; margin-top: 0; margin-bottom: 12px; font-weight: 700;">🐾 우리 집 펫 구급함 1순위 응급 상비겔 파보겔 공식 안내 ((주)한국아그로)</h4>
+          <p style="color: #475569; font-size: 14.5px; margin-bottom: 20px; line-height: 1.6;">100ml 주력 표준 용량 · 실온 18개월 보관. 원하시는 공식 온라인몰에서 바로 확인해 보세요.</p>
+
+          <div style="background-color: #fefce8; border: 1.5px solid #eab308; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;">
+            <a href="{kakao_url}" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+              <div style="font-size: 17px; font-weight: 700; color: #854d0e; margin-bottom: 4px;">💬 카카오 쇼핑하기 (톡딜 1순위) 바로가기 &gt;</div>
+              <div style="font-size: 13.5px; color: #475569;">카카오페이 간편결제 · 공식 정품 출고</div>
+            </a>
+          </div>
+
           <div style="background-color: #ffffff; border: 1.5px solid #03C75A; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;">
             <a href="{smartstore_url}" target="_blank" style="text-decoration: none; color: inherit; display: block;">
               <div style="font-size: 17px; font-weight: 700; color: #03C75A; margin-bottom: 4px;">🟢 네이버 스마트스토어 (펫츄리 공식몰) 바로가기 &gt;</div>
@@ -146,14 +154,14 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
           <div style="background-color: #ffffff; border: 1.5px solid #ef4444; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px;">
             <a href="{coupang_url}" target="_blank" style="text-decoration: none; color: inherit; display: block;">
               <div style="font-size: 17px; font-weight: 700; color: #dc2626; margin-bottom: 4px;">🚀 쿠팡 공식 판매처 바로가기 &gt;</div>
-              <div style="font-size: 13.5px; color: #475569;">골든타임을 지키는 최우선 신속 출고 · 최대한 빠른 안심 배송</div>
+              <div style="font-size: 13.5px; color: #475569;">골든타임을 지키는 빠른 안심 배송</div>
             </a>
           </div>
 
           <div style="background-color: #ffffff; border: 1.5px solid #2563eb; border-radius: 10px; padding: 16px 20px;">
             <a href="{landing_url}" target="_blank" style="text-decoration: none; color: inherit; display: block;">
-              <div style="font-size: 17px; font-weight: 700; color: #1d4ed8; margin-bottom: 4px;">🌐 파보겔 공식 홈페이지 바로가기 &gt;</div>
-              <div style="font-size: 13.5px; color: #475569;">55일령 아기 강아지 7일간의 무편집 진료실 직캠 풀영상 확인</div>
+              <div style="font-size: 17px; font-weight: 700; color: #1d4ed8; margin-bottom: 4px;">🌐 파보겔 공식 홈페이지 바로가기 ((주)한국아그로) &gt;</div>
+              <div style="font-size: 13.5px; color: #475569;">55일령 아기 푸들 실제 진료실 회복 영상 확인 · 문의 02-6949-5708</div>
             </a>
           </div>
         </div>
@@ -253,15 +261,18 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
                     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
                 )
 
-                # 저장된 영구 세션 쿠키 주입
-                if os.path.exists(COOKIES_FILE):
+                # 프로필에 이미 활성 네이버 인증 쿠키(NID_AUT)가 없을 때만 naver_cookies.json 보조 주입 (구형 쿠키 덮어쓰기 방지!)
+                existing_names = {c.get("name") for c in context.cookies("https://blog.naver.com")}
+                if "NID_AUT" not in existing_names and os.path.exists(COOKIES_FILE):
                     try:
                         with open(COOKIES_FILE, "r", encoding="utf-8") as cf:
                             cookies_data = json.load(cf)
                             context.add_cookies(cookies_data)
-                            print(f"[NAVER_BLOG] Loaded {len(cookies_data)} persistent session cookies.")
+                            print(f"[NAVER_BLOG] Loaded {len(cookies_data)} fallback session cookies.")
                     except Exception as ce:
                         print(f"[NAVER_BLOG] Notice loading cookies: {ce}")
+                elif "NID_AUT" in existing_names:
+                    print("[NAVER_BLOG] Using active persistent profile session (NID_AUT present).")
 
                 page = context.pages[0] if context.pages else context.new_page()
 
@@ -284,10 +295,18 @@ class NaverBlogBrowserAdapter(BaseMarketingAdapter):
                 page.wait_for_timeout(3000)
 
                 # 로그인 풀림 체크
-                if "nidlogin.login" in page.url:
+                if "nidlogin.login" in page.url or "nid.naver.com" in page.url:
                     print("[NAVER_BLOG] [AUTH] Session expired. Re-authentication required.")
                     context.close()
                     return False
+
+                # 로그인 유효 확인 시 최신 쿠키 백업 자동 갱신
+                try:
+                    fresh_cookies = context.cookies()
+                    with open(COOKIES_FILE, "w", encoding="utf-8") as cf:
+                        json.dump(fresh_cookies, cf, indent=2, ensure_ascii=False)
+                except Exception:
+                    pass
 
                 # 스마트에디터 비동기 로딩 대기
                 page.wait_for_timeout(5000)

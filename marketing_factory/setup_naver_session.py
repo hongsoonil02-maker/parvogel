@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Naver Blog Session Setup Script (Playwright Chromium)
-- 사용자가 직접 1회 브라우저 창에서 로그인하여 영구 세션(쿠키 및 브라우저 프로필)을 획득합니다.
-- 저장된 프로필은 marketing_factory/data/naver_user_profile 에 영구 보관되어 매일 무인 자동 포스팅에 사용됩니다.
+- 사용자가 전용 브라우저 창에서 '로그인 상태 유지' 체크 상태로 1회 로그인하면
+  블로그 글쓰기 권한(GoBlogWrite.naver)까지 직접 검증한 뒤 영구 프로필과 쿠키를 저장합니다.
+- 완료 후 브라우저 창은 자동으로 닫히므로, 로그인 후 창을 수동으로 닫지 말고 5초만 기다려 주세요.
 """
 
 import os
@@ -10,7 +11,6 @@ import sys
 import time
 import json
 
-# Windows 콘솔 UTF-8 강제
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 if hasattr(sys.stderr, 'reconfigure'):
@@ -27,12 +27,15 @@ COOKIES_FILE = os.path.join(DATA_DIR, "naver_cookies.json")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(USER_PROFILE_DIR, exist_ok=True)
 
-def setup_session():
-    print("=" * 60)
-    print(">> [네이버 블로그 1회 로그인 세션 연동]")
-    print("=" * 60)
-    print("새로운 전용 브라우저 창이 열립니다. 네이버에 로그인해 주세요.")
-    print("-" * 60)
+
+def setup_session() -> bool:
+    print("=" * 64)
+    print(">> [파보겔 네이버 블로그 1회 로그인 세션 연동]")
+    print("=" * 64)
+    print("1) 열리는 전용 Chromium 창에서 네이버 로그인을 완료해 주세요.")
+    print("2) 반드시 '로그인 상태 유지'를 켜고, '새로운 기기 등록' 화면이 나오면 '등록'을 눌러 주세요.")
+    print("3) 로그인 후 창을 직접 닫지 마세요 — 블로그 글쓰기 검증 후 자동으로 저장·종료됩니다.")
+    print("-" * 64)
 
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
@@ -48,7 +51,17 @@ def setup_session():
 
         page = context.pages[0] if context.pages else context.new_page()
         page.bring_to_front()
-        page.goto("https://nid.naver.com/nidlogin.login")
+        page.goto("https://nid.naver.com/nidlogin.login?url=https%3A%2F%2Fsection.blog.naver.com%2F")
+
+        # '로그인 상태 유지' 자동 체크 시도
+        try:
+            page.wait_for_timeout(1200)
+            keep_cb = page.locator("#keep")
+            if keep_cb.count() > 0 and not keep_cb.is_checked():
+                page.locator("label[for='keep']").click(force=True)
+                print("✓ '로그인 상태 유지' 옵션을 자동으로 활성화했습니다.")
+        except Exception:
+            pass
 
         print("⏳ 네이버 로그인 완료를 대기 중입니다 (최대 10분)...")
         logged_in = False
@@ -59,55 +72,58 @@ def setup_session():
                 print("[알림] 브라우저 창이 닫혔습니다.")
                 break
 
+            curr_url = page.url
             cookies = context.cookies()
-            cookie_names = [c["name"] for c in cookies]
-            
-            # NID_AUT 및 NID_SES 쿠키가 생성되면 로그인 성공
-            if "NID_AUT" in cookie_names and "NID_SES" in cookie_names:
+            cookie_names = {c["name"] for c in cookies}
+
+            # nid.naver.com(로그인/2차인증/새기기등록)을 벗어나고 NID_AUT & NID_SES가 모두 발급된 시점 감지
+            if "nid.naver.com" not in curr_url and "NID_AUT" in cookie_names and "NID_SES" in cookie_names:
                 logged_in = True
                 break
-            
-            curr_url = page.url
-            if "nid.naver.com" not in curr_url and ("naver.com" in curr_url):
-                time.sleep(2)
-                cookies = context.cookies()
-                cookie_names = [c["name"] for c in cookies]
-                if "NID_AUT" in cookie_names or "NID_SES" in cookie_names:
-                    logged_in = True
-                    break
 
-            time.sleep(2)
+            time.sleep(1.5)
 
-        if logged_in:
-            print("\n[성공] 네이버 로그인이 성공적으로 감지되었습니다!")
-            page.goto("https://section.blog.naver.com/")
-            page.wait_for_timeout(3000)
-            
-            # 모든 세션 쿠키를 naver_cookies.json 파일로 저장
-            saved_cookies = context.cookies()
-            with open(COOKIES_FILE, "w", encoding="utf-8") as f:
-                json.dump(saved_cookies, f, indent=2, ensure_ascii=False)
-            
-            info = {
-                "status": "READY",
-                "updated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "profile_dir": USER_PROFILE_DIR,
-                "cookies_file": COOKIES_FILE,
-                "cookies_count": len(saved_cookies)
-            }
-            with open(SESSION_FLAG, "w", encoding="utf-8") as f:
-                json.dump(info, f, indent=2, ensure_ascii=False)
-                
-            print(f"[완료] 쿠키 및 세션 정보가 '{COOKIES_FILE}'에 안전하게 저장되었습니다.")
-            print("이제부터 마케팅 공장이 매일 자동으로 네이버 블로그에 포스팅할 수 있습니다.")
-            time.sleep(3)
-        else:
-            print("\n[안내] 로그인이 감지되지 않아 세션 저장을 종료합니다.")
+        if not logged_in:
+            print("\n[안내] 로그인이 완료되지 않아 세션 저장을 종료합니다.")
+            try:
+                context.close()
+            except Exception:
+                pass
+            return False
 
+        print("\n[감지] 네이버 로그인 성공! 블로그 글쓰기 권한을 검증합니다...")
+        page.goto("https://blog.naver.com/GoBlogWrite.naver", wait_until="domcontentloaded", timeout=30000)
+        page.wait_for_timeout(3000)
+
+        if "nidlogin.login" in page.url or "nid.naver.com" in page.url:
+            print("[오류] 블로그 글쓰기 페이지 진입 시 로그인이 유지되지 않았습니다. 다시 시도해 주세요.")
+            context.close()
+            return False
+
+        saved_cookies = context.cookies()
+        with open(COOKIES_FILE, "w", encoding="utf-8") as f:
+            json.dump(saved_cookies, f, indent=2, ensure_ascii=False)
+
+        info = {
+            "status": "READY",
+            "updated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "profile_dir": USER_PROFILE_DIR,
+            "cookies_file": COOKIES_FILE,
+            "cookies_count": len(saved_cookies),
+            "verified_write_url": page.url[:120],
+        }
+        with open(SESSION_FLAG, "w", encoding="utf-8") as f:
+            json.dump(info, f, indent=2, ensure_ascii=False)
+
+        print(f"🎉 [완료] 검증된 네이버 세션({len(saved_cookies)}개 쿠키)이 저장되었습니다!")
+        time.sleep(2)
         try:
             context.close()
         except Exception:
             pass
+        return True
+
 
 if __name__ == "__main__":
-    setup_session()
+    ok = setup_session()
+    sys.exit(0 if ok else 1)
