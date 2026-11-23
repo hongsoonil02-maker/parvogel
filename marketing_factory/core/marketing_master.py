@@ -116,6 +116,14 @@ class ParvogelMarketingMaster:
             json.dump(ledger, f, indent=2, ensure_ascii=False)
 
     def _is_duplicate_today(self, date_str: str) -> bool:
+        lock_path = os.path.join(DATA_DIR, "last_published_date.txt")
+        if os.path.exists(lock_path):
+            try:
+                with open(lock_path, "r", encoding="utf-8") as lf:
+                    if lf.read().strip() == date_str:
+                        return True
+            except Exception:
+                pass
         ledger = self._load_ledger()
         entry = next((e for e in reversed(ledger) if e.get("date") == date_str), None)
         if not entry:

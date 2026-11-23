@@ -65,6 +65,14 @@ jobs:
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fontconfig
           fc-cache -f
 
+      - name: Restore & persist daily publish ledger cache
+        uses: actions/cache@v4
+        with:
+          path: marketing_factory/data/published_ledger.json
+          key: marketing-ledger-${{ github.run_id }}
+          restore-keys: |
+            marketing-ledger-
+
       - name: Create .env & Firebase Service Account from GitHub Secrets
         env:
           PARVOGEL_FIREBASE_SA_BASE64: ${{ secrets.PARVOGEL_FIREBASE_SA_BASE64 }}
