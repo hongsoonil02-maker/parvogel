@@ -184,9 +184,18 @@
     </style>
 
     <!-- Kakao Pixel & SDK (파보겔 한국아그로) -->
-    <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+    <!-- 렌더 차단 방지(INP/LCP 개선): kp.js 를 비동기로 로드하고 로드 완료 후 pageView 전송 -->
     <script type="text/javascript">
-        kakaoPixel('9019188145294848683').pageView();
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.charset = 'UTF-8';
+            s.src = 'https://t1.daumcdn.net/kas/static/kp.js';
+            s.onload = function () {
+                try { window.kakaoPixel('9019188145294848683').pageView(); } catch (e) { /* ignore */ }
+            };
+            document.head.appendChild(s);
+        })();
     </script>
 
     <!-- Microsoft Clarity (파보겔 한국아그로) -->

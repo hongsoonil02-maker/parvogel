@@ -184,14 +184,33 @@
     </style>
 
     <!-- Kakao Pixel & SDK (파보겔 한국아그로) -->
-    <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+    <!-- 렌더 차단 방지(INP/LCP 개선): kp.js 를 비동기로 로드하고 로드 완료 후 pageView 전송 -->
     <script type="text/javascript">
-        kakaoPixel('9019188145294848683').pageView();
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.charset = 'UTF-8';
+            s.src = 'https://t1.daumcdn.net/kas/static/kp.js';
+            s.onload = function () {
+                try { window.kakaoPixel('9019188145294848683').pageView(); } catch (e) { /* ignore */ }
+            };
+            document.head.appendChild(s);
+        })();
     </script>
-  <script type="module" crossorigin src="/assets/index-COOZJwgT.js"></script>
+
+    <!-- Microsoft Clarity (파보겔 한국아그로) -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            if (c.location.hostname === 'localhost' || c.location.hostname === '127.0.0.1') return;
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', 'zi3higndpj');
+    </script>
+  <script type="module" crossorigin src="/assets/index-BP1mCsfT.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/vendor-BmDB2rWn.js">
   <link rel="modulepreload" crossorigin href="/assets/i18n-Z4_tcHOE.js">
-  <link rel="stylesheet" crossorigin href="/assets/index-1A6yU6QK.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-DA_ELZBn.css">
 </head>
 
 <body>

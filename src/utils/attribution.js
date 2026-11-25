@@ -64,6 +64,13 @@ export function captureInboundSource() {
             medium: sanitize(params.get('utm_medium') || 'unknown'),
             campaign: sanitize(params.get('utm_campaign') || 'none'),
         };
+        // UTM 표기 통일: 과거 소재의 변형 값(kakao_moment / paid_ad)을 표준값으로 정규화
+        if (detected.source === 'kakao_moment' || detected.source === 'kakaomoment') detected.source = 'kakao';
+        if (detected.source === 'kakao' && (detected.medium === 'paid_ad' || detected.medium === 'paid')) {
+            detected.medium = 'display';
+        }
+        const content = params.get('utm_content');
+        if (content) detected.content = sanitize(content, 40);
     } else {
         detected = sourceFromReferrer();
     }
@@ -86,7 +93,7 @@ export function getInboundSource() {
         if (raw) {
             const data = JSON.parse(raw);
             if (data && Date.now() - (data.ts || 0) < TTL_MS) {
-                return { source: data.source, medium: data.medium, campaign: data.campaign };
+                return { source: data.source, medium: data.medium, campaign: data.campaign, content: data.content };
             }
         }
     } catch {

@@ -781,7 +781,7 @@ const Landing = () => {
                         {/* Left Column: High-Trust Empathetic Copy & Direct Store CTAs */}
                         <div className="lg:col-span-7 text-center lg:text-left">
                             {/* 상단 수의학 신뢰 배지 */}
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-950 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
+                            <div className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-200/90 text-sky-950 text-xs sm:text-sm font-extrabold mb-4 shadow-xs animate-fade-in-up">
                                 <span>🩺</span>
                                 <span>수의학 자문 · 임상 관찰 · 우리 집 펫 구급함 1순위 응급 상비겔</span>
                             </div>
@@ -799,13 +799,13 @@ const Landing = () => {
                                 </span>
                             </h1>
 
-                            <p className="text-sm sm:text-base text-slate-700 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
+                            <p className="hidden sm:block text-sm sm:text-base text-slate-700 mb-5 max-w-2xl mx-auto lg:mx-0 leading-relaxed break-keep">
                                 주사기로 억지로 먹이다 물리고 토하는 스트레스 없이 입가에 1초 펌프!<br className="hidden sm:inline" />
                                 몸속에 흡수되지 않는 <strong>100% 천연 고순도 나노 몬모릴로나이트</strong>가 쓰린 장 점막을 부드럽게 감싸고 유해 독소·바이러스만 자석처럼 흡착해 변으로 안전하게 배출합니다.
                             </p>
 
                             {/* 3단계 회복 타임라인 미니 캡슐 바 */}
-                            <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto lg:mx-0 mb-5 p-2.5 sm:p-3 rounded-2xl bg-white/95 border border-slate-200 shadow-sm">
+                            <div className="hidden sm:grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto lg:mx-0 mb-5 p-2.5 sm:p-3 rounded-2xl bg-white/95 border border-slate-200 shadow-sm">
                                 <div className="text-center p-2.5 rounded-xl bg-rose-50/80 border border-rose-100">
                                     <div className="text-xs font-black text-rose-700">Day 1 · 응급</div>
                                     <div className="text-xs sm:text-sm font-extrabold text-slate-900 mt-0.5 break-keep">1초 점막 보호</div>

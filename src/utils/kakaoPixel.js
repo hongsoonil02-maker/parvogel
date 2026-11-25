@@ -162,6 +162,7 @@ export function installGlobalKakaoLinkTracker() {
     initClarity();
     clarityTag('traffic_source', inbound.source);
     clarityTag('traffic_campaign', inbound.campaign);
+    if (inbound.content) clarityTag('traffic_content', inbound.content);
 
     const handlePreNavigate = (e) => {
         const anchor = e.target?.closest?.('a[href]');
