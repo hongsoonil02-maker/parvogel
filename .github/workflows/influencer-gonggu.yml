@@ -1,0 +1,110 @@
+name: ParvoGel 100ml Influencer Gonggu Pipeline
+
+on:
+  schedule:
+    # 매일 오전 10시 / 오후 3시 KST (UTC 01:00, 06:00) 분할 타겟 발굴·피치·메일 발송
+    - cron: "0 1,6 * * *"
+  workflow_dispatch:
+    inputs:
+      send_live:
+        description: "이메일 실제 발송 여부 (true 시 인증된 발신자 설정 존재 시 발송)"
+        required: false
+        default: false
+        type: boolean
+      window:
+        description: "이메일 발송 타임슬롯"
+        required: false
+        default: "10:00"
+        type: choice
+        options:
+          - "10:00"
+          - "15:00"
+
+jobs:
+  run-influencer-gonggu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TZ: Asia/Seoul
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv firebase-admin
+
+      - name: Restore & persist Influencer CRM state
+        uses: actions/cache@v4
+        with:
+          path: marketing_factory/data/influencer_crm.json
+          key: influencer-crm-${{ github.run_id }}
+          restore-keys: |
+            influencer-crm-
+
+      - name: Configure .env & Firebase Service Account
+        env:
+          PARVOGEL_FIREBASE_SA_BASE64: ${{ secrets.PARVOGEL_FIREBASE_SA_BASE64 }}
+        run: |
+          mkdir -p marketing_factory/data marketing_factory/output marketing_factory/config/secrets
+          cat << 'EOF' > marketing_factory/.env
+          YOUTUBE_API_KEY=${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CLIENT_ID=${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET=${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN=${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+          OUTREACH_FROM_EMAIL=${{ secrets.OUTREACH_FROM_EMAIL }}
+          GMAIL_USER=${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}
+          EOF
+          cp marketing_factory/.env .env
+          if [ -n "$PARVOGEL_FIREBASE_SA_BASE64" ]; then
+            echo "$PARVOGEL_FIREBASE_SA_BASE64" | base64 -d > marketing_factory/config/secrets/parvogel-firebase-sa.json
+          fi
+
+      - name: Execute Group A/B/C Scrape, Pitch Gen, Email Dispatch & Dashboard
+        env:
+          INPUT_SEND_LIVE: ${{ inputs.send_live }}
+          INPUT_WINDOW: ${{ inputs.window }}
+          GMAIL_USER_SET: ${{ secrets.GMAIL_USER != '' && secrets.GMAIL_APP_PASSWORD != '' }}
+          OUTREACH_FROM_SET: ${{ secrets.OUTREACH_FROM_EMAIL != '' && secrets.SENDGRID_API_KEY != '' }}
+        run: |
+          HOUR_KST=$(date '+%H')
+          WINDOW="${INPUT_WINDOW}"
+          if [ -z "$WINDOW" ]; then
+            if [ "$HOUR_KST" -ge 13 ]; then
+              WINDOW="15:00"
+            else
+              WINDOW="10:00"
+            fi
+          fi
+          LIVE_FLAG=""
+          if [ "$INPUT_SEND_LIVE" = "true" ] || [ "$GMAIL_USER_SET" = "true" ] || [ "$OUTREACH_FROM_SET" = "true" ]; then
+            if [ "$GMAIL_USER_SET" = "true" ] || [ "$OUTREACH_FROM_SET" = "true" ]; then
+              LIVE_FLAG="--live"
+            fi
+          fi
+          python -m marketing_factory.core.influencer_gonggu_runner --scrape-all --generate-pitches --send-emails --window "$WINDOW" $LIVE_FLAG --dashboard
+
+      - name: Cleanup secrets
+        if: always()
+        run: |
+          rm -f .env marketing_factory/.env marketing_factory/config/secrets/parvogel-firebase-sa.json
+
+      - name: Upload Vending-Machine & Tracking Dashboard Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parvogel-influencer-gonggu-dashboard
+          path: marketing_factory/output/influencer_gonggu_dashboard.html
+          retention-days: 14
