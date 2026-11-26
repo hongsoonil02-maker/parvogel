@@ -73,6 +73,8 @@ marketing_factory/data/daily_cost.json
 !archive/**
 
 marketing_factory/data/naver_*
+marketing_factory/data/influencer_crm.json
+marketing_factory/output/influencer_gonggu_dashboard.html
 marketing_factory/*.png
 search_result.txt
 
