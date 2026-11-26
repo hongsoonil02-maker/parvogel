@@ -41,13 +41,20 @@ class ShortformAutoRenderer:
         self.project_dir = PROJECT_DIR
         self.output_dir = RENDER_DIR
         self.broll_catalog = self._load_json(os.path.join(DATA_DIR, "broll_catalog.json"))
-        
+
+        try:
+            from core.higgsfield_broll_client import HiggsfieldBrollClient
+            self.higgsfield_client = HiggsfieldBrollClient(project_dir=self.project_dir)
+        except Exception:
+            self.higgsfield_client = None
+
         # Windows / Linux 폰트 후보군
         font_candidates = [
             "C:/Windows/Fonts/malgunbd.ttf",
             "C:/Windows/Fonts/malgun.ttf",
             "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         ]
         self.font_file = next((p for p in font_candidates if os.path.exists(p)), None)
 
@@ -57,33 +64,54 @@ class ShortformAutoRenderer:
                 return json.load(f)
         return {}
 
+    def _resolve_source_path(self, rel_or_abs: str) -> str:
         # [철칙 가드] 로타겔 및 시제품 레거시 사진 영구 차단 -> 홈페이지 공식 정품 실사로 강제 치환
-        lower_path = rel_or_abs.lower()
+        lower_path = (rel_or_abs or "").lower()
         if any(b in lower_path for b in ["rotagel", "로타겔", "parvogel-1", "parvogel-2", "parvogel-3", "parvogel-4", "시제품"]):
             official_front = os.path.join(self.project_dir, "public", "images", "bottle_front.png")
             if os.path.exists(official_front):
                 return official_front
 
-        if os.path.isabs(rel_or_abs) and os.path.exists(rel_or_abs):
+        if rel_or_abs and os.path.isabs(rel_or_abs) and os.path.exists(rel_or_abs):
             return rel_or_abs
-        
+
         candidate = os.path.join(self.project_dir, rel_or_abs)
         if os.path.exists(candidate):
             return candidate
-            
+
+        sibling_candidate = os.path.join(os.path.dirname(self.project_dir), rel_or_abs)
+        if os.path.exists(sibling_candidate):
+            return sibling_candidate
+
         candidate2 = os.path.join(self.project_dir, "public", "assets", os.path.basename(rel_or_abs))
         if os.path.exists(candidate2):
             return candidate2
-            
+
         # 기본 폴백 비디오
         fallback = os.path.join(self.project_dir, "public", "assets", "parvogel_case_01_seizure.mp4")
         return fallback if os.path.exists(fallback) else rel_or_abs
 
     async def _generate_tts_audio(self, text: str, out_path: str, voice: str = "ko-KR-SunHiNeural", rate: str = "+12%"):
-        """Edge-TTS를 이용한 한국어 고품질 음성 합성"""
-        import edge_tts
-        communicate = edge_tts.Communicate(text, voice, rate=rate)
-        await communicate.save(out_path)
+        """Edge-TTS를 이용한 한국어 고품질 음성 합성 (실패 시 무음 오디오 폴백)"""
+        try:
+            import edge_tts
+            communicate = edge_tts.Communicate(text, voice, rate=rate)
+            await communicate.save(out_path)
+            if os.path.exists(out_path) and os.path.getsize(out_path) > 0:
+                return
+        except Exception as e:
+            print(f"[TTS_WARN] edge_tts fallback triggered: {e}")
+
+        est_sec = max(2.2, min(6.0, len((text or "").strip()) / 7.5))
+        cmd = [
+            "ffmpeg", "-y",
+            "-f", "lavfi",
+            "-i", "anullsrc=channel_layout=mono:sample_rate=24000",
+            "-t", f"{est_sec:.2f}",
+            "-c:a", "libmp3lame",
+            out_path,
+        ]
+        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
 
     def _probe_duration(self, media_path: str) -> float:
         """미디어 파일(오디오/비디오)의 실제 재생 시간(초) 반환"""
@@ -98,12 +126,38 @@ class ShortformAutoRenderer:
             pass
         return 4.0
 
-    def _render_scene_clip(self, scene: Dict[str, Any], tts_path: str, duration: float, out_path: str, badge_text: str = "🚨 긴급 골든타임") -> bool:
-        """단일 씬(오디오 길이 기준) 1080x1920 9:16 비디오 클립 렌더링"""
+    def _resolve_scene_media_source(self, scene: Dict[str, Any]) -> str:
+        """씬 설정에 따라 공식 실사 자산 / Higgsfield 720p B-roll / 로컬 카탈로그 순으로 안전 소스를 결정"""
         broll_id = scene.get("broll_id")
         clip_meta = next((c for c in self.broll_catalog.get("clips", []) if c["id"] == broll_id), {})
+        broll_source = (scene.get("broll_source") or "").strip().lower()
+
+        # 1) 공식 제품 용기/라벨 컷: 절대 AI 생성 금지, 공식 정품 실사만 사용
+        if broll_source == "official_reference_asset" or scene.get("use_ai_broll") is False:
+            official_ref = scene.get("official_asset_path") or clip_meta.get("file") or "public/images/bottle_front.png"
+            return self._resolve_source_path(official_ref)
+
+        # 2) Higgsfield 720p 상황 B-roll 수급
+        if (scene.get("use_ai_broll") or broll_source == "higgsfield_720p") and self.higgsfield_client is not None:
+            prompt_text = scene.get("broll_prompt") or scene.get("visual_cue") or ""
+            fallback_ref = scene.get("broll_fallback_file") or clip_meta.get("file") or "public/assets/parvogel_case_01_seizure.mp4"
+            res = self.higgsfield_client.get_or_generate_broll(
+                prompt=prompt_text,
+                scene_role=scene.get("beat", "dog_situation_cut"),
+                duration_sec=int(round(float(scene.get("duration_sec") or 5))),
+                resolution="720p",
+                model=scene.get("broll_model"),
+                fallback_file=fallback_ref,
+            )
+            return self._resolve_source_path(res.get("video_path") or fallback_ref)
+
+        # 3) 기본 로컬 카탈로그
         raw_source = clip_meta.get("file", "public/assets/parvogel_case_01_seizure.mp4")
-        source_path = self._resolve_source_path(raw_source)
+        return self._resolve_source_path(raw_source)
+
+    def _render_scene_clip(self, scene: Dict[str, Any], tts_path: str, duration: float, out_path: str, badge_text: str = "🚨 긴급 골든타임") -> bool:
+        """단일 씬(오디오 길이 기준) 1080x1920 9:16 비디오 클립 렌더링"""
+        source_path = self._resolve_scene_media_source(scene)
 
         is_image = any(source_path.lower().endswith(ext) for ext in [".jpg", ".jpeg", ".png", ".webp"])
 
@@ -135,11 +189,11 @@ class ShortformAutoRenderer:
             )
 
         if is_image:
-            # 정지 이미지일 경우 프리미엄 블러 엠비언트 배경 + 중앙 정품 실사 보틀 오버레이
+            # 정지 이미지일 경우 프리미엄 블러 엠비언트 배경 + 중앙 정품 실사 보틀 오버레이 (왜곡 0%)
             ambient_filter = (
                 "split[bg][fg];"
-                "[bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:5[blurred];"
-                "[fg]scale=960:1200:force_original_aspect_ratio=decrease[scaled];"
+                "[bg]scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,boxblur=25:5[blurred];"
+                "[fg]scale=960:1200:force_original_aspect_ratio=decrease:flags=lanczos[scaled];"
                 "[blurred][scaled]overlay=(1080-w)/2:(1920-h)/2"
             )
             vf = f"{ambient_filter},{draw_filters}"
@@ -148,58 +202,71 @@ class ShortformAutoRenderer:
                 "-loop", "1",
                 "-i", source_path,
                 "-i", tts_path,
-                "-t", str(duration),
+                "-t", f"{duration:.2f}",
                 "-vf", vf,
+                "-af", "apad",
+                "-r", "30",
                 "-c:v", "libx264",
                 "-preset", "veryfast",
                 "-crf", "22",
                 "-c:a", "aac",
                 "-b:a", "192k",
+                "-ar", "44100",
+                "-ac", "2",
                 "-pix_fmt", "yuv420p",
-                "-shortest",
-                out_path
+                out_path,
             ]
         else:
-            # 비디오일 경우 loop 또는 trim 후 오디오 합성
-            scale_filter = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920"
+            # 720p B-roll 또는 실사 비디오 -> 1080x1920 lanczos 업스케일 및 오디오 합성
+            scale_filter = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920"
             vf = f"{scale_filter},{draw_filters}"
             cmd = [
                 "ffmpeg", "-y",
                 "-stream_loop", "-1",
                 "-i", source_path,
                 "-i", tts_path,
-                "-t", str(duration),
+                "-t", f"{duration:.2f}",
                 "-vf", vf,
+                "-af", "apad",
+                "-r", "30",
                 "-c:v", "libx264",
                 "-preset", "veryfast",
                 "-crf", "22",
                 "-c:a", "aac",
                 "-b:a", "192k",
+                "-ar", "44100",
+                "-ac", "2",
                 "-pix_fmt", "yuv420p",
                 "-map", "0:v:0",
                 "-map", "1:a:0",
-                "-shortest",
-                out_path
+                out_path,
             ]
 
         try:
-            res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", errors="ignore", timeout=30)
+            res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8", errors="ignore", timeout=60)
             return res.returncode == 0 and os.path.exists(out_path)
         except Exception as e:
             print(f"[SCENE_RENDER_ERROR] {e}")
             return False
 
     def render_shortform_video(self, script_obj: Dict[str, Any], badge_text: Optional[str] = None) -> Optional[str]:
-        """대본 객체를 받아 5개 씬의 TTS 및 비디오 클립을 조립하여 최종 9:16 비디오 생성"""
+        """대본 객체를 받아 모든 씬의 TTS 및 비디오 클립을 조립하여 최종 9:16 비디오 생성"""
         version_id = script_obj.get("version_id", "SHORTFORM")
         scenes = script_obj.get("scenes", [])
         if not scenes:
             print(f"[RENDER_ERROR] No scenes in script: {version_id}")
             return None
 
-        # 보이스 선택: 송아지 농가형은 신뢰감 있는 남성 보이스(InJoon), 반려견은 차분한 여성 보이스(SunHi)
+        episode_type = script_obj.get("episode_type", "viral")
         voice = "ko-KR-InJoonNeural" if "CALF" in version_id else "ko-KR-SunHiNeural"
-        badge = badge_text or ("🐄 한우 농가 실화" if "CALF" in version_id else "🚨 1초 골든타임")
+        if badge_text:
+            badge = badge_text
+        elif episode_type == "review_hook":
+            badge = "실제 보호자 후기"
+        elif "CALF" in version_id:
+            badge = "한우 농가 실화"
+        else:
+            badge = "1초 골든타임"
 
         date_tag = datetime.now().strftime("%Y%m%d_%H%M%S")
         final_video_name = f"Viral_{version_id}_{date_tag}.mp4"
@@ -218,8 +285,10 @@ class ShortformAutoRenderer:
                 # 1. Edge-TTS 생성
                 asyncio.run(self._generate_tts_audio(scene_narration, tts_file, voice=voice))
                 tts_dur = self._probe_duration(tts_file)
-                # 약간의 여운을 위해 +0.3초 추가
-                scene_dur = max(3.5, tts_dur + 0.3)
+                if episode_type == "review_hook" and scene.get("duration_sec"):
+                    scene_dur = max(float(scene["duration_sec"]), tts_dur + 0.15)
+                else:
+                    scene_dur = max(3.5, tts_dur + 0.3)
 
                 print(f"  • Scene {idx:02d}: {tts_dur:.1f}s audio -> rendering {scene_dur:.1f}s video slice...")
                 success = self._render_scene_clip(scene, tts_file, scene_dur, clip_file, badge_text=badge)

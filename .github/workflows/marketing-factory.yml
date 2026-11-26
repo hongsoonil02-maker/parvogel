@@ -30,6 +30,15 @@ on:
         required: false
         default: false
         type: boolean
+      track:
+        description: "쇼츠 제작 트랙 선택 (auto_mix: 화·금 리뷰후킹+나머지 정규 | review_hook | standard)"
+        required: false
+        default: "auto_mix"
+        type: choice
+        options:
+          - auto_mix
+          - review_hook
+          - standard
 
 jobs:
   run-marketing-factory:
@@ -57,7 +66,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install openai requests python-dotenv requests-oauthlib firebase-admin
+          pip install openai edge-tts requests python-dotenv requests-oauthlib firebase-admin
 
       - name: Install FFmpeg & Korean CJK Fonts (for 9:16 Shorts drawtext)
         run: |
@@ -73,14 +82,27 @@ jobs:
           restore-keys: |
             marketing-ledger-
 
+      - name: Restore & persist Higgsfield 720p B-roll disk cache (Option 3)
+        uses: actions/cache@v4
+        with:
+          path: marketing_factory/output/broll_cache
+          key: higgsfield-broll-720p-${{ github.run_id }}
+          restore-keys: |
+            higgsfield-broll-720p-
+
       - name: Create .env & Firebase Service Account from GitHub Secrets
         env:
           PARVOGEL_FIREBASE_SA_BASE64: ${{ secrets.PARVOGEL_FIREBASE_SA_BASE64 }}
         run: |
-          mkdir -p marketing_factory/output marketing_factory/output/ranking_shorts marketing_factory/drafts marketing_factory/config/secrets scripts/marketing/output scripts/marketing/logs
+          mkdir -p marketing_factory/output marketing_factory/output/ranking_shorts marketing_factory/output/broll_cache marketing_factory/output/rendered_shorts marketing_factory/drafts marketing_factory/config/secrets scripts/marketing/output scripts/marketing/logs
           cat << 'EOF' > marketing_factory/.env
           OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          HIGGSFIELD_API_KEY=${{ secrets.HIGGSFIELD_API_KEY }}
+          HIGGSFIELD_API_SECRET=${{ secrets.HIGGSFIELD_API_SECRET }}
+          HIGGSFIELD_DEFAULT_MODEL=kling-3.0-720p
+          HIGGSFIELD_CACHE_POLICY=option3_cache_50
+          HIGGSFIELD_MAX_NEW_BROLL_PER_RUN=1
           OPENAI_MAX_DAILY_COST=2.0
           TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}
@@ -114,6 +136,8 @@ jobs:
           INPUT_TARGET_DAY: ${{ inputs.target_day }}
           INPUT_FORCE: ${{ inputs.force }}
           INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          INPUT_TRACK: ${{ inputs.track }}
+          MARKETING_TRACK: ${{ inputs.track || 'auto_mix' }}
         run: |
           ARGS="--strict-youtube"
           if [ -n "$INPUT_TARGET_DAY" ]; then
@@ -124,6 +148,9 @@ jobs:
           fi
           if [ "$INPUT_DRY_RUN" = "true" ]; then
             ARGS="$ARGS --dry-run"
+          fi
+          if [ -n "$INPUT_TRACK" ]; then
+            ARGS="$ARGS --track $INPUT_TRACK"
           fi
           echo "KST Date: $(date '+%Y-%m-%d %H:%M:%S %Z (%A)')"
           python marketing_factory/core/marketing_master.py $ARGS

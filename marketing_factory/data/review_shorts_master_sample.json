@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.0",
+  "episode_type": "review_hook",
+  "version_id": "REVIEW_PARVOGEL_CONTRAST_CRISIS_20261126",
+  "date": "2026-11-26",
+  "product": "ParvoGel",
+  "brand_profile": {
+    "brand_group": "KOREA_AGRO",
+    "company_name": "(주)한국아그로",
+    "phone": "02-6949-5708",
+    "official_url": "https://parvogel.kr/"
+  },
+  "target": "국내 반려견 가정(B2C)",
+  "title": "[실제리뷰] 병원 문 닫은 밤 긴급 대처 파보겔 (ParvoGel) 보호자 리얼 후기",
+  "running_time_sec": 15,
+  "hook_pattern": "contrast_crisis",
+  "review_insights": {
+    "product": "ParvoGel",
+    "review_count_analyzed": 5,
+    "average_rating": 5.0,
+    "top_pain_points": [
+      "식욕·기력 급감",
+      "야간·새벽 돌발 속불편"
+    ],
+    "top_satisfaction_points": [
+      "비상 상비템 안심감",
+      "기호성·편한 급여"
+    ],
+    "primary_pain_phrase": "사료까지 거부하며 축 처진 모습",
+    "primary_satisfaction_phrase": "집에 구비해 두면 마음이 놓이는 비상 케어 루틴",
+    "filtered_terms_count": 2,
+    "filtered_terms_masked": [
+      "부****음",
+      "상*약"
+    ],
+    "verified_snippets": [
+      "새벽에 강아지가 갑자기 토하고 축 처져서 병원 문 닫은 밤에 정말 당황했어요. 미리 비상 상비템처럼 구비해둔 파보겔 스포이드로 챙겨주니 다음 날 아침 사료를 조금씩 먹기 시작해서 너무 안심했습니다.",
+      "입이 짧고 예민한 말티즈라 거부감이 있을까 걱정했는데 할짝할짝 잘 먹네요. 변 상태가 묽고 기력이 없을 때 먹이면 확실히 회복에 도움이 되는 느낌이라 재구매해서 쟁여두었어요.",
+      "주말 밤 갑자기 장트러블이 온 것 같아 불안했는데 비상 상비템으로 둔 덕분에 한숨 돌렸습니다. 부담 적은 원료 설계 느낌으로 순해서 아이가 부담 없이 먹네요."
+    ]
+  },
+  "higgsfield_policy": {
+    "resolution_locked": "720p",
+    "default_model": "kling-3.0-720p",
+    "ai_broll_scene_nos": [
+      1,
+      2,
+      4
+    ],
+    "official_asset_scene_nos": [
+      3
+    ],
+    "product_distortion_guard": "strict"
+  },
+  "scenes": [
+    {
+      "scene_no": 1,
+      "timecode": "00:00-00:02.5",
+      "duration_sec": 2.5,
+      "beat": "hook_2s",
+      "broll_id": "BROLL_01",
+      "broll_source": "higgsfield_720p",
+      "use_ai_broll": true,
+      "broll_resolution": "720p",
+      "broll_model": "kling-3.0-720p",
+      "broll_fallback_file": "public/assets/parvogel_case_01_seizure.mp4",
+      "protect_product_integrity": true,
+      "visual_cue": "어두운 거실 야간 조명, 바닥 패드 앞에서 웅크리고 불안해하는 소형견 클로즈업 (제품 미노출)",
+      "broll_prompt": "Vertical 9:16 realistic handheld smartphone video, dim midnight living room, small Maltese dog sitting anxiously on a puppy pad looking lethargic, gentle warm lamp light, clean background",
+      "caption": "병원 문 닫은 밤 긴급 대처",
+      "narration": "병원 문 닫은 밤, 이거 없었으면 진짜 당황할 뻔했습니다",
+      "bgm_sound": "긴박한 심장박동 페이드인"
+    },
+    {
+      "scene_no": 2,
+      "timecode": "00:02.5-00:07.0",
+      "duration_sec": 4.5,
+      "beat": "pain_situation",
+      "broll_id": "BROLL_02",
+      "broll_source": "higgsfield_720p",
+      "use_ai_broll": true,
+      "broll_resolution": "720p",
+      "broll_model": "kling-3.0-720p",
+      "broll_fallback_file": "public/assets/김동준원장_동영상 4-1.mp4",
+      "protect_product_integrity": true,
+      "visual_cue": "보호자 손이 걱정스럽게 반려견 등을 쓰다듬고 물그릇을 확인하는 리얼 일상 컷 (제품 미노출)",
+      "broll_prompt": "Vertical 9:16 realistic video, caring Korean pet owner hand gently stroking a quiet small dog near a stainless water bowl at home, natural indoor lighting, shallow depth of field, authentic home footage",
+      "caption": "보호자가 겪은 가장 막막한 순간",
+      "narration": "사료까지 거부하며 축 처진 모습, 아이 컨디션 떨어지면 보호자 마음부터 내려앉죠.",
+      "bgm_sound": "잔잔한 공감 앰비언트"
+    },
+    {
+      "scene_no": 3,
+      "timecode": "00:07.0-00:12.0",
+      "duration_sec": 5.0,
+      "beat": "product_feeding_official_ref",
+      "broll_id": "BROLL_OFFICIAL_PRODUCT",
+      "broll_source": "official_reference_asset",
+      "use_ai_broll": false,
+      "broll_resolution": "native_official_png",
+      "broll_model": "official_composite_only",
+      "official_asset_path": "public/images/bottle_front.png",
+      "protect_product_integrity": true,
+      "visual_cue": "공식 고화질 정품 실사(public/images/bottle_front.png) 기반 급여·성분 하이라이트 합성 (AI 변형 금지)",
+      "broll_prompt": "",
+      "caption": "리뷰 검증 파보겔 (ParvoGel)",
+      "narration": "실제 후기에서 극찬받은 파보겔, 1초 원터치 펌프로 가볍게 챙겨주면.",
+      "bgm_sound": "밝고 신뢰감 있는 톤 전환"
+    },
+    {
+      "scene_no": 4,
+      "timecode": "00:12.0-00:15.0",
+      "duration_sec": 3.0,
+      "beat": "conclusion",
+      "broll_id": "BROLL_05",
+      "broll_source": "higgsfield_720p",
+      "use_ai_broll": true,
+      "broll_resolution": "720p",
+      "broll_model": "kling-3.0-720p",
+      "broll_fallback_file": "public/assets/parvogel_case_04_alertness.mp4",
+      "protect_product_integrity": true,
+      "visual_cue": "다음 날 활력을 되찾아 밥그릇 앞에서 꼬리를 흔드는 반려견 밝은 모닝 컷",
+      "broll_prompt": "Vertical 9:16 bright morning sunlight inside Korean apartment, happy healthy small dog wagging tail eagerly beside a clean ceramic kibble bowl, lively heartwarming mood",
+      "caption": "집에 두면 마음이 놓이는 한 병",
+      "narration": "집에 구비해 두면 마음이 놓이는 비상 케어 루틴. 우리 집 필수 상비템으로 챙겨두세요.",
+      "bgm_sound": "경쾌한 마무리 징글"
+    }
+  ],
+  "caption": "병원 문 닫은 밤, 이거 없었으면 진짜 당황할 뻔했습니다\n사료까지 거부하며 축 처진 모습, 아이 컨디션 떨어지면 보호자 마음부터 내려앉죠.\n집에 구비해 두면 마음이 놓이는 비상 케어 루틴. 우리 집 필수 상비템으로 챙겨두세요. #파보겔 #반려견영양케어 #강아지장건강 #반려견비상템 #한국아그로 ※ 본 콘텐츠는 실제 보호자 급여 후기를 바탕으로 제작되었으며, 의학적 진단·처치는 수의사 상담을 권장합니다.",
+  "hashtags": [
+    "#파보겔",
+    "#반려견영양케어",
+    "#강아지장건강",
+    "#반려견비상템",
+    "#한국아그로"
+  ],
+  "trigger_keyword": "리뷰후기",
+  "pinned_comment": "실제 보호자 후기로 검증된 파보겔 (ParvoGel) 공식 채널 안내\n▶ 공식 스마트스토어: https://smartstore.naver.com/koreaagro/products/11119190020\n▶ 공식 쿠팡 구매처: https://www.coupang.com/vp/products/8454837497\n▶ 공식 홈페이지: https://parvogel.kr/ ((주)한국아그로 02-6949-5708)\n※ 본 콘텐츠는 실제 보호자 급여 후기를 바탕으로 제작되었으며, 의학적 진단·처치는 수의사 상담을 권장합니다.",
+  "utm_links": {
+    "youtube_shorts": "https://parvogel.kr/?utm_source=youtube&utm_medium=shorts&utm_campaign=review_hook_20261126",
+    "smartstore": "https://smartstore.naver.com/koreaagro/products/11119190020",
+    "coupang": "https://www.coupang.com/vp/products/8454837497"
+  },
+  "compliance_status": {
+    "passed": true,
+    "filtered_terms_count": 2,
+    "filtered_terms_masked": [
+      "부****음",
+      "상*약"
+    ],
+    "forbidden_hits": []
+  },
+  "generated_at": "2026-11-26T14:54:50.018714"
+}

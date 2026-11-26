@@ -141,12 +141,23 @@ class ParvogelMarketingMaster:
         force: bool = False,
         dry_run: bool = False,
         strict_youtube: bool = False,
+        track: Optional[str] = None,
+        reviews_file: Optional[str] = None,
+        hook_pattern: str = "auto",
+        publish_at: Optional[str] = None,
     ) -> Dict[str, Any]:
         start_time = now_kst()
         date_str = start_time.strftime("%Y-%m-%d")
         date_tag = start_time.strftime("%Y%m%d")
         iso_week = start_time.isocalendar()[1]
         active_day = target_day or start_time.strftime("%A")
+        raw_track = (track or os.getenv("MARKETING_TRACK", "standard")).strip().lower()
+        review_days_env = os.getenv("REVIEW_HOOK_DAYS", "Tuesday,Friday")
+        review_days = {d.strip().lower() for d in review_days_env.split(",") if d.strip()}
+        if raw_track == "auto_mix":
+            active_track = "review_hook" if active_day.lower() in review_days else "standard"
+        else:
+            active_track = raw_track
 
         if not force and not target_day and not dry_run and self._is_duplicate_today(date_str):
             print(f"⏭️  Duplicate run blocked: {date_str} already completed successfully. Use --force to override.")
@@ -216,8 +227,43 @@ class ParvogelMarketingMaster:
             except Exception as e:
                 print(f"! Clinical pump shorts generation notice: {e}")
 
+        # 3-2. 리뷰 공감형 후킹 트랙 (`--track review_hook`) 및 Higgsfield 720p B-roll 통합 렌더링
+        rendered_review = None
+        review_master: Optional[Dict[str, Any]] = None
+        if active_track == "review_hook":
+            try:
+                from core.review_shorts_generator import ReviewShortsGenerator
+                from core.shortform_renderer import ShortformAutoRenderer
+
+                rev_src = reviews_file
+                if not rev_src:
+                    for cand_name in ("parvogel_reviews.csv", "parvogel_reviews.json", "sample_reviews_parvogel.json"):
+                        cand_path = os.path.join(DATA_DIR, cand_name)
+                        if os.path.exists(cand_path):
+                            rev_src = cand_path
+                            break
+                rev_gen = ReviewShortsGenerator()
+                review_master = rev_gen.generate_master_json(
+                    product_name="ParvoGel",
+                    reviews_source=rev_src,
+                    hook_pattern=hook_pattern or "auto",
+                    date_str=date_str,
+                )
+                assert_payload_safe(review_master, context="track:review_hook")
+                os.makedirs(OUTPUT_DIR, exist_ok=True)
+                rev_json_path = os.path.join(OUTPUT_DIR, f"review_master_{date_tag}.json")
+                with open(rev_json_path, "w", encoding="utf-8") as rf:
+                    json.dump(review_master, rf, ensure_ascii=False, indent=2)
+                rendered_review = ShortformAutoRenderer().render_shortform_video(review_master)
+                if rendered_review:
+                    print(f"✓ Rendered review_hook shorts : {os.path.basename(rendered_review)}")
+            except Exception as e:
+                print(f"! review_hook shorts notice: {e}")
+
         # 채널별 최적 영상 라우팅 테이블 구성 (교차 중복 최소화)
         def _select_video(adapter_name: str) -> Optional[str]:
+            if active_track == "review_hook" and rendered_review and adapter_name in ("YouTube_Shorts", "Instagram_Reels"):
+                return rendered_review
             if adapter_name == "YouTube_Shorts":
                 if yt_format == "ranking" and rendered_ranking:
                     return rendered_ranking
@@ -293,6 +339,22 @@ class ParvogelMarketingMaster:
                         if chosen_video:
                             data["video_path"] = chosen_video
                         data["campaign_id"] = f"PARVOGEL_{active_day.upper()}_W{iso_week:02d}_{date_tag}"
+                        if adapter.name == "YouTube_Shorts":
+                            if review_master:
+                                data["title"] = review_master.get("title", data.get("title", ""))
+                                data["description"] = review_master.get("caption", data.get("description", ""))
+                                data["pinned_comment"] = review_master.get("pinned_comment", "")
+                            else:
+                                data.setdefault(
+                                    "pinned_comment",
+                                    "파보겔 공식 정품 안내\n"
+                                    "▶ 공식 스마트스토어: https://smartstore.naver.com/koreaagro/products/11119190020\n"
+                                    "▶ 공식 쿠팡 구매처: https://www.coupang.com/vp/products/8454837497\n"
+                                    "▶ 공식 홈페이지: https://parvogel.kr/ ((주)한국아그로 02-6949-5708)",
+                                )
+                            sched_at = publish_at or os.getenv("YOUTUBE_PUBLISH_AT", "").strip()
+                            if sched_at:
+                                data["publish_at"] = sched_at
                         assert_payload_safe(data, context=f"live:{adapter.name}")
                         future = executor.submit(adapter.publish, data)
                         future_to_adapter[future] = adapter
@@ -432,14 +494,29 @@ class ParvogelMarketingMaster:
 
 
 if __name__ == "__main__":
-    force_flag = "--force" in sys.argv or "-f" in sys.argv
-    dry_run_flag = "--dry-run" in sys.argv
-    strict_yt_flag = ("--strict-youtube" in sys.argv) or (os.getenv("GITHUB_ACTIONS") == "true")
-    target_day_arg = next((arg for arg in sys.argv[1:] if not arg.startswith("-") and not arg.startswith("/")), None)
+    import argparse
+
+    parser = argparse.ArgumentParser(description="ParvoGel Multi-Channel Marketing Master")
+    parser.add_argument("target_day", nargs="?", default=None, help="Optional day name override (e.g. Monday)")
+    parser.add_argument("--force", "-f", action="store_true", help="Override duplicate today guard")
+    parser.add_argument("--dry-run", action="store_true", help="Run without live external API posts")
+    parser.add_argument("--strict-youtube", action="store_true", help="Exit 1 if YouTube Shorts publish fails")
+    parser.add_argument("--track", default=None, help="Pipeline track: standard | review_hook")
+    parser.add_argument("--reviews-file", default=None, help="Reviews file path (.json/.csv/.txt) for review_hook track")
+    parser.add_argument("--hook-pattern", default="auto", help="auto | empathy_question | review_metric | contrast_crisis")
+    parser.add_argument("--publish-at", default=None, help="Optional ISO-8601 publishAt schedule for YouTube Shorts")
+
+    cli_args, _ = parser.parse_known_args()
+    strict_yt_flag = cli_args.strict_youtube or (os.getenv("GITHUB_ACTIONS") == "true")
+
     master = ParvogelMarketingMaster()
     master.run_daily_pipeline(
-        target_day=target_day_arg,
-        force=force_flag,
-        dry_run=dry_run_flag,
+        target_day=cli_args.target_day,
+        force=cli_args.force,
+        dry_run=cli_args.dry_run,
         strict_youtube=strict_yt_flag,
+        track=cli_args.track,
+        reviews_file=cli_args.reviews_file,
+        hook_pattern=cli_args.hook_pattern,
+        publish_at=cli_args.publish_at,
     )

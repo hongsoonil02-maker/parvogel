@@ -49,19 +49,24 @@ class YouTubeAdapter(BaseMarketingAdapter):
             "Content-Type": "application/json; charset=utf-8"
         }
 
+        publish_at = (content_data.get("publish_at") or "").strip()
+        status_block: Dict[str, Any] = {
+            "privacyStatus": "private" if publish_at else "public",
+            "selfDeclaredMadeForKids": False,
+            "embeddable": True,
+        }
+        if publish_at:
+            status_block["publishAt"] = publish_at
+
         metadata = {
             "snippet": {
                 "title": title[:100],
                 "description": description[:5000],
                 "tags": tags[:10],
                 "categoryId": "15",
-                "defaultLanguage": "ko"
+                "defaultLanguage": "ko",
             },
-            "status": {
-                "privacyStatus": "public",
-                "selfDeclaredMadeForKids": False,
-                "embeddable": True
-            }
+            "status": status_block,
         }
 
         init_url = "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status"
@@ -92,8 +97,16 @@ class YouTubeAdapter(BaseMarketingAdapter):
                 "id": video_id,
                 "url": f"https://youtube.com/shorts/{video_id}",
                 "watch_url": f"https://www.youtube.com/watch?v={video_id}",
+                "publish_at": publish_at or None,
             }
             print(f"[SUCCESS] YouTube Shorts uploaded (ID: {video_id})")
+
+            pinned_comment = (content_data.get("pinned_comment") or "").strip()
+            if pinned_comment and video_id != "unknown":
+                comment_res = self._post_top_level_comment(access_token, video_id, pinned_comment)
+                self.last_result["comment_id"] = comment_res.get("comment_id")
+                self.last_result["comment_status"] = comment_res.get("status")
+
             # Auto-sync live ParvoGel Short to ParvoGel PetCare VIP Firestore `shorts_feed`
             try:
                 from core.firebase_shorts_sync import sync_short_to_firestore
@@ -115,6 +128,38 @@ class YouTubeAdapter(BaseMarketingAdapter):
         else:
             print(f"[FAIL] YouTube upload error: {upload_resp.status_code} - {upload_resp.text[:200]}")
             return False
+
+    def _post_top_level_comment(self, access_token: str, video_id: str, text: str) -> Dict[str, Any]:
+        """
+        구매 링크 안내 최상단 댓글 등록 (YouTube Data API v3 commentThreads.insert).
+        참고: 채널 고정(Pin) 상태는 API 미제공으로 Studio에서 1클릭 고정 필요하며, youtube.force-ssl 권한 미보유 시 경고 후 non-fatal 스킵합니다.
+        """
+        url = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet"
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json; charset=utf-8",
+        }
+        payload = {
+            "snippet": {
+                "videoId": video_id,
+                "topLevelComment": {
+                    "snippet": {
+                        "textOriginal": text[:9000],
+                    }
+                },
+            }
+        }
+        try:
+            resp = requests.post(url, headers=headers, json=payload, timeout=15)
+            if resp.status_code in (200, 201):
+                cid = resp.json().get("id", "")
+                print(f"[SUCCESS] YouTube purchase-link comment posted (Comment ID: {cid})")
+                return {"status": "posted", "comment_id": cid}
+            print(f"[PINNED_COMMENT_WARN] commentThreads HTTP {resp.status_code}: {resp.text[:200]}")
+            return {"status": f"http_{resp.status_code}", "comment_id": None}
+        except Exception as e:
+            print(f"[PINNED_COMMENT_WARN] Failed to post comment: {e}")
+            return {"status": "error", "comment_id": None}
 
     def _refresh_access_token(self, client_id: str, client_secret: str, refresh_token: str) -> str:
         token_url = "https://oauth2.googleapis.com/token"
