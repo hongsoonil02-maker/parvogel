@@ -7,6 +7,7 @@ import requests
 
 from marketing_factory.core.influencer_gonggu_guard import (
     APPROVED_USPS,
+    OFFICIAL_CEO_NAME,
     OFFICIAL_COMPANY_NAME,
     OFFICIAL_DOMAIN,
     OFFICIAL_KOREAAGRO_URL,
@@ -172,7 +173,7 @@ class InfluencerPitchGenerator:
                 "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 f"- 공식 브랜드몰: {OFFICIAL_DOMAIN}\n"
                 f"- 공식 스마트스토어(koreaagro): {OFFICIAL_KOREAAGRO_URL}\n"
-                f"- 담당 문의: {OFFICIAL_COMPANY_NAME} ({OFFICIAL_PHONE})\n\n"
+                f"- 공식 공급사: {OFFICIAL_COMPANY_NAME} (대표이사 {OFFICIAL_CEO_NAME} · 학술고문 홍순일 수의사 · {OFFICIAL_PHONE})\n\n"
                 "체험 수령을 원하시면 편하신 회신으로 [성함 / 연락처 / 수령 주소]만 알려주시면\n"
                 "바로 파보겔 100ml 정품 본품을 발송해 드리겠습니다.\n\n"
                 "감사합니다.\n"

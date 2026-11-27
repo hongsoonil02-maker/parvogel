@@ -36,9 +36,11 @@ class TestInfluencerGongguSystem(unittest.TestCase):
             assert_gonggu_safe("질병 예방·치료에 도움")
         with self.assertRaises(ValueError):
             assert_gonggu_safe("일반 소비자 무료 샘플 이벤트")
+        with self.assertRaises(ValueError):
+            assert_gonggu_safe("홍순일 대표 단독 추천")
 
         safe_text = (
-            "서울대 수의대 출신 수의학 전문가 홍순일 수의사 설계 · 파보겔 100ml 정품 단독 "
+            "서울대 수의대 출신 수의학 전문가 홍순일 수의사(학술고문) 설계 · (주)한국아그로(대표이사 홍효선) · 파보겔 100ml 정품 단독 "
             "장 건강·점막 보호 및 컨디션 관리에 도움 · https://smartstore.naver.com/koreaagro/products/11119190020"
         )
         assert_gonggu_safe(safe_text)
@@ -72,7 +74,8 @@ class TestInfluencerGongguSystem(unittest.TestCase):
         }
         pitch = gen.generate_pitch(lead)
         self.assertIn("보리", pitch["dm_short"].splitlines()[0])
-        self.assertIn("서울대 수의대 출신 수의학 전문가 홍순일 수의사 설계", pitch["email_body"])
+        self.assertIn("홍순일 수의사(학술고문) 설계", pitch["email_body"])
+        self.assertIn("대표이사 홍효선", pitch["email_body"])
         self.assertIn("파보겔 100ml 정품", pitch["email_body"])
         self.assertIn(OFFICIAL_KOREAAGRO_URL, pitch["email_body"])
         self.assertEqual(find_forbidden_gonggu_tokens(pitch), [])

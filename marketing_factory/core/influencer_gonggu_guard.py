@@ -4,14 +4,15 @@ from typing import Any, Dict, List, Tuple
 
 
 OFFICIAL_COMPANY_NAME = "(주)한국아그로"
+OFFICIAL_CEO_NAME = "홍효선"
 OFFICIAL_PHONE = "02-6949-5708"
 OFFICIAL_DOMAIN = "https://parvogel.kr"
 OFFICIAL_PRODUCT_NAME = "파보겔 100ml 정품"
 OFFICIAL_KOREAAGRO_URL = "https://smartstore.naver.com/koreaagro/products/11119190020"
 
-# 확정된 브랜드 분리 & 법규 안전 USP (에스앤제이 동물병원 상호 배제, 100ml 정품 단독)
+# 확정된 브랜드 분리 & 법규 안전 USP (에스앤제이 동물병원 상호 배제, 100ml 정품 단독, 대표이사/고문 분리 표기)
 APPROVED_USPS: Dict[str, str] = {
-    "authority": "서울대 수의대 출신 수의학 전문가 홍순일 수의사 설계",
+    "authority": "서울대 수의대 출신 수의학 전문가 홍순일 수의사(학술고문) 설계 · (주)한국아그로(대표이사 홍효선) 공식 공급",
     "science": (
         "경상국립대 수의학 연구 기반 및 특허균주 Bacillus subtilis MORI(특허 제2011B0042620.8호)와 "
         "초미세 나노 몬모릴로나이트 배합으로 장 건강·점막 보호 및 컨디션 관리에 도움 (동물용 정식등록 보조사료)"
@@ -59,9 +60,11 @@ FORBIDDEN_GONGGU_TOKENS: List[str] = [
     "부작용 없음",
     "특효약",
     "petschury",
+    "홍순일 대표",
 ]
 
 SAFE_COPY_REPLACEMENTS: List[Tuple[str, str]] = [
+    ("홍순일 대표", "홍순일 수의사(학술고문)"),
     ("에스앤제이 동물병원", OFFICIAL_COMPANY_NAME),
     ("에스앤제이동물병원", OFFICIAL_COMPANY_NAME),
     ("질병 예방·치료에 도움", "장 건강·점막 보호 및 컨디션 관리에 도움"),
