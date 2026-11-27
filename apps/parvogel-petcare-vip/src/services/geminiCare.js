@@ -2,13 +2,48 @@ const GEMINI_API_KEY =
   import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_GEMINI_API_KEY || ''
 const MODEL_CANDIDATES = ['gemini-3.5-flash-lite', 'gemini-3.8-flash', 'gemini-3.5-flash']
 
-export function calculateBasePumps(weightKg) {
+export function calculateBasePumps(weightKg, species = 'dog') {
+  if (species === 'bird') {
+    return {
+      pumps: '0.1~0.3mL (부리 끝 1~2방울)',
+      frequency: '하루 2~3회 (급성 시 2시간 간격 소량)',
+      note: '부리 옆에 살짝 묻혀 스스로 삼키게 해주세요.',
+    }
+  }
   const w = Number(weightKg) || 3
-  if (w < 2) return '1회 0.5~1펌프 (약 1~2mL), 하루 2~3회'
-  if (w <= 5) return '1회 1~2펌프 (약 2~4mL), 하루 2~3회'
-  if (w <= 10) return '1회 2~3펌프 (약 4~6mL), 하루 2~3회'
-  if (w <= 20) return '1회 3~5펌프 (약 6~10mL), 하루 2~3회'
-  return '1회 5~7펌프 (약 10~14mL), 하루 2~3회'
+  if (w < 1.5) {
+    return {
+      pumps: '1회 0.5~1펌프 (약 0.5~1mL)',
+      frequency: '하루 3~4회 (소량씩 자주)',
+      note: '신생아·초소형은 1펌프(1mL) 이하로 잇몸·혀에 살짝 묻혀 자주 급여할수록 예후가 좋습니다.',
+    }
+  }
+  if (w <= 5) {
+    return {
+      pumps: '1회 1~2펌프 (약 1~2mL)',
+      frequency: '하루 2~3회 (급성 시 2~3시간 간격)',
+      note: '1펌프 = 약 1mL입니다. 구토/설사가 잦을 때는 한 번에 많이보다 나누어 자주 급여하세요.',
+    }
+  }
+  if (w <= 10) {
+    return {
+      pumps: '1회 2~3펌프 (약 2~3mL)',
+      frequency: '하루 2~3회',
+      note: '체내 흡수 없이 장점막을 물리적으로 코팅해 배출하므로 간·신장 부담이 적습니다.',
+    }
+  }
+  if (w <= 20) {
+    return {
+      pumps: '1회 3~5펌프 (약 3~5mL)',
+      frequency: '하루 2~3회',
+      note: '다른 경구 처방약과 함께 먹일 때는 1~2시간 간격을 두세요.',
+    }
+  }
+  return {
+    pumps: '1회 5~7펌프 (약 5~7mL)',
+    frequency: '하루 2~3회',
+    note: '대형견도 체중에 맞춰 펌프 수만 늘려 안전하게 급여할 수 있습니다.',
+  }
 }
 
 export async function getParvogelCareAdvice({ species, weightKg, ageText, condition }) {
@@ -17,7 +52,8 @@ export async function getParvogelCareAdvice({ species, weightKg, ageText, condit
     species === 'cat' ? '고양이' :
     species === 'bird' ? '반려조' : '소동물'
 
-  const basePumps = calculateBasePumps(weightKg)
+  const calc = calculateBasePumps(weightKg, species)
+  const basePumps = `${calc.pumps}, ${calc.frequency}`
 
   const systemPrompt = `당신은 (주)한국아그로 공식 반려동물 보조사료 '파보겔(ParvoGel)'의 다정한 AI 펫케어 도우미입니다.
 반드시 아래 규칙을 지키세요:

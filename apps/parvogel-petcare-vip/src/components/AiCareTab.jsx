@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { Bot, Sparkles, ExternalLink, MessageCircle, ShieldAlert, History } from 'lucide-react'
-import { getParvogelCareAdvice } from '../services/geminiCare'
+import { useState, useMemo } from 'react'
+import { Bot, Sparkles, ExternalLink, MessageCircle, ShieldAlert, History, Calculator } from 'lucide-react'
+import { getParvogelCareAdvice, calculateBasePumps } from '../services/geminiCare'
 import { OFFICIAL_STORES, PARVOGEL_BRAND } from '../config/stores'
 
 const SPECIES_OPTIONS = [
@@ -24,6 +24,17 @@ export default function AiCareTab({ consults, onSaveConsult }) {
   const [condition, setCondition] = useState('')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState(null)
+
+  const liveDosage = useMemo(
+    () => calculateBasePumps(weightKg, species),
+    [weightKg, species]
+  )
+
+  const applyPreset = (presetSpecies, presetWeight, presetAge) => {
+    setSpecies(presetSpecies)
+    setWeightKg(String(presetWeight))
+    setAgeText(presetAge)
+  }
 
   const handleAnalyze = async (e) => {
     e.preventDefault()
@@ -53,6 +64,75 @@ export default function AiCareTab({ consults, onSaveConsult }) {
 
   return (
     <div className="space-y-4 pb-6">
+      {/* 즉시 확인: 신생아·체중별(kg) 1초 펌프 급여량 자동 계산기 */}
+      <section className="rounded-3xl bg-gradient-to-br from-teal-700 to-emerald-600 p-4 text-white shadow-md">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Calculator className="h-5 w-5 text-teal-100" />
+            <h2 className="text-sm font-extrabold">체중별(kg) 1초 펌프 급여량 계산기</h2>
+          </div>
+          <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold">
+            1펌프 ≈ 1mL
+          </span>
+        </div>
+
+        {/* 빠른 프리셋 */}
+        <div className="mt-2.5 flex flex-wrap gap-1.5">
+          <button
+            type="button"
+            onClick={() => applyPreset('dog', 0.8, '신생아/어린강아지')}
+            className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold hover:bg-white/25"
+          >
+            🐶 신생아(~1kg)
+          </button>
+          <button
+            type="button"
+            onClick={() => applyPreset('dog', 3.5, '성견 소형')}
+            className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold hover:bg-white/25"
+          >
+            🐶 소형견(3.5kg)
+          </button>
+          <button
+            type="button"
+            onClick={() => applyPreset('dog', 9.0, '성견 중형')}
+            className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold hover:bg-white/25"
+          >
+            🐶 중형견(9kg)
+          </button>
+          <button
+            type="button"
+            onClick={() => applyPreset('cat', 4.0, '성묘')}
+            className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold hover:bg-white/25"
+          >
+            🐱 고양이(4kg)
+          </button>
+          <button
+            type="button"
+            onClick={() => applyPreset('bird', 0.3, '반려조')}
+            className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold hover:bg-white/25"
+          >
+            🦜 앵무새/조류
+          </button>
+        </div>
+
+        <div className="mt-3 rounded-2xl bg-white/95 p-3 text-slate-800">
+          <div className="text-[11px] font-bold text-teal-700">
+            현재 선택 ({SPECIES_OPTIONS.find((s) => s.id === species)?.label} · {weightKg || 0}kg)
+          </div>
+          <div className="mt-0.5 text-base font-black text-slate-900">{liveDosage.pumps}</div>
+          <div className="text-xs font-bold text-emerald-700">{liveDosage.frequency}</div>
+          <p className="mt-1.5 text-[11px] leading-relaxed text-slate-600">{liveDosage.note}</p>
+          <a
+            href={PARVOGEL_BRAND.kakaoChatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#FEE500] py-2 text-xs font-extrabold text-[#3C1E1E]"
+          >
+            <MessageCircle className="h-3.5 w-3.5" /> 카톡으로 1:1 급여 상담하기
+          </a>
+        </div>
+      </section>
+
       {/* 입력 카드 */}
       <section className="mint-card rounded-3xl p-4">
         <div className="flex items-center gap-2.5">

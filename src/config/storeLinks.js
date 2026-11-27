@@ -41,3 +41,5 @@ export const getStoreUrl = (store) =>
 export const getKakaoChannelUrl = () =>
     STORE_LINKS.kakao.channelChatUrl
 
+export const VIP_APP_URL = 'https://parvogel-petcare-vip.web.app'
+

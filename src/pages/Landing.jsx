@@ -6,7 +6,7 @@ import GomiPoopStory from '../components/GomiPoopStory'
 import AudioTestimonial from '../components/AudioTestimonial'
 import StickyBottomCTA from '../components/StickyBottomCTA'
 import OrderForm from '../components/OrderForm'
-import { getStoreUrl } from '../config/storeLinks'
+import { getStoreUrl, getKakaoChannelUrl, VIP_APP_URL } from '../config/storeLinks'
 import SEO from '../components/SEO'
 import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
@@ -871,21 +871,39 @@ const Landing = () => {
                                 </a>
                             </div>
 
-                            {/* 설득 스토리 바로가기 보조 버튼 (신중한 보호자용) */}
-                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 mb-4">
+                            {/* 카톡 1:1 급여 상담 + AI 케어 앱 바로가기 + 설득 스토리 버튼 */}
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-4">
+                                <a
+                                    href={getKakaoChannelUrl()}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-3.5 py-2 rounded-xl bg-[#FEE500]/90 hover:bg-[#FEE500] border border-amber-300 text-[#191919] text-xs sm:text-sm font-extrabold shadow-xs transition-all inline-flex items-center gap-1.5"
+                                >
+                                    <span aria-hidden="true">💬</span>
+                                    <span>카톡 1:1 급여량 문의</span>
+                                </a>
+                                <a
+                                    href={VIP_APP_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-3.5 py-2 rounded-xl bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all inline-flex items-center gap-1.5"
+                                >
+                                    <span aria-hidden="true">📱</span>
+                                    <span>체중별 급여 계산 앱</span>
+                                </a>
                                 <button
                                     type="button"
                                     onClick={() => scrollToSection('why-parvogel')}
-                                    className="px-4 py-2 rounded-xl bg-white hover:bg-primary-50 border border-primary-200 text-primary-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
+                                    className="px-3.5 py-2 rounded-xl bg-white hover:bg-primary-50 border border-primary-200 text-primary-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
                                 >
-                                    🔬 왜 파보겔인가? 작용 원리 보기 ↓
+                                    🔬 왜 파보겔인가? ↓
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => scrollToSection('vet-voice')}
-                                    className="px-4 py-2 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
+                                    className="px-3.5 py-2 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
                                 >
-                                    🎙️ 수의사 실제 육성·임상 근거 듣기 ↓
+                                    🎙️ 수의사 육성 ↓
                                 </button>
                             </div>
 

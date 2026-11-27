@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { getKakaoChannelUrl, VIP_APP_URL } from '../config/storeLinks';
 
 // 상담 API 프록시 주소 — Agrokorea 공용 Cloudflare Worker (4개 제품 공유)
 const CHAT_API_URL = import.meta.env.VITE_CHAT_API_URL
@@ -169,6 +170,26 @@ export default function Chatbot() {
                         </div>
                     )}
                     <div ref={messagesEndRef} />
+                </div>
+
+                {/* 빠른 연결 바: 카톡 1:1 상담 & VIP 케어 앱 */}
+                <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-100/90 border-t border-slate-200 text-xs">
+                    <a
+                        href={getKakaoChannelUrl()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 px-2.5 rounded-lg bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-extrabold text-center transition-colors truncate"
+                    >
+                        💬 카톡 1:1 상담
+                    </a>
+                    <a
+                        href={VIP_APP_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 px-2.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-extrabold text-center transition-colors truncate"
+                    >
+                        📱 급여계산 앱 열기
+                    </a>
                 </div>
 
                 {/* 입력 영역 */}
