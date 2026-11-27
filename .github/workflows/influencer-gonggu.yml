@@ -89,7 +89,8 @@ jobs:
             fi
           fi
           LIVE_FLAG=""
-          if [ "$INPUT_SEND_LIVE" = "true" ] || [ "$GMAIL_USER_SET" = "true" ] || [ "$OUTREACH_FROM_SET" = "true" ]; then
+          # 안전 관찰 모드: 수동 실행(send_live=true) 또는 Repository Variable GONGGU_AUTO_LIVE=true 설정 시에만 실메일 발송
+          if [ "$INPUT_SEND_LIVE" = "true" ] || [ "${{ vars.GONGGU_AUTO_LIVE }}" = "true" ]; then
             if [ "$GMAIL_USER_SET" = "true" ] || [ "$OUTREACH_FROM_SET" = "true" ]; then
               LIVE_FLAG="--live"
             fi

@@ -318,11 +318,11 @@ class InfluencerLeadScraper:
                 display_name = titles[0] if titles else cid
                 recent_posts = titles[1:6] if len(titles) > 1 else []
                 combined_ctx = f"{display_name} {' '.join(recent_posts)}".lower()
-                if any(non_b2c in combined_ctx for non_b2c in ("동물병원", "동물의료센터", "수의사회", "파충류", "게코", "볼파이톤", "아기뱀", "장례식장", "세무", "부업", "노토킹", "쇼핑몰 상품", "회사 밖", "유아맘")):
+                if any(non_b2c in combined_ctx for non_b2c in ("동물병원", "동물의료센터", "수의사회", "파충류", "게코", "볼파이톤", "아기뱀", "장례식장", "세무", "부업", "노토킹", "쇼핑몰", "회사 밖", "유아맘", "식품제조", "농장", "아카데미", "academy")):
                     continue
                 if str(keyword_group).upper() in ("A", "B") and not any(pet in combined_ctx for pet in ("강아지", "반려견", "고양이", "반려묘", "반려동물", "멍", "냥", "펫", "코기", "푸들", "말티즈", "사료", "유산균")):
                     continue
-                if str(keyword_group).upper() == "C" and not any(b2b in combined_ctx for b2b in ("반려", "펫", "강아지", "고양이", "공동구매", "공구")):
+                if str(keyword_group).upper() == "C" and not any(pet_b2b in combined_ctx for pet_b2b in ("반려", "펫", "강아지", "고양이")):
                     continue
                 view_nums = [int(v) for v in re.findall(r'views="(\d+)"', rss_resp.text)[:5]] if rss_resp.status_code == 200 else []
                 avg_views = (sum(view_nums) / len(view_nums)) if view_nums else 0.0
