@@ -173,15 +173,16 @@ class InfluencerCRMStore:
             channel = re.sub(r"[^a-z0-9]+", "", str(lead.get("channel", "ig")).lower())
             handle = re.sub(r"[^a-z0-9_]+", "", str(lead.get("handle", "unknown")).lower())
             lead_id = f"{channel}_{handle}"
-        lead["lead_id"] = lead_id
-        lead.setdefault("status", "발굴됨")
-        lead.setdefault("product", "파보겔 100ml 정품")
-        lead.setdefault("commission_rate", 0.25)
-        lead.setdefault("updated_at", datetime.datetime.now().isoformat())
-
         store = self._read_local()
         existing = store["leads"].get(lead_id, {})
-        merged = {**existing, **lead}
+        lead_payload = dict(lead)
+        lead_payload["lead_id"] = lead_id
+        lead_payload["updated_at"] = datetime.datetime.now().isoformat()
+
+        merged = {**existing, **lead_payload}
+        merged.setdefault("status", "발굴됨")
+        merged.setdefault("product", "파보겔 100ml 정품")
+        merged.setdefault("commission_rate", 0.25)
         store["leads"][lead_id] = merged
         self._write_local(store)
 
@@ -317,7 +318,11 @@ class InfluencerLeadScraper:
                 display_name = titles[0] if titles else cid
                 recent_posts = titles[1:6] if len(titles) > 1 else []
                 combined_ctx = f"{display_name} {' '.join(recent_posts)}".lower()
-                if any(non_b2c in combined_ctx for non_b2c in ("동물병원", "동물의료센터", "수의사회", "파충류", "게코", "볼파이톤", "아기뱀")):
+                if any(non_b2c in combined_ctx for non_b2c in ("동물병원", "동물의료센터", "수의사회", "파충류", "게코", "볼파이톤", "아기뱀", "장례식장", "세무", "부업", "노토킹", "쇼핑몰 상품", "회사 밖", "유아맘")):
+                    continue
+                if str(keyword_group).upper() in ("A", "B") and not any(pet in combined_ctx for pet in ("강아지", "반려견", "고양이", "반려묘", "반려동물", "멍", "냥", "펫", "코기", "푸들", "말티즈", "사료", "유산균")):
+                    continue
+                if str(keyword_group).upper() == "C" and not any(b2b in combined_ctx for b2b in ("반려", "펫", "강아지", "고양이", "공동구매", "공구")):
                     continue
                 view_nums = [int(v) for v in re.findall(r'views="(\d+)"', rss_resp.text)[:5]] if rss_resp.status_code == 200 else []
                 avg_views = (sum(view_nums) / len(view_nums)) if view_nums else 0.0
@@ -352,7 +357,7 @@ class InfluencerLeadScraper:
         self,
         keywords: Optional[List[str]] = None,
         keyword_group: str = "B",
-        max_results_per_kw: int = 5,
+        max_results_per_kw: int = 10,
         apply_micro_filter: bool = True,
     ) -> List[Dict[str, Any]]:
         """YouTube Data API v3를 통해 반려동물 채널, 구독자, 최근 영상 3~5개, 비즈니스 이메일을 수집합니다."""
@@ -465,6 +470,32 @@ class InfluencerLeadScraper:
 
         return discovered
 
+    @staticmethod
+    def _fetch_naver_mobile_bio_contacts(blog_id: str) -> Dict[str, Any]:
+        """네이버 블로그 모바일 프로필에서 블로거가 직접 공개한 실제 이메일·오픈카톡만 추출합니다 (단순 ID 추측 금지)."""
+        try:
+            resp = requests.get(
+                f"https://m.blog.naver.com/{blog_id}",
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"},
+                timeout=8,
+            )
+            if resp.status_code != 200:
+                return {"email": "", "all_emails": [], "kakao_openchat": "", "dm_allowed": False}
+            text = resp.text
+            emails = [
+                e for e in re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
+                if not any(sys_tok in e.lower() for sys_tok in ("pstatic.net", "naver.com/@", "w3.org", "schema.org", ".png", ".jpg", "example.com"))
+            ]
+            kakaos = re.findall(r"https?://open\.kakao\.com/o/[A-Za-z0-9_-]+", text)
+            return {
+                "email": emails[0] if emails else "",
+                "all_emails": list(dict.fromkeys(emails))[:3],
+                "kakao_openchat": kakaos[0] if kakaos else "",
+                "dm_allowed": False,
+            }
+        except Exception:
+            return {"email": "", "all_emails": [], "kakao_openchat": "", "dm_allowed": False}
+
     def _scrape_naver_public_fallback(
         self,
         kw_list: List[str],
@@ -516,13 +547,17 @@ class InfluencerLeadScraper:
                 display_name = raw_titles[0]
                 recent_posts = [t for t in raw_titles[2:7] if t and t != display_name][:5]
                 combined = f"{display_name} {' '.join(recent_posts)}".lower()
-                if any(bad in combined for bad in ("동물병원", "동물의료센터", "수의사회", "파보겔", "몬스멕타", "soonilhong", "장례식장", "화장터", "산소발생기", "스카이장비", "사다리차", "파충류", "게코")):
+                if any(bad in combined for bad in ("동물병원", "동물의료센터", "수의사회", "파보겔", "몬스멕타", "soonilhong", "장례식장", "화장터", "산소발생기", "스카이장비", "사다리차", "파충류", "게코", "세무", "양도세", "어학연수", "연애", "충전기", "코디", "구피", "좀비물고기")):
                     continue
-                if keyword_group in ("A", "B") and not any(pet in combined for pet in ("강아지", "반려견", "고양이", "반려묘", "반려동물", "멍", "냥", "펫", "푸들", "말티즈", "비숑", "시바", "코기", "브리더", "견사", "임보")):
+                if keyword_group in ("A", "B") and sum(1 for post in [display_name] + recent_posts if any(pet in post.lower() for pet in ("강아지", "반려견", "고양이", "반려묘", "반려동물", "멍", "냥", "펫", "푸들", "말티즈", "비숑", "시바", "코기", "브리더", "견사", "임보", "다견", "다묘"))) < 2:
+                    continue
+                if keyword_group == "C" and not any(b2b in combined for b2b in ("공동구매", "공구", "인플", "에이전시", "시딩", "협찬", "마케팅")):
                     continue
 
-                contacts = parse_bio_contacts(rss.text[:3000])
-                inferred_email = contacts["email"] or f"{blog_id}@naver.com"
+                rss_contacts = parse_bio_contacts(rss.text[:3000])
+                bio_contacts = self._fetch_naver_mobile_bio_contacts(blog_id)
+                verified_email = bio_contacts["email"] or rss_contacts["email"]
+                kakao_link = bio_contacts["kakao_openchat"] or rss_contacts["kakao_openchat"]
                 lead = {
                     "channel": "naver_blog",
                     "handle": blog_id,
@@ -533,10 +568,11 @@ class InfluencerLeadScraper:
                     "followers": 5000,
                     "engagement_rate": 4.2,
                     "bio": f"네이버 블로그 · {display_name}",
-                    "email": inferred_email,
-                    "kakao_openchat": contacts["kakao_openchat"],
+                    "email": verified_email,
+                    "email_verified_explicit": bool(verified_email),
+                    "kakao_openchat": kakao_link,
                     "dm_allowed": False,
-                    "contacts": {**contacts, "email": inferred_email},
+                    "contacts": {"email": verified_email, "all_emails": bio_contacts.get("all_emails", []), "kakao_openchat": kakao_link, "dm_allowed": False},
                     "recent_posts": recent_posts,
                     "pet_name": "",
                 }
@@ -583,9 +619,11 @@ class InfluencerLeadScraper:
                 handle = blogger_link.rstrip("/").split("/")[-1]
                 title_clean = re.sub(r"<[^>]+>", "", item.get("title", ""))
                 desc_clean = re.sub(r"<[^>]+>", "", item.get("description", ""))
-                # 네이버 블로그 기본 아이디 기반 추정 이메일 + 설명 내 이메일/카톡 추출
+                # 단순 ID 추측 이메일 금지: 설명란 및 모바일 프로필 내 명시된 실제 이메일만 사용
                 contacts = parse_bio_contacts(desc_clean)
-                inferred_email = contacts["email"] or (f"{handle}@naver.com" if handle else "")
+                bio_contacts = self._fetch_naver_mobile_bio_contacts(handle) if not contacts["email"] else {"email": "", "kakao_openchat": ""}
+                verified_email = contacts["email"] or bio_contacts["email"]
+                kakao_link = contacts["kakao_openchat"] or bio_contacts.get("kakao_openchat", "")
 
                 lead = {
                     "channel": "naver_blog",
@@ -597,10 +635,11 @@ class InfluencerLeadScraper:
                     "followers": 5000,  # 네이버 검색 API는 이웃 수 미제공
                     "engagement_rate": 4.0,
                     "bio": desc_clean[:400],
-                    "email": inferred_email,
-                    "kakao_openchat": contacts["kakao_openchat"],
+                    "email": verified_email,
+                    "email_verified_explicit": bool(verified_email),
+                    "kakao_openchat": kakao_link,
                     "dm_allowed": False,
-                    "contacts": contacts,
+                    "contacts": {**contacts, "email": verified_email, "kakao_openchat": kakao_link},
                     "recent_posts": [title_clean] if title_clean else [],
                     "pet_name": "",
                 }
