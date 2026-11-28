@@ -148,7 +148,7 @@
   },
   
   "gtmConfiguration": {
-    "containerId": "GTM-XXXXXXX", // Replace with actual GTM ID
+    "containerId": "GTM-PPDL8QLB",
     "dataLayer": {
       "version": 2,
       "events": [
@@ -198,7 +198,7 @@
       "blog_read": "Timer - 30s on Blog Post + Scroll 75%"
     },
     "tags": {
-      "ga4_config": "GA4 Configuration (G-XXXXXXXXXX)",
+      "ga4_config": "GA4 Configuration (G-TCS7K95KBC)",
       "ga4_events": "GA4 Event Tags (per custom event)",
       "kakao_pixel": "Kakao Pixel Base + Events",
       "clarity": "Microsoft Clarity",

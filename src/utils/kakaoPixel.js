@@ -9,7 +9,7 @@ import { captureInboundSource, decorateMallUrl, getPlacement, detectContentPilla
 import { initClarity, clarityTag, clarityEvent } from './clarity';
 
 export const KAKAO_PIXEL_ID = '9019188145294848683';
-export const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+export const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || 'G-TCS7K95KBC';
 
 export const PRODUCT_UNIT_PRICES = {
     'parvogel-100ml': 18000,
