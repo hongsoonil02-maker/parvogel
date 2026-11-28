@@ -6,7 +6,7 @@
       <stop offset="100%" style="stop-color:#1e40af"/>
     </linearGradient>
     <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#60a5fa"/>
+      <stop offset="0%" style="stop-color:#93c5fd"/>
       <stop offset="100%" style="stop-color:#fbbf24"/>
     </linearGradient>
     <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -15,30 +15,16 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bgGrad)"/>
-  <!-- Decorative elements -->
   <circle cx="150" cy="120" r="80" fill="rgba(16,185,129,0.08)"/>
   <circle cx="1050" cy="510" r="120" fill="rgba(251,191,36,0.08)"/>
   <circle cx="1150" cy="80" r="60" fill="rgba(96,165,250,0.06)"/>
-  
-  <!-- Main title -->
-  <text x="600" y="220" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="52" font-weight="800" fill="white" text-anchor="middle">파보겔 (Parvogel)</text>
-  
-  <!-- Subtitle with gradient -->
-  <text x="600" y="285" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="30" font-weight="600" fill="url(#textGrad)" text-anchor="middle">강아지·고양이·앵무새 급성 설사·구토 1초 펌프 케어</text>
-  
-  <!-- Trust badges -->
-  <g font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="18" fill="rgba(255,255,255,0.85)" text-anchor="middle">
-    <text x="600" y="350">✓ 체내 흡수 0% · 간·신장 부담 없음</text>
-    <text x="600" y="385">✓ 55일령 아기 강아지 7일 완치 임상 검증</text>
-    <text x="600" y="420">✓ 수의사 처방 · 쿠팡 로켓배송 · 스마트스토어 익일 수령</text>
+  <text x="600" y="210" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="56" font-weight="800" fill="white" text-anchor="middle">파보겔 (ParvoGel)</text>
+  <text x="600" y="280" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="30" font-weight="700" fill="url(#textGrad)" text-anchor="middle">강아지·고양이·앵무새 급성 묽은 변·구토 1초 펌프 케어</text>
+  <g font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="20" fill="rgba(255,255,255,0.9)" text-anchor="middle">
+    <text x="600" y="350">✓ 체내 흡수율 0% · 간·신장 부담 낮은 물리적 코팅 원리</text>
+    <text x="600" y="388">✓ 초미세 나노 몬모릴로나이트 5복합 포뮬러 (상온 18개월)</text>
+    <text x="600" y="426">✓ 쿠팡 로켓배송 · 네이버 스마트스토어 · 카카오쇼핑 공식 입점</text>
   </g>
-  
-  <!-- Accent line -->
-  <rect x="500" y="460" width="200" height="4" rx="2" fill="url(#accentGrad)"/>
-  
-  <!-- CTA -->
-  <text x="600" y="520" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="20" font-weight="700" fill="url(#textGrad)" text-anchor="middle">공식몰에서 1초 펌프 확인하기 →</text>
-  
-  <!-- Brand -->
-  <text x="600" y="570" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="15" fill="rgba(255,255,255,0.5)" text-anchor="middle">(주)한국아그로  |  parvogel.kr</text>
+  <rect x="500" y="468" width="200" height="4" rx="2" fill="url(#accentGrad)"/>
+  <text x="600" y="530" font-family="Pretendard, -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif" font-size="20" font-weight="700" fill="rgba(255,255,255,0.85)" text-anchor="middle">(주)한국아그로  |  parvogel.kr  |  02-6949-5708</text>
 </svg>

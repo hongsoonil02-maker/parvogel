@@ -6,11 +6,16 @@ Weekly Review Automation -- Weekly Performance Review Automation
 - Slack/Email notification integration
 """
 
-# Load environment
+# Load environment (both repo root .env and marketing_factory/.env)
 from dotenv import load_dotenv
-load_dotenv()
-
 import os
+
+FACTORY_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO_ROOT = os.path.dirname(FACTORY_DIR)
+load_dotenv(os.path.join(REPO_ROOT, ".env"))
+load_dotenv(os.path.join(FACTORY_DIR, ".env"))
+
+import sys
 import json
 import sqlite3
 from datetime import datetime, timedelta
@@ -19,11 +24,15 @@ from dataclasses import dataclass, asdict
 import statistics
 
 # Configuration
-REPORTS_DIR = os.getenv("REPORTS_DIR", "reports")
-DB_PATH = os.getenv("WEEKLY_REVIEW_DB", "weekly_review.db")
+REPORTS_DIR = os.getenv("REPORTS_DIR", os.path.join(FACTORY_DIR, "reports"))
+DB_PATH = os.getenv("WEEKLY_REVIEW_DB", os.path.join(FACTORY_DIR, "data", "weekly_review.db"))
+LEDGER_PATH = os.getenv("PUBLISHED_LEDGER_PATH", os.path.join(FACTORY_DIR, "data", "published_ledger.json"))
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 os.makedirs(REPORTS_DIR, exist_ok=True)
+if os.path.dirname(DB_PATH):
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 
 @dataclass
@@ -91,9 +100,11 @@ class ABTestResult:
 class WeeklyReview:
     """Weekly Review Automation Class"""
 
-    def __init__(self):
+    def __init__(self, last_week: bool = False):
         self.reports_dir = REPORTS_DIR
         self.db_path = DB_PATH
+        self.ledger_path = LEDGER_PATH
+        self.last_week = last_week
         self._init_db()
 
     def _init_db(self):
@@ -158,8 +169,10 @@ class WeeklyReview:
             conn.commit()
 
     def _get_week_period(self) -> Dict[str, str]:
-        """Get current week period"""
+        """Get current (or previous) week period (Mon~Sun)"""
         now = datetime.now()
+        if self.last_week:
+            now = now - timedelta(days=7)
         start_of_week = now - timedelta(days=now.weekday())
         start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
         end_of_week = start_of_week + timedelta(days=6, hours=23, minutes=59, seconds=59)
@@ -170,6 +183,58 @@ class WeeklyReview:
             "week_number": start_of_week.isocalendar()[1],
             "year": start_of_week.isocalendar()[0]
         }
+
+    def _sync_from_ledger(self) -> int:
+        """Import published_ledger.json SUCCESS records into SQLite (idempotent)."""
+        if not self.ledger_path or not os.path.exists(self.ledger_path):
+            return 0
+        try:
+            with open(self.ledger_path, "r", encoding="utf-8") as f:
+                entries = json.load(f)
+            if not isinstance(entries, list):
+                return 0
+        except Exception:
+            return 0
+
+        imported = 0
+        with sqlite3.connect(self.db_path) as conn:
+            for entry in entries:
+                if not isinstance(entry, dict):
+                    continue
+                date_str = str(entry.get("date") or "")[:10]
+                if not date_str:
+                    continue
+                theme = str(entry.get("theme") or "파보겔 마케팅")
+                publish_results = entry.get("publish_results") or {}
+                if not isinstance(publish_results, dict):
+                    continue
+                for channel, status in publish_results.items():
+                    status_str = str(status or "")
+                    if not status_str.startswith("SUCCESS") or "PREVIOUS" in status_str:
+                        continue
+                    post_id = f"{date_str}:{channel}"
+                    if "(" in status_str and ")" in status_str:
+                        inner = status_str.split("(", 1)[1].rsplit(")", 1)[0].strip()
+                        if inner:
+                            post_id = inner[:180]
+                    exists = conn.execute(
+                        "SELECT 1 FROM publishing_log WHERE channel = ? AND post_id = ? AND published_at = ? LIMIT 1",
+                        (channel, post_id, date_str),
+                    ).fetchone()
+                    if exists:
+                        continue
+                    fmt = "shortform" if channel in ("YouTube_Shorts", "Instagram_Reels", "Facebook_Page", "TikTok") else "post"
+                    conn.execute(
+                        """
+                        INSERT INTO publishing_log
+                            (channel, post_id, title, views, likes, comments, shares, published_at, theme, format)
+                        VALUES (?, ?, ?, 0, 0, 0, 0, ?, ?, ?)
+                        """,
+                        (channel, post_id, theme, date_str, theme, fmt),
+                    )
+                    imported += 1
+            conn.commit()
+        return imported
 
     def collect_publishing_metrics(self) -> List[PublishingMetrics]:
         """Collect publishing metrics from database"""
@@ -500,6 +565,7 @@ class WeeklyReview:
 
     def generate_weekly_report(self) -> Dict:
         """Generate weekly report"""
+        self._sync_from_ledger()
         period = self._get_week_period()
         
         publishing = self.collect_publishing_metrics()
@@ -523,9 +589,58 @@ class WeeklyReview:
         
         return report
 
+    def send_discord_notification(self, report: Dict) -> bool:
+        """Send Discord Webhook notification"""
+        webhook_url = os.getenv("DISCORD_WEBHOOK_URL") or DISCORD_WEBHOOK_URL
+        if not webhook_url:
+            return False
+
+        period = report["period"]
+        publishing = report["publishing_metrics"]
+        fatigue = report["creative_fatigue"]
+        ab_tests = report["ab_tests"]
+        total_views = sum(p["total_views"] for p in publishing)
+        total_posts = sum(p["posts_count"] for p in publishing)
+        high_fatigue = [f for f in fatigue if f["status"] in ("warning", "critical")]
+
+        channel_lines = [
+            f"- **{p['channel']}**: {p['posts_count']}건" + (f" (조회 {p['total_views']:,})" if p["total_views"] else "")
+            for p in publishing
+        ]
+        channel_summary = "\n".join(channel_lines) if channel_lines else "집계된 발행 기록 없음"
+
+        payload = {
+            "username": "ParvoGel Weekly Review",
+            "embeds": [
+                {
+                    "title": f"📊 파보겔 주간 마케팅 리포트 (W{period['week_number']})",
+                    "description": f"**기간**: {period['start']} ~ {period['end']}",
+                    "color": 0x1E40AF,
+                    "fields": [
+                        {"name": "총 발행", "value": f"{total_posts}건", "inline": True},
+                        {"name": "총 조회수", "value": f"{total_views:,}", "inline": True},
+                        {"name": "피로도 주의/위험", "value": f"{len(high_fatigue)}건", "inline": True},
+                        {"name": "채널별 발행 현황", "value": channel_summary[:1024], "inline": False},
+                        {"name": "A/B 테스트", "value": f"총 {len(ab_tests)}건 추적 중", "inline": True},
+                    ],
+                    "footer": {"text": "파보겔 마케팅 팩토리 · 주간 자동 리포트"},
+                    "timestamp": datetime.now().isoformat(),
+                }
+            ],
+        }
+
+        try:
+            import requests
+            response = requests.post(webhook_url, json=payload, timeout=10)
+            return response.status_code in (200, 204)
+        except Exception as e:
+            print(f"[WARN] Discord notification failed: {e}")
+            return False
+
     def send_slack_notification(self, report: Dict) -> bool:
-        """Send Slack notification"""
-        if not SLACK_WEBHOOK_URL:
+        """Send Slack notification (optional)"""
+        webhook_url = os.getenv("SLACK_WEBHOOK_URL") or SLACK_WEBHOOK_URL
+        if not webhook_url:
             return False
         
         period = report["period"]
@@ -554,7 +669,7 @@ class WeeklyReview:
         
         try:
             import requests
-            response = requests.post(SLACK_WEBHOOK_URL, json=payload, timeout=10)
+            response = requests.post(webhook_url, json=payload, timeout=10)
             return response.status_code == 200
         except Exception:
             return False
@@ -562,10 +677,27 @@ class WeeklyReview:
 
 def main():
     """Main entry point"""
-    review = WeeklyReview()
+    last_week = "--last-week" in sys.argv
+    no_notify = "--no-notify" in sys.argv
+
+    review = WeeklyReview(last_week=last_week)
     report = review.generate_weekly_report()
-    review.send_slack_notification(report)
-    print("Weekly report generated: W{week}".format(week=report['period']['week_number']))
+
+    discord_ok = False
+    slack_ok = False
+    if not no_notify:
+        discord_ok = review.send_discord_notification(report)
+        slack_ok = review.send_slack_notification(report)
+
+    print(
+        "Weekly report generated: W{week} ({start} ~ {end}) | discord={d} | slack={s}".format(
+            week=report["period"]["week_number"],
+            start=report["period"]["start"],
+            end=report["period"]["end"],
+            d="SENT" if discord_ok else "SKIPPED",
+            s="SENT" if slack_ok else "SKIPPED",
+        )
+    )
 
 
 if __name__ == "__main__":

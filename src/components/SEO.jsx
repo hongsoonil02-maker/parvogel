@@ -65,15 +65,18 @@ export default function SEO({ title, description, url, type = 'website', image, 
       },
       {
         "@type": "FAQPage",
+        "@id": "https://parvogel.kr/#faq",
         "mainEntity": [
-          { "@type": "Question", "name": "동물병원 처방약과 함께 급여해도 되나요?", "acceptedAnswer": { "@type": "Answer", "text": "병용 가능하나 몬모릴로나이트 흡착 특성상 처방약 전후 1~2시간 간격을 권장합니다. 수의사 상담 권장." } },
-          { "@type": "Question", "name": "어린 새끼나 임신 모체에도 안전한가요?", "acceptedAnswer": { "@type": "Answer", "text": "체내 흡수되지 않고 대변으로 배출되는 물리적 코팅/흡착 원리로 생후 30일령 전후 자견·자묘에도 부담이 낮으나, 급여 전 수의사 상담을 권장합니다." } },
-          { "@type": "Question", "name": "새, 앵무새, 조류(반려조)가 물설사나 소낭 정체를 보일 때도 안전하게 급여 가능한가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 매우 안전합니다. 순수 천연 몬모릴로나이트의 비흡수성 물리적 점막 코팅 원리로 체구가 작은 앵무새도 간·신장 부담 없이 부리 끝에 1방울(약 0.1ml)만 묻혀주면 24시간 내 빠른 변 안정화에 큰 도움을 줍니다." } },
-          { "@type": "Question", "name": "개봉 후 보관 방법과 유효기간은?", "acceptedAnswer": { "@type": "Answer", "text": "직사광선을 피해 상온 1~30℃ 보관 시 제조일로부터 18개월. 펌프 캡을 닫아 보관하세요." } }
+          { "@type": "Question", "name": "동물병원 처방약과 함께 급여해도 되나요?", "acceptedAnswer": { "@type": "Answer", "text": "병용 가능하나 나노 몬모릴로나이트의 물리적 흡착 특성상 처방약 투약 전후 1~2시간 간격을 두고 급여하시는 것을 권장합니다. 수의사 상담 권장." } },
+          { "@type": "Question", "name": "어린 새끼나 임신 모체에도 안전한가요?", "acceptedAnswer": { "@type": "Answer", "text": "체내 흡수되지 않고 대변으로 배출되는 물리적 코팅·흡착 원리로 생후 30일령 전후 자견·자묘에도 부담이 낮으나, 급여 전 수의사 상담을 권장합니다." } },
+          { "@type": "Question", "name": "새, 앵무새, 조류(반려조)가 물설사나 소낭 정체를 보일 때도 안전하게 급여 가능한가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 매우 안전합니다. 순수 천연 몬모릴로나이트의 비흡수성 물리적 점막 코팅 원리로 체구가 작은 앵무새도 간·신장 부담 없이 부리 끝에 1방울(약 0.1ml)만 묻혀주면 빠른 변 안정화에 도움을 줄 수 있습니다." } },
+          { "@type": "Question", "name": "개봉 후 보관 방법과 유효기간은?", "acceptedAnswer": { "@type": "Answer", "text": "직사광선을 피해 상온 1~30℃ 보관 시 제조일로부터 18개월입니다. 사용 후 펌프 캡을 닫아 보관하세요." } },
+          { "@type": "Question", "name": "일반 화학 지사제와 무엇이 다른가요?", "acceptedAnswer": { "@type": "Answer", "text": "일반 화학 지사제는 장 운동을 강제로 억제할 수 있는 반면, 파보겔은 체내 흡수율 0%의 초미세 나노 몬모릴로나이트로 장 점막 보호와 유해 물질의 물리적 배출을 돕는 보조사료입니다." } }
         ]
       },
       {
         "@type": "VideoObject",
+        "@id": "https://parvogel.kr/#video-clinical",
         "name": "생후 55일 아기 푸들 실제 진료실 28초 회복 기록 — 파보겔",
         "description": "급성 소화기 증상으로 내원한 생후 55일 아기 푸들의 하남 사랑동물병원 김동준 원장 실제 진료실 관찰 기록. 파보겔 1초 펌프 급여 후 3일 만에 자력 기립 및 사료 완식 회복 관찰.",
         "thumbnailUrl": absoluteUrl('/assets/parvogel_real_clinical_poster.jpg'),
@@ -83,6 +86,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
       },
       {
         "@type": "VideoObject",
+        "@id": "https://parvogel.kr/#video-gomi",
         "name": "홍대표 앵무새 꼬미 24시간 급성 설사 회복 실화 직캠 쇼츠",
         "description": "낙조 위기였던 앵무새 꼬미에게 파보겔 1방울 급여 후 24시간 만에 정상 변을 보고 활력을 되찾은 실제 케어 유튜브 쇼츠 영상.",
         "thumbnailUrl": absoluteUrl('/images/gomi/gomi_after_close.jpg'),
@@ -106,7 +110,7 @@ export default function SEO({ title, description, url, type = 'website', image, 
         "@type": "HowTo",
         "@id": "https://parvogel.kr/#howto",
         "name": "강아지·고양이 급성 설사·구토 발생 시 파보겔 1초 펌프 응급 급여법",
-        "description": "아이가 구토와 설사로 기력을 잃었을 때 주사기 스트레스 없이 1초 만에 안전하게 급여하는 수의학적 응급 대처법",
+        "description": "아이가 구토와 설사로 기력을 잃었을 때 주사기 스트레스 없이 1초 만에 안전하게 급여하는 응급 대처법",
         "step": [
           {
             "@type": "HowToStep",
@@ -124,72 +128,6 @@ export default function SEO({ title, description, url, type = 'website', image, 
             "text": "초미세 나노 몬모릴로나이트가 장 점막을 즉시 코팅하고 유해 독소를 흡착 배출하도록 휴식을 취하게 한 뒤 동물병원 진료를 연계합니다."
           }
         ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://parvogel.kr/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "새끼 강아지가 피설사나 물설사를 할 때 병원에 가기 전 응급처치는 어떻게 하나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "새끼 강아지는 탈수와 저혈당 쇼크가 급속도로 오므로 절식시키지 말고, 즉시 체온을 유지한 뒤 파보겔을 입안에 1~2회 펌핑하여 장 점막을 즉시 코팅하고 전해질을 공급해 주어야 합니다. 주사기로 억지로 물을 먹이면 기도로 넘어갈 수 있으므로 부드러운 겔 형태인 파보겔로 1초 만에 케어하는 것이 안전합니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "강아지 지사제로 일반 화학 약품을 먹이면 왜 위험한가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "일반 화학 지사제는 장 운동을 강제로 멈추어 배출되어야 할 유해균과 독소를 장내에 가두어 장벽을 더 자극할 수 있습니다. 반면 파보겔은 체내 흡수율 0%인 100% 천연 초미세 몬모릴로나이트로 장을 억지로 마비시키지 않고 장내 유해 물질만 물리적으로 흡착하여 대변과 함께 안전하게 배출되도록 돕습니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "강아지·고양이 급성 설사나 파보장염 의심 시 어떻게 급여하나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "아이가 구토나 물설사로 지쳐 있을 때 입을 가볍게 벌리고 혀 뒤편이나 잇몸에 1~2회 펌핑하여 급여합니다. 주사기 거품 토해냄 없이 아이가 스스로 핥아먹으며, 물리적 점막 코팅과 독소 흡착을 즉각 돕습니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "동물병원 처방약과 병용 급여가 가능한가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "병용이 가능하나, 나노 몬모릴로나이트의 강력한 물리적 흡착 특성상 동물병원 처방약 투약 전후 1~2시간의 시간 간격을 두고 급여하시는 것을 권장합니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "새, 앵무새, 조류(반려조)의 급성 물설사나 소낭 정체에도 급여할 수 있나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "네, 매우 안전합니다. 순수 천연 몬모릴로나이트의 비흡수성 물리적 점막 코팅 원리로 체구가 작고 대사가 빠른 앵무새에게도 간·신장 부담 없이 부리 끝에 1방울(약 0.1ml)만 살짝 묻혀주면 24시간 내 빠른 변 안정화에 큰 도움이 됩니다."
-            }
-          }
-        ]
-      },
-      {
-        "@type": "VideoObject",
-        "@id": "https://parvogel.kr/#video-clinical",
-        "name": "생후 55일 아기 푸들 실제 진료실 28초 회복 기록 — 파보겔",
-        "description": "급성 소화기 증상으로 내원한 생후 55일 아기 푸들의 하남 사랑동물병원 김동준 원장 실제 진료실 관찰 기록. 파보겔 1초 펌프 급여 후 3일 만에 자력 기립 및 사료 완식 회복 관찰.",
-        "thumbnailUrl": "https://parvogel.kr/assets/parvogel_real_clinical_poster.jpg",
-        "uploadDate": "2026-11-22",
-        "embedUrl": "https://parvogel.kr/#parvogel-clinical-doc",
-        "contentUrl": "https://parvogel.kr/assets/parvogel_real_clinical_28s_landing.mp4"
-      },
-      {
-        "@type": "VideoObject",
-        "@id": "https://parvogel.kr/#video-gomi",
-        "name": "홍대표 앵무새 꼬미 24시간 급성 설사 회복 실화 직캠 쇼츠",
-        "description": "낙조 위기였던 앵무새 꼬미에게 파보겔 1방울 급여 후 24시간 만에 정상 변을 보고 활력을 되찾은 실제 케어 유튜브 쇼츠 영상.",
-        "thumbnailUrl": "https://parvogel.kr/images/gomi/gomi_after_close.jpg",
-        "uploadDate": "2026-09-15",
-        "embedUrl": "https://www.youtube.com/embed/2vGdq9EbDwA",
-        "contentUrl": "https://youtube.com/shorts/2vGdq9EbDwA"
       }
     ]
   };

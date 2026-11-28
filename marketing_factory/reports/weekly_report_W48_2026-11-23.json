@@ -5,14 +5,104 @@
     "week_number": 48,
     "year": 2026
   },
-  "generated_at": "2026-11-28T18:29:48.818004",
-  "publishing_metrics": [],
+  "generated_at": "2026-11-28T21:42:31.893959",
+  "publishing_metrics": [
+    {
+      "channel": "Bluesky",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "at://did:plc:bhamd7qzbqxa7ysbz2owzaa5/app.bsky.feed.post/3n2wufawlt327",
+      "best_post_views": 0
+    },
+    {
+      "channel": "Discord",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "2026-11-23:Discord",
+      "best_post_views": 0
+    },
+    {
+      "channel": "Facebook_Page",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "https://www.facebook.com/1191045321053882/videos/1060404830402010",
+      "best_post_views": 0
+    },
+    {
+      "channel": "Firebase_Shorts_Feed",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "shorts_feed/C5tzr2sFd5g",
+      "best_post_views": 0
+    },
+    {
+      "channel": "Instagram_Reels",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "https://www.instagram.com/reel/DgEFSEkCg4e/",
+      "best_post_views": 0
+    },
+    {
+      "channel": "TikTok",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "v_inbox_file~v2.7711155162488817682",
+      "best_post_views": 0
+    },
+    {
+      "channel": "YouTube_Shorts",
+      "posts_count": 1,
+      "total_views": 0,
+      "total_likes": 0,
+      "total_comments": 0,
+      "total_shares": 0,
+      "avg_engagement_rate": 0.0,
+      "best_post_id": "https://youtube.com/shorts/C5tzr2sFd5g",
+      "best_post_views": 0
+    }
+  ],
   "content_analysis": {
-    "total_posts": 0,
-    "by_theme": {},
-    "by_format": {},
-    "top_keywords": [],
-    "avg_length": 0
+    "total_posts": 7,
+    "by_theme": {
+      "새벽 구토·설사? 1초로 해결하는 법!": 7
+    },
+    "by_format": {
+      "post": 3,
+      "shortform": 4
+    },
+    "top_keywords": [
+      "새벽",
+      "구토",
+      "설사",
+      "초로",
+      "해결하는",
+      "법"
+    ],
+    "avg_length": 21.0
   },
   "creative_fatigue": [],
   "competitor_trends": [],

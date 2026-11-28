@@ -1,16 +1,13 @@
-# 파보겔(Parvogel) 공식몰 robots.txt
-# B2C 반려동물 장 케어 보조사료 쇼핑몰
+# 파보겔(ParvoGel) 공식몰 robots.txt
+# B2C 반려동물 장 케어 보조사료 공식 안내 사이트
 
 User-agent: *
 Allow: /
 
-# 크롤링 최적화를 위한 크롤 지연 (초 단위)
-Crawl-delay: 10
-
 # 사이트맵 위치
 Sitemap: https://parvogel.kr/sitemap.xml
 
-# 관리/시스템 경로 차단
+# 관리/개발/내부 경로 차단 (SPA 렌더링용 JS/CSS/폰트 및 VideoObject MP4는 허용)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /node_modules/
@@ -18,31 +15,18 @@ Disallow: /src/
 Disallow: /scripts/
 Disallow: /marketing_factory/
 Disallow: /data/
-Disallow: /*.json$
-Disallow: /*.md$
-Disallow: /*.bat$
-Disallow: /*.sh$
-Disallow: /*.py$
-Disallow: /*.log$
-Disallow: /*.m4a$
-Disallow: /*.mp4$
 Disallow: /temp/
 Disallow: /drafts/
 Disallow: /archive/
-Disallow: /inspect_*/
-Disallow: /all_frames/
-Disallow: /raw_source_videos/
-Disallow: /apps/
 Disallow: /venv/
-Disallow: /dist/
 Disallow: /.git/
 Disallow: /.github/
-Disallow: /.kilo/
-Disallow: /*.config.js$
-Disallow: /package*.json$
 
-# 검색엔진별 특별 지시
+# 주요 검색엔진 크롤러 허용
 User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
 Allow: /
 
 User-agent: NaverBot
@@ -51,38 +35,18 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-User-agent: Yeti
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Slackbot
-Allow: /
-
-# AI 크롤러 허용 (GEO 최적화)
+# AI 검색엔진 크롤러 허용 (GEO 최적화)
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: CCBot
+User-agent: anthropic-ai
 Allow: /
 
-User-agent: anthropic-ai
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
-
-# 불필요한 리소스 크롤링 방지
-Disallow: /*.css$
-Disallow: /*.js$
-Disallow: /*.woff$
-Disallow: /*.woff2$
-Disallow: /*.ttf$
-Disallow: /*.eot$

@@ -157,24 +157,14 @@ class ParvogelContentFormatter:
     def _format_tiktok(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("tiktok", n.get("theme_id", "daily"))
         
-        # 채널 전략에서 해시태그/트렌드 가이드 가져오기
-        tt_strategy = self.channel_strategy.get("platformStrategies", {}).get("tiktok", {})
-        hashtag_strategy = tt_strategy.get("hashtagStrategy", "")
-        engagement_hooks = tt_strategy.get("engagementHooks", [])
-        
         headline = n.get('headline', '55일령 아기 푸들의 3일 뒤 기적')
         # TikTok은 150자 제한, 해시태그 포함
-        base_tags = "#파보겔 #응급상비겔 #강아지설사 #고양이설사 #펫구급함"
+        base_tags = "#파보겔 #응급상비겔 #강아지설사 #고양이설사 #펫구급함 #shorts"
         title = f"{headline} {base_tags}"[:150]
-        
-        # 참여 유도 훅 추가
-        hook_text = ""
-        if engagement_hooks:
-            hook_text = f"\n\n💬 {engagement_hooks[0]}"
         
         return {
             "title": title,
-            "description": f"{n.get('subheadline', '')}{hook_text}",
+            "description": f"{n.get('subheadline', '')}\n체중별 급여량 확인 👉 https://parvogel.kr/app".strip(),
             "hashtags": base_tags.split(),
             "links": links
         }
@@ -503,9 +493,13 @@ Day 1: 혈변 빈도 감소 / Day 3: 사료 자발 섭취 / Day 7: 정상 변·�
     def _format_instagram_reels(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("instagram_reels", n.get("theme_id", "daily"))
         
-        # 채널 전략에서 해시태그 가이드 가져오기
+        # 채널 전략에서 실제 해시태그 리스트 추출 (절대 전략 설명 문자열 노출 금지)
         ig_strategy = self.channel_strategy.get("platformStrategies", {}).get("instagram_reels", {})
-        hashtag_strategy = ig_strategy.get("hashtagStrategy", "")
+        strategy_tags = ig_strategy.get("hashtags")
+        if isinstance(strategy_tags, list) and strategy_tags:
+            tags = " ".join(t if str(t).startswith("#") else f"#{t}" for t in strategy_tags)
+        else:
+            tags = " ".join(self.keywords.get("hashtags", {}).get("b2c_general", []) + self.keywords.get("hashtags", {}).get("b2c_story", []))
         
         headline = n.get("headline", "쓰러진 55일령 아기 푸들의 7일 회복 실화")
         subheadline = n.get("subheadline", "주사기 없이 입가에 대고 1초 펌프 누르면 꿀꺽!")
@@ -529,7 +523,7 @@ Day 1: 혈변 빈도 감소 / Day 3: 사료 자발 섭취 / Day 7: 정상 변·�
 .
 .
 .
-{hashtag_strategy}
+{tags}
 """
         return {"caption": caption.strip(), "links": links}
 

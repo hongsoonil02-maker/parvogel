@@ -53,11 +53,13 @@ __pycache__/
 
 # Marketing Factory generated outputs
 marketing_factory/output/*.mp4
+marketing_factory/output/**/*.mp4
 marketing_factory/output/*.jpg
 marketing_factory/output/outsource_orders/
 marketing_factory/drafts/*
 !marketing_factory/drafts/.gitkeep
 marketing_factory/data/published_ledger.json
+*.db
 # Large video binaries (use Git LFS for history)
 public/assets/*.mp4
 # Marketing Factory intermediate outputs (keep final assets only)
