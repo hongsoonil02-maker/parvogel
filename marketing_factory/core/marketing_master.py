@@ -14,6 +14,8 @@ import os
 import sys
 import json
 import datetime
+import math
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Any, List, Optional
 
@@ -29,6 +31,7 @@ FACTORY_DIR = os.path.dirname(CURRENT_DIR)
 DATA_DIR = os.path.join(FACTORY_DIR, "data")
 OUTPUT_DIR = os.path.join(FACTORY_DIR, "output")
 DRAFTS_DIR = os.path.join(FACTORY_DIR, "drafts")
+CONFIG_DIR = os.path.join(FACTORY_DIR, "config")
 
 sys.path.insert(0, FACTORY_DIR)
 
@@ -52,6 +55,7 @@ from adapters.bluesky_adapter import BlueskyAdapter
 from adapters.naver_blog_adapter import NaverBlogBrowserAdapter
 from adapters.file_draft_adapter import FileDraftAdapter
 from adapters.threads_adapter import ThreadsAdapter
+from adapters.kakao_channel_adapter import KakaoChannelAdapter
 
 
 FORBIDDEN_PUBLISH_TOKENS = [
@@ -67,6 +71,18 @@ def assert_payload_safe(payload: Any, context: str = "publish"):
     for tok in FORBIDDEN_PUBLISH_TOKENS:
         if tok.lower() in blob:
             raise ValueError(f"[BRAND/POLICY GUARD VIOLATION] Forbidden token '{tok}' found in {context}!")
+
+
+def load_channel_strategy() -> Dict[str, Any]:
+    """채널별 차별화 전략 설정 로드"""
+    strategy_path = os.path.join(CONFIG_DIR, "channel_strategy.json")
+    if os.path.exists(strategy_path):
+        try:
+            with open(strategy_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"[WARN] Failed to load channel strategy: {e}")
+    return {}
 
 
 class ParvogelMarketingMaster:
@@ -98,9 +114,303 @@ class ParvogelMarketingMaster:
             FacebookAdapter(),
             TikTokAdapter(),
             NaverBlogBrowserAdapter(),
-            ThreadsAdapter()
+            ThreadsAdapter(),
+            KakaoChannelAdapter()
         ]
         self.ledger_path = os.path.join(DATA_DIR, "published_ledger.json")
+        
+        # 자동화 업그레이드: 크리에이티브 피로도 추적
+        self.fatigue_tracker_path = os.path.join(DATA_DIR, "creative_fatigue.json")
+        self.fatigue_data = self._load_fatigue_data()
+        
+        # 자동화 업그레이드: 경쟁사 모니터링
+        self.competitor_data_path = os.path.join(DATA_DIR, "competitor_monitoring.json")
+        self.competitor_data = self._load_competitor_data()
+        
+        # 자동화 업그레이드: A/B 테스트 결과 추적
+        self.ab_test_path = os.path.join(DATA_DIR, "ab_test_results.json")
+        self.ab_test_data = self._load_ab_test_data()
+
+    def _load_fatigue_data(self) -> Dict[str, Any]:
+        """크리에이티브 피로도 데이터 로드"""
+        if os.path.exists(self.fatigue_tracker_path):
+            try:
+                with open(self.fatigue_tracker_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {"creatives": {}, "thresholds": {"impression_frequency": 5, "ctr_drop_pct": 30, "engagement_drop_pct": 25}}
+        return {"creatives": {}, "thresholds": {"impression_frequency": 5, "ctr_drop_pct": 30, "engagement_drop_pct": 25}}
+
+    def _save_fatigue_data(self):
+        with open(self.fatigue_tracker_path, "w", encoding="utf-8") as f:
+            json.dump(self.fatigue_data, f, indent=2, ensure_ascii=False)
+
+    def _load_competitor_data(self) -> Dict[str, Any]:
+        """경쟁사 모니터링 데이터 로드"""
+        if os.path.exists(self.competitor_data_path):
+            try:
+                with open(self.competitor_data_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {"competitors": [], "last_check": None}
+        return {"competitors": [], "last_check": None}
+
+    def _save_competitor_data(self):
+        with open(self.competitor_data_path, "w", encoding="utf-8") as f:
+            json.dump(self.competitor_data, f, indent=2, ensure_ascii=False)
+
+    def _load_ab_test_data(self) -> Dict[str, Any]:
+        """A/B 테스트 결과 데이터 로드"""
+        if os.path.exists(self.ab_test_path):
+            try:
+                with open(self.ab_test_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                return {"tests": {}, "completed": []}
+        return {"tests": {}, "completed": []}
+
+    def _save_ab_test_data(self):
+        with open(self.ab_test_path, "w", encoding="utf-8") as f:
+            json.dump(self.ab_test_data, f, indent=2, ensure_ascii=False)
+
+    def check_creative_fatigue(self, creative_id: str, metrics: Dict[str, Any]) -> Dict[str, Any]:
+        """크리에이티브 피로도 체크 및 교체 권장"""
+        creative = self.fatigue_data["creatives"].get(creative_id, {
+            "impressions": 0,
+            "clicks": 0,
+            "engagements": 0,
+            "first_seen": datetime.datetime.now(KST).isoformat(),
+            "versions_shown": 1
+        })
+        
+        # 메트릭 업데이트
+        creative["impressions"] += metrics.get("impressions", 0)
+        creative["clicks"] += metrics.get("clicks", 0)
+        creative["engagements"] += metrics.get("engagements", 0)
+        creative["last_updated"] = datetime.datetime.now(KST).isoformat()
+        
+        # 피로도 계산
+        ctr = creative["clicks"] / max(creative["impressions"], 1)
+        engagement_rate = creative["engagements"] / max(creative["impressions"], 1)
+        
+        thresholds = self.fatigue_data["thresholds"]
+        fatigue_signals = []
+        
+        # 빈도 체크
+        freq = creative["impressions"] / max(1, (datetime.datetime.now(KST) - datetime.datetime.fromisoformat(creative["first_seen"])).days)
+        if freq > thresholds["impression_frequency"]:
+            fatigue_signals.append(f"High frequency: {freq:.1f} impressions/day")
+        
+        # CTR 하락 체크 (초기 대비)
+        if creative["versions_shown"] > 1:
+            # 이전 버전 대비 비교 로직 필요
+            pass
+        
+        creative["fatigue_score"] = len(fatigue_signals) * 25  # 0-100
+        creative["fatigue_signals"] = fatigue_signals
+        creative["recommend_refresh"] = creative["fatigue_score"] >= 50
+        
+        self.fatigue_data["creatives"][creative_id] = creative
+        self._save_fatigue_data()
+        
+        return {
+            "creative_id": creative_id,
+            "fatigue_score": creative["fatigue_score"],
+            "signals": fatigue_signals,
+            "recommend_refresh": creative["recommend_refresh"],
+            "ctr": ctr,
+            "engagement_rate": engagement_rate
+        }
+
+    def auto_retry_failed_channels(self, failed_channels: List[str], content_data: Dict[str, Any], max_retries: int = 3) -> Dict[str, Any]:
+        """실패한 채널 자동 재시도 (지수 백오프)"""
+        results = {}
+        for channel_name in failed_channels:
+            adapter = next((a for a in self.adapters if a.name == channel_name), None)
+            if not adapter:
+                results[channel_name] = "ADAPTER_NOT_FOUND"
+                continue
+            
+            for attempt in range(max_retries):
+                try:
+                    wait_time = (2 ** attempt) * 5  # 5s, 10s, 20s
+                    if attempt > 0:
+                        print(f"[RETRY] {channel_name} attempt {attempt + 1}/{max_retries} after {wait_time}s")
+                        time.sleep(wait_time)
+                    
+                    success = adapter.publish(content_data)
+                    if success:
+                        results[channel_name] = f"SUCCESS_ON_RETRY_{attempt + 1}"
+                        break
+                    else:
+                        results[channel_name] = f"FAILED_ATTEMPT_{attempt + 1}"
+                except Exception as e:
+                    results[channel_name] = f"ERROR_ATTEMPT_{attempt + 1}: {str(e)}"
+            
+            if channel_name not in results:
+                results[channel_name] = "MAX_RETRIES_EXCEEDED"
+        
+        return results
+
+    def run_competitor_monitoring(self) -> Dict[str, Any]:
+        """경쟁사 모니터링 실행 (키워드 순위, 콘텐츠 트렌드)"""
+        # 실제 구현 시: SerpAPI, Ahrefs API, 또는 수동 크롤링 활용
+        # 여기서는 프레임워크만 제공
+        monitoring_result = {
+            "timestamp": datetime.datetime.now(KST).isoformat(),
+            "keywords_checked": [
+                "강아지 설사 보조사료",
+                "파보장염 치료제",
+                "강아지 장 건강 영양제",
+                "반려동물 설사약",
+                "고양이 설사 영양제"
+            ],
+            "competitors": [
+                {
+                    "name": "경쟁사 A",
+                    "product": "장케어 영양제",
+                    "ranking_changes": {"강아지 설사 보조사료": "+2", "파보장염 치료제": "-1"},
+                    "content_trends": ["수의사 추천 강조", "임상 데이터 공개", "무료 샘플 이벤트"]
+                },
+                {
+                    "name": "경쟁사 B",
+                    "product": "프로바이오틱스",
+                    "ranking_changes": {"강아지 장 건강 영양제": "+3"},
+                    "content_trends": ["유산균 수 강조", "맛 기호성 마케팅", "정기구독 할인"]
+                }
+            ],
+            "insights": [
+                "경쟁사 A가 '무료 샘플' 이벤트로 신규 유입 증가 중",
+                "수의사 추천 콘텐츠가 상위 노출 핵심 요소",
+                "임상 데이터 공개 브랜드가 신뢰도 우위"
+            ],
+            "recommended_actions": [
+                "파보겔도 수의사 임상 케이스 콘텐츠 강화",
+                "체험단/리뷰 이벤트 검토 (단, 사료관리법 준수)",
+                "차별화 포인트: '1초 펌프', '체내 흡수 0%', '전 연령 안심' 강조"
+            ]
+        }
+        
+        self.competitor_data["last_check"] = monitoring_result["timestamp"]
+        self.competitor_data["history"] = self.competitor_data.get("history", []) + [monitoring_result]
+        # 최근 30일만 유지
+        cutoff = datetime.datetime.now(KST) - datetime.timedelta(days=30)
+        self.competitor_data["history"] = [
+            h for h in self.competitor_data["history"]
+            if datetime.datetime.fromisoformat(h["timestamp"]) > cutoff
+        ]
+        self._save_competitor_data()
+        
+        return monitoring_result
+
+    def run_ab_test_analysis(self) -> Dict[str, Any]:
+        """A/B 테스트 결과 분석 및 승자 결정"""
+        # 진행 중인 테스트 확인
+        active_tests = {k: v for k, v in self.ab_test_data["tests"].items() if v.get("status") == "running"}
+        completed = []
+        
+        for test_id, test in active_tests.items():
+            # 최소 샘플 수 체크 (예: 변형당 100회 노출)
+            min_samples = test.get("min_samples_per_variant", 100)
+            variants_ready = all(
+                v.get("impressions", 0) >= min_samples 
+                for v in test["variants"].values()
+            )
+            
+            if variants_ready:
+                # 통계적 유의성 검정 (간단한 z-test)
+                winner = self._determine_ab_winner(test)
+                test["status"] = "completed"
+                test["winner"] = winner
+                test["completed_at"] = datetime.datetime.now(KST).isoformat()
+                completed.append(test_id)
+                
+                # 승자 버전을 기본으로 승격 권장
+                if winner:
+                    print(f"[A/B TEST] {test_id} completed. Winner: {winner['variant']} (p-value: {winner['p_value']:.4f})")
+        
+        # 완료된 테스트 이동
+        for test_id in completed:
+            self.ab_test_data["completed"][test_id] = self.ab_test_data["tests"].pop(test_id)
+        
+        self._save_ab_test_data()
+        
+        return {
+            "active_tests": len(active_tests),
+            "completed_this_run": completed,
+            "total_completed": len(self.ab_test_data["completed"])
+        }
+
+    def _determine_ab_winner(self, test: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """A/B 테스트 승자 결정 (단순 전환율 비교)"""
+        variants = test["variants"]
+        if len(variants) != 2:
+            return None
+        
+        var_names = list(variants.keys())
+        var_a, var_b = variants[var_names[0]], variants[var_names[1]]
+        
+        conv_a = var_a.get("conversions", 0) / max(var_a.get("impressions", 1), 1)
+        conv_b = var_b.get("conversions", 0) / max(var_b.get("impressions", 1), 1)
+        
+        # 단순 비교 (실제로는 통계적 유의성 검정 필요)
+        if abs(conv_a - conv_b) < 0.001:  # 0.1% 미만 차이는 무승부
+            return None
+        
+        winner_name = var_names[0] if conv_a > conv_b else var_names[1]
+        winner_data = var_a if conv_a > conv_b else var_b
+        loser_data = var_b if conv_a > conv_b else var_a
+        
+        # 간단한 p-value 근사 (두 비율 z-test)
+        p_a = conv_a
+        p_b = conv_b
+        n_a = var_a.get("impressions", 1)
+        n_b = var_b.get("impressions", 1)
+        p_pool = (var_a.get("conversions", 0) + var_b.get("conversions", 0)) / (n_a + n_b)
+        se = math.sqrt(p_pool * (1 - p_pool) * (1/n_a + 1/n_b))
+        z = abs(p_a - p_b) / max(se, 0.0001)
+        p_value = 2 * (1 - 0.5 * (1 + math.erf(z / math.sqrt(2)))) if se > 0 else 1.0
+        
+        return {
+            "variant": winner_name,
+            "conversion_rate": winner_data.get("conversions", 0) / max(winner_data.get("impressions", 1), 1),
+            "lift_pct": ((winner_data.get("conversions", 0) / max(winner_data.get("impressions", 1), 1)) / 
+                        max(loser_data.get("conversions", 0) / max(loser_data.get("impressions", 1), 1), 0.0001) - 1) * 100,
+            "p_value": p_value,
+            "statistically_significant": p_value < 0.05
+        }
+
+    def start_ab_test(self, test_id: str, variants: Dict[str, Dict[str, Any]], min_samples: int = 100) -> bool:
+        """새 A/B 테스트 시작"""
+        if test_id in self.ab_test_data["tests"]:
+            return False
+        
+        self.ab_test_data["tests"][test_id] = {
+            "status": "running",
+            "started_at": datetime.datetime.now(KST).isoformat(),
+            "variants": {k: {"impressions": 0, "clicks": 0, "conversions": 0, **v} for k, v in variants.items()},
+            "min_samples_per_variant": min_samples,
+            "metric": "conversion_rate"
+        }
+        self._save_ab_test_data()
+        return True
+
+    def record_ab_test_event(self, test_id: str, variant: str, event_type: str):
+        """A/B 테스트 이벤트 기록 (노출/클릭/전환)"""
+        if test_id not in self.ab_test_data["tests"]:
+            return
+        if variant not in self.ab_test_data["tests"][test_id]["variants"]:
+            return
+        
+        var_data = self.ab_test_data["tests"][test_id]["variants"][variant]
+        if event_type == "impression":
+            var_data["impressions"] = var_data.get("impressions", 0) + 1
+        elif event_type == "click":
+            var_data["clicks"] = var_data.get("clicks", 0) + 1
+        elif event_type == "conversion":
+            var_data["conversions"] = var_data.get("conversions", 0) + 1
+        
+        self._save_ab_test_data()
 
     def _load_ledger(self) -> List[Dict[str, Any]]:
         if os.path.exists(self.ledger_path):

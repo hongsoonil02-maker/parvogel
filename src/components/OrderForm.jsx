@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { getStoreUrl } from '../config/storeLinks'
+import { trackFormStart, trackFormFieldFocus, trackFormError, trackCTAClick } from '../utils/kakaoPixel'
 
 /**
  * 일반 반려동물 보호자 전용 직영 주문 / 상담 폼
@@ -18,6 +19,26 @@ const OrderForm = ({
     const idPrefix = variant === 'modal' ? 'modal-' : ''
     const gapClass = variant === 'modal' ? 'gap-4' : 'gap-5'
     const labelMb = variant === 'modal' ? 'mb-1' : 'mb-1.5'
+    const formId = variant === 'modal' ? 'order_form_modal' : 'order_form_section'
+
+    // Track form start on mount
+    React.useEffect(() => {
+        trackFormStart(formId, 'consumer_order');
+    }, [formId]);
+
+    const handleFieldFocus = (fieldName) => {
+        trackFormFieldFocus(formId, fieldName);
+    };
+
+    const handleFieldBlur = (fieldName, value) => {
+        // Track validation errors
+        if (fieldName === 'phone' && value && !/^01[0-9]{8,9}$/.test(value.replace(/[^0-9]/g, ''))) {
+            trackFormError(formId, fieldName, 'invalid_format');
+        }
+        if (fieldName === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+            trackFormError(formId, fieldName, 'invalid_format');
+        }
+    };
 
     return (
         <form onSubmit={onSubmit} className={variant === 'modal' ? 'space-y-4' : 'space-y-5'}>
@@ -43,6 +64,7 @@ const OrderForm = ({
                         referrerPolicy="no-referrer-when-downgrade"
                         data-product-id={formData.product || 'parvogel-100ml'}
                         aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                        onClick={() => trackCTAClick('form_kakao_store', '카카오 쇼핑하기', 'order_form_fasttrack', 'kakao_store')}
                         className="min-h-[46px] py-2.5 px-3 rounded-xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1.5 border border-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1"
                     >
                         <span>💬 {t('order.kakaoBtn', '카카오 쇼핑하기')}</span>
@@ -55,6 +77,7 @@ const OrderForm = ({
                         referrerPolicy="no-referrer-when-downgrade"
                         data-product-id={formData.product || 'parvogel-100ml'}
                         aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                        onClick={() => trackCTAClick('form_coupang', '쿠팡 로켓배송', 'order_form_fasttrack', 'coupang')}
                         className="min-h-[46px] py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-1"
                     >
                         <span>🚀 {t('order.coupangBtn', '쿠팡 로켓배송')}</span>
@@ -67,6 +90,7 @@ const OrderForm = ({
                         referrerPolicy="no-referrer-when-downgrade"
                         data-product-id={formData.product || 'parvogel-100ml'}
                         aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                        onClick={() => trackCTAClick('form_naver_store', '네이버 스마트스토어', 'order_form_fasttrack', 'naver_store')}
                         className="min-h-[46px] py-2.5 px-3 rounded-xl bg-[#028A3D] hover:bg-[#027734] text-white font-black text-xs sm:text-sm text-center transition-all shadow flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
                     >
                         <span>🛍️ {t('order.smartstoreBtn', '네이버 스마트스토어')}</span>
@@ -92,6 +116,8 @@ const OrderForm = ({
                             name="hospitalName"
                             value={formData.hospitalName}
                             onChange={onChange}
+                            onFocus={() => handleFieldFocus('hospitalName')}
+                            onBlur={(e) => handleFieldBlur('hospitalName', e.target.value)}
                             placeholder="예: 홍길동"
                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all text-base"
                             required
@@ -107,6 +133,8 @@ const OrderForm = ({
                             name="contactName"
                             value={formData.contactName}
                             onChange={onChange}
+                            onFocus={() => handleFieldFocus('contactName')}
+                            onBlur={(e) => handleFieldBlur('contactName', e.target.value)}
                             placeholder="예: 홍길동"
                             className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent transition-all text-base"
                             required
@@ -126,6 +154,8 @@ const OrderForm = ({
                         name="phone"
                         value={formData.phone}
                         onChange={onChange}
+                        onFocus={() => handleFieldFocus('phone')}
+                        onBlur={(e) => handleFieldBlur('phone', e.target.value)}
                         placeholder={t('order.phonePh')}
                         inputMode="numeric"
                         pattern="01[0-9\-]{8,11}"
@@ -146,6 +176,8 @@ const OrderForm = ({
                         name="email"
                         value={formData.email}
                         onChange={onChange}
+                        onFocus={() => handleFieldFocus('email')}
+                        onBlur={(e) => handleFieldBlur('email', e.target.value)}
                         placeholder="order@example.com"
                         autoComplete="email"
                         pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
@@ -235,6 +267,7 @@ const OrderForm = ({
             <button
                 type="submit"
                 disabled={isSubmitting}
+                onClick={() => trackCTAClick('form_submit', '주문 접수 완료', 'order_form_submit', 'order_confirmation')}
                 className="w-full py-4 px-6 rounded-xl font-bold text-lg transition-all text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 hover:from-primary-900 hover:to-primary-850 shadow-primary-950/30 border border-primary-600/30"
             >
                 {isSubmitting ? (

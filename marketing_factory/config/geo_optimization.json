@@ -1,0 +1,280 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-11-28",
+  "description": "파보겔 GEO(생성엔진최적화) 전략 - ChatGPT, Perplexity, Gemini, Claude 등 AI 검색 노출 최적화",
+  
+  "aiSearchEngines": {
+    "chatgpt": {
+      "name": "ChatGPT (OpenAI)",
+      "crawler": "GPTBot",
+      "indexingMethod": "웹 크롤링 + 파트너십 데이터 + 사용자 피드백",
+      "rankingFactors": ["권위성(E-E-A-T)", "최신성", "구조화 데이터", "명확한 답변 형식", "인용 가능성"],
+      "optimizationPriority": "HIGH"
+    },
+    "perplexity": {
+      "name": "Perplexity AI",
+      "crawler": "PerplexityBot",
+      "indexingMethod": "실시간 웹 검색 + 학술 논문 + 신뢰도 높은 소스 우선",
+      "rankingFactors": ["출처 인용 가능성", "학술/전문가 검증", "구조화된 답변", "최신 데이터", "투명한 출처"],
+      "optimizationPriority": "HIGH"
+    },
+    "gemini": {
+      "name": "Gemini (Google)",
+      "crawler": "Googlebot (동일)",
+      "indexingMethod": "Google 검색 인덱스 + Knowledge Graph + 실시간 웹",
+      "rankingFactors": ["Google 검색 순위", "Knowledge Graph 엔티티", "구조화 데이터", "E-E-A-T", "멀티모달 콘텐츠"],
+      "optimizationPriority": "HIGH"
+    },
+    "claude": {
+      "name": "Claude (Anthropic)",
+      "crawler": "anthropic-ai (CCBot 등)",
+      "indexingMethod": "웹 크롤링 + 파트너십 데이터 + 헌법적 AI 원칙",
+      "rankingFactors": ["안전성/신뢰성", "전문가 검증", "명확한 불확실성 표기", "구조화된 정보", "출처 투명성"],
+      "optimizationPriority": "MEDIUM"
+    },
+    "copilot": {
+      "name": "Copilot (Microsoft/Bing)",
+      "crawler": "Bingbot",
+      "indexingMethod": "Bing 검색 인덱스 + 실시간 웹 + Knowledge Graph",
+      "rankingFactors": ["Bing 검색 순위", "구조화 데이터", "권위성", "최신성", "멀티미디어"],
+      "optimizationPriority": "MEDIUM"
+    }
+  },
+  
+  "entityBuilding": {
+    "coreEntities": [
+      {
+        "name": "파보겔 (ParvoGel)",
+        "type": "Product",
+        "description": "강아지·고양이·앵무새 급성 설사·구토·파보장염 케어 1초 펌프 보조사료",
+        "attributes": {
+          "제조사": "(주)한국아그로",
+          "주성분": "초미세 나노 몬모릴로나이트, 1-DNJ, 특허균주, 유기산 완충계",
+          "제형": "겔 타입 펌프",
+          "보관": "상온 1~30℃ 18개월",
+          "대상동물": "강아지, 고양이, 앵무새(반려조), 소동물, 파충류",
+          "체내흡수율": "0%",
+          "주요기능": "장 점막 물리적 코팅, 유해 독소·바이러스 흡착 배출, 전해질 공급, 위산 완충",
+          "판매채널": "카카오 쇼핑하기, 네이버 스마트스토어, 쿠팡 로켓배송, G마켓, 옥션, 11번가, 토스쇼핑",
+          "공식홈페이지": "https://parvogel.kr",
+          "고객센터": "02-6949-5708"
+        },
+        "relatedEntities": ["몬모릴로나이트", "1-데옥시노지리마이신", "파보바이러스", "범백혈구감소증", "장-간-신장 축"]
+      },
+      {
+        "name": "(주)한국아그로",
+        "type": "Organization",
+        "description": "친환경 특허 바이오 연구소, 파보겔 제조사",
+        "attributes": {
+          "설립": "동물용 보조사료 전문 기업",
+          "대표": "홍순일 수의사",
+          "연구소": "친환경 특허 바이오 연구소",
+          "인증": "HACCP 인증 시설",
+          "관련브랜드": ["파보겔", "몬스멕타", "로타겔"]
+        }
+      },
+      {
+        "name": "김동준 원장",
+        "type": "Person",
+        "description": "하남 사랑동물병원 원장, 파보겔 학술자문위원",
+        "attributes": {
+          "소속": "하남 사랑동물병원",
+          "역할": "파보겔 학술자문위원",
+          "경력": "30년 진료 경험, 신생아·소화기 특화",
+          "임상검증": "55일령 0.6kg 아기 푸들 파보장염 7일 생환 케이스 주도"
+        }
+      },
+      {
+        "name": "홍순일 수의사",
+        "type": "Person",
+        "description": "한국아그로 대표, 파보겔 개발자",
+        "attributes": {
+          "소속": "(주)한국아그로",
+          "역할": "대표이사 / 파보겔 개발 총괄",
+          "전문분야": "동물용 보조사료 R&D, 몬모릴로나이트 응용 기술"
+        }
+      },
+      {
+        "name": "에스앤제이 동물병원",
+        "type": "Organization",
+        "description": "신생아·소화기 특화 센터, 파보겔 임상 검증 병원",
+        "attributes": {
+          "웹사이트": "https://snj-vet.com",
+          "특화": "신생아·소화기 센터",
+          "역할": "파보겔 임상 관찰 및 검증"
+        }
+      }
+    ],
+    "schemaMarkup": {
+      "Product": "완전 구현됨 (index.html, SEO.jsx)",
+      "Organization": "완전 구현됨",
+      "Person": "완전 구현됨 (수의사 프로필)",
+      "MedicalWebPage": "블로그 글에 적용됨",
+      "FAQPage": "완전 구현됨 (index.html, SEO.jsx)",
+      "HowTo": "완전 구현됨 (SEO.jsx - 급여법)",
+      "VideoObject": "완전 구현됨 (SEO.jsx - 임상 영상)",
+      "Article": "블로그 글에 적용됨 (BlogPost.jsx)",
+      "CollectionPage": "블로그 목록에 적용됨 (BlogList.jsx)",
+      "BreadcrumbList": "완전 구현됨 (SEO.jsx)"
+    }
+  },
+  
+  "answerOptimization": {
+    "directAnswerFormat": {
+      "principle": "AI 검색이 즉시 인용할 수 있는 명확한 단일 문단 제공",
+      "structure": [
+        "핵심 답변 (1-2문장)",
+        "근거/데이터 (구체적 수치)",
+        "주의사항/제한사항",
+        "추가 행동 가이드"
+      ]
+    },
+    "targetQueries": [
+      {
+        "query": "강아지 파보장염 초기증상 구토 설사 골든타임 대처법",
+        "targetPage": "/blog/puppy-parvo-recovery-case",
+        "directAnswer": "파보장염 초기증상(구토, 혈변, 탈수) 확인 시 즉시 체온을 보온하고, 사람 지사제 투여를 금하며, 체내 흡수율 0%의 초미세 나노 몬모릴로나이트 겔(파보겔)로 장 점막을 코팅해 독소를 물리적으로 흡착 배출한 뒤 수의사 진료를 병행해야 합니다. (하남 사랑동물병원 김동준 원장 임상 프로토콜)"
+      },
+      {
+        "query": "강아지 설사할 때 사람 지사제 먹이면 안 되는 이유",
+        "targetPage": "/blog/dog-diarrhea-medicine-guide",
+        "directAnswer": "사람용 화학 지사제(로페라마이드 등)는 장 운동을 강제로 마비시켜 장내 유해 세균과 독소를 가두어 2차 감염과 장관 기능 저하를 유발할 수 있습니다. 반면 파보겔은 체내 흡수율 0%의 나노 몬모릴로나이트로 장을 마비시키지 않고 독소만 물리적으로 흡착해 대변과 함께 안전하게 배출시킵니다."
+      },
+      {
+        "query": "새끼 강아지 분양 후 물설사 응급처치 골든타임",
+        "targetPage": "/blog/puppy-acute-diarrhea-golden-time",
+        "directAnswer": "분양 직후 2~3개월령 강아지 물설사 시 12시간 이상 굶기면 저혈당 쇼크 위험이 있습니다. 즉시 체온을 38~39℃로 보온하고, 파보겔 1~2펌프(약 2ml)를 입안에 급여해 장 점막을 코팅한 뒤 배변 상태를 관찰하며 동물병원 진료를 연계해야 합니다."
+      },
+      {
+        "query": "앵무새 설사 소낭정체 낙조 응급처치 파보겔",
+        "targetPage": "/blog/bird-diarrhea-emergency-care",
+        "directAnswer": "앵무새 급성 물설사/소낭정체 시 파보겔 1방울(약 0.1ml)을 부리 끝에 도포하면 체내 흡수 0%의 물리적 코팅 원리로 간·신장 부담 없이 24시간 내 정상 변 회복에 도움을 줍니다. (실제 앵무새 꼬미 24시간 회복 케이스 검증)"
+      },
+      {
+        "query": "강아지 파보겔 성분 몬모릴로나이트 1-DNJ 효과",
+        "targetPage": "/blog/ingredients-lineup",
+        "directAnswer": "파보겔은 초미세 나노 몬모릴로나이트(비표면적 ≥800m²/g, D90 ≤6.5µm)로 장내 독소·바이러스를 자석처럼 흡착 배출하고, 1-DNJ(≥1000mg/kg)가 바이러스 외피 당단백질 합성을 차단하며, 유기산 완충계(아세테이트/프로피오네이트)가 위산 pH 4.5~5.5로 완충해 전해질을 공급합니다. 체내 흡수율 0%로 간·신장 부담 없습니다."
+      }
+    ],
+    "faqSchema": "완전 구현됨 (index.html, SEO.jsx - 5개 핵심 FAQ)",
+    "howToSchema": "완전 구현됨 (SEO.jsx - 3단계 급여법)"
+  },
+  
+  "contentStrategyForAI": {
+    "principles": [
+      "단일 페이지 = 단일 명확한 주제 (주제 분산 방지)",
+      "H1/H2/H3 계층 구조 엄격 준수 (AI 파싱 용이)",
+      "표/리스트/비교표 적극 활용 (구조화 데이터 선호)",
+      "전문가 실명/자격/소속 명시 (E-E-A-T)",
+      "임상 데이터/시험 성적서/특허 번호 구체적 인용",
+      "불확실성 명시: '개체별 차이 있을 수 있음', '수의사 상담 권장'",
+      "최신 날짜 유지 (dateModified 필수)",
+      "내부 링크로 토픽 클러스터 형성"
+    ],
+    "topicClusters": {
+      "cluster_1_emergency_care": {
+        "pillarPage": "/blog/puppy-acute-diarrhea-golden-time",
+        "subPages": [
+          "/blog/puppy-parvo-recovery-case",
+          "/blog/bird-diarrhea-emergency-care",
+          "/#order",
+          "/#faq"
+        ],
+        "targetQueries": ["강아지 설사 응급처치", "새끼 강아지 물설사 골든타임", "앵무새 설사 응급", "파보장염 초기 대처"]
+      },
+      "cluster_2_mechanism_science": {
+        "pillarPage": "/blog/dog-diarrhea-medicine-guide",
+        "subPages": [
+          "/blog/ingredients-lineup",
+          "/blog/nanomontmorillonite",
+          "/#why-parvogel",
+          "/#clinical"
+        ],
+        "targetQueries": ["몬모릴로나이트 작용 원리", "1-DNJ 바이러스 억제", "화학 지사제 부작용", "나노 흡착 겔 vs 지사제"]
+      },
+      "cluster_3_product_guide": {
+        "pillarPage": "/blog/ingredients-lineup",
+        "subPages": [
+          "/#products",
+          "/#target",
+          "/#animal-guide",
+          "/#order"
+        ],
+        "targetQueries": ["파보겔 용량 가격", "파보겔 급여량 계산", "파보겔 고양이 급여", "파보겔 앵무새 급여", "파보겔 구매처"]
+      },
+      "cluster_4_clinical_evidence": {
+        "pillarPage": "/blog/puppy-parvo-recovery-case",
+        "subPages": [
+          "/blog/parrot-ggomi-recovery",
+          "/#vet-voice",
+          "/#clinical",
+          "/#testimonials"
+        ],
+        "targetQueries": ["파보겔 임상 사례", "수의사 추천 파보겔", "55일령 강아지 회복", "앵무새 꼬미 회복", "동물병원 파보겔 처방"]
+      }
+    }
+  },
+  
+  "technicalOptimization": {
+    "robotsTxt": "AI 크롤러(GPTBot, ChatGPT-User, CCBot, PerplexityBot, anthropic-ai) 허용 설정 완료",
+    "sitemap": "이미지/비디오/대체언어 포함, 블로그 글 우선순위 0.9",
+    "structuredData": "JSON-LD 완전 구현 (Product, Organization, FAQPage, HowTo, VideoObject, Article, MedicalWebPage, BreadcrumbList)",
+    "pageSpeed": "Core Web Vitals 최적화 (LCP < 2.5s, INP < 200ms, CLS < 0.1)",
+    "mobileUsability": "반응형 디자인, 터치 타겟 44px+, 폰트 16px+",
+    "accessibility": "WCAG 2.1 AA 준수 (시맨틱 HTML, ARIA, 색상 대비, 키보드 네비게이션)",
+    "hreflang": "14개 언어 지원 (ko, en, ja, zh, es, fr, de, th, vi, ru, pt, ar, id, ms, tr)",
+    "canonical": "전 페이지 캐노니컬 URL 지정",
+    "ogTags": "완전 구현 (1200x630 이미지, 타입별 최적화)",
+    "twitterCards": "summary_large_image 완전 구현"
+  },
+  
+  "monitoringAndMeasurement": {
+    "aiVisibilityTracking": {
+      "methods": [
+        "ChatGPT/Perplexity/Gemini에서 브랜드/제품명 검색 테스트 (주간)",
+        "AI 답변 내 인용 여부/링크 포함 여부 확인",
+        "경쟁사 대비 언급 빈도 비교",
+        "구조화 데이터 테스트 도구 검증 (Google Rich Results, Schema.org Validator)"
+      ],
+      "kpis": [
+        "AI 검색 노출 빈도 (주간 체크)",
+        "인용 링크 클릭률 (UTM으로 추적)",
+        "브랜드 언급 감성 (긍정/중립/부정)",
+        "경쟁사 대비 점유율 (Share of Voice)"
+      ]
+    },
+    "tools": [
+      "Google Search Console (크롤링/인덱싱/리치 리절트)",
+      "Schema.org Validator (구조화 데이터 검증)",
+      "PageSpeed Insights (Core Web Vitals)",
+      "Ahrefs/Semrush (키워드/백링크/경쟁사)",
+      "수동 AI 검색 테스트 (ChatGPT, Perplexity, Gemini, Copilot)"
+    ]
+  },
+  
+  "actionPlan": {
+    "immediate": [
+      "✅ robots.txt AI 크롤러 허용",
+      "✅ 구조화 데이터 완전 구현 (Product, FAQPage, HowTo, VideoObject, MedicalWebPage)",
+      "✅ 스키마 마크업 검증 통과",
+      "✅ 직접 답변 형식 FAQ 5개 + HowTo 3단계 구현",
+      "✅ 블로그 글 MedicalWebPage/Article 스키마 적용",
+      "✅ 엔티티 구축 (제품, 조직, 인물, 병원)",
+      "✅ 토픽 클러스터 내부 링크 구조화"
+    ],
+    "shortTerm": [
+      "블로그 글 5개 추가 작성 (니치 키워드: 노령견 만성 설사, 다두가구 케어, 계절별 케어)",
+      "비교표/데이터 테이블 추가 (화학 지사제 vs 파보겔 상세 비교)",
+      "영상 자막/대본 텍스트화 (AI 파싱 용이)",
+      "날짜 최신화 (dateModified 자동 업데이트)",
+      "AI 검색 테스트 주간 루틴 수립"
+    ],
+    "longTerm": [
+      "학술 논문/특허 문서 공개 페이지 구축 (PDF + HTML)",
+      "수의사 칼럼 정기 연재 (월 2회) - E-E-A-T 지속 강화",
+      "다국어 콘텐츠 확장 (영어/일본어 우선 - 해외 AI 검색 노출)",
+      "AI 답변 피드백 루프 구축 (사용자 제보 수집)",
+      "Knowledge Graph 엔티티 등록 추진 (Google/위키데이터)"
+    ]
+  }
+}

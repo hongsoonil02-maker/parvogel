@@ -1,0 +1,276 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-11-28",
+  "description": "파보겔 데이터 인프라 표준 - UTM 네이밍, GA4/GTM 이벤트 설계, 어트리뷰션 모델링",
+  
+  "utmStandards": {
+    "namingConvention": {
+      "source": "parvogel.kr",
+      "medium": "{platform}_organic",
+      "campaign": "{content_pillar}_{yyyymm}",
+      "content": "{placement}_{version}"
+    },
+    "platformMediums": {
+      "youtube_shorts": "youtube_shorts_organic",
+      "instagram_reels": "instagram_reels_organic",
+      "tiktok": "tiktok_organic",
+      "naver_blog": "naver_blog_organic",
+      "threads": "threads_organic",
+      "facebook_page": "facebook_organic",
+      "bluesky": "bluesky_organic",
+      "kakao_channel": "kakao_channel_organic",
+      "email_newsletter": "email_organic",
+      "direct": "direct_none"
+    },
+    "contentPillars": {
+      "clinical_documentary": "임상 다큐 실화",
+      "education_feeding": "급여법 교육",
+      "recovery_eating": "식욕 회복 먹방",
+      "vet_authority": "수의사 권위/팩트",
+      "parrot_bird_case": "반려조/니치 케이스",
+      "early_care_prevention": "초기 케어/예방",
+      "value_comparison": "가성비/실용성 비교",
+      "weekly_roundup": "주간 결산"
+    },
+    "placements": {
+      "hero_main_cta": "hero_main",
+      "hero_secondary_cta": "hero_secondary",
+      "clinical_video_cta": "clinical_video",
+      "order_form_fasttrack": "order_form_fasttrack",
+      "order_form_submit": "order_form_submit",
+      "product_card_cta": "product_card",
+      "official_stores_grid": "official_stores",
+      "footer_qr": "footer_qr",
+      "sticky_bottom_cta": "sticky_bottom",
+      "blog_internal_link": "blog_internal",
+      "blog_cta": "blog_cta"
+    },
+    "versions": {
+      "version_a": "empathy",
+      "version_b": "mechanism",
+      "version_c": "farm",
+      "version_d": "pump_guide",
+      "version_e": "ranking"
+    },
+    "examples": {
+      "youtube_shorts_clinical": "https://parvogel.kr/?utm_source=parvogel.kr&utm_medium=youtube_shorts_organic&utm_campaign=clinical_documentary_202611&utm_content=clinical_video_empathy",
+      "instagram_reels_education": "https://parvogel.kr/?utm_source=parvogel.kr&utm_medium=instagram_reels_organic&utm_campaign=education_feeding_202611&utm_content=hero_main_empathy",
+      "naver_blog_vet": "https://parvogel.kr/blog/puppy-parvo-recovery-case?utm_source=parvogel.kr&utm_medium=naver_blog_organic&utm_campaign=vet_authority_202611&utm_content=blog_cta_mechanism",
+      "kakao_channel_tip": "https://parvogel.kr/?utm_source=parvogel.kr&utm_medium=kakao_channel_organic&utm_campaign=early_care_prevention_202611&utm_content=weekly_tip_value"
+    }
+  },
+  
+  "ga4Events": {
+    "enhanced_ecommerce": {
+      "view_item": {
+        "description": "제품 상세 조회 (랜딩페이지 히어로, 제품 카드)",
+        "parameters": ["item_id", "item_name", "item_category", "item_variant", "price", "currency", "quantity", "index", "item_list_id", "item_list_name"]
+      },
+      "select_item": {
+        "description": "외부몰 링크 클릭 (카카오/쿠팡/네이버 등)",
+        "parameters": ["item_id", "item_name", "item_category", "item_variant", "price", "quantity", "index", "item_list_id", "item_list_name"]
+      },
+      "add_to_cart": {
+        "description": "장바구니 담기 의도 (외부몰 클릭 시 Kakao Pixel용)",
+        "parameters": ["currency", "value", "items"]
+      },
+      "begin_checkout": {
+        "description": "주문 폼 제출 시작",
+        "parameters": ["currency", "value", "items", "coupon"]
+      },
+      "purchase": {
+        "description": "직영 주문 완료 / 외부몰 구매 추정",
+        "parameters": ["transaction_id", "currency", "value", "items", "coupon", "shipping", "affiliation"]
+      }
+    },
+    "custom_events": {
+      "video_play": {
+        "description": "영상 재생 시작",
+        "parameters": ["video_id", "video_title", "video_progress"]
+      },
+      "video_progress": {
+        "description": "영상 시청 진행률 (25/50/75/100%)",
+        "parameters": ["video_id", "video_title", "video_percent"]
+      },
+      "video_complete": {
+        "description": "영상 완주",
+        "parameters": ["video_id", "video_title"]
+      },
+      "cta_click": {
+        "description": "CTA 버튼/링크 클릭",
+        "parameters": ["cta_id", "cta_label", "cta_location", "destination"]
+      },
+      "scroll": {
+        "description": "스크롤 깊이 (25/50/75/100%)",
+        "parameters": ["percent_scrolled"]
+      },
+      "form_start": {
+        "description": "주문 폼 진입",
+        "parameters": ["form_id", "form_type"]
+      },
+      "form_field_focus": {
+        "description": "폼 필드 포커스 (이탈 분석용)",
+        "parameters": ["form_id", "field_name"]
+      },
+      "form_error": {
+        "description": "폼 유효성 검사 에러",
+        "parameters": ["form_id", "field_name", "error_type"]
+      },
+      "form_submit": {
+        "description": "폼 제출 완료",
+        "parameters": ["form_id", "form_type", "success"]
+      },
+      "search": {
+        "description": "사이트 내 검색",
+        "parameters": ["search_term", "results_count"]
+      },
+      "blog_read": {
+        "description": "블로그 글 읽기 완료",
+        "parameters": ["post_id", "post_title", "engagement_time_msec"]
+      },
+      "share": {
+        "description": "콘텐츠 공유",
+        "parameters": ["method", "content_id", "content_type"]
+      },
+      "contact": {
+        "description": "상담 문의 (카카오 채널 등)",
+        "parameters": ["method", "currency"]
+      },
+      "mall_click": {
+        "description": "외부몰 클릭 (채널별 구분)",
+        "parameters": ["mall_key", "placement", "product_id"]
+      },
+      "kakao_channel_chat": {
+        "description": "카카오 채널 1:1 채팅 시작",
+        "parameters": []
+      }
+    }
+  },
+  
+  "gtmConfiguration": {
+    "containerId": "GTM-XXXXXXX", // Replace with actual GTM ID
+    "dataLayer": {
+      "version": 2,
+      "events": [
+        "view_item",
+        "select_item",
+        "add_to_cart",
+        "begin_checkout",
+        "purchase",
+        "video_play",
+        "video_progress",
+        "video_complete",
+        "cta_click",
+        "scroll",
+        "form_start",
+        "form_field_focus",
+        "form_error",
+        "form_submit",
+        "search",
+        "blog_read",
+        "share",
+        "contact",
+        "mall_click",
+        "kakao_channel_chat"
+      ],
+      "userProperties": {
+        "traffic_source": "utm_source",
+        "traffic_medium": "utm_medium",
+        "traffic_campaign": "utm_campaign",
+        "traffic_content": "utm_content",
+        "user_type": "new|returning",
+        "pet_type": "dog|cat|bird|small_animal|reptile",
+        "pet_age_group": "puppy|adult|senior",
+        "symptom": "diarrhea|vomiting|bloody_stool|anorexia|lethargy",
+        "purchase_intent": "high|medium|low"
+      }
+    },
+    "triggers": {
+      "page_view_all": "All Pages",
+      "scroll_depth": "Scroll Depth (25%, 50%, 75%, 100%)",
+      "video_play": "YouTube/HTML5 Video Play",
+      "video_progress": "Video Progress (25%, 50%, 75%, 100%)",
+      "cta_click": "Click - CTA Buttons/Links (data-cta-id)",
+      "form_start": "Form Interaction - First Field Focus",
+      "form_submit": "Form Submit Success",
+      "form_error": "Form Validation Error",
+      "external_link_click": "Click - External Links (data-mall-key)",
+      "blog_read": "Timer - 30s on Blog Post + Scroll 75%"
+    },
+    "tags": {
+      "ga4_config": "GA4 Configuration (G-XXXXXXXXXX)",
+      "ga4_events": "GA4 Event Tags (per custom event)",
+      "kakao_pixel": "Kakao Pixel Base + Events",
+      "clarity": "Microsoft Clarity",
+      "meta_pixel": "Meta Pixel (Facebook/Instagram)",
+      "tiktok_pixel": "TikTok Pixel",
+      "naver_analytics": "Naver Analytics"
+    }
+  },
+  
+  "attributionModeling": {
+    "models": {
+      "last_click": "기본 (GA4 기본)",
+      "first_click": "최초 유입 채널 기여도",
+      "linear": "모든 터치포인트 균등 분배",
+      "time_decay": "전환에 가까운 터치포인트 가중",
+      "position_based": "첫/마지막 40%, 중간 20% (U자형)",
+      "data_driven": "GA4 데이터 기반 (충분한 데이터 시)"
+    },
+    "recommended": "position_based (U자형) - 최초 발견(블로그/쇼츠) + 최종 전환(주문폼/외부몰) 모두 중요",
+    "lookbackWindow": "30일 (카카오 모먼트 기여 기간과 동일)",
+    "crossDevice": "User-ID 기반 (로그인/주문 시 식별)"
+  },
+  
+  "cohortAnalysis": {
+    "cohorts": [
+      {
+        "name": "신규 방문자",
+        "definition": "첫 세션 사용자",
+        "metrics": ["1일차 재방문율", "7일차 구매율", "30일차 LTV"]
+      },
+      {
+        "name": "쇼츠 유입",
+        "definition": "utm_medium=youtube_shorts_organic",
+        "metrics": ["조회→클릭률", "클릭→구매율", "평균 주문가"]
+      },
+      {
+        "name": "블로그 유입",
+        "definition": "utm_medium=naver_blog_organic",
+        "metrics": ["체류시간", "스크롤 깊이", "내부링크 클릭→구매"]
+      },
+      {
+        "name": "카카오 채널 친구",
+        "definition": "카카오 채널 추가 후 방문",
+        "metrics": ["알림톡 오픈율", "클릭률", "재구매율"]
+      },
+      {
+        "name": "고관여 보호자",
+        "definition": "스크롤 75%+ 또는 영상 50%+ 시청",
+        "metrics": ["구매 전환율", "평균 주문가", "상담 문의율"]
+      }
+    ]
+  },
+  
+  "dashboardRequirements": {
+    "realTime": ["현재 활성 사용자", "실시간 전환", "실시간 트래픽 소스"],
+    "daily": ["채널별 세션/사용자", "채널별 전환수/전환율", "UTM별 기여도", "상위 랜딩 페이지", "영상 시청 지표"],
+    "weekly": ["채널별 성장률", "콘텐츠 피로도(빈도 대비 참여율)", "코호트별 성과", "경쟁사 벤치마크(공개 지표)"],
+    "monthly": ["CAC(채널별)", "LTV(코호트별)", "ROAS(채널별)", "콘텐츠 유형별 순위", "시즈널리티 분석", "예산 배분 추천"]
+  },
+  
+  "dataQuality": {
+    "validationRules": [
+      "모든 외부링크에 UTM 필수 (decorateMallUrl 자동 적용)",
+      "GA4 이벤트 중복 발송 방지 (중복 제거 로직)",
+      "UTM 파라미터 소문자 정규화",
+      "캠페인명 날짜 형식 통일 (YYYYMM)",
+      "콘텐츠 파라미터 길이 40자 제한"
+    ],
+    "monitoring": {
+      "missingUtmAlert": "외부링크 클릭 중 UTM 누락 > 5% 시 알림",
+      "eventDropAlert": "핵심 이벤트(구매/폼제출) 전일 대비 50% 감소 시 알림",
+      "dataFreshness": "GA4/BigQuery 동기화 지연 > 4시간 시 알림"
+    }
+  }
+}

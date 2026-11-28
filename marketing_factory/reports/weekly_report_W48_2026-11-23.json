@@ -1,0 +1,20 @@
+{
+  "period": {
+    "start": "2026-11-23",
+    "end": "2026-11-29",
+    "week_number": 48,
+    "year": 2026
+  },
+  "generated_at": "2026-11-28T18:29:48.818004",
+  "publishing_metrics": [],
+  "content_analysis": {
+    "total_posts": 0,
+    "by_theme": {},
+    "by_format": {},
+    "top_keywords": [],
+    "avg_length": 0
+  },
+  "creative_fatigue": [],
+  "competitor_trends": [],
+  "ab_tests": []
+}

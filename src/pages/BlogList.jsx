@@ -3,16 +3,42 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import posts from '../data/posts.json';
-import { assetUrl } from '../config/site';
+import { assetUrl, absoluteUrl } from '../config/site';
 
 export default function BlogList() {
   const { t } = useTranslation();
+
+  const blogListStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "수의학 칼럼 & 회복 사례",
+    "description": "파보겔(Parvogel) 학술자문단 수의사 칼럼과 강아지·고양이·반려조 장 건강 안심 케어 사례를 확인하세요.",
+    "url": absoluteUrl("/blog"),
+    "hasPart": posts.map(post => ({
+      "@type": "Article",
+      "@id": absoluteUrl(`/blog/${post.id}`) + "#article",
+      "headline": post.title,
+      "description": post.excerpt,
+      "image": absoluteUrl(post.image),
+      "datePublished": post.date,
+      "author": {
+        "@type": "Person",
+        "name": post.author || "파보겔 학술연구팀"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "(주)한국아그로",
+        "url": "https://parvogel.kr/"
+      }
+    }))
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20 pb-24">
       <SEO 
         title="수의학 칼럼 & 회복 사례" 
-        description="파보겔(Parvogel) 학술자문단 수의사 칼럼과 강아지·고양이·반려조 장 건강 안심 케어 사례를 확인하세요." 
+        description="파보겔(Parvogel) 학술자문단 수의사 칼럼과 강아지·고양이·반려조 장 건강 안심 케어 사례를 확인하세요."
+        structuredData={blogListStructuredData}
       />
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

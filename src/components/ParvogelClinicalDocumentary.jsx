@@ -1,6 +1,7 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getStoreUrl } from '../config/storeLinks';
+import { trackVideoPlay, trackVideoProgress, trackCTAClick } from '../utils/kakaoPixel';
 
 export default function ParvogelClinicalDocumentary() {
   const { t } = useTranslation();
@@ -21,8 +22,25 @@ export default function ParvogelClinicalDocumentary() {
     setIsPlaying(true);
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
+      trackVideoPlay('parvogel_real_clinical_28s', '생후 55일 아기 푸들 실제 진료실 28초 회복 기록', 0);
     }
   };
+
+  // Track video progress
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      const progress = Math.round((video.currentTime / video.duration) * 100);
+      if (progress > 0 && progress % 25 === 0) {
+        trackVideoProgress('parvogel_real_clinical_28s', '생후 55일 아기 푸들 실제 진료실 28초 회복 기록', progress);
+      }
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+  }, [isPlaying]);
 
   return (
     <section
@@ -163,6 +181,7 @@ export default function ParvogelClinicalDocumentary() {
                   referrerPolicy="no-referrer-when-downgrade"
                   data-product-id="parvogel-100ml"
                   aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                  onClick={() => trackCTAClick('video_kakao_store', '카카오 쇼핑하기', 'clinical_video_cta', 'kakao_store')}
                   className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
                 >
                   {t('stores.kakaoCta', '카카오 쇼핑하기')}
@@ -174,6 +193,7 @@ export default function ParvogelClinicalDocumentary() {
                   referrerPolicy="no-referrer-when-downgrade"
                   data-product-id="parvogel-100ml"
                   aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                  onClick={() => trackCTAClick('video_naver_store', '네이버 스마트스토어', 'clinical_video_cta', 'naver_store')}
                   className="min-h-[48px] px-4 py-3 rounded-2xl bg-[#028A3D] hover:bg-[#027734] text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                 >
                   {t('stores.naverCta', '네이버 스마트스토어')}
@@ -185,6 +205,7 @@ export default function ParvogelClinicalDocumentary() {
                   referrerPolicy="no-referrer-when-downgrade"
                   data-product-id="parvogel-100ml"
                   aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                  onClick={() => trackCTAClick('video_coupang', '쿠팡 로켓배송', 'clinical_video_cta', 'coupang')}
                   className="min-h-[48px] px-4 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center text-center whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                 >
                   {t('stores.coupangCta', '쿠팡 로켓배송')}

@@ -1,0 +1,220 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-11-28",
+  "description": "파보겔 채널별 차별화 콘텐츠 전략 - 플랫폼별 알고리즘/사용자 특성에 맞춘 전용 포맷",
+  
+  "platformStrategies": {
+    "youtube_shorts": {
+      "name": "YouTube Shorts",
+      "algorithmFocus": ["검색 의도 매칭", "긴 수명(에버그린)", "썸네일 CTR", "제목/설명/태그 SEO"],
+      "optimalDuration": "28-35초",
+      "hookWindow": "0-3초",
+      "format": "세로 9:16 (1080x1920)",
+      "contentPillars": [
+        "임상 다큐 시리즈 (검색 유입: 강아지파보장염, 강아지혈변, 새끼강아지설사)",
+        "급여법 교육 시리즈 (검색 유입: 강아지약먹이기, 주사기거부, 파보겔급여법)",
+        "식욕 회복/먹방 시리즈 (검색 유입: 강아지식욕부진, 강아지회복, 파보겔후기)",
+        "반려조/고양이 확장 시리즈 (니치 검색: 앵무새설사, 새설사, 소낭정체, 고양이설사)",
+        "초기 케어/예방 시리즈 (검색 유입: 강아지메스꺼움, 강아지밥거부, 초기케어)"
+      ],
+      "ctaStrategy": "고정 댓글(구매 링크 3곳 UTM) + 설명란 링크 + 프로필 링크 + 커뮤니티 탭",
+      "thumbnailStrategy": "텍스트 오버레이 필수 (예: '55일령 0.6kg → 7일 뒤 퇴원', '주사기 NO, 1초 펌프 YES')",
+      "seoKeywords": ["강아지파보장염", "강아지혈변", "새끼강아지설사", "강아지약먹이기", "주사기거부", "강아지식욕부진", "앵무새설사", "고양이설사", "파보겔"],
+      "postingSchedule": "월/수/금/일 주 4회 (검색 트래픽 극대화)",
+      "kpi": ["조회수", "검색 유입률", "고정 댓글 클릭률", "채널 구독 전환율", "스토어 유입 클릭"]
+    },
+    
+    "instagram_reels": {
+      "name": "Instagram Reels",
+      "algorithmFocus": ["탐색 탭 노출", "해시태그 검색", "공유/저장 중요", "음악/트렌드 활용", "에스테틱 퀄리티"],
+      "optimalDuration": "15-30초",
+      "hookWindow": "0-1.5초",
+      "format": "세로 9:16 (1080x1920)",
+      "contentPillars": [
+        "감성 언박싱 + 실사용 루틴 (저장 유도)",
+        "수의사 인터뷰 스니펫 + 신뢰감 (공유 유도)",
+        "비포/애프터 회복 타임라인 (감동 공유)",
+        "급여 팁 카루셀/릴스 혼합 (저장 유도)",
+        "반려조/고양이 귀여운 급여씬 (바이럴 가능성)"
+      ],
+      "ctaStrategy": "프로필 링크(링크트리) + 스토리 하이라이트(구매가이드) + DM 유도('급여량 문의')",
+      "aestheticGuidelines": "따뜻한 톤, 자연광, 클로즈업 중심, 부드러운 트랜지션, 로파이/피아노 BGM",
+      "hashtagStrategy": "메인 5개 + 니치 10개 + 브랜드 3개 = 총 18개 (예: #파보겔 #강아지설사 #펫구급함 #수의사추천 #반려동물상비약 #강아지파보장염 #고양이설사 #앵무새 #강아지약먹이기 #주사기거부 #펫스타그램 #댕냥이 #강아지키우기 #고양이키우기 #반려조 #앵무새키우기 #파보겔후기 #1초펌프)",
+      "postingSchedule": "화/목/토 주 3회 (탐색 탭 노출 극대화)",
+      "kpi": ["도달수", "저장율", "공유율", "프로필 방문률", "DM 문의수", "스토어 유입"]
+    },
+    
+    "tiktok": {
+      "name": "TikTok",
+      "algorithmFocus": ["알고리즘 강력(초기 1시간)", "트렌드/챌린지 참여", "댓글 상호작용", "듀엣/스티치 유도", "완주율"],
+      "optimalDuration": "15-25초",
+      "hookWindow": "0-1초",
+      "format": "세로 9:16 (1080x1920)",
+      "contentPillars": [
+        "POV 공감 스킷 + 솔루션 제시 (댓글 유도)",
+        "반전 먹방 ASMR + 저장 유도",
+        "수의사 팩트 체크 '이거 아셨나요?' (공유 유도)",
+        "반려조/특수동물 희소성 콘텐츠 (니치 바이럴)",
+        "가성비 비교 '응급실 30만 vs 1.8만' (댓글 토론 유도)"
+      ],
+      "ctaStrategy": "프로필 링크 + 고정 댓글('파보겔 치면 링크 드림') + 생방송 예고",
+      "trendAdaptation": "주간 트렌드 사운드/포맷 모니터링 → 파보겔 메시지로 재해석",
+      "engagementHooks": [
+        "댓글 미션: '파보' 치면 가이드북 드림",
+        "듀엣 챌린지: '우리 아이 급여 전/후'",
+        "스티치: 수의사 영상에 '이게 정답입니다' 반응"
+      ],
+      "hashtagStrategy": "트렌드 3개 + 니치 5개 + 브랜드 2개 = 총 10개 (알고리즘 선호)",
+      "postingSchedule": "수/금/일 주 3회 (주말 트래픽 공략)",
+      "kpi": ["조회수", "완주율", "댓글수", "공유수", "프로필 클릭률", "스토어 유입"]
+    },
+    
+    "naver_blog": {
+      "name": "Naver Blog",
+      "algorithmFocus": ["네이버 검색 SEO", "뷰탭/지식인 연동", "체류시간", "내부링크 구조", "E-E-A-T"],
+      "optimalLength": "2,500-4,000자",
+      "format": "장문 텍스트 + 이미지 + 영상 임베드 + 표/리스트",
+      "contentPillars": [
+        "임상 관찰 기록 (E-E-A-T: 수의사 실명/병원/날짜)",
+        "전문 가이드/매뉴얼 (검색 의도: 응급처치, 골든타임)",
+        "기술력/성분 분석 (비교표 필수: 화학 지사제 vs 나노 흡착)",
+        "반려조/니치 회복 사례 (희소 키워드 선점)",
+        "시장 트렌드/인사이트 리포트 (권위성 구축)"
+      ],
+      "seoStructure": {
+        "title": "타깃 키워드 앞단 배치 + 클릭 유도 문구",
+        "intro": "키워드 1회 + 공감 훅 + 본문 요약",
+        "body": "H2/H3 계층 구조 + 비교표 + 리스트 + 내부링크 2-3개",
+        "conclusion": "키워드 1회 + CTA(구매링크 UTM) + 관련 글 링크",
+        "images": "alt 텍스트 키워드 포함 + 웹피 변환"
+      },
+      "eeatSignals": [
+        "작성자: 실명 수의사(김동준 원장/홍순일 수의사) + 자격/소속",
+        "검수: 에스앤제이동물병원/한국아그로/몬스멕타 연계 명시",
+        "출처: 임상 데이터/시험 성적서/특허 번호 인용",
+        "경험: 실제 급여 사진/영상/카톡 캡처 포함"
+      ],
+      "internalLinking": "칼럼 간 교차 링크 + 랜딩페이지 앵커 링크 + 제품 상세 페이지",
+      "ctaStrategy": "본문 중간/하단 구매 링크(UTM 필수) + 카카오톡 채널 추가 유도 + 급여 계산기 앱 링크",
+      "postingSchedule": "주 2회 (화/금) + 월 1회 트렌드 리포트",
+      "kpi": ["검색 유입", "체류시간", "스크롤 깊이", "내부링크 클릭", "구매 링크 클릭", "채널 추가"]
+    },
+    
+    "threads": {
+      "name": "Meta Threads",
+      "algorithmFocus": ["실시간 대화 참여", "스레드 형태 스토리텔링", "인용/리트윗 확산", "팔로워 알림"],
+      "optimalFormat": "훅 트윗 + 5-7개 연결 트윗 (스레드)",
+      "contentPillars": [
+        "임상 실화 스레드 (감정선 + 팩트 + CTA)",
+        "수의사 팩트 체크 스레드 (오해 해소 + 공유 유도)",
+        "보호자 꿀팁 스레드 (저장/공유 유도)",
+        "가성비/실용성 비교 스레드 (댓글 토론 유도)"
+      ],
+      "ctaStrategy": "마지막 트윗에 프로필 링크 + '자세한 건 블로그/쇼츠에서'",
+      "postingSchedule": "주 3회 (월/수/금) - 쇼츠/릴스 발행 후 1시간 내 연계",
+      "kpi": ["조회수", "답글수", "리트윗/인용", "프로필 방문", "링크 클릭"]
+    },
+    
+    "facebook_page": {
+      "name": "Facebook Page (Agrokorea)",
+      "algorithmFocus": ["페이지 팔로워 도달", "공유 바이럴", "그룹 공유 유도", "댓글 상호작용"],
+      "contentPillars": [
+        "숏폼 리포스트 (릴스/쇼츠/틱톡 크로스포스팅)",
+        "보호자 후기 스크린샷 + 코멘트",
+        "이벤트/프로모션 안내",
+        "수의사 칼럼 요약 + 블로그 링크"
+      ],
+      "ctaStrategy": "댓글 고정(구매 링크) + 버튼 '쇼핑하기' 연결",
+      "postingSchedule": "주 2회 (화/목)",
+      "kpi": ["도달", "공유", "댓글", "링크 클릭", "페이지 좋아요"]
+    },
+    
+    "bluesky": {
+      "name": "Bluesky",
+      "algorithmFocus": ["커스텀 피드 노출", "해시태그 검색", "리포스트 확산", "개발자/얼리어답터 층"],
+      "contentPillars": [
+        "임상 데이터/팩트 중심 짧은 포스트",
+        "블로그/쇼츠 링크 공유 (카드 프리뷰)",
+        "수의학 인사이트 스레드"
+      ],
+      "postingSchedule": "주 2회 (자동 크로스포스팅)",
+      "kpi": ["조회", "리포스트", "좋아요", "링크 클릭"]
+    },
+    
+    "kakao_channel": {
+      "name": "KakaoTalk Channel (파보겔 공식)",
+      "algorithmFocus": ["친구 추가 전환", "1:1 채팅 상담 전환", "알림톡/친구톡 오픈율", "재구매 유도"],
+      "contentPillars": [
+        "신규 친구 웰컴 메시지 (급여 가이드 PDF + 쿠폰)",
+        "주간 케어 팁 (계절/증상별)",
+        "재구매 리마인더 (유통기한/계절)",
+        "긴급 알림 (리콜/품절/이벤트)"
+      ],
+      "automation": {
+        "welcome": "즉시 발송: 급여 가이드북 PDF + 10% 쿠폰",
+        "weekly_tip": "매주 수요일 오전 10시: 계절별 케어 팁",
+        "repurchase": "구매 45일 후: '떨어지기 전 미리 준비하세요' + 무료배송 쿠폰",
+        "abandoned_cart": "클릭 후 미구매 1시간: '고민 중이신가요? 상담 도와드려요'"
+      },
+      "ctaStrategy": "1:1 채팅 상담 버튼 최우선 + 쇼핑하기 버튼 + 블로그/쇼츠 링크",
+      "kpi": ["친구 수", "채팅 상담 건수", "알림톡 오픈율", "클릭률", "구매 전환율", "재구매율"]
+    }
+  },
+  
+  "crossPlatformRules": {
+    "contentRepurposing": {
+      "source": "YouTube Shorts (마스터 콘텐츠)",
+      "adaptations": {
+        "instagram_reels": "음악 추가 + 에스테틱 색보정 + 해시태그 최적화 + 저장 유도 캡션",
+        "tiktok": "트렌드 사운드 입히기 + 15초 내로 컷 + 댓글 미션 추가 + 듀엣 유도 엔딩",
+        "threads": "쇼츠 핵심 장면 3컷 + 스레드 형태로 스토리 확장 + 마지막에 프로필 링크",
+        "facebook": "쇼츠 임베드 + 보호자 후기 코멘트 추가 + 그룹 공유 유도",
+        "bluesky": "핵심 팩트 1문장 + 쇼츠 링크 카드",
+        "naver_blog": "쇼츠 임베드 + 상세 텍스트/표/이미지 보강 + SEO 최적화"
+      }
+    },
+    "utmNamingConvention": {
+      "source": "parvogel.kr",
+      "medium": "{platform}_organic",
+      "campaign": "{content_pillar}_{yyyymm}",
+      "content": "{placement}_{version}"
+    },
+    "brandSafety": {
+      "forbiddenTerms": ["치료", "완치", "약", "처방", "효능", "효과", "보장", "100%"],
+      "requiredDisclaimers": ["보조사료입니다", "수의사 상담 권장", "개체별 차이 있을 수 있음"],
+      "complianceCheck": "자동 필터링(compliance_rules.json) 통과 후 발행"
+    }
+  },
+  
+  "contentCalendar": {
+    "weekly": {
+      "monday": { "master": "youtube_shorts", "type": "clinical_documentary", "repurpose": ["threads", "bluesky", "facebook"] },
+      "tuesday": { "master": "instagram_reels", "type": "education_feeding", "repurpose": ["tiktok", "naver_blog_snippet"] },
+      "wednesday": { "master": "tiktok", "type": "parrot_bird_case", "repurpose": ["instagram_reels", "threads"] },
+      "thursday": { "master": "youtube_shorts", "type": "recovery_eating", "repurpose": ["facebook", "bluesky"] },
+      "friday": { "master": "instagram_reels", "type": "vet_authority", "repurpose": ["naver_blog", "threads"] },
+      "saturday": { "master": "tiktok", "type": "early_care_prevention", "repurpose": ["instagram_reels"] },
+      "sunday": { "master": "youtube_shorts", "type": "value_comparison", "repurpose": ["naver_blog_weekly", "kakao_channel_tip"] }
+    },
+    "monthlyThemes": [
+      { "month": 1, "theme": "새해 맞이 펫 구급함 점검", "focus": "상비약 준비/유통기한 체크" },
+      { "month": 2, "theme": "설 연휴 응급 대비", "focus": "병원 휴진 대비/귀성길 케어" },
+      { "month": 3, "theme": "봄철 분양 시즌 케어", "focus": "새끼 강아지/고양이 초기 적응" },
+      { "month": 4, "theme": "황사/미세먼지 장 건강", "focus": "호흡기-장 축 케어" },
+      { "month": 5, "theme": "가정의 달 다두가구 케어", "focus": "강아지+고양이+조류 동시 케어" },
+      { "month": 6, "theme": "장마철 습도/곰팡이 독소", "focus": "AFB1 흡착/식중독 예방" },
+      { "month": 7, "theme": "여름 휴가철 이동 스트레스", "focus": "차멀미/환경변화 설사 케어" },
+      { "month": 8, "theme": "폭염 탈수/전해질 관리", "focus": "수분 보충/활기명수 포지셔닝" },
+      { "month": 9, "theme": "추석 연휴 응급 대비", "focus": "명절 음식 급여 후 설사 케어" },
+      { "month": 10, "theme": "가을 환절기 면역/장 케어", "focus": "면역력-장 건강 연계" },
+      { "month": 11, "theme": "겨울철 노령견/노령묘 케어", "focus": "만성 설사/장누수 증후군" },
+      { "month": 12, "theme": "연말 결산 베스트 리뷰", "focus": "올해의 회복 스토리 모음" }
+    ]
+  },
+  
+  "kpiDashboard": {
+    "daily": ["채널별 조회/도달", "CTA 클릭수", "스토어 유입", "채팅 상담"],
+    "weekly": ["채널별 성장률", "콘텐츠 피로도(반복 노출 대비 참여율 하락)", "UTM별 전환 기여도", "경쟁사 벤치마크"],
+    "monthly": ["CAC(고객획득비용)", "LTV(생애가치)", "채널별 ROAS", "콘텐츠 유형별 성과 순위", "시즌ality 분석"]
+  }
+}

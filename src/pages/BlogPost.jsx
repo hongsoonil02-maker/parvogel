@@ -118,16 +118,43 @@ export default function BlogPost() {
 
   const articleStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "image": [
-      absoluteUrl(post.image)
-    ],
-    "datePublished": post.date,
-    "author": [{
-      "@type": "Organization",
-      "name": "Parvogel Research Team"
-    }]
+    "@graph": [
+      {
+        "@type": ["Article", "MedicalWebPage"],
+        "@id": `${absoluteUrl(`/blog/${post.id}`)}#article`,
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": [
+          absoluteUrl(post.image)
+        ],
+        "datePublished": post.date,
+        "dateModified": post.dateModified || post.date,
+        "author": [{
+          "@type": "Person",
+          "name": post.author || "파보겔 학술연구팀"
+        }],
+        "reviewedBy": {
+          "@type": "VeterinaryCare",
+          "@id": "https://snj-vet.com/#hospital",
+          "name": "에스앤제이 동물병원"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.agrokorea.net/#organization",
+          "name": "(주)한국아그로",
+          "url": "https://parvogel.kr/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://parvogel.kr/og-image.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": absoluteUrl(`/blog/${post.id}`)
+        }
+      },
+      ...(post.schema_json_ld ? [post.schema_json_ld] : [])
+    ]
   };
 
   return (

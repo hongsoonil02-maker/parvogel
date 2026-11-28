@@ -12,7 +12,7 @@ import A11yToolbar from '../components/A11yToolbar'
 import FAQ from '../components/FAQ'
 import FeedDisclaimer from '../components/FeedDisclaimer'
 import PetGallerySection from '../components/PetGallerySection'
-import { trackKakaoFormSubmit, trackKakaoViewContent } from '../utils/kakaoPixel'
+import { trackKakaoFormSubmit, trackKakaoViewContent, trackCTAClick, trackFormStart, trackFormFieldFocus, trackFormError, trackVideoPlay, trackVideoProgress, trackScrollDepth } from '../utils/kakaoPixel'
 
 const ClinicalEvidence = lazy(() => import('../components/ClinicalEvidence'))
 const ParvogelClinicalDocumentary = lazy(() => import('../components/ParvogelClinicalDocumentary'))
@@ -32,8 +32,10 @@ const Landing = () => {
         }
     }, [isOrderModalOpen])
     // Fire Kakao Pixel viewContent once for engaged visitors (>=5s stay or >=300px scroll)
+    // Track scroll depth for funnel analysis
     useEffect(() => {
         let fired = false
+        let scrollFired = { 25: false, 50: false, 75: false, 100: false }
         const fireOnce = (reason) => {
             if (fired) return
             fired = true
@@ -43,6 +45,14 @@ const Landing = () => {
         }
         const onScroll = () => {
             if (window.scrollY >= 300) fireOnce('parvogel_scroll_view')
+            
+            // Track scroll depth
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight
+            const scrollPercent = Math.round((window.scrollY / docHeight) * 100)
+            if (scrollPercent >= 25 && !scrollFired[25]) { scrollFired[25] = true; trackScrollDepth(25); }
+            if (scrollPercent >= 50 && !scrollFired[50]) { scrollFired[50] = true; trackScrollDepth(50); }
+            if (scrollPercent >= 75 && !scrollFired[75]) { scrollFired[75] = true; trackScrollDepth(75); }
+            if (scrollPercent >= 100 && !scrollFired[100]) { scrollFired[100] = true; trackScrollDepth(100); }
         }
         const timer = setTimeout(() => fireOnce('parvogel_5s_view'), 5000)
         window.addEventListener('scroll', onScroll, { passive: true })
@@ -829,6 +839,7 @@ const Landing = () => {
                                     referrerPolicy="no-referrer-when-downgrade"
                                     data-product-id="parvogel-100ml"
                                     aria-label={t('stores.kakaoAria', '카카오 쇼핑하기 구매 페이지로 이동 (새 창)')}
+                                    onClick={() => trackCTAClick('hero_kakao_store', '카카오 쇼핑하기', 'hero_main_cta', 'kakao_store')}
                                     className="w-full min-h-[58px] bg-[#FEE500] hover:bg-[#FDD800] text-[#191919] border border-amber-300 rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-amber-400/25 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">💬</span>
@@ -845,6 +856,7 @@ const Landing = () => {
                                     referrerPolicy="no-referrer-when-downgrade"
                                     data-product-id="parvogel-100ml"
                                     aria-label={t('stores.coupangAria', '쿠팡 로켓배송 구매 페이지로 이동 (새 창)')}
+                                    onClick={() => trackCTAClick('hero_coupang', '쿠팡 로켓배송', 'hero_main_cta', 'coupang')}
                                     className="w-full min-h-[58px] bg-slate-900 hover:bg-slate-800 text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-slate-900/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">🚀</span>
@@ -861,6 +873,7 @@ const Landing = () => {
                                     referrerPolicy="no-referrer-when-downgrade"
                                     data-product-id="parvogel-100ml"
                                     aria-label={t('stores.naverAria', '네이버 스마트스토어 구매 페이지로 이동 (새 창)')}
+                                    onClick={() => trackCTAClick('hero_naver_store', '네이버 스마트스토어', 'hero_main_cta', 'naver_store')}
                                     className="w-full min-h-[58px] bg-[#028A3D] hover:bg-[#027734] text-white rounded-2xl font-black px-4 py-2.5 flex items-center justify-center gap-2.5 shadow-lg hover:shadow-emerald-700/20 transition-all transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2"
                                 >
                                     <span className="text-xl shrink-0" aria-hidden="true">🛍️</span>
@@ -877,6 +890,7 @@ const Landing = () => {
                                     href={getKakaoChannelUrl()}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => trackCTAClick('hero_kakao_chat', '카톡 1:1 급여량 문의', 'hero_secondary_cta', 'kakao_channel')}
                                     className="px-3.5 py-2 rounded-xl bg-[#FEE500]/90 hover:bg-[#FEE500] border border-amber-300 text-[#191919] text-xs sm:text-sm font-extrabold shadow-xs transition-all inline-flex items-center gap-1.5"
                                 >
                                     <span aria-hidden="true">💬</span>
@@ -886,6 +900,7 @@ const Landing = () => {
                                     href={VIP_APP_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => trackCTAClick('hero_vip_app', '체중별 급여 계산 앱', 'hero_secondary_cta', 'vip_app')}
                                     className="px-3.5 py-2 rounded-xl bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all inline-flex items-center gap-1.5"
                                 >
                                     <span aria-hidden="true">📱</span>
@@ -893,14 +908,14 @@ const Landing = () => {
                                 </a>
                                 <button
                                     type="button"
-                                    onClick={() => scrollToSection('why-parvogel')}
+                                    onClick={() => { scrollToSection('why-parvogel'); trackCTAClick('hero_why_parvogel', '왜 파보겔인가?', 'hero_secondary_cta', 'why_parvogel_section'); }}
                                     className="px-3.5 py-2 rounded-xl bg-white hover:bg-primary-50 border border-primary-200 text-primary-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
                                 >
                                     🔬 왜 파보겔인가? ↓
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => scrollToSection('vet-voice')}
+                                    onClick={() => { scrollToSection('vet-voice'); trackCTAClick('hero_vet_voice', '수의사 육성', 'hero_secondary_cta', 'vet_voice_section'); }}
                                     className="px-3.5 py-2 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs sm:text-sm font-extrabold shadow-xs transition-all"
                                 >
                                     🎙️ 수의사 육성 ↓

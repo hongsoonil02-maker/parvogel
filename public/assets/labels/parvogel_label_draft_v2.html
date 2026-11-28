@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파보겔(ParvoGel) 100mL 온라인 전용 라벨 앞면 시안 (A안 / B안)</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 40px 24px 80px;
+      line-height: 1.5;
+    }
+    .page-header {
+      max-width: 1120px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+    .page-header .eyebrow {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0b2545;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 15px;
+      color: #475569;
+    }
+
+    .grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+
+    .proposal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+    .proposal-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .proposal-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .badge-a { background: #0b2545; color: #fff; }
+    .badge-b { background: #15803d; color: #fff; }
+    .proposal-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .proposal-desc {
+      font-size: 13.5px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    /* Stage showcasing the actual 100mL bottle front visible ratio (52mm x 84mm -> 286px x 462px) */
+    .stage {
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 16px;
+      padding: 36px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .ratio-note {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 14px;
+      font-weight: 600;
+    }
+
+    /* Label Base (52mm x 84mm aspect ratio) */
+    .label {
+      width: 290px;
+      height: 468px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow:
+        0 18px 40px rgba(11, 37, 69, 0.16),
+        inset 12px 0 18px -12px rgba(15, 23, 42, 0.12),
+        inset -12px 0 18px -12px rgba(15, 23, 42, 0.12);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ================= OPTION A: Clinical Premium Medical ================= */
+    .label-a {
+      border: 1px solid #e2e8f0;
+    }
+    .label-a .top-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #0b2545 0%, #0b2545 68%, #16a34a 68%, #22c55e 100%);
+    }
+    .label-a .inner {
+      padding: 18px 22px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .label-a .cat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .label-a .cat-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #0b2545;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: -0.01em;
+    }
+    .label-a .form-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #15803d;
+      background: #dcfce7;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .label-a .brand-block {
+      text-align: left;
+      margin-bottom: 14px;
+    }
+    .label-a .brand-en {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      color: #16a34a;
+      margin-bottom: 2px;
+    }
+    .label-a .brand-ko {
+      font-size: 46px;
+      font-weight: 900;
+      color: #0b2545;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+    .label-a .brand-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+    }
+
+    .label-a .hero-box {
+      background: #0b2545;
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 13px 15px;
+      margin-bottom: 14px;
+    }
+    .label-a .hero-box .kicker {
+      font-size: 10px;
+      font-weight: 600;
+      color: #86efac;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .label-a .hero-box .headline {
+      font-size: 16.5px;
+      font-weight: 800;
+      line-height: 1.32;
+      letter-spacing: -0.02em;
+    }
+    .label-a .hero-box .headline span {
+      color: #86efac;
+    }
+
+    .label-a .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .label-a .benefit-chip {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .label-a .benefit-chip strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0b2545;
+      line-height: 1.25;
+    }
+    .label-a .benefit-chip span {
+      display: block;
+      font-size: 9px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .label-a .formula-box {
+      border-top: 1px dashed #cbd5e1;
+      border-bottom: 1px dashed #cbd5e1;
+      padding: 10px 0;
+      margin-bottom: 12px;
+    }
+    .label-a .formula-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: #15803d;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+    .label-a .formula-list {
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    .label-a .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .label-a .pet-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #0b2545;
+    }
+    .label-a .pet-icons span {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .label-a .vol-wrap {
+      text-align: right;
+    }
+    .label-a .vol {
+      font-size: 20px;
+      font-weight: 900;
+      color: #0b2545;
+      line-height: 1;
+    }
+    .label-a .company {
+      margin-top: 4px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .company-logo {
+      height: 15px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* ================= OPTION B: Refined Hong Draft ================= */
+    .label-b {
+      border: 1px solid #d1fae5;
+      background: linear-gradient(180deg, #ffffff 0%, #ffffff 74%, #ecfdf5 100%);
+    }
+    .label-b .inner {
+      padding: 20px 20px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .label-b .top-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #0b2545;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .label-b .brand-wrap {
+      margin-top: 4px;
+    }
+    .label-b .brand-ko {
+      font-size: 46px;
+      font-weight: 900;
+      color: #0b2545;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+    .label-b .swoosh {
+      width: 110px;
+      height: 5px;
+      background: linear-gradient(90deg, #38bdf8, #22c55e);
+      border-radius: 999px;
+      margin: 5px auto 6px;
+    }
+    .label-b .brand-en {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.3em;
+      color: #0b2545;
+    }
+
+    .label-b .pill-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #0b2545 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      box-shadow: 0 6px 14px rgba(11, 37, 69, 0.16);
+    }
+    .label-b .pill-banner em {
+      font-style: normal;
+      color: #bef264;
+    }
+
+    .label-b .sub-points {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0b2545;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .label-b .sub-points .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .label-b .pet-line-box {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .label-b .pet-caption {
+      font-size: 11px;
+      font-weight: 700;
+      color: #15803d;
+    }
+
+    .label-b .ing-pill {
+      width: 100%;
+      background: #dcfce7;
+      color: #14532d;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 8px;
+      line-height: 1.35;
+    }
+
+    .label-b .bottom-row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .label-b .company {
+      display: flex;
+      align-items: center;
+    }
+    .label-b .vol-pill {
+      font-size: 14px;
+      font-weight: 900;
+      color: #0b2545;
+      background: #ffffff;
+      border: 2px solid #22c55e;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+    .label-b .wave-bg {
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 44px;
+      z-index: 1;
+      opacity: 0.35;
+    }
+
+    /* Comparison Checklist */
+    .checklist {
+      max-width: 1120px;
+      margin: 32px auto 0;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 28px;
+      border: 1px solid #e2e8f0;
+    }
+    .checklist h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0b2545;
+      margin-bottom: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 700;
+    }
+    .tag-bad { color: #dc2626; font-weight: 700; }
+    .tag-good { color: #15803d; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <div class="eyebrow">PARVOGEL LABEL RENEWAL · B2C ONLINE EDITION (100mL)</div>
+    <h1>파보겔 온라인 쇼핑몰 전용 라벨 앞면 시안 (100mL 통일)</h1>
+    <p>일반 반려동물 보호자(스마트스토어·쿠팡·자사몰) 타깃에 맞춰 <strong>모바일 썸네일 1초 가독성 · 사료관리법 안전성 · 100mL 정면 비율</strong>을 반영한 시안입니다.</p>
+  </div>
+
+  <div class="grid">
+    <!-- OPTION A -->
+    <div class="proposal-card">
+      <div class="proposal-meta">
+        <span class="proposal-badge badge-a">A안 · 추천 (2040 프리미엄 펫케어형)</span>
+      </div>
+      <div class="proposal-title">스마트스토어·자사몰 고전환 프리미엄 톤</div>
+      <div class="proposal-desc">
+        저가형 실사·약국 노란 글씨를 빼고 요즘 2040 보호자가 선호하는 클린 펫 헬스케어 톤으로 정리. 모바일 작은 썸네일에서도 브랜드명과 핵심 효능이 선명하게 읽힙니다.
+      </div>
+
+      <div class="stage">
+        <div class="label label-a">
+          <div class="top-bar"></div>
+          <div class="inner">
+            <div>
+              <div class="cat-row">
+                <span class="cat-pill">반려동물용 보조사료</span>
+                <span class="form-tag">액상 겔 타입</span>
+              </div>
+
+              <div class="brand-block">
+                <div class="brand-en">PARVOGEL</div>
+                <div class="brand-ko">파보겔</div>
+                <div class="brand-sub">강아지·고양이 데일리 장 건강 케어</div>
+              </div>
+
+              <div class="hero-box">
+                <div class="kicker">DAILY GUT CARE FORMULA</div>
+                <div class="headline">예민한 장 · <span>묽은 변 케어</span><br />장 건강 · 정상 배변 유지</div>
+              </div>
+
+              <div class="benefits">
+                <div class="benefit-chip">
+                  <strong>장 환경 개선</strong>
+                  <span>유익균 밸런스</span>
+                </div>
+                <div class="benefit-chip">
+                  <strong>장 점막 보호</strong>
+                  <span>부드러운 겔</span>
+                </div>
+                <div class="benefit-chip">
+                  <strong>수분·영양</strong>
+                  <span>전해질 보충</span>
+                </div>
+              </div>
+
+              <div class="formula-box">
+                <div class="formula-title">5-IN-1 COMPLEX FORMULA</div>
+                <div class="formula-list">
+                  바실러스 서브틸리스 · 몬모릴로나이트<br />
+                  전해질(초산·프로피온산나트륨) · 비타민A · 포도당
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-row">
+              <div class="pet-icons">
+                <!-- Minimal Dog + Cat SVG -->
+                <svg width="34" height="24" viewBox="0 0 64 44" fill="none" stroke="#0b2545" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- Dog silhouette -->
+                  <path d="M12 36V22c0-5 4-9 9-9h4c5 0 9 4 9 9v14" />
+                  <path d="M12 18c-3-1-5-4-4-8 2 1 5 2 7 4" />
+                  <path d="M34 18c3-1 5-4 4-8-2 1-5 2-7 4" />
+                  <circle cx="19" cy="23" r="1.2" fill="#0b2545" stroke="none"/>
+                  <circle cx="27" cy="23" r="1.2" fill="#0b2545" stroke="none"/>
+                  <path d="M21.5 27.5h3" />
+                  <!-- Cat silhouette -->
+                  <path d="M40 36V23l3-7 4 4h6l4-4 3 7v13" />
+                  <circle cx="46.5" cy="26" r="1.1" fill="#0b2545" stroke="none"/>
+                  <circle cx="53.5" cy="26" r="1.1" fill="#0b2545" stroke="none"/>
+                </svg>
+                <span>개 · 고양이 겸용</span>
+              </div>
+              <div class="vol-wrap">
+                <div class="vol">100mL</div>
+                <div class="company"><img src="hankook_agro_logo.png" alt="(주)한국아그로 로고" class="company-logo" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ratio-note">실제 100mL 원통 용기 정면 가시 영역 비율 (약 52mm × 84mm)</div>
+      </div>
+    </div>
+
+    <!-- OPTION B -->
+    <div class="proposal-card">
+      <div class="proposal-meta">
+        <span class="proposal-badge badge-b">B안 · 대중 친화형 (홍대표님 초안 업그레이드)</span>
+      </div>
+      <div class="proposal-title">온라인 대중 타깃 친근함 + 깔끔한 신뢰감</div>
+      <div class="proposal-desc">
+        홍대표님 초안의 네이비·그린 배색과 친근한 중앙 구성을 살리되, 온라인 신고 리스크(설사 개선)와 촌스러운 요소(노란 글씨·위장 클립아트)만 깔끔하게 걷어냈습니다.
+      </div>
+
+      <div class="stage">
+        <div class="label label-b">
+          <div class="inner">
+            <div class="top-tag">반려동물용 보조사료 · 액상 겔</div>
+
+            <div class="brand-wrap">
+              <div class="brand-ko">파보겔</div>
+              <div class="swoosh"></div>
+              <div class="brand-en">PARVOGEL</div>
+            </div>
+
+            <div class="pill-banner">
+              예민한 장 · <em>묽은 변</em> 데일리 케어
+            </div>
+
+            <div class="sub-points">
+              <span>장 건강</span>
+              <span class="dot"></span>
+              <span>장 점막 보호</span>
+              <span class="dot"></span>
+              <span>정상 배변 도움</span>
+            </div>
+
+            <div class="pet-line-box">
+              <!-- Clean friendly line illustration of dog & cat -->
+              <svg width="120" height="62" viewBox="0 0 160 82" fill="none" stroke="#0b2545" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Dog -->
+                <path d="M26 68c0-18 10-30 24-30s24 12 24 30" fill="#f8fafc"/>
+                <path d="M26 42c-7-2-12-9-10-18 5 1 11 4 15 10" fill="#e2e8f0"/>
+                <path d="M74 42c7-2 12-9 10-18-5 1-11 4-15 10" fill="#e2e8f0"/>
+                <circle cx="41" cy="48" r="2.2" fill="#0b2545" stroke="none"/>
+                <circle cx="59" cy="48" r="2.2" fill="#0b2545" stroke="none"/>
+                <ellipse cx="50" cy="54" rx="3.5" ry="2.5" fill="#0b2545" stroke="none"/>
+                <path d="M46 60c2 2 6 2 8 0" />
+                <!-- Cat -->
+                <path d="M90 68V42l7-18 10 10h16l10-10 7 18v26" fill="#f8fafc"/>
+                <circle cx="106" cy="49" r="2.2" fill="#0b2545" stroke="none"/>
+                <circle cx="124" cy="49" r="2.2" fill="#0b2545" stroke="none"/>
+                <path d="M113 54h4l-2 2.5z" fill="#16a34a" stroke="none"/>
+                <path d="M84 52h10M85 57h9M136 52h10M136 57h9" stroke="#64748b" stroke-width="1.8"/>
+              </svg>
+              <div class="pet-caption">강아지 · 고양이 경구 급여용</div>
+            </div>
+
+            <div class="ing-pill">
+              바실러스 서브틸리스 · 몬모릴로나이트<br />전해질 · 비타민A · 포도당 복합 배합
+            </div>
+
+            <div class="bottom-row">
+              <div class="company"><img src="hankook_agro_logo.png" alt="(주)한국아그로 로고" class="company-logo" style="height: 16px;" /></div>
+              <div class="vol-pill">100mL</div>
+            </div>
+          </div>
+
+          <svg class="wave-bg" viewBox="0 0 290 44" preserveAspectRatio="none">
+            <path d="M0 24 Q 90 0, 180 22 T 290 12 L 290 44 L 0 44 Z" fill="#22c55e" />
+          </svg>
+        </div>
+        <div class="ratio-note">실제 100mL 원통 용기 정면 가시 영역 비율 (약 52mm × 84mm)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <h2>온라인 쇼핑몰 전용 제품 기준 최종 체크포인트</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">항목</th>
+          <th style="width: 32%;">홍대표님 초안</th>
+          <th style="width: 50%;">개선 시안 (A/B 공통 반영)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>메인 카피 (온라인 심의/신고 방지)</strong></td>
+          <td><span class="tag-bad">갑작스런 설사·묽은변 개선</span><br />(네이버/쿠팡 경쟁사 신고·행정처분 위험 매우 높음)</td>
+          <td><span class="tag-good">예민한 장 · 묽은 변 케어 / 정상 배변 유지</span><br />(보조사료 온라인 판매 허용 범위 내 안전 표현)</td>
+        </tr>
+        <tr>
+          <td><strong>분류 표기</strong></td>
+          <td>반려동물용 장 건강 보조제</td>
+          <td><span class="tag-good">반려동물용 보조사료</span> (등록증 법정 명칭 일치)</td>
+        </tr>
+        <tr>
+          <td><strong>용량 단위</strong></td>
+          <td>100 mL</td>
+          <td><span class="tag-good">100mL</span> 통일 (※ 뒷면 법정 표기사항도 100mL로 동기화 필요)</td>
+        </tr>
+        <tr>
+          <td><strong>레이아웃 비율</strong></td>
+          <td>가로형 배너 (3:2) → 100mL 병 양옆 잘림</td>
+          <td><span class="tag-good">세로형 정면 그리드 (약 5:8)</span> → 쇼핑몰 썸네일 1초 가독성 확보</td>
+        </tr>
+        <tr>
+          <td><strong>비주얼 톤</strong></td>
+          <td>노란 글씨 + 위장 아이콘 + 실사 사진</td>
+          <td><span class="tag-good">네이비·그린 절제 톤 + 미니멀 라인 아이콘</span> (2040 보호자 신뢰감)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

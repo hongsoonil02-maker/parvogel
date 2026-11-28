@@ -43,6 +43,7 @@ class ParvogelContentFormatter:
         self.config = self._load_json(os.path.join(CONFIG_DIR, "channels_config.json"))
         self.keywords = self._load_json(os.path.join(DATA_DIR, "keywords_seo.json"))
         self.papers_data = self._load_json(os.path.join(DATA_DIR, "scientific_papers.json"))
+        self.channel_strategy = self._load_json(os.path.join(CONFIG_DIR, "channel_strategy.json"))
 
         self.landing_base = self.config.get("site_landing_url", "https://parvogel.kr/")
         self.kakao_store_base = self.config.get("kakao_store_url", "https://store.kakao.com/agrowellness/products/800840808")
@@ -152,19 +153,40 @@ class ParvogelContentFormatter:
             "links": links
         }
 
-    # TikTok 포맷팅
+    # TikTok 포맷팅 (채널 전략 반영)
     def _format_tiktok(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("tiktok", n.get("theme_id", "daily"))
-        tags = "#파보겔 #응급상비겔 #강아지설사 #고양이설사 #펫구급함 #shorts"
-        title = f"{n.get('headline', '55일령 아기 푸들의 3일 뒤 기적')} {tags}"[:150]
+        
+        # 채널 전략에서 해시태그/트렌드 가이드 가져오기
+        tt_strategy = self.channel_strategy.get("platformStrategies", {}).get("tiktok", {})
+        hashtag_strategy = tt_strategy.get("hashtagStrategy", "")
+        engagement_hooks = tt_strategy.get("engagementHooks", [])
+        
+        headline = n.get('headline', '55일령 아기 푸들의 3일 뒤 기적')
+        # TikTok은 150자 제한, 해시태그 포함
+        base_tags = "#파보겔 #응급상비겔 #강아지설사 #고양이설사 #펫구급함"
+        title = f"{headline} {base_tags}"[:150]
+        
+        # 참여 유도 훅 추가
+        hook_text = ""
+        if engagement_hooks:
+            hook_text = f"\n\n💬 {engagement_hooks[0]}"
+        
         return {
             "title": title,
+            "description": f"{n.get('subheadline', '')}{hook_text}",
+            "hashtags": base_tags.split(),
             "links": links
         }
 
-    # Threads(스레드) 포맷팅 — 링크 없는 본문 + 90초 지연 첫댓글 전환 타래
+    # Threads(스레드) 포맷팅 — 링크 없는 본문 + 90초 지연 첫댓글 전환 타래 (채널 전략 반영)
     def _format_threads(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("threads", n.get("theme_id", "daily"))
+        
+        # 채널 전략에서 콘텐츠 필라 가져오기
+        th_strategy = self.channel_strategy.get("platformStrategies", {}).get("threads", {})
+        content_pillars = th_strategy.get("contentPillars", [])
+        
         try:
             gen = ThreadsContentGenerator()
             thread_data = gen.generate_single_thread()
@@ -174,8 +196,35 @@ class ParvogelContentFormatter:
         except Exception:
             pass
 
-        headline = n.get("headline", "새끼 강아지 설사한다고 무작정 굶기는 집사들, 제발 멈춰라.")
-        main_post = f"""{headline}
+        # 콘텐츠 필라에 따라 다른 스레드 생성
+        pillar = content_pillars[0] if content_pillars else "임상 실화 스레드"
+        
+        if "임상" in pillar:
+            headline = n.get("headline", "수의사도 안락사 권유했던 0.6kg 아기 푸들, 7일 뒤 걸어 나갔습니다.")
+            main_post = f"""{headline}
+
+생후 55일, 몸무게 600g. 파보장염으로 혈변·구토·허탈 상태 내원.
+
+수액 라인 잡기조차 힘든 체구. 김동준 원장(하남 사랑동물병원) 결정: "수액 배제, 파보겔 단독 집중 케어"
+
+1초 펌프로 입가 톡. 체내 흡수 0% 나노 몬모릴로나이트가 장 점막만 코팅, 독소만 배출.
+
+Day 1: 혈변 빈도 감소 / Day 3: 사료 자발 섭취 / Day 7: 정상 변·활력 완전 회복 퇴원 🎉
+
+이게 가능한 이유: 화학 약물처럼 간·신장 대사 NO. 장관만 쓸고 내려가는 100% 천연 나노 스펀지."""
+        elif "수의사" in pillar:
+            headline = n.get("headline", "강아지 설사한다고 사람 지사제 먹이면 장이 더 망가집니다.")
+            main_post = f"""{headline}
+
+로페라마이드 등 화학 지사제는 장 운동을 강제로 멈춰 장내 독소를 가둡니다.
+파보겔은 나노 몬모릴로나이트로 독소만 자석처럼 흡착 배출.
+
+체내 흡수 0%라 간·신장 부담 없고, 생후 30일부터 전 연령 안심 급여.
+
+주사기 없이 1초 펌프로 아이도 보호자도 스트레스 제로."""
+        else:
+            headline = n.get("headline", "새끼 강아지 설사한다고 무작정 굶기는 집사들, 제발 멈춰라.")
+            main_post = f"""{headline}
 
 성견이야 반나절 금식이 장을 쉬게 해줄 수 있지만, 2~3개월 새끼나 소형견은 12시간만 굶어도 저혈당 쇼크로 위험해질 수 있습니다.
 
@@ -189,7 +238,9 @@ class ParvogelContentFormatter:
 
 💬 카카오 쇼핑하기: {links['kakao_store']}
 🟢 네이버 스마트스토어: {links['smartstore']}
-(아이 체온이 떨어지거나 기립이 어려우면 지체 없이 동물병원 응급 진료를 받으셔야 합니다.)"""
+(아이 체온이 떨어지거나 기립이 어려우면 지체 없이 동물병원 응급 진료를 받으셔야 합니다.)
+
+자세한 건 프로필 링크에서 👉 https://parvogel.kr"""
 
         return {
             "content_id": f"thread_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
@@ -411,7 +462,7 @@ class ParvogelContentFormatter:
 
         return BlogHumanizer.enhance_naver_draft(raw_draft, paper_citations=citations)
 
-    # 5. 유튜브 쇼츠 메타데이터
+    # 5. 유튜브 쇼츠 메타데이터 (채널 전략 반영)
     def _format_youtube_shorts(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("youtube_shorts", n.get("theme_id", "daily"))
         raw_title = n.get('headline', '생후 55일 아기 푸들의 3일 뒤 기적')
@@ -419,6 +470,11 @@ class ParvogelContentFormatter:
             title = f"{raw_title[:88]} #shorts"
         else:
             title = raw_title[:100]
+
+        # 채널 전략에서 해시태그/키워드 가져오기
+        yt_strategy = self.channel_strategy.get("platformStrategies", {}).get("youtube_shorts", {})
+        seo_keywords = yt_strategy.get("seoKeywords", ["파보겔", "응급상비겔", "강아지설사", "고양이설사", "강아지구토", "펫구급함", "동물병원"])
+        tags_str = " ".join([f"#{k}" for k in seo_keywords[:15]])
 
         description = f"""{n.get('subheadline', '우리 집 펫 구급함 1순위 응급 상비겔 파보겔 실제 진료실 회복 기록!')}
 주사기 없이 입가에 1초 펌프로 스스로 핥아먹는 장 점막 보호 응급 상비겔 (체내 흡수 0%)
@@ -434,23 +490,28 @@ class ParvogelContentFormatter:
 ☎ 고객센터: 02-6949-5708 ((주)한국아그로)
 
 *보조사료는 질병 치료를 대체하지 않으며, 중증 증상 시 반드시 수의사 진료를 병행하세요.
-#파보겔 #응급상비겔 #강아지설사 #고양이설사 #강아지구토 #펫구급함 #동물병원 #shorts"""
+{tags_str}"""
         return {
             "title": title,
             "description": description[:5000],
             "pinned_comment": f"우리 집 펫 구급함 1순위 응급 상비겔 파보겔 100ml 공식 안내: {links['landing']} | 카카오 쇼핑하기: {links['kakao_store']}",
-            "tags": ["파보겔", "응급상비겔", "강아지설사", "고양이설사", "강아지구토", "펫구급함", "반려견건강", "shorts"],
+            "tags": seo_keywords[:20],
             "links": links
         }
 
-    # 6. 인스타그램 릴스 (요일별 테마 동적 반영)
+    # 6. 인스타그램 릴스 (채널 전략 반영)
     def _format_instagram_reels(self, n: Dict[str, Any]) -> Dict[str, Any]:
         links = self._build_utm_links("instagram_reels", n.get("theme_id", "daily"))
-        tags = " ".join(self.keywords.get("hashtags", {}).get("b2c_general", []) + self.keywords.get("hashtags", {}).get("b2c_story", []))
+        
+        # 채널 전략에서 해시태그 가이드 가져오기
+        ig_strategy = self.channel_strategy.get("platformStrategies", {}).get("instagram_reels", {})
+        hashtag_strategy = ig_strategy.get("hashtagStrategy", "")
+        
         headline = n.get("headline", "쓰러진 55일령 아기 푸들의 7일 회복 실화")
         subheadline = n.get("subheadline", "주사기 없이 입가에 대고 1초 펌프 누르면 꿀꺽!")
         pain_point = n.get("pain_point", "갑작스러운 구토와 물설사로 기력이 빠진 아이, 억지 주사기 투약 대신 1초 펌프로 안전하게 케어하세요.")
         video_hl = n.get("video_highlight", "투약 3일 차에 밥그릇까지 싹싹 비워내고 건강을 되찾은 실제 진료실 기록")
+        
         caption = f"""🐾 {headline}
 {subheadline}
 
@@ -468,7 +529,7 @@ class ParvogelContentFormatter:
 .
 .
 .
-{tags}
+{hashtag_strategy}
 """
         return {"caption": caption.strip(), "links": links}
 
