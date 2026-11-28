@@ -75,10 +75,10 @@
       "description": "파보겔 임상 관찰 요약 & 공식 안내 브리프 (드래프트 보관 전용)"
     },
     "Kakao_Channel": {
-      "enabled": true,
-      "publish_mode": "auto",
+      "enabled": false,
+      "publish_mode": "off",
       "type": "kakao_channel",
-      "description": "카카오톡 채널 (파보겔 공식) - 환영/주간팁/재구매/장바구니포기 자동화"
+      "description": "카카오톡 채널 (파보겔 공식 _rqxnJX) - 관리자 센터(center-pf.kakao.com) 웰컴/자동응답 직접 운영"
     }
   }
 }

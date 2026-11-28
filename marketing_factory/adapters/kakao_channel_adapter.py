@@ -21,12 +21,12 @@ class KakaoChannelAdapter(BaseMarketingAdapter):
 
     def __init__(self):
         super().__init__()
-        self.channel_id = os.environ.get("KAKAO_CHANNEL_ID", "")
+        self.channel_id = os.environ.get("KAKAO_CHANNEL_ID", "_rqxnJX")
         self.access_token = os.environ.get("KAKAO_CHANNEL_ACCESS_TOKEN", "")
         self.admin_key = os.environ.get("KAKAO_ADMIN_KEY", "")
-        self.base_url = "https://api.kakao.com/v2/api/talk/channel"
-        self.friend_url = "https://api.kakao.com/v1/api/talk/friends"
-        self.message_url = "https://api.kakao.com/v2/api/talk/memo/default/send"
+        self.base_url = "https://kapi.kakao.com/v2/api/talk/channel"
+        self.friend_url = "https://kapi.kakao.com/v1/api/talk/friends"
+        self.message_url = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
         
         # 자동화 시나리오 설정
         self.automation_config = {
@@ -200,10 +200,10 @@ class KakaoChannelAdapter(BaseMarketingAdapter):
         return []
 
     def publish(self, content_data: Dict[str, Any]) -> bool:
-        """채널 포스트 발행 (일반 포스트용)"""
-        # 카카오 채널은 일반 포스트 API가 제한적이므로
-        # 주로 1:1 메시지(알림톡/친구톡) 위주로 운영
-        return True
+        """채널 포스트 발행 비활성화 (관리자 센터 center-pf.kakao.com 직접 운영)."""
+        # 카카오 채널 웰컴/FAQ/메시지는 관리자 센터 웹 UI에서 직접 운영하며,
+        # API 자동 발송이 필요한 경우 알리고/솔라피 알림톡 연동을 사용합니다.
+        return False
 
     def run_automation_cycle(self) -> Dict[str, Any]:
         """자동화 사이클 실행 (스케줄러에서 호출)"""
